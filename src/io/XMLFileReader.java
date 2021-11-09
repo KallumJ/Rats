@@ -40,10 +40,15 @@ public class XMLFileReader {
      * @return The final element in the list as an Element object
      */
     public Element drilldownToElement(String... elements) {
-        Element current = this.rootElement;
-        for (String element : elements) {
-            current = (Element) current.getElementsByTagName(element).item(0);
+        try {
+            Element current = this.rootElement;
+            for (String element : elements) {
+                current = (Element) current.getElementsByTagName(element).item(0);
+            }
+            return current;
+        } catch (NullPointerException ex) {
+            throw new RuntimeException("The provided drilldown path is invalid", ex);
         }
-        return current;
+
     }
 }
