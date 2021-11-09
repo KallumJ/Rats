@@ -182,3 +182,7 @@ local.properties
 *.iml
 .idea/*
 doc/*
+/nbproject/private/
+nbproject/*
+build.xml
+manifest.mf
