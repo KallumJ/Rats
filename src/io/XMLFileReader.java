@@ -29,7 +29,7 @@ public class XMLFileReader {
             Document document = builder.parse(file);
             this.rootElement = document.getDocumentElement();
         } catch (ParserConfigurationException | IOException | SAXException ex) {
-            throw new RuntimeException("Failed to load the level from the provided file", ex);
+            throw new RuntimeException("Failed to load the the provided XML file", ex);
         }
     }
 
