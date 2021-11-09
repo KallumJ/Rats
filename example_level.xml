@@ -1,0 +1,25 @@
+<level>
+    <levelProperties>
+        <id>4</id>
+        <levelHeight>4</levelHeight>
+        <levelWidth>4</levelWidth>
+        <populationToLose>50</populationToLose>
+        <expectedTime>300</expectedTime>
+        <itemInterval>10</itemInterval>
+    </levelProperties>
+
+    <tileSet>
+        <tileRow>
+            <tile>g</tile><tile rat="true, true, false, f, 10, null">p</tile><tile>g</tile><tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile><tile>p</tile><tile bomb="2">p</tile><tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile><tile>g</tile><tile sex_ch="m">p</tile><tile>g</tile>
+        </tileRow>
+    </tileSet>
+</level>
