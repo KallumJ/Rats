@@ -1,14 +1,16 @@
-name: reviewdog
-on: [push]
+on: push
+
 jobs:
-  checkstyle:
-    name: runner / checkstyle
+  checkstyle_job:
     runs-on: ubuntu-latest
+    name: Checkstyle job
     steps:
-      - uses: actions/checkout@v2
-      - uses: dbelyaev/action-checkstyle@master
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run check style
+        uses: nikitasavinov/checkstyle-action@master
         with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          level: warning
-          checkstyle_config: sun_checks.xml
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: 'github-pr-check'
+          tool_name: 'testtool'
+          checkstyle_config: "sun_checks.xml"
