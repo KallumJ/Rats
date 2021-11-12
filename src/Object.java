@@ -30,4 +30,9 @@ public abstract class Object {
         return this.standingOn;
     }
     
+    public void standOn (Tile standingOn) {
+        
+        this.standingOn = standingOn;
+    }
+    
 }
