@@ -25,4 +25,9 @@ public abstract class Object {
         return this.icon;
     }
     
+    public Tile getStandingOn() {
+        
+        return this.standingOn;
+    }
+    
 }
