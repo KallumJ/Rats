@@ -34,4 +34,9 @@ public abstract class Rat extends Object{
         
         return this.directionOfMovement;
     }
+    
+    public void setDirectionOfMovement (Direction directionOfMovement) {
+        
+        this.directionOfMovement = directionOfMovement;
+    }
 }
