@@ -29,4 +29,9 @@ public abstract class Rat extends Object{
         
         this.speed = speed;
     }
+    
+    public Direction getDirectionOfMovement () {
+        
+        return this.directionOfMovement;
+    }
 }
