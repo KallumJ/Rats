@@ -24,4 +24,9 @@ public abstract class Rat extends Object{
         
         return this.speed;
     }  
+    
+    public void setSpeed (int speed) {
+        
+        this.speed = speed;
+    }
 }
