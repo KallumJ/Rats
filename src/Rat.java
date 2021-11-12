@@ -13,8 +13,11 @@ public abstract class Rat extends Object{
     
     private Direction directionOfMovement;
 
-    public Rat(Tile standingOn, Image icon) {
+    public Rat(Tile standingOn, Image icon, int speed, Direction directionOfMovement) {
+        
         super(standingOn, icon);
+        this.speed = speed;
+        this.directionOfMovement = directionOfMovement;        
     }
     
 }
