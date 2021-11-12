@@ -25,6 +25,8 @@ public abstract class Object {
         return this.icon;
     }
     
+    public abstract void changeIcon (Image icon); 
+    
     public Tile getStandingOn() {
         
         return this.standingOn;
