@@ -20,4 +20,9 @@ public abstract class Object {
         this.standingOn = standingOn;   
     }
     
+    public Image getIcon() {
+        
+        return this.icon;
+    }
+    
 }
