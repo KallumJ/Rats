@@ -10,4 +10,16 @@
  */
 public class Tile {
     
+    
+    
+    public Tile getAdjecentTile (Direction x){
+        
+        return this;
+    }
+    
+    
+    public Boolean isTraverable () {
+         return null;
+    }
+    
 }
