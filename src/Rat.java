@@ -1,6 +1,10 @@
 
 import java.util.Random;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 
 
 /**
@@ -12,13 +16,20 @@ public abstract class Rat extends Object{
     // movement speed of the Rat
     private int speed; 
     
+    private Timeline tickTimeline; 
+    
     private Direction directionOfMovement;
 
     protected Rat(Tile standingOn, Image icon, int speed, Direction directionOfMovement) {
         
         super(standingOn, icon);
         this.speed = speed;
-        this.directionOfMovement = directionOfMovement;        
+        this.directionOfMovement = directionOfMovement;   
+        
+        tickTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed), event -> move()));
+        
+        // Loop the timeline forever
+	tickTimeline.setCycleCount(Animation.INDEFINITE);
     }
     
     public int getSpeed (){
