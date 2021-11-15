@@ -58,4 +58,12 @@ public class PeacefulRat extends Rat{
     public void changeIcon(Image icon) {
         
     }
+    
+    public Boolean isSterile () {
+        
+        
+        return this.sterile;
+    }
+    
+    
 }
