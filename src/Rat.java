@@ -161,7 +161,7 @@ public abstract class Rat extends Object{
         return rightOfDirection;                   
     }    
     
-    private Direction turnAround (Direction directionOfMovement) {
+    public Direction turnAround (Direction directionOfMovement) {
         
         Direction oppositeDirection;
         
