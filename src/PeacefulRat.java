@@ -70,11 +70,15 @@ public class PeacefulRat extends Rat{
         
        return this.adult;
     }
-    
-    
-     public Boolean isPregnant () {
-        
-        
-       return this.pregnant;
+
+    public Boolean isPregnant() {
+
+        return this.pregnant;
     }
+    
+    public String getGender () {
+        
+        return this.gender;
+    }
+     
 }
