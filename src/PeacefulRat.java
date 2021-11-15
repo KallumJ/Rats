@@ -61,12 +61,10 @@ public class PeacefulRat extends Rat{
     
     public Boolean isSterile () {
         
-        
         return this.sterile;
     }
     
     public Boolean isAdult () {
-        
         
        return this.adult;
     }
@@ -80,5 +78,7 @@ public class PeacefulRat extends Rat{
         
         return this.gender;
     }
+    
+    
      
 }
