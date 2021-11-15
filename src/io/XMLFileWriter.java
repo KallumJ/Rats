@@ -60,7 +60,7 @@ public class XMLFileWriter {
     }
 
     public void writeNode(String nodeName, String nodeValue, Map<String, String> attributes) {
-
+        //TODO: Write XMLNode class, to store node information, and create a writeNodeWithChildren method
         try {
             XMLEvent tab = eventFactory.createDTD("\t");
 
