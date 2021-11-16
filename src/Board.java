@@ -19,6 +19,7 @@ public class Board {
     private int startTime;
     private int pointsOnEachRat;
     private Canvas canvas;
+    private final ArrayList<Object> objectsOnBoard;
 
     public Board(TileSet map, ArrayList<Object> objects, int pouplationToLose, int pointsOnEachRat, int expectedFinishTime) {
 
@@ -27,6 +28,7 @@ public class Board {
         this.pouplationToLose = pouplationToLose;
         this.pointsOnEachRat = pointsOnEachRat;
         this.expectedFinishTime = expectedFinishTime;
+        this.objectsOnBoard = new ArrayList<>();
 
     }
     
