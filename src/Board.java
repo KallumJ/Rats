@@ -55,12 +55,14 @@ public class Board {
     public void addObject(Object objectAdded) {
         
         objects.add(objectAdded);
+        showObjects ();
 
     }
 
     public void removeObject(Object objectRemove) {
         
         objects.remove(objectRemove);
+        showObjects ();
 
     }
     
