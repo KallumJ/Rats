@@ -3,6 +3,8 @@ package objects;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import display.Board;
 import javafx.scene.image.Image;
 import tile.Direction;
 import tile.Tile;
