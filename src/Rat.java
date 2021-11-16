@@ -30,6 +30,7 @@ public abstract class Rat extends Object{
         
         // Loop the timeline forever
 	tickTimeline.setCycleCount(Animation.INDEFINITE);
+        tickTimeline.play();
     }
     
     public int getSpeed (){
