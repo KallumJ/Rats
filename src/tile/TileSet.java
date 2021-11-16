@@ -27,4 +27,14 @@ public class TileSet {
     public Tile getTile(int x, int y) {
         return tileSet.get(y).get(x);
     }
+
+    public ArrayList<Tile> getAllTiles() {
+        ArrayList<Tile> allTiles = new ArrayList<>();
+
+        for (ArrayList<Tile> tileRow : tileSet) {
+            allTiles.addAll(tileRow);
+        }
+
+        return allTiles;
+    }
 }
