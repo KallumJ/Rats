@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import tile.Tile;
+import tile.TileSet;
 
 /**
  *
@@ -11,7 +11,7 @@ import tile.Tile;
 public class Board {
 
     private ArrayList<Object> objects;
-    private Tile[][] map;
+    private TileSet map;
     private int pouplationToLose;
     private int score;
     private int currentPouplation;
@@ -20,7 +20,7 @@ public class Board {
     private int pointsOnEachRat;
     private Canvas canvas;
 
-    public Board(Tile[][] map, ArrayList<Object> objects, int pouplationToLose, int pointsOnEachRat, int expectedFinishTime) {
+    public Board(TileSet map, ArrayList<Object> objects, int pouplationToLose, int pointsOnEachRat, int expectedFinishTime) {
 
         this.map = map;
         this.objects = objects;
