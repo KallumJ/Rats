@@ -1,3 +1,4 @@
+package display;
 
 import java.util.ArrayList;
 import javafx.scene.canvas.Canvas;
