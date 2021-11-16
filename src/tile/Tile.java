@@ -1,5 +1,9 @@
 package tile;
 
+import org.w3c.dom.NamedNodeMap;
+
+import java.util.Map;
+
 /**
  *
  * @author fahds
@@ -9,6 +13,7 @@ public class Tile {
     private TileType tileType;
     private boolean isTraversable;
     private boolean hideRatsWithin;
+    private NamedNodeMap initialAttributes;
 
     public Tile(TileLocation tileLocation, TileType tileType) {
         this.tileLocation = tileLocation;
@@ -40,5 +45,17 @@ public class Tile {
 
     public double getCenterY() {
         return this.getTileLocation().getY();
+    }
+
+    public NamedNodeMap getInitialAttributes() {
+        return this.initialAttributes;
+    }
+
+    public void setInitialAttributes(NamedNodeMap initialAttributes) {
+        this.initialAttributes = initialAttributes;
+    }
+
+    public boolean hasInitalAttributes() {
+        return this.initialAttributes != null;
     }
 }
