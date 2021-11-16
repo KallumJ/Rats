@@ -1,5 +1,6 @@
 
 import javafx.scene.image.Image;
+import tile.Tile;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

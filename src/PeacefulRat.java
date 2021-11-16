@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.scene.image.Image;
+import tile.Tile;
 
 
 /**
@@ -20,7 +21,7 @@ public class PeacefulRat extends Rat{
     private  Timer timer;
     private int numberOfBabies;
     
-    public PeacefulRat (Tile standingOn,  boolean sterile, boolean adult, boolean pregnant, String gender,
+    public PeacefulRat (Tile standingOn, boolean sterile, boolean adult, boolean pregnant, String gender,
                         int timeToGiveBirth, int timeToDevelop, int speed, Direction directionOfMovement) {
         super(standingOn, null, speed,  directionOfMovement);
         

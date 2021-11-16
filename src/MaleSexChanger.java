@@ -1,5 +1,6 @@
 
 import javafx.scene.image.Image;
+import tile.Tile;
 
 
 /**

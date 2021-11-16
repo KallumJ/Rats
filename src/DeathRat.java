@@ -1,5 +1,6 @@
 
 import javafx.scene.image.Image;
+import tile.Tile;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,7 +18,7 @@ public class DeathRat extends Rat {
     
 
     public DeathRat(Tile standingOn, Image icon, int speed, Direction directionOfMovement,
-                   int numberOfKills, int killsTarget) {
+                    int numberOfKills, int killsTarget) {
         super(standingOn, icon, speed, directionOfMovement);
         
         this.killsTarget = killsTarget;

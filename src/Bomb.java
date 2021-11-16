@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import tile.Tile;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

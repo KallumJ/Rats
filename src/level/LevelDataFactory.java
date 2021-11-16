@@ -58,11 +58,11 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to create a Tile[][] for the provided tileSet element
+     * A method to create a tile.Tile[][] for the provided tileSet element
      * @param tileSetElement the tileSet element
      * @param height the height of the level
      * @param width the width of the level
-     * @return a Tile[][] representing the tiles in the tile set element
+     * @return a tile.Tile[][] representing the tiles in the tile set element
      */
     private static String[][] readTileSet(Element tileSetElement, int height, int width) {
         // TODO: reimplement this to work for upcoming tile object, and all possible attributes
