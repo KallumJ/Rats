@@ -1,6 +1,8 @@
 package objects;
 
 import java.util.ArrayList;
+
+import display.Board;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -134,7 +136,7 @@ public class Bomb extends Item {
     }
 
     @Override
-    public void activition(Board board, Rat rat) {
+    public void activation(Board board, Rat rat) {
        
         startTimer(board);
     }

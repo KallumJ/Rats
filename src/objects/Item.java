@@ -1,5 +1,6 @@
 package objects;
 
+import display.Board;
 import javafx.scene.image.Image;
 import tile.Tile;
 
@@ -15,5 +16,5 @@ public abstract class Item extends Object{
     }
 
     
-    public abstract void activition (Board board, Rat rat);   
+    public abstract void activation(Board board, Rat rat);
 }

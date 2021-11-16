@@ -1,5 +1,6 @@
 package objects;
 
+import display.Board;
 import javafx.scene.image.Image;
 import tile.Tile;
 
@@ -23,7 +24,7 @@ public class NoEntrySign extends Item {
     }
 
    @Override
-    public void activition(Board board, Rat rat) {
+    public void activation(Board board, Rat rat) {
         
         rat.setDirectionOfMovement(rat.turnAround(rat.getDirectionOfMovement()));
         

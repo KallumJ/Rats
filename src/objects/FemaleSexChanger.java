@@ -1,5 +1,6 @@
 package objects;
 
+import display.Board;
 import javafx.scene.image.Image;
 import tile.Tile;
 
@@ -20,7 +21,7 @@ public class FemaleSexChanger extends Item{
     }
 
     @Override
-    public void activition(Board board, Rat rat) {
+    public void activation(Board board, Rat rat) {
         
         PeacefulRat pRat = (PeacefulRat) rat;
         pRat.setGender("Female");
