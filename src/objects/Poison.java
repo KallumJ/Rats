@@ -1,3 +1,4 @@
+package objects;
 
 import javafx.scene.image.Image;
 import tile.Tile;
@@ -12,19 +13,17 @@ import tile.Tile;
  *
  * @author fahds
  */
-public class FemaleSexChanger extends Item{
+public class Poison extends Item{
 
-    public FemaleSexChanger(Tile standingOn) {
+    public Poison(Tile standingOn) {
         super(standingOn, null);
     }
 
     @Override
     public void activition(Board board, Rat rat) {
         
-        PeacefulRat pRat = (PeacefulRat) rat;
-        pRat.setGender("Female");
-        
-        board.removeObject(this);   
+        board.removeObject(rat);
+        board.removeObject(this);
     }
 
     @Override

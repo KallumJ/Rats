@@ -1,3 +1,4 @@
+package objects;
 
 import java.util.Random;
 import javafx.animation.Animation;
@@ -15,7 +16,7 @@ import tile.Tile;
  */
 public abstract class Rat extends Object{
     
-    // movement speed of the Rat
+    // movement speed of the objects.Rat
     private int speed; 
     
     private Timeline tickTimeline; 

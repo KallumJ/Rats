@@ -1,3 +1,4 @@
+package objects;
 
 import java.util.Random;
 import java.util.Timer;

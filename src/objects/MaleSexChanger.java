@@ -1,28 +1,26 @@
+package objects;
 
 import javafx.scene.image.Image;
 import tile.Tile;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
  * @author fahds
  */
-public class Poison extends Item{
-
-    public Poison(Tile standingOn) {
+public class MaleSexChanger extends Item{
+    
+    public MaleSexChanger(Tile standingOn) {
         super(standingOn, null);
     }
 
     @Override
     public void activition(Board board, Rat rat) {
         
-        board.removeObject(rat);
-        board.removeObject(this);
+        PeacefulRat pRat = (PeacefulRat) rat;
+        pRat.setGender("Male");
+        
+        board.removeObject(this);   
     }
 
     @Override
