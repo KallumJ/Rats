@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -26,6 +27,8 @@ public class Board {
         this.pouplationToLose = pouplationToLose;
         this.pointsOnEachRat = pointsOnEachRat;
         this.expectedFinishTime = expectedFinishTime;
+        
+        showObjects ();
 
     }
     
@@ -36,6 +39,16 @@ public class Board {
 
         // Clear canvas
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        
+        // Set the background to white.
+        gc.setFill(Color.WHITE);
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        
+        // draw all objects
+        for (Object object : objects) {
+            gc.drawImage(object.getIcon(), object.getStandingOn().getCenterX(),
+                         object.getStandingOn().getCenterY());
+        }
 
     }
 
