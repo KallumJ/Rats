@@ -30,6 +30,7 @@ public class NoEntrySign extends Item {
         if (damageDone >= durability) {
             
             board.removeObject(this);
+            board.showObjects();
         }
         
         

@@ -32,7 +32,7 @@ public class Board {
 
     }
     
-    private void showObjects () {
+    public void showObjects () {
         
         // Get the Graphic Context of the canvas. This is what we draw on.
         GraphicsContext gc = canvas.getGraphicsContext2D();
