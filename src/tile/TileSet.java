@@ -6,7 +6,7 @@ public class TileSet {
     private final ArrayList<ArrayList<Tile>> tileSet = new ArrayList<>();
 
     public void putTile(TileType tileType, int x, int y) {
-        if (tileSet.get(y) == null) {
+        if (tileSet.size() < y) {
             tileSet.add(y, new ArrayList<>());
         }
 
@@ -14,7 +14,7 @@ public class TileSet {
     }
 
     public void putTile(Tile tile, int x, int y) {
-        if (tileSet.get(y) == null) {
+        if (tileSet.size() < y) {
             tileSet.add(y, new ArrayList<>());
         }
 
