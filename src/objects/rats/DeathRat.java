@@ -1,7 +1,8 @@
-package objects;
+package objects.rats;
 
 import display.Board;
 import javafx.scene.image.Image;
+import objects.Rat;
 import tile.Direction;
 import tile.Tile;
 

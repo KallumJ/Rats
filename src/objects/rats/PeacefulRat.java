@@ -1,4 +1,4 @@
-package objects;
+package objects.rats;
 
 import java.util.Random;
 import java.util.Timer;
@@ -6,6 +6,8 @@ import java.util.TimerTask;
 
 import display.Board;
 import javafx.scene.image.Image;
+import objects.Object;
+import objects.Rat;
 import tile.Direction;
 import tile.Tile;
 
@@ -14,7 +16,7 @@ import tile.Tile;
  *
  * @author fahds
  */
-public class PeacefulRat extends Rat{
+public class PeacefulRat extends Rat {
     
     private boolean sterile;
     private boolean adult;
@@ -146,7 +148,7 @@ public class PeacefulRat extends Rat{
                 newBornGender = "Female";
             }
             
-            Object newBorn = new PeacefulRat (super.getStandingOn(), this.isSterile(), false, false,newBornGender, 
+            Object newBorn = new PeacefulRat (super.getStandingOn(), this.isSterile(), false, false,newBornGender,
                     this.timeToGiveBirth, this.timeToDevelop, super.getSpeed(), super.getDirectionOfMovement());
             
             board.addObject(newBorn);
