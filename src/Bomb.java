@@ -93,9 +93,9 @@ public class Bomb extends Item {
 
         affectedTiles.add(currentTile);
 
-        if (currentTile.getAdjecentTile(direction).isTraverable()) {
+        if (currentTile.getAdjacentTile(direction).isTraversable()) {
 
-            findAffectedTilesUp(direction, currentTile.getAdjecentTile(direction));
+            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
 
         }
     }
@@ -104,9 +104,9 @@ public class Bomb extends Item {
 
         affectedTiles.add(currentTile);
 
-        if (currentTile.getAdjecentTile(direction).isTraverable()) {
+        if (currentTile.getAdjacentTile(direction).isTraversable()) {
 
-            findAffectedTilesUp(direction, currentTile.getAdjecentTile(direction));
+            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
 
         }
     }
@@ -115,9 +115,9 @@ public class Bomb extends Item {
 
         affectedTiles.add(currentTile);
 
-        if (currentTile.getAdjecentTile(direction).isTraverable()) {
+        if (currentTile.getAdjacentTile(direction).isTraversable()) {
 
-            findAffectedTilesUp(direction, currentTile.getAdjecentTile(direction));
+            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
 
         }
     }
@@ -126,9 +126,9 @@ public class Bomb extends Item {
 
         affectedTiles.add(currentTile);
 
-        if (currentTile.getAdjecentTile(direction).isTraverable()) {
+        if (currentTile.getAdjacentTile(direction).isTraversable()) {
 
-            findAffectedTilesUp(direction, currentTile.getAdjecentTile(direction));
+            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
         }
     }
 
