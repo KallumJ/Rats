@@ -42,9 +42,7 @@ public class DeathRat extends Rat {
            
             board.removeObject(this);
         }
-        else {
-            
-        } 
+        board.showObjects();
         
     }
     

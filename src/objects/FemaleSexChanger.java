@@ -26,7 +26,8 @@ public class FemaleSexChanger extends Item{
         PeacefulRat pRat = (PeacefulRat) rat;
         pRat.setGender("Female");
         
-        board.removeObject(this);   
+        board.removeObject(this); 
+        board.showObjects();
     }
 
     @Override

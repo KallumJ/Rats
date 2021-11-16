@@ -71,6 +71,7 @@ public class Bomb extends Item {
             }
         }
         board.removeObject(this);
+        board.showObjects();
         
     }
     
