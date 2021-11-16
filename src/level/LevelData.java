@@ -1,10 +1,12 @@
 package level;
 
+import tile.TileSet;
+
 public class LevelData {
     private final LevelProperties levelProperties;
-    private final String[][] tileSet;
+    private final TileSet tileSet;
 
-    public LevelData(LevelProperties levelProperties, String[][] tileSet) {
+    public LevelData(LevelProperties levelProperties, TileSet tileSet) {
         this.levelProperties = levelProperties;
         this.tileSet = tileSet;
     }
@@ -13,7 +15,7 @@ public class LevelData {
         return levelProperties;
     }
 
-    public String[][] getTileSet() {
+    public TileSet getTileSet() {
         return tileSet;
     }
 }
