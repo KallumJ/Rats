@@ -33,5 +33,12 @@ public class Tile {
     public Boolean isTraversable() {
          return isTraversable;
     }
-    
+
+    public double getCenterX() {
+        return this.getTileLocation().getX();
+    }
+
+    public double getCenterY() {
+        return this.getTileLocation().getY();
+    }
 }
