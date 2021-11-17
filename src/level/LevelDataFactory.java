@@ -64,6 +64,11 @@ public class LevelDataFactory {
 
     }
 
+    /**
+     * A method to read the objects that are stored on the tiles
+     * @param tileSet An instance of TileSet with all the tiles to read from
+     * @return an ArrayList of Objects with the required information
+     */
     private static ArrayList<Object> readObjects(TileSet tileSet) {
         ArrayList<Object> objects = new ArrayList<>();
 
@@ -71,11 +76,13 @@ public class LevelDataFactory {
             if (tile.hasInitalAttributes()) {
                 NamedNodeMap attributes = tile.getInitialAttributes();
 
+                // For every attribute on the tile TODO: Does this need to be a loop?
                 for (int i = 0; i < attributes.getLength(); i++) {
                     Node attribute = attributes.item(i);
                     String attributeName = attribute.getNodeName();
                     String attributeValue = attribute.getNodeValue();
 
+                    // Read the object from the provided attribute
                     objects.add(AttributeReader.getObjectFromAttribute(attributeName, attributeValue, tile));
                 }
             }
@@ -122,6 +129,7 @@ public class LevelDataFactory {
                 }
                 NamedNodeMap attributes = tile.getAttributes();
 
+                // If there are attributes present, store them in the tile
                 if (attributes.getLength() > 0) {
                     tileSet.getTile(j, i).setInitialAttributes(attributes);
                 }
