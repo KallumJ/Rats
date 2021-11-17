@@ -5,6 +5,8 @@ import java.util.Map;
 
 /**
  * A class to model an XML node for writing to files
+ *
+ * @author Kallum Jones 2005855
  */
 public class XMLNode {
     private final String nodeName;
