@@ -1,34 +1,71 @@
 package tile;
 
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * A class to model a set of tiles on the game board
+ *
+ * @author Kallum Jones 2005855
+ */
 public class TileSet {
     private final ArrayList<ArrayList<Tile>> tileSet = new ArrayList<>();
 
+    /**
+     * A method to put a tile in the set at the specified position
+     * @param tileType The type of the tile to generate
+     * @param x the x co-ordinate
+     * @param y the y co-ordinate
+     */
     public void putTile(TileType tileType, int x, int y) {
-        try {
-            tileSet.get(y);
-        } catch (IndexOutOfBoundsException ex) {
-            tileSet.add(y, new ArrayList<>());
-        }
-
+        generateTileRowIfNotPresent(y);
         tileSet.get(y).add(x, new Tile(new TileLocation(x, y), tileType));
     }
 
-    public void putTile(Tile tile, int x, int y) {
+    /**
+     * A method to generate a row of tiles if it is not present already
+     * @param y the y co-ordinate of the row
+     */
+    private void generateTileRowIfNotPresent(int y) {
+        // If the provided co-ordinate is out of bounds, put a new row there
         try {
             tileSet.get(y);
         } catch (IndexOutOfBoundsException ex) {
             tileSet.add(y, new ArrayList<>());
         }
+    }
+
+    /**
+     * A method to put a tile in the set at the specified position
+     * @param tile The tile to insert
+     * @param x the x co-ordinate
+     * @param y the y co-ordinate
+     */
+    public void putTile(Tile tile, int x, int y) {
+        generateTileRowIfNotPresent(y);
         tileSet.get(y).add(x, tile);
     }
 
+    /**
+     * A method to get the tile at the specified position
+     * @param x the x co-ordinate
+     * @param y the y co-ordinate
+     * @return the Tile found at the specified co-ordinate
+     */
     public Tile getTile(int x, int y) {
-        return tileSet.get(y).get(x);
+        try {
+            return tileSet.get(y).get(x);
+        } catch (IndexOutOfBoundsException ex) {
+            throw new RuntimeException(String.format("No tile exists at the specified position %d,%d", x, y));
+        }
+
     }
 
-    public ArrayList<Tile> getAllTiles() {
+    /**
+     * A method to return a List of all the tiles in the set
+     * @return a List of all the tiles in the set
+     */
+    public List<Tile> getAllTiles() {
         ArrayList<Tile> allTiles = new ArrayList<>();
 
         for (ArrayList<Tile> tileRow : tileSet) {
