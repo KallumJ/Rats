@@ -35,7 +35,7 @@ public class PeacefulRat extends Rat {
                         int timeToGiveBirth, int timeToDevelop, int speed, Direction directionOfMovement) {
         super(standingOn, speed,  directionOfMovement);
         
-        this.changeIcon(decideIcon(adult, pregnant, gender));
+        
         
         this.sterile  = sterile;
         this.adult = adult;
@@ -48,15 +48,20 @@ public class PeacefulRat extends Rat {
             
             this.growUp();
         }
+        if (this.pregnant) {
+            
+            this.bePregnant();
+        }
         
         maleRatImage = new Image("maleRat.png");
         babyRatImage = new Image ("babyRat.png");
         femaleRatImage = new Image ("femaleRat.png");
         pregnantFemaleRatImage = new Image ("pregnantFemaleRat.png");
+        decideIcon(adult, pregnant, gender);
         
     }
     
-    private Image decideIcon (boolean adult, boolean pregnant, String gender) {
+    private void decideIcon (boolean adult, boolean pregnant, String gender) {
         
         Image decidedIcon;
         
@@ -77,7 +82,7 @@ public class PeacefulRat extends Rat {
             decidedIcon = femaleRatImage;
         }
         
-        return decidedIcon;
+        changeIcon(decidedIcon);
     }
 
     @Override
@@ -106,22 +111,23 @@ public class PeacefulRat extends Rat {
         return this.gender;
     }
     
-    public void mate (Board board, PeacefulRat partner) {
+    public void mate (PeacefulRat partner) {
         
         if (!this.isSterile() && !partner.isSterile() && this.isAdult() && partner.isAdult()
             && partner.getGender().equalsIgnoreCase("Female") && !partner.isPregnant()) {
             
-            partner.bePregnant (board);
+            partner.bePregnant ();
         }
         else {
             
         }   
     }
     
-    private void bePregnant (Board board) {
+    private void bePregnant () {
         
-        //this.changeIcon(pregnantFemaleRat.png);
+        
         this.pregnant = true;
+        decideIcon (adult, pregnant, gender);   
         
         Random random = new Random(); 
         this.numberOfBabies = random.nextInt((5 - 2) + 1) + 2;
@@ -131,16 +137,16 @@ public class PeacefulRat extends Rat {
             @Override
             public void run() {
                 
-                giveBirth(board);
+                giveBirth();
             }
         }, this.timeToGiveBirth);
 
     }
     
-    private void giveBirth (Board board){
+    private void giveBirth (){
         
-        //this.changeIcon(femaleRat.png);
         this.pregnant = false;
+        decideIcon (adult, pregnant, gender);   
         
         for (int i = 0; i == this.numberOfBabies; i++) {
             String newBornGender;
@@ -160,7 +166,7 @@ public class PeacefulRat extends Rat {
             Object newBorn = new PeacefulRat (super.getStandingOn(), this.isSterile(), false, false,newBornGender,
                     this.timeToGiveBirth, this.timeToDevelop, super.getSpeed(), super.getDirectionOfMovement());
             
-            board.addObject(newBorn);
+            Object.getBoard().addObject(newBorn);
             
         }
         
@@ -170,7 +176,7 @@ public class PeacefulRat extends Rat {
         
         this.gender = gender;
         
-        this.changeIcon(decideIcon (this.adult, this.pregnant, this.gender));
+        decideIcon (this.adult, this.pregnant, this.gender);
     }
     
     public void setSterilisation (boolean sterile) {
@@ -182,7 +188,7 @@ public class PeacefulRat extends Rat {
         
         this.adult = adult;
         
-       this.changeIcon(decideIcon (this.adult, this.pregnant, this.gender));
+       decideIcon (this.adult, this.pregnant, this.gender);
     }
     
     private void growUp () {
@@ -193,7 +199,7 @@ public class PeacefulRat extends Rat {
             public void run() {
                 
                 setAdult(true);
-                changeIcon(decideIcon (adult, pregnant, gender));   
+                decideIcon (adult, pregnant, gender);   
             }
         }, this.timeToDevelop);
     }
