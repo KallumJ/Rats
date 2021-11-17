@@ -26,6 +26,10 @@ public class PeacefulRat extends Rat {
     private int timeToDevelop;
     private  Timer timer;
     private int numberOfBabies;
+    private Image maleRatImage;
+    private Image babyRatImage;
+    private Image femaleRatImage;
+    private Image pregnantFemaleRatImage;
     
     public PeacefulRat (Tile standingOn, boolean sterile, boolean adult, boolean pregnant, String gender,
                         int timeToGiveBirth, int timeToDevelop, int speed, Direction directionOfMovement) {
@@ -45,27 +49,32 @@ public class PeacefulRat extends Rat {
             this.growUp();
         }
         
+        maleRatImage = new Image("maleRat.png");
+        babyRatImage = new Image ("babyRat.png");
+        femaleRatImage = new Image ("femaleRat.png");
+        pregnantFemaleRatImage = new Image ("pregnantFemaleRat.png");
+        
     }
     
     private Image decideIcon (boolean adult, boolean pregnant, String gender) {
         
-        Image decidedIcon = null;
+        Image decidedIcon;
         
         if (!adult) {
             
-           // decidedIcon = babyRat.png;
+            decidedIcon = babyRatImage;
         } 
         else if (gender.equalsIgnoreCase("Male") ){
             
-            // decidedIcon = AdultMaleRat.png
+            decidedIcon = maleRatImage;
         }
         else if (pregnant) {
             
-            //decidedIcon = pregnantFemaleRat.png;  
+             decidedIcon = pregnantFemaleRatImage;  
         }
         else {
             
-            //decidedIcon = femaleRat.png
+            decidedIcon = femaleRatImage;
         }
         
         return decidedIcon;
