@@ -17,7 +17,7 @@ public class NoEntrySign extends Item {
     private int durability;
 
     public NoEntrySign(Tile standingOn, Image icon, int damageDone, int durability) {
-        super(standingOn, icon);
+        super(standingOn);
     }
 
    @Override

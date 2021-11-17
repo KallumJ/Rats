@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 public class Poison extends Item{
 
     public Poison(Tile standingOn) {
-        super(standingOn, null);
+        super(standingOn);
     }
 
     @Override

@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 public class FemaleSexChanger extends Item{
 
     public FemaleSexChanger(Tile standingOn) {
-        super(standingOn, null);
+        super(standingOn);
     }
 
     @Override

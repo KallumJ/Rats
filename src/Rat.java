@@ -20,9 +20,9 @@ public abstract class Rat extends Object{
     
     private Direction directionOfMovement;
 
-    protected Rat(Tile standingOn, Image icon, int speed, Direction directionOfMovement) {
+    protected Rat(Tile standingOn, int speed, Direction directionOfMovement) {
         
-        super(standingOn, icon);
+        super(standingOn);
         this.speed = speed;
         this.directionOfMovement = directionOfMovement;   
         
@@ -53,7 +53,7 @@ public abstract class Rat extends Object{
         this.directionOfMovement = directionOfMovement;
     }
     
-    public void move () {
+    private void move () {
         
         boolean isLeftTurnPossible = (super.getStandingOn().getAdjecentTile(turnLeft(
                                        directionOfMovement)) .isTraverable());
@@ -112,6 +112,7 @@ public abstract class Rat extends Object{
         else {
      
         }
+        Object.getBoard().showObjects();
     }
     
     private Direction turnLeft (Direction directionOfMovement) {

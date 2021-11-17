@@ -18,7 +18,7 @@ public class DeathRat extends Rat {
 
     public DeathRat(Tile standingOn, Image icon, int speed, Direction directionOfMovement,
                    int numberOfKills, int killsTarget) {
-        super(standingOn, icon, speed, directionOfMovement);
+        super(standingOn, speed, directionOfMovement);
         
         this.killsTarget = killsTarget;
         this.numberOfKills = numberOfKills;

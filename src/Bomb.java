@@ -23,7 +23,7 @@ public class Bomb extends Item {
     private ArrayList<Tile> affectedTiles;
 
     public Bomb(Tile standingOn, int timerLength, boolean timerStarted) {
-        super(standingOn, null);
+        super(standingOn);
 
         this.timerLength = timerLength;
         this.timerStarted = timerStarted;

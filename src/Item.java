@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
  */
 public abstract class Item extends Object{
 
-    protected Item(Tile standingOn, Image icon) {
-        super(standingOn, icon);
+    protected Item(Tile standingOn) {
+        super(standingOn);
     }
 
     

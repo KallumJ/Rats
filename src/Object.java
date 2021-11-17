@@ -14,12 +14,23 @@ public abstract class Object {
     // The Tile the objetc is currently standing on
     private Tile standingOn;
     
-    protected Object (Tile standingOn, Image icon){
+     private static Board board;
+    
+    protected Object (Tile standingOn){
         
-        this.icon = icon;
         this.standingOn = standingOn;   
     }
     
+    public static void setBoard(Board board) {
+
+        Object.board = board;
+    }
+
+    public static Board getBoard() {
+
+        return Object.board;
+    }
+
     public Image getIcon() {
         
         return this.icon;

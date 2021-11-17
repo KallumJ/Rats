@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 public class MaleSexChanger extends Item{
     
     public MaleSexChanger(Tile standingOn) {
-        super(standingOn, null);
+        super(standingOn);
     }
 
     @Override
