@@ -1,14 +1,17 @@
 package level;
 
 import io.XMLFileReader;
+import objects.Object;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import tile.Tile;
+import tile.TileSet;
+import tile.TileType;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A class to load LevelData objects from disk
@@ -16,10 +19,13 @@ import java.util.List;
  * @author Kallum Jones 2005855
  */
 public class LevelDataFactory {
+    //TODO: handle inventory
+
     private static final String LEVELS_PATH = "levels";
 
     /**
      * A method to construct the LevelData object for a given level id
+     *
      * @param id The id of the level that needs constructing
      * @return The complete LevelData object
      */
@@ -51,23 +57,48 @@ public class LevelDataFactory {
         Element tileSetElement = xmlFileReader.drilldownToElement("tileSet");
 
         LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
-        String[][] tileSet = readTileSet(tileSetElement, levelProperties.getLevelHeight(), levelProperties.getLevelWidth());
+        TileSet tileSet = readTileSet(tileSetElement);
+        ArrayList<Object> objects = readObjects(tileSet);
 
-        return new LevelData(levelProperties, tileSet);
+        return new LevelData(levelProperties, tileSet, objects);
 
     }
 
     /**
-     * A method to create a Tile[][] for the provided tileSet element
-     * @param tileSetElement the tileSet element
-     * @param height the height of the level
-     * @param width the width of the level
-     * @return a Tile[][] representing the tiles in the tile set element
+     * A method to read the objects that are stored on the tiles
+     * @param tileSet An instance of TileSet with all the tiles to read from
+     * @return an ArrayList of Objects with the required information
      */
-    private static String[][] readTileSet(Element tileSetElement, int height, int width) {
-        // TODO: reimplement this to work for upcoming tile object, and all possible attributes
-        String[][] tileSet = new String[height][width];
+    private static ArrayList<Object> readObjects(TileSet tileSet) {
+        ArrayList<Object> objects = new ArrayList<>();
 
+        for (Tile tile : tileSet.getAllTiles()) {
+            if (tile.hasInitalAttributes()) {
+                NamedNodeMap attributes = tile.getInitialAttributes();
+
+                // For every attribute on the tile TODO: Does this need to be a loop?
+                for (int i = 0; i < attributes.getLength(); i++) {
+                    Node attribute = attributes.item(i);
+                    String attributeName = attribute.getNodeName();
+                    String attributeValue = attribute.getNodeValue();
+
+                    // Read the object from the provided attribute
+                    objects.add(TileAttributeReader.getObjectFromAttribute(attributeName, attributeValue, tile));
+                }
+            }
+        }
+
+        return objects;
+    }
+
+    /**
+     * A method to create a tile.Tile[][] for the provided tileSet element
+     *
+     * @param tileSetElement the tileSet element
+     * @return a TileSet representing the tiles in the tile set element
+     */
+    private static TileSet readTileSet(Element tileSetElement) {
+        TileSet tileSet = new TileSet();
         NodeList tileRows = tileSetElement.getElementsByTagName("tileRow");
 
         // For every row in the tileSet element in the level file
@@ -79,19 +110,31 @@ public class LevelDataFactory {
             // For every tile in the row
             for (int j = 0; j < tiles.getLength(); j++) {
                 Node tile = tiles.item(j);
-                NamedNodeMap attributes = tile.getAttributes();
-
-                if (attributes != null) {
-                    for (int k = 0; k < attributes.getLength(); k++) {
-                        System.out.println(attributes.item(k).getTextContent());
-                    }
-                }
 
                 // Store tile type to the array
-                tileSet[i][j] = tile.getTextContent();
+                String tileText = tile.getTextContent();
+                switch (tileText) {
+                    case "g":
+                        tileSet.putTile(TileType.GRASS, j, i);
+                        break;
+                    case "t":
+                        tileSet.putTile(TileType.TUNNEL, j, i);
+                        break;
+                    case "p":
+                        tileSet.putTile(TileType.PATH, j, i);
+                        break;
+                    default:
+                        throw new RuntimeException("An invalid tile type was read from file");
+                }
+                NamedNodeMap attributes = tile.getAttributes();
+
+                // If there are attributes present, store them in the tile
+                if (attributes.getLength() > 0) {
+                    tileSet.getTile(j, i).setInitialAttributes(attributes);
+                }
+
             }
         }
-
 
         return tileSet;
     }
@@ -125,6 +168,7 @@ public class LevelDataFactory {
 
     /**
      * A utility method to get the level id for a provided file
+     *
      * @param file the file to get the id from
      * @return the found id
      */

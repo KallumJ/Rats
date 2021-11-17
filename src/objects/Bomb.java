@@ -1,9 +1,14 @@
+package objects;
 
 import java.util.ArrayList;
+
+import display.Board;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import tile.Direction;
+import tile.Tile;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -92,9 +97,9 @@ public class Bomb extends Item {
 
         affectedTiles.add(currentTile);
 
-        if (currentTile.getAdjecentTile(direction).isTraverable()) {
+        if (currentTile.getAdjacentTile(direction).isTraversable()) {
 
-            findAffectedTilesUp(direction, currentTile.getAdjecentTile(direction));
+            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
 
         }
     }
@@ -103,9 +108,9 @@ public class Bomb extends Item {
 
         affectedTiles.add(currentTile);
 
-        if (currentTile.getAdjecentTile(direction).isTraverable()) {
+        if (currentTile.getAdjacentTile(direction).isTraversable()) {
 
-            findAffectedTilesUp(direction, currentTile.getAdjecentTile(direction));
+            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
 
         }
     }
@@ -114,9 +119,9 @@ public class Bomb extends Item {
 
         affectedTiles.add(currentTile);
 
-        if (currentTile.getAdjecentTile(direction).isTraverable()) {
+        if (currentTile.getAdjacentTile(direction).isTraversable()) {
 
-            findAffectedTilesUp(direction, currentTile.getAdjecentTile(direction));
+            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
 
         }
     }
@@ -125,14 +130,14 @@ public class Bomb extends Item {
 
         affectedTiles.add(currentTile);
 
-        if (currentTile.getAdjecentTile(direction).isTraverable()) {
+        if (currentTile.getAdjacentTile(direction).isTraversable()) {
 
-            findAffectedTilesUp(direction, currentTile.getAdjecentTile(direction));
+            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
         }
     }
 
     @Override
-    public void activition(Board board, Rat rat) {
+    public void activation(Board board, Rat rat) {
        
         startTimer(board);
     }

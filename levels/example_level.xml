@@ -10,13 +10,13 @@
 
     <tileSet>
         <tileRow>
-            <tile>g</tile><tile rat="true, true, false, f, 10, null">p</tile><tile>g</tile><tile>g</tile>
+            <tile>g</tile><tile rat="true true 5 20 false f 200 60 5 up">p</tile><tile>g</tile><tile>g</tile>
         </tileRow>
         <tileRow>
-            <tile>g</tile><tile>p</tile><tile bomb="2">p</tile><tile>g</tile>
+            <tile>g</tile><tile>p</tile><tile>p</tile><tile>g</tile>
         </tileRow>
         <tileRow>
-            <tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile>
+            <tile>g</tile><tile>g</tile><tile poison="">p</tile><tile>g</tile>
         </tileRow>
         <tileRow>
             <tile>g</tile><tile>g</tile><tile sex_ch="m">p</tile><tile>g</tile>

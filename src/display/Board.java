@@ -1,7 +1,10 @@
+package display;
 
 import java.util.ArrayList;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import objects.Object;
+import tile.TileSet;
 import javafx.scene.paint.Color;
 
 /**
@@ -11,7 +14,7 @@ import javafx.scene.paint.Color;
 public class Board {
 
     private ArrayList<Object> objects;
-    private Tile[][] map;
+    private TileSet map;
     private int pouplationToLose;
     private int score;
     private int currentPouplation;
@@ -19,15 +22,17 @@ public class Board {
     private int startTime;
     private int pointsOnEachRat;
     private Canvas canvas;
+    private final ArrayList<Object> objectsOnBoard;
 
-    public Board(Tile[][] map, ArrayList<Object> objects, int pouplationToLose, int pointsOnEachRat, int expectedFinishTime) {
+    public Board(TileSet map, ArrayList<Object> objects, int pouplationToLose, int pointsOnEachRat, int expectedFinishTime) {
 
         this.map = map;
         this.objects = objects;
         this.pouplationToLose = pouplationToLose;
         this.pointsOnEachRat = pointsOnEachRat;
         this.expectedFinishTime = expectedFinishTime;
-        
+        this.objectsOnBoard = new ArrayList<>();
+
         showObjects ();
 
     }
@@ -39,11 +44,11 @@ public class Board {
 
         // Clear canvas
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        
+
         // Set the background to white.
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        
+
         // draw all objects
         for (Object object : objects) {
             gc.drawImage(object.getIcon(), object.getStandingOn().getCenterX(),

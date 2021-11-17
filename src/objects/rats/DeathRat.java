@@ -1,5 +1,10 @@
+package objects.rats;
 
+import display.Board;
 import javafx.scene.image.Image;
+import objects.Rat;
+import tile.Direction;
+import tile.Tile;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,10 +21,11 @@ public class DeathRat extends Rat {
     private int killsTarget;
     
 
-    public DeathRat(Tile standingOn, Image icon, int speed, Direction directionOfMovement,
-                   int numberOfKills, int killsTarget) {
+    public DeathRat(Tile standingOn, int speed, Direction directionOfMovement,
+            int numberOfKills, int killsTarget) {
         super(standingOn, speed, directionOfMovement);
-        
+
+       
         this.killsTarget = killsTarget;
         this.numberOfKills = numberOfKills;
     }
@@ -29,9 +35,9 @@ public class DeathRat extends Rat {
 
     }
     
-    public void kill (Rat victom, Board board) {
+    public void kill (Rat victim, Board board) {
         
-        board.removeObject(victom);
+        board.removeObject(victim);
         this.numberOfKills = this.numberOfKills + 1;
         
         if (this.killsTarget == this.numberOfKills) {
