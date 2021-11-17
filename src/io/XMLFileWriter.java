@@ -8,8 +8,8 @@ import javax.xml.stream.events.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A class to write XML files to the disk
@@ -20,7 +20,7 @@ public class XMLFileWriter {
     private final XMLEventWriter writer;
     private final XMLEventFactory eventFactory;
     private String rootNodeName;
-    private final File file;
+    private final FileOutputStream fileOutputStream;
 
     /**
      * Constructs an XMLFileWriter object
@@ -30,9 +30,9 @@ public class XMLFileWriter {
     public XMLFileWriter(File file, String rootNode) {
         try {
             this.rootNodeName = rootNode;
-            this.file = file;
+            this.fileOutputStream = new FileOutputStream(file);
             XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-            this.writer = outputFactory.createXMLEventWriter(new FileOutputStream(this.file));
+            this.writer = outputFactory.createXMLEventWriter(this.fileOutputStream);
             this.eventFactory = XMLEventFactory.newInstance();
 
             // Start the document
@@ -57,8 +57,9 @@ public class XMLFileWriter {
             writer.add(this.eventFactory.createEndElement("", "", rootNodeName));
             writer.add(this.eventFactory.createEndDocument());
             this.writer.close();
-        } catch (XMLStreamException ex) {
-            throw new RuntimeException(String.format("Unable to save XML file %s with the root %s", file.getName(), rootNodeName), ex);
+            this.fileOutputStream.close();
+        } catch (XMLStreamException | IOException ex) {
+            throw new RuntimeException(String.format("Unable to save XML file with the root %s", rootNodeName), ex);
         }
 
     }
