@@ -9,14 +9,24 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
+/**
+ * A class to write XML files to the disk
+ *
+ * @author Kallum Jones 2005855
+ */
 public class XMLFileWriter {
     private final XMLEventWriter writer;
     private final XMLEventFactory eventFactory;
     private String rootNodeName;
     private final File file;
 
+    /**
+     * Constructs an XMLFileWriter object
+     * @param file The file to write too
+     * @param rootNode The name of the root node in this xml file
+     */
     public XMLFileWriter(File file, String rootNode) {
         try {
             this.rootNodeName = rootNode;
@@ -25,11 +35,12 @@ public class XMLFileWriter {
             this.writer = outputFactory.createXMLEventWriter(new FileOutputStream(this.file));
             this.eventFactory = XMLEventFactory.newInstance();
 
+            // Start the document
             StartDocument startDocument = eventFactory.createStartDocument();
-            addNode(startDocument);
+            writer.add(startDocument);
 
             StartElement rootElement = eventFactory.createStartElement("", "", rootNodeName);
-            addNode(rootElement);
+            writer.add(rootElement);
 
         } catch (XMLStreamException | FileNotFoundException ex) {
             throw new RuntimeException(String.format("Unable to create an XML file %s with the root %s", file.getName(), rootNodeName), ex);
@@ -37,10 +48,14 @@ public class XMLFileWriter {
 
     }
 
+    /**
+     * A method to save the file that has thus far been written, and close the writer
+     */
     public void saveAndClose() {
+        // End the document, and close the writer
         try {
-            addNode(this.eventFactory.createEndElement("", "", rootNodeName));
-            addNode(this.eventFactory.createEndDocument());
+            writer.add(this.eventFactory.createEndElement("", "", rootNodeName));
+            writer.add(this.eventFactory.createEndDocument());
             this.writer.close();
         } catch (XMLStreamException ex) {
             throw new RuntimeException(String.format("Unable to save XML file %s with the root %s", file.getName(), rootNodeName), ex);
@@ -48,43 +63,43 @@ public class XMLFileWriter {
 
     }
 
-    private void addNode(XMLEvent node)  {
+    /**
+     * A method to write a provided XMLNode to the file
+     * @param xmlNode the XMLNode to write to the file
+     */
+    public void writeNode(XMLNode xmlNode) {
         try {
-            XMLEvent newLine = eventFactory.createDTD("\n");
-            writer.add(node);
-            writer.add(newLine);
-        } catch (XMLStreamException ex) {
-            throw new RuntimeException(String.format("Unable to add node %s to file %s", node, file.getName()), ex);
-        }
-
-    }
-
-    public void writeNode(String nodeName, String nodeValue, Map<String, String> attributes) {
-        //TODO: Write XMLNode class, to store node information, and create a writeNodeWithChildren method
-        try {
-            XMLEvent tab = eventFactory.createDTD("\t");
-
             // Create list of attributes
             ArrayList<Attribute> attributesList = new ArrayList<>();
-            attributes.forEach((attribute, value) -> {
-                Attribute attributeNode = eventFactory.createAttribute(attribute, value);
-                attributesList.add(attributeNode);
-            });
+            if (xmlNode.hasAttributes()) {
+                xmlNode.getAttributes().forEach((attribute, value) -> {
+                    Attribute attributeNode = eventFactory.createAttribute(attribute, value);
+                    attributesList.add(attributeNode);
+                });
+            }
 
             // Create and write the start of the element with the attributes
-            StartElement startElement = eventFactory.createStartElement("", "", nodeName, attributesList.iterator(), null);
-            addNode(tab);
-            addNode(startElement);
+            StartElement startElement = eventFactory.createStartElement("", "", xmlNode.getNodeName(), attributesList.iterator(), null);
+            writer.add(startElement);
 
             // Create and write the value of the element
-            Characters value = eventFactory.createCharacters(nodeValue);
-            writer.add(value);
+            if (xmlNode.hasValue()) {
+                Characters value = eventFactory.createCharacters(xmlNode.getNodeValue());
+                writer.add(value);
+            }
+
+            // Write the children if the node has any
+            if (xmlNode.hasChildren()) {
+                for (XMLNode child : xmlNode.getChildren()) {
+                    writeNode(child);
+                }
+            }
 
             // Create and write the end of the element
-            EndElement endElement = eventFactory.createEndElement("", "", nodeName);
-            addNode(endElement);
+            EndElement endElement = eventFactory.createEndElement("", "", xmlNode.getNodeName());
+            writer.add(endElement);
         } catch (XMLStreamException ex) {
-            throw new RuntimeException(String.format("Unable to write %s to the xml file", nodeValue), ex);
+            throw new RuntimeException(String.format("Unable to write %s to the xml file", xmlNode.getNodeName()), ex);
         }
 
     }
