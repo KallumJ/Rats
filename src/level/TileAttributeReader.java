@@ -10,7 +10,18 @@ import tile.Tile;
 
 import java.util.Scanner;
 
-public class AttributeReader {
+/**
+ * A class to read attributes and form the Object they represent
+ * @author Kallum Jones 2005855
+ */
+public class TileAttributeReader {
+    /**
+     * A method to get the Object that the provided attribute represents
+     * @param attributeName The name of the attribute read from file
+     * @param attributeValue The value of the attribute read from file
+     * @param tile The tile this attribute was read from
+     * @return The constructed Object
+     */
     public static Object getObjectFromAttribute(String attributeName, String attributeValue, Tile tile) {
         switch (attributeName) {
             case "rat":
@@ -35,6 +46,12 @@ public class AttributeReader {
         throw new RuntimeException(String.format("Name: %s, Value: %s is an invalid attribute", attributeName, attributeValue));
     }
 
+    /**
+     * A method to construct a NoEntrySign with the provided data
+     * @param attributeValue the data to construct the NoEntrySign with
+     * @param tile the Tile the NoEntrySign is on
+     * @return The constructed NoEntrySign
+     */
     private static NoEntrySign readNoEntrySign(String attributeValue, Tile tile) {
         Scanner scanner = new Scanner(attributeValue);
         int damage = scanner.nextInt();
@@ -44,6 +61,12 @@ public class AttributeReader {
         return new NoEntrySign(tile, new Image("path_to_image"), damage, durability);
     }
 
+    /**
+     * A method to construct the relevant SexChanger object from the provided data
+     * @param attributeValue the data to construct the SexChanger with
+     * @param tile The tile the SexChanger is on
+     * @return the constructed SexChanger
+     */
     private static Object readSexChange(String attributeValue, Tile tile) {
         switch (attributeValue) {
             case "m":
@@ -54,11 +77,22 @@ public class AttributeReader {
         throw new RuntimeException("An invalid sex change gender has been read");
     }
 
-
+    /**
+     * A method to construct a Bomb object with the provided data
+     * @param attributeValue the data to construct the Bomb with
+     * @param tile the tile the Bomb is on
+     * @return the constructed Bomb
+     */
     private static Bomb readBomb(String attributeValue, Tile tile) {
         return new Bomb(tile, Integer.parseInt(attributeValue), true);
     }
 
+    /**
+     * A method to construct a DeathRat with the provided attribute data
+     * @param attributeValue the data to construct a DeathRat with
+     * @param tile the tile the DeathRat is on
+     * @return the constructed DeathRat
+     */
     private static DeathRat readDeathRat(String attributeValue, Tile tile) {
         //TODO: provide valid icon
 
@@ -71,6 +105,12 @@ public class AttributeReader {
         return new DeathRat(tile, new Image("path_to_image"), speed, direction,numOfKills, killsTarget);
     }
 
+    /**
+     * A method to construct a PeacefulRat with the provided attribute data
+     * @param attributeValue The data to construct a PeacefulRat with
+     * @param tile The tile the PeacefulRat is on
+     * @return The constructed PeacefulRat
+     */
     public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile) {
         Scanner scanner = new Scanner(attributeValue);
         boolean adult = scanner.nextBoolean();
@@ -86,6 +126,11 @@ public class AttributeReader {
         return new PeacefulRat(tile, sterile, adult, pregnant, gender, timeToBirth, timeToDevelop, speed, direction);
     }
 
+    /**
+     * A method to return the relevant Direction enum from a String
+     * @param direction the direction String
+     * @return the parsed Direction enum
+     */
     private static Direction getDirectionFromString(String direction) {
         switch (direction) {
             case "down":

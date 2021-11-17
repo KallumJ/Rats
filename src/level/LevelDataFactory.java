@@ -83,7 +83,7 @@ public class LevelDataFactory {
                     String attributeValue = attribute.getNodeValue();
 
                     // Read the object from the provided attribute
-                    objects.add(AttributeReader.getObjectFromAttribute(attributeName, attributeValue, tile));
+                    objects.add(TileAttributeReader.getObjectFromAttribute(attributeName, attributeValue, tile));
                 }
             }
         }
