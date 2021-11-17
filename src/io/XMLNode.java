@@ -39,4 +39,8 @@ public class XMLNode {
     public boolean hasAttributes() {
         return this.attributes != null;
     }
+
+    public boolean hasValue() {
+        return this.nodeValue != null;
+    }
 }
