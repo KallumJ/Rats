@@ -98,7 +98,6 @@ public class LevelDataFactory {
      * @return a TileSet representing the tiles in the tile set element
      */
     private static TileSet readTileSet(Element tileSetElement) {
-        // TODO: reimplement this to work for upcoming tile object, and all possible attributes
         TileSet tileSet = new TileSet();
         NodeList tileRows = tileSetElement.getElementsByTagName("tileRow");
 
