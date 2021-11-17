@@ -64,7 +64,7 @@ public class AttributeReader {
 
         Scanner scanner = new Scanner(attributeValue);
         int speed = scanner.nextInt();
-        Direction direction = getDirectionFromString(scanner.nextLine());
+        Direction direction = getDirectionFromString(scanner.next());
         int numOfKills = scanner.nextInt();
         int killsTarget = scanner.nextInt();
 
@@ -78,11 +78,11 @@ public class AttributeReader {
         int minBabies = scanner.nextInt();
         int maxBabies = scanner.nextInt();
         boolean sterile = scanner.nextBoolean();
-        String gender = scanner.nextLine();
+        String gender = scanner.next();
         int timeToBirth = scanner.nextInt();
         int timeToDevelop = scanner.nextInt();
         int speed = scanner.nextInt();
-        Direction direction = getDirectionFromString(scanner.nextLine());
+        Direction direction = getDirectionFromString(scanner.next());
         return new PeacefulRat(tile, sterile, adult, pregnant, gender, timeToBirth, timeToDevelop, speed, direction);
     }
 
