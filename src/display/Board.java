@@ -51,8 +51,8 @@ public class Board {
 
         // draw all objects
         for (Object object : objects) {
-            gc.drawImage(object.getIcon(), object.getStandingOn().getCenterX(),
-                         object.getStandingOn().getCenterY());
+            gc.drawImage(object.getIcon(), object.getStandingOn().getTopLeftX(),
+                         object.getStandingOn().getTopLeftY());
         }
 
     }
