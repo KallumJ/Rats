@@ -29,7 +29,7 @@ public class PeacefulRat extends Rat {
     
     public PeacefulRat (Tile standingOn, boolean sterile, boolean adult, boolean pregnant, String gender,
                         int timeToGiveBirth, int timeToDevelop, int speed, Direction directionOfMovement) {
-        super(standingOn, null, speed,  directionOfMovement);
+        super(standingOn, speed,  directionOfMovement);
         
         this.changeIcon(decideIcon(adult, pregnant, gender));
         

@@ -102,7 +102,7 @@ public class TileAttributeReader {
         int numOfKills = scanner.nextInt();
         int killsTarget = scanner.nextInt();
 
-        return new DeathRat(tile, new Image("path_to_image"), speed, direction,numOfKills, killsTarget);
+        return new DeathRat(tile, speed, direction,numOfKills, killsTarget);
     }
 
     /**
