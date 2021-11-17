@@ -171,8 +171,4 @@ public class LevelDataFactory {
 
         return Integer.parseInt(idElement.getTextContent());
     }
-
-    public static void main(String[] args) {
-        LevelData levelData = LevelDataFactory.constructLevelData(1);
-    }
 }
