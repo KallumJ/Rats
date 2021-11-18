@@ -9,7 +9,7 @@ import tile.Tile;
  *
  * @author fahds
  */
-public abstract class Item extends Object{
+public abstract class Item extends GameObject{
 
     protected Item(Tile standingOn) {
         super(standingOn);

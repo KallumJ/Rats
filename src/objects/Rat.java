@@ -14,7 +14,7 @@ import tile.Tile;
  *
  * @author fahds
  */
-public abstract class Rat extends Object{
+public abstract class Rat extends GameObject{
     
     // movement speed of the objects.Rat
     private int speed; 
@@ -115,7 +115,7 @@ public abstract class Rat extends Object{
         else {
      
         }
-        Object.getBoard().showObjects();
+        GameObject.getBoard().showObjects();
     }
     
     private Direction turnLeft (Direction directionOfMovement) {
