@@ -9,7 +9,7 @@ import tile.Tile;
  *
  * @author fahds
  */
-public abstract class Object {
+public abstract class GameObject {
     
     // Loaded icon of the object
     private Image icon;
@@ -19,19 +19,19 @@ public abstract class Object {
     
      private static Board board;
     
-    protected Object (Tile standingOn){
+    protected GameObject (Tile standingOn){
         
         this.standingOn = standingOn;   
     }
     
     public static void setBoard(Board board) {
 
-        Object.board = board;
+        GameObject.board = board;
     }
 
     public static Board getBoard() {
 
-        return Object.board;
+        return GameObject.board;
     }
 
     public Image getIcon() {
