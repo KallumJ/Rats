@@ -2,6 +2,7 @@ package objects.rats;
 
 import display.Board;
 import javafx.scene.image.Image;
+import objects.GameObject;
 import objects.Rat;
 import tile.Direction;
 import tile.Tile;
@@ -39,16 +40,16 @@ public class DeathRat extends Rat {
 
     }
     
-    public void kill (Rat victim, Board board) {
+    public void kill (Rat victim) {
         
-        board.removeObject(victim);
+        GameObject.getBoard().removeObject(victim);
         this.numberOfKills = this.numberOfKills + 1;
         
         if (this.killsTarget == this.numberOfKills) {
            
-            board.removeObject(this);
+            GameObject.getBoard().removeObject(this);
         }
-        board.showObjects();
+        GameObject.getBoard().showObjects();
         
     }
     
