@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 import display.Board;
 import javafx.scene.image.Image;
-import objects.Object;
+import objects.GameObject;
 import objects.Rat;
 import tile.Direction;
 import tile.Tile;
@@ -163,10 +163,10 @@ public class PeacefulRat extends Rat {
                 newBornGender = "Female";
             }
             
-            Object newBorn = new PeacefulRat (super.getStandingOn(), this.isSterile(), false, false,newBornGender,
+            GameObject newBorn = new PeacefulRat (super.getStandingOn(), this.isSterile(), false, false,newBornGender,
                     this.timeToGiveBirth, this.timeToDevelop, super.getSpeed(), super.getDirectionOfMovement());
             
-            Object.getBoard().addObject(newBorn);
+            GameObject.getBoard().addObject(newBorn);
             
         }
         
