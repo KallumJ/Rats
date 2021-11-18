@@ -2,7 +2,7 @@ package level;
 
 import javafx.scene.image.Image;
 import objects.*;
-import objects.Object;
+import objects.GameObject;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
 import tile.Direction;
@@ -11,18 +11,18 @@ import tile.Tile;
 import java.util.Scanner;
 
 /**
- * A class to read attributes and form the Object they represent
+ * A class to read attributes and form the GameObject they represent
  * @author Kallum Jones 2005855
  */
 public class TileAttributeReader {
     /**
-     * A method to get the Object that the provided attribute represents
+     * A method to get the GameObject that the provided attribute represents
      * @param attributeName The name of the attribute read from file
      * @param attributeValue The value of the attribute read from file
      * @param tile The tile this attribute was read from
-     * @return The constructed Object
+     * @return The constructed GameObject
      */
-    public static Object getObjectFromAttribute(String attributeName, String attributeValue, Tile tile) {
+    public static GameObject getObjectFromAttribute(String attributeName, String attributeValue, Tile tile) {
         switch (attributeName) {
             case "rat":
                 return readPeacefulRat(attributeValue, tile);
@@ -67,7 +67,7 @@ public class TileAttributeReader {
      * @param tile The tile the SexChanger is on
      * @return the constructed SexChanger
      */
-    private static Object readSexChange(String attributeValue, Tile tile) {
+    private static GameObject readSexChange(String attributeValue, Tile tile) {
         switch (attributeValue) {
             case "m":
                 return new MaleSexChanger(tile);

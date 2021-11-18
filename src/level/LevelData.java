@@ -1,6 +1,6 @@
 package level;
 
-import objects.Object;
+import objects.GameObject;
 import tile.TileSet;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 public class LevelData {
     private final LevelProperties levelProperties;
     private final TileSet tileSet;
-    private final List<Object> objects;
+    private final List<GameObject> objects;
 
     /**
      * Constructs a LevelData object with the provided data
@@ -21,7 +21,7 @@ public class LevelData {
      * @param tileSet the TileSet for the level
      * @param objects the Objects present on a level, as a List of objects
      */
-    public LevelData(LevelProperties levelProperties, TileSet tileSet, List<Object> objects) {
+    public LevelData(LevelProperties levelProperties, TileSet tileSet, List<GameObject> objects) {
         this.levelProperties = levelProperties;
         this.tileSet = tileSet;
         this.objects = objects;
@@ -47,7 +47,7 @@ public class LevelData {
      * A method to get the List of Objects present on the level
      * @return List of Objects present on the level
      */
-    public List<Object> getObjects() {
+    public List<GameObject> getObjects() {
         return objects;
     }
 }

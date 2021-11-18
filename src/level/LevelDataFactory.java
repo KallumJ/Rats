@@ -1,7 +1,7 @@
 package level;
 
 import io.XMLFileReader;
-import objects.Object;
+import objects.GameObject;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -58,7 +58,7 @@ public class LevelDataFactory {
 
         LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
         TileSet tileSet = readTileSet(tileSetElement);
-        ArrayList<Object> objects = readObjects(tileSet);
+        ArrayList<GameObject> objects = readObjects(tileSet);
 
         return new LevelData(levelProperties, tileSet, objects);
 
@@ -69,8 +69,8 @@ public class LevelDataFactory {
      * @param tileSet An instance of TileSet with all the tiles to read from
      * @return an ArrayList of Objects with the required information
      */
-    private static ArrayList<Object> readObjects(TileSet tileSet) {
-        ArrayList<Object> objects = new ArrayList<>();
+    private static ArrayList<GameObject> readObjects(TileSet tileSet) {
+        ArrayList<GameObject> objects = new ArrayList<>();
 
         for (Tile tile : tileSet.getAllTiles()) {
             if (tile.hasInitalAttributes()) {
