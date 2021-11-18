@@ -19,6 +19,7 @@ public class DeathRat extends Rat {
     
     private int numberOfKills;
     private int killsTarget;
+     private Image deathRatImage;
     
 
     public DeathRat(Tile standingOn, int speed, Direction directionOfMovement,
@@ -28,6 +29,9 @@ public class DeathRat extends Rat {
        
         this.killsTarget = killsTarget;
         this.numberOfKills = numberOfKills;
+        
+        deathRatImage = new Image("deathRat.png");
+        super.setIcon(deathRatImage);
     }
 
     @Override
