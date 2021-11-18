@@ -3,9 +3,9 @@ package display;
 import java.util.ArrayList;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import objects.Object;
-import tile.TileSet;
 import javafx.scene.paint.Color;
+import objects.GameObject;
+import tile.TileSet;
 
 /**
  *
@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
  */
 public class Board {
 
-    private ArrayList<Object> objects;
+    private ArrayList<GameObject> objects;
     private TileSet map;
     private int pouplationToLose;
     private int score;
@@ -22,9 +22,9 @@ public class Board {
     private int startTime;
     private int pointsOnEachRat;
     private Canvas canvas;
-    private final ArrayList<Object> objectsOnBoard;
+    private final ArrayList<GameObject> objectsOnBoard;
 
-    public Board(TileSet map, ArrayList<Object> objects, int pouplationToLose, int pointsOnEachRat, int expectedFinishTime) {
+    public Board(TileSet map, ArrayList<GameObject> objects, int pouplationToLose, int pointsOnEachRat, int expectedFinishTime) {
 
         this.map = map;
         this.objects = objects;
@@ -50,21 +50,21 @@ public class Board {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         // draw all objects
-        for (Object object : objects) {
+        for (GameObject object : objects) {
             gc.drawImage(object.getIcon(), object.getStandingOn().getTopLeftX(),
                          object.getStandingOn().getTopLeftY());
         }
 
     }
 
-    public void addObject(Object objectAdded) {
+    public void addObject(GameObject objectAdded) {
         
         objects.add(objectAdded);
         showObjects ();
 
     }
 
-    public void removeObject(Object objectRemove) {
+    public void removeObject(GameObject objectRemove) {
         
         objects.remove(objectRemove);
         showObjects ();
@@ -81,7 +81,7 @@ public class Board {
         return this.score;
     }
 
-    public ArrayList<Object> getObjects() {
+    public ArrayList<GameObject> getObjects() {
 
         return this.objects;
     }
