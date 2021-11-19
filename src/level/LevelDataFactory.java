@@ -148,14 +148,14 @@ public class LevelDataFactory {
         // Load properties into variables
         int height = getPropertyInt(levelProperties, "levelHeight");
         int width = getPropertyInt(levelProperties, "levelWidth");
-        int failPopulation = getPropertyInt(levelProperties, "populationToLose");
-        int allowedTime = getPropertyInt(levelProperties, "expectedTime");
+        int populationToLose = getPropertyInt(levelProperties, "populationToLose");
+        int expectedTime = getPropertyInt(levelProperties, "expectedTime");
         int id = getPropertyInt(levelProperties, "id");
         int itemDropInterval = getPropertyInt(levelProperties, "itemInterval");
         int ratMinBabies = getPropertyInt(levelProperties, "ratMinSpeed");
         int ratMaxBabies = getPropertyInt(levelProperties, "ratMaxSpeed");
 
-        return new LevelProperties(id, height, width, failPopulation, allowedTime, itemDropInterval, ratMinBabies, ratMaxBabies);
+        return new LevelProperties(id, height, width, populationToLose, expectedTime, itemDropInterval, ratMinBabies, ratMaxBabies);
     }
 
     /**
