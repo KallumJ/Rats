@@ -152,8 +152,8 @@ public class LevelDataFactory {
         int expectedTime = getPropertyInt(levelProperties, "expectedTime");
         int id = getPropertyInt(levelProperties, "id");
         int itemInterval = getPropertyInt(levelProperties, "itemInterval");
-        int ratMinBabies = getPropertyInt(levelProperties, "ratMinSpeed");
-        int ratMaxBabies = getPropertyInt(levelProperties, "ratMaxSpeed");
+        int ratMinBabies = getPropertyInt(levelProperties, "ratMinBabies");
+        int ratMaxBabies = getPropertyInt(levelProperties, "ratMaxBabies");
 
         return new LevelProperties(id, height, width, populationToLose, expectedTime, itemInterval, ratMinBabies, ratMaxBabies);
     }
