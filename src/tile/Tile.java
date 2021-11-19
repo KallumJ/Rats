@@ -30,7 +30,7 @@ public class Tile {
 
     /**
      * Returns the location of the tile
-     * @returnthe location of the tile as a TileLocation
+     * @return the location of the tile as a TileLocation
      */
     public TileLocation getTileLocation() {
         return tileLocation;

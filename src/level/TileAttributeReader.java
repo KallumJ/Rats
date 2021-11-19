@@ -115,8 +115,6 @@ public class TileAttributeReader {
         Scanner scanner = new Scanner(attributeValue);
         boolean adult = scanner.nextBoolean();
         boolean pregnant = scanner.nextBoolean();
-        int minBabies = scanner.nextInt();
-        int maxBabies = scanner.nextInt();
         boolean sterile = scanner.nextBoolean();
         String gender = scanner.next();
         int timeToBirth = scanner.nextInt();

@@ -12,6 +12,8 @@ public class LevelProperties {
     private final int failPopulation;
     private final int timeAllowed;
     private final int itemDropInterval;
+    private final int ratMinBabies;
+    private final int ratMaxBabies;
 
     /**
      * Constructs a LevelProperties object with the provided data
@@ -21,14 +23,18 @@ public class LevelProperties {
      * @param failPopulation the max population for a level before failure
      * @param timeAllowed the max time allowed for a level in seconds
      * @param itemDropInterval the time in between item drops for this level in seconds
+     * @param ratMinBabies the minimum number of babies a rat can birth in a level
+     * @param ratMaxBabies the maximum number of babies a rat can birth in a level
      */
-    public LevelProperties(int id, int height, int width, int failPopulation, int timeAllowed, int itemDropInterval) {
+    public LevelProperties(int id, int height, int width, int failPopulation, int timeAllowed, int itemDropInterval, int ratMinBabies, int ratMaxBabies) {
         this.levelId = id;
         this.levelHeight = height;
         this.levelWidth = width;
         this.failPopulation =failPopulation;
         this.timeAllowed = timeAllowed;
         this.itemDropInterval = itemDropInterval;
+        this.ratMaxBabies = ratMaxBabies;
+        this.ratMinBabies = ratMinBabies;
     }
 
     /**
@@ -77,5 +83,21 @@ public class LevelProperties {
      */
     public int getItemDropInterval() {
         return itemDropInterval;
+    }
+
+    /**
+     * A method to get the minimum number of babies a rat can birth in this level
+     * @return the minimum number of babies a rat can birth in this level
+     */
+    public int getRatMinBabies() {
+        return ratMinBabies;
+    }
+
+    /**
+     * A method to get the minimum number of babies a rat can birth in this level
+     * @return the minimum number of babies a rat can birth in this level
+     */
+    public int getRatMaxBabies() {
+        return ratMaxBabies;
     }
 }
