@@ -11,7 +11,7 @@ public class LevelProperties {
     private final int levelWidth;
     private final int populationToLose;
     private final int expectedTime;
-    private final int itemDropInterval;
+    private final int itemInterval;
     private final int ratMinBabies;
     private final int ratMaxBabies;
 
@@ -22,17 +22,17 @@ public class LevelProperties {
      * @param width the width of the level
      * @param populationToLose the max population for a level before failure
      * @param expectedTime the expected time to complete the level in seconds
-     * @param itemDropInterval the time in between item drops for this level in seconds
+     * @param itemInterval the time in between item drops for this level in seconds
      * @param ratMinBabies the minimum number of babies a rat can birth in a level
      * @param ratMaxBabies the maximum number of babies a rat can birth in a level
      */
-    public LevelProperties(int id, int height, int width, int populationToLose, int expectedTime, int itemDropInterval, int ratMinBabies, int ratMaxBabies) {
+    public LevelProperties(int id, int height, int width, int populationToLose, int expectedTime, int itemInterval, int ratMinBabies, int ratMaxBabies) {
         this.levelId = id;
         this.levelHeight = height;
         this.levelWidth = width;
         this.populationToLose = populationToLose;
         this.expectedTime = expectedTime;
-        this.itemDropInterval = itemDropInterval;
+        this.itemInterval = itemInterval;
         this.ratMaxBabies = ratMaxBabies;
         this.ratMinBabies = ratMinBabies;
     }
@@ -81,8 +81,8 @@ public class LevelProperties {
      * A method to get the item drop interval for this level
      * @return the item drop interval for this level
      */
-    public int getItemDropInterval() {
-        return itemDropInterval;
+    public int getItemInterval() {
+        return itemInterval;
     }
 
     /**
