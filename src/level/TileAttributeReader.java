@@ -15,6 +15,8 @@ import java.util.Scanner;
  * @author Kallum Jones 2005855
  */
 public class TileAttributeReader {
+    //TODO: add further validation
+
     /**
      * A method to get the GameObject that the provided attribute represents
      * @param attributeName The name of the attribute read from file
@@ -117,6 +119,11 @@ public class TileAttributeReader {
         boolean pregnant = scanner.nextBoolean();
         boolean sterile = scanner.nextBoolean();
         String gender = scanner.next();
+
+        if (!(gender.equals("f") || gender.equals("m"))) {
+            throw new IllegalArgumentException(gender + " is not a valid gender for a rat");
+        }
+
         int timeToBirth = scanner.nextInt();
         int timeToDevelop = scanner.nextInt();
         int speed = scanner.nextInt();

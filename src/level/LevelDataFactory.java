@@ -48,7 +48,7 @@ public class LevelDataFactory {
         }
 
         if (selectedLevel == null) {
-            throw new RuntimeException("No level was found matching the provided level id");
+            throw new IllegalArgumentException("No level was found matching the provided level id");
         }
 
         XMLFileReader xmlFileReader = new XMLFileReader(selectedLevel);
