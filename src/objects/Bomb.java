@@ -138,8 +138,10 @@ public class Bomb extends Item {
 
     @Override
     public void activation(Board board, Rat rat) {
-       
-        startTimer(board);
+
+        if (!this.timerStarted) {
+            startTimer(board);
+        }
     }
 
     @Override
