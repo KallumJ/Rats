@@ -1,10 +1,11 @@
-package objects;
+package objects.rats;
 
 import java.util.Random;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import objects.GameObject;
 import tile.Direction;
 import tile.Tile;
 
@@ -13,7 +14,7 @@ import tile.Tile;
  *
  * @author fahds
  */
-public abstract class Rat extends GameObject{
+public abstract class Rat extends GameObject {
     
     // movement speed of the Rat
     private int speed; 

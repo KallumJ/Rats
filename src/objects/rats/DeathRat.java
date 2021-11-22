@@ -2,7 +2,6 @@ package objects.rats;
 
 import javafx.scene.image.Image;
 import objects.GameObject;
-import objects.Rat;
 import tile.Direction;
 import tile.Tile;
 

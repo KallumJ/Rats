@@ -7,6 +7,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import objects.rats.Rat;
 import tile.Direction;
 import tile.Tile;
 

@@ -4,10 +4,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import display.Board;
 import javafx.scene.image.Image;
 import objects.GameObject;
-import objects.Rat;
 import tile.Direction;
 import tile.Tile;
 
