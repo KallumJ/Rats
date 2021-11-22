@@ -1,19 +1,27 @@
+import display.Board;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import level.LevelData;
+import level.LevelDataFactory;
+import level.LevelProperties;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        BorderPane root = new BorderPane();
+        LevelData levelData = LevelDataFactory.constructLevelData(1);
 
-        root.setCenter(new Label("Hello World!"));
-        stage.setScene(new Scene(root, 250, 250));
+        Board gameBoard = new Board(levelData);
+
+        BorderPane root = new BorderPane(gameBoard.buildGUI());
+
+        stage.setScene(new Scene(root, 1000, 1000));
         stage.show();
+        gameBoard.startGame();
     }
 
     public static void main(String[] args) {

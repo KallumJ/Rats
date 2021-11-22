@@ -32,8 +32,8 @@ public abstract class Rat extends GameObject{
         tickTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed), event -> move()));
         
         // Loop the timeline forever
-	tickTimeline.setCycleCount(Animation.INDEFINITE);
-        tickTimeline.play();
+	    tickTimeline.setCycleCount(Animation.INDEFINITE);
+        //tickTimeline.play(); // Commented out as rats dont work yet
     }
     
     public int getSpeed (){
