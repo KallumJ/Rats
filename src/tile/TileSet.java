@@ -50,15 +50,14 @@ public class TileSet {
      * A method to get the tile at the specified position
      * @param x the x co-ordinate
      * @param y the y co-ordinate
-     * @return the Tile found at the specified co-ordinate
+     * @return the Tile found at the specified co-ordinate, null if none found
      */
-    public Tile getTile(int x, int y) {
+    public Tile getTile(int x, int y) throws IndexOutOfBoundsException {
         try {
             return tileSet.get(y).get(x);
         } catch (IndexOutOfBoundsException ex) {
-            throw new RuntimeException(String.format("No tile exists at the specified position %d,%d", x, y));
+            return null;
         }
-
     }
 
     /**
@@ -73,5 +72,21 @@ public class TileSet {
         }
 
         return allTiles;
+    }
+
+    /**
+     * A method to get the height of the tile set
+     * @return the height of the tile set
+     */
+    public int getHeight() {
+        return tileSet.size();
+    }
+
+    /**
+     * A method to get the width of the tile set
+     * @return the width of the tile set
+     */
+    public int getWidth() {
+        return tileSet.get(0).size();
     }
 }

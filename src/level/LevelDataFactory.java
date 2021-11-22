@@ -6,9 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import tile.Tile;
-import tile.TileSet;
-import tile.TileType;
+import tile.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -58,6 +56,7 @@ public class LevelDataFactory {
 
         LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
         TileSet tileSet = readTileSet(tileSetElement);
+        setAdjacentTiles(tileSet);
         ArrayList<GameObject> objects = readObjects(tileSet);
 
         return new LevelData(levelProperties, tileSet, objects);
@@ -126,17 +125,36 @@ public class LevelDataFactory {
                     default:
                         throw new RuntimeException("An invalid tile type was read from file");
                 }
+
                 NamedNodeMap attributes = tile.getAttributes();
 
                 // If there are attributes present, store them in the tile
                 if (attributes.getLength() > 0) {
                     tileSet.getTile(j, i).setInitialAttributes(attributes);
                 }
-
             }
         }
 
         return tileSet;
+    }
+
+    /**
+     * A method to give every tile in a tile set their adjacent tile
+     * @param tileSet the tile set to run through
+     */
+    private static void setAdjacentTiles(TileSet tileSet) {
+        for (int y = 0; y < tileSet.getHeight(); y++) {
+            for (int x = 0; x < tileSet.getWidth(); x++) {
+                Tile tile = tileSet.getTile(x, y);
+
+
+                tile.setAdjacentTileIfPresent(Direction.UP, tileSet.getTile(x, y - 1));
+                tile.setAdjacentTileIfPresent(Direction.DOWN, tileSet.getTile(x, y + 1));
+                tile.setAdjacentTileIfPresent(Direction.LEFT, tileSet.getTile(x - 1, y));
+                tile.setAdjacentTileIfPresent(Direction.RIGHT, tileSet.getTile(x + 1, y));
+            }
+        }
+
     }
 
     /**

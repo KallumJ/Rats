@@ -2,6 +2,9 @@ package tile;
 
 import org.w3c.dom.NamedNodeMap;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  *  A class to represent a Tile on the board
@@ -14,6 +17,7 @@ public class Tile {
     private final boolean isTraversable;
     private final boolean hideRatsWithin;
     private NamedNodeMap initialAttributes;
+    private final Map<Direction, Tile> adjacentTiles;
 
     /**
      * Constructs a Tile object with the provided data
@@ -26,6 +30,8 @@ public class Tile {
 
         this.isTraversable = this.tileType != TileType.GRASS;
         this.hideRatsWithin = this.tileType == TileType.TUNNEL;
+
+        this.adjacentTiles = new HashMap<>();
     }
 
     /**
@@ -38,12 +44,17 @@ public class Tile {
 
     /**
      * Returns the adjacent Tile
-     * @param directionToCheck the direction to check for an adjacent tile
+     * @param direction the direction to check for an adjacent tile
      * @return The found tile
      */
-    public Tile getAdjacentTile(Direction directionToCheck){
-        //TODO: implement this method
-        return this;
+    public Tile getAdjacentTile(Direction direction){
+        return adjacentTiles.get(direction);
+    }
+
+    public void setAdjacentTileIfPresent(Direction direction, Tile tile) {
+        if (tile != null) {
+            adjacentTiles.put(direction, tile);
+        }
     }
 
     /**
