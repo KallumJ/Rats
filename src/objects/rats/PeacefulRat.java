@@ -51,10 +51,10 @@ public class PeacefulRat extends Rat {
             this.bePregnant();
         }
         
-        maleRatImage = new Image("resources/maleRat.png");
-        babyRatImage = new Image ("resources/babyRat.png");
-        femaleRatImage = new Image ("resources/femaleRat.png");
-        pregnantFemaleRatImage = new Image ("resources/pregnantFemaleRat.png");
+        maleRatImage = new Image("file:resources/maleRat.png");
+        babyRatImage = new Image ("file:resources/babyRat.png");
+        femaleRatImage = new Image ("file:resources/femaleRat.png");
+        pregnantFemaleRatImage = new Image ("file:resources/pregnantFemaleRat.png");
         decideIcon(adult, pregnant, gender);
         
     }
@@ -67,7 +67,7 @@ public class PeacefulRat extends Rat {
             
             decidedIcon = babyRatImage;
         } 
-        else if (gender.equalsIgnoreCase("Male") ){
+        else if (gender.equalsIgnoreCase("m") ){
             
             decidedIcon = maleRatImage;
         }
