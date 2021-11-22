@@ -29,7 +29,7 @@ public class DeathRat extends Rat {
         this.killsTarget = killsTarget;
         this.numberOfKills = numberOfKills;
         
-        deathRatImage = new Image("resources/deathRat.png");
+        deathRatImage = new Image("file:resources/deathRat.png");
         super.setIcon(deathRatImage);
     }
 
