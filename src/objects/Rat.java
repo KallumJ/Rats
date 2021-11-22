@@ -4,7 +4,6 @@ import java.util.Random;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.image.Image;
 import javafx.util.Duration;
 import tile.Direction;
 import tile.Tile;
@@ -16,7 +15,7 @@ import tile.Tile;
  */
 public abstract class Rat extends GameObject{
     
-    // movement speed of the objects.Rat
+    // movement speed of the Rat
     private int speed; 
     
     private Timeline tickTimeline; 
@@ -27,13 +26,13 @@ public abstract class Rat extends GameObject{
         
         super(standingOn);
         this.speed = speed;
-        this.directionOfMovement = directionOfMovement;   
-        
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed), event -> move()));
-        
+        this.directionOfMovement = directionOfMovement;
+
+        tickTimeline = new Timeline(new KeyFrame(Duration.seconds(this.speed), event -> move()));
+
         // Loop the timeline forever
 	    tickTimeline.setCycleCount(Animation.INDEFINITE);
-        //tickTimeline.play(); // Commented out as rats dont work yet
+        tickTimeline.play();
     }
     
     public int getSpeed (){
@@ -115,7 +114,7 @@ public abstract class Rat extends GameObject{
         else {
      
         }
-        GameObject.getBoard().showObjects();
+        GameObject.getBoard().updateBoardDisplay();
     }
     
     private Direction turnLeft (Direction directionOfMovement) {

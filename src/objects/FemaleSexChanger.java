@@ -28,7 +28,7 @@ public class FemaleSexChanger extends Item{
         pRat.setGender("Female");
         
         board.removeObject(this); 
-        board.showObjects();
+        board.updateBoardDisplay();
     }
 
     @Override

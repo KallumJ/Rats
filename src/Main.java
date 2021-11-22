@@ -1,13 +1,10 @@
 import display.Board;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import level.LevelData;
 import level.LevelDataFactory;
-import level.LevelProperties;
 
 public class Main extends Application {
 

@@ -25,7 +25,7 @@ public class Poison extends Item{
         
         board.removeObject(rat);
         board.removeObject(this);
-        board.showObjects();
+        board.updateBoardDisplay();
     }
 
     @Override

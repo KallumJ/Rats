@@ -1,6 +1,5 @@
 package objects.rats;
 
-import display.Board;
 import javafx.scene.image.Image;
 import objects.GameObject;
 import objects.Rat;
@@ -31,7 +30,7 @@ public class DeathRat extends Rat {
         this.killsTarget = killsTarget;
         this.numberOfKills = numberOfKills;
         
-        deathRatImage = new Image("deathRat.png");
+        deathRatImage = new Image("resources/deathRat.png");
         super.setIcon(deathRatImage);
     }
 
@@ -49,7 +48,7 @@ public class DeathRat extends Rat {
            
             GameObject.getBoard().removeObject(this);
         }
-        GameObject.getBoard().showObjects();
+        GameObject.getBoard().updateBoardDisplay();
         
     }
     

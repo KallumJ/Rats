@@ -25,7 +25,6 @@ public abstract class GameObject {
     }
     
     public static void setBoard(Board board) {
-
         GameObject.board = board;
     }
 

@@ -53,10 +53,10 @@ public class PeacefulRat extends Rat {
             this.bePregnant();
         }
         
-        maleRatImage = new Image("maleRat.png");
-        babyRatImage = new Image ("babyRat.png");
-        femaleRatImage = new Image ("femaleRat.png");
-        pregnantFemaleRatImage = new Image ("pregnantFemaleRat.png");
+        maleRatImage = new Image("resources/maleRat.png");
+        babyRatImage = new Image ("resources/babyRat.png");
+        femaleRatImage = new Image ("resources/femaleRat.png");
+        pregnantFemaleRatImage = new Image ("resources/pregnantFemaleRat.png");
         decideIcon(adult, pregnant, gender);
         
     }

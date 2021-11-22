@@ -19,6 +19,8 @@ public class Tile {
     private NamedNodeMap initialAttributes;
     private final Map<Direction, Tile> adjacentTiles;
 
+    public final static int TILE_SIZE = 50;
+
     /**
      * Constructs a Tile object with the provided data
      * @param tileLocation the tile location, encoded as TileLocation
