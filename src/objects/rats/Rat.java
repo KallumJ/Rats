@@ -32,7 +32,7 @@ public abstract class Rat extends GameObject {
         tickTimeline = new Timeline(new KeyFrame(Duration.seconds(this.speed), event -> move()));
 
         // Loop the timeline forever
-	    tickTimeline.setCycleCount(Animation.INDEFINITE);
+	tickTimeline.setCycleCount(Animation.INDEFINITE);
         tickTimeline.play();
     }
     
@@ -58,62 +58,112 @@ public abstract class Rat extends GameObject {
     
     private void move () {
         
+        boolean isMovingForwardPossible = super.getStandingOn().getAdjacentTile(directionOfMovement).isTraversable();
+
         boolean isLeftTurnPossible = (super.getStandingOn().getAdjacentTile(turnLeft(
-                                       directionOfMovement)) .isTraversable());
-        
+                directionOfMovement)).isTraversable());
+
         boolean isRightTurnPossible = (super.getStandingOn().getAdjacentTile(turnRight(
-                                        directionOfMovement)).isTraversable());
-        
+                directionOfMovement)).isTraversable());
+
         boolean turningAroundPossible = (super.getStandingOn().getAdjacentTile(turnAround(
-                                          directionOfMovement)).isTraversable());
-        
-        
-        //moves forword if possible 
-        if (super.getStandingOn().getAdjacentTile(directionOfMovement).isTraversable()) {
-            
-            super.standOn(super.getStandingOn().getAdjacentTile(directionOfMovement));
-        }
-        //randomly turning either left or right in case of junction 
-        else if (isLeftTurnPossible &&  isRightTurnPossible) {
-            
-            // generates either 1 or 2
-            Random random = new Random(); 
+                directionOfMovement)).isTraversable());
+
+        //randomly turning either left or right or moving forword
+        if (isLeftTurnPossible && isRightTurnPossible && isMovingForwardPossible) {
+
+            // generates either 0,1 or 2
+            Random random = new Random();
+            int decision = random.nextInt(3);
+
+            // turn left when decsion equals 1
+            if (decision == 0) {
+
+                super.standOn(super.getStandingOn().getAdjacentTile(turnLeft(directionOfMovement)));
+                this.directionOfMovement = turnLeft(directionOfMovement);
+            } else if (decision == 1) {
+
+                super.standOn(super.getStandingOn().getAdjacentTile(directionOfMovement));
+
+            } // turn right when decsion equals 2
+            else {
+
+                super.standOn(super.getStandingOn().getAdjacentTile(turnRight(directionOfMovement)));
+                this.directionOfMovement = turnRight(directionOfMovement);
+            }
+        } //randomly turning either left or right in case of junction 
+        else if (isLeftTurnPossible && isRightTurnPossible) {
+
+            // generates either 1 or 0
+            Random random = new Random();
             int decision = random.nextInt(2);
-            
+
             // turn left when decsion equals 1
             if (decision == 1) {
-                
+
                 super.standOn(super.getStandingOn().getAdjacentTile(turnLeft(directionOfMovement)));
-                this.directionOfMovement = turnLeft(directionOfMovement);  
-            }
-            // turn right when decsion equals 2
+                this.directionOfMovement = turnLeft(directionOfMovement);
+            } // turn right when decsion equals 2
             else {
-                
-            super.standOn(super.getStandingOn().getAdjacentTile(turnRight(directionOfMovement)));
-            this.directionOfMovement = turnRight(directionOfMovement);                
+
+                super.standOn(super.getStandingOn().getAdjacentTile(turnRight(directionOfMovement)));
+                this.directionOfMovement = turnRight(directionOfMovement);
             }
-        }
-        // turns left
+        } //randomly turning either left or forword
+        else if (isMovingForwardPossible && isRightTurnPossible) {
+
+            // generates either 1 or 0
+            Random random = new Random();
+            int decision = random.nextInt(2);
+
+            // turn right when decsion equals 1
+            if (decision == 1) {
+                super.standOn(super.getStandingOn().getAdjacentTile(turnRight(directionOfMovement)));
+                this.directionOfMovement = turnRight(directionOfMovement);
+            } // turn right when decsion equals 2
+            else {
+                super.standOn(super.getStandingOn().getAdjacentTile(directionOfMovement));
+
+            }
+        } //randomly turning either left or forword
+        else if (isLeftTurnPossible && isMovingForwardPossible) {
+
+            // generates either 1 or 0
+            Random random = new Random();
+            int decision = random.nextInt(2);
+
+            // turn left when decsion equals 1
+            if (decision == 1) {
+
+                super.standOn(super.getStandingOn().getAdjacentTile(turnLeft(directionOfMovement)));
+                this.directionOfMovement = turnLeft(directionOfMovement);
+            } // turn right when decsion equals 2
+            else {
+
+                super.standOn(super.getStandingOn().getAdjacentTile(directionOfMovement));
+            }
+        } //moves forword  
+        else if (isMovingForwardPossible) {
+
+            super.standOn(super.getStandingOn().getAdjacentTile(directionOfMovement));
+        } // turns left
         else if (isLeftTurnPossible) {
-            
+
             super.standOn(super.getStandingOn().getAdjacentTile(turnLeft(directionOfMovement)));
             this.directionOfMovement = turnLeft(directionOfMovement);
-        }
-        //turns  right
+        } //turns  right
         else if (isRightTurnPossible) {
-            
+
             super.standOn(super.getStandingOn().getAdjacentTile(turnRight(directionOfMovement)));
             this.directionOfMovement = turnRight(directionOfMovement);
-        }
-        // turns around
-        else if (turningAroundPossible){
-            
+        } // turns around
+        else if (turningAroundPossible) {
+
             super.standOn(super.getStandingOn().getAdjacentTile(turnAround(directionOfMovement)));
             this.directionOfMovement = turnAround(directionOfMovement);
-        }
-        // in case no way out, it doesn't move
+        } // in case no way out, it doesn't move
         else {
-     
+
         }
         GameObject.getBoard().updateBoardDisplay();
     }
