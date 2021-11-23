@@ -14,7 +14,11 @@ import javafx.util.Duration;
 import level.LevelData;
 import level.LevelProperties;
 import objects.Bomb;
+import objects.FemaleSexChanger;
 import objects.GameObject;
+import objects.MaleSexChanger;
+import objects.NoEntrySign;
+import objects.Poison;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
 import objects.rats.Rat;
@@ -89,13 +93,51 @@ public class Board {
                         }
 
                     }
-                    else {
+                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.Bomb")) {
+                        
                         Bomb bomb = (Bomb) objects.get(i);
+                        bomb.activationOfBomb();   
+                    }
+                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.NoEntrySign")) {
+                        
+                        NoEntrySign noEntrySign = (NoEntrySign) objects.get(i);
                         Rat victomRat = (Rat) objects.get(j);
-                        bomb.activationOfBomb();
+                        noEntrySign.activation(victomRat); 
                         
                     }
+                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.FemaleSexChanger")) {
 
+                        if ( objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat")) {
+                            
+                            FemaleSexChanger femaleSexChanger = (FemaleSexChanger) objects.get(i);
+                            PeacefulRat rat = (PeacefulRat) objects.get(j);
+                            
+                            femaleSexChanger.activationOfFemaleSexChanger(rat);
+                        }
+
+                    }
+                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.MaleSexChanger")) {
+
+                        if ( objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat")) {
+                            
+                            MaleSexChanger maleSexChanger = (MaleSexChanger) objects.get(i);
+                            PeacefulRat rat = (PeacefulRat) objects.get(j);
+                            
+                            maleSexChanger.activation(rat);
+                        }
+
+                    } 
+                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.Poison")) {
+
+                        Poison poison = (Poison) objects.get(i);
+                        Rat rat = (Rat) objects.get(j);
+
+                        poison.activation(rat);
+
+                    }
+                    else {
+                        
+                    }
                 }
 
             }
