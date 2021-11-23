@@ -46,6 +46,8 @@ public class Board {
     }
     
     public void intersactionCheck() {
+        List<GameObject> objects = levelData.getObjects();
+
         for (int i = 0; i < objects.size(); i++) {
             for (int j = 0; j < objects.size(); j++) {
 
