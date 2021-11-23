@@ -82,7 +82,7 @@ public class Board {
                     else {
                         Bomb bomb = (Bomb) objects.get(i);
                         Rat victomRat = (Rat) objects.get(j);
-                        bomb.activation(this, victomRat);
+                        bomb.activationOfBomb();
                         
                     }
 

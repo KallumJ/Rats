@@ -19,7 +19,7 @@ import tile.Tile;
  /**
  * The class Female sex changer extends item
  */ 
-public class FemaleSexChanger extends Item{
+public class FemaleSexChanger extends GameObject{
 	/** 
 	* Female sex changer
 	* @param standingOn  the standing on
@@ -29,19 +29,17 @@ public class FemaleSexChanger extends Item{
         super(standingOn);
     }
 
-    @Override
+    
 	/** 
 	* Activation
-	* @param board  the board
 	* @param rat  the rat
 	*/
-    public void activation(Board board, Rat rat) {
+    public void activationOfFemaleSexChanger(PeacefulRat rat) {
         
-        PeacefulRat pRat = (PeacefulRat) rat;
-        pRat.setGender("Female");
+        rat.setGender("f");
         
-        board.removeObject(this); 
-        board.updateBoardDisplay();
+        GameObject.getBoard().removeObject(this); 
+        GameObject.getBoard().updateBoardDisplay();
     }
 
     @Override
