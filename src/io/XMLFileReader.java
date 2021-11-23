@@ -42,6 +42,8 @@ public class XMLFileReader {
     public Element drilldownToElement(String... elements) {
         try {
             Element current = this.rootElement;
+
+            // Go through every level of elements, and get the next element in the list
             for (String element : elements) {
                 current = (Element) current.getElementsByTagName(element).item(0);
             }
