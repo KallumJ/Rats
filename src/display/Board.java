@@ -18,6 +18,10 @@ import tile.TileSet;
  *
  * @author fahds
  */
+ 
+ /**
+ * The class Board
+ */
 public class Board {
 
     private List<GameObject> objects;
@@ -32,7 +36,10 @@ public class Board {
 
     private final static int CANVAS_HEIGHT = 1000; // In pixels
     private final static int CANVAS_WIDTH = 1000;
-
+	/** 
+	* Constructor. 
+	* @param levelData  the level data
+	*/
     public Board(LevelData levelData) {
         LevelProperties levelProperties = levelData.getLevelProperties();
 
@@ -43,6 +50,9 @@ public class Board {
         this.canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
     }
     
+	/**
+	* Update board display
+	*/
     public void updateBoardDisplay() {
         
         // Get the Graphic Context of the canvas. This is what we draw on.
@@ -61,7 +71,10 @@ public class Board {
         // Display the objects on screen
         displayObjects();
     }
-
+	
+	/**
+	* Display objects
+	*/
     private void displayObjects() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -71,28 +84,50 @@ public class Board {
                     object.getStandingOn().getTopLeftY() * Tile.TILE_SIZE);
         }
     }
-
+	
+	/** 
+	* Add object and the board display will be updated 
+	* with added object
+	* @param objectAdded  the object added
+	*/
     public void addObject(GameObject objectAdded) {
         objects.add(objectAdded);
         updateBoardDisplay();
     }
-
+	
+	/** 
+	* Remove object and the board display will be updated 
+	* with removed object
+	* @param objectRemove  the object remove
+	*/
     public void removeObject(GameObject objectRemove) {
         
         objects.remove(objectRemove);
         updateBoardDisplay();
     }
     
+	/** 
+	* Gets the current population
+	* @return the current pouplation
+	*/
     public int getCurrentPouplation () {
         
         return this.currentPouplation;
     }
     
+	/** 
+	* Gets the score
+	* @return the score
+	*/
     public int getScore () {
         
         return this.score;
     }
 
+	/** 
+	* Build GUI
+	* @return Pane
+	*/
     public Pane buildGUI() {
         BorderPane root = new BorderPane();
 
@@ -100,7 +135,9 @@ public class Board {
 
         return root;
     }
-
+	/** 
+	* Start game and updates the board display
+	*/
     public void startGame() {
         // Set the board currently in use to this board
         GameObject.setBoard(this);
@@ -108,7 +145,9 @@ public class Board {
         // Update board display
         updateBoardDisplay();
     }
-
+	/** 
+	* Display tiles
+	*/
     private void displayTiles() {
         // Get the Graphic Context of the canvas. This is what we draw on.
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -133,7 +172,11 @@ public class Board {
             gc.drawImage(tileImage, tile.getTopLeftX() * Tile.TILE_SIZE, tile.getTopLeftY() * Tile.TILE_SIZE);
         }
     }
-
+	
+	/** 
+	* Gets the objects
+	* @return the objects
+	*/
     public List<GameObject> getObjects() {
         return objects;
     }

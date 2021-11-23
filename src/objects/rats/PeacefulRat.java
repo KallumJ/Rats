@@ -14,6 +14,9 @@ import tile.Tile;
  *
  * @author fahds
  */
+/**
+ * The class Peaceful rat extends rat
+ */ 
 public class PeacefulRat extends Rat {
     
     private boolean sterile;
@@ -28,7 +31,19 @@ public class PeacefulRat extends Rat {
     private Image babyRatImage;
     private Image femaleRatImage;
     private Image pregnantFemaleRatImage;
-    
+    /** 
+	 * Peaceful rat
+	 * @param standingOn  the standing on
+	 * @param sterile  the sterile
+	 * @param adult  the adult
+	 * @param pregnant  the pregnant
+	 * @param gender  the gender
+	 * @param int  the int
+	 * @param timeToDevelop  the time to develop
+	 * @param speed  the speed
+	 * @param directionOfMovement  the direction of movement
+	 * @return public
+	 */
     public PeacefulRat (Tile standingOn, boolean sterile, boolean adult, boolean pregnant, String gender,
                         int timeToGiveBirth, int timeToDevelop, int speed, Direction directionOfMovement) {
         super(standingOn, speed,  directionOfMovement);
@@ -59,6 +74,12 @@ public class PeacefulRat extends Rat {
         
     }
     
+	/**
+	 * Decide icon
+	 * @param adult  the adult
+	 * @param pregnant  the pregnant
+	 * @param gender  the gender
+	 */
     private void decideIcon (boolean adult, boolean pregnant, String gender) {
         
         Image decidedIcon;
@@ -84,31 +105,55 @@ public class PeacefulRat extends Rat {
     }
 
     @Override
+	/** 
+	 * Change icon
+	 * @param icon  the icon
+	 */
     public void changeIcon(Image icon) {
         
         super.setIcon(icon);
     }
     
+	/** 
+	 * Is sterile
+	 * @return boolean
+	 */
     public boolean isSterile () {
         
         return this.sterile;
     }
     
+	/** 
+	 * Is adult
+	 * @return boolean
+	 */    
     public boolean isAdult () {
         
        return this.adult;
     }
 
+	/** 
+	 * Is pregnant
+	 * @return boolean
+	 */
     public boolean isPregnant() {
 
         return this.pregnant;
     }
     
+	/** 
+	 * Gets the gender
+	 * @return the gender
+	 */
     public String getGender () {
         
         return this.gender;
     }
     
+	/** 
+	 * Mate
+	 * @param partner  the partner
+	 */
     public void mate (PeacefulRat partner) {
         
         if (!this.isSterile() && !partner.isSterile() && this.isAdult() && partner.isAdult()
@@ -121,6 +166,9 @@ public class PeacefulRat extends Rat {
         }   
     }
     
+	/** 
+	 * Be pregnant
+	 */
     private void bePregnant () {
         
         
@@ -133,6 +181,9 @@ public class PeacefulRat extends Rat {
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
+			/**
+			 * Run
+			 */
             public void run() {
                 
                 giveBirth();
@@ -141,6 +192,9 @@ public class PeacefulRat extends Rat {
 
     }
     
+	/** 
+	 * Give birth
+	 */
     private void giveBirth (){
         
         this.pregnant = false;
@@ -170,6 +224,10 @@ public class PeacefulRat extends Rat {
         
     }
     
+	/** 
+	 * Sets the gender
+	 * @param gender  the gender
+	 */
     public void setGender (String gender) {
         
         this.gender = gender;
@@ -177,11 +235,19 @@ public class PeacefulRat extends Rat {
         decideIcon (this.adult, this.pregnant, this.gender);
     }
     
+	/** 
+	 * Sets the sterilisation
+	 * @param sterile  the sterile
+	 */
     public void setSterilisation (boolean sterile) {
         
         this.sterile = sterile;
     }
     
+	/** 
+	 * Sets the adult
+	 * @param adult  the adult
+	 */
     public void setAdult (boolean adult) {
         
         this.adult = adult;
@@ -189,11 +255,17 @@ public class PeacefulRat extends Rat {
        decideIcon (this.adult, this.pregnant, this.gender);
     }
     
+	/** 
+	 * Grow up
+	 */
     private void growUp () {
         
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
+			/**
+			* Run
+			*/
             public void run() {
                 
                 setAdult(true);

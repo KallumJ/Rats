@@ -14,13 +14,24 @@ import tile.Tile;
  *
  * @author fahds
  */
+/**
+ * The class Death rat extends rat
+ */ 
 public class DeathRat extends Rat {
     
     private int numberOfKills;
     private int killsTarget;
-     private Image deathRatImage;
+    private Image deathRatImage;
     
-
+	/** 
+	 * Death rat
+	 * @param standingOn  the standing on
+	 * @param speed  the speed
+	 * @param directionOfMovement  the direction of movement
+	 * @param int  the int
+	 * @param killsTarget  the kills target
+	 * @return public
+	 */
     public DeathRat(Tile standingOn, int speed, Direction directionOfMovement,
             int numberOfKills, int killsTarget) {
         super(standingOn, speed, directionOfMovement);
@@ -34,10 +45,18 @@ public class DeathRat extends Rat {
     }
 
     @Override
+	/** 
+	 * Change icon
+	 * @param icon  the icon
+	 */
     public void changeIcon(Image icon) {
 
     }
     
+	/**
+	 * Kill
+	 * @param victim  the victim
+	 */
     public void kill (Rat victim) {
         
         GameObject.getBoard().removeObject(victim);
@@ -50,7 +69,11 @@ public class DeathRat extends Rat {
         GameObject.getBoard().updateBoardDisplay();
         
     }
-    
+	
+    /** 
+	 * Gets the number of kills
+	 * @return the number of kills
+	 */
     public int getNumberOfKills () {
         
          return this.numberOfKills;
