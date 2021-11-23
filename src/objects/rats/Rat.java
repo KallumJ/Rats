@@ -32,7 +32,7 @@ public abstract class Rat extends GameObject {
         this.speed = speed;
         this.directionOfMovement = directionOfMovement;
 
-        tickTimeline = new Timeline(new KeyFrame(Duration.seconds(this.speed), event -> move()));
+        tickTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed), event -> move()));
 
         // Loop the timeline forever
 	    tickTimeline.setCycleCount(Animation.INDEFINITE);

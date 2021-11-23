@@ -24,13 +24,11 @@ public class DeathRat extends Rat {
     private Image deathRatImage;
     
 	/** 
-	 * Death rat
+	 * Constructs Death rat
 	 * @param standingOn  the standing on
 	 * @param speed  the speed
 	 * @param directionOfMovement  the direction of movement
-	 * @param int  the int
 	 * @param killsTarget  the kills target
-	 * @return public
 	 */
     public DeathRat(Tile standingOn, int speed, Direction directionOfMovement,
             int numberOfKills, int killsTarget) {
@@ -54,7 +52,7 @@ public class DeathRat extends Rat {
     }
     
 	/**
-	 * Kill
+	 * Kill's the provided rat
 	 * @param victim  the victim
 	 */
     public void kill (Rat victim) {
