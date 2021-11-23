@@ -20,26 +20,14 @@ import tile.TileSet;
  */
 public class Board {
 
-    private List<GameObject> objects;
-    private TileSet map;
-    private int pouplationToLose;
-    private int score;
-    private int currentPouplation;
-    private int expectedFinishTime;
-    private int startTime;
-    private int pointsOnEachRat;
+    private LevelData levelData;
     private Canvas canvas;
 
     private final static int CANVAS_HEIGHT = 1000; // In pixels
     private final static int CANVAS_WIDTH = 1000;
 
     public Board(LevelData levelData) {
-        LevelProperties levelProperties = levelData.getLevelProperties();
-
-        this.map = levelData.getTileSet();
-        this.objects = levelData.getObjects();
-        this.pouplationToLose = levelProperties.getPopulationToLose();
-        this.expectedFinishTime = levelProperties.getExpectedTime();
+        this.levelData = levelData;
         this.canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
     }
     
@@ -65,6 +53,8 @@ public class Board {
     private void displayObjects() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        List<GameObject> objects = levelData.getObjects();
+
         // draw all objects
         for (GameObject object : objects) {
             gc.drawImage(object.getIcon(), object.getStandingOn().getTopLeftX() * Tile.TILE_SIZE,
@@ -73,24 +63,27 @@ public class Board {
     }
 
     public void addObject(GameObject objectAdded) {
+        List<GameObject> objects = levelData.getObjects();
+
         objects.add(objectAdded);
         updateBoardDisplay();
     }
 
     public void removeObject(GameObject objectRemove) {
-        
+        List<GameObject> objects = levelData.getObjects();
+
         objects.remove(objectRemove);
         updateBoardDisplay();
     }
     
     public int getCurrentPouplation () {
-        
-        return this.currentPouplation;
+        //TODO: implement
+        return 0;
     }
     
     public int getScore () {
-        
-        return this.score;
+        //TODO: implement
+        return 0;
     }
 
     public Pane buildGUI() {
@@ -113,8 +106,10 @@ public class Board {
         // Get the Graphic Context of the canvas. This is what we draw on.
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        List<Tile> tiles = levelData.getTileSet().getAllTiles();
+
         // Decide what image to display for this tile
-        for (Tile tile : map.getAllTiles()) {
+        for (Tile tile : tiles) {
             Image tileImage;
             switch (tile.getTileType()) {
                 case GRASS:
@@ -135,6 +130,14 @@ public class Board {
     }
 
     public List<GameObject> getObjects() {
-        return objects;
+        return this.levelData.getObjects();
+    }
+
+    public LevelData getLevelData() {
+        return levelData;
+    }
+
+    public LevelProperties getLevelProperties() {
+        return levelData.getLevelProperties();
     }
 }
