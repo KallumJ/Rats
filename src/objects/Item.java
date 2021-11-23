@@ -9,6 +9,9 @@ import tile.Tile;
  *
  * @author fahds
  */
+ /**
+  * The class Abstract item extends game object
+  */ 
 public abstract class Item extends GameObject{
 
     protected Item(Tile standingOn) {

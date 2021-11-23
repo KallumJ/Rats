@@ -24,15 +24,26 @@ public abstract class GameObject {
         this.standingOn = standingOn;   
     }
     
+	/** 
+	 * Sets the board
+	 * @param board  the board
+	 */
     public static void setBoard(Board board) {
         GameObject.board = board;
     }
 
+	/** 
+	 * Gets the board
+	 * @return the board
+	 */
     public static Board getBoard() {
 
         return GameObject.board;
     }
-
+	/** 
+	 * Gets the icon
+	 * @return the icon
+	 */
     public Image getIcon() {
         
         return this.icon;
@@ -40,16 +51,27 @@ public abstract class GameObject {
     
     public abstract void changeIcon (Image icon); 
     
+	/** 
+	 * Change icon
+	 * @param icon  the icon
+	 */
     public void setIcon (Image icon) {
         
         this.icon = icon;
     }
-    
+	/** 
+	 * Gets the standing on
+	 * @return the standing on
+	 */
     public Tile getStandingOn() {
         
         return this.standingOn;
     }
     
+	/** 
+	 * Stand on
+	 * @param standingOn  the standing on
+	 */
     public void standOn (Tile standingOn) {
         
         this.standingOn = standingOn;

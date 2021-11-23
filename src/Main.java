@@ -6,9 +6,16 @@ import javafx.stage.Stage;
 import level.LevelData;
 import level.LevelDataFactory;
 
+ /**
+ * The class Main extends application
+ */ 
 public class Main extends Application {
 
     @Override
+	/** 
+	* Start
+	* @param stage  the stage
+	*/
     public void start(Stage stage) {
         LevelData levelData = LevelDataFactory.constructLevelData(1);
 
@@ -20,7 +27,10 @@ public class Main extends Application {
         stage.show();
         gameBoard.startGame();
     }
-
+	/** 
+	* Main
+	* @param args  the args
+	*/
     public static void main(String[] args) {
         launch(args);
     }
