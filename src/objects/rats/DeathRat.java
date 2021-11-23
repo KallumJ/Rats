@@ -47,7 +47,6 @@ public class DeathRat extends Rat {
            
             GameObject.getBoard().removeObject(this);
         }
-        GameObject.getBoard().updateBoardDisplay();
         
     }
     

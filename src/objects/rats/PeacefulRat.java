@@ -3,8 +3,12 @@ package objects.rats;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 import objects.GameObject;
 import tile.Direction;
 import tile.Tile;
@@ -28,6 +32,8 @@ public class PeacefulRat extends Rat {
     private Image babyRatImage;
     private Image femaleRatImage;
     private Image pregnantFemaleRatImage;
+    private Timeline pregnancyTimer; 
+    private Timeline developmentTimer; 
     
     public PeacefulRat (Tile standingOn, boolean sterile, boolean adult, boolean pregnant, String gender,
                         int timeToGiveBirth, int timeToDevelop, int speed, Direction directionOfMovement) {
@@ -44,7 +50,8 @@ public class PeacefulRat extends Rat {
         
         if (!this.adult) {
             
-            this.growUp();
+            developmentTimer = new Timeline(new KeyFrame(Duration.seconds(this.timeToDevelop), event -> growUp()));
+            developmentTimer.play();
         }
         if (this.pregnant) {
             
@@ -73,7 +80,7 @@ public class PeacefulRat extends Rat {
         }
         else if (pregnant) {
             
-             decidedIcon = pregnantFemaleRatImage;  
+            decidedIcon = pregnantFemaleRatImage;  
         }
         else {
             
@@ -110,34 +117,27 @@ public class PeacefulRat extends Rat {
     }
     
     public void mate (PeacefulRat partner) {
-        
-        if (!this.isSterile() && !partner.isSterile() && this.isAdult() && partner.isAdult()
-            && partner.getGender().equalsIgnoreCase("Female") && !partner.isPregnant()) {
-            
-            partner.bePregnant ();
+         
+        if ( partner.getGender().equalsIgnoreCase("f") && (!partner.isPregnant())) {
+            if ((!(this.isSterile() || partner.isSterile())) && (this.isAdult() && partner.isAdult())) {
+                
+                partner.bePregnant();
+            }
         }
-        else {
-            
-        }   
+        
     }
     
-    private void bePregnant () {
-        
-        
+    public void bePregnant () {
+        pregnancyTimer = new Timeline(new KeyFrame(Duration.seconds(this.timeToGiveBirth), event -> giveBirth ()));
+
         this.pregnant = true;
-        decideIcon (adult, pregnant, gender);   
-        
+        this.decideIcon (adult, pregnant, gender);   
+ 
         Random random = new Random(); 
-        this.numberOfBabies = random.nextInt((5 - 2) + 1) + 2;
-        
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                
-                giveBirth();
-            }
-        }, this.timeToGiveBirth);
+        this.numberOfBabies = random.nextInt((4 - 2) + 1) + 2;
+       pregnancyTimer.play();
+              
+      
 
     }
     
@@ -146,7 +146,7 @@ public class PeacefulRat extends Rat {
         this.pregnant = false;
         decideIcon (adult, pregnant, gender);   
         
-        for (int i = 0; i == this.numberOfBabies; i++) {
+        for (int i = 0; i < this.numberOfBabies; i++) {
             String newBornGender;
             
             Random random = new Random(); 
@@ -154,18 +154,17 @@ public class PeacefulRat extends Rat {
             
             if (decision == 1) {
                 
-                newBornGender = "Male";
+                newBornGender = "m";
             }
             else {
                 
-                newBornGender = "Female";
+                newBornGender = "f";
             }
             
             GameObject newBorn = new PeacefulRat (super.getStandingOn(), this.isSterile(), false, false,newBornGender,
                     this.timeToGiveBirth, this.timeToDevelop, super.getSpeed(), super.getDirectionOfMovement());
             
-            GameObject.getBoard().addObject(newBorn);
-            
+            GameObject.getBoard().addObject(newBorn); 
         }
         
     }
@@ -189,16 +188,9 @@ public class PeacefulRat extends Rat {
        decideIcon (this.adult, this.pregnant, this.gender);
     }
     
-    private void growUp () {
-        
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                
-                setAdult(true);
-                decideIcon (adult, pregnant, gender);   
-            }
-        }, this.timeToDevelop);
+    private void growUp() {
+
+        this.adult = true;
+        decideIcon(adult, pregnant, gender);
     }
 }

@@ -1,16 +1,23 @@
 package display;
 
 import java.util.List;
-
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import level.LevelData;
 import level.LevelProperties;
+import objects.Bomb;
 import objects.GameObject;
+import objects.rats.DeathRat;
+import objects.rats.PeacefulRat;
+import objects.rats.Rat;
 import tile.Tile;
 import tile.TileSet;
 
@@ -29,6 +36,7 @@ public class Board {
     private int startTime;
     private int pointsOnEachRat;
     private Canvas canvas;
+    private Timeline tickTimeline; 
 
     private final static int CANVAS_HEIGHT = 1000; // In pixels
     private final static int CANVAS_WIDTH = 1000;
@@ -41,8 +49,60 @@ public class Board {
         this.pouplationToLose = levelProperties.getPopulationToLose();
         this.expectedFinishTime = levelProperties.getExpectedTime();
         this.canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+        
+        tickTimeline = new Timeline(new KeyFrame(Duration.millis(100), event -> intersactionCheck()));
+
+        // Loop the timeline forever
+	tickTimeline.setCycleCount(Animation.INDEFINITE);
+        tickTimeline.play();
     }
     
+    public void intersactionCheck() {
+        for (int i = 0; i < objects.size(); i++) {
+            for (int j = 0; j < objects.size(); j++) {
+
+                if ((objects.get(i).getStandingOn().equals(objects.get(j).getStandingOn())) && (!objects.get(i).equals(objects.get(j)))) {
+
+                    if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat")) {
+
+                        if (objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat")) {
+
+                            PeacefulRat firstRat = (PeacefulRat) objects.get(i);
+                            PeacefulRat secondRat = (PeacefulRat) objects.get(j);
+
+                            if (firstRat.getGender().equalsIgnoreCase("m")) {
+
+                                firstRat.mate(secondRat);
+                            }
+                        }
+                    } //objects.get(I) instanceof PeacefulRat
+
+                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.rats.DeathRat")) {
+
+                        if ( objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat") || 
+                             objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.DeathRat")) {
+
+                            DeathRat firstRat = (DeathRat) objects.get(i);
+                            Rat secondRat = (Rat) objects.get(j);
+                            firstRat.kill(secondRat);
+
+                        }
+
+                    }
+                    else {
+                        Bomb bomb = (Bomb) objects.get(i);
+                        Rat victomRat = (Rat) objects.get(j);
+                        bomb.activation(this, victomRat);
+                        
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
     public void updateBoardDisplay() {
         
         // Get the Graphic Context of the canvas. This is what we draw on.
