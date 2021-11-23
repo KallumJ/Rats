@@ -18,7 +18,7 @@ import tile.Tile;
 /**
  * The class Number entry sign extends item
  */ 
-public class NoEntrySign extends Item {
+public class NoEntrySign extends GameObject {
     
     private int damageDone;
     private int durability;
@@ -35,13 +35,11 @@ public class NoEntrySign extends Item {
         super(standingOn);
     }
 
-   @Override
     /** 
 	 * Activation
-	 * @param board  the board
 	 * @param rat  the rat
 	 */
-    public void activation(Board board, Rat rat) {
+    public void activation(Rat rat) {
         
         rat.setDirectionOfMovement(rat.turnAround(rat.getDirectionOfMovement()));
         
@@ -49,9 +47,10 @@ public class NoEntrySign extends Item {
         
         if (damageDone >= durability) {
             
-            board.removeObject(this);
-            board.updateBoardDisplay();
+            GameObject.getBoard().removeObject(this);
+            
         }
+        GameObject.getBoard().updateBoardDisplay();
         
         
     }

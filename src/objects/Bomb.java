@@ -20,7 +20,7 @@ import tile.Tile;
  *
  * @author fahds
  */
-public class Bomb extends Item {
+public class Bomb extends GameObject {
 
     private int timerLength; // in seconds
     private boolean timerStarted; 
@@ -43,8 +43,8 @@ public class Bomb extends Item {
 
     }
 
-    private void startTimer(Board board) {
-        tickTimeline1 = new Timeline(new KeyFrame(Duration.millis(1000), event -> tick(board)));
+    private void startTimer() {
+        tickTimeline1 = new Timeline(new KeyFrame(Duration.millis(1000), event -> tick()));
         // Loop the timeline forever
         tickTimeline1.setCycleCount(this.timerLength);
 
@@ -53,31 +53,31 @@ public class Bomb extends Item {
 
     }
     
-    private void tick (Board board) {
+    private void tick () {
         
         this.timerRemainingTime = timerRemainingTime - 1;
         System.out.println(timerRemainingTime);
         if (timerRemainingTime < 1) {
             
-            explode(board);
+            explode();
         }
         
     }
     
-    private void explode (Board board) {
+    private void explode () {
         
         for (int i = 0; i < affectedTiles.size(); i++) {
             
-            for (int j = 0; j < board.getObjects().size(); j++) {
+            for (int j = 0; j < GameObject.getBoard().getObjects().size(); j++) {
                 
-                if (board.getObjects().get(j).getStandingOn().equals(affectedTiles.get(i))) {
+                if (GameObject.getBoard().getObjects().get(j).getStandingOn().equals(affectedTiles.get(i))) {
                 
-                    board.removeObject(board.getObjects().get(j));
+                    GameObject.getBoard().removeObject(GameObject.getBoard().getObjects().get(j));
                 }
             }
         }
-        board.removeObject(this);
-        board.updateBoardDisplay();
+        GameObject.getBoard().removeObject(this);
+        GameObject.getBoard().updateBoardDisplay();
         
     }
     
@@ -142,11 +142,11 @@ public class Bomb extends Item {
         }
     }
 
-    @Override
-    public void activation(Board board, Rat rat) {
+    
+    public void activationOfBomb() {
 
         if (!this.timerStarted) {
-            startTimer(board);
+            startTimer();
         }
     }
 
