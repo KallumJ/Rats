@@ -24,12 +24,12 @@ public class TileAttributeReader {
      * @param tile The tile this attribute was read from
      * @return The constructed GameObject
      */
-    public static GameObject getObjectFromAttribute(String attributeName, String attributeValue, Tile tile) {
+    public static GameObject getObjectFromAttribute(String attributeName, String attributeValue, Tile tile, LevelProperties levelProperties) {
         switch (attributeName) {
             case "rat":
-                return readPeacefulRat(attributeValue, tile);
+                return readPeacefulRat(attributeValue, tile, levelProperties);
             case "d_rat":
-                return readDeathRat(attributeValue, tile);
+                return readDeathRat(attributeValue, tile, levelProperties);
             case "bomb":
                 return readBomb(attributeValue, tile);
             case "gas":
@@ -95,16 +95,15 @@ public class TileAttributeReader {
      * @param tile the tile the DeathRat is on
      * @return the constructed DeathRat
      */
-    private static DeathRat readDeathRat(String attributeValue, Tile tile) {
+    private static DeathRat readDeathRat(String attributeValue, Tile tile, LevelProperties levelProperties) {
         //TODO: provide valid icon
 
         Scanner scanner = new Scanner(attributeValue);
-        int speed = scanner.nextInt();
         Direction direction = getDirectionFromString(scanner.next());
         int numOfKills = scanner.nextInt();
         int killsTarget = scanner.nextInt();
 
-        return new DeathRat(tile, speed, direction,numOfKills, killsTarget);
+        return new DeathRat(tile, levelProperties.getDeathRatSpeed(), direction,numOfKills, killsTarget);
     }
 
     /**
@@ -113,7 +112,7 @@ public class TileAttributeReader {
      * @param tile The tile the PeacefulRat is on
      * @return The constructed PeacefulRat
      */
-    public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile) {
+    public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile, LevelProperties levelProperties) {
         Scanner scanner = new Scanner(attributeValue);
         boolean adult = scanner.nextBoolean();
         boolean pregnant = scanner.nextBoolean();
@@ -126,8 +125,9 @@ public class TileAttributeReader {
 
         int timeToBirth = scanner.nextInt();
         int timeToDevelop = scanner.nextInt();
-        int speed = scanner.nextInt();
         Direction direction = getDirectionFromString(scanner.next());
+
+        int speed = adult ? levelProperties.getAdultRatSpeed() : levelProperties.getBabyRatSpeed();
         return new PeacefulRat(tile, sterile, adult, pregnant, gender, timeToBirth, timeToDevelop, speed, direction);
     }
 

@@ -14,6 +14,9 @@ public class LevelProperties {
     private final int itemInterval;
     private final int ratMinBabies;
     private final int ratMaxBabies;
+    private final int adultRatSpeed;
+    private final int babyRatSpeed;
+    private final int deathRatSpeed;
 
     /**
      * Constructs a LevelProperties object with the provided data
@@ -25,8 +28,11 @@ public class LevelProperties {
      * @param itemInterval the time in between item drops for this level in seconds
      * @param ratMinBabies the minimum number of babies a rat can birth in a level
      * @param ratMaxBabies the maximum number of babies a rat can birth in a level
+     * @param adultRatSpeed the speed of an adult rat, in time between movement, in milliseconds
+     * @param babyRatSpeed the speed of a baby rat, in time between movement, in milliseconds
+     * @param deathRatSpeed the speed of a death rat, in time between movement, in milliseconds
      */
-    public LevelProperties(int id, int height, int width, int populationToLose, int expectedTime, int itemInterval, int ratMinBabies, int ratMaxBabies) {
+    public LevelProperties(int id, int height, int width, int populationToLose, int expectedTime, int itemInterval, int ratMinBabies, int ratMaxBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed) {
         this.levelId = id;
         this.levelHeight = height;
         this.levelWidth = width;
@@ -35,6 +41,9 @@ public class LevelProperties {
         this.itemInterval = itemInterval;
         this.ratMaxBabies = ratMaxBabies;
         this.ratMinBabies = ratMinBabies;
+        this.adultRatSpeed = adultRatSpeed;
+        this.babyRatSpeed = babyRatSpeed;
+        this.deathRatSpeed = deathRatSpeed;
     }
 
     /**
@@ -99,5 +108,29 @@ public class LevelProperties {
      */
     public int getRatMaxBabies() {
         return ratMaxBabies;
+    }
+
+    /**
+     * A method to get the speed of adult rats in this level
+     * @return the speed of adult rats in this level in milliseconds between movements
+     */
+    public int getAdultRatSpeed() {
+        return adultRatSpeed;
+    }
+
+    /**
+     * A method to get the speed of baby rats in this level
+     * @return the speed of baby rats in this level in milliseconds between movements
+     */
+    public int getBabyRatSpeed() {
+        return babyRatSpeed;
+    }
+
+    /**
+     * A method to get the speed of death rats in this level
+     * @return the speed of death rats in this level in milliseconds between movements
+     */
+    public int getDeathRatSpeed() {
+        return deathRatSpeed;
     }
 }
