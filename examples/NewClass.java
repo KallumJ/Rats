@@ -17,17 +17,28 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-
+ /**
+ * The class New class extends application
+ */
 public class NewClass extends Application {
     
     int squareSize = 50;
      List<Tile> tiles = new ArrayList<>();
     
+	/** 
+	* Pressed
+	* @param event  the event
+	* @param c  the c
+	*/
     public void pressed(MouseEvent event, Circle c){
         c.setFill(Color.BLUE);
         
     }
-    
+    /** 
+	 * Dragged
+	 * @param event  the event
+ 	* @param c  the c
+ 	*/
     public void dragged(MouseEvent event, Circle c){
         c.setTranslateX(c.getTranslateX()+ event.getX());
         c.setTranslateY(c.getTranslateY()+ event.getY());
@@ -37,6 +48,11 @@ public class NewClass extends Application {
         
     }
     
+	/** 
+	* Released
+	* @param event  the event
+	* @param c  the c
+	*/
     public void released(MouseEvent event, Circle c){
         int gridX = (int)c.getTranslateX() / squareSize;
         int gridY = (int)c.getTranslateY() / squareSize;
@@ -46,7 +62,10 @@ public class NewClass extends Application {
         c.setFill(Color.RED);
     }
     
-    
+    /** 
+	* Create content
+	* @return Parent
+	*/
     private Parent createContent(){
         
         Group root = new Group();
@@ -125,10 +144,11 @@ public class NewClass extends Application {
         return root;
     }
 
-    
-    
-
-    
+    /** 
+	* Start
+	* @param primaryStage  the primary stage
+	* @throws   Exception 
+	*/
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(createContent()));
@@ -140,6 +160,11 @@ public class NewClass extends Application {
         
         
         private String color;
+		/** 
+		* Tile
+		* @param number  the number
+		* @return public
+		*/
         public Tile(int number){
           
             Rectangle border = new Rectangle(squareSize,squareSize);
@@ -176,7 +201,11 @@ public class NewClass extends Application {
 
        
     }
-    
+	
+    /** 
+	* Main
+	* @param args  the args
+	*/
     public static void main(String[] args) {
         launch(args);
     }

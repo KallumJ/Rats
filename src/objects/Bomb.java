@@ -25,8 +25,9 @@ public class Bomb extends Item {
     private int timerLength; // in seconds
     private boolean timerStarted; 
     private int timerRemainingTime;
-    private Timeline tickTimeline;
+    private Timeline tickTimeline1;
     private ArrayList<Tile> affectedTiles;
+    private Image bombImage;
 
     public Bomb(Tile standingOn, int timerLength, boolean timerStarted) {
         super(standingOn);
@@ -34,16 +35,20 @@ public class Bomb extends Item {
         this.timerLength = timerLength;
         this.timerStarted = timerStarted;
         this.timerRemainingTime = timerLength;
+        this.affectedTiles = new ArrayList <Tile>();
         findAffectedTiles();
+        
+        bombImage = new Image("file:resources/bomb.png");
+        super.setIcon(bombImage);
 
     }
 
     private void startTimer(Board board) {
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(1000), event -> tick(board)));
+        tickTimeline1 = new Timeline(new KeyFrame(Duration.millis(1000), event -> tick(board)));
         // Loop the timeline forever
-        tickTimeline.setCycleCount(this.timerLength);
+        tickTimeline1.setCycleCount(this.timerLength);
 
-        tickTimeline.play();
+        tickTimeline1.play();
         this.timerStarted = true;
 
     }
@@ -51,8 +56,8 @@ public class Bomb extends Item {
     private void tick (Board board) {
         
         this.timerRemainingTime = timerRemainingTime - 1;
-        
-        if (timerRemainingTime <= 1) {
+        System.out.println(timerRemainingTime);
+        if (timerRemainingTime < 1) {
             
             explode(board);
         }

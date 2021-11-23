@@ -16,13 +16,25 @@ import tile.Tile;
  *
  * @author fahds
  */
+ /**
+ * The class Female sex changer extends item
+ */ 
 public class FemaleSexChanger extends Item{
-
+	/** 
+	* Female sex changer
+	* @param standingOn  the standing on
+	* @return public
+	*/
     public FemaleSexChanger(Tile standingOn) {
         super(standingOn);
     }
 
     @Override
+	/** 
+	* Activation
+	* @param board  the board
+	* @param rat  the rat
+	*/
     public void activation(Board board, Rat rat) {
         
         PeacefulRat pRat = (PeacefulRat) rat;
@@ -33,6 +45,10 @@ public class FemaleSexChanger extends Item{
     }
 
     @Override
+	/** 
+	* Change icon
+	* @param icon  the icon
+	*/
     public void changeIcon(Image icon) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

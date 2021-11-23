@@ -14,6 +14,9 @@ import tile.Tile;
  *
  * @author fahds
  */
+/**
+ * The class Abstract rat extends game object
+ */
 public abstract class Rat extends GameObject {
     
     // movement speed of the Rat
@@ -36,26 +39,45 @@ public abstract class Rat extends GameObject {
         tickTimeline.play();
     }
     
+	/**
+	 * Gets the speed
+	 * @return the speed
+	 */
     public int getSpeed (){
         
         return this.speed;
     }  
     
+	/**
+	 * Sets the speed
+	 * @param speed the speed
+	 */
     public void setSpeed (int speed) {
         
         this.speed = speed;
     }
     
+	/**
+	 * Gets the direction of movement
+	 * @return the direction of movement
+	 */
     public Direction getDirectionOfMovement () {
         
         return this.directionOfMovement;
     }
     
+	/**
+	 * Sets the direction of movement
+	 * @param directionOfMovement  the direction of movement
+	 */
     public void setDirectionOfMovement (Direction directionOfMovement) {
         
         this.directionOfMovement = directionOfMovement;
     }
-    
+    /**
+	 * Move - moves left, right and turn around
+	 * when the rats can otherwise it doesn't move.
+	 */
     private void move () {
         
         boolean isLeftTurnPossible = (super.getStandingOn().getAdjacentTile(turnLeft(
@@ -111,6 +133,11 @@ public abstract class Rat extends GameObject {
         GameObject.getBoard().updateBoardDisplay();
     }
     
+	/**
+	 * Turn left
+	 * @param directionOfMovement  the direction of movement
+	 * @return Direction
+	 */
     private Direction turnLeft (Direction directionOfMovement) {
         
         Direction leftOfDirection;
@@ -135,6 +162,11 @@ public abstract class Rat extends GameObject {
         return leftOfDirection;                   
     }
     
+	/**
+	 * Turn right
+	 * @param directionOfMovement  the direction of movement
+	 * @return Direction
+	 */
     private Direction turnRight (Direction directionOfMovement) {
         
         Direction rightOfDirection;
@@ -159,6 +191,11 @@ public abstract class Rat extends GameObject {
         return rightOfDirection;                   
     }    
     
+	/**
+	 * Turn around
+	 * @param directionOfMovement  the direction of movement
+	 * @return Direction
+	 */
     public Direction turnAround (Direction directionOfMovement) {
         
         Direction oppositeDirection;

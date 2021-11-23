@@ -86,7 +86,7 @@ public class TileAttributeReader {
      * @return the constructed Bomb
      */
     private static Bomb readBomb(String attributeValue, Tile tile) {
-        return new Bomb(tile, Integer.parseInt(attributeValue), true);
+        return new Bomb(tile, Integer.parseInt(attributeValue), false);
     }
 
     /**
