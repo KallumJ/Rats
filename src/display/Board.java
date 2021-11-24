@@ -13,17 +13,8 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import level.LevelData;
 import level.LevelProperties;
-import objects.Bomb;
-import objects.FemaleSexChanger;
-import objects.GameObject;
-import objects.MaleSexChanger;
-import objects.NoEntrySign;
-import objects.Poison;
-import objects.rats.DeathRat;
-import objects.rats.PeacefulRat;
-import objects.rats.Rat;
+import objects.*;
 import tile.Tile;
-import tile.TileSet;
 
 /**
  *
@@ -42,97 +33,33 @@ public class Board {
         this.levelData = levelData;
         this.canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
         
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(100), event -> intersactionCheck()));
+        tickTimeline = new Timeline(new KeyFrame(Duration.millis(100), event -> interactionCheck()));
 
         // Loop the timeline forever
 	tickTimeline.setCycleCount(Animation.INDEFINITE);
         tickTimeline.play();
     }
     
-    public void intersactionCheck() {
+    public void interactionCheck() {
         List<GameObject> objects = levelData.getObjects();
 
-        for (int i = 0; i < objects.size(); i++) {
-            for (int j = 0; j < objects.size(); j++) {
+        for (GameObject firstObject : objects) {
+            for (GameObject secondObject : objects) {
+                // If we are comparing 2 objects that are on the same tile, and are not the same object
+                if (firstObject.getStandingOn().equals(secondObject.getStandingOn()) && !(firstObject.equals(secondObject))) {
 
-                if ((objects.get(i).getStandingOn().equals(objects.get(j).getStandingOn())) && (!objects.get(i).equals(objects.get(j)))) {
-
-                    if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat")) {
-
-                        if (objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat")) {
-
-                            PeacefulRat firstRat = (PeacefulRat) objects.get(i);
-                            PeacefulRat secondRat = (PeacefulRat) objects.get(j);
-
-                            if (firstRat.getGender().equalsIgnoreCase("m")) {
-
-                                firstRat.mate(secondRat);
-                            }
-                        }
-                    } //objects.get(I) instanceof PeacefulRat
-
-                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.rats.DeathRat")) {
-
-                        if ( objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat") || 
-                             objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.DeathRat")) {
-
-                            DeathRat firstRat = (DeathRat) objects.get(i);
-                            Rat secondRat = (Rat) objects.get(j);
-                            firstRat.kill(secondRat);
-
-                        }
-
-                    }
-                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.Bomb")) {
-                        
-                        Bomb bomb = (Bomb) objects.get(i);
-                        bomb.activationOfBomb();   
-                    }
-                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.NoEntrySign")) {
-                        
-                        NoEntrySign noEntrySign = (NoEntrySign) objects.get(i);
-                        Rat victomRat = (Rat) objects.get(j);
-                        noEntrySign.activation(victomRat); 
-                        
-                    }
-                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.FemaleSexChanger")) {
-
-                        if ( objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat")) {
-                            
-                            FemaleSexChanger femaleSexChanger = (FemaleSexChanger) objects.get(i);
-                            PeacefulRat rat = (PeacefulRat) objects.get(j);
-                            
-                            femaleSexChanger.activationOfFemaleSexChanger(rat);
-                        }
-
-                    }
-                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.MaleSexChanger")) {
-
-                        if ( objects.get(j).getClass().getName().equalsIgnoreCase("objects.rats.PeacefulRat")) {
-                            
-                            MaleSexChanger maleSexChanger = (MaleSexChanger) objects.get(i);
-                            PeacefulRat rat = (PeacefulRat) objects.get(j);
-                            
-                            maleSexChanger.activation(rat);
-                        }
-
-                    } 
-                    else if (objects.get(i).getClass().getName().equalsIgnoreCase("objects.Poison")) {
-
-                        Poison poison = (Poison) objects.get(i);
-                        Rat rat = (Rat) objects.get(j);
-
-                        poison.activation(rat);
-
-                    }
-                    else {
-                        
-                    }
+                    // Check for every interaction case
+                    ObjectInteractionChecker.checkRatsMating(firstObject, secondObject);
+                    // Throws a ConcurrentModificationException as we are looping over the list, when the DeathRat is removing from it. It doesn't seem to stop this working though.
+                    ObjectInteractionChecker.checkDeathRat(firstObject, secondObject);
+                    ObjectInteractionChecker.checkBomb(firstObject, secondObject);
+                    ObjectInteractionChecker.checkNoEntrySign(firstObject, secondObject);
+                    ObjectInteractionChecker.checkFemaleSexChanger(firstObject, secondObject);
+                    ObjectInteractionChecker.checkMaleSexChanger(firstObject, secondObject);
+                    ObjectInteractionChecker.checkPoison(firstObject, secondObject);
                 }
-
             }
         }
-
     }
 
     public void updateBoardDisplay() {
