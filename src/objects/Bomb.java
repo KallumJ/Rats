@@ -131,57 +131,18 @@ public class Bomb extends GameObject {
     }
 
     private void findAffectedTiles() {
-
-        findAffectedTilesUp(Direction.UP, super.getStandingOn());
-        findAffectedTilesDown(Direction.DOWN, super.getStandingOn());
-        findAffectedTilesRight(Direction.RIGHT, super.getStandingOn());
-        findAffectedTilesLeft(Direction.LEFT, super.getStandingOn());
-    }
-
-    private void findAffectedTilesUp(Direction direction, Tile currentTile) {
-
-        affectedTiles.add(currentTile);
-
-        if (currentTile.getAdjacentTile(direction).isTraversable()) {
-
-            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
-
+        for (Direction direction : Direction.values()) {
+            findAffectedTilesRecurse(direction, super.getStandingOn());
         }
     }
 
-    private void findAffectedTilesDown(Direction direction, Tile currentTile) {
-
+    private void findAffectedTilesRecurse(Direction direction, Tile currentTile) {
         affectedTiles.add(currentTile);
-
         if (currentTile.getAdjacentTile(direction).isTraversable()) {
-
-            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
-
+            findAffectedTilesRecurse(direction, currentTile.getAdjacentTile(direction));
         }
     }
 
-    private void findAffectedTilesRight(Direction direction, Tile currentTile) {
-
-        affectedTiles.add(currentTile);
-
-        if (currentTile.getAdjacentTile(direction).isTraversable()) {
-
-            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
-
-        }
-    }
-
-    private void findAffectedTilesLeft(Direction direction, Tile currentTile) {
-
-        affectedTiles.add(currentTile);
-
-        if (currentTile.getAdjacentTile(direction).isTraversable()) {
-
-            findAffectedTilesUp(direction, currentTile.getAdjacentTile(direction));
-        }
-    }
-
-    
     public void activationOfBomb() {
 
         if (!this.timerStarted) {
