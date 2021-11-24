@@ -194,6 +194,8 @@ public class Board {
         BorderPane root = new BorderPane();
 
         root.setCenter(canvas);
+//        Inventory inventory = new Inventory ();
+//        root.setRight(inventory.buildInventoryGUI());
 
         return root;
     }

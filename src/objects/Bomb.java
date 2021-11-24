@@ -28,6 +28,12 @@ public class Bomb extends GameObject {
     private Timeline tickTimeline1;
     private ArrayList<Tile> affectedTiles;
     private Image bombImage;
+    private Image bombOneSecondImage;
+    private Image bombTwoSecondsImage;
+    private Image bombThreeSecondsImage;
+    private Image bombFourImage;
+    private Image bombFiveImage;
+    
 
     public Bomb(Tile standingOn, int timerLength, boolean timerStarted) {
         super(standingOn);
@@ -37,9 +43,19 @@ public class Bomb extends GameObject {
         this.timerRemainingTime = timerLength;
         this.affectedTiles = new ArrayList <Tile>();
         findAffectedTiles();
-        
+     
         bombImage = new Image("file:resources/bomb.png");
         super.setIcon(bombImage);
+        bombOneSecondImage = new Image("file:resources/bombOneSecond.png");
+        bombTwoSecondsImage = new Image("file:resources/bombTwoSeconds.png");
+        bombThreeSecondsImage = new Image("file:resources/bombThreeSeconds.png");
+        bombFourImage = new Image("file:resources/bombFourSeconds.png");
+        bombFiveImage = new Image("file:resources/bombFiveSeconds.png");
+        
+        if (this.timerStarted) {
+            
+            this.startTimer();
+        }
 
     }
 
@@ -55,9 +71,32 @@ public class Bomb extends GameObject {
     
     private void tick () {
         
+        switch(timerRemainingTime) {
+            
+            case 6:
+                super.setIcon(bombFiveImage);
+                break;
+            case 5:
+                super.setIcon(bombFourImage);
+                break;
+            case 4:
+                super.setIcon(bombThreeSecondsImage);
+                break;
+            case 3:
+                super.setIcon(bombTwoSecondsImage);
+                break;
+            case 2:
+                super.setIcon(bombOneSecondImage);
+                break;
+            default:
+                super.setIcon(bombImage);
+                break;
+        } 
+        GameObject.getBoard().updateBoardDisplay();
+        
         this.timerRemainingTime = timerRemainingTime - 1;
-        System.out.println(timerRemainingTime);
-        if (timerRemainingTime < 1) {
+        
+        if (timerRemainingTime  < 1) {
             
             explode();
         }
