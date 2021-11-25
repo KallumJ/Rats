@@ -19,9 +19,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class GameMenu {
+public abstract class GameMenu {
 
-    public Parent buildMainMenu() {
+    public Parent buildMenu(MenuBox menuBox) {
         Pane root = new Pane();
 
         root.setPrefSize(860, 600);
@@ -39,17 +39,9 @@ public class GameMenu {
         title.setTranslateX(75);
         title.setTranslateY(200);
 
-        MenuBox vbox = new MenuBox(
-                new LeaderboardMenuItem(),
-                new PlayMenuItem(),
-                new ExitMenuItem(),
-                new HelpMenuItem(),
-                new ContinueMenuItem(),
-                new LoadMenuItem());
-        vbox.setTranslateX(100);
-        vbox.setTranslateY(300);
-
-        root.getChildren().addAll(title, vbox);
+        menuBox.setTranslateX(100);
+        menuBox.setTranslateY(300);
+        root.getChildren().addAll(title, menuBox);
 
         return root;
     }
@@ -67,23 +59,6 @@ public class GameMenu {
 
             setAlignment(Pos.CENTER);
             getChildren().addAll(bg, text);
-        }
-    }
-
-    private static class MenuBox extends VBox {
-        public MenuBox(MenuItem... items) {
-            getChildren().add(createSeparator());
-
-            for (MenuItem item : items) {
-                getChildren().addAll(item, createSeparator());
-            }
-        }
-
-        private Line createSeparator() {
-            Line sep = new Line();
-            sep.setEndX(200);
-            sep.setStroke(Color.DARKGREY);
-            return sep;
         }
     }
 }
