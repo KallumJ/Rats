@@ -1,11 +1,11 @@
 package motd;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.net.URI;
-import java.time.Duration;
 
 /**
  * Contains methods to return the Message of the Day from the <a href="http://cswebcat.swansea.ac.uk/">MotD API</a>.
@@ -51,25 +51,27 @@ public class MssgOfTheDay {
     }
 
     /**
-     * Returns a string containing the body of the {@link java.net.http.HttpResponse} from the specified URI.
+     * Returns a string containing the body of the from the specified URI.
      *
-     * The {@link java.net.http.HttpRequest} made is a generic HTTP GET, response
+     * The request made is a generic HTTP GET, response
      * is then parsed, and only the body returned as string.
      * Can throw errors due to bad web responses/non-responses.
      * @param   requestURI              the URI of the page to be requested from
      * @return                          the body of the HTTP response from the supplied URI, as string
      * @throws  IOException             if an I/O error occurs when sending or receiving
-     * @throws  InterruptedException    if the operation is interrupted before response recieved
      */
-    private static String getHttpResponseBodyAsString(URI requestURI) throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newBuilder()
-            .version(HttpClient.Version.HTTP_1_1)
-            .connectTimeout(Duration.ofSeconds(20))
-            .build();
-        HttpResponse.BodyHandler<String> httpBodyToString = HttpResponse.BodyHandlers.ofString();
-        HttpRequest request = HttpRequest.newBuilder(requestURI).build();
-        HttpResponse response = client.send(request, httpBodyToString);
-        return response.body().toString();
+    private static String getHttpResponseBodyAsString(URI requestURI) throws IOException {
+        URL website = new URL(requestURI.toString());
+        URLConnection connection = website.openConnection();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String inputLine;
+        while ((inputLine = reader.readLine()) != null) {
+            response.append(inputLine);
+        }
+
+        return response.toString();
     }
 
     /**
