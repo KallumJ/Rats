@@ -43,14 +43,17 @@ public class Board {
     public void interactionCheck() {
         List<GameObject> objects = levelData.getObjects();
 
-        for (GameObject firstObject : objects) {
-            for (GameObject secondObject : objects) {
+        for (int i = 0; i < objects.size(); i++) {
+            GameObject firstObject = objects.get(i);
+
+            for (int j = 0; j < objects.size(); j++) {
+                GameObject secondObject = objects.get(j);
+
                 // If we are comparing 2 objects that are on the same tile, and are not the same object
                 if (firstObject.getStandingOn().equals(secondObject.getStandingOn()) && !(firstObject.equals(secondObject))) {
 
                     // Check for every interaction case
                     ObjectInteractionChecker.checkRatsMating(firstObject, secondObject);
-                    // Throws a ConcurrentModificationException as we are looping over the list, when the DeathRat is removing from it. It doesn't seem to stop this working though.
                     ObjectInteractionChecker.checkDeathRat(firstObject, secondObject);
                     ObjectInteractionChecker.checkBomb(firstObject, secondObject);
                     ObjectInteractionChecker.checkNoEntrySign(firstObject, secondObject);
