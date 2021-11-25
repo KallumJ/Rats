@@ -6,22 +6,32 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * A class to model a menu in the GUI
+ *
+ * @author Samhitha Pinisetti 2035196
+ */
 public abstract class GameMenu {
+    public static Stage stage;
 
-    public Parent buildMenu(MenuBox menuBox) {
+    /**
+     * A method to build the GUI
+     * @param menuBox the list of menu items to display in the menu
+     * @return The Node containing the menu
+     */
+    public Parent build(MenuTitle menuTitle, MenuBox menuBox) {
         Pane root = new Pane();
 
         root.setPrefSize(860, 600);
@@ -35,30 +45,45 @@ public abstract class GameMenu {
             System.out.println("Couldn't load image");
         }
 
-        Title title = new Title(" R A T S ");
-        title.setTranslateX(75);
-        title.setTranslateY(200);
+        menuTitle.setTranslateX(75);
+        menuTitle.setTranslateY(200);
 
         menuBox.setTranslateX(100);
         menuBox.setTranslateY(300);
-        root.getChildren().addAll(title, menuBox);
+        root.getChildren().addAll(menuTitle, menuBox);
 
         return root;
     }
 
-    private static class Title extends StackPane {
-        public Title(String name) {
-            Rectangle bg = new Rectangle(250, 60);
-            bg.setStroke(Color.WHITE);
-            bg.setStrokeWidth(2);
-            bg.setFill(null);
+    /**
+     * An abstract method for subclasses to override and create their menu layouts
+     * @return The node of the created menu layout
+     */
+    public abstract Parent buildMenu();
 
-            Text text = new Text(name);
-            text.setFill(Color.WHITE);
-            text.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
 
-            setAlignment(Pos.CENTER);
-            getChildren().addAll(bg, text);
-        }
+}
+
+/**
+ * A class to model the title of a menu
+ */
+class MenuTitle extends StackPane {
+
+    /**
+     * Constructs a MenuTitle
+     * @param name the words in the title
+     */
+    public MenuTitle(String name) {
+        Rectangle bg = new Rectangle(250, 60);
+        bg.setStroke(Color.WHITE);
+        bg.setStrokeWidth(2);
+        bg.setFill(null);
+
+        Text text = new Text(name);
+        text.setFill(Color.WHITE);
+        text.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
+
+        setAlignment(Pos.CENTER);
+        getChildren().addAll(bg, text);
     }
 }

@@ -19,8 +19,6 @@ import java.util.ArrayList;
 public class LevelDataFactory {
     //TODO: handle inventory
 
-    private static final String LEVELS_PATH = "levels";
-
     /**
      * A method to construct the LevelData object for a given level id
      *
@@ -28,27 +26,8 @@ public class LevelDataFactory {
      * @return The complete LevelData object
      */
     public static LevelData constructLevelData(int id) {
-        File levelsDirectory = new File(LEVELS_PATH);
-        File[] filesInLevelDirectory = levelsDirectory.listFiles();
 
-        if (filesInLevelDirectory == null) {
-            throw new RuntimeException("The provided levels directory is empty");
-        }
-
-        // Find a file with a matching id to what was passed to the method
-        File selectedLevel = null;
-        for (File file : filesInLevelDirectory) {
-            int fileId = getFilesLevelId(file);
-
-            if (fileId == id) {
-                selectedLevel = file;
-            }
-        }
-
-        if (selectedLevel == null) {
-            throw new IllegalArgumentException("No level was found matching the provided level id");
-        }
-
+        File selectedLevel = LevelUtils.getLevelFileById(id);
         XMLFileReader xmlFileReader = new XMLFileReader(selectedLevel);
 
         Element levelPropertiesElement = xmlFileReader.drilldownToElement("levelProperties");
@@ -189,16 +168,4 @@ public class LevelDataFactory {
         return Integer.parseInt(propertiesElement.getElementsByTagName(propertyName).item(0).getTextContent());
     }
 
-    /**
-     * A utility method to get the level id for a provided file
-     *
-     * @param file the file to get the id from
-     * @return the found id
-     */
-    private static int getFilesLevelId(File file) {
-        XMLFileReader fileReader = new XMLFileReader(file);
-        Element idElement = fileReader.drilldownToElement("levelProperties", "id");
-
-        return Integer.parseInt(idElement.getTextContent());
-    }
 }

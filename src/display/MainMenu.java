@@ -2,9 +2,18 @@ package display;
 
 import javafx.scene.Parent;
 
+/**
+ * A class to model the MainMenu of the application
+ */
 public class MainMenu extends GameMenu {
-    public Parent buildMainMenu() {
 
+    private static final String MENU_TITLE = " R A T S ";
+
+    /**
+     * A method to create a main menu with all the main menu items we need on it
+     * @return The node containing all the main menu items
+     */
+    public Parent buildMenu() {
         MenuBox menuBox = new MenuBox(
                 new LeaderboardMenuItem(),
                 new PlayMenuItem(),
@@ -13,6 +22,6 @@ public class MainMenu extends GameMenu {
                 new ContinueMenuItem(),
                 new LoadMenuItem());
 
-        return buildMenu(menuBox);
+        return build(new MenuTitle(MENU_TITLE), menuBox);
     }
 }
