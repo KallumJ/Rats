@@ -1,10 +1,14 @@
 package display;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import level.LevelUtils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * A class to model the level selection menu
@@ -30,7 +34,10 @@ public class LevelMenu extends GameMenu {
 
         MenuItem[] menuItemsArr = menuItems.toArray(new MenuItem[0]);
         MenuBox menuBox = new MenuBox(menuItemsArr);
-        return build(new MenuTitle(MENU_TITLE), menuBox);
+
+        EventHandler<Event> backHandler = event -> GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
+
+        return build(new MenuTitle(MENU_TITLE), menuBox, Optional.of(backHandler));
     }
 
 }

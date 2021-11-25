@@ -1,8 +1,12 @@
 package display;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
@@ -20,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 /**
  * A class to model a menu in the GUI
@@ -43,16 +48,16 @@ public abstract class GameMenu {
      * @param menuBox the list of menu items to display in the menu
      * @return The Node containing the menu
      */
-    public BorderPane build(MenuTitle menuTitle, MenuBox menuBox) {
-        Pane pane = new Pane();
+    public BorderPane build(MenuTitle menuTitle, MenuBox menuBox, Optional<EventHandler<Event>> backHandler) {
+        Pane centerPane = new Pane();
 
-        pane.setPrefSize(860, 600);
+        centerPane.setPrefSize(860, 600);
 
         try (InputStream is = Files.newInputStream(Paths.get("resources/rats bg.jpeg"))) {
             ImageView img = new ImageView(new Image(is));
             img.setFitWidth(860);
             img.setFitHeight(600);
-            pane.getChildren().add(img);
+            centerPane.getChildren().add(img);
         } catch (IOException e) {
             System.out.println("Couldn't load image");
         }
@@ -63,9 +68,19 @@ public abstract class GameMenu {
         menuBox.setTranslateX(100);
         menuBox.setTranslateY(300);
 
-        pane.getChildren().addAll(menuTitle, menuBox);
+        centerPane.getChildren().addAll(menuTitle, menuBox);
 
-        root.setCenter(pane);
+        // If an EventHandler for a back button is provided, add one
+        if (backHandler.isPresent()) {
+            Button backButton = new Button("Back");
+            backButton.setOnMousePressed(backHandler.get());
+            backButton.setTranslateX(10);
+            backButton.setTranslateY(10);
+
+            centerPane.getChildren().add(backButton);
+        }
+
+        root.setCenter(centerPane);
         return root;
     }
 
@@ -74,15 +89,6 @@ public abstract class GameMenu {
      * @return The node of the created menu layout
      */
     public abstract Parent buildMenu();
-
-    /**
-     * A method to add a node to the bottom of the menu
-     * @param node the node to add to the bottom
-     */
-    public void setBottom(Node node) {
-        root.setBottom(node);
-    }
-
 }
 
 /**

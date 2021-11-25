@@ -2,12 +2,13 @@ package display;
 
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import motd.MssgOfTheDay;
+
+import java.util.Optional;
 
 /**
  * A class to model the MainMenu of the application
@@ -29,7 +30,7 @@ public class MainMenu extends GameMenu {
                 new ContinueMenuItem(),
                 new LoadMenuItem());
 
-        BorderPane mainMenu = build(new MenuTitle(MENU_TITLE), menuBox);
+        BorderPane mainMenu = build(new MenuTitle(MENU_TITLE), menuBox, Optional.empty());
 
         Label motdLabel = new Label(MssgOfTheDay.getMotD());
         motdLabel.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 18));
