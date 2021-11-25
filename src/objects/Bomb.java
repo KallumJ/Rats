@@ -151,9 +151,5 @@ public class Bomb extends GameObject {
         }
     }
 
-    @Override
-    public void changeIcon(Image icon) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

@@ -9,7 +9,7 @@ import tile.Tile;
  *
  * @author fahds
  */
-public abstract class GameObject {
+public class GameObject {
     
     // Loaded icon of the object
     private Image icon;
@@ -49,7 +49,6 @@ public abstract class GameObject {
         return this.icon;
     }
     
-    public abstract void changeIcon (Image icon); 
     
 	/** 
 	 * Change icon

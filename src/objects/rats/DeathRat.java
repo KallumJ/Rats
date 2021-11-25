@@ -42,15 +42,6 @@ public class DeathRat extends Rat {
         super.setIcon(deathRatImage);
     }
 
-    @Override
-	/** 
-	 * Change icon
-	 * @param icon  the icon
-	 */
-    public void changeIcon(Image icon) {
-
-    }
-    
 	/**
 	 * Kill's the provided rat
 	 * @param victim  the victim

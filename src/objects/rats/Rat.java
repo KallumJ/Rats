@@ -17,7 +17,7 @@ import tile.Tile;
 /**
  * The class Abstract rat extends game object
  */
-public abstract class Rat extends GameObject {
+public class Rat extends GameObject {
     
     // movement speed of the Rat
     private int speed; 

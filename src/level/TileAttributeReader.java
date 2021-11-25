@@ -59,8 +59,7 @@ public class TileAttributeReader {
         int damage = scanner.nextInt();
         int durability = scanner.nextInt();
 
-        // TODO: fix path to image
-        return new NoEntrySign(tile, new Image("path_to_image"), damage, durability);
+        return new NoEntrySign(tile, damage, durability);
     }
 
     /**
