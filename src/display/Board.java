@@ -1,58 +1,67 @@
 package display;
 
 import java.util.List;
-
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import level.LevelData;
 import level.LevelProperties;
-import objects.GameObject;
+import objects.*;
 import tile.Tile;
-import tile.TileSet;
 
 /**
  *
  * @author fahds
  */
- 
- /**
- * The class Board
- */
 public class Board {
 
-    private List<GameObject> objects;
-    private TileSet map;
-    private int pouplationToLose;
-    private int score;
-    private int currentPouplation;
-    private int expectedFinishTime;
-    private int startTime;
-    private int pointsOnEachRat;
+    private LevelData levelData;
     private Canvas canvas;
+    private Timeline tickTimeline; 
 
     private final static int CANVAS_HEIGHT = 1000; // In pixels
     private final static int CANVAS_WIDTH = 1000;
-	/** 
-	* Constructor. 
-	* @param levelData  the level data
-	*/
-    public Board(LevelData levelData) {
-        LevelProperties levelProperties = levelData.getLevelProperties();
 
-        this.map = levelData.getTileSet();
-        this.objects = levelData.getObjects();
-        this.pouplationToLose = levelProperties.getPopulationToLose();
-        this.expectedFinishTime = levelProperties.getExpectedTime();
+    public Board(LevelData levelData) {
+        this.levelData = levelData;
         this.canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+        
+        tickTimeline = new Timeline(new KeyFrame(Duration.millis(100), event -> interactionCheck()));
+
+        // Loop the timeline forever
+	tickTimeline.setCycleCount(Animation.INDEFINITE);
+        tickTimeline.play();
     }
     
-	/**
-	* Update board display
-	*/
+    public void interactionCheck() {
+        List<GameObject> objects = levelData.getObjects();
+
+        for (GameObject firstObject : objects) {
+            for (GameObject secondObject : objects) {
+                // If we are comparing 2 objects that are on the same tile, and are not the same object
+                if (firstObject.getStandingOn().equals(secondObject.getStandingOn()) && !(firstObject.equals(secondObject))) {
+
+                    // Check for every interaction case
+                    ObjectInteractionChecker.checkRatsMating(firstObject, secondObject);
+                    // Throws a ConcurrentModificationException as we are looping over the list, when the DeathRat is removing from it. It doesn't seem to stop this working though.
+                    ObjectInteractionChecker.checkDeathRat(firstObject, secondObject);
+                    ObjectInteractionChecker.checkBomb(firstObject, secondObject);
+                    ObjectInteractionChecker.checkNoEntrySign(firstObject, secondObject);
+                    ObjectInteractionChecker.checkFemaleSexChanger(firstObject, secondObject);
+                    ObjectInteractionChecker.checkMaleSexChanger(firstObject, secondObject);
+                    ObjectInteractionChecker.checkPoison(firstObject, secondObject);
+                }
+            }
+        }
+    }
+
     public void updateBoardDisplay() {
         
         // Get the Graphic Context of the canvas. This is what we draw on.
@@ -71,12 +80,11 @@ public class Board {
         // Display the objects on screen
         displayObjects();
     }
-	
-	/**
-	* Display objects
-	*/
+
     private void displayObjects() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        List<GameObject> objects = levelData.getObjects();
 
         // draw all objects
         for (GameObject object : objects) {
@@ -84,60 +92,41 @@ public class Board {
                     object.getStandingOn().getTopLeftY() * Tile.TILE_SIZE);
         }
     }
-	
-	/** 
-	* Add object and the board display will be updated 
-	* with added object
-	* @param objectAdded  the object added
-	*/
+
     public void addObject(GameObject objectAdded) {
+        List<GameObject> objects = levelData.getObjects();
+
         objects.add(objectAdded);
         updateBoardDisplay();
     }
-	
-	/** 
-	* Remove object and the board display will be updated 
-	* with removed object
-	* @param objectRemove  the object remove
-	*/
+
     public void removeObject(GameObject objectRemove) {
-        
+        List<GameObject> objects = levelData.getObjects();
+
         objects.remove(objectRemove);
         updateBoardDisplay();
     }
     
-	/** 
-	* Gets the current population
-	* @return the current pouplation
-	*/
     public int getCurrentPouplation () {
-        
-        return this.currentPouplation;
+        //TODO: implement
+        return 0;
     }
     
-	/** 
-	* Gets the score
-	* @return the score
-	*/
     public int getScore () {
-        
-        return this.score;
+        //TODO: implement
+        return 0;
     }
 
-	/** 
-	* Build GUI
-	* @return Pane
-	*/
     public Pane buildGUI() {
         BorderPane root = new BorderPane();
 
         root.setCenter(canvas);
+//        Inventory inventory = new Inventory ();
+//        root.setRight(inventory.buildInventoryGUI());
 
         return root;
     }
-	/** 
-	* Start game and updates the board display
-	*/
+
     public void startGame() {
         // Set the board currently in use to this board
         GameObject.setBoard(this);
@@ -145,15 +134,15 @@ public class Board {
         // Update board display
         updateBoardDisplay();
     }
-	/** 
-	* Display tiles
-	*/
+
     private void displayTiles() {
         // Get the Graphic Context of the canvas. This is what we draw on.
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        List<Tile> tiles = levelData.getTileSet().getAllTiles();
+
         // Decide what image to display for this tile
-        for (Tile tile : map.getAllTiles()) {
+        for (Tile tile : tiles) {
             Image tileImage;
             switch (tile.getTileType()) {
                 case GRASS:
@@ -172,12 +161,16 @@ public class Board {
             gc.drawImage(tileImage, tile.getTopLeftX() * Tile.TILE_SIZE, tile.getTopLeftY() * Tile.TILE_SIZE);
         }
     }
-	
-	/** 
-	* Gets the objects
-	* @return the objects
-	*/
+
     public List<GameObject> getObjects() {
-        return objects;
+        return this.levelData.getObjects();
+    }
+
+    public LevelData getLevelData() {
+        return levelData;
+    }
+
+    public LevelProperties getLevelProperties() {
+        return levelData.getLevelProperties();
     }
 }

@@ -57,7 +57,7 @@ public class LevelDataFactory {
         LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
         TileSet tileSet = readTileSet(tileSetElement);
         setAdjacentTiles(tileSet);
-        ArrayList<GameObject> objects = readObjects(tileSet);
+        ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
 
         return new LevelData(levelProperties, tileSet, objects);
 
@@ -68,7 +68,7 @@ public class LevelDataFactory {
      * @param tileSet An instance of TileSet with all the tiles to read from
      * @return an ArrayList of Objects with the required information
      */
-    private static ArrayList<GameObject> readObjects(TileSet tileSet) {
+    private static ArrayList<GameObject> readObjects(TileSet tileSet, LevelProperties levelProperties) {
         ArrayList<GameObject> objects = new ArrayList<>();
 
         for (Tile tile : tileSet.getAllTiles()) {
@@ -82,7 +82,7 @@ public class LevelDataFactory {
                     String attributeValue = attribute.getNodeValue();
 
                     // Read the object from the provided attribute
-                    objects.add(TileAttributeReader.getObjectFromAttribute(attributeName, attributeValue, tile));
+                    objects.add(TileAttributeReader.getObjectFromAttribute(attributeName, attributeValue, tile, levelProperties));
                 }
             }
         }
@@ -172,8 +172,11 @@ public class LevelDataFactory {
         int itemInterval = getPropertyInt(levelProperties, "itemInterval");
         int ratMinBabies = getPropertyInt(levelProperties, "ratMinBabies");
         int ratMaxBabies = getPropertyInt(levelProperties, "ratMaxBabies");
+        int adultRatSpeed = getPropertyInt(levelProperties, "adultRatSpeed");
+        int babyRatSpeed = getPropertyInt(levelProperties, "babyRatSpeed");
+        int deathRatSpeed = getPropertyInt(levelProperties, "deathRatSpeed");
 
-        return new LevelProperties(id, height, width, populationToLose, expectedTime, itemInterval, ratMinBabies, ratMaxBabies);
+        return new LevelProperties(id, height, width, populationToLose, expectedTime, itemInterval, ratMinBabies, ratMaxBabies, adultRatSpeed, babyRatSpeed, deathRatSpeed);
     }
 
     /**

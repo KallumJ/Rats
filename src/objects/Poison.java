@@ -18,7 +18,7 @@ import tile.Tile;
 /**
  * The class Poison extends item
  */ 
-public class Poison extends Item{
+public class Poison extends GameObject{
 
 	/** 
 	 * Poison
@@ -29,17 +29,16 @@ public class Poison extends Item{
         super(standingOn);
     }
 
-    @Override
+    
 	/** 
 	 * Activation
-	 * @param board  the board
 	 * @param rat  the rat
 	 */
-    public void activation(Board board, Rat rat) {
+    public void activation(Rat rat) {
         
-        board.removeObject(rat);
-        board.removeObject(this);
-        board.updateBoardDisplay();
+        GameObject.getBoard().removeObject(rat);
+        GameObject.getBoard().removeObject(this);
+        GameObject.getBoard().updateBoardDisplay();
     }
 
     @Override
