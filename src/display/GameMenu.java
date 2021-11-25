@@ -1,9 +1,12 @@
 package display;
 
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -25,22 +28,31 @@ import java.nio.file.Paths;
  */
 public abstract class GameMenu {
     public static Stage stage;
+    private final BorderPane root;
+
+    /**
+     * Constructs a GameMenu
+     */
+    public GameMenu() {
+        root = new BorderPane();
+        root.setPrefSize(860, 600);
+    }
 
     /**
      * A method to build the GUI
      * @param menuBox the list of menu items to display in the menu
      * @return The Node containing the menu
      */
-    public Parent build(MenuTitle menuTitle, MenuBox menuBox) {
-        Pane root = new Pane();
+    public BorderPane build(MenuTitle menuTitle, MenuBox menuBox) {
+        Pane pane = new Pane();
 
-        root.setPrefSize(860, 600);
+        pane.setPrefSize(860, 600);
 
         try (InputStream is = Files.newInputStream(Paths.get("resources/rats bg.jpeg"))) {
             ImageView img = new ImageView(new Image(is));
             img.setFitWidth(860);
             img.setFitHeight(600);
-            root.getChildren().add(img);
+            pane.getChildren().add(img);
         } catch (IOException e) {
             System.out.println("Couldn't load image");
         }
@@ -50,8 +62,10 @@ public abstract class GameMenu {
 
         menuBox.setTranslateX(100);
         menuBox.setTranslateY(300);
-        root.getChildren().addAll(menuTitle, menuBox);
 
+        pane.getChildren().addAll(menuTitle, menuBox);
+
+        root.setCenter(pane);
         return root;
     }
 
@@ -61,6 +75,13 @@ public abstract class GameMenu {
      */
     public abstract Parent buildMenu();
 
+    /**
+     * A method to add a node to the bottom of the menu
+     * @param node the node to add to the bottom
+     */
+    public void setBottom(Node node) {
+        root.setBottom(node);
+    }
 
 }
 
