@@ -2,12 +2,11 @@ package objects;
 
 import java.util.ArrayList;
 
-import display.Board;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
-import objects.rats.Rat;
+import sfx.SFXManager;
 import tile.Direction;
 import tile.Tile;
 
@@ -33,7 +32,7 @@ public class Bomb extends GameObject {
     private Image bombThreeSecondsImage;
     private Image bombFourImage;
     private Image bombFiveImage;
-    
+
 
     public Bomb(Tile standingOn, int timerLength, boolean timerStarted) {
         super(standingOn);
@@ -115,6 +114,8 @@ public class Bomb extends GameObject {
                 }
             }
         }
+
+        SFXManager.playBombSFX();
         GameObject.getBoard().removeObject(this);
         GameObject.getBoard().updateBoardDisplay();
         
