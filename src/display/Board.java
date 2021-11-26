@@ -37,7 +37,7 @@ public class Board {
     private final static int CANVAS_HEIGHT = 1000; // In pixels
     private final static int CANVAS_WIDTH = 1000;
 	/** 
-	* Constructor. 
+	* Constructing Board with level data 
 	* @param levelData  the level data
 	*/
     public Board(LevelData levelData) {
