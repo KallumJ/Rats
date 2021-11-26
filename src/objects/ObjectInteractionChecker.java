@@ -5,6 +5,7 @@ import objects.rats.PeacefulRat;
 import objects.rats.Rat;
 
 public class ObjectInteractionChecker {
+
     public static void checkRatsMating(GameObject object1, GameObject object2) {
 
         // If both objects are peaceful rats
@@ -17,8 +18,6 @@ public class ObjectInteractionChecker {
                 // If rat1 is male, he mates with rat2, else, the other way around
                 if (rat1.getGender().equals("m")) {
                     rat1.mate(rat2);
-                } else {
-                    rat2.mate(rat1);
                 }
             }
         }
@@ -39,20 +38,20 @@ public class ObjectInteractionChecker {
 
     public static void checkBomb(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof Bomb) {
+
             Bomb bomb = (Bomb) firstObject;
             bomb.activationOfBomb();
         }
-
-
     }
 
     public static void checkNoEntrySign(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof NoEntrySign) {
-            NoEntrySign noEntrySign = (NoEntrySign) firstObject;
-            Rat victim = (Rat) secondObject;
-            noEntrySign.activation(victim);
+            if (secondObject instanceof PeacefulRat || secondObject instanceof DeathRat) {
+                NoEntrySign noEntrySign = (NoEntrySign) firstObject;
+                Rat victim = (Rat) secondObject;
+                noEntrySign.activation(victim);
+            }
         }
-
     }
 
     public static void checkFemaleSexChanger(GameObject firstObject, GameObject secondObject) {

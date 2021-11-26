@@ -87,15 +87,9 @@ public class PeacefulRat extends Rat {
             decidedIcon = femaleRatImage;
         }
         
-        changeIcon(decidedIcon);
+        super.setIcon(decidedIcon);
     }
 
-    @Override
-    public void changeIcon(Image icon) {
-        
-        super.setIcon(icon);
-    }
-    
     public boolean isSterile () {
         
         return this.sterile;

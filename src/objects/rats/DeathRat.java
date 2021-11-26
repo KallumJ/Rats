@@ -42,15 +42,6 @@ public class DeathRat extends Rat {
         super.setIcon(deathRatImage);
     }
 
-    @Override
-	/** 
-	 * Change icon
-	 * @param icon  the icon
-	 */
-    public void changeIcon(Image icon) {
-
-    }
-    
 	/**
 	 * Kill's the provided rat
 	 * @param victim  the victim
@@ -60,7 +51,7 @@ public class DeathRat extends Rat {
         GameObject.getBoard().removeObject(victim);
         this.numberOfKills = this.numberOfKills + 1;
         
-        if (this.killsTarget == this.numberOfKills) {
+        if (this.killsTarget <= this.numberOfKills) {
            
             GameObject.getBoard().removeObject(this);
         }

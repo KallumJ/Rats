@@ -19,6 +19,8 @@ import tile.Tile;
  * The class Poison extends item
  */ 
 public class Poison extends GameObject{
+    
+    private Image poisonImage;
 
 	/** 
 	 * Poison
@@ -27,6 +29,9 @@ public class Poison extends GameObject{
 	 */
     public Poison(Tile standingOn) {
         super(standingOn);
+        
+        poisonImage = new Image("file:resources/poison.png");
+        super.setIcon(poisonImage);
     }
 
     
@@ -41,13 +46,5 @@ public class Poison extends GameObject{
         GameObject.getBoard().updateBoardDisplay();
     }
 
-    @Override
-	/** 
-	 * Change icon
-	 * @param icon  the icon
-	 */
-    public void changeIcon(Image icon) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

@@ -15,7 +15,9 @@ import tile.Tile;
  * The class Male sex changer extends item
  */ 
 public class MaleSexChanger extends GameObject{
-    /**  
+    
+    private Image maleSexChangerImage;
+        /**  
 	 * Male sex changer
 	 * @param standingOn  the standing on
 	 * @return public
@@ -23,6 +25,9 @@ public class MaleSexChanger extends GameObject{
 
     public MaleSexChanger(Tile standingOn) {
         super(standingOn);
+        
+        maleSexChangerImage = new Image("file:resources/maleChange.png");
+        super.setIcon(maleSexChangerImage);
     }
 
     
@@ -37,14 +42,6 @@ public class MaleSexChanger extends GameObject{
         GameObject.getBoard().removeObject(this); 
         GameObject.getBoard().updateBoardDisplay();
     }
-
-    @Override
-	/**
-	 * Change icon
-	 * @param icon  the icon
-	 */
-    public void changeIcon(Image icon) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }
