@@ -25,7 +25,7 @@ public class Sterilisation extends GameObject{
     private int duration;
     private ArrayList<Tile> affectedTiles;
     private Image SterilisationImage;
-    private ArrayList<SterilisationEffect> sterilisationEffect;
+    private ArrayList<SterilisationEffect> sterilisationEffects;
     private Timeline effectTimer;
 
 
@@ -34,7 +34,7 @@ public class Sterilisation extends GameObject{
         super(standingOn);
         
         affectedTiles = new ArrayList<>();
-        sterilisationEffect = new ArrayList<>();
+        sterilisationEffects = new ArrayList<>();
         
         this.duration = duration;
         findAffectedTiles ();
@@ -49,11 +49,12 @@ public class Sterilisation extends GameObject{
     }
     
     private void createSterilisationEffect () {
+        GameObject.getBoard().removeObject(this);
         
         for (int i = 0; i < affectedTiles.size(); i++){
             
             SterilisationEffect newEffect = new SterilisationEffect(affectedTiles.get(i));
-            sterilisationEffect.add(newEffect);
+            sterilisationEffects.add(newEffect);
             GameObject.getBoard().addObject(newEffect);
         }
         effectTimer = new Timeline(new KeyFrame(Duration.seconds(duration), event -> endSterilisationEffect ()));
@@ -62,11 +63,11 @@ public class Sterilisation extends GameObject{
     }
     private void endSterilisationEffect () {
         
-        for (int i = 0; i < sterilisationEffect.size(); i++){
+        for (int i = 0; i < sterilisationEffects.size(); i++){
             
-            GameObject.getBoard().removeObject(sterilisationEffect.get(i));
+            GameObject.getBoard().removeObject(sterilisationEffects.get(i));
         }
-        GameObject.getBoard().removeObject(this);
+        
     }
     
     
