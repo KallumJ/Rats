@@ -25,7 +25,7 @@ import java.nio.file.Paths;
 import java.util.Optional;
 
 /**
- * A class to model a menu in the GUI
+ * A class to model a menu in the GUI. This class is extended by all other menus in the system
  *
  * @author Samhitha Pinisetti 2035196
  */
@@ -44,13 +44,16 @@ public abstract class GameMenu {
     }
 
     /**
-     * A method to build the GUI
+     * A method to build a menu, with a MenuBox of MenuItems to display in the menu
      * @param menuBox the list of menu items to display in the menu
+     * @param backHandler The EventHandler for the back button on the page, or null if there is no back button required*
      * @return The Node containing the menu
      */
-    public BorderPane buildMenu(MenuTitle menuTitle, MenuBox menuBox, Optional<EventHandler<Event>> backHandler) {
+    public BorderPane buildMenu(MenuTitle menuTitle, MenuBox menuBox, EventHandler<Event> backHandler) {
+        // First build a blank menu
         buildBlank(menuTitle, backHandler);
 
+        // Align and add the menu box
         menuBox.setTranslateX(100);
         menuBox.setTranslateY(300);
 
@@ -59,11 +62,19 @@ public abstract class GameMenu {
         return root;
     }
 
-    public BorderPane buildBlank(MenuTitle menuTitle, Optional<EventHandler<Event>> backHandler) {
+    /**
+     * A method to build a menu, with nothing in it, for adding custom controls
+     * @param menuTitle The title of the menu
+     * @param backHandler The EventHandler for the back button on the page, or null if there is no back button required
+     * @return The node containing the blank menu
+     */
+    public BorderPane buildBlank(MenuTitle menuTitle, EventHandler<Event> backHandler) {
         Pane pane = new Pane();
 
+        // Set a size for the window
         pane.setPrefSize(860, 600);
 
+        // Get and set the background
         try (InputStream is = Files.newInputStream(Paths.get("resources/rats bg.jpeg"))) {
             ImageView img = new ImageView(new Image(is));
             img.setFitWidth(860);
@@ -73,21 +84,23 @@ public abstract class GameMenu {
             System.out.println("Couldn't load image");
         }
 
+        // Align and add a title
         menuTitle.setTranslateX(75);
         menuTitle.setTranslateY(200);
 
         pane.getChildren().add(menuTitle);
 
         // If an EventHandler for a back button is provided, add one
-        if (backHandler.isPresent()) {
+        if (backHandler != null) {
             Button backButton = new Button("Back");
-            backButton.setOnMousePressed(backHandler.get());
+            backButton.setOnMousePressed(backHandler);
             backButton.setTranslateX(10);
             backButton.setTranslateY(10);
 
             pane.getChildren().add(backButton);
         }
 
+        // Add to the root
         root.setCenter(pane);
         return root;
     }
@@ -98,6 +111,10 @@ public abstract class GameMenu {
      */
     public abstract Parent buildMenu();
 
+    /**
+     * Returns the center of the root BorderPane for subclasses to add controls
+     * @return The center of the BorderPane
+     */
     protected Pane getCenter() {
         return (Pane) root.getCenter();
     }

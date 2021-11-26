@@ -26,18 +26,22 @@ public class LevelMenu extends GameMenu {
     public Parent buildMenu() {
         ArrayList<MenuItem> menuItems = new ArrayList<>();
 
+        // For every level file, add a menu item to the list of menu items
         for (File levelFile : LevelUtils.getFilesInLevelDirectory()) {
             int levelId = LevelUtils.getFilesLevelId(levelFile);
             LevelMenuItem levelMenuItem = new LevelMenuItem(String.valueOf(levelId));
             menuItems.add(levelMenuItem);
         }
 
+        // Add these menu items to a menu box
         MenuItem[] menuItemsArr = menuItems.toArray(new MenuItem[0]);
         MenuBox menuBox = new MenuBox(menuItemsArr);
 
+        // Add a back button event handler
         EventHandler<Event> backHandler = event -> GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
 
-        return buildMenu(new MenuTitle(MENU_TITLE), menuBox, Optional.of(backHandler));
+        // Return the constructed menu
+        return buildMenu(new MenuTitle(MENU_TITLE), menuBox, backHandler);
     }
 
 }

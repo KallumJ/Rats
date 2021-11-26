@@ -22,6 +22,7 @@ public class MainMenu extends GameMenu {
      * @return The node containing all the main menu items
      */
     public Parent buildMenu() {
+        // Create a menu box with all the menu items required
         MenuBox menuBox = new MenuBox(
                 new LeaderboardMenuItem(),
                 new PlayMenuItem(),
@@ -30,8 +31,10 @@ public class MainMenu extends GameMenu {
                 new ContinueMenuItem(),
                 new LoadMenuItem());
 
-        BorderPane mainMenu = buildMenu(new MenuTitle(MENU_TITLE), menuBox, Optional.empty());
+        // Create the menu
+        BorderPane mainMenu = buildMenu(new MenuTitle(MENU_TITLE), menuBox, null);
 
+        // Add Motd and user name labels
         Label motdLabel = new Label(MssgOfTheDay.getMotD());
         motdLabel.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 18));
         motdLabel.setTextFill(Color.WHITE);
@@ -44,6 +47,7 @@ public class MainMenu extends GameMenu {
 
         getCenter().getChildren().add(nameLabel);
 
+        // Return the constructed menu
         return mainMenu;
     }
 }
