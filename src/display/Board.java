@@ -26,7 +26,7 @@ public class Board {
 
     private LevelData levelData;
     private Canvas canvas;
-    private Timeline tickTimeline; 
+    private Timeline tickTimeline;
 
     public final static int CANVAS_HEIGHT = 700; // In pixels
     public final static int CANVAS_WIDTH = 700;
