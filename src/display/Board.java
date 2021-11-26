@@ -14,6 +14,7 @@ import javafx.util.Duration;
 import level.LevelData;
 import level.LevelProperties;
 import objects.*;
+import objects.rats.PeacefulRat;
 import tile.Tile;
 
 /**
@@ -25,9 +26,12 @@ public class Board {
     private LevelData levelData;
     private Canvas canvas;
     private Timeline tickTimeline; 
+    private int score;
 
     private final static int CANVAS_HEIGHT = 700; // In pixels
     private final static int CANVAS_WIDTH = 700;
+    
+    private final static int POINTS_ON_A_RAT = 10;
 
     public Board(LevelData levelData) {
         this.levelData = levelData;
@@ -110,6 +114,12 @@ public class Board {
 
         objects.remove(objectRemove);
         updateBoardDisplay();
+        
+        if (objectRemove instanceof PeacefulRat){
+            
+            PeacefulRat killedRat = (PeacefulRat) objectRemove;
+            this.addPoints(killedRat);
+        }
     }
     
     public int getCurrentPouplation () {
@@ -120,6 +130,17 @@ public class Board {
     public int getScore () {
         //TODO: implement
         return 0;
+    }
+    
+    public void addPoints (PeacefulRat killedRat) {
+        
+        this.score = score + POINTS_ON_A_RAT;
+        
+        if (killedRat.isPregnant()){
+            
+            this.score = score + (killedRat.getNumberOfBabies() * POINTS_ON_A_RAT);
+        }
+        
     }
 
     public Pane buildGUI() {
