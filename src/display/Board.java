@@ -61,6 +61,7 @@ public class Board {
                     ObjectInteractionChecker.checkMaleSexChanger(firstObject, secondObject);
                     ObjectInteractionChecker.checkPoison(firstObject, secondObject);
                     ObjectInteractionChecker.checkSterilisation(firstObject, secondObject);
+                    ObjectInteractionChecker.checkSterilisationEffect(firstObject, secondObject);
                 }
             }
         }
@@ -124,9 +125,9 @@ public class Board {
     public Pane buildGUI() {
         BorderPane root = new BorderPane();
 
-        root.setCenter(canvas);
-       Inventory inventory = new Inventory (levelData);
-       root.setRight(inventory.buildInventoryGUI());
+       root.setCenter(canvas);
+//       Inventory inventory = new Inventory (levelData);
+//       root.setRight(inventory.buildInventoryGUI());
 
         return root;
     }
