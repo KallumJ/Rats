@@ -28,6 +28,8 @@ public class Sterilisation extends GameObject{
     private ArrayList<SterilisationEffect> sterilisationEffects;
     private Timeline effectTimer;
 
+
+    public static final int DEFAULT_DURATION = 5;
     public Sterilisation(Tile standingOn,int duration) {
         super(standingOn);
         

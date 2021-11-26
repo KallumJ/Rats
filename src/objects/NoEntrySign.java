@@ -29,6 +29,9 @@ public class NoEntrySign extends GameObject {
     private boolean recentlyActivated;
     private static final int DELAY = 1;
 
+    public static final int DEFAULT_DAMAGE_DONE = 0;
+    public static final int DEFAULT_DURABILITY = 5;
+
 	/** 
 	 * Number entry sign
 	 * @param standingOn  the standing on

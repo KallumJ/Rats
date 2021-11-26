@@ -33,6 +33,8 @@ public class Bomb extends GameObject {
     private Image bombFourImage;
     private Image bombFiveImage;
 
+    public static final int DEFAULT_LENGTH = 5;
+
 
     public Bomb(Tile standingOn, int timerLength, boolean timerStarted) {
         super(standingOn);
