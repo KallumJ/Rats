@@ -26,8 +26,8 @@ public class Board {
     private Canvas canvas;
     private Timeline tickTimeline; 
 
-    private final static int CANVAS_HEIGHT = 1000; // In pixels
-    private final static int CANVAS_WIDTH = 1000;
+    private final static int CANVAS_HEIGHT = 700; // In pixels
+    private final static int CANVAS_WIDTH = 700;
 
     public Board(LevelData levelData) {
         this.levelData = levelData;
@@ -124,8 +124,8 @@ public class Board {
         BorderPane root = new BorderPane();
 
         root.setCenter(canvas);
-//        Inventory inventory = new Inventory ();
-//        root.setRight(inventory.buildInventoryGUI());
+       Inventory inventory = new Inventory (levelData);
+       root.setRight(inventory.buildInventoryGUI());
 
         return root;
     }

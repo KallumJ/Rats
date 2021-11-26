@@ -128,7 +128,9 @@ public class PeacefulRat extends Rat {
         this.decideIcon (adult, pregnant, gender);   
  
         Random random = new Random(); 
-        this.numberOfBabies = random.nextInt((4 - 2) + 1) + 2;
+        this.numberOfBabies = random.nextInt(( GameObject.getBoard().getLevelProperties().getRatMaxBabies()
+                            -  GameObject.getBoard().getLevelProperties().getRatMinBabies()) + 1)
+                            +  GameObject.getBoard().getLevelProperties().getRatMinBabies();
        pregnancyTimer.play();
               
       
@@ -156,7 +158,8 @@ public class PeacefulRat extends Rat {
             }
             
             GameObject newBorn = new PeacefulRat (super.getStandingOn(), this.isSterile(), false, false,newBornGender,
-                    this.timeToGiveBirth, this.timeToDevelop, super.getSpeed(), super.getDirectionOfMovement());
+                                    this.timeToGiveBirth, this.timeToDevelop, GameObject.getBoard().getLevelProperties()
+                                    .getBabyRatSpeed(), super.getDirectionOfMovement());
             
             GameObject.getBoard().addObject(newBorn); 
         }
