@@ -20,6 +20,7 @@ public class Main extends Application {
         LoginMenu loginMenu = new LoginMenu();
         stage.setScene(new Scene(loginMenu.buildMenu()));
         stage.setTitle("Rats CS-230 Group 41");
+        stage.setResizable(false);
         stage.show();
     }
 	/** 

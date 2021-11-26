@@ -98,7 +98,7 @@ public class ItemRow {
      */
     public void onRelease(ImageView image, GameObjectType object) {
 
-        // TODO: Improve finding what tile was selected, as right now its inconsistent
+        // TODO: Improve finding what tile was selected if the canvas size is different
         int gridX = (int) (image.getTranslateX() + Board.CANVAS_WIDTH) + originalX;
         int gridY = (int) (image.getTranslateY() + hBox.getLayoutY());
 
