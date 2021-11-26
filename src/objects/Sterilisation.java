@@ -31,6 +31,9 @@ public class Sterilisation extends GameObject{
     public Sterilisation(Tile standingOn,int duration) {
         super(standingOn);
         
+        affectedTiles = new ArrayList<>();
+        sterilisationEffect = new ArrayList<>();
+        
         this.duration = duration;
         findAffectedTiles ();
         SterilisationImage = new Image("file:resources/sterilistation.png");

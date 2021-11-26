@@ -90,4 +90,16 @@ public class ObjectInteractionChecker {
         }
 
     }
+    
+     public static void checkSterilisation(GameObject firstObject, GameObject secondObject) {
+        if (firstObject instanceof Sterilisation) {
+            if (secondObject instanceof PeacefulRat) {
+                Sterilisation sterilisation = (Sterilisation) firstObject;
+                PeacefulRat rat = (PeacefulRat) secondObject;
+
+                sterilisation.beSterile(rat);
+            }
+        }
+
+    }
 }

@@ -60,6 +60,7 @@ public class Board {
                     ObjectInteractionChecker.checkFemaleSexChanger(firstObject, secondObject);
                     ObjectInteractionChecker.checkMaleSexChanger(firstObject, secondObject);
                     ObjectInteractionChecker.checkPoison(firstObject, secondObject);
+                    ObjectInteractionChecker.checkSterilisation(firstObject, secondObject);
                 }
             }
         }
