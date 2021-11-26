@@ -38,9 +38,11 @@ public class ObjectInteractionChecker {
 
     public static void checkBomb(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof Bomb) {
+            if (secondObject instanceof Rat) {
 
-            Bomb bomb = (Bomb) firstObject;
-            bomb.activationOfBomb();
+                Bomb bomb = (Bomb) firstObject;
+                bomb.activationOfBomb();
+            }
         }
     }
 
