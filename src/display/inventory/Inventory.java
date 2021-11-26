@@ -64,6 +64,8 @@ public class Inventory {
                 return GameObjectType.POISON;
             case 5:
                 return GameObjectType.STERILISATION;
+            case 6:
+                return GameObjectType.DEATH_RAT;
             default:
                 throw new IllegalArgumentException("An invalid random item selection was made. Selection " + randomItemSelection + " is not assigned an item");
         }

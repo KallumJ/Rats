@@ -105,7 +105,7 @@ public class ItemRow {
             incrementObjectCount();
         } else { // If player has dropped the item on a valid tile, add item to board, and remove from row
 
-            GameObject.getBoard().addObject(ObjectUtils.getObjectFromType(tile, object));
+            GameObject.getBoard().addObject(ObjectUtils.getObjectFromType(tile, object, levelData));
             decrementCount(image);
         }
 

@@ -22,6 +22,10 @@ public class DeathRat extends Rat {
     private int numberOfKills;
     private int killsTarget;
     private Image deathRatImage;
+
+    public static final Direction DEFAULT_DIRECTION = Direction.UP;
+    public static final int DEFAULT_NUM_OF_KILLS = 0;
+    public static final int DEFAULT_KILLS_TARGET = 5;
     
 	/** 
 	 * Constructs Death rat
