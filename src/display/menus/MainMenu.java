@@ -1,4 +1,4 @@
-package display;
+package display.menus;
 
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -30,7 +30,7 @@ public class MainMenu extends GameMenu {
                 new ContinueMenuItem(),
                 new LoadMenuItem());
 
-        BorderPane mainMenu = build(new MenuTitle(MENU_TITLE), menuBox, Optional.empty());
+        BorderPane mainMenu = buildMenu(new MenuTitle(MENU_TITLE), menuBox, Optional.empty());
 
         Label motdLabel = new Label(MssgOfTheDay.getMotD());
         motdLabel.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 18));

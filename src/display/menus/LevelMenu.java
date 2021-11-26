@@ -1,4 +1,4 @@
-package display;
+package display.menus;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -37,7 +37,7 @@ public class LevelMenu extends GameMenu {
 
         EventHandler<Event> backHandler = event -> GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
 
-        return build(new MenuTitle(MENU_TITLE), menuBox, Optional.of(backHandler));
+        return buildMenu(new MenuTitle(MENU_TITLE), menuBox, Optional.of(backHandler));
     }
 
 }

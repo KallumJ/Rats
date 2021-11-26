@@ -1,6 +1,7 @@
-package display;
+package display.menus;
 
 
+import display.Board;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;

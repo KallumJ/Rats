@@ -1,4 +1,4 @@
-package display;
+package display.menus;
 
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;

@@ -1,5 +1,5 @@
-import display.GameMenu;
-import display.MainMenu;
+import display.menus.GameMenu;
+import display.menus.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
