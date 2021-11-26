@@ -19,6 +19,8 @@ public class ItemRow {
     private final HBox hBox;
     private int objectCount;
     private final Inventory inventory;
+    private int originalX = -1;
+    private int originalY = -1;
 
 
     /**
@@ -76,6 +78,14 @@ public class ItemRow {
      * @param image THe image being dragged
      */
     public void onDrag(MouseEvent event, ImageView image) {
+        if (originalX == -1) {
+            originalX = (int) image.getLayoutX();
+        }
+
+        if (originalY == -1) {
+            originalY = (int) image.getLayoutY();
+        }
+
         // Move the image wherever the mouse is
         image.setTranslateX(image.getTranslateX() + event.getX());
         image.setTranslateY(image.getTranslateY() + event.getY());
@@ -89,8 +99,8 @@ public class ItemRow {
     public void onRelease(ImageView image, GameObjectType object) {
 
         // TODO: Improve finding what tile was selected, as right now its inconsistent
-        int gridX = (int) (image.getTranslateX() + Board.CANVAS_WIDTH);
-        int gridY = (int) image.getTranslateY();
+        int gridX = (int) (image.getTranslateX() + Board.CANVAS_WIDTH) + originalX;
+        int gridY = (int) (image.getTranslateY() + hBox.getLayoutY());
 
         int x = gridX / Tile.TILE_SIZE;
         int y = gridY / Tile.TILE_SIZE;
@@ -114,6 +124,9 @@ public class ItemRow {
             inventory.getItemRows().remove(this);
             inventory.getInventoryNode().getChildren().remove(gethBox());
         }
+
+        originalX = -1;
+        originalY = -1;
     }
 
     /**

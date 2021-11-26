@@ -1,5 +1,6 @@
 package display.inventory;
 
+import display.Board;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
