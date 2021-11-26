@@ -38,6 +38,12 @@ public class MainMenu extends GameMenu {
 
         mainMenu.setBottom(motdLabel);
 
+        Label nameLabel = new Label("Name: " + GameMenu.playerName);
+        nameLabel.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 18));
+        nameLabel.setTextFill(Color.WHITE);
+
+        getCenter().getChildren().add(nameLabel);
+
         return mainMenu;
     }
 }

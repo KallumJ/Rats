@@ -1,4 +1,5 @@
 import display.menus.GameMenu;
+import display.menus.LoginMenu;
 import display.menus.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,8 +17,8 @@ public class Main extends Application {
 	*/
     public void start(Stage stage) {
         GameMenu.stage = stage;
-        MainMenu mainMenu = new MainMenu();
-        stage.setScene(new Scene(mainMenu.buildMenu()));
+        LoginMenu loginMenu = new LoginMenu();
+        stage.setScene(new Scene(loginMenu.buildMenu()));
         stage.setTitle("Rats CS-230 Group 41");
         stage.show();
     }

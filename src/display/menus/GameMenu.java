@@ -31,6 +31,8 @@ import java.util.Optional;
  */
 public abstract class GameMenu {
     public static Stage stage;
+    public static String playerName;
+
     private final BorderPane root;
 
     /**
@@ -96,7 +98,7 @@ public abstract class GameMenu {
      */
     public abstract Parent buildMenu();
 
-    public Pane getCenter() {
+    protected Pane getCenter() {
         return (Pane) root.getCenter();
     }
 }
