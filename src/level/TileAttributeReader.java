@@ -36,8 +36,7 @@ public class TileAttributeReader {
                 // TODO: ADD GAS return readGas(attributeValue, tile);
                 break;
             case "sterile":
-                //TODO :: ADD STERILE return readSterile(attributeValue, tile);
-                break;
+                return readSterile(attributeValue, tile);
             case "poison":
                 return new Poison(tile);
             case "sex_ch":
@@ -46,6 +45,10 @@ public class TileAttributeReader {
                 return readNoEntrySign(attributeValue, tile);
         }
         throw new RuntimeException(String.format("Name: %s, Value: %s is an invalid attribute", attributeName, attributeValue));
+    }
+
+    private static GameObject readSterile(String attributeValue, Tile tile) {
+        return new Sterilisation(tile, Integer.parseInt(attributeValue));
     }
 
     /**
