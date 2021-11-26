@@ -1,6 +1,8 @@
 package display;
 
 import java.util.List;
+
+import display.inventory.Inventory;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,17 +28,18 @@ public class Board {
     private Canvas canvas;
     private Timeline tickTimeline; 
 
-    private final static int CANVAS_HEIGHT = 700; // In pixels
-    private final static int CANVAS_WIDTH = 700;
+    public final static int CANVAS_HEIGHT = 700; // In pixels
+    public final static int CANVAS_WIDTH = 700;
+    private final static int INTERACTION_CHECK_INTERVAL = 250; // In ms
 
     public Board(LevelData levelData) {
         this.levelData = levelData;
         this.canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
         
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(100), event -> interactionCheck()));
+        tickTimeline = new Timeline(new KeyFrame(Duration.millis(INTERACTION_CHECK_INTERVAL), event -> interactionCheck()));
 
         // Loop the timeline forever
-	tickTimeline.setCycleCount(Animation.INDEFINITE);
+	    tickTimeline.setCycleCount(Animation.INDEFINITE);
         tickTimeline.play();
     }
     
@@ -125,6 +128,7 @@ public class Board {
         BorderPane root = new BorderPane();
 
         root.setCenter(canvas);
+
        Inventory inventory = new Inventory (levelData);
        root.setRight(inventory.buildInventoryGUI());
 
