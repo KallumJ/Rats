@@ -1,12 +1,11 @@
-import display.Board;
+import display.menus.GameMenu;
+import display.menus.LoginMenu;
+import display.menus.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import level.LevelData;
-import level.LevelDataFactory;
 
- /**
+/**
  * The class Main extends application
  */ 
 public class Main extends Application {
@@ -17,15 +16,11 @@ public class Main extends Application {
 	* @param stage  the stage
 	*/
     public void start(Stage stage) {
-        LevelData levelData = LevelDataFactory.constructLevelData(1);
-
-        Board gameBoard = new Board(levelData);
-
-        BorderPane root = new BorderPane(gameBoard.buildGUI());
-
-        stage.setScene(new Scene(root, 1000, 1000));
+        GameMenu.stage = stage;
+        LoginMenu loginMenu = new LoginMenu();
+        stage.setScene(new Scene(loginMenu.buildMenu()));
+        stage.setTitle("Rats CS-230 Group 41");
         stage.show();
-        gameBoard.startGame();
     }
 	/** 
 	* Main

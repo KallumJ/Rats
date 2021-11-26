@@ -14,8 +14,10 @@ import tile.Tile;
 /**
  * The class Male sex changer extends item
  */ 
-public class MaleSexChanger extends Item{
-    /**  
+public class MaleSexChanger extends GameObject{
+    
+    private Image maleSexChangerImage;
+        /**  
 	 * Male sex changer
 	 * @param standingOn  the standing on
 	 * @return public
@@ -23,30 +25,23 @@ public class MaleSexChanger extends Item{
 
     public MaleSexChanger(Tile standingOn) {
         super(standingOn);
+        
+        maleSexChangerImage = new Image("file:resources/maleChange.png");
+        super.setIcon(maleSexChangerImage);
     }
 
-    @Override
+    
 	/** 
 	 * Activation
-	 * @param board  the board
 	 * @param rat  the rat
 	 */
-    public void activation(Board board, Rat rat) {
+    public void activation(PeacefulRat rat) {
         
-        PeacefulRat pRat = (PeacefulRat) rat;
-        pRat.setGender("Male");
+        rat.setGender("m");
         
-        board.removeObject(this); 
-        board.updateBoardDisplay();
+        GameObject.getBoard().removeObject(this); 
+        GameObject.getBoard().updateBoardDisplay();
     }
-
-    @Override
-	/**
-	 * Change icon
-	 * @param icon  the icon
-	 */
-    public void changeIcon(Image icon) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

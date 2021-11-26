@@ -18,40 +18,43 @@ import tile.Tile;
 /**
  * The class Number entry sign extends item
  */ 
-public class NoEntrySign extends Item {
+public class NoEntrySign extends GameObject {
     
+    private Image noEntrySignImage;
     private int damageDone;
     private int durability;
 
 	/** 
 	 * Number entry sign
 	 * @param standingOn  the standing on
-	 * @param icon  the icon
 	 * @param damageDone  the damage done
 	 * @param durability  the durability
-	 * @return public
 	 */
-    public NoEntrySign(Tile standingOn, Image icon, int damageDone, int durability) {
+    public NoEntrySign(Tile standingOn, int damageDone, int durability) {
         super(standingOn);
+        
+        this.damageDone = damageDone;
+        this.durability = durability;
+        
+        noEntrySignImage = new Image("file:resources/noEntrySign.png");
+        super.setIcon(noEntrySignImage);
     }
 
-   @Override
     /** 
 	 * Activation
-	 * @param board  the board
 	 * @param rat  the rat
 	 */
-    public void activation(Board board, Rat rat) {
-        
+    public void activation(Rat rat) {
+       
         rat.setDirectionOfMovement(rat.turnAround(rat.getDirectionOfMovement()));
-        
         this.damageDone = damageDone+1;
         
         if (damageDone >= durability) {
             
-            board.removeObject(this);
-            board.updateBoardDisplay();
+            GameObject.getBoard().removeObject(this);
+            
         }
+        GameObject.getBoard().updateBoardDisplay();
         
         
     }
@@ -62,15 +65,6 @@ public class NoEntrySign extends Item {
     public int getDamageDone () {
         
         return this.damageDone;
-    }
-
-    @Override
-	/** 
-	 * Change icon
-	 * @param icon  the icon
-	 */
-    public void changeIcon(Image icon) {
-       
     }
     
 }

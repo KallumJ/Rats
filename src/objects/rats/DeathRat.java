@@ -24,13 +24,11 @@ public class DeathRat extends Rat {
     private Image deathRatImage;
     
 	/** 
-	 * Death rat
+	 * Constructs Death rat
 	 * @param standingOn  the standing on
 	 * @param speed  the speed
 	 * @param directionOfMovement  the direction of movement
-	 * @param int  the int
 	 * @param killsTarget  the kills target
-	 * @return public
 	 */
     public DeathRat(Tile standingOn, int speed, Direction directionOfMovement,
             int numberOfKills, int killsTarget) {
@@ -44,17 +42,8 @@ public class DeathRat extends Rat {
         super.setIcon(deathRatImage);
     }
 
-    @Override
-	/** 
-	 * Change icon
-	 * @param icon  the icon
-	 */
-    public void changeIcon(Image icon) {
-
-    }
-    
 	/**
-	 * Kill
+	 * Kill's the provided rat
 	 * @param victim  the victim
 	 */
     public void kill (Rat victim) {
@@ -62,11 +51,10 @@ public class DeathRat extends Rat {
         GameObject.getBoard().removeObject(victim);
         this.numberOfKills = this.numberOfKills + 1;
         
-        if (this.killsTarget == this.numberOfKills) {
+        if (this.killsTarget <= this.numberOfKills) {
            
             GameObject.getBoard().removeObject(this);
         }
-        GameObject.getBoard().updateBoardDisplay();
         
     }
 	

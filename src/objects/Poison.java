@@ -18,7 +18,9 @@ import tile.Tile;
 /**
  * The class Poison extends item
  */ 
-public class Poison extends Item{
+public class Poison extends GameObject{
+    
+    private Image poisonImage;
 
 	/** 
 	 * Poison
@@ -27,28 +29,22 @@ public class Poison extends Item{
 	 */
     public Poison(Tile standingOn) {
         super(standingOn);
+        
+        poisonImage = new Image("file:resources/poison.png");
+        super.setIcon(poisonImage);
     }
 
-    @Override
+    
 	/** 
 	 * Activation
-	 * @param board  the board
 	 * @param rat  the rat
 	 */
-    public void activation(Board board, Rat rat) {
+    public void activation(Rat rat) {
         
-        board.removeObject(rat);
-        board.removeObject(this);
-        board.updateBoardDisplay();
+        GameObject.getBoard().removeObject(rat);
+        GameObject.getBoard().removeObject(this);
+        GameObject.getBoard().updateBoardDisplay();
     }
 
-    @Override
-	/** 
-	 * Change icon
-	 * @param icon  the icon
-	 */
-    public void changeIcon(Image icon) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
