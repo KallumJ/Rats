@@ -28,6 +28,7 @@ public class Board {
     private Canvas canvas;
     private Timeline tickTimeline;
 
+    private final static int POINTS_ON_A_RAT = 10;
     public final static int CANVAS_HEIGHT = 700; // In pixels
     public final static int CANVAS_WIDTH = 700;
     private final static int INTERACTION_CHECK_INTERVAL = 250; // In ms
