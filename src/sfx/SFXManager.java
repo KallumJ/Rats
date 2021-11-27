@@ -12,7 +12,8 @@ import java.io.File;
 public class SFXManager {
 
     private static final String BOMB_SFX_FILE = "resources/sounds/bomb_sfx.mp3";
-
+    private static final String PUT_SFX_FILE = "resources/sounds/put_sfx.mp3";
+    
     /**
      * A method to play the sound effect for a bomb
      */
@@ -20,6 +21,13 @@ public class SFXManager {
         playSfx(BOMB_SFX_FILE);
     }
 
+     /**
+     * A method to play the sound when item be placed
+     */
+    public static void bePlaced() {
+        playSfx(PUT_SFX_FILE);
+    }
+    
     /**
      * A method to play the provided sound file
      * @param filePath the path to the file to play
