@@ -37,7 +37,7 @@ public class PeacefulRat extends Rat {
     
     public PeacefulRat (Tile standingOn, boolean sterile, boolean adult, boolean pregnant, String gender,
                         int timeToGiveBirth, int timeToDevelop, int speed, Direction directionOfMovement) {
-        super(standingOn, speed,  directionOfMovement);
+        super(standingOn,speed, directionOfMovement);
         
         
         
@@ -48,7 +48,9 @@ public class PeacefulRat extends Rat {
         this.timeToDevelop = timeToDevelop;
         this.timeToGiveBirth = timeToGiveBirth; 
         
+        
         if (!this.adult) {
+            
             
             developmentTimer = new Timeline(new KeyFrame(Duration.seconds(this.timeToDevelop), event -> growUp()));
             developmentTimer.play();
@@ -189,5 +191,11 @@ public class PeacefulRat extends Rat {
 
         this.adult = true;
         decideIcon(adult, pregnant, gender);
+        super.setSpeed(GameObject.getBoard().getLevelProperties().getAdultRatSpeed());
+    }
+    
+    public int getNumberOfBabies () {
+        
+        return this.numberOfBabies;
     }
 }
