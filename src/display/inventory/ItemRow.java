@@ -8,6 +8,7 @@ import level.LevelData;
 import objects.GameObject;
 import objects.GameObjectType;
 import objects.ObjectUtils;
+import sfx.SFXManager;
 import tile.Tile;
 
 /**
@@ -114,7 +115,7 @@ public class ItemRow {
             decrementCount(image);
             incrementObjectCount();
         } else { // If player has dropped the item on a valid tile, add item to board, and remove from row
-
+            SFXManager.bePlaced();
             GameObject.getBoard().addObject(ObjectUtils.getObjectFromType(tile, object, levelData));
             decrementCount(image);
         }
