@@ -47,11 +47,11 @@ public class ObjectInteractionChecker {
     }
 
     public static void checkNoEntrySign(GameObject firstObject, GameObject secondObject) {
-        if (firstObject instanceof NoEntrySign) {
+        if (firstObject instanceof NoEntrySignEffect) {
             if (secondObject instanceof Rat) {
-                NoEntrySign noEntrySign = (NoEntrySign) firstObject;
+                NoEntrySignEffect noEntrySignEffect = (NoEntrySignEffect) firstObject;
                 Rat victim = (Rat) secondObject;
-                noEntrySign.blockPath(victim);
+                noEntrySignEffect.blockPath(victim);
             }
         }
     }

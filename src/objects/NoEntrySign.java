@@ -1,11 +1,13 @@
 package objects;
 
 import display.Board;
+import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import objects.rats.Rat;
+import tile.Direction;
 import tile.Tile;
 
 /**
@@ -20,6 +22,8 @@ public class NoEntrySign extends GameObject {
     private Image noEntrySignImage;
     private int damageDone;
     private int durability;
+    private ArrayList<NoEntrySignEffect> noEntrySignEffects;
+    private ArrayList<Tile> affectedTiles;
     private boolean recentlyActivated;
     private static final int DELAY = 1;
 
@@ -36,38 +40,47 @@ public class NoEntrySign extends GameObject {
     public NoEntrySign(Tile standingOn, int damageDone, int durability) {
         super(standingOn);
 
+        noEntrySignEffects = new ArrayList<>();
+        affectedTiles = new ArrayList<>();
         this.damageDone = damageDone;
         this.durability = durability;
 
         noEntrySignImage = new Image("file:resources/noEntrySign.png");
         super.setIcon(noEntrySignImage);
+
+        super.getStandingOn().setTraversable(false);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> XXXX()));
+        timeline.play();
+
     }
 
-    /**
-     * Blocks the rats way and make them change direction.
-     *
-     * @param rat The rat which it direction will be changed in case of contact.
-     */
-    public void blockPath(Rat rat) {
+    private void XXXX() {
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.UP));
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.DOWN));
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.RIGHT));
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.LEFT));
 
-        // If we haven't been activated recently
-        if (!recentlyActivated) {
-            recentlyActivated = true;
-
-            // after the specified delay has passed, allow damage to be done again
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(DELAY), event -> recentlyActivated = false));
-            timeline.play();
-
-            rat.setDirectionOfMovement(rat.turnAround(rat.getDirectionOfMovement()));
-            this.damageDone = damageDone + 1;
-
-            if (damageDone >= durability) {
-
-                GameObject.getBoard().removeObject(this);
-
-            }
-            GameObject.getBoard().updateBoardDisplay();
+        for (Tile affectedTile : affectedTiles) {
+            NoEntrySignEffect newEffect = new NoEntrySignEffect(affectedTile, this);
+            noEntrySignEffects.add(newEffect);
+            GameObject.getBoard().addObject(newEffect);
         }
+
+    }
+
+    public void doDamage() {
+        this.damageDone = damageDone + 1;
+
+        if (damageDone >= durability) {
+            super.getStandingOn().setTraversable(true);
+            GameObject.getBoard().removeObject(this);
+
+            for (int i = 0; i < noEntrySignEffects.size(); i++) {
+                GameObject.getBoard().removeObject(noEntrySignEffects.get(i));
+            }
+
+        }
+        GameObject.getBoard().updateBoardDisplay();
     }
 
     /**
