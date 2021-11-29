@@ -8,21 +8,15 @@ import javafx.util.Duration;
 import objects.rats.Rat;
 import tile.Tile;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
+ * This class represent the no entry sign which will block the way on the rats
+ * and make them choose a different direction.
  *
- * @author fahds
+ * @author Fahd
+ *
  */
-/**
- * The class Number entry sign extends item
- */ 
 public class NoEntrySign extends GameObject {
-    
+
     private Image noEntrySignImage;
     private int damageDone;
     private int durability;
@@ -32,27 +26,29 @@ public class NoEntrySign extends GameObject {
     public static final int DEFAULT_DAMAGE_DONE = 0;
     public static final int DEFAULT_DURABILITY = 5;
 
-	/** 
-	 * Number entry sign
-	 * @param standingOn  the standing on
-	 * @param damageDone  the damage done
-	 * @param durability  the durability
-	 */
+    /**
+     * Creates a new no entry sign item on the specified tile
+     *
+     * @param standingOn The tile the no entry sign is on.
+     * @param damageDone The damage done to the entry sign.
+     * @param durability The durability of the sign before it breaks.
+     */
     public NoEntrySign(Tile standingOn, int damageDone, int durability) {
         super(standingOn);
-        
+
         this.damageDone = damageDone;
         this.durability = durability;
-        
+
         noEntrySignImage = new Image("file:resources/noEntrySign.png");
         super.setIcon(noEntrySignImage);
     }
 
-    /** 
-	 * Activation
-	 * @param rat  the rat
-	 */
-    public void activation(Rat rat) {
+    /**
+     * Blocks the rats way and make them change direction.
+     *
+     * @param rat The rat which it direction will be changed in case of contact.
+     */
+    public void blockPath(Rat rat) {
 
         // If we haven't been activated recently
         if (!recentlyActivated) {
@@ -63,7 +59,7 @@ public class NoEntrySign extends GameObject {
             timeline.play();
 
             rat.setDirectionOfMovement(rat.turnAround(rat.getDirectionOfMovement()));
-            this.damageDone = damageDone+1;
+            this.damageDone = damageDone + 1;
 
             if (damageDone >= durability) {
 
@@ -73,13 +69,15 @@ public class NoEntrySign extends GameObject {
             GameObject.getBoard().updateBoardDisplay();
         }
     }
-    /** 
-	 * Gets the damage done
-	 * @return the damage done
-	 */
-    public int getDamageDone () {
-        
+
+    /**
+     * Gets the damage done to the sign
+     *
+     * @return The damage done to the sign.
+     */
+    public int getDamageDone() {
+
         return this.damageDone;
     }
-    
+
 }
