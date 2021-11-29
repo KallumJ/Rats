@@ -98,18 +98,24 @@ public class ItemRow {
      * @param object the type of the object being released
      */
     public void onRelease(ImageView image, GameObjectType object) {
+        double canvasWidth = GameObject.getBoard().getCanvas().getWidth();
 
-        // TODO: Improve finding what tile was selected if the canvas size is different
-        int gridX = (int) (image.getTranslateX() + Board.CANVAS_WIDTH) + originalX;
+        // Find the dropped items position on the x axis, by finding how far it has moved in pixels
+        // Offsetting the width of the canvas, and how far into the inventory it was
+        int gridX = (int) (image.getTranslateX() + canvasWidth) + originalX;
+
+        // Find the dropped items position on the y axis, by finding how far it has moved in pixels
+        // Offsetting the position of this row on the screen
         int gridY = (int) (image.getTranslateY() + hBox.getLayoutY());
 
+        // Find the tiles position in the tile set
         int x = gridX / Tile.TILE_SIZE;
         int y = gridY / Tile.TILE_SIZE;
 
         LevelData levelData = inventory.getLevelData();
         Tile tile = levelData.getTileSet().getTile(x, y);
 
-        // IF this tile is invalid, or the user placed the item where there is no tile
+        // If this tile is invalid, or the user placed the item where there is no tile
         // remove this object, and then add a new one, as the item was not successfully used
         if (tile == null || !(tile.isTraversable())) {
             decrementCount(image);
