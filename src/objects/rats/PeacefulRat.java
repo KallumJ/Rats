@@ -12,7 +12,8 @@ import tile.Direction;
 import tile.Tile;
 
 /**
- *
+ * This class represent the peaceful rats which will mate and and reproduce.
+ * 
  * @author fahds
  */
 public class PeacefulRat extends Rat {
@@ -32,6 +33,8 @@ public class PeacefulRat extends Rat {
     private Timeline pregnancyTimer;
     private Timeline developmentTimer;
 
+    
+    
     public PeacefulRat(Tile standingOn, boolean sterile, boolean adult, boolean pregnant, String gender,
             int timeToGiveBirth, int timeToDevelop, int speed, Direction directionOfMovement) {
         super(standingOn, speed, directionOfMovement);

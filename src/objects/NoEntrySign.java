@@ -49,6 +49,7 @@ public class NoEntrySign extends GameObject {
         super.setIcon(noEntrySignImage);
 
         super.getStandingOn().setTraversable(false);
+        
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> XXXX()));
         timeline.play();
 

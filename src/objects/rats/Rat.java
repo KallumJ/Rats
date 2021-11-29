@@ -10,11 +10,11 @@ import tile.Direction;
 import tile.Tile;
 
 /**
+ * This class is the 
+ * gender to male.
  *
- * @author fahds
- */
-/**
- * The class Abstract rat extends game object
+ * @author Fahd
+ *
  */
 public class Rat extends GameObject {
 
