@@ -9,6 +9,7 @@ import javafx.util.Duration;
 import sfx.SFXManager;
 import tile.Direction;
 import tile.Tile;
+import tile.TileType;
 
 /**
  * This class represent the bomb item which explode and destroy anything
@@ -75,7 +76,7 @@ public class Bomb extends GameObject {
 
     private void findAffectedTilesRecurse(Direction direction, Tile currentTile) {
         affectedTiles.add(currentTile);
-        if (currentTile.getAdjacentTile(direction).isTraversable()) {
+        if (!currentTile.getAdjacentTile(direction).getTileType().equals(TileType.GRASS)) {
             findAffectedTilesRecurse(direction, currentTile.getAdjacentTile(direction));
         }
     }
