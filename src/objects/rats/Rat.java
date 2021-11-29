@@ -9,7 +9,6 @@ import objects.GameObject;
 import tile.Direction;
 import tile.Tile;
 
-
 /**
  *
  * @author fahds
@@ -18,16 +17,16 @@ import tile.Tile;
  * The class Abstract rat extends game object
  */
 public class Rat extends GameObject {
-    
+
     // movement speed of the Rat
-    private int speed; 
-    
-    private Timeline tickTimeline; 
-    
+    private int speed;
+
+    private Timeline tickTimeline;
+
     private Direction directionOfMovement;
 
     protected Rat(Tile standingOn, int speed, Direction directionOfMovement) {
-        
+
         super(standingOn);
         this.speed = speed;
         this.directionOfMovement = directionOfMovement;
@@ -35,59 +34,64 @@ public class Rat extends GameObject {
         tickTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed), event -> move()));
 
         // Loop the timeline forever
-	tickTimeline.setCycleCount(Animation.INDEFINITE);
+        tickTimeline.setCycleCount(Animation.INDEFINITE);
         tickTimeline.play();
     }
-    
-	/**
-	 * Gets the speed
-	 * @return the speed
-	 */
-    public int getSpeed (){
-        
+
+    /**
+     * Gets the speed
+     *
+     * @return the speed
+     */
+    public int getSpeed() {
+
         return this.speed;
-    }  
-    
-	/**
-	 * Sets the speed
-	 * @param speed the speed
-	 */
-    public void setSpeed (int speed) {
-        
+    }
+
+    /**
+     * Sets the speed
+     *
+     * @param speed the speed
+     */
+    public void setSpeed(int speed) {
+
         this.speed = speed;
     }
-    
-	/**
-	 * Gets the direction of movement
-	 * @return the direction of movement
-	 */
-    public Direction getDirectionOfMovement () {
-        
+
+    /**
+     * Gets the direction of movement
+     *
+     * @return the direction of movement
+     */
+    public Direction getDirectionOfMovement() {
+
         return this.directionOfMovement;
     }
-    
-	/**
-	 * Sets the direction of movement
-	 * @param directionOfMovement  the direction of movement
-	 */
-    public void setDirectionOfMovement (Direction directionOfMovement) {
-        
+
+    /**
+     * Sets the direction of movement
+     *
+     * @param directionOfMovement the direction of movement
+     */
+    public void setDirectionOfMovement(Direction directionOfMovement) {
+
         this.directionOfMovement = directionOfMovement;
     }
+
     /**
-	 * Move - moves left, right and turn around
-	 * when the rats can otherwise it doesn't move.
-	 */
-    private void move () {
-        
+     * Move - moves left, right and turn around when the rats can otherwise it
+     * doesn't move.
+     */
+    private void move() {
+
         boolean isLeftTurnPossible = (super.getStandingOn().getAdjacentTile(turnLeft(
-                                       directionOfMovement)) .isTraversable());
-        
+                directionOfMovement)).isTraversable());
+
         boolean isRightTurnPossible = (super.getStandingOn().getAdjacentTile(turnRight(
-                                        directionOfMovement)).isTraversable());
-        
+                directionOfMovement)).isTraversable());
+
         boolean isTurningAroundPossible = (super.getStandingOn().getAdjacentTile(turnAround(
-                                          directionOfMovement)).isTraversable());
+                directionOfMovement)).isTraversable());
 
         boolean isMoveForwardPossible = (super.getStandingOn().getAdjacentTile(directionOfMovement).isTraversable());
 
@@ -132,91 +136,85 @@ public class Rat extends GameObject {
         // Update the display
         GameObject.getBoard().updateBoardDisplay();
     }
-    
-	/**
-	 * Turn left
-	 * @param directionOfMovement  the direction of movement
-	 * @return Direction
-	 */
-    private Direction turnLeft (Direction directionOfMovement) {
-        
+
+    /**
+     * Turn left
+     *
+     * @param directionOfMovement the direction of movement
+     * @return Direction
+     */
+    private Direction turnLeft(Direction directionOfMovement) {
+
         Direction leftOfDirection;
-        
-        if (directionOfMovement == Direction.UP){
-            
+
+        if (directionOfMovement == Direction.UP) {
+
             leftOfDirection = Direction.LEFT;
-        }
-        else if (directionOfMovement == Direction.LEFT) {
-            
+        } else if (directionOfMovement == Direction.LEFT) {
+
             leftOfDirection = Direction.DOWN;
-        }
-        else if (directionOfMovement == Direction.DOWN) {
-            
+        } else if (directionOfMovement == Direction.DOWN) {
+
             leftOfDirection = Direction.RIGHT;
-        }
-        else {
-             
+        } else {
+
             leftOfDirection = Direction.UP;
         }
-        
-        return leftOfDirection;                   
+
+        return leftOfDirection;
     }
-    
-	/**
-	 * Turn right
-	 * @param directionOfMovement  the direction of movement
-	 * @return Direction
-	 */
-    private Direction turnRight (Direction directionOfMovement) {
-        
+
+    /**
+     * Turn right
+     *
+     * @param directionOfMovement the direction of movement
+     * @return Direction
+     */
+    private Direction turnRight(Direction directionOfMovement) {
+
         Direction rightOfDirection;
-        
-        if (directionOfMovement == Direction.UP){
-            
+
+        if (directionOfMovement == Direction.UP) {
+
             rightOfDirection = Direction.RIGHT;
-        }
-        else if (directionOfMovement == Direction.LEFT) {
-            
+        } else if (directionOfMovement == Direction.LEFT) {
+
             rightOfDirection = Direction.UP;
-        }
-        else if (directionOfMovement == Direction.DOWN) {
-            
+        } else if (directionOfMovement == Direction.DOWN) {
+
             rightOfDirection = Direction.LEFT;
-        }
-        else {
-             
+        } else {
+
             rightOfDirection = Direction.DOWN;
         }
-        
-        return rightOfDirection;                   
-    }    
-    
-	/**
-	 * Turn around
-	 * @param directionOfMovement  the direction of movement
-	 * @return Direction
-	 */
-    public Direction turnAround (Direction directionOfMovement) {
-        
+
+        return rightOfDirection;
+    }
+
+    /**
+     * Turn around
+     *
+     * @param directionOfMovement the direction of movement
+     * @return Direction
+     */
+    public Direction turnAround(Direction directionOfMovement) {
+
         Direction oppositeDirection;
-        
-        if (directionOfMovement == Direction.UP){
-            
+
+        if (directionOfMovement == Direction.UP) {
+
             oppositeDirection = Direction.DOWN;
-        }
-        else if (directionOfMovement == Direction.LEFT) {
-            
+        } else if (directionOfMovement == Direction.LEFT) {
+
             oppositeDirection = Direction.RIGHT;
-        }
-        else if (directionOfMovement == Direction.DOWN) {
-            
+        } else if (directionOfMovement == Direction.DOWN) {
+
             oppositeDirection = Direction.UP;
-        }
-        else {
-             
+        } else {
+
             oppositeDirection = Direction.LEFT;
         }
-        
-        return oppositeDirection;                   
-    }       
+
+        return oppositeDirection;
+    }
 }
