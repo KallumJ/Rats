@@ -5,22 +5,14 @@ package players.scores;
 * @author Yin Man Cheung
 */
 public class Player {
-	private String playerName;
-	//private int playerCompletedTime;
-	private int pointsOnEachRat = 10;
-	private int playerScore;
-	private int playerMaxLevel;
+	private final String playerName;
 	
 	/** 
 	 * Player Constructor
 	 * @param name  the player's name
-	 * @param numberOfKills  the number of kills
-	 * @param level  the level
 	 */
-	public Player(String name, int numberOfKills, int level){
+	public Player(String name){
 		this.playerName = name;
-		this.playerScore = numberOfKills * pointsOnEachRat;
-		this.playerMaxLevel = level;
 	}
 	
 	/** 
@@ -35,8 +27,8 @@ public class Player {
 	 * Gets the Player score
 	 * @return the Player score
 	 */
-	public int getPlayerScore() {
-		return playerScore;
+	public int getPlayerHighScore(int levelId) {
+		return 0;
 	}
 	
 	/** 
@@ -44,6 +36,6 @@ public class Player {
 	 * @return the Player max level
 	 */
 	public int getPlayerMaxLevel() {
-		return playerMaxLevel;
+		return 0;
 	}	
 }

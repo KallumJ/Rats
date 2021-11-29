@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import players.PlayerProfileManager;
 
 /**
  * A class to model the login menu
@@ -35,7 +36,7 @@ public class LoginMenu extends GameMenu {
 
         // When the login button is pressed, save their name, and change to the new screen
         loginButton.setOnMousePressed(event -> {
-            GameMenu.playerName = inputBox.getText();
+            PlayerProfileManager.loginPlayer(inputBox.getText());
 
             GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
         });

@@ -99,7 +99,7 @@ public class LeaderBoard {
 	 */
 	public void addPlayerScore(String name, int score, int maxlvl) {
 		loadPlayerScore();
-		playerScore.add(new Player(name, score, maxlvl));
+		playerScore.add(new Player(name));
 		updatePlayerScore();
 	}
 	
@@ -121,7 +121,7 @@ public class LeaderBoard {
         }
         while (i < x) {
             topTenString += (i + 1) + ".\t" + playerScore.get(i).getPlayerName() 
-            	+ "\t\t" + playerScore.get(i).getPlayerScore() + "\t\t" + playerScore.get(i).getPlayerMaxLevel() +"\n";
+            	+ "\t\t" + playerScore.get(i).getPlayerHighScore(0) + "\t\t" + playerScore.get(i).getPlayerMaxLevel() +"\n";
             i++;
         }
         return topTenString;

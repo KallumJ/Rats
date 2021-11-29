@@ -83,4 +83,14 @@ public class XMLNode {
     public boolean hasValue() {
         return this.nodeValue != null;
     }
+
+    public XMLNode getChildByElementName(String elementName) {
+        for (XMLNode child : children) {
+            if (child.getNodeName().equals(elementName)) {
+                return child;
+            }
+        }
+
+        throw new IllegalArgumentException("There is no child for this XMLNode with name of" + elementName);
+    }
 }
