@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import motd.MssgOfTheDay;
+import players.PlayerProfileManager;
 
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public class MainMenu extends GameMenu {
 
         mainMenu.setBottom(motdLabel);
 
-        Label nameLabel = new Label("Name: " + GameMenu.playerName);
+        Label nameLabel = new Label("Name: " + PlayerProfileManager.getCurrentlyLoggedInPlayer().getPlayerName());
         nameLabel.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 18));
         nameLabel.setTextFill(Color.WHITE);
 

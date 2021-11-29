@@ -5,10 +5,11 @@ import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import level.LevelUtils;
+import players.PlayerProfileManager;
+import players.scores.Player;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Optional;
 
 /**
  * A class to model the level selection menu
@@ -29,8 +30,13 @@ public class LevelMenu extends GameMenu {
         // For every level file, add a menu item to the list of menu items
         for (File levelFile : LevelUtils.getFilesInLevelDirectory()) {
             int levelId = LevelUtils.getFilesLevelId(levelFile);
-            LevelMenuItem levelMenuItem = new LevelMenuItem(String.valueOf(levelId));
-            menuItems.add(levelMenuItem);
+            Player currentlyLoggedInPlayer = PlayerProfileManager.getCurrentlyLoggedInPlayer();
+
+            // Only add levels the player has unlocked
+            if (currentlyLoggedInPlayer.getMaxLevel() >= levelId) {
+                LevelMenuItem levelMenuItem = new LevelMenuItem(String.valueOf(levelId));
+                menuItems.add(levelMenuItem);
+            }
         }
 
         // Add these menu items to a menu box

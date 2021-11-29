@@ -1,4 +1,4 @@
-package scores;
+package players.scores;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,12 +15,12 @@ import java.util.Collections;
 */
 public class LeaderBoard {
 	private ArrayList<Player> playerScore;
-	private static final String FILE_LVL_1 = "C:/Users/chrys/OneDrive/Semster 1/CS-270/Github A2/Rats/src/scores/LeaderBoard/LeaderBoard.txt";
+	private static final String FILE_LVL_1 = "C:/Users/chrys/OneDrive/Semster 1/CS-270/Github A2/Rats/src/players.scores/LeaderBoard/LeaderBoard.txt";
 	
 	ObjectOutputStream outo = null;
 	ObjectInputStream ino = null;
 	
-	// contains the ArrayList of high scores
+	// contains the ArrayList of high players.scores
 	public LeaderBoard() {
 		playerScore = new ArrayList<Player>();
 	}
@@ -84,7 +84,7 @@ public class LeaderBoard {
 	}
 		
 	/** 
-	 * Sort player scores using the comparator
+	 * Sort player players.scores using the comparator
 	 */ 
 	public void sortScores() {
 		SortScore comparator = new SortScore();
@@ -99,7 +99,7 @@ public class LeaderBoard {
 	 */
 	public void addPlayerScore(String name, int score, int maxlvl) {
 		loadPlayerScore();
-		playerScore.add(new Player(name, score, maxlvl));
+		playerScore.add(new Player(name, maxlvl));
 		updatePlayerScore();
 	}
 	
@@ -121,7 +121,7 @@ public class LeaderBoard {
         }
         while (i < x) {
             topTenString += (i + 1) + ".\t" + playerScore.get(i).getPlayerName() 
-            	+ "\t\t" + playerScore.get(i).getPlayerScore() + "\t\t" + playerScore.get(i).getPlayerMaxLevel() +"\n";
+            	+ "\t\t" + playerScore.get(i).getPlayerHighScore(0) + "\t\t" + playerScore.get(i).getMaxLevel() +"\n";
             i++;
         }
         return topTenString;

@@ -17,10 +17,11 @@ import java.util.ArrayList;
  * @author Kallum Jones 2005855
  */
 public class XMLFileWriter {
-    private final XMLEventWriter writer;
-    private final XMLEventFactory eventFactory;
+    private XMLEventWriter writer;
+    private XMLEventFactory eventFactory;
     private String rootNodeName;
-    private final FileOutputStream fileOutputStream;
+    private FileOutputStream fileOutputStream;
+    private final File file;
 
     /**
      * Constructs an XMLFileWriter object
@@ -29,7 +30,9 @@ public class XMLFileWriter {
      */
     public XMLFileWriter(File file, String rootNode) {
         try {
+            this.file = file;
             this.rootNodeName = rootNode;
+
             this.fileOutputStream = new FileOutputStream(file);
             XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
             this.writer = outputFactory.createXMLEventWriter(this.fileOutputStream);
@@ -103,6 +106,12 @@ public class XMLFileWriter {
             throw new RuntimeException(String.format("Unable to write %s to the xml file", xmlNode.getNodeName()), ex);
         }
 
+    }
+
+    public void writeNodeAsRoot(XMLNode xmlNode) {
+        for (XMLNode child : xmlNode.getChildren()) {
+            writeNode(child);
+        }
     }
 
 }
