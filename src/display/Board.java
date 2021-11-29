@@ -29,13 +29,17 @@ public class Board {
     private Timeline tickTimeline;
 
     private final static int POINTS_ON_A_RAT = 10;
-    public final static int CANVAS_HEIGHT = 700; // In pixels
-    public final static int CANVAS_WIDTH = 700;
     private final static int INTERACTION_CHECK_INTERVAL = 250; // In ms
 
     public Board(LevelData levelData) {
         this.levelData = levelData;
-        this.canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+
+        // Find the width and the height of the canvas, in pixels for this level
+        int width = levelData.getLevelProperties().getLevelWidth() * Tile.TILE_SIZE; // in pixels
+        int height = levelData.getLevelProperties().getLevelHeight() * Tile.TILE_SIZE;
+
+
+        this.canvas = new Canvas(width, height);
         
         tickTimeline = new Timeline(new KeyFrame(Duration.millis(INTERACTION_CHECK_INTERVAL), event -> interactionCheck()));
 
@@ -69,6 +73,14 @@ public class Board {
                 }
             }
         }
+    }
+
+    /**
+     * A method to get the canvas of the board
+     * @return the Canvas for the board
+     */
+    public Canvas getCanvas() {
+        return canvas;
     }
 
     public void updateBoardDisplay() {

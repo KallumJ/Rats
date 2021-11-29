@@ -22,7 +22,7 @@ import java.util.Set;
  * @author YIMING LI
  */
 public class Inventory {
-    public static final int INVENTORY_WIDTH = 450; // in pixels
+    public static final int INVENTORY_WIDTH = 300; // in pixels
     private final ArrayList<GameObjectType> itemsInInventory;
     private final LevelData levelData;
     private VBox inventoryNode;
