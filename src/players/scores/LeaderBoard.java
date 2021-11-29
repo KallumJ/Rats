@@ -121,7 +121,7 @@ public class LeaderBoard {
         }
         while (i < x) {
             topTenString += (i + 1) + ".\t" + playerScore.get(i).getPlayerName() 
-            	+ "\t\t" + playerScore.get(i).getPlayerHighScore(0) + "\t\t" + playerScore.get(i).getPlayerMaxLevel() +"\n";
+            	+ "\t\t" + playerScore.get(i).getPlayerHighScore(0) + "\t\t" + playerScore.get(i).getMaxLevel() +"\n";
             i++;
         }
         return topTenString;

@@ -46,7 +46,7 @@ public class Player {
 	 * Get the Player max level
 	 * @return the Player max level
 	 */
-	public int getPlayerMaxLevel() {
+	public int getMaxLevel() {
 		return maxLevel;
 	}
 
@@ -56,7 +56,7 @@ public class Player {
 	 */
 	public XMLNode getAsXMLNode() {
 		XMLNode playerName = new XMLNode("name", getPlayerName(), null, null);
-		XMLNode maxLevel = new XMLNode("maxLevel", String.valueOf(getPlayerMaxLevel()), null, null);
+		XMLNode maxLevel = new XMLNode("maxLevel", String.valueOf(getMaxLevel()), null, null);
 
 		ArrayList<XMLNode> children = new ArrayList<>();
 		children.add(playerName);
