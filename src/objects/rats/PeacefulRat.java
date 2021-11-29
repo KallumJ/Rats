@@ -2,8 +2,6 @@ package objects.rats;
 
 import java.util.Random;
 import java.util.Timer;
-import java.util.TimerTask;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 
