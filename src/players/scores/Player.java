@@ -1,4 +1,4 @@
-package scores;
+package players.scores;
 
 /**
 * The class Player
@@ -13,7 +13,7 @@ public class Player {
 	
 	/** 
 	 * Player Constructor
-	 * @param player  the player
+	 * @param name  the player's name
 	 * @param numberOfKills  the number of kills
 	 * @param level  the level
 	 */

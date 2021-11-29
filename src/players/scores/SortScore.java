@@ -1,4 +1,4 @@
-package scores;
+package players.scores;
 
 
 import java.util.Comparator;
@@ -10,7 +10,7 @@ import java.util.Comparator;
 public class SortScore implements Comparator<Player> {
 
 	/** 
-	 * Compare scores
+	 * Compare players.scores
 	 * @param score1  the score1
 	 * @param score2  the score2
 	 * @return int
