@@ -20,6 +20,11 @@ import tile.Tile;
 public class NoEntrySign extends GameObject {
 
     private Image noEntrySignImage;
+    private Image noEntrySignOneImage;
+    private Image noEntrySignTwoImage;
+    private Image noEntrySignThreeImage;
+    private Image noEntrySignFourImage;
+    private Image noEntrySignFiveImage;
     private int damageDone;
     private int durability;
     private ArrayList<NoEntrySignEffect> noEntrySignEffects;
@@ -47,6 +52,11 @@ public class NoEntrySign extends GameObject {
 
         noEntrySignImage = new Image("file:resources/noEntrySign.png");
         super.setIcon(noEntrySignImage);
+        noEntrySignOneImage = new Image("file:resources/noEntrySign1.png");
+        noEntrySignTwoImage = new Image("file:resources/noEntrySign2.png");
+        noEntrySignThreeImage = new Image("file:resources/noEntrySign3.png");
+        noEntrySignFourImage = new Image("file:resources/noEntrySign4.png");
+        noEntrySignFiveImage = new Image("file:resources/noEntrySign5.png");
 
         super.getStandingOn().setTraversable(false);
         
@@ -70,6 +80,28 @@ public class NoEntrySign extends GameObject {
     }
 
     public void doDamage() {
+        switch (durability - damageDone) {
+
+            case 5:
+                super.setIcon(noEntrySignFiveImage);
+                break;
+            case 4:
+                super.setIcon(noEntrySignFourImage);
+                break;
+            case 3:
+                super.setIcon(noEntrySignThreeImage);
+                break;
+            case 2:
+                super.setIcon(noEntrySignTwoImage);
+                break;
+            case 1:
+                super.setIcon(noEntrySignOneImage);
+                break;
+            default:
+                super.setIcon(noEntrySignImage);
+                break;
+        }
+        GameObject.getBoard().updateBoardDisplay();
         this.damageDone = damageDone + 1;
 
         if (damageDone >= durability) {
