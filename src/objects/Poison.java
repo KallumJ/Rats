@@ -5,46 +5,39 @@ import javafx.scene.image.Image;
 import objects.rats.Rat;
 import tile.Tile;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
+ * This class represent the poison it which will kill any rat in case of
+ * contact.
  *
- * @author fahds
+ * @author Fahd
  */
-/**
- * The class Poison extends item
- */ 
-public class Poison extends GameObject{
-    
+public class Poison extends GameObject {
+
     private Image poisonImage;
 
-	/** 
-	 * Poison
-	 * @param standingOn  the standing on
-	 * @return public
-	 */
+    /**
+     * Creates a new sterilisation effect object on the specified tile.
+     *
+     * @param standingOn The tile the poison is on.
+     *
+     */
     public Poison(Tile standingOn) {
         super(standingOn);
-        
+
         poisonImage = new Image("file:resources/poison.png");
         super.setIcon(poisonImage);
     }
 
-    
-	/** 
-	 * Activation
-	 * @param rat  the rat
-	 */
-    public void activation(Rat rat) {
-        
-        GameObject.getBoard().removeObject(rat);
+    /**
+     * Gives poison to a victim.
+     *
+     * @param victim The rat which will take the poison and die.
+     */
+    public void givePoison(Rat victim) {
+
+        GameObject.getBoard().removeObject(victim);
         GameObject.getBoard().removeObject(this);
         GameObject.getBoard().updateBoardDisplay();
     }
 
-    
 }

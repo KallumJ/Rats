@@ -6,44 +6,39 @@ import objects.rats.PeacefulRat;
 import objects.rats.Rat;
 import tile.Tile;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
+ * This class represent the female sex changer item which will change a rat
+ * gender to male.
  *
- * @author fahds
+ * @author Fahd
+ *
  */
- /**
- * The class Female sex changer extends item
- */ 
-public class FemaleSexChanger extends GameObject{
-    
-     private Image femaleSexChangerImage;
-	/** 
-	* Female sex changer
-	* @param standingOn  the standing on
-	* @return public
-	*/
+public class FemaleSexChanger extends GameObject {
+
+    private Image femaleSexChangerImage;
+
+    /**
+     * Create a new female sex changer item on the specified tile.
+     *
+     * @param standingOn The tile the female sex changer is on.
+     */
     public FemaleSexChanger(Tile standingOn) {
         super(standingOn);
-        
+
         femaleSexChangerImage = new Image("file:resources/femaleChange.png");
         super.setIcon(femaleSexChangerImage);
     }
 
-    
-	/** 
-	* Activation
-	* @param rat  the rat
-	*/
+    /**
+     * Changes the gender of a rat to male.
+     *
+     * @param rat The rat which it gender will be changed to female.
+     */
     public void activationOfFemaleSexChanger(PeacefulRat rat) {
-        
+
         rat.setGender("f");
-        
-        GameObject.getBoard().removeObject(this); 
+
+        GameObject.getBoard().removeObject(this);
         GameObject.getBoard().updateBoardDisplay();
     }
 

@@ -48,10 +48,10 @@ public class ObjectInteractionChecker {
 
     public static void checkNoEntrySign(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof NoEntrySign) {
-            if (secondObject instanceof PeacefulRat || secondObject instanceof DeathRat) {
+            if (secondObject instanceof Rat) {
                 NoEntrySign noEntrySign = (NoEntrySign) firstObject;
                 Rat victim = (Rat) secondObject;
-                noEntrySign.activation(victim);
+                noEntrySign.blockPath(victim);
             }
         }
     }
@@ -75,7 +75,7 @@ public class ObjectInteractionChecker {
                 MaleSexChanger maleSexChanger = (MaleSexChanger) firstObject;
                 PeacefulRat rat = (PeacefulRat) secondObject;
 
-                maleSexChanger.activation(rat);
+                maleSexChanger.beMale(rat);
             }
         }
 
@@ -87,7 +87,7 @@ public class ObjectInteractionChecker {
                 Poison poison = (Poison) firstObject;
                 Rat rat = (Rat) secondObject;
 
-                poison.activation(rat);
+                poison.givePoison(rat);
             }
         }
 

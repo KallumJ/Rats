@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package objects;
 
 import javafx.scene.image.Image;
@@ -11,28 +5,36 @@ import objects.rats.PeacefulRat;
 import tile.Tile;
 
 /**
+ * This class represent the sterilisation effect which will make any rat sterile
+ * when contact happens.
  *
- * @author fahds
+ * @author Fahd
  */
-public class SterilisationEffect extends GameObject{
-    
+public class SterilisationEffect extends GameObject {
+
     private Image SterilisationEffectImage;
-    
+
     /**
+     * Creates a new sterilisation effect object on the specified tile.
      *
-     * @param standingOn
+     * @param standingOn The tile the sterilisation effect will be active on.
      */
-    public SterilisationEffect(Tile standingOn){
+    public SterilisationEffect(Tile standingOn) {
         super(standingOn);
-        
+
         SterilisationEffectImage = new Image("file:resources/SterilisationEffect.png");
         super.setIcon(SterilisationEffectImage);
-    
+
     }
-    
-    public void beSterile (PeacefulRat rat) {
-        
+
+    /**
+     * Makes a rat sterile.
+     *
+     * @param rat The Rat which will be sterile.
+     */
+    public void beSterile(PeacefulRat rat) {
+
         rat.setSterilisation(true);
     }
-    
+
 }

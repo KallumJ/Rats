@@ -6,42 +6,40 @@ import objects.rats.PeacefulRat;
 import objects.rats.Rat;
 import tile.Tile;
 
-
 /**
+ * This class represent the male sex changer item which will change a rat gender
+ * to male.
  *
- * @author fahds
+ * @author Fahd
+ *
  */
-/**
- * The class Male sex changer extends item
- */ 
-public class MaleSexChanger extends GameObject{
-    
-    private Image maleSexChangerImage;
-        /**  
-	 * Male sex changer
-	 * @param standingOn  the standing on
-	 * @return public
-	 */
+public class MaleSexChanger extends GameObject {
 
+    private Image maleSexChangerImage;
+
+    /**
+     * Create a new male sex changer item on the specified tile.
+     *
+     * @param standingOn The tile the male sex changer is on.
+     */
     public MaleSexChanger(Tile standingOn) {
         super(standingOn);
-        
+
         maleSexChangerImage = new Image("file:resources/maleChange.png");
         super.setIcon(maleSexChangerImage);
     }
 
-    
-	/** 
-	 * Activation
-	 * @param rat  the rat
-	 */
-    public void activation(PeacefulRat rat) {
-        
+    /**
+     * Changes the gender of a rat to male.
+     *
+     * @param rat The rat which it gender will be changed to male.
+     */
+    public void beMale(PeacefulRat rat) {
+
         rat.setGender("m");
-        
-        GameObject.getBoard().removeObject(this); 
+
+        GameObject.getBoard().removeObject(this);
         GameObject.getBoard().updateBoardDisplay();
     }
-    
-    
+
 }
