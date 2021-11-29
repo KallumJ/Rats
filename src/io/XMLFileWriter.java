@@ -17,10 +17,11 @@ import java.util.ArrayList;
  * @author Kallum Jones 2005855
  */
 public class XMLFileWriter {
-    private final XMLEventWriter writer;
-    private final XMLEventFactory eventFactory;
+    private XMLEventWriter writer;
+    private XMLEventFactory eventFactory;
     private String rootNodeName;
-    private final FileOutputStream fileOutputStream;
+    private FileOutputStream fileOutputStream;
+    private final File file;
 
     /**
      * Constructs an XMLFileWriter object
@@ -29,11 +30,10 @@ public class XMLFileWriter {
      */
     public XMLFileWriter(File file, String rootNode) {
         try {
+            this.file = file;
             this.rootNodeName = rootNode;
-            this.fileOutputStream = new FileOutputStream(file);
-            XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-            this.writer = outputFactory.createXMLEventWriter(this.fileOutputStream);
-            this.eventFactory = XMLEventFactory.newInstance();
+
+            initaliseWriter();
 
             // Start the document
             StartDocument startDocument = eventFactory.createStartDocument();
@@ -42,10 +42,24 @@ public class XMLFileWriter {
             StartElement rootElement = eventFactory.createStartElement("", "", rootNodeName);
             writer.add(rootElement);
 
-        } catch (XMLStreamException | FileNotFoundException ex) {
+        } catch (XMLStreamException ex) {
             throw new RuntimeException(String.format("Unable to create an XML file %s with the root %s", file.getName(), rootNodeName), ex);
         }
 
+    }
+
+    /**
+     * A method to initalise the XML writer
+     */
+    private void initaliseWriter() {
+        try {
+            this.fileOutputStream = new FileOutputStream(file);
+            XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
+            this.writer = outputFactory.createXMLEventWriter(this.fileOutputStream);
+            this.eventFactory = XMLEventFactory.newInstance();
+        } catch (FileNotFoundException | XMLStreamException ex) {
+            throw new RuntimeException("Failed to initalise the XML writer");
+        }
     }
 
     /**
@@ -101,6 +115,19 @@ public class XMLFileWriter {
             writer.add(endElement);
         } catch (XMLStreamException ex) {
             throw new RuntimeException(String.format("Unable to write %s to the xml file", xmlNode.getNodeName()), ex);
+        }
+
+    }
+
+    public void writeNodeAsRoot(XMLNode xmlNode) {
+        // Close the file output stream
+        saveAndClose();
+
+        // Delete the file, and reinitalise the writer, without creating a root node, write the provided node
+        // as root
+        if (file.delete()) {
+            initaliseWriter();
+            writeNode(xmlNode);
         }
 
     }
