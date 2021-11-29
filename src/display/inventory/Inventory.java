@@ -22,6 +22,7 @@ import java.util.Set;
  * @author YIMING LI
  */
 public class Inventory {
+
     public static final int INVENTORY_WIDTH = 300; // in pixels
     private final ArrayList<GameObjectType> itemsInInventory;
     private final LevelData levelData;
@@ -30,7 +31,9 @@ public class Inventory {
 
     /**
      * Constructs an inventory object
-     * @param levelData The LevelData of the level associated with this inventory
+     *
+     * @param levelData The LevelData of the level associated with this
+     * inventory
      */
     public Inventory(LevelData levelData) {
         this.itemsInInventory = new ArrayList<>();
@@ -46,6 +49,7 @@ public class Inventory {
 
     /**
      * A method to return a random GameObjectType
+     *
      * @return a randomly selected GameObjectType
      */
     private static GameObjectType makeRandomObjectSelection() {
@@ -74,6 +78,7 @@ public class Inventory {
 
     /**
      * A method to get the item rows in the inventory
+     *
      * @return the item rows in the inventory
      */
     public Set<ItemRow> getItemRows() {
@@ -110,7 +115,9 @@ public class Inventory {
     }
 
     /**
-     * A method to return whether there is still an available slot in the inventory
+     * A method to return whether there is still an available slot in the
+     * inventory
+     *
      * @return true if there is a slot open, false otherwise
      */
     private boolean isSlotOpen() {
@@ -142,6 +149,7 @@ public class Inventory {
 
     /**
      * A method to get the level data associated with this inventory
+     *
      * @return the level data associated with this inventory
      */
     public LevelData getLevelData() {
@@ -150,6 +158,7 @@ public class Inventory {
 
     /**
      * A method to get the items currently stored in the inventory
+     *
      * @return the items currently stored in the inventory
      */
     public ArrayList<GameObjectType> getItemsInInventory() {
@@ -158,11 +167,10 @@ public class Inventory {
 
     /**
      * A method to get the JavaFX node representing the inventory
+     *
      * @return the JavaFX node representing the inventory
      */
     public VBox getInventoryNode() {
         return inventoryNode;
     }
 }
-    
-

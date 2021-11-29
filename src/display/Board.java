@@ -38,16 +38,15 @@ public class Board {
         int width = levelData.getLevelProperties().getLevelWidth() * Tile.TILE_SIZE; // in pixels
         int height = levelData.getLevelProperties().getLevelHeight() * Tile.TILE_SIZE;
 
-
         this.canvas = new Canvas(width, height);
-        
+
         tickTimeline = new Timeline(new KeyFrame(Duration.millis(INTERACTION_CHECK_INTERVAL), event -> interactionCheck()));
 
         // Loop the timeline forever
-	    tickTimeline.setCycleCount(Animation.INDEFINITE);
+        tickTimeline.setCycleCount(Animation.INDEFINITE);
         tickTimeline.play();
     }
-    
+
     public void interactionCheck() {
         List<GameObject> objects = levelData.getObjects();
 
@@ -77,6 +76,7 @@ public class Board {
 
     /**
      * A method to get the canvas of the board
+     *
      * @return the Canvas for the board
      */
     public Canvas getCanvas() {
@@ -84,7 +84,7 @@ public class Board {
     }
 
     public void updateBoardDisplay() {
-        
+
         // Get the Graphic Context of the canvas. This is what we draw on.
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -127,13 +127,13 @@ public class Board {
         objects.remove(objectRemove);
         updateBoardDisplay();
     }
-    
-    public int getCurrentPouplation () {
+
+    public int getCurrentPouplation() {
         //TODO: implement
         return 0;
     }
-    
-    public int getScore () {
+
+    public int getScore() {
         //TODO: implement
         return 0;
     }
@@ -143,8 +143,8 @@ public class Board {
 
         root.setCenter(canvas);
 
-       Inventory inventory = new Inventory (levelData);
-       root.setRight(inventory.buildInventoryGUI());
+        Inventory inventory = new Inventory(levelData);
+        root.setRight(inventory.buildInventoryGUI());
 
         return root;
     }

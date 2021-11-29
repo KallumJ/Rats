@@ -15,6 +15,7 @@ import tile.Tile;
  * A class to model a row of items in the inventory
  */
 public class ItemRow {
+
     public static final int MAX_ITEMS_IN_ROW = 5;
     private final GameObjectType objectType;
     private final HBox hBox;
@@ -23,9 +24,9 @@ public class ItemRow {
     private int originalX = -1;
     private int originalY = -1;
 
-
     /**
      * Constructs an item row for the provided object type
+     *
      * @param objectType The type of items in this row
      * @param inventory the inventory this row is being stored in
      */
@@ -38,6 +39,7 @@ public class ItemRow {
 
     /**
      * A method to get the type of object being stored in this row
+     *
      * @return the type of object being stored in this row
      */
     public GameObjectType getObjectType() {
@@ -46,6 +48,7 @@ public class ItemRow {
 
     /**
      * A method to get the HBox node representing this row
+     *
      * @return the HBox node representing this row
      */
     public HBox gethBox() {
@@ -75,6 +78,7 @@ public class ItemRow {
 
     /**
      * An event handler for dragging item images
+     *
      * @param event the MouseEvent that triggered the handler
      * @param image THe image being dragged
      */
@@ -94,6 +98,7 @@ public class ItemRow {
 
     /**
      * An event handler for releasing an item image
+     *
      * @param image the image being released
      * @param object the type of the object being released
      */
@@ -138,6 +143,7 @@ public class ItemRow {
 
     /**
      * A method to decrement the object count
+     *
      * @param imageOfItemToRemove the image to remove
      */
     private void decrementCount(ImageView imageOfItemToRemove) {
@@ -148,6 +154,7 @@ public class ItemRow {
 
     /**
      * A method to get the count of objects in this row
+     *
      * @return the count of objects in this row
      */
     public int getObjectCount() {
