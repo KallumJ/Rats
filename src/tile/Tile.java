@@ -14,7 +14,7 @@ import java.util.Map;
 public class Tile {
     private final TileLocation tileLocation;
     private final TileType tileType;
-    private final boolean isTraversable;
+    private boolean isTraversable;
     private final boolean hideRatsWithin;
     private NamedNodeMap initialAttributes;
     private final Map<Direction, Tile> adjacentTiles;
@@ -121,5 +121,9 @@ public class Tile {
      */
     public boolean doHideRatsWithin() {
         return hideRatsWithin;
+    }
+
+    public void setTraversable(boolean traversable) {
+        isTraversable = traversable;
     }
 }
