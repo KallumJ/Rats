@@ -99,7 +99,7 @@ public class LeaderBoard {
 	 */
 	public void addPlayerScore(String name, int score, int maxlvl) {
 		loadPlayerScore();
-		playerScore.add(new Player(name));
+		playerScore.add(new Player(name, maxlvl));
 		updatePlayerScore();
 	}
 	

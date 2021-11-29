@@ -16,11 +16,37 @@ public class PlayerProfileManager {
     private static final String PLAYERS_FILE = "players/players.xml";
     private static final XMLNode playersRoot;
     private static Player currentlyLoggedIn;
+    private static final List<Player> allPlayers;
+    public static final String HIGH_SCORE_SEPARATOR = ", ";
 
     // Load the players XMLNode
     static {
         XMLFileReader xmlfileReader = new XMLFileReader(new File(PLAYERS_FILE));
         playersRoot = xmlfileReader.getAsXMLNode();
+
+        allPlayers = new ArrayList<>();
+        if (playersRoot.hasChildren()) {
+            for (XMLNode playerNode : playersRoot.getChildren()) {
+
+                String name = playerNode.getChildByElementName("name").getNodeValue();
+                int maxLevel = Integer.parseInt(playerNode.getChildByElementName("maxLevel").getNodeValue());
+
+                Player player = new Player(name, maxLevel);
+                allPlayers.add(player);
+
+                // If there are high scores, add them
+                if (playerNode.getChildren().size() > 2) {
+                    List<XMLNode> highScores = playerNode.getChildrenByElementName("highScores");
+
+                    for (XMLNode highScore : highScores) {
+                        String highScoreValue = highScore.getNodeValue();
+                        String[] highScoreValueSplit = highScoreValue.split(HIGH_SCORE_SEPARATOR);
+
+                        player.addScoreIfHighest(Integer.parseInt(highScoreValueSplit[0]), Integer.parseInt(highScoreValueSplit[1]));
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -29,11 +55,9 @@ public class PlayerProfileManager {
      * @return the found Player object, null if they do not exist
      */
     public static Player getPlayer(String playerName) {
-        for (XMLNode child : playersRoot.getChildren()) {
-            String currentChildName = child.getChildByElementName("name").getNodeValue();
-
-            if (currentChildName.equals(playerName)) {
-                return new Player(playerName);
+        for (Player player : allPlayers) {
+            if (player.getPlayerName().equals(playerName)) {
+                return player;
             }
         }
 
@@ -61,24 +85,20 @@ public class PlayerProfileManager {
      * @param playerName the players name
      */
     private static void createPlayerProfile(String playerName) {
-        XMLNode name = new XMLNode("name", playerName, null, null);
-        XMLNode maxLevel = new XMLNode("maxLevel", "1", null, null);
-
-        List<XMLNode> children = new ArrayList<>();
-        children.add(name);
-        children.add(maxLevel);
-
-        playersRoot.getChildren().add(new XMLNode("player", null, null, children));
+        allPlayers.add(new Player(playerName, 1));
         savePlayersFile();
     }
 
     /**
      * Save the players file with the current root node
      */
-    private static void savePlayersFile() {
+    public static void savePlayersFile() {
         XMLFileWriter xmlFileWriter = new XMLFileWriter(new File(PLAYERS_FILE), playersRoot.getNodeName());
 
-        xmlFileWriter.writeNodeAsRoot(playersRoot);
+        for (Player player : allPlayers) {
+            xmlFileWriter.writeNode(player.getAsXMLNode());
+        }
+
         xmlFileWriter.saveAndClose();
     }
 
@@ -89,4 +109,5 @@ public class PlayerProfileManager {
     public static Player getCurrentlyLoggedInPlayer() {
         return currentlyLoggedIn;
     }
+
 }

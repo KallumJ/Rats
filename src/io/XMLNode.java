@@ -1,5 +1,6 @@
 package io;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -84,10 +85,32 @@ public class XMLNode {
         return this.nodeValue != null;
     }
 
+    /**
+     * A method to get the first child with the provided name
+     * @param elementName the element name
+     * @return the found XMLNode
+     */
     public XMLNode getChildByElementName(String elementName) {
         for (XMLNode child : children) {
             if (child.getNodeName().equals(elementName)) {
                 return child;
+            }
+        }
+
+        throw new IllegalArgumentException("There is no child for this XMLNode with name of" + elementName);
+    }
+
+    /**
+     * A method to get a list of child nodes that match the child name
+     * @param elementName the element name
+     * @return List of XMLNodes matching the element name
+     */
+    public List<XMLNode> getChildrenByElementName(String elementName) {
+        ArrayList<XMLNode> foundChildren = new ArrayList<>();
+
+        for (XMLNode child : children) {
+            if (child.getNodeName().equals(elementName)) {
+                foundChildren.add(child);
             }
         }
 
