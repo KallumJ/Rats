@@ -17,6 +17,8 @@ public class LevelProperties {
     private final int adultRatSpeed;
     private final int babyRatSpeed;
     private final int deathRatSpeed;
+    private final int timeToDevelop;
+    private final int timeToBirth;
 
     /**
      * Constructs a LevelProperties object with the provided data
@@ -31,8 +33,10 @@ public class LevelProperties {
      * @param adultRatSpeed the speed of an adult rat, in time between movement, in milliseconds
      * @param babyRatSpeed the speed of a baby rat, in time between movement, in milliseconds
      * @param deathRatSpeed the speed of a death rat, in time between movement, in milliseconds
+     * @param timeToDevelop the time a baby rat takes to develop, in seconds
+     * @param timeToBirth time a pregnant rat takes to give birth, in seconds
      */
-    public LevelProperties(int id, int height, int width, int populationToLose, int expectedTime, int itemInterval, int ratMinBabies, int ratMaxBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed) {
+    public LevelProperties(int id, int height, int width, int populationToLose, int expectedTime, int itemInterval, int ratMinBabies, int ratMaxBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed, int timeToDevelop, int timeToBirth) {
         this.levelId = id;
         this.levelHeight = height;
         this.levelWidth = width;
@@ -44,6 +48,8 @@ public class LevelProperties {
         this.adultRatSpeed = adultRatSpeed;
         this.babyRatSpeed = babyRatSpeed;
         this.deathRatSpeed = deathRatSpeed;
+        this.timeToDevelop = timeToDevelop;
+        this.timeToBirth = timeToBirth;
     }
 
     /**
@@ -132,5 +138,21 @@ public class LevelProperties {
      */
     public int getDeathRatSpeed() {
         return deathRatSpeed;
+    }
+
+    /**
+     * Get the time for a rat to grow up in this level
+     * @return time for a rat to grow up in this level in seconds
+     */
+    public int getTimeToDevelop() {
+        return timeToDevelop;
+    }
+
+    /**
+     * Get the time for a rat to give birth in this level
+     * @return rat to give birth in this level, in seconds
+     */
+    public int getTimeToBirth() {
+        return timeToBirth;
     }
 }
