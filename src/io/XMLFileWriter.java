@@ -26,12 +26,12 @@ public class XMLFileWriter {
     /**
      * Constructs an XMLFileWriter object
      * @param file The file to write too
-     * @param rootNode The name of the root node in this xml file
+     * @param rootName The name of the root node in this xml file
      */
-    public XMLFileWriter(File file, String rootNode) {
+    public XMLFileWriter(File file, String rootName) {
         try {
             this.file = file;
-            this.rootNodeName = rootNode;
+            this.rootNodeName = rootName;
 
             this.fileOutputStream = new FileOutputStream(file);
             XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
@@ -108,6 +108,10 @@ public class XMLFileWriter {
 
     }
 
+    /**
+     * A method to write the provided node to the file as the root
+     * @param xmlNode the XMLNode to write
+     */
     public void writeNodeAsRoot(XMLNode xmlNode) {
         for (XMLNode child : xmlNode.getChildren()) {
             writeNode(child);

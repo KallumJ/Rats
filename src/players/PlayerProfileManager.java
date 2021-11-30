@@ -42,7 +42,7 @@ public class PlayerProfileManager {
                         String highScoreValue = highScore.getNodeValue();
                         String[] highScoreValueSplit = highScoreValue.split(HIGH_SCORE_SEPARATOR);
 
-                        player.addScoreIfHighest(Integer.parseInt(highScoreValueSplit[0]), Integer.parseInt(highScoreValueSplit[1]));
+                        player.getHighScores().put(Integer.parseInt(highScoreValueSplit[0]), Integer.parseInt(highScoreValueSplit[1]));
                     }
                 }
             }
