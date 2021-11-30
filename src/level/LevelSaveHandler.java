@@ -40,8 +40,6 @@ public class LevelSaveHandler {
 
         // Save the file
         xmlFileWriter.saveAndClose();
-
-        System.out.println("SAVED");
     }
 
     /**

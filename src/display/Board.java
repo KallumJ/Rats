@@ -1,6 +1,7 @@
 package display;
 
 import display.inventory.Inventory;
+
 import java.util.List;
 
 import display.menus.GameMenu;
@@ -9,13 +10,13 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -33,13 +34,15 @@ import tile.Tile;
  */
 public class Board {
 
+    private static final int POINTS_ON_A_RAT = 10;
+    private static final int INTERACTION_CHECK_INTERVAL = 250; // In ms
+    private static final String SAVED_BUTTON_LABEL = "Save and exit";
+    private static final int CONTROLS_MARGIN = 5; // in pixels
+
     private LevelData levelData;
     private Canvas canvas;
     private Timeline tickTimeline;
     private int score;
-
-    private final static int POINTS_ON_A_RAT = 10;
-    private final static int INTERACTION_CHECK_INTERVAL = 250; // In ms
 
     public Board(LevelData levelData) {
         this.levelData = levelData;
@@ -172,14 +175,19 @@ public class Board {
         Inventory inventory = new Inventory(levelData);
         root.setRight(inventory.buildInventoryGUI());
 
+        HBox controlsContainer = new HBox();
+        controlsContainer.setPadding(new Insets(CONTROLS_MARGIN, CONTROLS_MARGIN, CONTROLS_MARGIN, CONTROLS_MARGIN));
 
-        Button saveButton = new Button("Save");
+        Button saveButton = new Button(SAVED_BUTTON_LABEL);
 
         saveButton.setOnMousePressed(event -> {
             LevelSaveHandler.saveLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
+            GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
         });
 
-        root.setBottom(saveButton);
+        controlsContainer.getChildren().add(saveButton);
+
+        root.setBottom(controlsContainer);
 
         return root;
     }
