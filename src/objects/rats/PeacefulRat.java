@@ -1,5 +1,7 @@
 package objects.rats;
 
+import java.security.Key;
+import java.sql.Time;
 import java.util.Random;
 import java.util.Timer;
 import javafx.animation.KeyFrame;
@@ -17,6 +19,8 @@ import tile.Tile;
  * @author fahds
  */
 public class PeacefulRat extends Rat {
+    // Added as being pregnant requires the board to be populated, which it isnt when this is constructed
+    private static final int DELAY_TO_MAKE_PREGNANT = 2; // in seconds
 
     private boolean sterile;
     private boolean adult;
@@ -52,8 +56,8 @@ public class PeacefulRat extends Rat {
             developmentTimer.play();
         }
         if (this.pregnant) {
-
-            this.bePregnant();
+            Timeline pregnantDelay = new Timeline(new KeyFrame(Duration.seconds(DELAY_TO_MAKE_PREGNANT) , event -> bePregnant()));
+            pregnantDelay.play();
         }
 
         maleRatImage = new Image("file:resources/maleRat.png");
