@@ -60,12 +60,12 @@ public class NoEntrySign extends GameObject {
 
         super.getStandingOn().setTraversable(false);
         
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> XXXX()));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> setUpNoEntrySign()));
         timeline.play();
 
     }
 
-    private void XXXX() {
+    private void setUpNoEntrySign() {
         affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.UP));
         affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.DOWN));
         affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.RIGHT));
