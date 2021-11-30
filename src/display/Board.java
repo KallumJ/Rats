@@ -2,11 +2,18 @@ package display;
 
 import display.inventory.Inventory;
 import java.util.List;
+
+import display.menus.GameMenu;
+import display.menus.MainMenu;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -14,8 +21,10 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import level.LevelData;
 import level.LevelProperties;
+import level.LevelSaveHandler;
 import objects.*;
 import objects.rats.PeacefulRat;
+import players.PlayerProfileManager;
 import tile.Tile;
 
 /**
@@ -162,6 +171,15 @@ public class Board {
 
         Inventory inventory = new Inventory(levelData);
         root.setRight(inventory.buildInventoryGUI());
+
+
+        Button saveButton = new Button("Save");
+
+        saveButton.setOnMousePressed(event -> {
+            LevelSaveHandler.saveLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
+        });
+
+        root.setBottom(saveButton);
 
         return root;
     }
