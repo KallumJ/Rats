@@ -89,4 +89,12 @@ public class TileSet {
     public int getWidth() {
         return tileSet.get(0).size();
     }
+
+    /**
+     * A method to get the tile set as a 2 dimensional list
+     * @return the tile set as a 2 dimensional list
+     */
+    public ArrayList<ArrayList<Tile>> getTileSetRows() {
+        return tileSet;
+    }
 }

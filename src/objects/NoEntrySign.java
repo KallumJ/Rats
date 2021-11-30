@@ -126,4 +126,11 @@ public class NoEntrySign extends GameObject {
         return this.damageDone;
     }
 
+    /**
+     * A method to get the durability remaining on the sign
+     * @return the durability remaining on the sign, in hits
+     */
+    public int getDurability() {
+        return durability;
+    }
 }

@@ -94,4 +94,11 @@ public class Sterilisation extends GameObject {
         affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.LEFT));
     }
 
+    /**
+     * A method to get the duration of the sterilisation
+     * @return the duration of the sterilisation in seconds
+     */
+    public int getDuration() {
+        return duration;
+    }
 }

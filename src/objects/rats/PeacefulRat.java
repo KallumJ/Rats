@@ -188,4 +188,20 @@ public class PeacefulRat extends Rat {
 
         return this.numberOfBabies;
     }
+
+    /**
+     * A method to get the time til this rat gives birth
+     * @return the time til this rat gives birth in seconds
+     */
+    public int getTimeToGiveBirth() {
+        return timeToGiveBirth;
+    }
+
+    /**
+     * A method to get the time for this rat to grow up
+     * @return the time for this rat to grow up in seconds
+     */
+    public int getTimeToDevelop() {
+        return timeToDevelop;
+    }
 }

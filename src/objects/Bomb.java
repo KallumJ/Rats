@@ -186,4 +186,11 @@ public class Bomb extends GameObject {
         this.affectedTiles = affectedTiles;
     }
 
+    /**
+     * A method to get the amount of time left on the timer
+     * @return the amount of time left on the timer in seconds
+     */
+    public int getTimerLength() {
+        return timerLength;
+    }
 }

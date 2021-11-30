@@ -26,22 +26,22 @@ public class TileAttributeReader {
      */
     public static GameObject getObjectFromAttribute(String attributeName, String attributeValue, Tile tile, LevelProperties levelProperties) {
         switch (attributeName) {
-            case "rat":
+            case ObjectAttributeGenerator.RAT_KEY:
                 return readPeacefulRat(attributeValue, tile, levelProperties);
-            case "d_rat":
+            case ObjectAttributeGenerator.DEATH_RAT_KEY:
                 return readDeathRat(attributeValue, tile, levelProperties);
-            case "bomb":
+            case ObjectAttributeGenerator.BOMB_KEY:
                 return readBomb(attributeValue, tile);
-            case "gas":
+            case ObjectAttributeGenerator.GAS_KEY:
                 // TODO: ADD GAS return readGas(attributeValue, tile);
                 break;
-            case "sterile":
+            case ObjectAttributeGenerator.STERILISATION_KEY:
                 return readSterile(attributeValue, tile);
-            case "poison":
+            case ObjectAttributeGenerator.POISON_KEY:
                 return new Poison(tile);
-            case "sex_ch":
+            case ObjectAttributeGenerator.SEX_CHANGE_KEY:
                 return readSexChange(attributeValue, tile);
-            case "xentry":
+            case ObjectAttributeGenerator.NO_ENTRY_SIGN_KEY:
                 return readNoEntrySign(attributeValue, tile);
         }
         throw new RuntimeException(String.format("Name: %s, Value: %s is an invalid attribute", attributeName, attributeValue));

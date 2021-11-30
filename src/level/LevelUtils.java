@@ -2,8 +2,11 @@ package level;
 
 import io.XMLFileReader;
 import org.w3c.dom.Element;
+import tile.Direction;
+import tile.TileType;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * A utility file to help with general functions around finding levels from file
@@ -13,10 +16,12 @@ import java.io.File;
 public class LevelUtils {
 
     private static final String LEVELS_PATH = "levels";
+    private static final String INVALID_TILE_TYPE = "%s is an invalid tile type";
+    private static final String INVALID_DIRECTION_ERROR = "%s is an unknown direction";
 
     /**
      * A method to return an array of File objects of all the files in the level directory
-     * @return
+     * @return the array of files in the inventory
      */
     public static File[] getFilesInLevelDirectory() {
         File levelsDirectory = new File(LEVELS_PATH);
@@ -26,7 +31,14 @@ public class LevelUtils {
             throw new RuntimeException("The provided levels directory is empty");
         }
 
-        return filesInLevelDirectory;
+        ArrayList<File> nonDirectoryFiles = new ArrayList<>();
+        for (File file : filesInLevelDirectory) {
+            if (!file.isDirectory()) {
+                nonDirectoryFiles.add(file);
+            }
+        }
+
+        return nonDirectoryFiles.toArray(new File[0]);
     }
 
 
@@ -65,5 +77,44 @@ public class LevelUtils {
         Element idElement = fileReader.drilldownToElement("levelProperties", "id");
 
         return Integer.parseInt(idElement.getTextContent());
+    }
+
+
+    /**
+     * A method to convert tile types to a string
+     * @param tileType the tile type
+     * @return the converted string
+     */
+    public static String getTileTypeString(TileType tileType) {
+        switch (tileType) {
+            case GRASS:
+                return "g";
+            case TUNNEL:
+                return "t";
+            case PATH:
+                return "p";
+            default:
+                throw new IllegalArgumentException(String.format(INVALID_TILE_TYPE, tileType));
+        }
+    }
+
+    /**
+     * A method to get the string from a direction
+     * @param directionOfMovement the direction
+     * @return the string for this direction
+     */
+    public static String getStringFromDirection(Direction directionOfMovement) {
+        switch (directionOfMovement) {
+            case UP:
+                return "up";
+            case DOWN:
+                return "down";
+            case LEFT:
+                return "left";
+            case RIGHT:
+                return "right";
+            default:
+                throw new IllegalArgumentException(String.format(INVALID_DIRECTION_ERROR, directionOfMovement));
+        }
     }
 }
