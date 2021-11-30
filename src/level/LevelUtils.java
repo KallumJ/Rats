@@ -16,19 +16,38 @@ import java.util.ArrayList;
 public class LevelUtils {
 
     private static final String LEVELS_PATH = "levels";
+    public static final String SAVED_LEVELS_DIR_PATH = LEVELS_PATH + "/savedLevels/";
     private static final String INVALID_TILE_TYPE = "%s is an invalid tile type";
     private static final String INVALID_DIRECTION_ERROR = "%s is an unknown direction";
+    private static final String INVALID_DIRECTORY = "The provided directory is empty";
 
     /**
      * A method to return an array of File objects of all the files in the level directory
-     * @return the array of files in the inventory
+     * @return the array of files in the directory
      */
     public static File[] getFilesInLevelDirectory() {
-        File levelsDirectory = new File(LEVELS_PATH);
+        return getFilesInDirectory(LEVELS_PATH);
+    }
+
+    /**
+     * A method to return an array of File objects of all the files in the saved levels directory
+     * @return the array of files in the directory
+     */
+    public static File[] getSavedLevelsFiles() {
+        return getFilesInDirectory(SAVED_LEVELS_DIR_PATH);
+    }
+
+    /**
+     * A method to get the files in the provided directory
+     * @param path the path to check
+     * @return the list of files in the provided directory
+     */
+    private static File[] getFilesInDirectory(String path) {
+        File levelsDirectory = new File(path);
         File[] filesInLevelDirectory = levelsDirectory.listFiles();
 
         if (filesInLevelDirectory == null) {
-            throw new RuntimeException("The provided levels directory is empty");
+            throw new RuntimeException(INVALID_DIRECTORY);
         }
 
         ArrayList<File> nonDirectoryFiles = new ArrayList<>();
@@ -116,5 +135,17 @@ public class LevelUtils {
             default:
                 throw new IllegalArgumentException(String.format(INVALID_DIRECTION_ERROR, directionOfMovement));
         }
+    }
+
+    /**
+     * A method to get the player name associated with a saved level
+     * @param savedLevel the saved level
+     * @return the player name associated with this saved level
+     */
+    public static String getPlayerNameFromSavedLevel(File savedLevel) {
+        String[] filePath = savedLevel.getName().split("/");
+
+        String fileName = filePath[filePath.length - 1];
+        return fileName.substring(0, fileName.length() - 5);
     }
 }

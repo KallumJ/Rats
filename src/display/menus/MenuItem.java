@@ -15,6 +15,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import level.LevelData;
 import level.LevelDataFactory;
+import players.PlayerProfileManager;
 
 
 /**
@@ -72,7 +73,7 @@ public abstract class MenuItem extends StackPane {
 
     /**
      * A method to return the name of the MenuItem
-     * @return
+     * @return the name of the menu item
      */
     public String getName() {
         return name;
@@ -171,6 +172,9 @@ class LoadMenuItem extends MenuItem {
      */
     public LoadMenuItem() {
         super("LOAD");
+        setOnMousePressed(event -> {
+            GameMenu.stage.setScene(new Scene(new LoadMenu().buildMenu()));
+        });
     }
 }
 
@@ -193,6 +197,31 @@ class LevelMenuItem extends MenuItem {
 
             Board board = new Board(levelData);
 
+            board.startGame();
+            GameMenu.stage.setScene(new Scene(board.buildGUI()));
+        });
+    }
+}
+
+/**
+ * A class to model a menu item for saved levels in the level menu
+ *
+ * @author Kallum Jones 2005855
+ */
+class SavedLevelMenuItem extends MenuItem {
+
+    /**
+     * Constructs a SavedLevelMenuItem
+     *
+     * @param id the id of the level
+     */
+    public SavedLevelMenuItem(String id) {
+        super(id);
+
+        setOnMousePressed(event -> {
+            LevelData levelData = LevelDataFactory.constructSavedLevelData(PlayerProfileManager.getCurrentlyLoggedInPlayer(), id);
+
+            Board board = new Board(levelData);
             board.startGame();
             GameMenu.stage.setScene(new Scene(board.buildGUI()));
         });

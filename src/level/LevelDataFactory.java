@@ -6,6 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import players.scores.Player;
 import tile.*;
 
 import java.io.File;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
  * @author Kallum Jones 2005855
  */
 public class LevelDataFactory {
-    //TODO: handle inventory
 
     /**
      * A method to construct the LevelData object for a given level id
@@ -26,20 +26,8 @@ public class LevelDataFactory {
      * @return The complete LevelData object
      */
     public static LevelData constructLevelData(int id) {
-
         File selectedLevel = LevelUtils.getLevelFileById(id);
-        XMLFileReader xmlFileReader = new XMLFileReader(selectedLevel);
-
-        Element levelPropertiesElement = xmlFileReader.drilldownToElement("levelProperties");
-        Element tileSetElement = xmlFileReader.drilldownToElement("tileSet");
-
-        LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
-        TileSet tileSet = readTileSet(tileSetElement);
-        setAdjacentTiles(tileSet);
-        ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
-
-        return new LevelData(levelProperties, tileSet, objects);
-
+        return constructLevelDataFromFile(selectedLevel);
     }
 
     /**
@@ -168,4 +156,35 @@ public class LevelDataFactory {
         return Integer.parseInt(propertiesElement.getElementsByTagName(propertyName).item(0).getTextContent());
     }
 
+    /**
+     * A method to construct the saved level data for the provided player and level
+     * @param currentlyLoggedInPlayer the player
+     * @param id the level
+     * @return the complete LevelData object
+     */
+    public static LevelData constructSavedLevelData(Player currentlyLoggedInPlayer, String id) {
+        File file = new File(LevelUtils.SAVED_LEVELS_DIR_PATH + currentlyLoggedInPlayer.getPlayerName() + id + ".xml");
+        return constructLevelDataFromFile(file);
+    }
+
+    /**
+     * A method to construct the LevelData object for a given level file
+     *
+     * @param file The level file that needs constructing
+     * @return The complete LevelData object
+     */
+    private static LevelData constructLevelDataFromFile(File file) {
+        XMLFileReader xmlFileReader = new XMLFileReader(file);
+
+        Element levelPropertiesElement = xmlFileReader.drilldownToElement("levelProperties");
+        Element tileSetElement = xmlFileReader.drilldownToElement("tileSet");
+
+        LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
+        TileSet tileSet = readTileSet(tileSetElement);
+        setAdjacentTiles(tileSet);
+        ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
+
+        return new LevelData(levelProperties, tileSet, objects);
+
+    }
 }
