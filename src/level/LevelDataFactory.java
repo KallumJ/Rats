@@ -154,11 +154,8 @@ public class LevelDataFactory {
         int adultRatSpeed = getPropertyInt(levelProperties, "adultRatSpeed");
         int babyRatSpeed = getPropertyInt(levelProperties, "babyRatSpeed");
         int deathRatSpeed = getPropertyInt(levelProperties, "deathRatSpeed");
-        int timeToDevelop = getPropertyInt(levelProperties, "timeToDevelop");
-        int timeToBirth = getPropertyInt(levelProperties, "timeToBirth");
 
-        return new LevelProperties(id, height, width, populationToLose, expectedTime, itemInterval,
-                ratMinBabies, ratMaxBabies, adultRatSpeed, babyRatSpeed, deathRatSpeed, timeToDevelop, timeToBirth);
+        return new LevelProperties(id, height, width, populationToLose, expectedTime, itemInterval, ratMinBabies, ratMaxBabies, adultRatSpeed, babyRatSpeed, deathRatSpeed);
     }
 
     /**

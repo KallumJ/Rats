@@ -7,25 +7,23 @@
         <expectedTime>300</expectedTime>
         <id>1</id>
         <itemInterval>4</itemInterval>
-        <ratMinBabies>1</ratMinBabies>
-        <ratMaxBabies>1</ratMaxBabies>
+        <ratMinBabies>2</ratMinBabies>
+        <ratMaxBabies>5</ratMaxBabies>
         <adultRatSpeed>1000</adultRatSpeed>
         <babyRatSpeed>750</babyRatSpeed>
         <deathRatSpeed>600</deathRatSpeed>
-        <timeToDevelop>5</timeToDevelop>
-        <timeToBirth>5</timeToBirth>
     </levelProperties>
 
     <tileSet>
         <tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
         <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
         <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile rat="true false false m down">p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile rat="true false false m 5 1 up">p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
         <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile rat="true false false f up">p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile >p</tile><tile poison= "">p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile d_rat="up 1 1">p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile >p</tile><tile poison= "">p</tile><tile>g</tile></tileRow>
         <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile xentry="0 10">p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile rat="true false false f up">p</tile><tile>p</tile><tile>g</tile><tile rat="true false false m up">p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile sex_ch="f">p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile rat="true false false f 5 1 up">p</tile><tile>p</tile><tile>g</tile><tile rat="true false false m 5 2 up">p</tile><tile>g</tile></tileRow>
         <tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
     </tileSet>
 </level>

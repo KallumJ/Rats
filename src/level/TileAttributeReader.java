@@ -125,8 +125,8 @@ public class TileAttributeReader {
             throw new IllegalArgumentException(gender + " is not a valid gender for a rat");
         }
 
-        int timeToBirth = levelProperties.getTimeToBirth();
-        int timeToDevelop = levelProperties.getTimeToDevelop();
+        int timeToBirth = scanner.nextInt();
+        int timeToDevelop = scanner.nextInt();
         Direction direction = getDirectionFromString(scanner.next());
 
         int speed = adult ? levelProperties.getAdultRatSpeed() : levelProperties.getBabyRatSpeed();

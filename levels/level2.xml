@@ -12,8 +12,6 @@
         <adultRatSpeed>1000</adultRatSpeed>
         <babyRatSpeed>750</babyRatSpeed>
         <deathRatSpeed>600</deathRatSpeed>
-        <timeToDevelop>5</timeToDevelop>
-        <timeToBirth>5</timeToBirth>
     </levelProperties>
 
     <tileSet>
