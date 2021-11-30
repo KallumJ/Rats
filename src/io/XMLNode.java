@@ -114,6 +114,10 @@ public class XMLNode {
             }
         }
 
-        throw new IllegalArgumentException("There is no child for this XMLNode with name of" + elementName);
+        if (foundChildren.isEmpty()) {
+            throw new IllegalArgumentException("There is no child for this XMLNode with name of " + elementName);
+        }
+
+        return foundChildren;
     }
 }

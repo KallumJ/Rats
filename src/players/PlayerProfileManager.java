@@ -16,7 +16,7 @@ public class PlayerProfileManager {
     private static final String PLAYERS_FILE = "players/players.xml";
     private static final XMLNode playersRoot;
     private static Player currentlyLoggedIn;
-    private static final List<Player> allPlayers;
+    public static final List<Player> allPlayers;
     public static final String HIGH_SCORE_SEPARATOR = ", ";
 
     // Load the players XMLNode
@@ -36,7 +36,7 @@ public class PlayerProfileManager {
 
                 // If there are high scores, add them
                 if (playerNode.getChildren().size() > 2) {
-                    List<XMLNode> highScores = playerNode.getChildrenByElementName("highScores");
+                    List<XMLNode> highScores = playerNode.getChildrenByElementName("highScore");
 
                     for (XMLNode highScore : highScores) {
                         String highScoreValue = highScore.getNodeValue();
@@ -108,6 +108,14 @@ public class PlayerProfileManager {
      */
     public static Player getCurrentlyLoggedInPlayer() {
         return currentlyLoggedIn;
+    }
+
+    /**
+     * A method to return all the players currently logged by the system
+     * @return a List of all Players
+     */
+    public static List<Player> getAllPlayers() {
+        return allPlayers;
     }
 
 }

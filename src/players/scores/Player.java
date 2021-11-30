@@ -103,4 +103,12 @@ public class Player {
 	public Map<Integer, Integer> getHighScores() {
 		return highScores;
 	}
+
+	public static void main(String[] args) {
+		for (Player player : PlayerProfileManager.getAllPlayers()) {
+			Map<Integer, Integer> highScore = player.getHighScores();
+			System.out.println(highScore);
+
+		}
+	}
 }

@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <players>
-
+    <player>
+        <name>Test</name>
+        <maxLevel>99</maxLevel>
+        <highScore>1, 100</highScore>
+        <highScore>2, 500</highScore>
+        <highScore>3, 1000</highScore>
+    </player>
 </players>
