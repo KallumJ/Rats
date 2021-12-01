@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * A class to manage player profiles
+ *
+ * @author Kallum Jones 2005855
  */
 public class PlayerProfileManager {
     private static final String PLAYERS_FILE = "players/players.xml";
@@ -78,6 +80,9 @@ public class PlayerProfileManager {
         initAllPlayersList();
     }
 
+    /**
+     * A method to initalise the all players list
+     */
     private static void initAllPlayersList() {
         XMLFileReader xmlfileReader = new XMLFileReader(new File(PLAYERS_FILE));
         playersRoot = xmlfileReader.getAsXMLNode();
