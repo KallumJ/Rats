@@ -1,8 +1,8 @@
 <level>
 
     <levelProperties>
-        <levelHeight>11</levelHeight>
-        <levelWidth>14</levelWidth>
+        <levelHeight>12</levelHeight>
+        <levelWidth>16</levelWidth>
         <populationToLose>10</populationToLose>
         <expectedTime>300</expectedTime>
         <id>3</id>
