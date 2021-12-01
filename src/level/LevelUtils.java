@@ -2,6 +2,7 @@ package level;
 
 import io.XMLFileReader;
 import org.w3c.dom.Element;
+import players.scores.Player;
 import tile.Direction;
 import tile.TileType;
 
@@ -20,6 +21,7 @@ public class LevelUtils {
     private static final String INVALID_TILE_TYPE = "%s is an invalid tile type";
     private static final String INVALID_DIRECTION_ERROR = "%s is an unknown direction";
     private static final String INVALID_DIRECTORY = "The provided directory is empty";
+    private static final String SAVED_LEVELS_FILE_PATH = SAVED_LEVELS_DIR_PATH + "/%s-%d.xml";
 
     /**
      * A method to return an array of File objects of all the files in the level directory
@@ -144,8 +146,21 @@ public class LevelUtils {
      */
     public static String getPlayerNameFromSavedLevel(File savedLevel) {
         String[] filePath = savedLevel.getName().split("/");
-
         String fileName = filePath[filePath.length - 1];
-        return fileName.substring(0, fileName.length() - 5);
+
+        String fileNameNoExtension = fileName.replace(".xml", "");
+        String[] fileNameSplit = fileNameNoExtension.split("-");
+
+        return fileNameSplit[0];
+    }
+
+    /**
+     * Added a method to construct the file name for a saved level for a given player and level id
+     * @param player the player
+     * @param levelId the level id
+     * @return the file name for a saved level for a given player and level id
+     */
+    public static String constructSavedLevelFileName(Player player, int levelId) {
+        return String.format(SAVED_LEVELS_FILE_PATH, player.getPlayerName(), levelId);
     }
 }

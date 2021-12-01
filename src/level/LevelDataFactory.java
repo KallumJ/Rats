@@ -163,7 +163,9 @@ public class LevelDataFactory {
      * @return the complete LevelData object
      */
     public static LevelData constructSavedLevelData(Player currentlyLoggedInPlayer, String id) {
-        File file = new File(LevelUtils.SAVED_LEVELS_DIR_PATH + currentlyLoggedInPlayer.getPlayerName() + id + ".xml");
+        File file = new File(
+                LevelUtils.constructSavedLevelFileName(currentlyLoggedInPlayer, Integer.parseInt(id))
+        );
         return constructLevelDataFromFile(file);
     }
 

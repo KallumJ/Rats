@@ -16,7 +16,7 @@ import java.util.*;
  * @author Kallum Jones 2005855
  */
 public class LevelSaveHandler {
-    private static final String SAVED_LEVELS_FILE_PATH = LevelUtils.SAVED_LEVELS_DIR_PATH + "/%s%d.xml";
+
 
     /**
      * A method to save the provided level data for the provided player
@@ -25,10 +25,9 @@ public class LevelSaveHandler {
      */
     public static void saveLevel(LevelData levelData, Player player) {
 
-        // Construct a file name, of playerName + levelId
-        String playerName = player.getPlayerName();
+        // Construct a file name
         int levelId = levelData.getLevelProperties().getLevelId();
-        String path = String.format(SAVED_LEVELS_FILE_PATH, playerName, levelId);
+        String path = LevelUtils.constructSavedLevelFileName(player, levelId);
 
         // Create a file writer for the generated file path
         File levelFile = new File(path);
