@@ -5,7 +5,7 @@
         <levelWidth>14</levelWidth>
         <populationToLose>10</populationToLose>
         <expectedTime>300</expectedTime>
-        <id>1</id>
+        <id>3</id>
         <itemInterval>4</itemInterval>
         <ratMinBabies>2</ratMinBabies>
         <ratMaxBabies>5</ratMaxBabies>
