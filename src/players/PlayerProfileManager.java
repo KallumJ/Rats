@@ -14,39 +14,14 @@ import java.util.List;
  */
 public class PlayerProfileManager {
     private static final String PLAYERS_FILE = "players/players.xml";
-    private static final XMLNode playersRoot;
+    private static XMLNode playersRoot;
     private static Player currentlyLoggedIn;
-    public static final List<Player> allPlayers;
+    public static List<Player> allPlayers;
     public static final String HIGH_SCORE_SEPARATOR = ", ";
 
-    // Load the players XMLNode
+    // Load the players list
     static {
-        XMLFileReader xmlfileReader = new XMLFileReader(new File(PLAYERS_FILE));
-        playersRoot = xmlfileReader.getAsXMLNode();
-
-        allPlayers = new ArrayList<>();
-        if (playersRoot.hasChildren()) {
-            for (XMLNode playerNode : playersRoot.getChildren()) {
-
-                String name = playerNode.getChildByElementName("name").getNodeValue();
-                int maxLevel = Integer.parseInt(playerNode.getChildByElementName("maxLevel").getNodeValue());
-
-                Player player = new Player(name, maxLevel);
-                allPlayers.add(player);
-
-                // If there are high scores, add them
-                if (playerNode.getChildren().size() > 2) {
-                    List<XMLNode> highScores = playerNode.getChildrenByElementName("highScore");
-
-                    for (XMLNode highScore : highScores) {
-                        String highScoreValue = highScore.getNodeValue();
-                        String[] highScoreValueSplit = highScoreValue.split(HIGH_SCORE_SEPARATOR);
-
-                        player.getHighScores().put(Integer.parseInt(highScoreValueSplit[0]), Integer.parseInt(highScoreValueSplit[1]));
-                    }
-                }
-            }
-        }
+        initAllPlayersList();
     }
 
     /**
@@ -100,6 +75,36 @@ public class PlayerProfileManager {
         }
 
         xmlFileWriter.saveAndClose();
+        initAllPlayersList();
+    }
+
+    private static void initAllPlayersList() {
+        XMLFileReader xmlfileReader = new XMLFileReader(new File(PLAYERS_FILE));
+        playersRoot = xmlfileReader.getAsXMLNode();
+
+        allPlayers = new ArrayList<>();
+        if (playersRoot.hasChildren()) {
+            for (XMLNode playerNode : playersRoot.getChildren()) {
+
+                String name = playerNode.getChildByElementName("name").getNodeValue();
+                int maxLevel = Integer.parseInt(playerNode.getChildByElementName("maxLevel").getNodeValue());
+
+                Player player = new Player(name, maxLevel);
+                allPlayers.add(player);
+
+                // If there are high scores, add them
+                if (playerNode.getChildren().size() > 2) {
+                    List<XMLNode> highScores = playerNode.getChildrenByElementName("highScore");
+
+                    for (XMLNode highScore : highScores) {
+                        String highScoreValue = highScore.getNodeValue();
+                        String[] highScoreValueSplit = highScoreValue.split(HIGH_SCORE_SEPARATOR);
+
+                        player.getHighScores().put(Integer.parseInt(highScoreValueSplit[0]), Integer.parseInt(highScoreValueSplit[1]));
+                    }
+                }
+            }
+        }
     }
 
     /**
