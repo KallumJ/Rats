@@ -1,0 +1,31 @@
+<level>
+
+    <levelProperties>
+        <levelHeight>11</levelHeight>
+        <levelWidth>14</levelWidth>
+        <populationToLose>10</populationToLose>
+        <expectedTime>300</expectedTime>
+        <id>1</id>
+        <itemInterval>4</itemInterval>
+        <ratMinBabies>2</ratMinBabies>
+        <ratMaxBabies>5</ratMaxBabies>
+        <adultRatSpeed>1000</adultRatSpeed>
+        <babyRatSpeed>750</babyRatSpeed>
+        <deathRatSpeed>600</deathRatSpeed>
+    </levelProperties>
+
+	<tileSet>
+		<tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>t</tile><tile>t</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>t</tile><tile>t</tile><tile>t</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
+    </tileSet>
+</level>
