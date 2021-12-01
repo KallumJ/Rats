@@ -1,8 +1,8 @@
 <level>
 
     <levelProperties>
-        <levelHeight>11</levelHeight>
-        <levelWidth>14</levelWidth>
+        <levelHeight>12</levelHeight>
+        <levelWidth>16</levelWidth>
         <populationToLose>10</populationToLose>
         <expectedTime>300</expectedTime>
         <id>1</id>
@@ -16,16 +16,16 @@
 
 	<tileSet>
 		<tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
-		<tileRow><tile>g</tile><tile>p</tile><tile>t</tile><tile>t</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
-		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile rat="true false false m 5 2 up">p</tile><tile>t</tile><tile>t</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile rat="true false false f 5 2 up">p</tile><tile>g</tile><tile>g</tile></tileRow>
 		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
 		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>t</tile><tile>t</tile><tile>t</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
 		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
 		<tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
-		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile rat="true false false f 5 2 up">p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
 		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
 		<tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile></tileRow>
-		<tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
+		<tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>t</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile rat="true false false m 5 2 up">p</tile><tile>g</tile></tileRow>
 		<tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
     </tileSet>
 </level>
