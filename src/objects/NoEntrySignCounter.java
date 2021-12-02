@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package objects;
 
 import javafx.animation.KeyFrame;
@@ -13,22 +7,32 @@ import objects.rats.Rat;
 import tile.Tile;
 
 /**
+ * This class represent the damage counter of a NoEntrySign which will update
+ * the damage to a NoEntrySign when a rat tried to walk through it.
  *
- * @author fahds
+ * @author Fahd
  */
-public class NoEntrySignEffect extends GameObject{
-    
-     private boolean recentlyActivated;
-     private NoEntrySign x;
+public class NoEntrySignCounter extends GameObject {
+
+    private boolean recentlyActivated;
+    private NoEntrySign sourceSign;
     private static final int DELAY = 1;
 
-    public NoEntrySignEffect(Tile standingOn, NoEntrySign x) {
+    /**
+     * Creates NoEntrySignCounter next to the a NoEntrySign and count damage
+     * done.
+     *
+     * @param standingOn The tile the no entry sign is on.
+     * @param sourceSign The original NoEntrySign which it damage will be
+     * updated.
+     */
+    public NoEntrySignCounter(Tile standingOn, NoEntrySign sourceSign) {
         super(standingOn);
-        
-        
-        this.x = x;
+
+        this.sourceSign = sourceSign;
     }
-        /**
+
+    /**
      * Blocks the rats way and make them change direction.
      *
      * @param rat The rat which it direction will be changed in case of contact.
@@ -43,11 +47,8 @@ public class NoEntrySignEffect extends GameObject{
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(DELAY), event -> recentlyActivated = false));
             timeline.play();
 
-            x.doDamage();
-            
-           
+            sourceSign.doDamage();
+
         }
     }
-    }
-    
-
+}
