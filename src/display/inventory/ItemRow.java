@@ -10,6 +10,7 @@ import objects.GameObjectType;
 import objects.ObjectUtils;
 import sfx.SFXManager;
 import tile.Tile;
+import tile.TileType;
 
 /**
  * A class to model a row of items in the inventory
@@ -122,7 +123,7 @@ public class ItemRow {
 
         // If this tile is invalid, or the user placed the item where there is no tile
         // remove this object, and then add a new one, as the item was not successfully used
-        if (tile == null || !(tile.isTraversable())) {
+        if (tile == null || !(tile.getTileType().equals(TileType.PATH))) {
             decrementCount(image);
             incrementObjectCount();
         } else { // If player has dropped the item on a valid tile, add item to board, and remove from row
