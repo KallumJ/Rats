@@ -67,6 +67,11 @@ public class PeacefulRat extends Rat {
         decideIcon(adult, pregnant, gender);
 
     }
+    
+    public void showIcon () {
+        
+        decideIcon(adult, pregnant, gender);
+    }
 
     private void decideIcon(boolean adult, boolean pregnant, String gender) {
 

@@ -72,5 +72,10 @@ public class DeathRat extends Rat {
 
         return this.numberOfKills;
     }
+    
+    public void showIcon () {
+        
+        super.setIcon(deathRatImage);
+    }
 
 }

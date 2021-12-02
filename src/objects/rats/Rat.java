@@ -8,6 +8,7 @@ import javafx.util.Duration;
 import objects.GameObject;
 import tile.Direction;
 import tile.Tile;
+import tile.TileType;
 
 /**
  * This class is the 
@@ -132,7 +133,22 @@ public class Rat extends GameObject {
                 this.directionOfMovement = turnAround(directionOfMovement);
             }
         }
-
+        
+        if (super.getStandingOn().getTileType().equals(TileType.TUNNEL)){
+            
+            super.setIcon(null);
+        } else {
+            if (this instanceof PeacefulRat) {
+                
+                PeacefulRat rat = (PeacefulRat) this;
+                rat.showIcon();
+            } else if (this instanceof DeathRat) {
+                
+                DeathRat rat = (DeathRat) this;
+                rat.showIcon();
+            }
+        }
+        
         // Update the display
         GameObject.getBoard().updateBoardDisplay();
     }

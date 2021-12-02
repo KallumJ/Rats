@@ -59,7 +59,7 @@ public class NoEntrySign extends GameObject {
         noEntrySignFiveImage = new Image("file:resources/noEntrySign5.png");
 
         super.getStandingOn().setTraversable(false);
-        
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> setUpNoEntrySign()));
         timeline.play();
 
@@ -105,6 +105,7 @@ public class NoEntrySign extends GameObject {
         this.damageDone = damageDone + 1;
 
         if (damageDone >= durability) {
+
             super.getStandingOn().setTraversable(true);
             GameObject.getBoard().removeObject(this);
 
@@ -128,6 +129,7 @@ public class NoEntrySign extends GameObject {
 
     /**
      * A method to get the durability remaining on the sign
+     *
      * @return the durability remaining on the sign, in hits
      */
     public int getDurability() {

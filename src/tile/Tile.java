@@ -124,6 +124,6 @@ public class Tile {
     }
 
     public void setTraversable(boolean traversable) {
-        isTraversable = traversable;
+        this.isTraversable = traversable;
     }
 }
