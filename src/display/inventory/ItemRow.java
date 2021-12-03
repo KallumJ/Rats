@@ -1,6 +1,5 @@
 package display.inventory;
 
-import display.Board;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -76,7 +75,7 @@ public class ItemRow {
             // Add the image to the row
             hBox.getChildren().add(imageOfItem);
         } else { // If this row is at its max items, try adding a different item
-            inventory.addItem();
+            inventory.addRandomItem();
         }
     }
 

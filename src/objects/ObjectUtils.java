@@ -13,6 +13,8 @@ import tile.Tile;
 public class ObjectUtils {
     private static final String NO_ASSIGNED_IMAGE = "There is no image assigned to %s";
     private static final String NO_CONSTRUCTOR_ASSIGNED = "There is no object constructor assigned to %s";
+    private static final String NO_STRING_ASSIGNED = "There is no string assigned for object type %s";
+    private static final String NO_TYPE_ASSIGNED = "There is no type assigned for string %s";
 
     /**
      * A method to get the image URL for the provided object type
@@ -89,14 +91,64 @@ public class ObjectUtils {
         }
     }
 
-    /*public static String getStringForItem(GameObjectType gameObjectType) {
+
+    /**
+     * A method to get the string for a given item
+     * @param gameObjectType the item type
+     * @return the string
+     */
+    public static String getStringForItem(GameObjectType gameObjectType) {
         switch (gameObjectType) {
             case BOMB:
                 return ObjectAttributeGenerator.BOMB_KEY;
             case DEATH_RAT:
                 return ObjectAttributeGenerator.DEATH_RAT_KEY;
-                case
+            case GAS:
+                return ObjectAttributeGenerator.GAS_KEY;
+            case POISON:
+                return ObjectAttributeGenerator.POISON_KEY;
+            case MALE_SEX_CHANGER:
+                return "msex";
+            case STERILISATION:
+                return ObjectAttributeGenerator.STERILISATION_KEY;
+            case NO_ENTRY_SIGN:
+                return ObjectAttributeGenerator.NO_ENTRY_SIGN_KEY;
+            case FEMALE_SEX_CHANGER:
+                return "fsex";
+            default:
+                throw new IllegalArgumentException(
+                        String.format(NO_STRING_ASSIGNED, gameObjectType)
+                );
         }
-    }*/
+    }
 
+    /**
+     * A method to get the item type for a given string
+     * @param itemString the string
+     * @return the item type
+     */
+    public static GameObjectType getTypeFromString(String itemString) {
+        switch (itemString) {
+            case ObjectAttributeGenerator.BOMB_KEY:
+                return GameObjectType.BOMB;
+            case ObjectAttributeGenerator.DEATH_RAT_KEY:
+                return GameObjectType.DEATH_RAT;
+            case ObjectAttributeGenerator.GAS_KEY:
+                return GameObjectType.GAS;
+            case "msex":
+                return GameObjectType.MALE_SEX_CHANGER;
+            case ObjectAttributeGenerator.STERILISATION_KEY:
+                return GameObjectType.STERILISATION;
+            case ObjectAttributeGenerator.NO_ENTRY_SIGN_KEY:
+                return GameObjectType.NO_ENTRY_SIGN;
+            case "fsex":
+                return GameObjectType.FEMALE_SEX_CHANGER;
+            case ObjectAttributeGenerator.POISON_KEY:
+                return GameObjectType.POISON;
+            default:
+                throw new IllegalArgumentException(
+                        String.format(NO_TYPE_ASSIGNED, itemString)
+                );
+        }
+    }
 }

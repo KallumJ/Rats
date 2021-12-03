@@ -1,6 +1,7 @@
 package level;
 
 import objects.GameObject;
+import objects.GameObjectType;
 import tile.TileSet;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class LevelData {
     private final LevelProperties levelProperties;
     private final TileSet tileSet;
     private final List<GameObject> objects;
+    private List<GameObjectType> inventory;
 
     /**
      * Constructs a LevelData object with the provided data
@@ -50,4 +52,30 @@ public class LevelData {
     public List<GameObject> getObjects() {
         return objects;
     }
+
+    /**
+     * A method to get the items in the inventory for this level
+     * @return the items in the inventory for this level
+     */
+    public List<GameObjectType> getInventory() {
+        return inventory;
+    }
+
+    /**
+     * A method to set the items in the inventory for this level
+     * @param inventory the items in the inventory for this level
+     */
+    public void setInventory(List<GameObjectType> inventory) {
+        this.inventory = inventory;
+    }
+
+    /**
+     * A method to determine whether this level has an inventory assigned
+     * @return true if yes, false otherwise
+     */
+    public boolean hasInventory() {
+        return inventory != null;
+    }
+
+
 }

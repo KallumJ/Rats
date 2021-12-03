@@ -3,6 +3,8 @@ package level;
 import io.XMLElementNames;
 import io.XMLFileReader;
 import objects.GameObject;
+import objects.GameObjectType;
+import objects.ObjectUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -15,6 +17,7 @@ import tile.TileType;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class to load LevelData objects from disk
@@ -199,12 +202,46 @@ public class LevelDataFactory {
 
         Element levelPropertiesElement = xmlFileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES);
         Element tileSetElement = xmlFileReader.drilldownToElement(XMLElementNames.TILE_SET);
+        Element inventoryElement = xmlFileReader.drilldownToElement(XMLElementNames.INVENTORY);
 
         LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
         TileSet tileSet = readTileSet(tileSetElement);
+
+
         setAdjacentTiles(tileSet);
         ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
 
-        return new LevelData(levelProperties, tileSet, objects);
+        LevelData levelData = new LevelData(levelProperties, tileSet, objects);
+
+        // If this level has an inventory, then add it to the level data
+        if (inventoryElement != null) {
+            List<GameObjectType> inventory = readInventory(inventoryElement);
+            levelData.setInventory(inventory);
+        }
+
+        return levelData;
+    }
+
+    /**
+     * A method to get the items in the inventory for this level
+     * @param inventoryElement the inventory element read from file
+     * @return the list of game object types represented in the file
+     */
+    private static List<GameObjectType> readInventory(Element inventoryElement) {
+        NodeList itemElements = inventoryElement.getElementsByTagName(XMLElementNames.ITEM.toString());
+
+        ArrayList<GameObjectType> itemsInInventory = new ArrayList<>();
+
+        for (int i = 0; i < itemElements.getLength(); i++) {
+            Node item = itemElements.item(i);
+
+            String itemString = item.getTextContent();
+
+            GameObjectType itemObj = ObjectUtils.getTypeFromString(itemString);
+
+            itemsInInventory.add(itemObj);
+        }
+
+        return itemsInInventory;
     }
 }

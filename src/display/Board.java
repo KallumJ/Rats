@@ -45,6 +45,7 @@ public class Board {
     private final Label timerLabel;
     private final Canvas canvas;
     private int score;
+    private final Inventory inventory;
 
     public Board(LevelData levelData) {
         this.levelData = levelData;
@@ -74,6 +75,7 @@ public class Board {
         gameTimerTimeline.setCycleCount(Animation.INDEFINITE);
         gameTimerTimeline.play();
 
+        this.inventory = new Inventory(levelData);
     }
 
     private void updateTimerLabel() {
@@ -201,7 +203,6 @@ public class Board {
         root.setLeft(canvas);
 
         // Add inventory
-        Inventory inventory = new Inventory(levelData);
         root.setCenter(inventory.buildInventoryGUI());
 
         // Add save button
@@ -221,6 +222,7 @@ public class Board {
         saveButton.setMinWidth(GameMenu.stage.getWidth());
         saveButton.setAlignment(Pos.CENTER);
         saveButton.setOnMousePressed(event -> {
+            levelData.setInventory(inventory.getItemsInInventory());
             LevelSaveHandler.saveLevel(levelData,
                     PlayerProfileManager.getCurrentlyLoggedInPlayer());
             GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
