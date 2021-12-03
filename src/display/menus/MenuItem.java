@@ -28,24 +28,23 @@ public abstract class MenuItem extends StackPane {
 
     /**
      * Constructs a MenuItem with the provided name
+     *
      * @param name the name of the menu item
      */
     public MenuItem(String name) {
         this.name = name;
 
-        LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, new Stop[] {
-                new Stop(0, Color.DARKVIOLET),
+        LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, new Stop(0, Color.DARKVIOLET),
                 new Stop(0.1, Color.BLACK),
                 new Stop(0.9, Color.BLACK),
-                new Stop(1, Color.DARKVIOLET)
-        });
+                new Stop(1, Color.DARKVIOLET));
 
         Rectangle bg = new Rectangle(200, 30);
         bg.setOpacity(0.4);
 
         Text text = new Text(name);
         text.setFill(Color.DARKGREY);
-        text.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 22));
+        text.setFont(Font.font(GameMenu.DEFAULT_FONT, FontWeight.SEMI_BOLD, 22));
 
         setAlignment(Pos.CENTER);
         getChildren().addAll(bg, text);
@@ -73,6 +72,7 @@ public abstract class MenuItem extends StackPane {
 
     /**
      * A method to return the name of the MenuItem
+     *
      * @return the name of the menu item
      */
     public String getName() {
@@ -186,6 +186,7 @@ class LoadMenuItem extends MenuItem {
 class LevelMenuItem extends MenuItem {
     /**
      * Constructs a levelMenuItem
+     *
      * @param id the id of the level
      */
     public LevelMenuItem(String id) {
