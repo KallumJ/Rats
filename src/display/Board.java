@@ -1,35 +1,35 @@
 package display;
 
 import display.inventory.Inventory;
-
-import java.util.List;
-
 import display.menus.GameMenu;
 import display.menus.MainMenu;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import level.LevelData;
 import level.LevelProperties;
 import level.LevelSaveHandler;
-import objects.*;
+import objects.GameObject;
+import objects.ObjectInteractionChecker;
 import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
 import tile.Tile;
 
+import java.util.List;
+
 /**
- *
  * @author fahds
  */
 public class Board {
@@ -38,10 +38,12 @@ public class Board {
     private static final int INTERACTION_CHECK_INTERVAL = 250; // In ms
     private static final String SAVED_BUTTON_LABEL = "Save and exit";
     private static final int CONTROLS_MARGIN = 5; // in pixels
+    private static final String TIME_ELAPSED_TEXT = "Time elapsed: %d. Expected time: %d";
+    private static final int TIMER_LABEL_PADDING = 5; // in pixels
 
-    private LevelData levelData;
-    private Canvas canvas;
-    private Timeline tickTimeline;
+    private final LevelData levelData;
+    private final Label timerLabel;
+    private final Canvas canvas;
     private int score;
 
     public Board(LevelData levelData) {
@@ -53,11 +55,36 @@ public class Board {
 
         this.canvas = new Canvas(width, height);
 
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(INTERACTION_CHECK_INTERVAL), event -> interactionCheck()));
+        Timeline interactionCheckTimeline = new Timeline(
+                new KeyFrame(Duration.millis(INTERACTION_CHECK_INTERVAL),
+                        event -> interactionCheck())
+        );
 
-        // Loop the timeline forever
-        tickTimeline.setCycleCount(Animation.INDEFINITE);
-        tickTimeline.play();
+        // Loop the interaction check forever
+        interactionCheckTimeline.setCycleCount(Animation.INDEFINITE);
+        interactionCheckTimeline.play();
+
+        int timeElapsed = levelData.getLevelProperties().getTimeElapsed();
+        int expectedTime = levelData.getLevelProperties().getExpectedTime();
+        this.timerLabel = new Label(String.format(TIME_ELAPSED_TEXT, timeElapsed, expectedTime));
+        Timeline gameTimerTimeline = new Timeline(
+                new KeyFrame(Duration.seconds(1),
+                        event -> updateTimerLabel())
+        );
+        gameTimerTimeline.setCycleCount(Animation.INDEFINITE);
+        gameTimerTimeline.play();
+
+    }
+
+    private void updateTimerLabel() {
+        int expectedTime = levelData.getLevelProperties().getExpectedTime();
+
+        int elapsedTime = levelData.getLevelProperties().getTimeElapsed();
+        elapsedTime++;
+        levelData.getLevelProperties().setTimeElapsed(elapsedTime);
+        timerLabel.setText(
+                String.format(TIME_ELAPSED_TEXT, elapsedTime, expectedTime)
+        );
     }
 
     public void interactionCheck() {
@@ -164,32 +191,64 @@ public class Board {
     }
 
     public int getScore() {
-
         return this.score;
     }
 
     public Pane buildGUI() {
         BorderPane root = new BorderPane();
 
+        // Place game board on screen
         root.setLeft(canvas);
 
+        // Add inventory
         Inventory inventory = new Inventory(levelData);
         root.setCenter(inventory.buildInventoryGUI());
 
+        // Add save button
         HBox controlsContainer = new HBox();
-        controlsContainer.setPadding(new Insets(CONTROLS_MARGIN, CONTROLS_MARGIN, CONTROLS_MARGIN, CONTROLS_MARGIN));
+        controlsContainer.setPadding(new Insets(CONTROLS_MARGIN));
+        controlsContainer.setBackground(
+                new Background
+                        (new BackgroundFill(
+                                Color.LIGHTGRAY,
+                                CornerRadii.EMPTY,
+                                Insets.EMPTY
+                        )));
+        controlsContainer.setAlignment(Pos.CENTER);
 
         Button saveButton = new Button(SAVED_BUTTON_LABEL);
 
+        saveButton.setMinWidth(GameMenu.stage.getWidth());
+        saveButton.setAlignment(Pos.CENTER);
         saveButton.setOnMousePressed(event -> {
-            LevelSaveHandler.saveLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
+            LevelSaveHandler.saveLevel(levelData,
+                    PlayerProfileManager.getCurrentlyLoggedInPlayer());
             GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
         });
 
         controlsContainer.getChildren().add(saveButton);
-
         root.setBottom(controlsContainer);
-        
+
+        // Add time label
+        HBox labelContainer = new HBox();
+        labelContainer.setBackground(
+                new Background
+                        (new BackgroundFill(
+                                Color.LIGHTGRAY,
+                                CornerRadii.EMPTY,
+                                Insets.EMPTY
+                        )));
+
+        timerLabel.setMinWidth(GameMenu.stage.getWidth());
+        timerLabel.setAlignment(Pos.CENTER);
+        timerLabel.setFont(
+                Font.font(GameMenu.DEFAULT_FONT, 18)
+        );
+        timerLabel.setPadding(new Insets(TIMER_LABEL_PADDING));
+
+        labelContainer.getChildren().add(timerLabel);
+        root.setTop(labelContainer);
+
         //root.setRight(callMethod);
 
         return root;

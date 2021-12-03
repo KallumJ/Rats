@@ -153,10 +153,11 @@ public class LevelDataFactory {
         int adultRatSpeed = getPropertyInt(levelProperties, XMLElementNames.ADULT_RAT_SPEED);
         int babyRatSpeed = getPropertyInt(levelProperties, XMLElementNames.BABY_RAT_SPEED);
         int deathRatSpeed = getPropertyInt(levelProperties, XMLElementNames.DEATH_RAT_SPEED);
+        int timeElapsed = getPropertyInt(levelProperties, XMLElementNames.TIME_ELAPSED);
 
         return new LevelProperties(
                 id, height, width, populationToLose, expectedTime, itemInterval, ratMinBabies,
-                ratMaxBabies, adultRatSpeed, babyRatSpeed, deathRatSpeed
+                ratMaxBabies, adultRatSpeed, babyRatSpeed, deathRatSpeed, timeElapsed
         );
     }
 

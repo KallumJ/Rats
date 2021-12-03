@@ -19,6 +19,7 @@ public class MainMenu extends GameMenu {
 
     /**
      * A method to create a main menu with all the main menu items we need on it
+     *
      * @return The node containing all the main menu items
      */
     public Parent buildMenu() {
@@ -37,7 +38,7 @@ public class MainMenu extends GameMenu {
         // Add Motd and user name labels
         Label motdLabel = new Label(MssgOfTheDay.getMotD());
         motdLabel.setFont(
-                Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 18)
+                Font.font(DEFAULT_FONT, FontWeight.SEMI_BOLD, 18)
         );
         motdLabel.setTextFill(Color.WHITE);
 
@@ -49,7 +50,7 @@ public class MainMenu extends GameMenu {
                 String.format(NAME_LABEL, playerName)
         );
         nameLabel.setFont(
-                Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 18)
+                Font.font(DEFAULT_FONT, FontWeight.SEMI_BOLD, 18)
         );
         nameLabel.setTextFill(Color.WHITE);
 

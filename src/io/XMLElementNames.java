@@ -30,7 +30,8 @@ public enum XMLElementNames {
     PLAYER("player"),
     PLAYER_NAME("name"),
     PLAYER_MAX_LEVEL("maxLevel"),
-    HIGH_SCORE("highScore");
+    HIGH_SCORE("highScore"),
+    TIME_ELAPSED("timeElapsed");
 
     private final String name;
 

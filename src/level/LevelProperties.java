@@ -17,6 +17,7 @@ public class LevelProperties {
     private final int adultRatSpeed;
     private final int babyRatSpeed;
     private final int deathRatSpeed;
+    private int timeElapsed;
 
     /**
      * Constructs a LevelProperties object with the provided data
@@ -32,7 +33,10 @@ public class LevelProperties {
      * @param babyRatSpeed the speed of a baby rat, in time between movement, in milliseconds
      * @param deathRatSpeed the speed of a death rat, in time between movement, in milliseconds
      */
-    public LevelProperties(int id, int height, int width, int populationToLose, int expectedTime, int itemInterval, int ratMinBabies, int ratMaxBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed) {
+    public LevelProperties(int id, int height, int width, int populationToLose,
+                           int expectedTime, int itemInterval, int ratMinBabies,
+                           int ratMaxBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed,
+                           int timeElapsed) {
         this.levelId = id;
         this.levelHeight = height;
         this.levelWidth = width;
@@ -44,6 +48,7 @@ public class LevelProperties {
         this.adultRatSpeed = adultRatSpeed;
         this.babyRatSpeed = babyRatSpeed;
         this.deathRatSpeed = deathRatSpeed;
+        this.timeElapsed = timeElapsed;
     }
 
     /**
@@ -132,5 +137,21 @@ public class LevelProperties {
      */
     public int getDeathRatSpeed() {
         return deathRatSpeed;
+    }
+
+    /**
+     * A method to get the time elapsed for this level
+     * @return the time elapsed for this level, in seconds
+     */
+    public int getTimeElapsed() {
+        return timeElapsed;
+    }
+
+    /**
+     * A method to set the time elapsed for this level
+     * @param timeElapsed the time elapsed for this level, in seconds
+     */
+    public void setTimeElapsed(int timeElapsed) {
+        this.timeElapsed = timeElapsed;
     }
 }
