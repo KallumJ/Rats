@@ -24,6 +24,9 @@ import java.util.Set;
 public class Inventory {
 
     public static final int INVENTORY_WIDTH = 300; // in pixels
+    private static final String INVALID_RANDOM_ITEM =
+            "An invalid random item selection was made. " +
+                    "Selection %d is not assigned an item";
     private final ArrayList<GameObjectType> itemsInInventory;
     private final LevelData levelData;
     private VBox inventoryNode;
@@ -42,7 +45,13 @@ public class Inventory {
         this.levelData = levelData;
 
         // Add an item to the inventory after every interval
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(levelData.getLevelProperties().getItemInterval()), event -> addItem()));
+        int itemInterval = levelData.getLevelProperties().getItemInterval();
+        Timeline timeline = new Timeline(
+                new KeyFrame(
+                        Duration.seconds(itemInterval),
+                        event -> addItem()
+                )
+        );
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
@@ -54,7 +63,8 @@ public class Inventory {
      */
     private static GameObjectType makeRandomObjectSelection() {
         Random random = new Random();
-        int randomItemSelection = random.nextInt(GameObjectType.values().length);
+        int randomItemSelection =
+                random.nextInt(GameObjectType.values().length);
 
         switch (randomItemSelection) {
             case 0:
@@ -72,7 +82,9 @@ public class Inventory {
             case 6:
                 return GameObjectType.DEATH_RAT;
             default:
-                throw new IllegalArgumentException("An invalid random item selection was made. Selection " + randomItemSelection + " is not assigned an item");
+                throw new IllegalArgumentException(
+                        String.format(INVALID_RANDOM_ITEM, randomItemSelection)
+                );
         }
     }
 
@@ -135,8 +147,12 @@ public class Inventory {
 
     public VBox buildInventoryGUI() {
         VBox inventoryContainer = new VBox();
-        inventoryContainer.setPadding(new Insets(10, 10, 10, 10));
-        inventoryContainer.setStyle("-fx-background-image: url(file:resources/inventorySkin.png);");
+        inventoryContainer.setPadding(
+                new Insets(10, 10, 10, 10)
+        );
+        inventoryContainer.setStyle(
+                "-fx-background-image: url(file:resources/inventorySkin.png);"
+        );
         inventoryContainer.setMinWidth(INVENTORY_WIDTH);
 
         inventoryNode = inventoryContainer;

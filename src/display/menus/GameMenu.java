@@ -18,6 +18,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -30,6 +31,8 @@ import java.util.Optional;
  * @author Samhitha Pinisetti 2035196
  */
 public abstract class GameMenu {
+    private static final String NO_BACKGROUND = "Could not load the menu background image file";
+
     public static Stage stage;
     private final BorderPane root;
 
@@ -73,13 +76,15 @@ public abstract class GameMenu {
         pane.setPrefSize(860, 600);
 
         // Get and set the background
-        try (InputStream is = Files.newInputStream(Paths.get("resources/rats bg.jpeg"))) {
+        try (InputStream is =
+                     Files.newInputStream(Paths.get("resources/rats bg.jpeg"))
+        ) {
             ImageView img = new ImageView(new Image(is));
             img.setFitWidth(860);
             img.setFitHeight(600);
             pane.getChildren().add(img);
         } catch (IOException e) {
-            System.out.println("Couldn't load image");
+            throw new RuntimeException(NO_BACKGROUND);
         }
 
         // Align and add a title

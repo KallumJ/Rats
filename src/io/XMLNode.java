@@ -25,7 +25,8 @@ public class XMLNode {
      * @param attributes The attributes of the node as a map of strings, optional, provide null if not present
      * @param children   The children of the node as a list of XMLNode, optional, provide null if not present
      */
-    public XMLNode(String nodeName, String nodeValue, Map<String, String> attributes, List<XMLNode> children) {
+    public XMLNode(String nodeName, String nodeValue,
+                   Map<String, String> attributes, List<XMLNode> children) {
         this.nodeName = nodeName;
         this.nodeValue = nodeValue;
         this.attributes = attributes;
@@ -108,7 +109,9 @@ public class XMLNode {
             }
         }
 
-        throw new IllegalArgumentException(String.format(NO_CHILD_ERR, elementName));
+        throw new IllegalArgumentException(
+                String.format(NO_CHILD_ERR, elementName)
+        );
     }
 
     /**
@@ -127,7 +130,9 @@ public class XMLNode {
         }
 
         if (foundChildren.isEmpty()) {
-            throw new IllegalArgumentException(String.format(NO_CHILD_ERR, elementName));
+            throw new IllegalArgumentException(
+                    String.format(NO_CHILD_ERR, elementName)
+            );
         }
 
         return foundChildren;

@@ -36,20 +36,29 @@ public class XMLFileWriter {
         try {
             this.rootNodeName = rootName;
 
-            this.fileOutputStream = new FileOutputStream(file);
-            XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-            this.writer = outputFactory.createXMLEventWriter(this.fileOutputStream);
-            this.eventFactory = XMLEventFactory.newInstance();
+            this.fileOutputStream =
+                    new FileOutputStream(file);
+            XMLOutputFactory outputFactory =
+                    XMLOutputFactory.newInstance();
+            this.writer =
+                    outputFactory.createXMLEventWriter(this.fileOutputStream);
+            this.eventFactory =
+                    XMLEventFactory.newInstance();
 
             // Start the document
-            StartDocument startDocument = eventFactory.createStartDocument();
+            StartDocument startDocument =
+                    eventFactory.createStartDocument();
             writer.add(startDocument);
 
-            StartElement rootElement = eventFactory.createStartElement("", "", rootNodeName);
+            StartElement rootElement =
+                    eventFactory.createStartElement("", "", rootNodeName);
             writer.add(rootElement);
 
         } catch (XMLStreamException | FileNotFoundException ex) {
-            throw new RuntimeException(String.format(UNABLE_TO_CREATE, file.getName(), rootNodeName), ex);
+            throw new RuntimeException(
+                    String.format(UNABLE_TO_CREATE, file.getName(),
+                            rootNodeName), ex
+            );
         }
 
     }
@@ -60,12 +69,18 @@ public class XMLFileWriter {
     public void saveAndClose() {
         // End the document, and close the writer
         try {
-            writer.add(this.eventFactory.createEndElement("", "", rootNodeName));
+            writer.add(
+                    this.eventFactory.createEndElement(
+                            "", "", rootNodeName
+                    )
+            );
             writer.add(this.eventFactory.createEndDocument());
             this.writer.close();
             this.fileOutputStream.close();
         } catch (XMLStreamException | IOException ex) {
-            throw new RuntimeException(String.format(UNABLE_TO_SAVE, rootNodeName), ex);
+            throw new RuntimeException(
+                    String.format(UNABLE_TO_SAVE, rootNodeName), ex
+            );
         }
 
     }
@@ -81,18 +96,24 @@ public class XMLFileWriter {
             ArrayList<Attribute> attributesList = new ArrayList<>();
             if (xmlNode.hasAttributes()) {
                 xmlNode.getAttributes().forEach((attribute, value) -> {
-                    Attribute attributeNode = eventFactory.createAttribute(attribute, value);
+                    Attribute attributeNode =
+                            eventFactory.createAttribute(attribute, value);
                     attributesList.add(attributeNode);
                 });
             }
 
             // Create and write the start of the element with the attributes
-            StartElement startElement = eventFactory.createStartElement("", "", xmlNode.getNodeName(), attributesList.iterator(), null);
+            StartElement startElement =
+                    eventFactory.createStartElement(
+                            "", "", xmlNode.getNodeName(),
+                            attributesList.iterator(), null
+                    );
             writer.add(startElement);
 
             // Create and write the value of the element
             if (xmlNode.hasValue()) {
-                Characters value = eventFactory.createCharacters(xmlNode.getNodeValue());
+                Characters value =
+                        eventFactory.createCharacters(xmlNode.getNodeValue());
                 writer.add(value);
             }
 
@@ -104,7 +125,10 @@ public class XMLFileWriter {
             }
 
             // Create and write the end of the element
-            EndElement endElement = eventFactory.createEndElement("", "", xmlNode.getNodeName());
+            EndElement endElement =
+                    eventFactory.createEndElement(
+                            "", "", xmlNode.getNodeName()
+                    );
             writer.add(endElement);
         } catch (XMLStreamException ex) {
             throw new RuntimeException(
