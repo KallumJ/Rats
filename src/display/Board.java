@@ -170,10 +170,10 @@ public class Board {
     public Pane buildGUI() {
         BorderPane root = new BorderPane();
 
-        root.setCenter(canvas);
+        root.setLeft(canvas);
 
         Inventory inventory = new Inventory(levelData);
-        root.setRight(inventory.buildInventoryGUI());
+        root.setCenter(inventory.buildInventoryGUI());
 
         HBox controlsContainer = new HBox();
         controlsContainer.setPadding(new Insets(CONTROLS_MARGIN, CONTROLS_MARGIN, CONTROLS_MARGIN, CONTROLS_MARGIN));
@@ -188,6 +188,8 @@ public class Board {
         controlsContainer.getChildren().add(saveButton);
 
         root.setBottom(controlsContainer);
+        
+        //root.setRight(callMethod);
 
         return root;
     }
