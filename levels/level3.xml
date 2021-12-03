@@ -12,6 +12,7 @@
         <adultRatSpeed>1000</adultRatSpeed>
         <babyRatSpeed>750</babyRatSpeed>
         <deathRatSpeed>600</deathRatSpeed>
+        <timeElapsed>0</timeElapsed>
     </levelProperties>
 
 	<tileSet>
