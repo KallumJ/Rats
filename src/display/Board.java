@@ -82,6 +82,7 @@ public class Board {
                     ObjectInteractionChecker.checkPoison(firstObject, secondObject);
                     ObjectInteractionChecker.checkSterilisation(firstObject, secondObject);
                     ObjectInteractionChecker.checkSterilisationEffect(firstObject, secondObject);
+                    ObjectInteractionChecker.checkGas(firstObject, secondObject);
                 }
             }
         }
