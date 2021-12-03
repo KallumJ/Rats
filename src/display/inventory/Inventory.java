@@ -16,8 +16,7 @@ import java.util.Set;
 import java.util.List;
 
 /**
- *
- * A class to display and control the inventory for the game
+ * A class to display and control the inventory for the game.
  *
  * @author YIMING LI
  */
@@ -25,24 +24,26 @@ public class Inventory {
 
     public static final int INVENTORY_WIDTH = 300; // in pixels
     private static final String INVALID_RANDOM_ITEM =
-            "An invalid random item selection was made. " +
-                    "Selection %d is not assigned an item";
+        "An invalid random item selection was made. Selection %d is not assigned an item";
+    private static final int INVENTORY_PADDING = 10; // px
     private final List<GameObjectType> itemsInInventory;
     private final LevelData levelData;
     private final Set<ItemRow> itemRows;
     private VBox inventoryNode;
 
     /**
-     * Constructs an inventory object
+     * Constructs an inventory object.
      *
      * @param levelData The LevelData of the level associated with this
-     * inventory
+     *                  inventory
      */
-    public Inventory(LevelData levelData) {
+    public Inventory(final LevelData levelData) {
         // Set up the JavaFX node for the inventory
         this.inventoryNode = new VBox();
+
+        final int pad = INVENTORY_PADDING;
         inventoryNode.setPadding(
-                new Insets(10, 10, 10, 10)
+                new Insets(pad, pad, pad, pad)
         );
         inventoryNode.setStyle(
                 "-fx-background-image: url(file:resources/inventorySkin.png);"
@@ -77,7 +78,7 @@ public class Inventory {
     }
 
     /**
-     * A method to get the item rows in the inventory
+     * A method to get the item rows in the inventory.
      *
      * @return the item rows in the inventory
      */
@@ -86,7 +87,7 @@ public class Inventory {
     }
 
     /**
-     * A method to add a random item to the inventory
+     * A method to add a random item to the inventory.
      */
     public void addRandomItem() {
         GameObjectType selectedObject = makeRandomObjectSelection();
@@ -94,7 +95,7 @@ public class Inventory {
     }
 
     /**
-     * A method to get the level data associated with this inventory
+     * A method to get the level data associated with this inventory.
      *
      * @return the level data associated with this inventory
      */
@@ -102,6 +103,12 @@ public class Inventory {
         return levelData;
     }
 
+    /**
+     * Returns the {@code VBox} containing the inventory itself, with
+     * one random item added to it.
+     *
+     * @return the inventory's {@code VBox}
+     */
     public VBox buildInventoryGUI() {
         // Start game Inventory with 1 item in it
         if (itemsInInventory.isEmpty()) {
@@ -111,7 +118,7 @@ public class Inventory {
     }
 
     /**
-     * A method to get the items currently stored in the inventory
+     * A method to get the items currently stored in the inventory.
      *
      * @return the items currently stored in the inventory
      */
@@ -120,7 +127,7 @@ public class Inventory {
     }
 
     /**
-     * A method to get the JavaFX node representing the inventory
+     * A method to get the JavaFX node representing the inventory.
      *
      * @return the JavaFX node representing the inventory
      */
@@ -129,44 +136,24 @@ public class Inventory {
     }
 
     /**
-     * A method to return a random GameObjectType
+     * A method to return a random GameObjectType.
      *
      * @return a randomly selected GameObjectType
      */
     private static GameObjectType makeRandomObjectSelection() {
+        GameObjectType[] selectionList = GameObjectType.values();
+        int listLength = selectionList.length;
         Random random = new Random();
-        int randomItemSelection =
-                random.nextInt(GameObjectType.values().length);
 
-        switch (randomItemSelection) {
-            case 0:
-                return GameObjectType.BOMB;
-            case 1:
-                return GameObjectType.FEMALE_SEX_CHANGER;
-            case 2:
-                return GameObjectType.MALE_SEX_CHANGER;
-            case 3:
-                return GameObjectType.NO_ENTRY_SIGN;
-            case 4:
-                return GameObjectType.POISON;
-            case 5:
-                return GameObjectType.STERILISATION;
-            case 6:
-                return GameObjectType.DEATH_RAT;
-            case 7:
-                return GameObjectType.GAS;
-            default:
-                throw new IllegalArgumentException(
-                        String.format(INVALID_RANDOM_ITEM, randomItemSelection)
-                );
-        }
+        return selectionList[random.nextInt(listLength)];
     }
 
     /**
-     * A method to add a item to the inventory
+     * A method to add a item to the inventory.
+     *
      * @param object the object type to add to the inventory
      */
-    private void addItem(GameObjectType object) {
+    private void addItem(final GameObjectType object) {
         if (isSlotOpen()) {
             itemsInInventory.add(object);
 
@@ -192,7 +179,7 @@ public class Inventory {
 
     /**
      * A method to return whether there is still an available slot in the
-     * inventory
+     * inventory.
      *
      * @return true if there is a slot open, false otherwise
      */
