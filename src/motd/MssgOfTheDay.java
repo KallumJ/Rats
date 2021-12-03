@@ -13,7 +13,7 @@ import java.net.URI;
  *
  * @author Matthew Stephenson
  */
-public class MssgOfTheDay {
+public final class MssgOfTheDay {
 
     private static final URI PUZZLE_URI = URI.create("http://cswebcat.swansea.ac.uk/puzzle");
     private static final String SOLUTION_URI_PREPEND = "http://cswebcat.swansea.ac.uk/message?solution=";
