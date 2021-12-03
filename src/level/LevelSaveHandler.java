@@ -151,6 +151,7 @@ public class LevelSaveHandler {
         String adultRatSpeed = String.valueOf(levelProperties.getAdultRatSpeed());
         String babyRatSpeed = String.valueOf(levelProperties.getBabyRatSpeed());
         String deathRatSpeed = String.valueOf(levelProperties.getDeathRatSpeed());
+        String elapsedTime = String.valueOf(levelProperties.getTimeElapsed());
 
         XMLNode[] children = new XMLNode[]{
                 new XMLNode(XMLElementNames.LEVEL_HEIGHT.toString(),
@@ -175,6 +176,8 @@ public class LevelSaveHandler {
                         babyRatSpeed, null, null),
                 new XMLNode(XMLElementNames.DEATH_RAT_SPEED.toString(),
                         deathRatSpeed, null, null),
+                new XMLNode(XMLElementNames.TIME_ELAPSED.toString(),
+                        elapsedTime, null, null)
         };
 
         List<XMLNode> childrenList = Arrays.asList(children);
