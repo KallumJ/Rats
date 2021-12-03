@@ -1,8 +1,6 @@
 package level;
 
-import javafx.scene.image.Image;
 import objects.*;
-import objects.GameObject;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
 import tile.Direction;
@@ -12,16 +10,21 @@ import java.util.Scanner;
 
 /**
  * A class to read attributes and form the GameObject they represent
+ *
  * @author Kallum Jones 2005855
  */
 public class TileAttributeReader {
-    //TODO: add further validation
+    private static final String INVALID_ATTRIBUTE = "Name: %s, Value: %s is an invalid attribute";
+    private static final String INVALID_SEX_CHANGER = "An invalid sex change gender has been read";
+    private static final String INVALID_GENDER = "%s is an invalid gender";
+    private static final String INVALID_DIRECTION = "%s is an invalid direction";
 
     /**
      * A method to get the GameObject that the provided attribute represents
-     * @param attributeName The name of the attribute read from file
+     *
+     * @param attributeName  The name of the attribute read from file
      * @param attributeValue The value of the attribute read from file
-     * @param tile The tile this attribute was read from
+     * @param tile           The tile this attribute was read from
      * @return The constructed GameObject
      */
     public static GameObject getObjectFromAttribute(String attributeName, String attributeValue, Tile tile, LevelProperties levelProperties) {
@@ -44,7 +47,11 @@ public class TileAttributeReader {
             case ObjectAttributeGenerator.NO_ENTRY_SIGN_KEY:
                 return readNoEntrySign(attributeValue, tile);
         }
-        throw new RuntimeException(String.format("Name: %s, Value: %s is an invalid attribute", attributeName, attributeValue));
+        throw new RuntimeException(
+                String.format(
+                        INVALID_ATTRIBUTE, attributeName, attributeValue
+                )
+        );
     }
 
     private static GameObject readSterile(String attributeValue, Tile tile) {
@@ -53,8 +60,9 @@ public class TileAttributeReader {
 
     /**
      * A method to construct a NoEntrySign with the provided data
+     *
      * @param attributeValue the data to construct the NoEntrySign with
-     * @param tile the Tile the NoEntrySign is on
+     * @param tile           the Tile the NoEntrySign is on
      * @return The constructed NoEntrySign
      */
     private static NoEntrySign readNoEntrySign(String attributeValue, Tile tile) {
@@ -67,8 +75,9 @@ public class TileAttributeReader {
 
     /**
      * A method to construct the relevant SexChanger object from the provided data
+     *
      * @param attributeValue the data to construct the SexChanger with
-     * @param tile The tile the SexChanger is on
+     * @param tile           The tile the SexChanger is on
      * @return the constructed SexChanger
      */
     private static GameObject readSexChange(String attributeValue, Tile tile) {
@@ -78,13 +87,14 @@ public class TileAttributeReader {
             case "f":
                 return new FemaleSexChanger(tile);
         }
-        throw new RuntimeException("An invalid sex change gender has been read");
+        throw new RuntimeException(INVALID_SEX_CHANGER);
     }
 
     /**
      * A method to construct a Bomb object with the provided data
+     *
      * @param attributeValue the data to construct the Bomb with
-     * @param tile the tile the Bomb is on
+     * @param tile           the tile the Bomb is on
      * @return the constructed Bomb
      */
     private static Bomb readBomb(String attributeValue, Tile tile) {
@@ -93,25 +103,28 @@ public class TileAttributeReader {
 
     /**
      * A method to construct a DeathRat with the provided attribute data
+     *
      * @param attributeValue the data to construct a DeathRat with
-     * @param tile the tile the DeathRat is on
+     * @param tile           the tile the DeathRat is on
      * @return the constructed DeathRat
      */
     private static DeathRat readDeathRat(String attributeValue, Tile tile, LevelProperties levelProperties) {
-        //TODO: provide valid icon
-
         Scanner scanner = new Scanner(attributeValue);
         Direction direction = getDirectionFromString(scanner.next());
         int numOfKills = scanner.nextInt();
         int killsTarget = scanner.nextInt();
 
-        return new DeathRat(tile, levelProperties.getDeathRatSpeed(), direction,numOfKills, killsTarget);
+        return new DeathRat(
+                tile, levelProperties.getDeathRatSpeed(),
+                direction, numOfKills, killsTarget
+        );
     }
 
     /**
      * A method to construct a PeacefulRat with the provided attribute data
+     *
      * @param attributeValue The data to construct a PeacefulRat with
-     * @param tile The tile the PeacefulRat is on
+     * @param tile           The tile the PeacefulRat is on
      * @return The constructed PeacefulRat
      */
     public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile, LevelProperties levelProperties) {
@@ -122,19 +135,30 @@ public class TileAttributeReader {
         String gender = scanner.next();
 
         if (!(gender.equals("f") || gender.equals("m"))) {
-            throw new IllegalArgumentException(gender + " is not a valid gender for a rat");
+            throw new IllegalArgumentException(
+                    String.format(
+                            INVALID_GENDER, gender
+                    )
+            );
         }
 
         int timeToBirth = scanner.nextInt();
         int timeToDevelop = scanner.nextInt();
         Direction direction = getDirectionFromString(scanner.next());
 
-        int speed = adult ? levelProperties.getAdultRatSpeed() : levelProperties.getBabyRatSpeed();
-        return new PeacefulRat(tile, sterile, adult, pregnant, gender, timeToBirth, timeToDevelop, speed, direction);
+        // If the rat is an adult, give them adult speed, if not, baby speed
+        int speed = adult ?
+                levelProperties.getAdultRatSpeed() :
+                levelProperties.getBabyRatSpeed();
+
+        return new PeacefulRat(tile, sterile, adult, pregnant, gender,
+                timeToBirth, timeToDevelop, speed, direction
+        );
     }
 
     /**
      * A method to return the relevant Direction enum from a String
+     *
      * @param direction the direction String
      * @return the parsed Direction enum
      */
@@ -149,7 +173,7 @@ public class TileAttributeReader {
             case "right":
                 return Direction.RIGHT;
             default:
-                throw new RuntimeException("An invalid direction was read from file");
+                throw new RuntimeException(INVALID_DIRECTION);
         }
     }
 }

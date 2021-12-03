@@ -1,5 +1,6 @@
 package level;
 
+import io.XMLElementNames;
 import io.XMLFileReader;
 import org.w3c.dom.Element;
 import players.scores.Player;
@@ -22,6 +23,7 @@ public class LevelUtils {
     private static final String INVALID_DIRECTION_ERROR = "%s is an unknown direction";
     private static final String INVALID_DIRECTORY = "The provided directory is empty";
     private static final String SAVED_LEVELS_FILE_PATH = SAVED_LEVELS_DIR_PATH + "/%s-%d.xml";
+    private static final String NO_LEVEL_FOUND = "No level was found matching the provided level id";
 
     /**
      * A method to return an array of File objects of all the files in the level directory
@@ -80,7 +82,7 @@ public class LevelUtils {
         }
 
         if (selectedLevel == null) {
-            throw new IllegalArgumentException("No level was found matching the provided level id");
+            throw new IllegalArgumentException(NO_LEVEL_FOUND);
         }
 
         return selectedLevel;
@@ -95,7 +97,10 @@ public class LevelUtils {
      */
     public static int getFilesLevelId(File file) {
         XMLFileReader fileReader = new XMLFileReader(file);
-        Element idElement = fileReader.drilldownToElement("levelProperties", "id");
+        Element idElement = fileReader.drilldownToElement(
+                XMLElementNames.LEVEL_PROPERTIES,
+                XMLElementNames.LEVEL_ID
+        );
 
         return Integer.parseInt(idElement.getTextContent());
     }

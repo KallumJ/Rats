@@ -1,15 +1,13 @@
 package tile;
 
-/**
- *
- * @author fahds
- */
+
  /**
  * Enum to represent the different types of directions 
- * like down, up, right, left
+ * like down, up, right, left*
+  * @author fahds
  */
 public enum Direction {
     
-    DOWN, UP, RIGHT, LEFT; 
+    DOWN, UP, RIGHT, LEFT
     
 }

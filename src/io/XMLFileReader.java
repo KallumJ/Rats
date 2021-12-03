@@ -21,10 +21,14 @@ import java.util.Map;
  * @author Kallum Jones 2005855
  */
 public class XMLFileReader {
+    private static final String FAILED_TO_LOAD_ERROR = "Failed to load the provided XML file";
+    private static final String INVALID_PATH = "The provided drilldown path is invalid";
+
     private final Element rootElement;
 
     /**
      * Constructs an XMLFileReader object
+     *
      * @param file The file this XMLFileReader will read from
      */
     public XMLFileReader(File file) {
@@ -34,7 +38,7 @@ public class XMLFileReader {
             Document document = builder.parse(file);
             this.rootElement = document.getDocumentElement();
         } catch (ParserConfigurationException | IOException | SAXException ex) {
-            throw new RuntimeException("Failed to load the the provided XML file", ex);
+            throw new RuntimeException(FAILED_TO_LOAD_ERROR, ex);
         }
     }
 
@@ -44,25 +48,36 @@ public class XMLFileReader {
      * @param elements The list of elements to go drilldown through
      * @return The final element in the list as an Element object
      */
-    public Element drilldownToElement(String... elements) {
+    public Element drilldownToElement(XMLElementNames... elements) {
         try {
             Element current = this.rootElement;
 
             // Go through every level of elements, and get the next element in the list
-            for (String element : elements) {
-                current = (Element) current.getElementsByTagName(element).item(0);
+            for (XMLElementNames element : elements) {
+                current = (Element) current.getElementsByTagName(element.toString()).item(0);
             }
             return current;
         } catch (NullPointerException ex) {
-            throw new RuntimeException("The provided drilldown path is invalid", ex);
+            throw new RuntimeException(INVALID_PATH, ex);
         }
 
     }
 
+    /**
+     * A method to get the XML file as an XMLNode
+     *
+     * @return the XMLNode for this file
+     */
     public XMLNode getAsXMLNode() {
         return getAsXMLNodeRecurse(this.rootElement);
     }
 
+    /**
+     * A method to recursively construct the provided element as an XMLNode
+     *
+     * @param element the element
+     * @return the element as an XMLNode
+     */
     private XMLNode getAsXMLNodeRecurse(Node element) {
 
         // Get the children that are elements
@@ -87,8 +102,8 @@ public class XMLFileReader {
         Map<String, String> attributes = new HashMap<>();
         if (element.hasAttributes()) {
             for (int i = 0; i < element.getAttributes().getLength(); i++) {
-               Node attribute = element.getAttributes().item(i);
-               attributes.put(attribute.getNodeName(), attribute.getNodeValue());
+                Node attribute = element.getAttributes().item(i);
+                attributes.put(attribute.getNodeName(), attribute.getNodeValue());
             }
         } else {
             attributes = null;

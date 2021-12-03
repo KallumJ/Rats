@@ -31,7 +31,7 @@ public class ObjectAttributeGenerator {
             attributes.put(RAT_KEY, attributeValue);
         } else if (objectOnTile instanceof DeathRat) {
             DeathRat deathRat = (DeathRat) objectOnTile;
-            String attributeValue =generateDeathRatAttribute(deathRat);
+            String attributeValue = generateDeathRatAttribute(deathRat);
 
             attributes.put(DEATH_RAT_KEY, attributeValue);
         } else if (objectOnTile instanceof Bomb) {
@@ -134,7 +134,11 @@ public class ObjectAttributeGenerator {
     private static String generateDeathRatAttribute(DeathRat deathRat) {
         StringJoiner attribute = new StringJoiner(" ");
 
-        attribute.add(LevelUtils.getStringFromDirection(deathRat.getDirectionOfMovement()));
+        attribute.add(
+                LevelUtils.getStringFromDirection(
+                        deathRat.getDirectionOfMovement()
+                )
+        );
         attribute.add(String.valueOf(deathRat.getNumberOfKills()));
         attribute.add(String.valueOf(deathRat.getNumberOfKills()));
 
@@ -155,7 +159,11 @@ public class ObjectAttributeGenerator {
         attribute.add(String.valueOf(peacefulRat.getGender()));
         attribute.add(String.valueOf(peacefulRat.getTimeToGiveBirth()));
         attribute.add(String.valueOf(peacefulRat.getTimeToDevelop()));
-        attribute.add(LevelUtils.getStringFromDirection(peacefulRat.getDirectionOfMovement()));
+        attribute.add(
+                LevelUtils.getStringFromDirection(
+                        peacefulRat.getDirectionOfMovement()
+                )
+        );
 
         return attribute.toString();
     }

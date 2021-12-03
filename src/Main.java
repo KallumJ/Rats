@@ -1,31 +1,33 @@
 import display.menus.GameMenu;
 import display.menus.LoginMenu;
-import display.menus.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * The class Main extends application
+ * The Main class to start the application
  */ 
 public class Main extends Application {
+    private static final String APP_HEADER = "Rats CS-230 Group 41";
 
+
+    /**
+     * Starts the application
+     * @param stage the stage
+     */
     @Override
-	/** 
-	* Start
-	* @param stage  the stage
-	*/
     public void start(Stage stage) {
         GameMenu.stage = stage;
         LoginMenu loginMenu = new LoginMenu();
         stage.setScene(new Scene(loginMenu.buildMenu()));
-        stage.setTitle("Rats CS-230 Group 41");
+        stage.setTitle(APP_HEADER);
         stage.setResizable(false);
         stage.show();
     }
+
 	/** 
-	* Main
-	* @param args  the args
+	* Method for java to launch the application
+	* @param args the command line args
 	*/
     public static void main(String[] args) {
         launch(args);

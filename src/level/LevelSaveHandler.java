@@ -1,5 +1,6 @@
 package level;
 
+import io.XMLElementNames;
 import io.XMLFileWriter;
 import io.XMLNode;
 import objects.GameObject;
@@ -20,8 +21,9 @@ public class LevelSaveHandler {
 
     /**
      * A method to save the provided level data for the provided player
+     *
      * @param levelData The level data currently in play
-     * @param player The player playing the level
+     * @param player    The player playing the level
      */
     public static void saveLevel(LevelData levelData, Player player) {
 
@@ -31,7 +33,9 @@ public class LevelSaveHandler {
 
         // Create a file writer for the generated file path
         File levelFile = new File(path);
-        XMLFileWriter xmlFileWriter = new XMLFileWriter(levelFile, "level");
+        XMLFileWriter xmlFileWriter = new XMLFileWriter(
+                levelFile, XMLElementNames.LEVEL_ROOT.toString()
+        );
 
         // Save the level data
         saveLevelProperties(xmlFileWriter, levelData);
@@ -43,8 +47,9 @@ public class LevelSaveHandler {
 
     /**
      * A method to save the provided tile set
+     *
      * @param xmlFileWriter the file writer to write with
-     * @param levelData the level data containing the tile set
+     * @param levelData     the level data containing the tile set
      */
     private static void saveTileSet(XMLFileWriter xmlFileWriter, LevelData levelData) {
         TileSet tileSet = levelData.getTileSet();
@@ -57,17 +62,22 @@ public class LevelSaveHandler {
             List<XMLNode> tileNodes = getRowAsXMLNodes(tileRow, objects);
 
             // Create a node for this row, and add it to the list of rows
-            XMLNode tileRowNode = new XMLNode("tileRow", null, null, tileNodes);
+            XMLNode tileRowNode = new XMLNode(XMLElementNames.TILE_ROW.toString(),
+                    null, null, tileNodes
+            );
             tileRows.add(tileRowNode);
         }
 
         // Write the generated tile set
-        XMLNode tileSetNode = new XMLNode("tileSet", null, null, tileRows);
+        XMLNode tileSetNode = new XMLNode(XMLElementNames.TILE_SET.toString(),
+                null, null, tileRows
+        );
         xmlFileWriter.writeNode(tileSetNode);
     }
 
     /**
      * A method to return the provided tile row as a list of XMLNodes representing each tile
+     *
      * @param tileRow the list of Tiles in a row
      * @param objects the list of objects on the board
      * @return the list of XMLNodes representing each tile on a row
@@ -92,7 +102,9 @@ public class LevelSaveHandler {
             }
 
             // Create a node for each tile and add it to the list
-            XMLNode tileNode = new XMLNode("tile", LevelUtils.getTileTypeString(tile.getTileType()), attributes, null);
+            XMLNode tileNode = new XMLNode(XMLElementNames.TILE.toString(),
+                    LevelUtils.getTileTypeString(tile.getTileType()), attributes, null
+            );
             tileNodes.add(tileNode);
         }
 
@@ -101,7 +113,8 @@ public class LevelSaveHandler {
 
     /**
      * A method to get all the objects on the given tile
-     * @param tile the tile the objects are standing on
+     *
+     * @param tile    the tile the objects are standing on
      * @param objects the list of objects on the board
      * @return the list of game objects on the given tile
      */
@@ -120,8 +133,9 @@ public class LevelSaveHandler {
 
     /**
      * A method to write the level properties to the file
+     *
      * @param xmlFileWriter the file writer to use
-     * @param levelData the level data to obtain the properties from
+     * @param levelData     the level data to obtain the properties from
      */
     private static void saveLevelProperties(XMLFileWriter xmlFileWriter, LevelData levelData) {
         LevelProperties levelProperties = levelData.getLevelProperties();
@@ -138,32 +152,35 @@ public class LevelSaveHandler {
         String babyRatSpeed = String.valueOf(levelProperties.getBabyRatSpeed());
         String deathRatSpeed = String.valueOf(levelProperties.getDeathRatSpeed());
 
-        XMLNode levelHeightNode = new XMLNode("levelHeight", levelHeight, null, null);
-        XMLNode levelWidthNode = new XMLNode("levelWidth", levelWidth, null, null);
-        XMLNode populationToLoseNode = new XMLNode("populationToLose", populationToLose, null, null);
-        XMLNode expectedTimeNode = new XMLNode("expectedTime", expectedTime, null, null);
-        XMLNode idNode = new XMLNode("id", id, null, null);
-        XMLNode itemIntervalNode = new XMLNode("itemInterval", itemInterval, null, null);
-        XMLNode ratMinBabiesNode = new XMLNode("ratMinBabies", ratMinBabies, null, null);
-        XMLNode ratMaxBabiesNode = new XMLNode("ratMaxBabies", ratMaxBabies, null, null);
-        XMLNode adultRatSpeedNode = new XMLNode("adultRatSpeed", adultRatSpeed, null, null);
-        XMLNode babyRatSpeedNode = new XMLNode("babyRatSpeed", babyRatSpeed, null, null);
-        XMLNode deathRatSpeedNode = new XMLNode("deathRatSpeed", deathRatSpeed, null, null);
+        XMLNode[] children = new XMLNode[]{
+                new XMLNode(XMLElementNames.LEVEL_HEIGHT.toString(),
+                        levelHeight, null, null),
+                new XMLNode(XMLElementNames.LEVEL_WIDTH.toString(),
+                        levelWidth, null, null),
+                new XMLNode(XMLElementNames.POPULATION_TO_LOSE.toString(),
+                        populationToLose, null, null),
+                new XMLNode(XMLElementNames.EXPECTED_TIME.toString(),
+                        expectedTime, null, null),
+                new XMLNode(XMLElementNames.LEVEL_ID.toString(),
+                        id, null, null),
+                new XMLNode(XMLElementNames.ITEM_INTERVAL.toString(),
+                        itemInterval, null, null),
+                new XMLNode(XMLElementNames.RAT_MIN_BABIES.toString(),
+                        ratMinBabies, null, null),
+                new XMLNode(XMLElementNames.RAT_MAX_BABIES.toString(),
+                        ratMaxBabies, null, null),
+                new XMLNode(XMLElementNames.ADULT_RAT_SPEED.toString(),
+                        adultRatSpeed, null, null),
+                new XMLNode(XMLElementNames.BABY_RAT_SPEED.toString(),
+                        babyRatSpeed, null, null),
+                new XMLNode(XMLElementNames.DEATH_RAT_SPEED.toString(),
+                        deathRatSpeed, null, null),
+        };
 
-        ArrayList<XMLNode> children = new ArrayList<>();
-        children.add(levelHeightNode);
-        children.add(levelWidthNode);
-        children.add(populationToLoseNode);
-        children.add(expectedTimeNode);
-        children.add(idNode);
-        children.add(itemIntervalNode);
-        children.add(ratMinBabiesNode);
-        children.add(ratMaxBabiesNode);
-        children.add(adultRatSpeedNode);
-        children.add(babyRatSpeedNode);
-        children.add(deathRatSpeedNode);
+        List<XMLNode> childrenList = Arrays.asList(children);
 
-        XMLNode levelPropertiesNode = new XMLNode("levelProperties", null, null, children);
+        XMLNode levelPropertiesNode = new XMLNode(XMLElementNames.LEVEL_PROPERTIES.toString(),
+                null, null, childrenList);
 
         xmlFileWriter.writeNode(levelPropertiesNode);
     }

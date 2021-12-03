@@ -1,5 +1,6 @@
 package players;
 
+import io.XMLElementNames;
 import io.XMLFileReader;
 import io.XMLFileWriter;
 import io.XMLNode;
@@ -15,11 +16,11 @@ import java.util.List;
  * @author Kallum Jones 2005855
  */
 public class PlayerProfileManager {
+    public static final String HIGH_SCORE_SEPARATOR = ", ";
     private static final String PLAYERS_FILE = "players/players.xml";
+    public static List<Player> allPlayers;
     private static XMLNode playersRoot;
     private static Player currentlyLoggedIn;
-    public static List<Player> allPlayers;
-    public static final String HIGH_SCORE_SEPARATOR = ", ";
 
     // Load the players list
     static {
@@ -28,6 +29,7 @@ public class PlayerProfileManager {
 
     /**
      * Get the player by their name
+     *
      * @param playerName the players name
      * @return the found Player object, null if they do not exist
      */
@@ -43,6 +45,7 @@ public class PlayerProfileManager {
 
     /**
      * A method to log in the player with the provided name, or create a profile for them if they don't exist
+     *
      * @param playerName the players name
      */
     public static void loginPlayer(String playerName) {
@@ -59,6 +62,7 @@ public class PlayerProfileManager {
 
     /**
      * A method to create a Player profile in the file
+     *
      * @param playerName the players name
      */
     private static void createPlayerProfile(String playerName) {
@@ -70,7 +74,9 @@ public class PlayerProfileManager {
      * Save the players file with the current root node
      */
     public static void savePlayersFile() {
-        XMLFileWriter xmlFileWriter = new XMLFileWriter(new File(PLAYERS_FILE), playersRoot.getNodeName());
+        XMLFileWriter xmlFileWriter = new XMLFileWriter(
+                new File(PLAYERS_FILE), playersRoot.getNodeName()
+        );
 
         for (Player player : allPlayers) {
             xmlFileWriter.writeNode(player.getAsXMLNode());
@@ -84,28 +90,43 @@ public class PlayerProfileManager {
      * A method to initalise the all players list
      */
     private static void initAllPlayersList() {
-        XMLFileReader xmlfileReader = new XMLFileReader(new File(PLAYERS_FILE));
+        //TODO: reduce indentation
+        XMLFileReader xmlfileReader = new XMLFileReader(
+                new File(PLAYERS_FILE)
+        );
         playersRoot = xmlfileReader.getAsXMLNode();
 
         allPlayers = new ArrayList<>();
         if (playersRoot.hasChildren()) {
             for (XMLNode playerNode : playersRoot.getChildren()) {
 
-                String name = playerNode.getChildByElementName("name").getNodeValue();
-                int maxLevel = Integer.parseInt(playerNode.getChildByElementName("maxLevel").getNodeValue());
+                String name = playerNode.getChildByElementName(
+                        XMLElementNames.PLAYER_NAME.toString()
+                ).getNodeValue();
+
+                int maxLevel = Integer.parseInt(
+                        playerNode.getChildByElementName(
+                                XMLElementNames.PLAYER_MAX_LEVEL.toString()
+                        ).getNodeValue());
 
                 Player player = new Player(name, maxLevel);
                 allPlayers.add(player);
 
                 // If there are high scores, add them
                 if (playerNode.getChildren().size() > 2) {
-                    List<XMLNode> highScores = playerNode.getChildrenByElementName("highScore");
+                    List<XMLNode> highScores =
+                            playerNode.getChildrenByElementName(
+                                    XMLElementNames.HIGH_SCORE.toString()
+                            );
 
                     for (XMLNode highScore : highScores) {
                         String highScoreValue = highScore.getNodeValue();
                         String[] highScoreValueSplit = highScoreValue.split(HIGH_SCORE_SEPARATOR);
 
-                        player.getHighScores().put(Integer.parseInt(highScoreValueSplit[0]), Integer.parseInt(highScoreValueSplit[1]));
+                        player.getHighScores().put(
+                                Integer.parseInt(highScoreValueSplit[0]),
+                                Integer.parseInt(highScoreValueSplit[1])
+                        );
                     }
                 }
             }
@@ -114,6 +135,7 @@ public class PlayerProfileManager {
 
     /**
      * A method to return the currently logged in player
+     *
      * @return the currently logged in player
      */
     public static Player getCurrentlyLoggedInPlayer() {
@@ -122,6 +144,7 @@ public class PlayerProfileManager {
 
     /**
      * A method to return all the players currently logged by the system
+     *
      * @return a List of all Players
      */
     public static List<Player> getAllPlayers() {

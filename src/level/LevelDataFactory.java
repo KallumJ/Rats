@@ -1,5 +1,6 @@
 package level;
 
+import io.XMLElementNames;
 import io.XMLFileReader;
 import objects.GameObject;
 import org.w3c.dom.Element;
@@ -7,7 +8,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import players.scores.Player;
-import tile.*;
+import tile.Direction;
+import tile.Tile;
+import tile.TileSet;
+import tile.TileType;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,6 +22,7 @@ import java.util.ArrayList;
  * @author Kallum Jones 2005855
  */
 public class LevelDataFactory {
+    private static final String INVALID_TILE_TYPE = "An invalid tile type was read from file";
 
     /**
      * A method to construct the LevelData object for a given level id
@@ -32,6 +37,7 @@ public class LevelDataFactory {
 
     /**
      * A method to read the objects that are stored on the tiles
+     *
      * @param tileSet An instance of TileSet with all the tiles to read from
      * @return an ArrayList of Objects with the required information
      */
@@ -42,14 +48,18 @@ public class LevelDataFactory {
             if (tile.hasInitalAttributes()) {
                 NamedNodeMap attributes = tile.getInitialAttributes();
 
-                // For every attribute on the tile TODO: Does this need to be a loop?
+                // For every attribute on the tile
                 for (int i = 0; i < attributes.getLength(); i++) {
                     Node attribute = attributes.item(i);
                     String attributeName = attribute.getNodeName();
                     String attributeValue = attribute.getNodeValue();
 
                     // Read the object from the provided attribute
-                    objects.add(TileAttributeReader.getObjectFromAttribute(attributeName, attributeValue, tile, levelProperties));
+                    objects.add(
+                            TileAttributeReader.getObjectFromAttribute(
+                                    attributeName, attributeValue, tile, levelProperties
+                            )
+                    );
                 }
             }
         }
@@ -58,20 +68,20 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to create a tile.Tile[][] for the provided tileSet element
+     * A method to create a TileSet for the provided tileSet element
      *
      * @param tileSetElement the tileSet element
      * @return a TileSet representing the tiles in the tile set element
      */
     private static TileSet readTileSet(Element tileSetElement) {
         TileSet tileSet = new TileSet();
-        NodeList tileRows = tileSetElement.getElementsByTagName("tileRow");
+        NodeList tileRows = tileSetElement.getElementsByTagName(XMLElementNames.TILE_ROW.toString());
 
         // For every row in the tileSet element in the level file
         for (int i = 0; i < tileRows.getLength(); i++) {
             Element tileRow = (Element) tileRows.item(i);
 
-            NodeList tiles = tileRow.getElementsByTagName("tile");
+            NodeList tiles = tileRow.getElementsByTagName(XMLElementNames.TILE.toString());
 
             // For every tile in the row
             for (int j = 0; j < tiles.getLength(); j++) {
@@ -90,7 +100,7 @@ public class LevelDataFactory {
                         tileSet.putTile(TileType.PATH, j, i);
                         break;
                     default:
-                        throw new RuntimeException("An invalid tile type was read from file");
+                        throw new IllegalArgumentException(INVALID_TILE_TYPE);
                 }
 
                 NamedNodeMap attributes = tile.getAttributes();
@@ -107,13 +117,13 @@ public class LevelDataFactory {
 
     /**
      * A method to give every tile in a tile set their adjacent tile
+     *
      * @param tileSet the tile set to run through
      */
     private static void setAdjacentTiles(TileSet tileSet) {
         for (int y = 0; y < tileSet.getHeight(); y++) {
             for (int x = 0; x < tileSet.getWidth(); x++) {
                 Tile tile = tileSet.getTile(x, y);
-
 
                 tile.setAdjacentTileIfPresent(Direction.UP, tileSet.getTile(x, y - 1));
                 tile.setAdjacentTileIfPresent(Direction.DOWN, tileSet.getTile(x, y + 1));
@@ -126,40 +136,48 @@ public class LevelDataFactory {
 
     /**
      * A method to read the properties from the provided level properties element
+     *
      * @param levelProperties the levelProperties elememt
      * @return a LevelProperties object containing the data read from the element
      */
     private static LevelProperties readLevelProperties(Element levelProperties) {
         // Load properties into variables
-        int height = getPropertyInt(levelProperties, "levelHeight");
-        int width = getPropertyInt(levelProperties, "levelWidth");
-        int populationToLose = getPropertyInt(levelProperties, "populationToLose");
-        int expectedTime = getPropertyInt(levelProperties, "expectedTime");
-        int id = getPropertyInt(levelProperties, "id");
-        int itemInterval = getPropertyInt(levelProperties, "itemInterval");
-        int ratMinBabies = getPropertyInt(levelProperties, "ratMinBabies");
-        int ratMaxBabies = getPropertyInt(levelProperties, "ratMaxBabies");
-        int adultRatSpeed = getPropertyInt(levelProperties, "adultRatSpeed");
-        int babyRatSpeed = getPropertyInt(levelProperties, "babyRatSpeed");
-        int deathRatSpeed = getPropertyInt(levelProperties, "deathRatSpeed");
+        int height = getPropertyInt(levelProperties, XMLElementNames.LEVEL_HEIGHT);
+        int width = getPropertyInt(levelProperties, XMLElementNames.LEVEL_WIDTH);
+        int populationToLose = getPropertyInt(levelProperties, XMLElementNames.POPULATION_TO_LOSE);
+        int expectedTime = getPropertyInt(levelProperties, XMLElementNames.EXPECTED_TIME);
+        int id = getPropertyInt(levelProperties, XMLElementNames.LEVEL_ID);
+        int itemInterval = getPropertyInt(levelProperties, XMLElementNames.ITEM_INTERVAL);
+        int ratMinBabies = getPropertyInt(levelProperties, XMLElementNames.RAT_MIN_BABIES);
+        int ratMaxBabies = getPropertyInt(levelProperties,  XMLElementNames.RAT_MAX_BABIES);
+        int adultRatSpeed = getPropertyInt(levelProperties, XMLElementNames.ADULT_RAT_SPEED);
+        int babyRatSpeed = getPropertyInt(levelProperties, XMLElementNames.BABY_RAT_SPEED);
+        int deathRatSpeed = getPropertyInt(levelProperties, XMLElementNames.DEATH_RAT_SPEED);
 
-        return new LevelProperties(id, height, width, populationToLose, expectedTime, itemInterval, ratMinBabies, ratMaxBabies, adultRatSpeed, babyRatSpeed, deathRatSpeed);
+        return new LevelProperties(
+                id, height, width, populationToLose, expectedTime, itemInterval, ratMinBabies,
+                ratMaxBabies, adultRatSpeed, babyRatSpeed, deathRatSpeed
+        );
     }
 
     /**
      * A utility method to get the property of type integer from the properties element provided, with the provided property name
+     *
      * @param propertiesElement the levelProperties element to read from
-     * @param propertyName The property to read
+     * @param propertyName      The property to read
      * @return The read property, of type int
      */
-    private static int getPropertyInt(Element propertiesElement, String propertyName) {
-        return Integer.parseInt(propertiesElement.getElementsByTagName(propertyName).item(0).getTextContent());
+    private static int getPropertyInt(Element propertiesElement, XMLElementNames propertyName) {
+        String propertyStr = propertyName.toString();
+        Node propertyElement = propertiesElement.getElementsByTagName(propertyStr).item(0);
+        return Integer.parseInt(propertyElement.getTextContent());
     }
 
     /**
      * A method to construct the saved level data for the provided player and level
+     *
      * @param currentlyLoggedInPlayer the player
-     * @param id the level
+     * @param id                      the level
      * @return the complete LevelData object
      */
     public static LevelData constructSavedLevelData(Player currentlyLoggedInPlayer, String id) {
@@ -178,8 +196,8 @@ public class LevelDataFactory {
     private static LevelData constructLevelDataFromFile(File file) {
         XMLFileReader xmlFileReader = new XMLFileReader(file);
 
-        Element levelPropertiesElement = xmlFileReader.drilldownToElement("levelProperties");
-        Element tileSetElement = xmlFileReader.drilldownToElement("tileSet");
+        Element levelPropertiesElement = xmlFileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES);
+        Element tileSetElement = xmlFileReader.drilldownToElement(XMLElementNames.TILE_SET);
 
         LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
         TileSet tileSet = readTileSet(tileSetElement);
@@ -187,6 +205,5 @@ public class LevelDataFactory {
         ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
 
         return new LevelData(levelProperties, tileSet, objects);
-
     }
 }
