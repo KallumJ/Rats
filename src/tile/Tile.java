@@ -12,14 +12,14 @@ import java.util.Map;
  * @author fahds
  */
 public class Tile {
+    public final static int TILE_SIZE = 50;
+
     private final TileLocation tileLocation;
     private final TileType tileType;
     private boolean isTraversable;
     private final boolean hideRatsWithin;
     private NamedNodeMap initialAttributes;
     private final Map<Direction, Tile> adjacentTiles;
-
-    public final static int TILE_SIZE = 50;
 
     /**
      * Constructs a Tile object with the provided data

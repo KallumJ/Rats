@@ -19,7 +19,9 @@ public class TileSet {
      */
     public void putTile(TileType tileType, int x, int y) {
         generateTileRowIfNotPresent(y);
-        tileSet.get(y).add(x, new Tile(new TileLocation(x, y), tileType));
+        tileSet.get(y).add(x, new Tile(
+                new TileLocation(x, y), tileType
+        ));
     }
 
     /**

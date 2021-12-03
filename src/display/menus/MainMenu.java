@@ -17,6 +17,7 @@ import java.util.Optional;
 public class MainMenu extends GameMenu {
 
     private static final String MENU_TITLE = " R A T S ";
+    private static final String NAME_LABEL = "Name: %s";
 
     /**
      * A method to create a main menu with all the main menu items we need on it
@@ -42,7 +43,10 @@ public class MainMenu extends GameMenu {
 
         mainMenu.setBottom(motdLabel);
 
-        Label nameLabel = new Label("Name: " + PlayerProfileManager.getCurrentlyLoggedInPlayer().getPlayerName());
+        String playerName = PlayerProfileManager.getCurrentlyLoggedInPlayer().getPlayerName();
+        Label nameLabel = new Label(
+                String.format(NAME_LABEL, playerName)
+        );
         nameLabel.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 18));
         nameLabel.setTextFill(Color.WHITE);
 

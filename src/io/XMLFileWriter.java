@@ -17,20 +17,23 @@ import java.util.ArrayList;
  * @author Kallum Jones 2005855
  */
 public class XMLFileWriter {
-    private XMLEventWriter writer;
-    private XMLEventFactory eventFactory;
+    private static final String UNABLE_TO_CREATE = "Unable to create an XML file %s with the root %s";
+    private static final String UNABLE_TO_SAVE = "Unable to save XML file with the root %s";
+    private static final String UNABLE_TO_WRITE = "Unable to write %s to the xml file";
+
+    private final XMLEventWriter writer;
+    private final XMLEventFactory eventFactory;
+    private final FileOutputStream fileOutputStream;
     private String rootNodeName;
-    private FileOutputStream fileOutputStream;
-    private final File file;
 
     /**
      * Constructs an XMLFileWriter object
-     * @param file The file to write too
+     *
+     * @param file     The file to write too
      * @param rootName The name of the root node in this xml file
      */
     public XMLFileWriter(File file, String rootName) {
         try {
-            this.file = file;
             this.rootNodeName = rootName;
 
             this.fileOutputStream = new FileOutputStream(file);
@@ -46,7 +49,7 @@ public class XMLFileWriter {
             writer.add(rootElement);
 
         } catch (XMLStreamException | FileNotFoundException ex) {
-            throw new RuntimeException(String.format("Unable to create an XML file %s with the root %s", file.getName(), rootNodeName), ex);
+            throw new RuntimeException(String.format(UNABLE_TO_CREATE, file.getName(), rootNodeName), ex);
         }
 
     }
@@ -62,13 +65,14 @@ public class XMLFileWriter {
             this.writer.close();
             this.fileOutputStream.close();
         } catch (XMLStreamException | IOException ex) {
-            throw new RuntimeException(String.format("Unable to save XML file with the root %s", rootNodeName), ex);
+            throw new RuntimeException(String.format(UNABLE_TO_SAVE, rootNodeName), ex);
         }
 
     }
 
     /**
      * A method to write a provided XMLNode to the file
+     *
      * @param xmlNode the XMLNode to write to the file
      */
     public void writeNode(XMLNode xmlNode) {
@@ -103,19 +107,10 @@ public class XMLFileWriter {
             EndElement endElement = eventFactory.createEndElement("", "", xmlNode.getNodeName());
             writer.add(endElement);
         } catch (XMLStreamException ex) {
-            throw new RuntimeException(String.format("Unable to write %s to the xml file", xmlNode.getNodeName()), ex);
+            throw new RuntimeException(
+                    String.format(UNABLE_TO_WRITE, xmlNode.getNodeName()), ex
+            );
         }
 
     }
-
-    /**
-     * A method to write the provided node to the file as the root
-     * @param xmlNode the XMLNode to write
-     */
-    public void writeNodeAsRoot(XMLNode xmlNode) {
-        for (XMLNode child : xmlNode.getChildren()) {
-            writeNode(child);
-        }
-    }
-
 }

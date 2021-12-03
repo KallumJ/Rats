@@ -16,6 +16,8 @@ import players.PlayerProfileManager;
 public class LoginMenu extends GameMenu {
 
     private static final String MENU_TITLE = " L O G I N ";
+    private static final String NAME_INPUT_PLACEHOLDER = "Enter your name...";
+    private static final String LOGIN_BUTTON_TEXT = "Login";
 
     /**
      * A method to build the login menu
@@ -30,9 +32,9 @@ public class LoginMenu extends GameMenu {
         HBox nameControlsContainer = new HBox();
         TextField inputBox = new TextField();
 
-        inputBox.setText("Enter your name... ");
+        inputBox.setText(NAME_INPUT_PLACEHOLDER);
 
-        Button loginButton = new Button("Login");
+        Button loginButton = new Button(LOGIN_BUTTON_TEXT);
 
         // When the login button is pressed, save their name, and change to the new screen
         loginButton.setOnMousePressed(event -> {
