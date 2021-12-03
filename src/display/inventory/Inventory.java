@@ -1,6 +1,5 @@
 package display.inventory;
 
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -30,8 +29,8 @@ public class Inventory {
                     "Selection %d is not assigned an item";
     private final List<GameObjectType> itemsInInventory;
     private final LevelData levelData;
-    private VBox inventoryNode;
     private final Set<ItemRow> itemRows;
+    private VBox inventoryNode;
 
     /**
      * Constructs an inventory object
@@ -78,6 +77,58 @@ public class Inventory {
     }
 
     /**
+     * A method to get the item rows in the inventory
+     *
+     * @return the item rows in the inventory
+     */
+    public Set<ItemRow> getItemRows() {
+        return itemRows;
+    }
+
+    /**
+     * A method to add a random item to the inventory
+     */
+    public void addRandomItem() {
+        GameObjectType selectedObject = makeRandomObjectSelection();
+        addItem(selectedObject);
+    }
+
+    /**
+     * A method to get the level data associated with this inventory
+     *
+     * @return the level data associated with this inventory
+     */
+    public LevelData getLevelData() {
+        return levelData;
+    }
+
+    public VBox buildInventoryGUI() {
+        // Start game Inventory with 1 item in it
+        if (itemsInInventory.isEmpty()) {
+            addRandomItem();
+        }
+        return inventoryNode;
+    }
+
+    /**
+     * A method to get the items currently stored in the inventory
+     *
+     * @return the items currently stored in the inventory
+     */
+    public List<GameObjectType> getItemsInInventory() {
+        return itemsInInventory;
+    }
+
+    /**
+     * A method to get the JavaFX node representing the inventory
+     *
+     * @return the JavaFX node representing the inventory
+     */
+    public VBox getInventoryNode() {
+        return inventoryNode;
+    }
+
+    /**
      * A method to return a random GameObjectType
      *
      * @return a randomly selected GameObjectType
@@ -109,23 +160,6 @@ public class Inventory {
                         String.format(INVALID_RANDOM_ITEM, randomItemSelection)
                 );
         }
-    }
-
-    /**
-     * A method to get the item rows in the inventory
-     *
-     * @return the item rows in the inventory
-     */
-    public Set<ItemRow> getItemRows() {
-        return itemRows;
-    }
-
-    /**
-     * A method to add a random item to the inventory
-     */
-    public void addRandomItem() {
-        GameObjectType selectedObject = makeRandomObjectSelection();
-        addItem(selectedObject);
     }
 
     /**
@@ -174,40 +208,4 @@ public class Inventory {
         // Else return false
         return itemRows.size() < GameObjectType.values().length;
     }
-
-    public VBox buildInventoryGUI() {
-        // Start game Inventory with 1 item in it
-        if (itemsInInventory.isEmpty()) {
-            addRandomItem();
-        }
-        return inventoryNode;
-    }
-
-    /**
-     * A method to get the level data associated with this inventory
-     *
-     * @return the level data associated with this inventory
-     */
-    public LevelData getLevelData() {
-        return levelData;
-    }
-
-    /**
-     * A method to get the items currently stored in the inventory
-     *
-     * @return the items currently stored in the inventory
-     */
-    public List<GameObjectType> getItemsInInventory() {
-        return itemsInInventory;
-    }
-
-    /**
-     * A method to get the JavaFX node representing the inventory
-     *
-     * @return the JavaFX node representing the inventory
-     */
-    public VBox getInventoryNode() {
-        return inventoryNode;
-    }
-
 }
