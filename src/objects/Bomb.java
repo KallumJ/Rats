@@ -187,7 +187,7 @@ public class Bomb extends GameObject {
     }
 
     /**
-     * A method to get the amount of time left on the timer
+     * A method to get the amount of time left on the timer.
      * @return the amount of time left on the timer in seconds
      */
     public int getTimerLength() {
