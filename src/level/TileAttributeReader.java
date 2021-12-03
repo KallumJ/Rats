@@ -62,7 +62,11 @@ public class TileAttributeReader {
     }
 
     private static Sterilisation readSterile(String attributeValue, Tile tile) {
-        return new Sterilisation(tile, Integer.parseInt(attributeValue));
+        Scanner scanner = new Scanner(attributeValue);
+        int duration = scanner.nextInt();
+        boolean active = scanner.nextBoolean();
+
+        return new Sterilisation(tile, duration, active);
     }
 
     /**

@@ -133,7 +133,12 @@ public class ObjectAttributeGenerator {
      * @return the attribute string for the provided sterilisation object.
      */
     private static String generateSterilisationAttribute(Sterilisation sterilisation) {
-        return String.valueOf(sterilisation.getDuration());
+        StringJoiner attribute = new StringJoiner(" ");
+
+        attribute.add(String.valueOf(sterilisation.getDuration()));
+        attribute.add(String.valueOf(sterilisation.isActive()));
+
+        return attribute.toString();
     }
 
     /**

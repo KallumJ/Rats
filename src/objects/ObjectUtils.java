@@ -61,7 +61,7 @@ public class ObjectUtils {
                 );
             case STERILISATION:
                 return new Sterilisation(
-                        standingOn, Sterilisation.DEFAULT_DURATION
+                        standingOn, Sterilisation.DEFAULT_DURATION, false
                 );
             case NO_ENTRY_SIGN:
                 return new NoEntrySign(

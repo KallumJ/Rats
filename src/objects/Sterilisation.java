@@ -1,5 +1,6 @@
 package objects;
 
+import java.security.Key;
 import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,13 +17,13 @@ import tile.Tile;
  */
 public class Sterilisation extends GameObject {
 
-    private int duration;
-    private ArrayList<Tile> affectedTiles;
-    private Image SterilisationImage;
-    private ArrayList<SterilisationEffect> sterilisationEffects;
-    private Timeline effectTimer;
+    private final int duration;
+    private final ArrayList<Tile> affectedTiles;
+    private final ArrayList<SterilisationEffect> sterilisationEffects;
+    private boolean active;
 
     public static final int DEFAULT_DURATION = 5;
+    public static final int DELAY_DURING_CONSTRUCTION = 250; // in ms
 
     /**
      * Create a new sterilisation item on the specified tile.
@@ -30,7 +31,7 @@ public class Sterilisation extends GameObject {
      * @param standingOn The tile the sterilisation is on.
      * @param duration The duration of sterilisation effect when it activated.
      */
-    public Sterilisation(Tile standingOn, int duration) {
+    public Sterilisation(Tile standingOn, int duration, boolean active) {
         super(standingOn);
 
         affectedTiles = new ArrayList<>();
@@ -38,8 +39,16 @@ public class Sterilisation extends GameObject {
 
         this.duration = duration;
         findAffectedTiles();
-        SterilisationImage = new Image("file:resources/sterilistation.png");
-        super.setIcon(SterilisationImage);
+        Image sterilisationImage = new Image("file:resources/sterilistation.png");
+        super.setIcon(sterilisationImage);
+        this.active = active;
+        if (this.active) {
+            Timeline delay = new Timeline(
+                    new KeyFrame(Duration.millis(DELAY_DURING_CONSTRUCTION),
+                    event -> createSterilisationEffect())
+            );
+            delay.play();
+        }
     }
 
     /**
@@ -50,22 +59,23 @@ public class Sterilisation extends GameObject {
     public void beSterile(PeacefulRat rat) {
 
         rat.setSterilisation(true);
-        createSterilisationEffect();
+        if (!this.active) {
+            createSterilisationEffect();
+        }
+        this.active = true;
     }
 
     /**
      * Creates the sterilisation effect around the actual Sterilisation item.
      */
     private void createSterilisationEffect() {
-        GameObject.getBoard().removeObject(this);
-
         for (int i = 0; i < affectedTiles.size(); i++) {
 
             SterilisationEffect newEffect = new SterilisationEffect(affectedTiles.get(i));
             sterilisationEffects.add(newEffect);
             GameObject.getBoard().addObject(newEffect);
         }
-        effectTimer = new Timeline(new KeyFrame(Duration.seconds(duration), event -> endSterilisationEffect()));
+        Timeline effectTimer = new Timeline(new KeyFrame(Duration.seconds(duration), event -> endSterilisationEffect()));
         effectTimer.play();
 
     }
@@ -74,12 +84,12 @@ public class Sterilisation extends GameObject {
      * End the sterilisation effect.
      */
     private void endSterilisationEffect() {
-
+        GameObject.getBoard().removeObject(this);
         for (int i = 0; i < sterilisationEffects.size(); i++) {
 
             GameObject.getBoard().removeObject(sterilisationEffects.get(i));
         }
-
+        this.active = false;
     }
 
     /**
@@ -100,5 +110,13 @@ public class Sterilisation extends GameObject {
      */
     public int getDuration() {
         return duration;
+    }
+
+    /**
+     * A method to get whether this sterilisation is active or not
+     * @return true if active, false otherwise
+     */
+    public boolean isActive() {
+        return active;
     }
 }

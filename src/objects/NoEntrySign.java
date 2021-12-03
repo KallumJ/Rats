@@ -17,21 +17,19 @@ import tile.Tile;
  */
 public class NoEntrySign extends GameObject {
 
-    private Image noEntrySignImage;
-    private Image noEntrySignOneImage;
-    private Image noEntrySignTwoImage;
-    private Image noEntrySignThreeImage;
-    private Image noEntrySignFourImage;
-    private Image noEntrySignFiveImage;
+    private final Image noEntrySignImage;
+    private final Image noEntrySignOneImage;
+    private final Image noEntrySignTwoImage;
+    private final Image noEntrySignThreeImage;
+    private final Image noEntrySignFourImage;
+    private final Image noEntrySignFiveImage;
     private int damageDone;
-    private int durability;
-    private ArrayList<NoEntrySignCounter> noEntrySignEffects;
-    private ArrayList<Tile> affectedTiles;
-    private boolean recentlyActivated;
+    private final int durability;
+    private final ArrayList<NoEntrySignCounter> noEntrySignEffects;
+    private final ArrayList<Tile> affectedTiles;
 
-    private static final int DELAY = 1;
     public static final int DEFAULT_DAMAGE_DONE = 0;
-    public static final int DEFAULT_DURABILITY = 5;
+    public static final int DEFAULT_DURABILITY = 6;
 
     /**
      * Creates a new no entry sign item on the specified tile
