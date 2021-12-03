@@ -2,13 +2,18 @@ package level;
 
 import io.XMLElementNames;
 import io.XMLFileReader;
+import objects.GameObject;
+import objects.NoEntrySignCounter;
+import objects.SterilisationEffect;
 import org.w3c.dom.Element;
 import players.scores.Player;
 import tile.Direction;
+import tile.Tile;
 import tile.TileType;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A utility file to help with general functions around finding levels from file
@@ -168,4 +173,39 @@ public class LevelUtils {
     public static String constructSavedLevelFileName(Player player, int levelId) {
         return String.format(SAVED_LEVELS_FILE_PATH, player.getPlayerName(), levelId);
     }
+
+    /**
+     * A method to get all the objects on the given tile
+     *
+     * @param tile    the tile the objects are standing on
+     * @param objects the list of objects on the board
+     * @return the list of game objects on the given tile
+     */
+    public static List<GameObject> getObjectsOnTile(Tile tile, List<GameObject> objects) {
+        List<GameObject> objectsOnTile = new ArrayList<>();
+
+        // For every object, if the object is standing on the provided tile, add it to the list
+        for (GameObject object : objects) {
+            if (object.getStandingOn().equals(tile)) {
+                objectsOnTile.add(object);
+            }
+        }
+
+        return objectsOnTile;
+    }
+
+    /**
+     * A method to check whether a tile is blocked by other objects
+     * @param tile the tile to check
+     * @param objects the list of objects on the board
+     * @return true if this tile is blocked by another object, and can not have an item placed, false otherwise
+     */
+    public static boolean isTileBlocked(Tile tile, List<GameObject> objects) {
+        List<GameObject> objectsOnTile = getObjectsOnTile(tile, objects);
+
+        // return true if all of the items on the tile are of an allowed type
+        return !(objectsOnTile.stream().allMatch(
+                object -> object instanceof NoEntrySignCounter));
+    }
+
 }

@@ -120,7 +120,8 @@ public class LevelSaveHandler {
 
         for (Tile tile : tileRow) {
             // Get the objects on this tile
-            List<GameObject> objectsOnTile = getObjectsOnTile(tile, objects);
+            List<GameObject> objectsOnTile =
+                    LevelUtils.getObjectsOnTile(tile, objects);
 
             // Convert each object to an attribute string
             Map<String, String> attributes = new HashMap<>();
@@ -142,26 +143,6 @@ public class LevelSaveHandler {
         }
 
         return tileNodes;
-    }
-
-    /**
-     * A method to get all the objects on the given tile
-     *
-     * @param tile    the tile the objects are standing on
-     * @param objects the list of objects on the board
-     * @return the list of game objects on the given tile
-     */
-    private static List<GameObject> getObjectsOnTile(Tile tile, List<GameObject> objects) {
-        List<GameObject> objectsOnTile = new ArrayList<>();
-
-        // For every object, if the object is standing on the provided tile, add it to the list
-        for (GameObject object : objects) {
-            if (object.getStandingOn().equals(tile)) {
-                objectsOnTile.add(object);
-            }
-        }
-
-        return objectsOnTile;
     }
 
     /**
