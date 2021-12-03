@@ -65,10 +65,13 @@ public class ItemRow {
             objectCount++;
 
             // Create an image of the item, and add drag and release event handlers
-            ImageView imageOfItem = new ImageView(ObjectUtils.getObjectImageUrl(objectType));
+            ImageView imageOfItem =
+                    new ImageView(ObjectUtils.getObjectImageUrl(objectType));
 
-            imageOfItem.setOnMouseDragged(event -> onDrag(event, imageOfItem));
-            imageOfItem.setOnMouseReleased(event -> onRelease(imageOfItem, objectType));
+            imageOfItem.setOnMouseDragged(event ->
+                    onDrag(event, imageOfItem));
+            imageOfItem.setOnMouseReleased(event ->
+                    onRelease(imageOfItem, objectType));
 
             // Add the image to the row
             hBox.getChildren().add(imageOfItem);
@@ -104,7 +107,8 @@ public class ItemRow {
      * @param object the type of the object being released
      */
     public void onRelease(ImageView image, GameObjectType object) {
-        double canvasWidth = GameObject.getBoard().getCanvas().getWidth();
+        double canvasWidth =
+                GameObject.getBoard().getCanvas().getWidth();
 
         // Find the dropped items position on the x axis, by finding how far it has moved in pixels
         // Offsetting the width of the canvas, and how far into the inventory it was

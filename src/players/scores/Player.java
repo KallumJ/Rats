@@ -20,6 +20,9 @@ public class Player {
 
     /**
      * Player Constructor
+     *
+     * @param name the name of the player
+     * @param maxLevel the max level unlocked by the player
      */
     public Player(String name, int maxLevel) {
         this.playerName = name;
@@ -104,7 +107,8 @@ public class Player {
      * @param score   the score to add
      */
     public void addScoreIfHighest(int levelId, int score) {
-        // If score for this level is already recorded, check it's higher. If not, add the score
+        // If score for this level is already recorded, check it's higher.
+        // If not, add the score
         if (highScores.containsKey(levelId)) {
             highScores.forEach((currentLevelId, currentScore) -> {
                 if (currentLevelId == levelId) {

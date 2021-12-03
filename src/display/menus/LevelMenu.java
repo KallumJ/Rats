@@ -30,11 +30,13 @@ public class LevelMenu extends GameMenu {
         // For every level file, add a menu item to the list of menu items
         for (File levelFile : LevelUtils.getFilesInLevelDirectory()) {
             int levelId = LevelUtils.getFilesLevelId(levelFile);
-            Player currentlyLoggedInPlayer = PlayerProfileManager.getCurrentlyLoggedInPlayer();
+            Player currentlyLoggedInPlayer =
+                    PlayerProfileManager.getCurrentlyLoggedInPlayer();
 
             // Only add levels the player has unlocked
             if (currentlyLoggedInPlayer.getMaxLevel() >= levelId) {
-                LevelMenuItem levelMenuItem = new LevelMenuItem(String.valueOf(levelId));
+                LevelMenuItem levelMenuItem =
+                        new LevelMenuItem(String.valueOf(levelId));
                 menuItems.add(levelMenuItem);
             }
         }
@@ -44,7 +46,8 @@ public class LevelMenu extends GameMenu {
         MenuBox menuBox = new MenuBox(menuItemsArr);
 
         // Add a back button event handler
-        EventHandler<Event> backHandler = event -> GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
+        EventHandler<Event> backHandler = event ->
+                GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
 
         // Return the constructed menu
         return buildMenu(new MenuTitle(MENU_TITLE), menuBox, backHandler);

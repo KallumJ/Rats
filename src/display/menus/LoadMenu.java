@@ -31,9 +31,15 @@ public class LoadMenu extends GameMenu {
 
         // For every saved level file for this player, add a menu item to the list of menu items
         for (File savedLevel : LevelUtils.getSavedLevelsFiles()) {
-            if (LevelUtils.getPlayerNameFromSavedLevel(savedLevel).equals(currentlyLoggedInPlayer.getPlayerName())) {
+            String playerForLevel =
+                    LevelUtils.getPlayerNameFromSavedLevel(savedLevel);
+            String loggedInPlayerName =
+                    currentlyLoggedInPlayer.getPlayerName();
+
+            if (playerForLevel.equals(loggedInPlayerName)) {
                 int levelId = LevelUtils.getFilesLevelId(savedLevel);
-                SavedLevelMenuItem levelMenuItem = new SavedLevelMenuItem(String.valueOf(levelId));
+                SavedLevelMenuItem levelMenuItem =
+                        new SavedLevelMenuItem(String.valueOf(levelId));
                 menuItems.add(levelMenuItem);
             }
         }
@@ -43,7 +49,9 @@ public class LoadMenu extends GameMenu {
         MenuBox menuBox = new MenuBox(menuItemsArr);
 
         // Add a back button event handler
-        EventHandler<Event> backHandler = event -> GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
+        EventHandler<Event> backHandler = event ->
+                GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu())
+                );
 
         // Return the constructed menu
         return buildMenu(new MenuTitle(MENU_TITLE), menuBox, backHandler);

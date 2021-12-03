@@ -21,8 +21,10 @@ import java.util.Map;
  * @author Kallum Jones 2005855
  */
 public class XMLFileReader {
-    private static final String FAILED_TO_LOAD_ERROR = "Failed to load the provided XML file";
-    private static final String INVALID_PATH = "The provided drilldown path is invalid";
+    private static final String FAILED_TO_LOAD_ERROR =
+            "Failed to load the provided XML file";
+    private static final String INVALID_PATH =
+            "The provided drilldown path is invalid";
 
     private final Element rootElement;
 
@@ -33,11 +35,15 @@ public class XMLFileReader {
      */
     public XMLFileReader(File file) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
+            DocumentBuilderFactory factory =
+                    DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder =
+                    factory.newDocumentBuilder();
             Document document = builder.parse(file);
             this.rootElement = document.getDocumentElement();
-        } catch (ParserConfigurationException | IOException | SAXException ex) {
+        } catch (ParserConfigurationException |
+                IOException |
+                SAXException ex) {
             throw new RuntimeException(FAILED_TO_LOAD_ERROR, ex);
         }
     }
@@ -54,7 +60,9 @@ public class XMLFileReader {
 
             // Go through every level of elements, and get the next element in the list
             for (XMLElementNames element : elements) {
-                current = (Element) current.getElementsByTagName(element.toString()).item(0);
+                current = (Element) current
+                        .getElementsByTagName(element.toString())
+                        .item(0);
             }
             return current;
         } catch (NullPointerException ex) {
@@ -103,7 +111,8 @@ public class XMLFileReader {
         if (element.hasAttributes()) {
             for (int i = 0; i < element.getAttributes().getLength(); i++) {
                 Node attribute = element.getAttributes().item(i);
-                attributes.put(attribute.getNodeName(), attribute.getNodeValue());
+                attributes.put(attribute.getNodeName(),
+                        attribute.getNodeValue());
             }
         } else {
             attributes = null;
@@ -116,7 +125,9 @@ public class XMLFileReader {
             nodeValue = element.getFirstChild().getNodeValue();
         }
 
-        return new XMLNode(element.getNodeName(), nodeValue, attributes, children);
+        return new XMLNode(
+                element.getNodeName(), nodeValue, attributes, children
+        );
     }
 
 }
