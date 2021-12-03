@@ -141,7 +141,7 @@ public class Rat extends GameObject {
             if (this instanceof PeacefulRat) {
                 
                 PeacefulRat rat = (PeacefulRat) this;
-                rat.showIcon();
+                rat.decideIcon();
             } else if (this instanceof DeathRat) {
                 
                 DeathRat rat = (DeathRat) this;
