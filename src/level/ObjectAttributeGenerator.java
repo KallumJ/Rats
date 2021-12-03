@@ -64,7 +64,26 @@ public class ObjectAttributeGenerator {
             String attributeValue = generateNoEntrySignAttribute(noEntrySign);
 
             attributes.put(NO_ENTRY_SIGN_KEY, attributeValue);
+        } else if (objectOnTile instanceof Gas) {
+            Gas gas = (Gas) objectOnTile;
+            String attributeValue = generateGasAttribute(gas);
+
+            attributes.put(GAS_KEY, attributeValue);
         }
+    }
+
+    /**
+     * A method to generate the attribute string for Gas
+     * @param gas the gas
+     * @return the attribute string for the provided gas
+     */
+    private static String generateGasAttribute(Gas gas) {
+        StringJoiner attribute = new StringJoiner(" ");
+
+        attribute.add(String.valueOf(gas.getDuration()));
+        attribute.add(String.valueOf(gas.getRange()));
+
+        return attribute.toString();
     }
 
     /**

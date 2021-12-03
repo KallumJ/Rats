@@ -16,7 +16,9 @@ import tile.Tile;
  * @author fahds
  */
 public class Gas extends GameObject{
-    
+
+    public static final int DEFAULT_DURATION = 5;
+    public static final int DEFAULT_RANGE = 3;
     private  int duration;
     private int counter;
     private int range;
@@ -57,5 +59,12 @@ public class Gas extends GameObject{
             
         }
     }
-    
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public int getRange() {
+        return range;
+    }
 }

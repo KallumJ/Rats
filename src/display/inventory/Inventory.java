@@ -1,6 +1,8 @@
 package display.inventory;
 
 import display.Board;
+import io.XMLElementNames;
+import io.XMLNode;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -8,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import level.LevelData;
+import level.LevelUtils;
 import objects.GameObjectType;
 
 import java.util.ArrayList;
@@ -81,6 +84,8 @@ public class Inventory {
                 return GameObjectType.STERILISATION;
             case 6:
                 return GameObjectType.DEATH_RAT;
+            case 7:
+                return GameObjectType.GAS;
             default:
                 throw new IllegalArgumentException(
                         String.format(INVALID_RANDOM_ITEM, randomItemSelection)
@@ -189,4 +194,17 @@ public class Inventory {
     public VBox getInventoryNode() {
         return inventoryNode;
     }
+    
+    /*public XMLNode getAsXMLNode() {
+        ArrayList<XMLNode> children = new ArrayList<>();
+        for (GameObjectType gameObjectType : itemsInInventory) {
+            XMLNode itemNode = new XMLNode(
+                    XMLElementNames.ITEM.toString(),
+                    LevelUtils.getStringForItem(gameObjectType),
+                    null,
+                    null
+                    );
+        }
+        
+    }*/
 }

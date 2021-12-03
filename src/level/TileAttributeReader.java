@@ -36,8 +36,7 @@ public class TileAttributeReader {
             case ObjectAttributeGenerator.BOMB_KEY:
                 return readBomb(attributeValue, tile);
             case ObjectAttributeGenerator.GAS_KEY:
-                // TODO: ADD GAS return readGas(attributeValue, tile);
-                break;
+                return readGas(attributeValue, tile);
             case ObjectAttributeGenerator.STERILISATION_KEY:
                 return readSterile(attributeValue, tile);
             case ObjectAttributeGenerator.POISON_KEY:
@@ -54,7 +53,15 @@ public class TileAttributeReader {
         );
     }
 
-    private static GameObject readSterile(String attributeValue, Tile tile) {
+    private static GameObject readGas(String attributeValue, Tile tile) {
+        Scanner scanner = new Scanner(attributeValue);
+        int duration = scanner.nextInt();
+        int range = scanner.nextInt();
+
+        return new Gas(tile, duration, range);
+    }
+
+    private static Sterilisation readSterile(String attributeValue, Tile tile) {
         return new Sterilisation(tile, Integer.parseInt(attributeValue));
     }
 

@@ -1,6 +1,7 @@
 package objects;
 
 import level.LevelData;
+import level.ObjectAttributeGenerator;
 import objects.rats.DeathRat;
 import tile.Tile;
 
@@ -34,6 +35,8 @@ public class ObjectUtils {
                 return "file:resources/maleChange.png";
             case DEATH_RAT:
                 return "file:resources/deathRat.png";
+            case GAS:
+                return "file:resources/GAS.png";
             default:
                 throw new IllegalArgumentException(
                         String.format(NO_ASSIGNED_IMAGE, type)
@@ -75,11 +78,25 @@ public class ObjectUtils {
                         DeathRat.DEFAULT_DIRECTION, DeathRat.DEFAULT_NUM_OF_KILLS,
                         DeathRat.DEFAULT_KILLS_TARGET
                 );
+            case GAS:
+                return new Gas(standingOn,
+                        Gas.DEFAULT_DURATION, Gas.DEFAULT_RANGE
+                );
             default:
                 throw new IllegalArgumentException(
                         String.format(NO_CONSTRUCTOR_ASSIGNED, type)
                 );
         }
     }
+
+    /*public static String getStringForItem(GameObjectType gameObjectType) {
+        switch (gameObjectType) {
+            case BOMB:
+                return ObjectAttributeGenerator.BOMB_KEY;
+            case DEATH_RAT:
+                return ObjectAttributeGenerator.DEATH_RAT_KEY;
+                case
+        }
+    }*/
 
 }
