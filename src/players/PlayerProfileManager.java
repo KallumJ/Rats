@@ -49,14 +49,15 @@ public class PlayerProfileManager {
      * @param playerName the players name
      */
     public static void loginPlayer(String playerName) {
-        Player player = PlayerProfileManager.getPlayer(playerName);
+        String name = playerName.toUpperCase();
+        Player player = PlayerProfileManager.getPlayer(name);
 
         // If the player already exists, log them in, if not, create new account
         if (player != null) {
             currentlyLoggedIn = player;
         } else {
-            createPlayerProfile(playerName);
-            currentlyLoggedIn = PlayerProfileManager.getPlayer(playerName);
+            createPlayerProfile(name);
+            currentlyLoggedIn = PlayerProfileManager.getPlayer(name);
         }
     }
 
