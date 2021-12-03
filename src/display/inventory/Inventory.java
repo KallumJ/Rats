@@ -1,8 +1,6 @@
 package display.inventory;
 
-import display.Board;
-import io.XMLElementNames;
-import io.XMLNode;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -10,13 +8,13 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import level.LevelData;
-import level.LevelUtils;
 import objects.GameObjectType;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.List;
 
 /**
  *
@@ -30,7 +28,7 @@ public class Inventory {
     private static final String INVALID_RANDOM_ITEM =
             "An invalid random item selection was made. " +
                     "Selection %d is not assigned an item";
-    private final ArrayList<GameObjectType> itemsInInventory;
+    private final List<GameObjectType> itemsInInventory;
     private final LevelData levelData;
     private VBox inventoryNode;
     private final Set<ItemRow> itemRows;
@@ -42,8 +40,28 @@ public class Inventory {
      * inventory
      */
     public Inventory(LevelData levelData) {
-        this.itemsInInventory = new ArrayList<>();
+        // Set up the JavaFX node for the inventory
+        this.inventoryNode = new VBox();
+        inventoryNode.setPadding(
+                new Insets(10, 10, 10, 10)
+        );
+        inventoryNode.setStyle(
+                "-fx-background-image: url(file:resources/inventorySkin.png);"
+        );
+        inventoryNode.setMinWidth(INVENTORY_WIDTH);
+
+        // Create a set of rows
         this.itemRows = new HashSet<>();
+
+        // Create an item list
+        this.itemsInInventory = new ArrayList<>();
+
+        // if the inventory is already preexisting, load it
+        if (levelData.hasInventory()) {
+            for (GameObjectType gameObjectType : levelData.getInventory()) {
+                addItem(gameObjectType);
+            }
+        }
 
         this.levelData = levelData;
 
@@ -52,7 +70,7 @@ public class Inventory {
         Timeline timeline = new Timeline(
                 new KeyFrame(
                         Duration.seconds(itemInterval),
-                        event -> addItem()
+                        event -> addRandomItem()
                 )
         );
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -105,23 +123,30 @@ public class Inventory {
     /**
      * A method to add a random item to the inventory
      */
-    public void addItem() {
-        if (isSlotOpen()) {
-            GameObjectType selectedObject = makeRandomObjectSelection();
+    public void addRandomItem() {
+        GameObjectType selectedObject = makeRandomObjectSelection();
+        addItem(selectedObject);
+    }
 
-            itemsInInventory.add(selectedObject);
+    /**
+     * A method to add a item to the inventory
+     * @param object the object type to add to the inventory
+     */
+    private void addItem(GameObjectType object) {
+        if (isSlotOpen()) {
+            itemsInInventory.add(object);
 
             // If a row for this item already exists, find it
             ItemRow itemRow = null;
             for (ItemRow row : itemRows) {
-                if (row.getObjectType() == selectedObject) {
+                if (row.getObjectType() == object) {
                     itemRow = row;
                 }
             }
 
             // If a row doesn't already exist, create one
             if (itemRow == null) {
-                itemRow = new ItemRow(selectedObject, this);
+                itemRow = new ItemRow(object, this);
                 inventoryNode.getChildren().add(itemRow.gethBox());
                 itemRows.add(itemRow);
             }
@@ -151,20 +176,10 @@ public class Inventory {
     }
 
     public VBox buildInventoryGUI() {
-        VBox inventoryContainer = new VBox();
-        inventoryContainer.setPadding(
-                new Insets(10, 10, 10, 10)
-        );
-        inventoryContainer.setStyle(
-                "-fx-background-image: url(file:resources/inventorySkin.png);"
-        );
-        inventoryContainer.setMinWidth(INVENTORY_WIDTH);
-
-        inventoryNode = inventoryContainer;
-
         // Start game Inventory with 1 item in it
-        addItem();
-
+        if (itemsInInventory.isEmpty()) {
+            addRandomItem();
+        }
         return inventoryNode;
     }
 
@@ -182,7 +197,7 @@ public class Inventory {
      *
      * @return the items currently stored in the inventory
      */
-    public ArrayList<GameObjectType> getItemsInInventory() {
+    public List<GameObjectType> getItemsInInventory() {
         return itemsInInventory;
     }
 
@@ -194,17 +209,5 @@ public class Inventory {
     public VBox getInventoryNode() {
         return inventoryNode;
     }
-    
-    /*public XMLNode getAsXMLNode() {
-        ArrayList<XMLNode> children = new ArrayList<>();
-        for (GameObjectType gameObjectType : itemsInInventory) {
-            XMLNode itemNode = new XMLNode(
-                    XMLElementNames.ITEM.toString(),
-                    LevelUtils.getStringForItem(gameObjectType),
-                    null,
-                    null
-                    );
-        }
-        
-    }*/
+
 }

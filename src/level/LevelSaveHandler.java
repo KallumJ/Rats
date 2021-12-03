@@ -4,6 +4,8 @@ import io.XMLElementNames;
 import io.XMLFileWriter;
 import io.XMLNode;
 import objects.GameObject;
+import objects.GameObjectType;
+import objects.ObjectUtils;
 import players.scores.Player;
 import tile.Tile;
 import tile.TileSet;
@@ -41,8 +43,39 @@ public class LevelSaveHandler {
         saveLevelProperties(xmlFileWriter, levelData);
         saveTileSet(xmlFileWriter, levelData);
 
+        if (levelData.hasInventory()) {
+            saveInventory(xmlFileWriter, levelData);
+        }
+
         // Save the file
         xmlFileWriter.saveAndClose();
+    }
+
+    /**
+     * A method to save the inventory in this level data to the file
+     * @param xmlFileWriter the file writer to write with
+     * @param levelData the level data for this level
+     */
+    private static void saveInventory(XMLFileWriter xmlFileWriter, LevelData levelData) {
+
+        List<GameObjectType> itemsInInventory = levelData.getInventory();
+        ArrayList<XMLNode> children = new ArrayList<>();
+        for (GameObjectType gameObjectType : itemsInInventory) {
+            XMLNode itemNode = new XMLNode(
+                    XMLElementNames.ITEM.toString(),
+                    ObjectUtils.getStringForItem(gameObjectType),
+                    null,
+                    null
+            );
+            children.add(itemNode);
+        }
+
+        XMLNode inventoryNode = new XMLNode(
+                XMLElementNames.INVENTORY.toString(),
+                null, null, children
+        );
+
+        xmlFileWriter.writeNode(inventoryNode);
     }
 
     /**

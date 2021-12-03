@@ -23,8 +23,6 @@ import java.util.Map;
 public class XMLFileReader {
     private static final String FAILED_TO_LOAD_ERROR =
             "Failed to load the provided XML file";
-    private static final String INVALID_PATH =
-            "The provided drilldown path is invalid";
 
     private final Element rootElement;
 
@@ -52,7 +50,7 @@ public class XMLFileReader {
      * A method to get each subsequent element in the list from the position of the previous
      *
      * @param elements The list of elements to go drilldown through
-     * @return The final element in the list as an Element object
+     * @return The final element in the list as an Element object, or null if this path doesnt exist
      */
     public Element drilldownToElement(XMLElementNames... elements) {
         try {
@@ -66,7 +64,7 @@ public class XMLFileReader {
             }
             return current;
         } catch (NullPointerException ex) {
-            throw new RuntimeException(INVALID_PATH, ex);
+           return null;
         }
 
     }
