@@ -78,9 +78,7 @@ public class ObjectAttributeGenerator {
      */
     private static String generateGasAttribute(Gas gas) {
         StringJoiner attribute = new StringJoiner(" ");
-
-        attribute.add(String.valueOf(gas.getDuration()));
-        attribute.add(String.valueOf(gas.getRange()));
+        attribute.add(String.valueOf(gas.isActive()));
 
         return attribute.toString();
     }

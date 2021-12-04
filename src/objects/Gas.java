@@ -21,6 +21,7 @@ public class Gas extends GameObject implements ObjectStoppable {
 
     public static final int DEFAULT_DURATION = 16;
     public static final int DEFAULT_RANGE = 4;
+    public static final boolean DEFAULT_ACTIVATION = false;
     private final int duration;
     private int counter;
     private final int range;
@@ -29,13 +30,14 @@ public class Gas extends GameObject implements ObjectStoppable {
     private Timeline expandTimeline;
     private Timeline chokingTimeline;
     private Timeline checkEmptyTimeline;
+    private Timeline delayConstructionTimeline;
     private boolean isActive;
 
-    public Gas(Tile standingOn, int duration, int range) {
+    public Gas(Tile standingOn, boolean active) {
         super(standingOn);
 
-        this.duration = duration;
-        this.range = range;
+        this.duration = DEFAULT_DURATION;
+        this.range = DEFAULT_RANGE;
         counter = 0;
         gasEffects = new ArrayList<>();
         ratsInGas = new ArrayList<>();
@@ -44,6 +46,11 @@ public class Gas extends GameObject implements ObjectStoppable {
                 ObjectUtils.getObjectImageUrl(GameObjectType.GAS)
         );
         super.setIcon(gasImage);
+
+        if (active) {
+            delayConstructionTimeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> activateGas()));
+            delayConstructionTimeline.play();
+        }
     }
 
     public void activateGas() {
@@ -164,5 +171,17 @@ public class Gas extends GameObject implements ObjectStoppable {
         if (checkEmptyTimeline != null) {
             checkEmptyTimeline.pause();
         }
+
+        if (delayConstructionTimeline != null) {
+            delayConstructionTimeline.pause();
+        }
+    }
+
+    /**
+     * Gets whether this gas is active
+     * @return true if the gas is active, false otherwise
+     */
+    public boolean isActive() {
+        return isActive;
     }
 }

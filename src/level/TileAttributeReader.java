@@ -60,11 +60,7 @@ public class TileAttributeReader {
      * @return the Gas object represented by this attribute
      */
     private static GameObject readGas(String attributeValue, Tile tile) {
-        Scanner scanner = new Scanner(attributeValue);
-        int duration = scanner.nextInt();
-        int range = scanner.nextInt();
-
-        return new Gas(tile, duration, range);
+        return new Gas(tile, Boolean.parseBoolean(attributeValue));
     }
 
     /**
