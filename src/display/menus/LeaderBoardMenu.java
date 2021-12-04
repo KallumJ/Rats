@@ -68,11 +68,6 @@ class Player_LBM{
     public void setLeve_score(Integer leve_score) {
         this.leve_score = leve_score;
     }
-
-    @Override
-    public String toString() {
-        return "Player_LBM{" + "name=" + name + ", level=" + level + ", leve_score=" + leve_score + '}';
-    }
 }
 
 /**
@@ -106,8 +101,8 @@ public class LeaderBoardMenu extends GameMenu {
             backButton.setTranslateY(10);
             VBox v=new VBox();
             v.setMinSize(100, 100);
-            v.setAlignment(Pos.CENTER);
-            v.setTranslateX(-180);
+            v.setTranslateX(90);
+            v.setTranslateY(80);
             v.setStyle(
                     "-fx-font-size: 36;"+
                     "-fx-font-family: 'consolas';"+
