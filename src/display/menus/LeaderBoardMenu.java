@@ -95,8 +95,7 @@ public class LeaderBoardMenu extends GameMenu {
     public Parent buildMenu() {
         List<Player> getAllPlayer=PlayerProfileManager.getAllPlayers();
         EventHandler<Event> backHandler = event ->
-                    GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
-        System.out.println(getAllPlayer.get(0).getPlayerName());
+                    GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
         if(!getAllPlayer.isEmpty()){
             players_LBM = returnScore(getAllPlayer);
             Collections.sort(players_LBM, new SortPlayerByScore());
@@ -129,7 +128,7 @@ public class LeaderBoardMenu extends GameMenu {
             BorderPane leaderBoardView=buildBlank(new MenuTitle(MENU_TITLE), backHandler);
             // Get and set the background
             try (InputStream is =
-                         Files.newInputStream(Paths.get("resources/rats bg.jpeg"))
+                         Files.newInputStream(Paths.get("resources/ratsBG.jpeg"))
             ) {
                 ImageView img = new ImageView(new Image(is));
                 img.setFitWidth(860);
