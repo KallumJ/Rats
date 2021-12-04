@@ -32,7 +32,7 @@ public class LevelUtils {
     private static final String INVALID_DIRECTORY = "The provided directory is empty";
     private static final String SAVED_LEVELS_FILE_PATH = SAVED_LEVELS_DIR_PATH + "/%s-%d.xml";
     private static final String NO_LEVEL_FOUND = "No level was found matching the provided level id";
-    private static String NO_SAVED_LEVELS = "The player has no saved levels";
+    private static final String NO_SAVED_LEVELS = "The player has no saved levels";
 
     /**
      * A method to return an array of File objects of all the files in the level directory
@@ -175,6 +175,12 @@ public class LevelUtils {
      * @return the file name for a saved level for a given player and level id
      */
     public static String constructSavedLevelFileName(Player player, int levelId) {
+        // If the directory doesnt exist, create it
+        File file = new File(SAVED_LEVELS_DIR_PATH);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+
         return String.format(SAVED_LEVELS_FILE_PATH, player.getPlayerName(), levelId);
     }
 
