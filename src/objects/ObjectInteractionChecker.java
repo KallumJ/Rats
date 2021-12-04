@@ -13,14 +13,15 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects are 2 rats mating
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
     public static void checkRatsMating(GameObject firstObject, GameObject secondObject) {
 
         // If both objects are peaceful rats
-        if (firstObject instanceof PeacefulRat &&
-                secondObject instanceof PeacefulRat) {
+        if (firstObject instanceof PeacefulRat
+                && secondObject instanceof PeacefulRat) {
             PeacefulRat rat1 = (PeacefulRat) firstObject;
             PeacefulRat rat2 = (PeacefulRat) secondObject;
 
@@ -36,7 +37,9 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects is a death rat killing another rat
+     * A method to check whether the two provided objects is a death rat killing
+     * another rat
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
@@ -44,8 +47,8 @@ public class ObjectInteractionChecker {
         if (firstObject instanceof DeathRat) {
             DeathRat deathRat = (DeathRat) firstObject;
 
-            if (secondObject instanceof PeacefulRat ||
-                    secondObject instanceof DeathRat) {
+            if (secondObject instanceof PeacefulRat
+                    || secondObject instanceof DeathRat) {
                 Rat secondRat = (Rat) secondObject;
 
                 deathRat.kill(secondRat);
@@ -54,7 +57,9 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects is a bomb being activated
+     * A method to check whether the two provided objects is a bomb being
+     * activated
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
@@ -69,15 +74,17 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects is a NoEntrySign blocking a rat
+     * A method to check whether the two provided objects is a NoEntrySign
+     * blocking a rat
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
     public static void checkNoEntrySign(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof NoEntrySignCounter) {
             if (secondObject instanceof Rat) {
-                NoEntrySignCounter noEntrySignEffect =
-                        (NoEntrySignCounter) firstObject;
+                NoEntrySignCounter noEntrySignEffect
+                        = (NoEntrySignCounter) firstObject;
                 Rat victim = (Rat) secondObject;
                 noEntrySignEffect.blockPath(victim);
             }
@@ -85,15 +92,17 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects is a female sex changer activating on a rat
+     * A method to check whether the two provided objects is a female sex
+     * changer activating on a rat
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
     public static void checkFemaleSexChanger(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof FemaleSexChanger) {
             if (secondObject instanceof PeacefulRat) {
-                FemaleSexChanger femaleSexChanger =
-                        (FemaleSexChanger) firstObject;
+                FemaleSexChanger femaleSexChanger
+                        = (FemaleSexChanger) firstObject;
                 PeacefulRat rat = (PeacefulRat) secondObject;
 
                 femaleSexChanger.activationOfFemaleSexChanger(rat);
@@ -103,7 +112,9 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects is a male sex changer activating on a rat
+     * A method to check whether the two provided objects is a male sex changer
+     * activating on a rat
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
@@ -111,8 +122,8 @@ public class ObjectInteractionChecker {
         if (firstObject instanceof MaleSexChanger) {
             if (secondObject instanceof PeacefulRat) {
 
-                MaleSexChanger maleSexChanger =
-                        (MaleSexChanger) firstObject;
+                MaleSexChanger maleSexChanger
+                        = (MaleSexChanger) firstObject;
                 PeacefulRat rat = (PeacefulRat) secondObject;
 
                 maleSexChanger.beMale(rat);
@@ -122,7 +133,9 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects is a poison killing a rat
+     * A method to check whether the two provided objects is a poison killing a
+     * rat
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
@@ -139,15 +152,17 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects is a sterilisation sterilising a rat
+     * A method to check whether the two provided objects is a sterilisation
+     * sterilising a rat
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
     public static void checkSterilisation(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof Sterilisation) {
             if (secondObject instanceof PeacefulRat) {
-                Sterilisation sterilisation =
-                        (Sterilisation) firstObject;
+                Sterilisation sterilisation
+                        = (Sterilisation) firstObject;
                 PeacefulRat rat = (PeacefulRat) secondObject;
 
                 sterilisation.beSterile(rat);
@@ -157,41 +172,45 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects is a sterilisation effect sterilising a rat
+     * A method to check whether the two provided objects is a sterilisation
+     * effect sterilising a rat
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
     public static void checkSterilisationEffect(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof SterilisationEffect) {
             if (secondObject instanceof PeacefulRat) {
-                SterilisationEffect sterilisationEffect =
-                        (SterilisationEffect) firstObject;
+                SterilisationEffect sterilisationEffect
+                        = (SterilisationEffect) firstObject;
                 PeacefulRat rat = (PeacefulRat) secondObject;
 
                 sterilisationEffect.beSterile(rat);
             }
         }
     }
-    
+
     /**
-     * A method to check whether the two provided objects is a gas and a r
+     * A method to check whether the two provided objects is a gas and a rat
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */
     public static void checkGas(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof Gas) {
             if (secondObject instanceof Rat) {
-                Gas sterilisationEffect =
-                        (Gas) firstObject;
+                Gas gas
+                        = (Gas) firstObject;
                 PeacefulRat rat = (PeacefulRat) secondObject;
 
-                sterilisationEffect.activateGas();
+                gas.activateGas();
             }
         }
     }
-    
+
     /**
-     * A method to check whether the two provided objects is a gas and a r
+     * A method to check whether the two provided objects is a gasEffect and a rat
+     *
      * @param firstObject the first object
      * @param secondObject the second object
      */

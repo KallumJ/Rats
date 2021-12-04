@@ -96,7 +96,7 @@ public class Gas extends GameObject {
     public void startChoking (Rat rat) {
         
         ratsInGas.add(rat);
-        Timeline delay = new Timeline(new KeyFrame(Duration.seconds(3),event -> stillHere(rat)));
+        Timeline delay = new Timeline(new KeyFrame(Duration.seconds(4),event -> stillHere(rat)));
         delay.play();
     }
     
