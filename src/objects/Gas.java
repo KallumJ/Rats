@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import level.LevelUtils;
 import tile.Direction;
 import tile.Tile;
 
@@ -53,7 +54,10 @@ public class Gas extends GameObject {
         for (Direction direction : Direction.values()) {
 
             if (tile.getAdjacentTile(direction).isTraversable()) {
-                gasEffects.add(new GasEffect(tile.getAdjacentTile(direction), (duration - ((gasEffects.size() / 4) * 2)), this));
+                boolean isGasNotPresent = LevelUtils.getObjectsOnTile(tile.getAdjacentTile(direction), GameObject.getBoard().getObjects()).stream().noneMatch(object -> object instanceof GasEffect);
+                if (isGasNotPresent) {
+                    gasEffects.add(new GasEffect(tile.getAdjacentTile(direction), (duration - ((gasEffects.size() / 4) * 2)), this));
+                }
 
                 if (counter < range) {
                     delayExpand(tile.getAdjacentTile(direction));
