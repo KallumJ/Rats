@@ -13,7 +13,9 @@ import tile.Tile;
 import tile.TileType;
 
 /**
- * A class to model a row of items in the inventory
+ * A class to model a row of items in the inventory.
+ *
+ * @author
  */
 public class ItemRow {
 
@@ -26,12 +28,12 @@ public class ItemRow {
     private int originalY = -1;
 
     /**
-     * Constructs an item row for the provided object type
+     * Constructs an item row for the provided object type.
      *
-     * @param objectType The type of items in this row
-     * @param inventory the inventory this row is being stored in
+     * @param objectType    The type of items in this row
+     * @param inventory     the inventory this row is being stored in
      */
-    public ItemRow(GameObjectType objectType, Inventory inventory) {
+    public ItemRow(final GameObjectType objectType, final Inventory inventory) {
         this.objectType = objectType;
         this.hBox = new HBox();
         this.objectCount = 0;
@@ -39,7 +41,7 @@ public class ItemRow {
     }
 
     /**
-     * A method to get the type of object being stored in this row
+     * Gets the type of object being stored in this row.
      *
      * @return the type of object being stored in this row
      */
@@ -48,7 +50,7 @@ public class ItemRow {
     }
 
     /**
-     * A method to get the HBox node representing this row
+     * Gets the HBox node representing this row.
      *
      * @return the HBox node representing this row
      */
@@ -57,17 +59,18 @@ public class ItemRow {
     }
 
     /**
-     * Increment the number of objects being stored in this row
+     * Increments the number of objects being stored in this row.
      */
     public void incrementObjectCount() {
         // If this row isn't at its maximum items
         if (objectCount < MAX_ITEMS_IN_ROW) {
             objectCount++;
 
-            // Create an image of the item, and add drag and release event handlers
-            ImageView imageOfItem =
-                    new ImageView(ObjectUtils.getObjectImageUrl(objectType));
+            // Grab an image of the item
+            String objectImgUrl = ObjectUtils.getObjectImageUrl(objectType);
+            ImageView imageOfItem = new ImageView(objectImgUrl);
 
+            // Add drag and release event handlers
             imageOfItem.setOnMouseDragged(event ->
                     onDrag(event, imageOfItem));
             imageOfItem.setOnMouseReleased(event ->
@@ -81,12 +84,12 @@ public class ItemRow {
     }
 
     /**
-     * An event handler for dragging item images
+     * An event handler for dragging item images.
      *
      * @param event the MouseEvent that triggered the handler
-     * @param image THe image being dragged
+     * @param image the image being dragged
      */
-    public void onDrag(MouseEvent event, ImageView image) {
+    public void onDrag(final MouseEvent event, final ImageView image) {
         if (originalX == -1) {
             originalX = (int) image.getLayoutX();
         }
@@ -101,20 +104,22 @@ public class ItemRow {
     }
 
     /**
-     * An event handler for releasing an item image
+     * An event handler for releasing an item image.
      *
-     * @param image the image being released
+     * @param image  the image being released
      * @param object the type of the object being released
      */
-    public void onRelease(ImageView image, GameObjectType object) {
-        double canvasWidth =
-                GameObject.getBoard().getCanvas().getWidth();
+    public void onRelease(final ImageView image, final GameObjectType object) {
+        double canvasWidth = GameObject.getBoard().getCanvas().getWidth();
 
-        // Find the dropped items position on the x axis, by finding how far it has moved in pixels
-        // Offsetting the width of the canvas, and how far into the inventory it was
+        // Find the dropped items position on the x axis,
+        // by finding how far it has moved in pixels
+        // Offsetting the width of the canvas, and how far into
+        // the inventory it was
         int gridX = (int) (image.getTranslateX() + canvasWidth) + originalX;
 
-        // Find the dropped items position on the y axis, by finding how far it has moved in pixels
+        // Find the dropped items position on the y axis, by finding how far
+        // it has moved in pixels
         // Offsetting the position of this row on the screen
         int gridY = (int) (image.getTranslateY() + hBox.getLayoutY());
 
@@ -126,21 +131,25 @@ public class ItemRow {
         Tile tile = levelData.getTileSet().getTile(x, y);
         boolean isTileBlocked = LevelUtils.isTileBlocked(tile, levelData.getObjects());
 
-        // If this tile is invalid, or the user placed the item where there is no tile,
-        // or the tile is blocked by another object
-        // remove this object, and then add a new one, as the item was not successfully used
-        if (tile == null ||
-                !(tile.getTileType().equals(TileType.PATH)) ||
-                isTileBlocked) {
+        /*
+            If this tile is invalid, or the user placed the item where there
+                is no tile, or the tile is blocked by another object:
+                remove this object, and then add a new one,
+                as the item was not successfully used.
+        */
+        if (tile == null || !(tile.getTileType().equals(TileType.PATH)) || isTileBlocked) {
             decrementCount(image);
             incrementObjectCount();
-        } else { // If player has dropped the item on a valid tile, add item to board, and remove from row
+        } else {
+            // If player has dropped the item on a valid tile, add item to board
+            // and remove it from row
             SFXManager.bePlaced();
-            GameObject.getBoard().addObject(ObjectUtils.getObjectFromType(tile, object, levelData));
+            GameObject objForPlacing = ObjectUtils.getObjectFromType(tile, object, levelData);
+            GameObject.getBoard().addObject(objForPlacing);
             decrementCount(image);
         }
 
-        // If there are no objects in this row, remove it from row list, and display.
+        // If there are no objects in row, remove it from row list, and display.
         if (objectCount == 0) {
             inventory.getItemRows().remove(this);
             inventory.getInventoryNode().getChildren().remove(gethBox());
@@ -151,7 +160,7 @@ public class ItemRow {
     }
 
     /**
-     * A method to get the count of objects in this row
+     * Gets the count of objects in this row.
      *
      * @return the count of objects in this row
      */
@@ -160,11 +169,11 @@ public class ItemRow {
     }
 
     /**
-     * A method to decrement the object count
+     * Decrements the object count.
      *
      * @param imageOfItemToRemove the image to remove
      */
-    private void decrementCount(ImageView imageOfItemToRemove) {
+    private void decrementCount(final ImageView imageOfItemToRemove) {
         objectCount--;
         inventory.getItemsInInventory().remove(objectType);
         this.hBox.getChildren().remove(imageOfItemToRemove);
