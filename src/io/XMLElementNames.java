@@ -20,6 +20,7 @@ public enum XMLElementNames {
     ADULT_RAT_SPEED("adultRatSpeed"),
     BABY_RAT_SPEED("babyRatSpeed"),
     DEATH_RAT_SPEED("deathRatSpeed"),
+    LEVEL_SCORE("score"),
 
     TILE_SET("tileSet"),
     TILE_ROW("tileRow"),

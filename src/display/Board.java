@@ -38,8 +38,9 @@ public class Board {
     private static final int INTERACTION_CHECK_INTERVAL = 250; // In ms
     private static final String SAVED_BUTTON_LABEL = "Save and exit";
     private static final int CONTROLS_MARGIN = 5; // in pixels
-    private static final String TIME_ELAPSED_TEXT = "Time elapsed: %d. Expected time: %d";
-    private static final int TIMER_LABEL_PADDING = 5; // in pixels
+    private static final String INFORMATION_LABEL_TEXT =
+            "Time elapsed: %d seconds. Expected time: %d seconds. Score %d.";
+    private static final int INFO_LABEL_PADDING = 5; // in pixels
 
     private final LevelData levelData;
     private final Label timerLabel;
@@ -67,7 +68,11 @@ public class Board {
 
         int timeElapsed = levelData.getLevelProperties().getTimeElapsed();
         int expectedTime = levelData.getLevelProperties().getExpectedTime();
-        this.timerLabel = new Label(String.format(TIME_ELAPSED_TEXT, timeElapsed, expectedTime));
+        int score = levelData.getLevelProperties().getScore();
+
+        this.timerLabel = new Label(String.format(
+                INFORMATION_LABEL_TEXT, timeElapsed, expectedTime, score
+        ));
         Timeline gameTimerTimeline = new Timeline(
                 new KeyFrame(Duration.seconds(1),
                         event -> updateTimerLabel())
@@ -80,12 +85,13 @@ public class Board {
 
     private void updateTimerLabel() {
         int expectedTime = levelData.getLevelProperties().getExpectedTime();
-
         int elapsedTime = levelData.getLevelProperties().getTimeElapsed();
+        int score = levelData.getLevelProperties().getScore();
+
         elapsedTime++;
         levelData.getLevelProperties().setTimeElapsed(elapsedTime);
         timerLabel.setText(
-                String.format(TIME_ELAPSED_TEXT, elapsedTime, expectedTime)
+                String.format(INFORMATION_LABEL_TEXT, elapsedTime, expectedTime, score)
         );
     }
 
@@ -246,7 +252,7 @@ public class Board {
         timerLabel.setFont(
                 Font.font(GameMenu.DEFAULT_FONT, 18)
         );
-        timerLabel.setPadding(new Insets(TIMER_LABEL_PADDING));
+        timerLabel.setPadding(new Insets(INFO_LABEL_PADDING));
 
         labelContainer.getChildren().add(timerLabel);
         root.setTop(labelContainer);
