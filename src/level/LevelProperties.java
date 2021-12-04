@@ -17,7 +17,7 @@ public class LevelProperties {
     private final int adultRatSpeed;
     private final int babyRatSpeed;
     private final int deathRatSpeed;
-    private final int score;
+    private int score;
     private int timeElapsed;
 
 
@@ -164,5 +164,13 @@ public class LevelProperties {
      */
     public int getScore() {
         return score;
+    }
+
+    /**
+     * Sets the score for the level
+     * @param score the score for the level
+     */
+    public void setScore(int score) {
+        this.score = score;
     }
 }

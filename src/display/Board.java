@@ -45,7 +45,6 @@ public class Board {
     private final LevelData levelData;
     private final Label timerLabel;
     private final Canvas canvas;
-    private int score;
     private final Inventory inventory;
 
     public Board(LevelData levelData) {
@@ -183,14 +182,13 @@ public class Board {
     }
 
     public void addPoints(PeacefulRat killedRat) {
-
-        this.score = score + POINTS_ON_A_RAT;
-
+        int score = levelData.getLevelProperties().getScore();
+        score += POINTS_ON_A_RAT;
         if (killedRat.isPregnant()) {
-
-            this.score = score + (killedRat.getNumberOfBabies() * POINTS_ON_A_RAT);
+            score = score + (killedRat.getNumberOfBabies() * POINTS_ON_A_RAT);
         }
 
+        levelData.getLevelProperties().setScore(score);
     }
 
     public int getCurrentPouplation() {
@@ -199,7 +197,7 @@ public class Board {
     }
 
     public int getScore() {
-        return this.score;
+        return levelData.getLevelProperties().getScore();
     }
 
     public Pane buildGUI() {
