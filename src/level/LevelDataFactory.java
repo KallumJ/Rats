@@ -197,7 +197,7 @@ public class LevelDataFactory {
      * @param file The level file that needs constructing
      * @return The complete LevelData object
      */
-    private static LevelData constructLevelDataFromFile(File file) {
+    public static LevelData constructLevelDataFromFile(File file) {
         XMLFileReader xmlFileReader = new XMLFileReader(file);
 
         Element levelPropertiesElement = xmlFileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES);
