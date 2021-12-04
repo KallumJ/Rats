@@ -232,13 +232,13 @@ public class Board {
 
         Button saveButton = new Button(SAVED_BUTTON_LABEL);
 
-        saveButton.setMinWidth(GameMenu.stage.getWidth());
+        saveButton.setMinWidth(GameMenu.getStage().getWidth());
         saveButton.setAlignment(Pos.CENTER);
         saveButton.setOnMousePressed(event -> {
             levelData.setInventory(inventory.getItemsInInventory());
             LevelSaveHandler.saveLevel(levelData,
                     PlayerProfileManager.getCurrentlyLoggedInPlayer());
-            GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
+            GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
             this.stopGame();
         });
 
@@ -255,7 +255,7 @@ public class Board {
                                 Insets.EMPTY
                         )));
 
-        timerLabel.setMinWidth(GameMenu.stage.getWidth());
+        timerLabel.setMinWidth(GameMenu.getStage().getWidth());
         timerLabel.setAlignment(Pos.CENTER);
         timerLabel.setFont(
                 Font.font(GameMenu.DEFAULT_FONT, 18)

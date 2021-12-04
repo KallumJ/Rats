@@ -99,7 +99,7 @@ class PlayMenuItem extends MenuItem {
         super("PLAY");
 
         setOnMousePressed(event ->
-                GameMenu.stage.setScene(new Scene(new LevelMenu().buildMenu())));
+                GameMenu.getStage().setScene(new Scene(new LevelMenu().buildMenu())));
     }
 }
 
@@ -147,7 +147,7 @@ class HelpMenuItem extends MenuItem {
      */
     public HelpMenuItem() {
         super("HELP");
-        setOnMousePressed(event -> GameMenu.stage.setScene(new Scene(new HelpMenu().buildMenu())));
+        setOnMousePressed(event -> GameMenu.getStage().setScene(new Scene(new HelpMenu().buildMenu())));
     }
 }
 
@@ -180,7 +180,7 @@ class ContinueMenuItem extends MenuItem {
                 Board board = new Board(levelData);
 
                 board.startGame();
-                GameMenu.stage.setScene(new Scene(board.buildGUI()));
+                GameMenu.getStage().setScene(new Scene(board.buildGUI()));
             } catch (FileNotFoundException e) {
                 // If no saved levels, display alert to user
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -204,7 +204,7 @@ class LoadMenuItem extends MenuItem {
     public LoadMenuItem() {
         super("LOAD");
         setOnMousePressed(event ->
-                GameMenu.stage.setScene(new Scene(new LoadMenu().buildMenu())));
+                GameMenu.getStage().setScene(new Scene(new LoadMenu().buildMenu())));
     }
 }
 
@@ -229,7 +229,7 @@ class LevelMenuItem extends MenuItem {
             Board board = new Board(levelData);
 
             board.startGame();
-            GameMenu.stage.setScene(new Scene(board.buildGUI()));
+            GameMenu.getStage().setScene(new Scene(board.buildGUI()));
         });
     }
 }
@@ -254,7 +254,7 @@ class SavedLevelMenuItem extends MenuItem {
 
             Board board = new Board(levelData);
             board.startGame();
-            GameMenu.stage.setScene(new Scene(board.buildGUI()));
+            GameMenu.getStage().setScene(new Scene(board.buildGUI()));
         });
     }
 }

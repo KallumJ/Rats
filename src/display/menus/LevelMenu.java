@@ -47,7 +47,7 @@ public class LevelMenu extends GameMenu {
 
         // Add a back button event handler
         EventHandler<Event> backHandler = event ->
-                GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
+                GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
 
         // Return the constructed menu
         return buildMenu(new MenuTitle(MENU_TITLE), menuBox, backHandler);

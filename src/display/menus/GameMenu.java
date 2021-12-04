@@ -42,7 +42,7 @@ public abstract class GameMenu {
     private static final int MENU_OFFSET_Y = 300;
     private static final int ON_CLICK_OFFSET = 10;
 
-    public static Stage stage;
+    private static Stage stage;
     private final BorderPane root;
 
     /**
@@ -136,6 +136,22 @@ public abstract class GameMenu {
     protected Pane getCenter() {
         return (Pane) root.getCenter();
     }
+
+    /**
+     * Gets the current stage on display
+     * @return the current stage on display
+     */
+    public static Stage getStage() {
+        return stage;
+    }
+
+    /**
+     * Sets the stage to display
+     * @param stage the stage to display
+     */
+    public static void setStage(Stage stage) {
+        GameMenu.stage = stage;
+    }
 }
 
 /**
@@ -169,4 +185,5 @@ class MenuTitle extends StackPane {
         setAlignment(Pos.CENTER);
         getChildren().addAll(bg, text);
     }
+
 }

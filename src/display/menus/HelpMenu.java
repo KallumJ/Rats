@@ -82,7 +82,7 @@ public class HelpMenu extends GameMenu {
 
         // Add a back button event handler
         EventHandler<Event> backHandler = event ->
-                GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu())
+                GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu())
                 );
 
         BorderPane menu = buildBlank(null, backHandler);
@@ -101,7 +101,7 @@ public class HelpMenu extends GameMenu {
 
 		// Use Timeline, Key Value and Key Frame
 		// Scrolling Text Effects for text "ABOUT RATS"
-		double sceneWidth = stage.getWidth();
+		double sceneWidth = getStage().getWidth();
 		double textWidth = headerTextNode.getLayoutBounds().getWidth();
 
 		KeyValue initKeyValue =

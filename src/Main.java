@@ -17,12 +17,12 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) {
-        GameMenu.stage = stage;
         LoginMenu loginMenu = new LoginMenu();
         stage.setScene(new Scene(loginMenu.buildMenu()));
         stage.setTitle(APP_HEADER);
         stage.setResizable(false);
         stage.show();
+        GameMenu.setStage(stage);
     }
 
 	/** 

@@ -40,7 +40,7 @@ public class LoginMenu extends GameMenu {
         loginButton.setOnMousePressed(event -> {
             PlayerProfileManager.loginPlayer(inputBox.getText());
 
-            GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
+            GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
         });
 
 
