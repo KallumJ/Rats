@@ -29,7 +29,9 @@ public class Gas extends GameObject {
         this.range = range;
         counter = 0;
         gasEffects = new ArrayList<>();
-        gasImage = new Image("file:resources/gas.png");
+        gasImage = new Image(
+                ObjectUtils.getObjectImageUrl(GameObjectType.GAS)
+        );
         super.setIcon(gasImage);
     }
 

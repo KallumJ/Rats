@@ -38,7 +38,7 @@ public class ObjectUtils {
             case DEATH_RAT:
                 return "file:resources/deathRat.png";
             case GAS:
-                return "file:resources/GAS.png";
+                return "file:resources/GasGif.gif";
             default:
                 throw new IllegalArgumentException(
                         String.format(NO_ASSIGNED_IMAGE, type)
