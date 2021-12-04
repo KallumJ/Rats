@@ -164,8 +164,6 @@ class HelpText {
 		text.setFont(Font.font(GameMenu.DEFAULT_FONT,
 				FontWeight.SEMI_BOLD, 25));
 		text.setFill(Color.WHITE);
-		Effect glow = new Glow(1.0);
-		text.setEffect(glow);
 		text.setX(x);
 		text.setY(y);
 		text.setUnderline(underline);
