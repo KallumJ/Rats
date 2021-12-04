@@ -12,7 +12,6 @@ import sfx.SFXManager;
 import tile.Tile;
 import tile.TileType;
 
-
 /**
  * A class to model a row of items in the inventory
  */
@@ -21,8 +20,8 @@ public class ItemRow {
     public static final int MAX_ITEMS_IN_ROW = 5;
     private final GameObjectType objectType;
     private final HBox hBox;
-    private int objectCount;
     private final Inventory inventory;
+    private int objectCount;
     private int originalX = -1;
     private int originalY = -1;
 
@@ -152,6 +151,15 @@ public class ItemRow {
     }
 
     /**
+     * A method to get the count of objects in this row
+     *
+     * @return the count of objects in this row
+     */
+    public int getObjectCount() {
+        return objectCount;
+    }
+
+    /**
      * A method to decrement the object count
      *
      * @param imageOfItemToRemove the image to remove
@@ -160,14 +168,5 @@ public class ItemRow {
         objectCount--;
         inventory.getItemsInInventory().remove(objectType);
         this.hBox.getChildren().remove(imageOfItemToRemove);
-    }
-
-    /**
-     * A method to get the count of objects in this row
-     *
-     * @return the count of objects in this row
-     */
-    public int getObjectCount() {
-        return objectCount;
     }
 }
