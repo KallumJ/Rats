@@ -3,6 +3,8 @@ package level;
 import io.XMLElementNames;
 import io.XMLFileReader;
 import objects.GameObject;
+import objects.Gas;
+import objects.GasEffect;
 import objects.NoEntrySignCounter;
 import org.w3c.dom.Element;
 import players.scores.Player;
@@ -214,8 +216,14 @@ public class LevelUtils {
         List<GameObject> objectsOnTile = getObjectsOnTile(tile, objects);
 
         // return true if all of the items on the tile are of an allowed type
+
+
         return !(objectsOnTile.stream().allMatch(
-                object -> object instanceof NoEntrySignCounter));
+                object ->
+                        object instanceof NoEntrySignCounter ||
+                        object instanceof GasEffect ||
+                        object instanceof Gas
+        ));
     }
 
     /**
