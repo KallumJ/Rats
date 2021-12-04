@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package objects;
 
 import javafx.animation.KeyFrame;
@@ -43,13 +38,13 @@ public class GasEffect extends GameObject implements ObjectStoppable {
     }
 
     private void removeEffect() {
-
+        sourceGas.getGasEffects().remove(this);
         GameObject.getBoard().removeObject(this);
     }
     
     public void enterGas (Rat rat){
         if (!(sourceGas.getRatsInGas().contains(rat))){
-        sourceGas.startChoking(rat);
+            sourceGas.startChoking(rat);
         }
     }
 

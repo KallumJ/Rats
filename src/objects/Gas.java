@@ -2,6 +2,8 @@ package objects;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -26,6 +28,8 @@ public class Gas extends GameObject implements ObjectStoppable {
     private final ArrayList<Rat> ratsInGas;
     private Timeline expandTimeline;
     private Timeline chokingTimeline;
+    private Timeline checkEmptyTimeline;
+    private boolean isActive;
 
     public Gas(Tile standingOn, int duration, int range) {
         super(standingOn);
@@ -35,6 +39,7 @@ public class Gas extends GameObject implements ObjectStoppable {
         counter = 0;
         gasEffects = new ArrayList<>();
         ratsInGas = new ArrayList<>();
+
         Image gasImage = new Image(
                 ObjectUtils.getObjectImageUrl(GameObjectType.GAS)
         );
@@ -42,10 +47,22 @@ public class Gas extends GameObject implements ObjectStoppable {
     }
 
     public void activateGas() {
-        GameObject.getBoard().removeObject(this);
-        expand(super.getStandingOn());
-        gasEffects.add(new GasEffect(super.getStandingOn(), (duration + 2), this));
+        if (!isActive) {
+            isActive = true;
+            expand(super.getStandingOn());
 
+            checkEmptyTimeline = new Timeline(new KeyFrame(Duration.millis(100), event -> checkEmpty()));
+            checkEmptyTimeline.setCycleCount(Animation.INDEFINITE);
+            checkEmptyTimeline.play();
+        }
+
+    }
+
+    private void checkEmpty() {
+        if (gasEffects.isEmpty()) {
+            GameObject.getBoard().removeObject(this);
+            checkEmptyTimeline.pause();
+        }
     }
 
     private void delayExpand(Tile tile) {
@@ -77,7 +94,6 @@ public class Gas extends GameObject implements ObjectStoppable {
                     delayExpand(adjacentTile);
                 } else {
                     for (GasEffect gasEffect : gasEffects) {
-
                         gasEffect.disappear();
                     }
                 }
@@ -111,17 +127,25 @@ public class Gas extends GameObject implements ObjectStoppable {
     }
     
     private boolean stillInGas (Rat rat){
+        // Return true if the rat is stood in a gas effect
         for (GasEffect gasEffect : gasEffects) {
            if (gasEffect.getStandingOn().equals(rat.getStandingOn())) {
                return true;
            }
        }
-       return false;
+
+        // If the rat is not stood in a gas effect, return true if it is stood in a gas
+        // Else, it is stood in neither a gas or gas effect return false
+        return rat.getStandingOn().equals(this.getStandingOn());
     }
     
     public ArrayList<Rat> getRatsInGas () {
         
         return this.ratsInGas;
+    }
+
+    public ArrayList<GasEffect> getGasEffects() {
+        return gasEffects;
     }
 
     /**
@@ -135,6 +159,10 @@ public class Gas extends GameObject implements ObjectStoppable {
 
         if (chokingTimeline != null) {
             chokingTimeline.pause();
+        }
+
+        if (checkEmptyTimeline != null) {
+            checkEmptyTimeline.pause();
         }
     }
 }
