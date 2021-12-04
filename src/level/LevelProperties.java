@@ -17,7 +17,9 @@ public class LevelProperties {
     private final int adultRatSpeed;
     private final int babyRatSpeed;
     private final int deathRatSpeed;
+    private int score;
     private int timeElapsed;
+
 
     /**
      * Constructs a LevelProperties object with the provided data
@@ -36,7 +38,7 @@ public class LevelProperties {
     public LevelProperties(int id, int height, int width, int populationToLose,
                            int expectedTime, int itemInterval, int ratMinBabies,
                            int ratMaxBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed,
-                           int timeElapsed) {
+                           int timeElapsed, int score) {
         this.levelId = id;
         this.levelHeight = height;
         this.levelWidth = width;
@@ -49,6 +51,7 @@ public class LevelProperties {
         this.babyRatSpeed = babyRatSpeed;
         this.deathRatSpeed = deathRatSpeed;
         this.timeElapsed = timeElapsed;
+        this.score = score;
     }
 
     /**
@@ -153,5 +156,21 @@ public class LevelProperties {
      */
     public void setTimeElapsed(int timeElapsed) {
         this.timeElapsed = timeElapsed;
+    }
+
+    /**
+     * Gets the current score of the level
+     * @return the score of the level
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * Sets the score for the level
+     * @param score the score for the level
+     */
+    public void setScore(int score) {
+        this.score = score;
     }
 }

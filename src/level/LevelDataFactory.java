@@ -157,10 +157,11 @@ public class LevelDataFactory {
         int babyRatSpeed = getPropertyInt(levelProperties, XMLElementNames.BABY_RAT_SPEED);
         int deathRatSpeed = getPropertyInt(levelProperties, XMLElementNames.DEATH_RAT_SPEED);
         int timeElapsed = getPropertyInt(levelProperties, XMLElementNames.TIME_ELAPSED);
+        int score = getPropertyInt(levelProperties, XMLElementNames.LEVEL_SCORE);
 
         return new LevelProperties(
                 id, height, width, populationToLose, expectedTime, itemInterval, ratMinBabies,
-                ratMaxBabies, adultRatSpeed, babyRatSpeed, deathRatSpeed, timeElapsed
+                ratMaxBabies, adultRatSpeed, babyRatSpeed, deathRatSpeed, timeElapsed, score
         );
     }
 
@@ -197,7 +198,7 @@ public class LevelDataFactory {
      * @param file The level file that needs constructing
      * @return The complete LevelData object
      */
-    private static LevelData constructLevelDataFromFile(File file) {
+    public static LevelData constructLevelDataFromFile(File file) {
         XMLFileReader xmlFileReader = new XMLFileReader(file);
 
         Element levelPropertiesElement = xmlFileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES);

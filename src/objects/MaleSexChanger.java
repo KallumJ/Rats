@@ -23,7 +23,9 @@ public class MaleSexChanger extends GameObject {
     public MaleSexChanger(Tile standingOn) {
         super(standingOn);
 
-        maleSexChangerImage = new Image("file:resources/maleChange.png");
+        maleSexChangerImage = new Image(ObjectUtils.getObjectImageUrl(
+                GameObjectType.MALE_SEX_CHANGER)
+        );
         super.setIcon(maleSexChangerImage);
     }
 

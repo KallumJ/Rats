@@ -49,7 +49,9 @@ public class Bomb extends GameObject {
         this.affectedTiles = new ArrayList<Tile>();
         findAffectedTiles();
 
-        bombImage = new Image("file:resources/bomb.png");
+        bombImage = new Image(
+                ObjectUtils.getObjectImageUrl(GameObjectType.BOMB)
+        );
         super.setIcon(bombImage);
         bombOneSecondImage = new Image("file:resources/bombOneSecond.png");
         bombTwoSecondsImage = new Image("file:resources/bombTwoSeconds.png");

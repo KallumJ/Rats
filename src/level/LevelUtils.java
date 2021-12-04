@@ -4,7 +4,6 @@ import io.XMLElementNames;
 import io.XMLFileReader;
 import objects.GameObject;
 import objects.NoEntrySignCounter;
-import objects.SterilisationEffect;
 import org.w3c.dom.Element;
 import players.scores.Player;
 import tile.Direction;
@@ -12,8 +11,12 @@ import tile.Tile;
 import tile.TileType;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A utility file to help with general functions around finding levels from file
@@ -29,6 +32,7 @@ public class LevelUtils {
     private static final String INVALID_DIRECTORY = "The provided directory is empty";
     private static final String SAVED_LEVELS_FILE_PATH = SAVED_LEVELS_DIR_PATH + "/%s-%d.xml";
     private static final String NO_LEVEL_FOUND = "No level was found matching the provided level id";
+    private static String NO_SAVED_LEVELS = "The player has no saved levels";
 
     /**
      * A method to return an array of File objects of all the files in the level directory
@@ -208,4 +212,57 @@ public class LevelUtils {
                 object -> object instanceof NoEntrySignCounter));
     }
 
+    /**
+     * A method to get the list of saved levels for the provided player
+     * @param player the player to get the levels for
+     * @return the List of level files for the provided player
+     */
+    public static List<File> getSavedLevelsForPlayer(Player player) {
+        // Get a stream of saved level files
+        Stream<File> savedLevelFilesStream =
+                Arrays.stream(getSavedLevelsFiles());
+
+        // Filter the stream based on whether the current file is
+        // for the provided player
+        savedLevelFilesStream =  savedLevelFilesStream.filter(
+                file -> isSavedLevelForPlayer(file, player)
+                );
+
+        // Return the stream as a list
+        return savedLevelFilesStream.collect(Collectors.toList());
+    }
+
+    /**
+     * Check whether the provided level file is for the provided player
+     * @param file the level file
+     * @param player the player
+     * @return true if yes, false otherwise
+     */
+    private static boolean isSavedLevelForPlayer(File file, Player player) {
+        String playerName = player.getPlayerName();
+        String filePlayer = getPlayerNameFromSavedLevel(file);
+        return filePlayer.equals(playerName);
+    }
+
+    /**
+     * Returns the most recent level for a player
+     * @param player the player
+     * @return the most recently level file for the player
+     */
+    public static File getMostRecentLevel(Player player) throws FileNotFoundException {
+        List<File> savedLevels =
+                LevelUtils.getSavedLevelsForPlayer(player);
+
+        File mostRecentLevel = null;
+        for (File level : savedLevels) {
+            if (mostRecentLevel == null || level.lastModified() > mostRecentLevel.lastModified()) {
+                mostRecentLevel = level;
+            }
+        }
+
+        if (mostRecentLevel == null) {
+            throw new FileNotFoundException(NO_SAVED_LEVELS);
+        }
+        return mostRecentLevel;
+    }
 }

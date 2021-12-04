@@ -39,7 +39,9 @@ public class Sterilisation extends GameObject {
 
         this.duration = duration;
         findAffectedTiles();
-        Image sterilisationImage = new Image("file:resources/sterilistation.png");
+        Image sterilisationImage = new Image(
+                ObjectUtils.getObjectImageUrl(GameObjectType.STERILISATION)
+        );
         super.setIcon(sterilisationImage);
         this.active = active;
         if (this.active) {
