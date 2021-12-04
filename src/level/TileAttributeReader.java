@@ -53,6 +53,12 @@ public class TileAttributeReader {
         );
     }
 
+    /**
+     * Constructs a Gas object for the gas attribute read from file
+     * @param attributeValue the attribute
+     * @param tile the tile the gas is on
+     * @return the Gas object represented by this attribute
+     */
     private static GameObject readGas(String attributeValue, Tile tile) {
         Scanner scanner = new Scanner(attributeValue);
         int duration = scanner.nextInt();
@@ -61,6 +67,12 @@ public class TileAttributeReader {
         return new Gas(tile, duration, range);
     }
 
+    /**
+     * Constructs a Sterilisation object for the sterilisation attribute read from file
+     * @param attributeValue the attribute
+     * @param tile the tile the sterilisation is on
+     * @return the Sterilisation object represented by this attribute
+     */
     private static Sterilisation readSterile(String attributeValue, Tile tile) {
         Scanner scanner = new Scanner(attributeValue);
         int duration = scanner.nextInt();
@@ -109,7 +121,13 @@ public class TileAttributeReader {
      * @return the constructed Bomb
      */
     private static Bomb readBomb(String attributeValue, Tile tile) {
-        return new Bomb(tile, Integer.parseInt(attributeValue), false);
+        Scanner scanner = new Scanner(attributeValue);
+
+        int duration = scanner.nextInt();
+        int timeRemaining = scanner.nextInt();
+        boolean timerStarted = scanner.nextBoolean();
+
+        return new Bomb(tile, duration, timeRemaining, timerStarted);
     }
 
     /**

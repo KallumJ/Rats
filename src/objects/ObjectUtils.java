@@ -57,7 +57,7 @@ public class ObjectUtils {
         switch (type) {
             case BOMB:
                 return new Bomb(
-                        standingOn, Bomb.DEFAULT_LENGTH, false
+                        standingOn, Bomb.DEFAULT_DURATION, Bomb.DEFAULT_DURATION, false
                 );
             case STERILISATION:
                 return new Sterilisation(
