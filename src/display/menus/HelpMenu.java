@@ -58,12 +58,12 @@ public class HelpMenu extends GameMenu {
 				new HelpText("\nUSE MOUSE TO DRAG OBJECT AND PLACE IT ON THE PATH TILES.",
 						150, 175, false),
 				new HelpText("\nOBJECTS:", 150, 200, true),
-				new HelpText("\n--> Bombs explode and kill all the rats in path"
-						+ "\n--> Female Sex Exchnage covert male rats that walk pass it into females."
-						+ "\n--> Male Sex Exchnage covert female rats that walk pass it into males."
-						+ "\n--> No Entry Sign block the movement of rats."
+				new HelpText("\n--> Bombs explode and kill all the rats and destroys objects nearby"
+						+ "\n--> Female Sex Changers covert male rats that walk past it into females."
+						+ "\n--> Male Sex Changers covert female rats that walk past it into males."
+						+ "\n--> No Entry Signs block the movement of rats."
 						+ "\n--> Death Rats kills other rats they come across."
-						+ "\n--> Poison kill the rat that walk past." +
+						+ "\n--> Poison kills the rat that walk past." +
 						"\n--> Sterilisation sterilizes rats that encounter it.",
 						150, 225, false),
 				new HelpText("\nNEED HELP? ", 25, 500, true),
