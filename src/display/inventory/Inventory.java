@@ -23,8 +23,7 @@ import java.util.List;
 public class Inventory {
 
     public static final int INVENTORY_WIDTH = 300; // in pixels
-    private static final String INVALID_RANDOM_ITEM =
-        "An invalid random item selection was made. Selection %d is not assigned an item";
+    private static final String INVALID_RANDOM_ITEM = "An invalid random item selection was made. Selection %d is not assigned an item";
     private static final int INVENTORY_PADDING = 10; // px
     private final List<GameObjectType> itemsInInventory;
     private final LevelData levelData;
@@ -42,9 +41,7 @@ public class Inventory {
         this.inventoryNode = new VBox();
 
         final int pad = INVENTORY_PADDING;
-        inventoryNode.setPadding(
-                new Insets(pad, pad, pad, pad)
-        );
+        inventoryNode.setPadding(new Insets(pad, pad, pad, pad));
         inventoryNode.setStyle(
                 "-fx-background-image: url(file:resources/inventorySkin.png);"
         );
@@ -67,12 +64,10 @@ public class Inventory {
 
         // Add an item to the inventory after every interval
         int itemInterval = levelData.getLevelProperties().getItemInterval();
-        Timeline timeline = new Timeline(
-                new KeyFrame(
-                        Duration.seconds(itemInterval),
-                        event -> addRandomItem()
-                )
-        );
+        Duration intvlDur = Duration.seconds(itemInterval);
+        KeyFrame keyframe = new KeyFrame(intvlDur, event -> addRandomItem());
+        Timeline timeline = new Timeline(keyframe);
+
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
