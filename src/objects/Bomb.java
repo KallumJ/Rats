@@ -17,20 +17,21 @@ import tile.TileType;
  *
  * @author Fahd
  */
-public class Bomb extends GameObject {
+public class Bomb extends GameObject implements ObjectStoppable {
 
     public static final int DEFAULT_DURATION = 5;
 
     private final int duration; // in seconds
     private boolean timerStarted;
     private int timeRemaining;
-    private ArrayList<Tile> affectedTiles;
+    private final ArrayList<Tile> affectedTiles;
     private final Image bombImage;
     private final Image bombOneSecondImage;
     private final Image bombTwoSecondsImage;
     private final Image bombThreeSecondsImage;
     private final Image bombFourImage;
     private final Image bombFiveImage;
+    private final Timeline bombTimer;
 
     /**
      * Create a new bomb item on the specified tile.
@@ -59,6 +60,9 @@ public class Bomb extends GameObject {
         bombThreeSecondsImage = new Image("file:resources/bombThreeSeconds.png");
         bombFourImage = new Image("file:resources/bombFourSeconds.png");
         bombFiveImage = new Image("file:resources/bombFiveSeconds.png");
+
+        bombTimer = new Timeline(new KeyFrame(Duration.millis(1000), event -> tick()));
+        bombTimer.setCycleCount(this.timeRemaining);
 
         if (this.timerStarted) {
             this.startTimer();
@@ -96,9 +100,7 @@ public class Bomb extends GameObject {
      * start the timer of the bomb.
      */
     private void startTimer() {
-        Timeline tickTimeline1 = new Timeline(new KeyFrame(Duration.millis(1000), event -> tick()));
-        tickTimeline1.setCycleCount(this.timeRemaining);
-        tickTimeline1.play();
+        bombTimer.play();
         this.timerStarted = true;
 
     }
@@ -178,5 +180,15 @@ public class Bomb extends GameObject {
      */
     public int getTimeRemaining() {
         return timeRemaining;
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (bombTimer != null) {
+            bombTimer.pause();
+        }
     }
 }

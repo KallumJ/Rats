@@ -7,7 +7,6 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import level.LevelUtils;
-import static objects.Sterilisation.DELAY_DURING_CONSTRUCTION;
 import objects.rats.Rat;
 import tile.Direction;
 import tile.Tile;
@@ -16,16 +15,17 @@ import tile.Tile;
  *
  * @author fahds
  */
-public class Gas extends GameObject {
+public class Gas extends GameObject implements ObjectStoppable {
 
     public static final int DEFAULT_DURATION = 16;
     public static final int DEFAULT_RANGE = 4;
-    private int duration;
+    private final int duration;
     private int counter;
-    private int range;
-    private Image gasImage;
-    private ArrayList<GasEffect> gasEffects;
-     private ArrayList<Rat> ratsInGas;
+    private final int range;
+    private final ArrayList<GasEffect> gasEffects;
+    private final ArrayList<Rat> ratsInGas;
+    private Timeline expandTimeline;
+    private Timeline chokingTimeline;
 
     public Gas(Tile standingOn, int duration, int range) {
         super(standingOn);
@@ -35,7 +35,7 @@ public class Gas extends GameObject {
         counter = 0;
         gasEffects = new ArrayList<>();
         ratsInGas = new ArrayList<>();
-        gasImage = new Image(
+        Image gasImage = new Image(
                 ObjectUtils.getObjectImageUrl(GameObjectType.GAS)
         );
         super.setIcon(gasImage);
@@ -49,12 +49,14 @@ public class Gas extends GameObject {
     }
 
     private void delayExpand(Tile tile) {
-
-        Timeline delayTimer = new Timeline(new KeyFrame(Duration.seconds(2), event -> expand(tile)));
-        delayTimer.play();
+        expandTimeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> expand(tile)));
+        expandTimeline.play();
     }
 
     public void expand(Tile tile) {
+        if (GameObject.getBoard() == null) {
+             return;
+        }
 
         for (Direction direction : Direction.values()) {
             Tile adjacentTile = tile.getAdjacentTile(direction);
@@ -94,38 +96,45 @@ public class Gas extends GameObject {
     }
     
     public void startChoking (Rat rat) {
-        
         ratsInGas.add(rat);
-        Timeline delay = new Timeline(new KeyFrame(Duration.seconds(4),event -> stillHere(rat)));
-        delay.play();
+        chokingTimeline = new Timeline(new KeyFrame(Duration.seconds(4), event -> stillHere(rat)));
+        chokingTimeline.play();
     }
     
     public void stillHere (Rat rat) {
         
         if (stillInGas(rat)){
             GameObject.getBoard().removeObject(rat);
-            ratsInGas.remove(rat);
-            
-        }else {
-            ratsInGas.remove(rat);
         }
-        
+        ratsInGas.remove(rat);
+
     }
     
     private boolean stillInGas (Rat rat){
-        
-        boolean answer = false;
-       for (GasEffect gasEffect : gasEffects) {
-           
+        for (GasEffect gasEffect : gasEffects) {
            if (gasEffect.getStandingOn().equals(rat.getStandingOn())) {
-               answer = true;
+               return true;
            }
        }
-       return answer;
+       return false;
     }
     
     public ArrayList<Rat> getRatsInGas () {
         
         return this.ratsInGas;
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (expandTimeline != null) {
+            expandTimeline.pause();
+        }
+
+        if (chokingTimeline != null) {
+            chokingTimeline.pause();
+        }
     }
 }

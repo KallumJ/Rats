@@ -15,7 +15,7 @@ import tile.Tile;
  * @author Fahd
  *
  */
-public class NoEntrySign extends GameObject {
+public class NoEntrySign extends GameObject implements ObjectStoppable {
 
     private final Image noEntrySignImage;
     private final Image noEntrySignOneImage;
@@ -27,6 +27,7 @@ public class NoEntrySign extends GameObject {
     private final int durability;
     private final ArrayList<NoEntrySignCounter> noEntrySignEffects;
     private final ArrayList<Tile> affectedTiles;
+    private final Timeline setUpTimeline;
 
     public static final int DEFAULT_DAMAGE_DONE = 0;
     public static final int DEFAULT_DURABILITY = 6;
@@ -59,9 +60,8 @@ public class NoEntrySign extends GameObject {
 
         super.getStandingOn().setTraversable(false);
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> setUpNoEntrySign()));
-        timeline.play();
-
+        setUpTimeline = new Timeline(new KeyFrame(Duration.millis(100), event -> setUpNoEntrySign()));
+        setUpTimeline.play();
     }
 
     private void setUpNoEntrySign() {
@@ -146,5 +146,15 @@ public class NoEntrySign extends GameObject {
      */
     public int getDurability() {
         return durability;
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (setUpTimeline != null) {
+            setUpTimeline.pause();
+        }
     }
 }

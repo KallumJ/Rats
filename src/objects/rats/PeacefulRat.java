@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import objects.GameObject;
+import objects.ObjectStoppable;
 import tile.Direction;
 import tile.Tile;
 
@@ -15,25 +16,26 @@ import tile.Tile;
  *
  * @author Fahd
  */
-public class PeacefulRat extends Rat {
+public class PeacefulRat extends Rat implements ObjectStoppable {
 
     // Added as being pregnant requires the board to be populated, which it isnt when this is constructed
-    private static final int DELAY_TO_MAKE_PREGNANT = 2; // in seconds
+    private static final int DELAY_TO_MAKE_PREGNANT = 250; // in ms
 
     private boolean sterile;
     private boolean adult;
     private boolean pregnant;
     private String gender;
-    private int timeToGiveBirth;
-    private int timeToDevelop;
+    private final int timeToGiveBirth;
+    private final int timeToDevelop;
     private Timer timer;
     private int numberOfBabies;
-    private Image maleRatImage;
-    private Image babyRatImage;
-    private Image femaleRatImage;
-    private Image pregnantFemaleRatImage;
-    private Timeline pregnancyTimer;
-    private Timeline developmentTimer;
+    private final Image maleRatImage;
+    private final Image babyRatImage;
+    private final Image femaleRatImage;
+    private final Image pregnantFemaleRatImage;
+    private Timeline pregnancyTimeline;
+    private Timeline pregnancyDelayTimeline;
+    private Timeline developmentTimeline;
 
     /**
      * Creates a new rat depending on the rat data.
@@ -61,13 +63,12 @@ public class PeacefulRat extends Rat {
         this.timeToGiveBirth = timeToGiveBirth;
 
         if (!this.adult) {
-
-            developmentTimer = new Timeline(new KeyFrame(Duration.seconds(this.timeToDevelop), event -> growUp()));
-            developmentTimer.play();
+            developmentTimeline = new Timeline(new KeyFrame(Duration.seconds(this.timeToDevelop), event -> growUp()));
+            developmentTimeline.play();
         }
         if (this.pregnant) {
-            Timeline pregnantDelay = new Timeline(new KeyFrame(Duration.seconds(DELAY_TO_MAKE_PREGNANT), event -> bePregnant()));
-            pregnantDelay.play();
+            pregnancyDelayTimeline = new Timeline(new KeyFrame(Duration.millis(DELAY_TO_MAKE_PREGNANT), event -> bePregnant()));
+            pregnancyDelayTimeline.play();
         }
 
         maleRatImage = new Image("file:resources/maleRat.png");
@@ -124,7 +125,7 @@ public class PeacefulRat extends Rat {
      * This method will make a rat pregnant and decide the number of babies.
      */
     public void bePregnant() {
-        pregnancyTimer = new Timeline(new KeyFrame(Duration.seconds(this.timeToGiveBirth), event -> giveBirth()));
+        pregnancyTimeline = new Timeline(new KeyFrame(Duration.seconds(this.timeToGiveBirth), event -> giveBirth()));
 
         this.pregnant = true;
         this.decideIcon();
@@ -133,7 +134,7 @@ public class PeacefulRat extends Rat {
         this.numberOfBabies = random.nextInt((GameObject.getBoard().getLevelProperties().getRatMaxBabies()
                 - GameObject.getBoard().getLevelProperties().getRatMinBabies()) + 1)
                 + GameObject.getBoard().getLevelProperties().getRatMinBabies();
-        pregnancyTimer.play();
+        pregnancyTimeline.play();
 
     }
 
@@ -282,4 +283,21 @@ public class PeacefulRat extends Rat {
         return timeToDevelop;
     }
 
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (developmentTimeline != null) {
+            developmentTimeline.pause();
+        }
+
+        if (pregnancyDelayTimeline != null) {
+            pregnancyDelayTimeline.pause();
+        }
+
+        if (pregnancyTimeline != null) {
+            pregnancyTimeline.pause();
+        }
+    }
 }

@@ -12,8 +12,6 @@ import tile.Tile;
  */
 public class Poison extends GameObject {
 
-    private Image poisonImage;
-
     /**
      * Creates a new sterilisation effect object on the specified tile.
      *
@@ -23,7 +21,7 @@ public class Poison extends GameObject {
     public Poison(Tile standingOn) {
         super(standingOn);
 
-        poisonImage = new Image(
+        Image poisonImage = new Image(
                 ObjectUtils.getObjectImageUrl(GameObjectType.POISON)
         );
         super.setIcon(poisonImage);

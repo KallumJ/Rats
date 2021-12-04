@@ -16,11 +16,10 @@ import tile.Tile;
  *
  * @author fahds
  */
-public class GasEffect extends GameObject {
+public class GasEffect extends GameObject implements ObjectStoppable {
 
-    private int duration;
-    private Gas sourceGas;
-    private Image gasEffectImage;
+    private final int duration;
+    private final Gas sourceGas;
     private Timeline disappearTimer;
 
     public GasEffect(Tile standingOn, int duration, Gas sourceGas) {
@@ -29,7 +28,7 @@ public class GasEffect extends GameObject {
         this.duration = duration;
         this.sourceGas = sourceGas;
 
-        gasEffectImage = new Image(
+        Image gasEffectImage = new Image(
                 ObjectUtils.getObjectImageUrl(GameObjectType.GAS)
         );
         super.setIcon(gasEffectImage);
@@ -54,4 +53,13 @@ public class GasEffect extends GameObject {
         }
     }
 
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (disappearTimer != null) {
+            disappearTimer.pause();
+        }
+    }
 }

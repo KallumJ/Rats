@@ -23,6 +23,7 @@ import level.LevelProperties;
 import level.LevelSaveHandler;
 import objects.GameObject;
 import objects.ObjectInteractionChecker;
+import objects.ObjectStoppable;
 import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
 import tile.Tile;
@@ -46,6 +47,7 @@ public class Board {
     private final Label timerLabel;
     private final Canvas canvas;
     private final Inventory inventory;
+    private final Timeline interactionCheckTimeline;
 
     public Board(LevelData levelData) {
         this.levelData = levelData;
@@ -56,7 +58,7 @@ public class Board {
 
         this.canvas = new Canvas(width, height);
 
-        Timeline interactionCheckTimeline = new Timeline(
+        interactionCheckTimeline = new Timeline(
                 new KeyFrame(Duration.millis(INTERACTION_CHECK_INTERVAL),
                         event -> interactionCheck())
         );
@@ -171,15 +173,21 @@ public class Board {
     }
 
     public void removeObject(GameObject objectRemove) {
+        if (objectRemove instanceof PeacefulRat) {
+            PeacefulRat killedRat = (PeacefulRat) objectRemove;
+            this.addPoints(killedRat);
+        }
+
+        if (objectRemove instanceof ObjectStoppable) {
+            ObjectStoppable stoppableObj = (ObjectStoppable) objectRemove;
+            stoppableObj.stop();
+        }
+
         List<GameObject> objects = levelData.getObjects();
 
         objects.remove(objectRemove);
         updateBoardDisplay();
-        if (objectRemove instanceof PeacefulRat) {
 
-            PeacefulRat killedRat = (PeacefulRat) objectRemove;
-            this.addPoints(killedRat);
-        }
     }
 
     public void addPoints(PeacefulRat killedRat) {
@@ -231,6 +239,7 @@ public class Board {
             LevelSaveHandler.saveLevel(levelData,
                     PlayerProfileManager.getCurrentlyLoggedInPlayer());
             GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu()));
+            this.stopGame();
         });
 
         controlsContainer.getChildren().add(saveButton);
@@ -259,6 +268,23 @@ public class Board {
         //root.setRight(callMethod);
 
         return root;
+    }
+
+    /**
+     * Stops the items in the game from running after the game is exited
+     */
+    private void stopGame() {
+        // Stop every object that needs stopping currently on the board
+        for (GameObject object : levelData.getObjects()) {
+            if (object instanceof ObjectStoppable) {
+                ObjectStoppable objectToBeStopped = (ObjectStoppable) object;
+                objectToBeStopped.stop();
+            }
+        }
+
+        interactionCheckTimeline.pause();
+        levelData.setObjects(null);
+        GameObject.setBoard(null);
     }
 
     public void startGame() {

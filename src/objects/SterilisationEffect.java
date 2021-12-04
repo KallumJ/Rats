@@ -12,8 +12,6 @@ import tile.Tile;
  */
 public class SterilisationEffect extends GameObject {
 
-    private Image sterilisationEffectImage;
-
     /**
      * Creates a new sterilisation effect object on the specified tile.
      *
@@ -22,7 +20,7 @@ public class SterilisationEffect extends GameObject {
     public SterilisationEffect(Tile standingOn) {
         super(standingOn);
 
-        sterilisationEffectImage = new Image("file:resources/SterilisationEffect.png");
+        Image sterilisationEffectImage = new Image("file:resources/SterilisationEffect.png");
         super.setIcon(sterilisationEffectImage);
 
     }

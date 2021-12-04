@@ -12,11 +12,12 @@ import tile.Tile;
  *
  * @author Fahd
  */
-public class NoEntrySignCounter extends GameObject {
+public class NoEntrySignCounter extends GameObject implements ObjectStoppable {
 
-    private boolean recentlyActivated;
-    private NoEntrySign sourceSign;
     private static final int DELAY = 1;
+    private final NoEntrySign sourceSign;
+    private boolean recentlyActivated;
+    private Timeline resetActivatedTimeline;
 
     /**
      * Creates NoEntrySignCounter next to the a NoEntrySign and count damage
@@ -44,11 +45,21 @@ public class NoEntrySignCounter extends GameObject {
             recentlyActivated = true;
 
             // after the specified delay has passed, allow damage to be done again
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(DELAY), event -> recentlyActivated = false));
-            timeline.play();
+            resetActivatedTimeline = new Timeline(new KeyFrame(Duration.seconds(DELAY), event -> recentlyActivated = false));
+            resetActivatedTimeline.play();
 
             sourceSign.doDamage();
 
+        }
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (resetActivatedTimeline != null) {
+            resetActivatedTimeline.pause();
         }
     }
 }

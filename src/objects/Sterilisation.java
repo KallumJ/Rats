@@ -14,15 +14,18 @@ import tile.Tile;
  *
  * @author Fahd
  */
-public class Sterilisation extends GameObject {
+public class Sterilisation extends GameObject implements ObjectStoppable {
+
+    public static final int DEFAULT_DURATION = 5;
+    public static final int DELAY_DURING_CONSTRUCTION = 250; // in ms
 
     private final int duration;
     private final ArrayList<Tile> affectedTiles;
     private final ArrayList<SterilisationEffect> sterilisationEffects;
     private boolean active;
+    private Timeline delayConstructionTimeline;
+    private Timeline effectTimeline;
 
-    public static final int DEFAULT_DURATION = 5;
-    public static final int DELAY_DURING_CONSTRUCTION = 250; // in ms
 
     /**
      * Create a new sterilisation item on the specified tile.
@@ -44,11 +47,11 @@ public class Sterilisation extends GameObject {
         super.setIcon(sterilisationImage);
         this.active = active;
         if (this.active) {
-            Timeline delay = new Timeline(
+            delayConstructionTimeline = new Timeline(
                     new KeyFrame(Duration.millis(DELAY_DURING_CONSTRUCTION),
                     event -> createSterilisationEffect())
             );
-            delay.play();  
+            delayConstructionTimeline.play();
         }
     }
 
@@ -76,8 +79,8 @@ public class Sterilisation extends GameObject {
             sterilisationEffects.add(newEffect);
             GameObject.getBoard().addObject(newEffect);
         }
-        Timeline effectTimer = new Timeline(new KeyFrame(Duration.seconds(duration), event -> endSterilisationEffect()));
-        effectTimer.play();
+        effectTimeline = new Timeline(new KeyFrame(Duration.seconds(duration), event -> endSterilisationEffect()));
+        effectTimeline.play();
 
     }
 
@@ -121,5 +124,19 @@ public class Sterilisation extends GameObject {
      */
     public boolean isActive() {
         return active;
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (delayConstructionTimeline != null) {
+            delayConstructionTimeline.pause();
+        }
+
+        if (effectTimeline != null) {
+            effectTimeline.pause();
+        }
     }
 }
