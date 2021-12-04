@@ -2,12 +2,13 @@ package objects;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import level.LevelUtils;
+import static objects.Sterilisation.DELAY_DURING_CONSTRUCTION;
+import objects.rats.Rat;
 import tile.Direction;
 import tile.Tile;
 
@@ -24,6 +25,7 @@ public class Gas extends GameObject {
     private int range;
     private Image gasImage;
     private ArrayList<GasEffect> gasEffects;
+     private ArrayList<Rat> ratsInGas;
 
     public Gas(Tile standingOn, int duration, int range) {
         super(standingOn);
@@ -32,6 +34,7 @@ public class Gas extends GameObject {
         this.range = range;
         counter = 0;
         gasEffects = new ArrayList<>();
+        ratsInGas = new ArrayList<>();
         gasImage = new Image(
                 ObjectUtils.getObjectImageUrl(GameObjectType.GAS)
         );
@@ -88,5 +91,41 @@ public class Gas extends GameObject {
 
     public int getRange() {
         return range;
+    }
+    
+    public void startChoking (Rat rat) {
+        
+        ratsInGas.add(rat);
+        Timeline delay = new Timeline(new KeyFrame(Duration.seconds(3),event -> stillHere(rat)));
+        delay.play();
+    }
+    
+    public void stillHere (Rat rat) {
+        
+        if (stillInGas(rat)){
+            GameObject.getBoard().removeObject(rat);
+            ratsInGas.remove(rat);
+            
+        }else {
+            ratsInGas.remove(rat);
+        }
+        
+    }
+    
+    private boolean stillInGas (Rat rat){
+        
+        boolean answer = false;
+       for (GasEffect gasEffect : gasEffects) {
+           
+           if (gasEffect.getStandingOn().equals(rat.getStandingOn())) {
+               answer = true;
+           }
+       }
+       return answer;
+    }
+    
+    public ArrayList<Rat> getRatsInGas () {
+        
+        return this.ratsInGas;
     }
 }

@@ -9,6 +9,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import objects.rats.Rat;
 import tile.Tile;
 
 /**
@@ -45,6 +46,12 @@ public class GasEffect extends GameObject {
     private void removeEffect() {
 
         GameObject.getBoard().removeObject(this);
+    }
+    
+    public void enterGas (Rat rat){
+        if (!(sourceGas.getRatsInGas().contains(rat))){
+        sourceGas.startChoking(rat);
+        }
     }
 
 }

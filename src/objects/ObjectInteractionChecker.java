@@ -180,12 +180,28 @@ public class ObjectInteractionChecker {
      */
     public static void checkGas(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof Gas) {
-            if (secondObject instanceof PeacefulRat) {
+            if (secondObject instanceof Rat) {
                 Gas sterilisationEffect =
                         (Gas) firstObject;
                 PeacefulRat rat = (PeacefulRat) secondObject;
 
                 sterilisationEffect.activateGas();
+            }
+        }
+    }
+    
+    /**
+     * A method to check whether the two provided objects is a gas and a r
+     * @param firstObject the first object
+     * @param secondObject the second object
+     */
+    public static void checkGasEffect(GameObject firstObject, GameObject secondObject) {
+        if (firstObject instanceof GasEffect) {
+            if (secondObject instanceof Rat) {
+                GasEffect gasEffect = (GasEffect) firstObject;
+                Rat rat = (Rat) secondObject;
+
+                gasEffect.enterGas(rat);
             }
         }
     }
