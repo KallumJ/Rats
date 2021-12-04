@@ -49,7 +49,7 @@ public class Sterilisation extends GameObject {
                     new KeyFrame(Duration.millis(DELAY_DURING_CONSTRUCTION),
                     event -> createSterilisationEffect())
             );
-            delay.play();
+            delay.play();  
         }
     }
 
@@ -91,7 +91,7 @@ public class Sterilisation extends GameObject {
 
             GameObject.getBoard().removeObject(sterilisationEffects.get(i));
         }
-        this.active = false;
+        
     }
 
     /**
@@ -108,6 +108,7 @@ public class Sterilisation extends GameObject {
 
     /**
      * A method to get the duration of the sterilisation
+     * 
      * @return the duration of the sterilisation in seconds
      */
     public int getDuration() {
@@ -116,6 +117,7 @@ public class Sterilisation extends GameObject {
 
     /**
      * A method to get whether this sterilisation is active or not
+     * 
      * @return true if active, false otherwise
      */
     public boolean isActive() {
