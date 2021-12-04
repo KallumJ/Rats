@@ -23,7 +23,9 @@ public class Poison extends GameObject {
     public Poison(Tile standingOn) {
         super(standingOn);
 
-        poisonImage = new Image("file:resources/poison.png");
+        poisonImage = new Image(
+                ObjectUtils.getObjectImageUrl(GameObjectType.POISON)
+        );
         super.setIcon(poisonImage);
     }
 

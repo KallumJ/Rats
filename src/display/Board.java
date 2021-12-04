@@ -38,13 +38,13 @@ public class Board {
     private static final int INTERACTION_CHECK_INTERVAL = 250; // In ms
     private static final String SAVED_BUTTON_LABEL = "Save and exit";
     private static final int CONTROLS_MARGIN = 5; // in pixels
-    private static final String TIME_ELAPSED_TEXT = "Time elapsed: %d. Expected time: %d";
-    private static final int TIMER_LABEL_PADDING = 5; // in pixels
+    private static final String INFORMATION_LABEL_TEXT =
+            "Time elapsed: %d seconds. Expected time: %d seconds. Score %d.";
+    private static final int INFO_LABEL_PADDING = 5; // in pixels
 
     private final LevelData levelData;
     private final Label timerLabel;
     private final Canvas canvas;
-    private int score;
     private final Inventory inventory;
 
     public Board(LevelData levelData) {
@@ -67,7 +67,11 @@ public class Board {
 
         int timeElapsed = levelData.getLevelProperties().getTimeElapsed();
         int expectedTime = levelData.getLevelProperties().getExpectedTime();
-        this.timerLabel = new Label(String.format(TIME_ELAPSED_TEXT, timeElapsed, expectedTime));
+        int score = levelData.getLevelProperties().getScore();
+
+        this.timerLabel = new Label(String.format(
+                INFORMATION_LABEL_TEXT, timeElapsed, expectedTime, score
+        ));
         Timeline gameTimerTimeline = new Timeline(
                 new KeyFrame(Duration.seconds(1),
                         event -> updateTimerLabel())
@@ -80,12 +84,13 @@ public class Board {
 
     private void updateTimerLabel() {
         int expectedTime = levelData.getLevelProperties().getExpectedTime();
-
         int elapsedTime = levelData.getLevelProperties().getTimeElapsed();
+        int score = levelData.getLevelProperties().getScore();
+
         elapsedTime++;
         levelData.getLevelProperties().setTimeElapsed(elapsedTime);
         timerLabel.setText(
-                String.format(TIME_ELAPSED_TEXT, elapsedTime, expectedTime)
+                String.format(INFORMATION_LABEL_TEXT, elapsedTime, expectedTime, score)
         );
     }
 
@@ -177,14 +182,13 @@ public class Board {
     }
 
     public void addPoints(PeacefulRat killedRat) {
-
-        this.score = score + POINTS_ON_A_RAT;
-
+        int score = levelData.getLevelProperties().getScore();
+        score += POINTS_ON_A_RAT;
         if (killedRat.isPregnant()) {
-
-            this.score = score + (killedRat.getNumberOfBabies() * POINTS_ON_A_RAT);
+            score = score + (killedRat.getNumberOfBabies() * POINTS_ON_A_RAT);
         }
 
+        levelData.getLevelProperties().setScore(score);
     }
 
     public int getCurrentPouplation() {
@@ -193,7 +197,7 @@ public class Board {
     }
 
     public int getScore() {
-        return this.score;
+        return levelData.getLevelProperties().getScore();
     }
 
     public Pane buildGUI() {
@@ -246,7 +250,7 @@ public class Board {
         timerLabel.setFont(
                 Font.font(GameMenu.DEFAULT_FONT, 18)
         );
-        timerLabel.setPadding(new Insets(TIMER_LABEL_PADDING));
+        timerLabel.setPadding(new Insets(INFO_LABEL_PADDING));
 
         labelContainer.getChildren().add(timerLabel);
         root.setTop(labelContainer);

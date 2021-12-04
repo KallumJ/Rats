@@ -4,6 +4,7 @@ package display.menus;
 import display.Board;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -15,7 +16,13 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import level.LevelData;
 import level.LevelDataFactory;
+import level.LevelUtils;
 import players.PlayerProfileManager;
+import players.scores.Player;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
 
 
 /**
@@ -24,6 +31,8 @@ import players.PlayerProfileManager;
  * @author Samhitha Pinisetti 2035196
  */
 public abstract class MenuItem extends StackPane {
+
+
     private final String name;
 
     /**
@@ -59,13 +68,9 @@ public abstract class MenuItem extends StackPane {
             text.setFill(Color.DARKGREY);
         });
 
-        setOnMousePressed(event -> {
-            bg.setFill(Color.DARKVIOLET);
-        });
+        setOnMousePressed(event -> bg.setFill(Color.DARKVIOLET));
 
-        setOnMouseReleased(event -> {
-            bg.setFill(gradient);
-        });
+        setOnMouseReleased(event -> bg.setFill(gradient));
 
 
     }
@@ -93,9 +98,8 @@ class PlayMenuItem extends MenuItem {
     public PlayMenuItem() {
         super("PLAY");
 
-        setOnMousePressed(event -> {
-            GameMenu.stage.setScene(new Scene(new LevelMenu().buildMenu()));
-        });
+        setOnMousePressed(event ->
+                GameMenu.stage.setScene(new Scene(new LevelMenu().buildMenu())));
     }
 }
 
@@ -152,12 +156,38 @@ class HelpMenuItem extends MenuItem {
  * @author Kallum Jones 2005855
  */
 class ContinueMenuItem extends MenuItem {
+    private static final String NO_SAVED_LEVELS = "No Saved Levels";
+    private static final String ALERT_MSG = "You have no saved levels to continue";
+
 
     /**
      * Constructs a ContinueMenuItem
      */
     public ContinueMenuItem() {
         super("CONTINUE");
+        setOnMousePressed(event -> {
+            Player player = PlayerProfileManager.getCurrentlyLoggedInPlayer();
+            File mostRecentLevel;
+            try {
+                // Get the most recent level and start the game
+                mostRecentLevel = LevelUtils.getMostRecentLevel(player);
+
+                LevelData levelData =
+                        LevelDataFactory.constructLevelDataFromFile(
+                                mostRecentLevel
+                        );
+                Board board = new Board(levelData);
+
+                board.startGame();
+                GameMenu.stage.setScene(new Scene(board.buildGUI()));
+            } catch (FileNotFoundException e) {
+                // If no saved levels, display alert to user
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(NO_SAVED_LEVELS);
+                alert.setHeaderText(ALERT_MSG);
+                alert.showAndWait();
+            }
+        });
     }
 }
 
@@ -172,9 +202,8 @@ class LoadMenuItem extends MenuItem {
      */
     public LoadMenuItem() {
         super("LOAD");
-        setOnMousePressed(event -> {
-            GameMenu.stage.setScene(new Scene(new LoadMenu().buildMenu()));
-        });
+        setOnMousePressed(event ->
+                GameMenu.stage.setScene(new Scene(new LoadMenu().buildMenu())));
     }
 }
 

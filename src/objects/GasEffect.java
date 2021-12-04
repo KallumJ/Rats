@@ -28,7 +28,9 @@ public class GasEffect extends GameObject {
         this.duration = duration;
         this.sourceGas = sourceGas;
 
-        gasEffectImage = new Image("file:resources/gasEffect.png");
+        gasEffectImage = new Image(
+                ObjectUtils.getObjectImageUrl(GameObjectType.GAS)
+        );
         super.setIcon(gasEffectImage);
 
         GameObject.getBoard().addObject(this);

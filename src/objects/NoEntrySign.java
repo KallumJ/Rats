@@ -46,7 +46,9 @@ public class NoEntrySign extends GameObject {
         this.damageDone = damageDone;
         this.durability = durability;
 
-        noEntrySignImage = new Image("file:resources/noEntrySign.png");
+        noEntrySignImage = new Image(
+                ObjectUtils.getObjectImageUrl(GameObjectType.NO_ENTRY_SIGN)
+        );
         noEntrySignOneImage = new Image("file:resources/noEntrySign1.png");
         noEntrySignTwoImage = new Image("file:resources/noEntrySign2.png");
         noEntrySignThreeImage = new Image("file:resources/noEntrySign3.png");

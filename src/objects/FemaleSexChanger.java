@@ -23,7 +23,9 @@ public class FemaleSexChanger extends GameObject {
     public FemaleSexChanger(Tile standingOn) {
         super(standingOn);
 
-        femaleSexChangerImage = new Image("file:resources/femaleChange.png");
+        femaleSexChangerImage = new Image(
+                ObjectUtils.getObjectImageUrl(GameObjectType.FEMALE_SEX_CHANGER)
+        );
         super.setIcon(femaleSexChangerImage);
     }
 
