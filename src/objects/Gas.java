@@ -1,6 +1,8 @@
 package objects;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -52,15 +54,22 @@ public class Gas extends GameObject {
     public void expand(Tile tile) {
 
         for (Direction direction : Direction.values()) {
+            Tile adjacentTile = tile.getAdjacentTile(direction);
+            List<GameObject> objectsOnBoard = GameObject.getBoard().getObjects();
 
-            if (tile.getAdjacentTile(direction).isTraversable()) {
-                boolean isGasNotPresent = LevelUtils.getObjectsOnTile(tile.getAdjacentTile(direction), GameObject.getBoard().getObjects()).stream().noneMatch(object -> object instanceof GasEffect);
+            if (adjacentTile.isTraversable()) {
+                boolean isGasNotPresent =
+                        LevelUtils.getObjectsOnTile(adjacentTile, objectsOnBoard)
+                                .stream().noneMatch(
+                                        object -> object instanceof GasEffect
+                                );
+
                 if (isGasNotPresent) {
-                    gasEffects.add(new GasEffect(tile.getAdjacentTile(direction), (duration - ((gasEffects.size() / 4) * 2)), this));
+                    gasEffects.add(new GasEffect(adjacentTile, (duration - ((gasEffects.size() / 4) * 2)), this));
                 }
 
                 if (counter < range) {
-                    delayExpand(tile.getAdjacentTile(direction));
+                    delayExpand(adjacentTile);
                 } else {
                     for (GasEffect gasEffect : gasEffects) {
 
