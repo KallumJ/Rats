@@ -115,6 +115,9 @@ class LeaderboardMenuItem extends MenuItem {
      */
     public LeaderboardMenuItem() {
         super("LEADERBOARD");
+        
+        setOnMousePressed(event ->
+                GameMenu.stage.setScene(new Scene(new LeaderBoardMenu().buildMenu())));
     }
 }
 
