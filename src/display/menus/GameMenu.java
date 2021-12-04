@@ -105,8 +105,6 @@ public abstract class GameMenu {
             pane.getChildren().add(menuTitle);
         }
 
-        pane.getChildren().add(menuTitle);
-
         // If an EventHandler for a back button is provided, add one
         if (backHandler != null) {
             Button backButton = new Button("Back");
