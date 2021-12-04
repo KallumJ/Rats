@@ -13,8 +13,6 @@ import tile.Tile;
  */
 public class FemaleSexChanger extends GameObject {
 
-    private Image femaleSexChangerImage;
-
     /**
      * Create a new female sex changer item on the specified tile.
      *
@@ -23,7 +21,7 @@ public class FemaleSexChanger extends GameObject {
     public FemaleSexChanger(Tile standingOn) {
         super(standingOn);
 
-        femaleSexChangerImage = new Image(
+        Image femaleSexChangerImage = new Image(
                 ObjectUtils.getObjectImageUrl(GameObjectType.FEMALE_SEX_CHANGER)
         );
         super.setIcon(femaleSexChangerImage);

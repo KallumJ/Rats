@@ -14,7 +14,7 @@ import java.util.List;
 public class LevelData {
     private final LevelProperties levelProperties;
     private final TileSet tileSet;
-    private final List<GameObject> objects;
+    private List<GameObject> objects;
     private List<GameObjectType> inventory;
 
     /**
@@ -77,5 +77,11 @@ public class LevelData {
         return inventory != null;
     }
 
-
+    /**
+     * Sets the list of objects
+     * @param objects a list of objects
+     */
+    public void setObjects(List<GameObject> objects) {
+        this.objects = objects;
+    }
 }

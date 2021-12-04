@@ -6,6 +6,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import objects.GameObject;
+import objects.ObjectStoppable;
 import tile.Direction;
 import tile.Tile;
 import tile.TileType;
@@ -17,26 +18,26 @@ import tile.TileType;
  * @author Fahd
  *
  */
-public class Rat extends GameObject {
+public class Rat extends GameObject implements ObjectStoppable {
 
     // movement speed of the Rat
     private int speed;
 
-    private Timeline tickTimeline;
+    private Timeline moveTimeline;
 
     private Direction directionOfMovement;
 
-    protected Rat(Tile standingOn, int speed, Direction directionOfMovement) {
+    protected Rat (Tile standingOn, int speed, Direction directionOfMovement) {
 
         super(standingOn);
         this.speed = speed;
         this.directionOfMovement = directionOfMovement;
 
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed), event -> move()));
+        moveTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed), event -> move()));
 
         // Loop the timeline forever
-        tickTimeline.setCycleCount(Animation.INDEFINITE);
-        tickTimeline.play();
+        moveTimeline.setCycleCount(Animation.INDEFINITE);
+        moveTimeline.play();
     }
 
     /**
@@ -150,7 +151,9 @@ public class Rat extends GameObject {
         }
         
         // Update the display
-        GameObject.getBoard().updateBoardDisplay();
+        if (GameObject.getBoard() != null) {
+            GameObject.getBoard().updateBoardDisplay();
+        }
     }
 
     /**
@@ -232,5 +235,15 @@ public class Rat extends GameObject {
         }
 
         return oppositeDirection;
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (moveTimeline != null) {
+            moveTimeline.pause();
+        }
     }
 }

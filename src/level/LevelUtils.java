@@ -3,6 +3,8 @@ package level;
 import io.XMLElementNames;
 import io.XMLFileReader;
 import objects.GameObject;
+import objects.Gas;
+import objects.GasEffect;
 import objects.NoEntrySignCounter;
 import org.w3c.dom.Element;
 import players.scores.Player;
@@ -32,7 +34,7 @@ public class LevelUtils {
     private static final String INVALID_DIRECTORY = "The provided directory is empty";
     private static final String SAVED_LEVELS_FILE_PATH = SAVED_LEVELS_DIR_PATH + "/%s-%d.xml";
     private static final String NO_LEVEL_FOUND = "No level was found matching the provided level id";
-    private static String NO_SAVED_LEVELS = "The player has no saved levels";
+    private static final String NO_SAVED_LEVELS = "The player has no saved levels";
 
     /**
      * A method to return an array of File objects of all the files in the level directory
@@ -175,6 +177,12 @@ public class LevelUtils {
      * @return the file name for a saved level for a given player and level id
      */
     public static String constructSavedLevelFileName(Player player, int levelId) {
+        // If the directory doesnt exist, create it
+        File file = new File(SAVED_LEVELS_DIR_PATH);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+
         return String.format(SAVED_LEVELS_FILE_PATH, player.getPlayerName(), levelId);
     }
 
@@ -208,8 +216,14 @@ public class LevelUtils {
         List<GameObject> objectsOnTile = getObjectsOnTile(tile, objects);
 
         // return true if all of the items on the tile are of an allowed type
+
+
         return !(objectsOnTile.stream().allMatch(
-                object -> object instanceof NoEntrySignCounter));
+                object ->
+                        object instanceof NoEntrySignCounter ||
+                        object instanceof GasEffect ||
+                        object instanceof Gas
+        ));
     }
 
     /**

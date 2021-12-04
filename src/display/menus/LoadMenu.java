@@ -50,7 +50,7 @@ public class LoadMenu extends GameMenu {
 
         // Add a back button event handler
         EventHandler<Event> backHandler = event ->
-                GameMenu.stage.setScene(new Scene(new MainMenu().buildMenu())
+                GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu())
                 );
 
         // Return the constructed menu

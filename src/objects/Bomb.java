@@ -17,36 +17,38 @@ import tile.TileType;
  *
  * @author Fahd
  */
-public class Bomb extends GameObject {
+public class Bomb extends GameObject implements ObjectStoppable {
 
-    private int timerLength; // in seconds
+    public static final int DEFAULT_DURATION = 5;
+
+    private final int duration; // in seconds
     private boolean timerStarted;
-    private int timerRemainingTime;
-    private Timeline tickTimeline1;
-    private ArrayList<Tile> affectedTiles;
-    private Image bombImage;
-    private Image bombOneSecondImage;
-    private Image bombTwoSecondsImage;
-    private Image bombThreeSecondsImage;
-    private Image bombFourImage;
-    private Image bombFiveImage;
-
-    public static final int DEFAULT_LENGTH = 5;
+    private int timeRemaining;
+    private final ArrayList<Tile> affectedTiles;
+    private final Image bombImage;
+    private final Image bombOneSecondImage;
+    private final Image bombTwoSecondsImage;
+    private final Image bombThreeSecondsImage;
+    private final Image bombFourImage;
+    private final Image bombFiveImage;
+    private final Timeline bombTimer;
 
     /**
      * Create a new bomb item on the specified tile.
      *
      * @param standingOn The tile the bomb is on.
-     * @param timerLength The Timer length to explode after it activation.
+     * @param duration The Timer length to explode after its activation.
+     * @param timeRemaining the time remaining on the bomb
      * @param timerStarted Indicates if the bomb has been activated.
      */
-    public Bomb(Tile standingOn, int timerLength, boolean timerStarted) {
+    public Bomb(Tile standingOn, int duration, int timeRemaining, boolean timerStarted) {
         super(standingOn);
 
-        this.timerLength = timerLength;
+        this.duration = duration;
         this.timerStarted = timerStarted;
-        this.timerRemainingTime = timerLength;
-        this.affectedTiles = new ArrayList<Tile>();
+        this.timeRemaining = timeRemaining;
+
+        this.affectedTiles = new ArrayList<>();
         findAffectedTiles();
 
         bombImage = new Image(
@@ -59,8 +61,10 @@ public class Bomb extends GameObject {
         bombFourImage = new Image("file:resources/bombFourSeconds.png");
         bombFiveImage = new Image("file:resources/bombFiveSeconds.png");
 
-        if (this.timerStarted) {
+        bombTimer = new Timeline(new KeyFrame(Duration.millis(1000), event -> tick()));
+        bombTimer.setCycleCount(this.timeRemaining);
 
+        if (this.timerStarted) {
             this.startTimer();
         }
 
@@ -87,7 +91,6 @@ public class Bomb extends GameObject {
      * Activates and starts the timer of the bomb.
      */
     public void activationOfBomb() {
-
         if (!this.timerStarted) {
             startTimer();
         }
@@ -97,11 +100,7 @@ public class Bomb extends GameObject {
      * start the timer of the bomb.
      */
     private void startTimer() {
-        tickTimeline1 = new Timeline(new KeyFrame(Duration.millis(1000), event -> tick()));
-        // Loop the timeline forever
-        tickTimeline1.setCycleCount(this.timerLength);
-
-        tickTimeline1.play();
+        bombTimer.play();
         this.timerStarted = true;
 
     }
@@ -111,9 +110,7 @@ public class Bomb extends GameObject {
      * when timer finish.
      */
     private void tick() {
-
-        switch (timerRemainingTime) {
-
+        switch (timeRemaining) {
             case 6:
                 super.setIcon(bombFiveImage);
                 break;
@@ -135,10 +132,9 @@ public class Bomb extends GameObject {
         }
         GameObject.getBoard().updateBoardDisplay();
 
-        this.timerRemainingTime = timerRemainingTime - 1;
+        this.timeRemaining = timeRemaining - 1;
 
-        if (timerRemainingTime < 1) {
-
+        if (timeRemaining < 1) {
             explode();
         }
 
@@ -149,13 +145,9 @@ public class Bomb extends GameObject {
      *
      */
     private void explode() {
-
         for (int i = 0; i < affectedTiles.size(); i++) {
-
             for (int j = 0; j < GameObject.getBoard().getObjects().size(); j++) {
-
                 if (GameObject.getBoard().getObjects().get(j).getStandingOn().equals(affectedTiles.get(i))) {
-
                     GameObject.getBoard().removeObject(GameObject.getBoard().getObjects().get(j));
                 }
             }
@@ -166,33 +158,37 @@ public class Bomb extends GameObject {
         GameObject.getBoard().updateBoardDisplay();
 
     }
-
-    /**
-     * Gets the horizontal and vertical tiles until reaches grass.
-     *
-     * @return The horizontal and vertical tiles until reaches grass.
-     */
-    public ArrayList<Tile> getAffectedTiles() {
-
-        return this.affectedTiles;
-    }
-
-    /**
-     * Sets the horizontal and vertical tiles until reaches grass.
-     *
-     * @param affectedTiles The horizontal and vertical tiles until reaches
-     * grass.
-     */
-    public void setAffectedTiles(ArrayList<Tile> affectedTiles) {
-
-        this.affectedTiles = affectedTiles;
-    }
-
     /**
      * A method to get the amount of time left on the timer.
      * @return the amount of time left on the timer in seconds
      */
-    public int getTimerLength() {
-        return timerLength;
+    public int getDuration() {
+        return duration;
+    }
+
+    /**
+     * Returns whether the timer has started or not
+     * @return true if the timer has started, false otherwise
+     */
+    public boolean isTimerStarted() {
+        return timerStarted;
+    }
+
+    /**
+     * Gets the time remaining on this bomb before explosion
+     * @return the time remaining, in seconds
+     */
+    public int getTimeRemaining() {
+        return timeRemaining;
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (bombTimer != null) {
+            bombTimer.pause();
+        }
     }
 }

@@ -3,7 +3,6 @@ package level;
 import objects.*;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
-import tile.Direction;
 
 import java.util.Map;
 import java.util.StringJoiner;
@@ -79,9 +78,7 @@ public class ObjectAttributeGenerator {
      */
     private static String generateGasAttribute(Gas gas) {
         StringJoiner attribute = new StringJoiner(" ");
-
-        attribute.add(String.valueOf(gas.getDuration()));
-        attribute.add(String.valueOf(gas.getRange()));
+        attribute.add(String.valueOf(gas.isActive()));
 
         return attribute.toString();
     }
@@ -147,7 +144,13 @@ public class ObjectAttributeGenerator {
      * @return the attribute string for a bomb object
      */
     private static String generateBombAttribute(Bomb bomb) {
-       return String.valueOf(bomb.getTimerLength());
+        StringJoiner attribute = new StringJoiner(" ");
+
+        attribute.add(String.valueOf(bomb.getDuration()));
+        attribute.add(String.valueOf(bomb.getTimeRemaining()));
+        attribute.add(String.valueOf(bomb.isTimerStarted()));
+
+       return attribute.toString();
     }
 
     /**

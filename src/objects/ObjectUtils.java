@@ -57,7 +57,7 @@ public class ObjectUtils {
         switch (type) {
             case BOMB:
                 return new Bomb(
-                        standingOn, Bomb.DEFAULT_LENGTH, false
+                        standingOn, Bomb.DEFAULT_DURATION, Bomb.DEFAULT_DURATION, false
                 );
             case STERILISATION:
                 return new Sterilisation(
@@ -81,9 +81,7 @@ public class ObjectUtils {
                         DeathRat.DEFAULT_KILLS_TARGET
                 );
             case GAS:
-                return new Gas(standingOn,
-                        Gas.DEFAULT_DURATION, Gas.DEFAULT_RANGE
-                );
+                return new Gas(standingOn, Gas.DEFAULT_ACTIVATION);
             default:
                 throw new IllegalArgumentException(
                         String.format(NO_CONSTRUCTOR_ASSIGNED, type)

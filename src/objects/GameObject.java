@@ -13,7 +13,7 @@ public class GameObject {
     // Loaded icon of the object
     private Image icon;
 
-    // The tile.Tile the objetc is currently standing on
+    // The Tile the object is currently standing on
     private Tile standingOn;
 
     private static Board board;
@@ -81,5 +81,4 @@ public class GameObject {
 
         this.standingOn = standingOn;
     }
-
 }

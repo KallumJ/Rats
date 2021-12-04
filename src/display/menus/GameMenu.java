@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -30,31 +31,43 @@ import java.nio.file.Paths;
 public abstract class GameMenu {
     public static final String DEFAULT_FONT = "Tw Cen MT Condensed";
     private static final String NO_BACKGROUND = "Could not load the menu background image file";
-    public static Stage stage;
+    private static final Path RAT_BG_PATH = Paths.get("resources/ratsBG.jpeg");
+
+    // all in px:
+    private static final int DEFAULT_WINDOW_WIDTH = 860;
+    private static final int DEFAULT_WINDOW_HEIGHT = 600;
+    private static final int TITLE_OFFSET_X = 75;
+    private static final int TITLE_OFFSET_Y = 200;
+    private static final int MENU_OFFSET_X = 100;
+    private static final int MENU_OFFSET_Y = 300;
+    private static final int ON_CLICK_OFFSET = 10;
+
+    private static Stage stage;
     private final BorderPane root;
 
     /**
-     * Constructs a GameMenu
+     * Constructs a GameMenu.
      */
     public GameMenu() {
         root = new BorderPane();
-        root.setPrefSize(860, 600);
+        root.setPrefSize(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
     }
 
     /**
-     * A method to build a menu, with a MenuBox of MenuItems to display in the menu
+     * Builds a menu, with a MenuBox of MenuItems to display in the menu.
      *
-     * @param menuBox     the list of menu items to display in the menu
-     * @param backHandler The EventHandler for the back button on the page, or null if there is no back button required*
-     * @return The Node containing the menu
+     * @param menuBox       the list of menu items to display in the menu
+     * @param backHandler   the EventHandler for the back button on the page, or
+     *                      null if there is no back button required
+     * @return              the node containing the menu
      */
     public BorderPane buildMenu(MenuTitle menuTitle, MenuBox menuBox, EventHandler<Event> backHandler) {
         // First build a blank menu
         buildBlank(menuTitle, backHandler);
 
         // Align and add the menu box
-        menuBox.setTranslateX(100);
-        menuBox.setTranslateY(300);
+        menuBox.setTranslateX(MENU_OFFSET_X);
+        menuBox.setTranslateY(MENU_OFFSET_Y);
 
         getCenter().getChildren().addAll(menuBox);
 
@@ -62,42 +75,42 @@ public abstract class GameMenu {
     }
 
     /**
-     * A method to build a menu, with nothing in it, for adding custom controls
+     * Returns a menu with nothing in it.
      *
-     * @param menuTitle   The title of the menu
-     * @param backHandler The EventHandler for the back button on the page, or null if there is no back button required
-     * @return The node containing the blank menu
+     * @param menuTitle     the title of the menu
+     * @param backHandler   the EventHandler for the back button on the page,
+                            or null if there is no back button required
+     * @return              the node containing the blank menu
      */
     public BorderPane buildBlank(MenuTitle menuTitle, EventHandler<Event> backHandler) {
         Pane pane = new Pane();
 
         // Set a size for the window
-        pane.setPrefSize(860, 600);
+        pane.setPrefSize(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
 
         // Get and set the background
-        try (InputStream is =
-                     Files.newInputStream(Paths.get("resources/rats bg.jpeg"))
-        ) {
-            ImageView img = new ImageView(new Image(is));
-            img.setFitWidth(860);
-            img.setFitHeight(600);
+        try (InputStream imgStream = Files.newInputStream(RAT_BG_PATH)) {
+            ImageView img = new ImageView(new Image(imgStream));
+            img.setFitWidth(DEFAULT_WINDOW_WIDTH);
+            img.setFitHeight(DEFAULT_WINDOW_HEIGHT);
             pane.getChildren().add(img);
         } catch (IOException e) {
             throw new RuntimeException(NO_BACKGROUND);
         }
 
         // Align and add a title
-        menuTitle.setTranslateX(75);
-        menuTitle.setTranslateY(200);
-
-        pane.getChildren().add(menuTitle);
+        if (menuTitle != null) {
+            menuTitle.setTranslateX(TITLE_OFFSET_X);
+            menuTitle.setTranslateY(TITLE_OFFSET_Y);
+            pane.getChildren().add(menuTitle);
+        }
 
         // If an EventHandler for a back button is provided, add one
         if (backHandler != null) {
             Button backButton = new Button("Back");
             backButton.setOnMousePressed(backHandler);
-            backButton.setTranslateX(10);
-            backButton.setTranslateY(10);
+            backButton.setTranslateX(pane.getPrefWidth() - 50);
+            backButton.setTranslateY(pane.getPrefHeight() - 30);
 
             pane.getChildren().add(backButton);
         }
@@ -108,43 +121,69 @@ public abstract class GameMenu {
     }
 
     /**
-     * An abstract method for subclasses to override and create their menu layouts
+     * An abstract method for subclasses to override and create their menu
+     * layouts.
      *
-     * @return The node of the created menu layout
+     * @return the node of the created menu layout
      */
     public abstract Parent buildMenu();
 
     /**
-     * Returns the center of the root BorderPane for subclasses to add controls
+     * Returns the center of the root BorderPane for subclasses to add controls.
      *
-     * @return The center of the BorderPane
+     * @return the center of the BorderPane
      */
     protected Pane getCenter() {
         return (Pane) root.getCenter();
     }
+
+    /**
+     * Gets the current stage on display
+     * @return the current stage on display
+     */
+    public static Stage getStage() {
+        return stage;
+    }
+
+    /**
+     * Sets the stage to display
+     * @param stage the stage to display
+     */
+    public static void setStage(Stage stage) {
+        GameMenu.stage = stage;
+    }
 }
 
 /**
- * A class to model the title of a menu
+ * Models the title of a menu.
+ *
+ * @author Samhitha Pinisetti 2035196
  */
 class MenuTitle extends StackPane {
 
+    private static final int TITLE_WIDTH = 250;
+    private static final int TITLE_HEIGHT = 60;
+    private static final int BORDER_SIZE = 2;
+    private static final int TITLE_FONT_SIZE = 50;
+    private static final Font TITLE_FONT = Font.font(GameMenu.DEFAULT_FONT, FontWeight.SEMI_BOLD, TITLE_FONT_SIZE);
+
     /**
-     * Constructs a MenuTitle
+     * Constructor for a MenuTitle.
      *
-     * @param name the words in the title
+     * @param name the title text
      */
-    public MenuTitle(String name) {
-        Rectangle bg = new Rectangle(250, 60);
+    public MenuTitle(final String name) {
+        Rectangle bg = new Rectangle(TITLE_WIDTH, TITLE_HEIGHT);
         bg.setStroke(Color.WHITE);
-        bg.setStrokeWidth(2);
+        bg.setStrokeWidth(BORDER_SIZE);
         bg.setFill(null);
 
         Text text = new Text(name);
         text.setFill(Color.WHITE);
-        text.setFont(Font.font(GameMenu.DEFAULT_FONT, FontWeight.SEMI_BOLD, 50));
+        text.setFont(TITLE_FONT);
 
         setAlignment(Pos.CENTER);
         getChildren().addAll(bg, text);
     }
+
 }
