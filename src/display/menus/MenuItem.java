@@ -147,6 +147,7 @@ class HelpMenuItem extends MenuItem {
      */
     public HelpMenuItem() {
         super("HELP");
+        setOnMousePressed(event -> GameMenu.stage.setScene(new Scene(new HelpMenu().buildMenu())));
     }
 }
 

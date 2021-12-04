@@ -2,6 +2,7 @@ package display.menus;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -87,17 +88,18 @@ public abstract class GameMenu {
         }
 
         // Align and add a title
-        menuTitle.setTranslateX(75);
-        menuTitle.setTranslateY(200);
-
-        pane.getChildren().add(menuTitle);
+        if (menuTitle != null) {
+            menuTitle.setTranslateX(75);
+            menuTitle.setTranslateY(200);
+            pane.getChildren().add(menuTitle);
+        }
 
         // If an EventHandler for a back button is provided, add one
         if (backHandler != null) {
             Button backButton = new Button("Back");
             backButton.setOnMousePressed(backHandler);
-            backButton.setTranslateX(10);
-            backButton.setTranslateY(10);
+            backButton.setTranslateX(pane.getPrefWidth() - 50);
+            backButton.setTranslateY(pane.getPrefHeight() - 30);
 
             pane.getChildren().add(backButton);
         }
