@@ -1,5 +1,6 @@
 package objects.rats;
 
+import java.sql.Time;
 import java.util.Random;
 import java.util.Timer;
 import javafx.animation.KeyFrame;
@@ -20,6 +21,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 
     // Added as being pregnant requires the board to be populated, which it isnt when this is constructed
     private static final int DELAY_TO_MAKE_PREGNANT = 250; // in ms
+    private static final int DELAY_TO_MATE = 1; // in seconds
 
     private boolean sterile;
     private boolean adult;
@@ -27,7 +29,6 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
     private String gender;
     private final int timeToGiveBirth;
     private final int timeToDevelop;
-    private Timer timer;
     private int numberOfBabies;
     private final Image maleRatImage;
     private final Image babyRatImage;
@@ -36,6 +37,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
     private Timeline pregnancyTimeline;
     private Timeline pregnancyDelayTimeline;
     private Timeline developmentTimeline;
+    private Timeline delayMating;
 
     /**
      * Creates a new rat depending on the rat data.
@@ -115,10 +117,21 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
         if (partner.getGender().equalsIgnoreCase("f") && (!partner.isPregnant())) {
             if ((!(this.isSterile() || partner.isSterile())) && (this.isAdult() && partner.isAdult())) {
 
-                partner.bePregnant();
+                this.setSpeed(0);
+                partner.setSpeed(0);
+                delayMating = new Timeline(new KeyFrame(Duration.seconds(DELAY_TO_MATE),
+                        event -> resetSpeed(partner)));
+                delayMating.play();
             }
         }
 
+    }
+
+    private void resetSpeed(PeacefulRat partner) {
+        int speed = GameObject.getBoard().getLevelProperties().getAdultRatSpeed();
+        partner.setSpeed(speed);
+        this.setSpeed(speed);
+        partner.bePregnant();
     }
 
     /**
@@ -255,6 +268,10 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 
         if (pregnancyTimeline != null) {
             pregnancyTimeline.pause();
+        }
+
+        if (delayMating != null) {
+            delayMating.pause();
         }
     }
 
