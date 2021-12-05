@@ -2,6 +2,7 @@ package sfx;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import objects.Bomb;
 
 import java.io.File;
 
@@ -12,24 +13,39 @@ public class SFXManager {
 
     private static final String BOMB_SFX_FILE = "resources/sounds/bomb_sfx.mp3";
     private static final String PUT_SFX_FILE = "resources/sounds/put_sfx.mp3";
-
+    private static final String DEATHRAT_SFX_FILE = "resources/sounds/deathrat_sfx.mp3";
+    private static final String ENTRYSIGN_SFX_FILE = "resources/sounds/entrysign_sfx.mp3";
+    
     /**
      * A method to play the sound effect for a bomb
      */
     public static void playBombSFX() {
         playSfx(BOMB_SFX_FILE);
     }
-
+    
     /**
+     * A method to play the sound effect for a death rat 
+     */
+    public static void playDeathratSFX() {
+        playSfx(DEATHRAT_SFX_FILE);
+    }
+    
+    /**
+     * A method to play the sound effect for rat bumping into a no entry sign 
+     */
+    public static void playEntrysignSFX() {
+        playSfx(ENTRYSIGN_SFX_FILE);
+    }
+
+     /**
      * A method to play the sound when item be placed
      */
     public static void bePlaced() {
         playSfx(PUT_SFX_FILE);
     }
-
+    
     /**
      * A method to play the provided sound file
-     *
      * @param filePath the path to the file to play
      */
     private static void playSfx(String filePath) {
@@ -40,7 +56,6 @@ public class SFXManager {
 
     /**
      * Convert file path into resource file identifier for media player to use
-     *
      * @param filePath the path to the file to convert
      * @return the URI of the file provided
      */
