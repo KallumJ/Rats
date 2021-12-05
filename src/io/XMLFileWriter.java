@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * A class to write XML files to the disk
+ * A class to write XML files to the disk.
  *
  * @author Kallum Jones 2005855
  */
@@ -30,7 +30,7 @@ public class XMLFileWriter {
 	private String rootNodeName;
 
 	/**
-	 * Constructs an XMLFileWriter object
+	 * Constructs an XMLFileWriter object.
 	 *
 	 * @param file     The file to write too
 	 * @param rootName The name of the root node in this xml file
@@ -62,7 +62,7 @@ public class XMLFileWriter {
 
 	/**
 	 * A method to save the file that has thus far been written, and close the
-	 * writer
+	 * writer.
 	 */
 	public void saveAndClose() {
 		// End the document, and close the writer
@@ -80,7 +80,7 @@ public class XMLFileWriter {
 	}
 
 	/**
-	 * A method to write a provided XMLNode to the file
+	 * A method to write a provided XMLNode to the file.
 	 *
 	 * @param xmlNode the XMLNode to write to the file
 	 */

@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * A class to model a menu for loading saved levels for this player
+ * A class to model a menu for loading saved levels for this player.
  *
  * @author Kallum Jones 2005855
  */
@@ -20,7 +20,7 @@ public class LoadMenu extends GameMenu {
 	private static final String MENU_TITLE = " L O A D ";
 
 	/**
-	 * A method to build the Load Menu GUI
+	 * A method to build the Load Menu GUI.
 	 *
 	 * @return the Node containing the Load Menu
 	 */

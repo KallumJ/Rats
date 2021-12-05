@@ -9,6 +9,8 @@ import tile.Tile;
 import tile.TileType;
 
 /**
+ * Object representing the gas effect placed on the board.
+ *
  * @author fahds
  */
 public class GasEffect extends GameObject implements ObjectStoppable {

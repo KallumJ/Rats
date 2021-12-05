@@ -15,7 +15,7 @@ import players.PlayerProfileManager;
 import players.scores.Player;
 
 /**
- * The class build a LeaderBoardMenu
+ * Represents a LeaderBoardMenu.
  *
  * @author YIMING LI
  */
@@ -28,7 +28,7 @@ public class LeaderBoardMenu extends GameMenu {
 	private final int levelId;
 
 	/**
-	 * Constructs a LeaderBoardMenu for the provided level
+	 * Constructs a LeaderBoardMenu for the provided level.
 	 *
 	 * @param id the id of the level to show scores for
 	 */
@@ -105,10 +105,10 @@ public class LeaderBoardMenu extends GameMenu {
 	}
 
 	/**
-	 * A method to convert the list of players to PlayerInLeaderboard's
+	 * A method to convert the list of players to PlayerInLeaderboard's.
 	 *
-	 * @param players The list of players to convert
-	 * @return A List of PlayerInLeaderboards.
+	 * @param players the list of players to convert
+	 * @return a List of PlayerInLeaderboards
 	 */
 	public ArrayList<PlayerInLeaderboard> convertPlayersToPlayerInLeaderboard(List<Player> players) {
 		ArrayList<PlayerInLeaderboard> playersInLeaderboard =
@@ -132,11 +132,11 @@ public class LeaderBoardMenu extends GameMenu {
 	}
 
 	/**
-	 * A method to match the 2 provided string lengths
+	 * A method to match the 2 provided string lengths.
 	 *
 	 * @param stringToMatch the string to lengthen
 	 * @param masterString  the string whose length we should match
-	 * @return the stringToMatch, with however many required spaces.
+	 * @return the stringToMatch, with however many required spaces
 	 */
 	private static String matchStringLengths(String stringToMatch,
 											 String masterString) {

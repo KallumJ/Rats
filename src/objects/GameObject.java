@@ -5,6 +5,8 @@ import javafx.scene.image.Image;
 import tile.Tile;
 
 /**
+ * Superclass for GameObjects.
+ *
  * @author fahds
  */
 public class GameObject {
@@ -23,7 +25,7 @@ public class GameObject {
 	}
 
 	/**
-	 * Gets the board
+	 * Gets the board.
 	 *
 	 * @return the board
 	 */
@@ -33,7 +35,7 @@ public class GameObject {
 	}
 
 	/**
-	 * Sets the board
+	 * Sets the board.
 	 *
 	 * @param board the board
 	 */
@@ -42,7 +44,7 @@ public class GameObject {
 	}
 
 	/**
-	 * Gets the icon
+	 * Gets the icon.
 	 *
 	 * @return the icon
 	 */
@@ -52,7 +54,7 @@ public class GameObject {
 	}
 
 	/**
-	 * Change icon
+	 * Change icon.
 	 *
 	 * @param icon the icon
 	 */
@@ -62,7 +64,7 @@ public class GameObject {
 	}
 
 	/**
-	 * Gets the standing on
+	 * Gets the standing on.
 	 *
 	 * @return the standing on
 	 */
@@ -72,7 +74,7 @@ public class GameObject {
 	}
 
 	/**
-	 * Stand on
+	 * Stand on.
 	 *
 	 * @param standingOn the standing on
 	 */

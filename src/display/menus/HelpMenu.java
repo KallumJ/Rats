@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The class Help menu
+ * The class Help menu.
  *
  * @author Yin Man Cheung
  */
@@ -31,7 +31,7 @@ public class HelpMenu extends GameMenu {
 	private static final int WINDOW_HEIGHT = 600;
 
 	/**
-	 * Builds the HelpMenu
+	 * Builds the HelpMenu.
 	 *
 	 * @return the HelpMenu as a JavaFX node
 	 */
@@ -77,7 +77,7 @@ public class HelpMenu extends GameMenu {
 	}
 
 	/**
-	 * Apply scrolling effects to the provided Text nodes
+	 * Apply scrolling effects to the provided Text nodes.
 	 *
 	 * @param headerTextNode    the header text node
 	 * @param subheaderTextNode the subheading text node

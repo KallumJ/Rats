@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 
 /**
  * A utility file to help with general functions around finding levels from
- * file
+ * file.
  *
  * @author Kallum Jones 2005855
  */
@@ -53,8 +53,7 @@ public class LevelUtils {
 
 	/**
 	 * A method to return an array of File objects of all the files in the
-	 * level
-	 * directory
+	 * level directory.
 	 *
 	 * @return the array of files in the directory
 	 */
@@ -64,8 +63,7 @@ public class LevelUtils {
 
 	/**
 	 * A method to return an array of File objects of all the files in the
-	 * saved
-	 * levels directory
+	 * saved levels directory.
 	 *
 	 * @return the array of files in the directory
 	 */
@@ -74,7 +72,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * A method to get the LevelFile by the provided id
+	 * A method to get the LevelFile by the provided id.
 	 *
 	 * @param id the level id
 	 */
@@ -98,7 +96,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * A utility method to get the level id for a provided file
+	 * A utility method to get the level id for a provided file.
 	 *
 	 * @param file the file to get the id from
 	 * @return the found id
@@ -113,7 +111,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * A method to convert tile types to a string
+	 * A method to convert tile types to a string.
 	 *
 	 * @param tileType the tile type
 	 * @return the converted string
@@ -132,7 +130,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * A method to get the string from a direction
+	 * A method to get the string from a direction.
 	 *
 	 * @param directionOfMovement the direction
 	 * @return the string for this direction
@@ -153,7 +151,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * A method to get the player name associated with a saved level
+	 * A method to get the player name associated with a saved level.
 	 *
 	 * @param savedLevel the saved level
 	 * @return the player name associated with this saved level
@@ -170,7 +168,7 @@ public class LevelUtils {
 
 	/**
 	 * Added a method to construct the file name for a saved level for a given
-	 * player and level id
+	 * player and level id.
 	 *
 	 * @param player  the player
 	 * @param levelId the level id
@@ -189,7 +187,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * A method to get all the objects on the given tile
+	 * A method to get all the objects on the given tile.
 	 *
 	 * @param tile    the tile the objects are standing on
 	 * @param objects the list of objects on the board
@@ -211,7 +209,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * A method to check whether a tile is blocked by other objects
+	 * A method to check whether a tile is blocked by other objects.
 	 *
 	 * @param tile    the tile to check
 	 * @param objects the list of objects on the board
@@ -229,7 +227,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * A method to get the list of saved levels for the provided player
+	 * A method to get the list of saved levels for the provided player.
 	 *
 	 * @param player the player to get the levels for
 	 * @return the List of level files for the provided player
@@ -249,7 +247,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * Returns the most recent level for a player
+	 * Returns the most recent level for a player.
 	 *
 	 * @param player the player
 	 * @return the most recently level file for the player
@@ -271,7 +269,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * A method to get the files in the provided directory
+	 * A method to get the files in the provided directory.
 	 *
 	 * @param path the path to check
 	 * @return the list of files in the provided directory
@@ -295,7 +293,7 @@ public class LevelUtils {
 	}
 
 	/**
-	 * Check whether the provided level file is for the provided player
+	 * Check whether the provided level file is for the provided player.
 	 *
 	 * @param file   the level file
 	 * @param player the player

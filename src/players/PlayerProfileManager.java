@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class to manage player profiles
+ * A class to manage player profiles.
  *
  * @author Kallum Jones 2005855
  */

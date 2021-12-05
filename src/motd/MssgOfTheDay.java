@@ -11,7 +11,7 @@ import java.net.URI;
  * Contains methods to return the Message of the Day from the
  * <a href="http://cswebcat.swansea.ac.uk/">MotD API</a>.
  *
- * @author Matthew Stephenson
+ * @author Matthew Stephenson 2031863
  */
 public final class MssgOfTheDay {
 
@@ -70,8 +70,7 @@ public final class MssgOfTheDay {
 	 * Returns a string containing the body of the from the specified URI.
 	 * <p>
 	 * The request made is a generic HTTP GET, response is then parsed, and
-	 * only
-	 * the body returned as string. Can throw errors due to bad web
+	 * only the body returned as string. Can throw errors due to bad web
 	 * responses/non-responses.
 	 *
 	 * @param requestURI the URI of the page to be requested from

@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import players.PlayerProfileManager;
 
 /**
- * A class to model the login menu
+ * A class to model the login menu.
  *
  * @author Kallum Jones 2005855
  */
@@ -24,9 +24,9 @@ public class LoginMenu extends GameMenu {
 			"Please choose a name with " + NAME_CHAR_LIMIT + " characters or " + "less";
 
 	/**
-	 * A method to build the login menu
+	 * A method to build the login menu.
 	 *
-	 * @return The node containing the login menu
+	 * @return the node containing the login menu
 	 */
 	@Override
 	public Parent buildMenu() {

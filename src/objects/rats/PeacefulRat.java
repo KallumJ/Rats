@@ -12,7 +12,7 @@ import tile.Direction;
 import tile.Tile;
 
 /**
- * This class represent the peaceful rats which will mate and and reproduce.
+ * This class represent the peaceful rats which will mate and reproduce.
  *
  * @author Fahd
  */
@@ -228,7 +228,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * Sets whether this rat is pregnant
+	 * Sets whether this rat is pregnant.
 	 *
 	 * @param pregnant true if pregnant, false otherwise
 	 */
@@ -237,7 +237,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * A method to get number of babies the rat will give birth to
+	 * A method to get number of babies the rat will give birth to.
 	 *
 	 * @return number of babies the rat will give birth to
 	 */
@@ -247,7 +247,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * A method to get the time til this rat gives birth
+	 * A method to get the time til this rat gives birth.
 	 *
 	 * @return the time til this rat gives birth in seconds
 	 */
@@ -256,7 +256,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * A method to get the time for this rat to grow up
+	 * A method to get the time for this rat to grow up.
 	 *
 	 * @return the time for this rat to grow up in seconds
 	 */
@@ -265,7 +265,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * Stops any timelines running in this object
+	 * Stops any timelines running in this object.
 	 */
 	@Override
 	public void stop() {
@@ -291,7 +291,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * Resets the speed of this rat and their partner
+	 * Resets the speed of this rat and their partner.
 	 *
 	 * @param partner their partner
 	 */
@@ -319,7 +319,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * Spawns a baby behind its mother
+	 * Spawns a baby behind its mother.
 	 */
 	private void spawnBaby() {
 		String newBornGender;
@@ -353,7 +353,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * This method will turn a baby rat into an adult rat.
+	 * Turns a baby rat into an adult rat.
 	 */
 	private void growUp() {
 

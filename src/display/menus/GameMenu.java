@@ -133,7 +133,7 @@ public abstract class GameMenu {
 	public abstract Parent buildMenu();
 
 	/**
-	 * Gets the current stage on display
+	 * Gets the current stage on display.
 	 *
 	 * @return the current stage on display
 	 */
@@ -142,7 +142,7 @@ public abstract class GameMenu {
 	}
 
 	/**
-	 * Sets the stage to display
+	 * Sets the stage to display.
 	 *
 	 * @param stage the stage to display
 	 */

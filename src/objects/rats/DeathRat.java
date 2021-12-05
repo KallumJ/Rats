@@ -13,7 +13,7 @@ import tile.Tile;
 import java.sql.Time;
 
 /**
- * The class Death rat extends rat
+ * Represents a Death Rat, as an extension of {@code Rat}.
  *
  * @author fahds
  */
@@ -29,7 +29,7 @@ public class DeathRat extends Rat implements ObjectStoppable {
 	private int numberOfKills;
 
 	/**
-	 * Constructs Death rat
+	 * Constructs Death rat.
 	 *
 	 * @param standingOn          the standing on
 	 * @param speed               the speed
@@ -53,7 +53,7 @@ public class DeathRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * Kill's the provided rat
+	 * Kills the provided rat.
 	 *
 	 * @param victim the victim
 	 */
@@ -70,7 +70,7 @@ public class DeathRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * Gets the number of kills
+	 * Gets the number of kills.
 	 *
 	 * @return the number of kills
 	 */
@@ -85,7 +85,7 @@ public class DeathRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * Stops any timelines that are in progress
+	 * Stops any timelines that are in progress.
 	 */
 	@Override
 	public void stop() {
@@ -95,7 +95,7 @@ public class DeathRat extends Rat implements ObjectStoppable {
 	}
 
 	/**
-	 * Resets the speed of the death rat
+	 * Resets the speed of the death rat.
 	 */
 	private void resetSpeed() {
 		int speed = GameObject.getBoard()

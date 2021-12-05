@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A class to model an XML node for writing to files
+ * A class to model an XML node for writing to files.
  *
  * @author Kallum Jones 2005855
  */
@@ -19,7 +19,7 @@ public class XMLNode {
 	private final List<XMLNode> children;
 
 	/**
-	 * Constructs an XMLNode with the provided data
+	 * Constructs an XMLNode with the provided data.
 	 *
 	 * @param nodeName   The name of the node, required
 	 * @param nodeValue  The value of the node, optional, provide null if not
@@ -38,7 +38,7 @@ public class XMLNode {
 	}
 
 	/**
-	 * Returns the XMLNode name
+	 * Returns the XMLNode name.
 	 *
 	 * @return the XMLNode's name as String
 	 */
@@ -47,7 +47,7 @@ public class XMLNode {
 	}
 
 	/**
-	 * Returns the XMLNode's value
+	 * Returns the XMLNode's value.
 	 *
 	 * @return the XMLNode's value as a String
 	 */
@@ -56,7 +56,7 @@ public class XMLNode {
 	}
 
 	/**
-	 * Returns the XMLNode's attributes
+	 * Returns the XMLNode's attributes.
 	 *
 	 * @return the XMLNode's attributes, as a Map of strings
 	 */
@@ -65,7 +65,7 @@ public class XMLNode {
 	}
 
 	/**
-	 * Returns the XMLNode's children
+	 * Returns the XMLNode's children.
 	 *
 	 * @return the XMLNode's children as a List of XMLNode
 	 */
@@ -74,7 +74,7 @@ public class XMLNode {
 	}
 
 	/**
-	 * Returns whether this node has children
+	 * Returns whether this node has children.
 	 *
 	 * @return true or false
 	 */
@@ -83,7 +83,7 @@ public class XMLNode {
 	}
 
 	/**
-	 * Returns whether this node has attributes
+	 * Returns whether this node has attributes.
 	 *
 	 * @return true or false
 	 */
@@ -92,7 +92,7 @@ public class XMLNode {
 	}
 
 	/**
-	 * Returns whether this node has a value
+	 * Returns whether this node has a value.
 	 *
 	 * @return true or false
 	 */
@@ -101,7 +101,7 @@ public class XMLNode {
 	}
 
 	/**
-	 * A method to get the first child with the provided name
+	 * A method to get the first child with the provided name.
 	 *
 	 * @param elementName the element name
 	 * @return the found XMLNode
@@ -118,7 +118,7 @@ public class XMLNode {
 	}
 
 	/**
-	 * A method to get a list of child nodes that match the child name
+	 * A method to get a list of child nodes that match the child name.
 	 *
 	 * @param elementName the element name
 	 * @return List of XMLNodes matching the element name

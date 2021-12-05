@@ -14,7 +14,7 @@ import players.PlayerProfileManager;
 import players.scores.Player;
 
 /**
- * A class to model the MainMenu of the application
+ * A class to model the MainMenu of the application.
  *
  * @author Kallum Jones 2005855
  */
@@ -29,7 +29,7 @@ public class MainMenu extends GameMenu {
 
 	/**
 	 * A method to create a main menu with all the main menu items we need on
-	 * it
+	 * it.
 	 *
 	 * @return The node containing all the main menu items
 	 */

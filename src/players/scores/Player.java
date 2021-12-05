@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The class Player
+ * The class Player.
  *
  * @author Yin Man Cheung
  */

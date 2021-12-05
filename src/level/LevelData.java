@@ -7,7 +7,7 @@ import tile.TileSet;
 import java.util.List;
 
 /**
- * A class to model the data required for a Level
+ * A class to model the data required for a Level.
  *
  * @author Kallum Jones 2005855
  */
@@ -18,7 +18,7 @@ public class LevelData {
 	private List<GameObjectType> inventory;
 
 	/**
-	 * Constructs a LevelData object with the provided data
+	 * Constructs a LevelData object with the provided data.
 	 *
 	 * @param levelProperties The LevelProperties of the Level
 	 * @param tileSet         the TileSet for the level
@@ -33,7 +33,7 @@ public class LevelData {
 	}
 
 	/**
-	 * A method to get the LevelProperties for the level
+	 * A method to get the LevelProperties for the level.
 	 *
 	 * @return the LevelProperties for the level
 	 */
@@ -42,7 +42,7 @@ public class LevelData {
 	}
 
 	/**
-	 * A method to get the TileSet for the level
+	 * A method to get the TileSet for the level.
 	 *
 	 * @return the TileSet for the level
 	 */
@@ -51,7 +51,7 @@ public class LevelData {
 	}
 
 	/**
-	 * A method to get the List of Objects present on the level
+	 * A method to get the List of Objects present on the level.
 	 *
 	 * @return List of Objects present on the level
 	 */
@@ -60,7 +60,7 @@ public class LevelData {
 	}
 
 	/**
-	 * Sets the list of objects
+	 * Sets the list of objects.
 	 *
 	 * @param objects a list of objects
 	 */
@@ -69,7 +69,7 @@ public class LevelData {
 	}
 
 	/**
-	 * A method to get the items in the inventory for this level
+	 * A method to get the items in the inventory for this level.
 	 *
 	 * @return the items in the inventory for this level
 	 */
@@ -78,7 +78,7 @@ public class LevelData {
 	}
 
 	/**
-	 * A method to set the items in the inventory for this level
+	 * A method to set the items in the inventory for this level.
 	 *
 	 * @param inventory the items in the inventory for this level
 	 */
@@ -87,7 +87,7 @@ public class LevelData {
 	}
 
 	/**
-	 * A method to determine whether this level has an inventory assigned
+	 * A method to determine whether this level has an inventory assigned.
 	 *
 	 * @return true if yes, false otherwise
 	 */

@@ -14,7 +14,7 @@ import java.io.File;
 import java.util.*;
 
 /**
- * A class to handle the saving of level files
+ * A class to handle the saving of level files.
  *
  * @author Kallum Jones 2005855
  */
@@ -28,7 +28,7 @@ public class LevelSaveHandler {
 	}
 
 	/**
-	 * A method to save the provided level data for the provided player
+	 * A method to save the provided level data for the provided player.
 	 *
 	 * @param levelData The level data currently in play
 	 * @param player    The player playing the level
@@ -57,7 +57,7 @@ public class LevelSaveHandler {
 	}
 
 	/**
-	 * A method to save the inventory in this level data to the file
+	 * A method to save the inventory in this level data to the file.
 	 *
 	 * @param xmlFileWriter the file writer to write with
 	 * @param levelData     the level data for this level
@@ -81,7 +81,7 @@ public class LevelSaveHandler {
 	}
 
 	/**
-	 * A method to save the provided tile set
+	 * A method to save the provided tile set.
 	 *
 	 * @param xmlFileWriter the file writer to write with
 	 * @param levelData     the level data containing the tile set
@@ -112,7 +112,7 @@ public class LevelSaveHandler {
 
 	/**
 	 * A method to return the provided tile row as a list of XMLNodes
-	 * representing each tile
+	 * representing each tile.
 	 *
 	 * @param tileRow the list of Tiles in a row
 	 * @param objects the list of objects on the board
@@ -150,7 +150,7 @@ public class LevelSaveHandler {
 	}
 
 	/**
-	 * A method to write the level properties to the file
+	 * A method to write the level properties to the file.
 	 *
 	 * @param xmlFileWriter the file writer to use
 	 * @param levelData     the level data to obtain the properties from

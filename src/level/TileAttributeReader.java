@@ -9,7 +9,7 @@ import tile.Tile;
 import java.util.Scanner;
 
 /**
- * A class to read attributes and form the GameObject they represent
+ * A class to read attributes and form the GameObject they represent.
  *
  * @author Kallum Jones 2005855
  */
@@ -30,7 +30,7 @@ public class TileAttributeReader {
 	}
 
 	/**
-	 * A method to get the GameObject that the provided attribute represents
+	 * A method to get the GameObject that the provided attribute represents.
 	 *
 	 * @param attributeName  The name of the attribute read from file
 	 * @param attributeValue The value of the attribute read from file
@@ -64,7 +64,7 @@ public class TileAttributeReader {
 	}
 
 	/**
-	 * A method to construct a PeacefulRat with the provided attribute data
+	 * A method to construct a PeacefulRat with the provided attribute data.
 	 *
 	 * @param attributeValue The data to construct a PeacefulRat with
 	 * @param tile           The tile the PeacefulRat is on
@@ -96,7 +96,7 @@ public class TileAttributeReader {
 	}
 
 	/**
-	 * Constructs a Gas object for the gas attribute read from file
+	 * Constructs a Gas object for the gas attribute read from file.
 	 *
 	 * @param attributeValue the attribute
 	 * @param tile           the tile the gas is on
@@ -108,7 +108,7 @@ public class TileAttributeReader {
 
 	/**
 	 * Constructs a Sterilisation object for the sterilisation attribute read
-	 * from file
+	 * from file.
 	 *
 	 * @param attributeValue the attribute
 	 * @param tile           the tile the sterilisation is on
@@ -124,7 +124,7 @@ public class TileAttributeReader {
 	}
 
 	/**
-	 * A method to construct a NoEntrySign with the provided data
+	 * A method to construct a NoEntrySign with the provided data.
 	 *
 	 * @param attributeValue the data to construct the NoEntrySign with
 	 * @param tile           the Tile the NoEntrySign is on
@@ -141,7 +141,7 @@ public class TileAttributeReader {
 
 	/**
 	 * A method to construct the relevant SexChanger object from the provided
-	 * data
+	 * data.
 	 *
 	 * @param attributeValue the data to construct the SexChanger with
 	 * @param tile           The tile the SexChanger is on
@@ -158,7 +158,7 @@ public class TileAttributeReader {
 	}
 
 	/**
-	 * A method to construct a Bomb object with the provided data
+	 * A method to construct a Bomb object with the provided data.
 	 *
 	 * @param attributeValue the data to construct the Bomb with
 	 * @param tile           the tile the Bomb is on
@@ -175,7 +175,7 @@ public class TileAttributeReader {
 	}
 
 	/**
-	 * A method to construct a DeathRat with the provided attribute data
+	 * A method to construct a DeathRat with the provided attribute data.
 	 *
 	 * @param attributeValue the data to construct a DeathRat with
 	 * @param tile           the tile the DeathRat is on
@@ -193,7 +193,7 @@ public class TileAttributeReader {
 	}
 
 	/**
-	 * A method to return the relevant Direction enum from a String
+	 * A method to return the relevant Direction enum from a String.
 	 *
 	 * @param direction the direction String
 	 * @return the parsed Direction enum

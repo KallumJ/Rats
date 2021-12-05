@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A class to read elements and their respective values from a given XML file
+ * A class to read elements and their respective values from a given XML file.
  *
  * @author Kallum Jones 2005855
  */
@@ -27,9 +27,9 @@ public class XMLFileReader {
 	private final Element rootElement;
 
 	/**
-	 * Constructs an XMLFileReader object
+	 * Constructs an XMLFileReader object.
 	 *
-	 * @param file The file this XMLFileReader will read from
+	 * @param file the file this XMLFileReader will read from
 	 */
 	public XMLFileReader(File file) {
 		try {
@@ -45,7 +45,7 @@ public class XMLFileReader {
 
 	/**
 	 * A method to get each subsequent element in the list from the position of
-	 * the previous
+	 * the previous.
 	 *
 	 * @param elements The list of elements to go drilldown through
 	 * @return The final element in the list as an Element object, or null if
@@ -70,7 +70,7 @@ public class XMLFileReader {
 	}
 
 	/**
-	 * A method to get the XML file as an XMLNode
+	 * A method to get the XML file as an XMLNode.
 	 *
 	 * @return the XMLNode for this file
 	 */
@@ -79,7 +79,7 @@ public class XMLFileReader {
 	}
 
 	/**
-	 * A method to recursively construct the provided element as an XMLNode
+	 * A method to recursively construct the provided element as an XMLNode.
 	 *
 	 * @param element the element
 	 * @return the element as an XMLNode

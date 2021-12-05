@@ -91,7 +91,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
 	}
 
 	/**
-	 * Returns whether the timer has started or not
+	 * Returns whether the timer has started or not.
 	 *
 	 * @return true if the timer has started, false otherwise
 	 */
@@ -100,7 +100,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
 	}
 
 	/**
-	 * Gets the time remaining on this bomb before explosion
+	 * Gets the time remaining on this bomb before explosion.
 	 *
 	 * @return the time remaining, in seconds
 	 */
@@ -109,7 +109,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
 	}
 
 	/**
-	 * Stops any timelines running in this object
+	 * Stops any timelines running in this object.
 	 */
 	@Override
 	public void stop() {

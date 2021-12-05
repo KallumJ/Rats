@@ -6,7 +6,7 @@ import objects.rats.DeathRat;
 import tile.Tile;
 
 /**
- * A class to provide utility methods for working with GameObjects
+ * A class to provide utility methods for working with GameObjects.
  *
  * @author Kallum Jones 2005855
  */

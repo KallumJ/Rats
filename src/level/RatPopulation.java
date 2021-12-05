@@ -13,7 +13,7 @@ import objects.GameObject;
 import objects.rats.PeacefulRat;
 
 /**
- * Constructs a RatPopulation object
+ * Constructs a RatPopulation object.
  *
  * @author Samhitha Pinisetti 2035196
  */
@@ -29,7 +29,7 @@ public class RatPopulation {
 	}
 
 	/**
-	 * A method to calculate the population for the level
+	 * A method to calculate the population for the level.
 	 */
 	public void calculatePopulation() {
 		List<GameObject> objects = levelData.getObjects();
@@ -55,7 +55,7 @@ public class RatPopulation {
 	}
 
 	/**
-	 * A method to get the total population for the level
+	 * A method to get the total population for the level.
 	 *
 	 * @return the totalPopulation for the level
 	 */
@@ -65,7 +65,7 @@ public class RatPopulation {
 	}
 
 	/**
-	 * A method to get the population of female rats for the level
+	 * A method to get the population of female rats for the level.
 	 *
 	 * @return the numberOfFemaleRats for the level
 	 */
@@ -75,7 +75,7 @@ public class RatPopulation {
 	}
 
 	/**
-	 * A method to get the population of male rats for the level
+	 * A method to get the population of male rats for the level.
 	 *
 	 * @return the numberOfMaleRats for the level
 	 */

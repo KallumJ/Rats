@@ -3,7 +3,7 @@ package display.menus;
 import java.util.Comparator;
 
 /**
- * This class collect player information needed for leaderboard
+ * Collects player information needed for leaderboard.
  *
  * @author YIMING LI
  */
@@ -12,6 +12,13 @@ class PlayerInLeaderboard {
 	private final Integer level;
 	private final Integer score;
 
+	/**
+	 * Constructs a {@code PlayerInLeaderboard} object.
+	 *
+	 * @param name 	the name of the player
+	 * @param level the level the score was achieved on
+	 * @param score the score reached
+	 */
 	public PlayerInLeaderboard(String name, Integer level, Integer score) {
 		this.name = name;
 		this.level = level;

@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 /**
- * A class to model text in the HelpMenu
+ * A class to model text in the HelpMenu.
  *
  * @author Kallum Jones 2005855
  */
@@ -18,7 +18,7 @@ class HelpText {
 	private final boolean underline;
 
 	/**
-	 * Constructs a HelpText
+	 * Constructs a HelpText.
 	 *
 	 * @param text      the text to display
 	 * @param x         the x position
@@ -33,7 +33,7 @@ class HelpText {
 	}
 
 	/**
-	 * A method to get the HelpText as a JavaFX node
+	 * A method to get the HelpText as a JavaFX node.
 	 *
 	 * @return Text node for this HelpText
 	 */

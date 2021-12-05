@@ -23,7 +23,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * A class to model an item in a MenuBox
+ * A class to model an item in a MenuBox.
  *
  * @author Samhitha Pinisetti 2035196
  */
@@ -32,7 +32,7 @@ public abstract class MenuItem extends StackPane {
 	private final String name;
 
 	/**
-	 * Constructs a MenuItem with the provided name
+	 * Constructs a MenuItem with the provided name.
 	 *
 	 * @param name the name of the menu item
 	 */
@@ -72,7 +72,7 @@ public abstract class MenuItem extends StackPane {
 	}
 
 	/**
-	 * A method to return the name of the MenuItem
+	 * A method to return the name of the MenuItem.
 	 *
 	 * @return the name of the menu item
 	 */
@@ -82,14 +82,14 @@ public abstract class MenuItem extends StackPane {
 }
 
 /**
- * A class to model the play menu item in the MainMenu
+ * A class to model the play menu item in the MainMenu.
  *
  * @author Kallum Jones 2005855
  */
 class PlayMenuItem extends MenuItem {
 
 	/**
-	 * Constructs a PlayMenuItem
+	 * Constructs a PlayMenuItem.
 	 */
 	public PlayMenuItem() {
 		super("PLAY");
@@ -100,7 +100,7 @@ class PlayMenuItem extends MenuItem {
 }
 
 /**
- * A class to model the leaderboard menu item in the MainMenu
+ * A class to model the leaderboard menu item in the MainMenu.
  *
  * @author Kallum Jones 2005855
  */
@@ -118,14 +118,14 @@ class LeaderboardMenuItem extends MenuItem {
 }
 
 /**
- * A class to model the exit menu item in the MainMenu
+ * A class to model the exit menu item in the MainMenu.
  *
  * @author Kallum Jones 2005855
  */
 class ExitMenuItem extends MenuItem {
 
 	/**
-	 * Constructs an ExitMenuItem
+	 * Constructs an ExitMenuItem.
 	 */
 	public ExitMenuItem() {
 		super("EXIT");
@@ -135,14 +135,14 @@ class ExitMenuItem extends MenuItem {
 }
 
 /**
- * A class to model the help menu item in the MainMenu
+ * A class to model the help menu item in the MainMenu.
  *
  * @author Kallum Jones 2005855
  */
 class HelpMenuItem extends MenuItem {
 
 	/**
-	 * Constructs a HelpMenuItem
+	 * Constructs a HelpMenuItem.
 	 */
 	public HelpMenuItem() {
 		super("HELP");
@@ -153,7 +153,7 @@ class HelpMenuItem extends MenuItem {
 }
 
 /**
- * A class to model the continue menu item in the MainMenu
+ * A class to model the continue menu item in the MainMenu.
  *
  * @author Kallum Jones 2005855
  */
@@ -163,7 +163,7 @@ class ContinueMenuItem extends MenuItem {
 			"continue";
 
 	/**
-	 * Constructs a ContinueMenuItem
+	 * Constructs a ContinueMenuItem.
 	 */
 	public ContinueMenuItem() {
 		super("CONTINUE");
@@ -192,13 +192,13 @@ class ContinueMenuItem extends MenuItem {
 }
 
 /**
- * A class to model the load menu item in the MainMenu
+ * A class to model the load menu item in the MainMenu.
  *
  * @author Kallum Jones 2005855
  */
 class LoadMenuItem extends MenuItem {
 	/**
-	 * Constructs a LoadMenuItem
+	 * Constructs a LoadMenuItem.
 	 */
 	public LoadMenuItem() {
 		super("LOAD");
@@ -209,13 +209,13 @@ class LoadMenuItem extends MenuItem {
 }
 
 /**
- * A class to model the level menu item in the LevelMenu
+ * A class to model the level menu item in the LevelMenu.
  *
  * @author Kallum Jones 2005855
  */
 class LevelMenuItem extends MenuItem {
 	/**
-	 * Constructs a levelMenuItem
+	 * Constructs a levelMenuItem.
 	 *
 	 * @param id the id of the level
 	 */
@@ -236,14 +236,14 @@ class LevelMenuItem extends MenuItem {
 }
 
 /**
- * A class to model a menu item for saved levels in the level menu
+ * A class to model a menu item for saved levels in the level menu.
  *
  * @author Kallum Jones 2005855
  */
 class SavedLevelMenuItem extends MenuItem {
 
 	/**
-	 * Constructs a SavedLevelMenuItem
+	 * Constructs a SavedLevelMenuItem.
 	 *
 	 * @param id the id of the level
 	 */
@@ -264,14 +264,14 @@ class SavedLevelMenuItem extends MenuItem {
 }
 
 /**
- * A class to model a menu item for level items in the LeaderboardMenu
+ * A class to model a menu item for level items in the LeaderboardMenu.
  *
  * @author Kallum Jones 2005855
  */
 class LeaderboardLevelMenuItem extends MenuItem {
 
 	/**
-	 * Constructs a LeaderboardLevelMenuItem
+	 * Constructs a LeaderboardLevelMenuItem.
 	 *
 	 * @param id the id of the level
 	 */

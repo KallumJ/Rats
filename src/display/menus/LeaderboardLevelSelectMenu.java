@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * A class to model a level select menu for the leaderboard
+ * A class to model a level select menu for the leaderboard.
  *
  * @author Kallum Jones 2005855
  */
@@ -20,7 +20,7 @@ public class LeaderboardLevelSelectMenu extends GameMenu {
 	private static final String MENU_TITLE = " H I G H  S C O R E ";
 
 	/**
-	 * Creates a Leaderboard level select menu
+	 * Creates a Leaderboard level select menu.
 	 *
 	 * @return the node of the created menu layout
 	 */

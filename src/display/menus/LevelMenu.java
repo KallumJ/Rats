@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * A class to model the level selection menu
+ * A class to model the level selection menu.
  *
  * @author Kallum Jones 2005855
  */
@@ -21,8 +21,7 @@ public class LevelMenu extends GameMenu {
 
 	/**
 	 * A method to build a menu containing all the levels in the level
-	 * directory
-	 * as selectable options
+	 * directory as selectable options.
 	 *
 	 * @return the Node containing the menu items
 	 */

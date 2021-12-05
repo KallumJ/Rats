@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class to load LevelData objects from disk
+ * A class to load LevelData objects from disk.
  *
  * @author Kallum Jones 2005855
  */
@@ -36,7 +36,7 @@ public class LevelDataFactory {
 	}
 
 	/**
-	 * A method to construct the LevelData object for a given level id
+	 * A method to construct the LevelData object for a given level id.
 	 *
 	 * @param id The id of the level that needs constructing
 	 * @return The complete LevelData object
@@ -48,7 +48,7 @@ public class LevelDataFactory {
 
 	/**
 	 * A method to construct the saved level data for the provided player and
-	 * level
+	 * level.
 	 *
 	 * @param currentlyLoggedInPlayer the player
 	 * @param id                      the level
@@ -61,7 +61,7 @@ public class LevelDataFactory {
 	}
 
 	/**
-	 * A method to construct the LevelData object for a given level file
+	 * A method to construct the LevelData object for a given level file.
 	 *
 	 * @param file The level file that needs constructing
 	 * @return The complete LevelData object
@@ -96,7 +96,7 @@ public class LevelDataFactory {
 	}
 
 	/**
-	 * A method to read the objects that are stored on the tiles
+	 * A method to read the objects that are stored on the tiles.
 	 *
 	 * @param tileSet An instance of TileSet with all the tiles to read from
 	 * @return an ArrayList of Objects with the required information
@@ -125,7 +125,7 @@ public class LevelDataFactory {
 	}
 
 	/**
-	 * A method to create a TileSet for the provided tileSet element
+	 * A method to create a TileSet for the provided tileSet element.
 	 *
 	 * @param tileSetElement the tileSet element
 	 * @return a TileSet representing the tiles in the tile set element
@@ -175,7 +175,7 @@ public class LevelDataFactory {
 	}
 
 	/**
-	 * A method to give every tile in a tile set their adjacent tile
+	 * A method to give every tile in a tile set their adjacent tile.
 	 *
 	 * @param tileSet the tile set to run through
 	 */
@@ -199,7 +199,7 @@ public class LevelDataFactory {
 
 	/**
 	 * A method to read the properties from the provided level properties
-	 * element
+	 * element.
 	 *
 	 * @param levelProperties the levelProperties elememt
 	 * @return a LevelProperties object containing the data read from the
@@ -241,7 +241,7 @@ public class LevelDataFactory {
 
 	/**
 	 * A utility method to get the property of type integer from the properties
-	 * element provided, with the provided property name
+	 * element provided, with the provided property name.
 	 *
 	 * @param propertiesElement the levelProperties element to read from
 	 * @param propertyName      The property to read
@@ -257,7 +257,7 @@ public class LevelDataFactory {
 	}
 
 	/**
-	 * A method to get the items in the inventory for this level
+	 * A method to get the items in the inventory for this level.
 	 *
 	 * @param inventoryElement the inventory element read from file
 	 * @return the list of game object types represented in the file
