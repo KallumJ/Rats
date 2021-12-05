@@ -402,7 +402,8 @@ public class Board {
     }
 
     /**
-     * Checks whether the game has been won or lost at the moment the method is called.
+     * Checks whether the game has been won or lost at the moment the method is
+     * called.
      */
     private void checkWinLose() {
         LevelProperties levelProperties = levelData.getLevelProperties();

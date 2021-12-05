@@ -20,7 +20,8 @@ public class LevelMenu extends GameMenu {
     public static final String MENU_TITLE = " L E V E L S ";
 
     /**
-     * A method to build a menu containing all the levels in the level directory as selectable options
+     * A method to build a menu containing all the levels in the level directory
+     * as selectable options
      *
      * @return the Node containing the menu items
      */

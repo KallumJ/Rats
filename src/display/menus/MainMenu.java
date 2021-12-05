@@ -18,7 +18,8 @@ public class MainMenu extends GameMenu {
     private static final String NAME_LABEL = "Name: %s";
 
     /**
-     * A method to create a main menu with all the main menu items we need on it
+     * A method to create a main menu with all the main menu items we need on
+     * it
      *
      * @return The node containing all the main menu items
      */

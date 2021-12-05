@@ -39,7 +39,8 @@ public class LeaderBoardMenu extends GameMenu {
     }
 
     /**
-     * A method to build a LeaderBoardMenu to find top ten players scores for a level.
+     * A method to build a LeaderBoardMenu to find top ten players scores for a
+     * level.
      *
      * @return the Node containing the menu items
      */

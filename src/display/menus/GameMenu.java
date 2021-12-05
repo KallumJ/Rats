@@ -24,7 +24,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * A class to model a menu in the GUI. This class is extended by all other menus in the system
+ * A class to model a menu in the GUI. This class is extended by all other menus
+ * in the system
  *
  * @author Samhitha Pinisetti 2035196
  */
@@ -78,8 +79,8 @@ public abstract class GameMenu {
      * Returns a menu with nothing in it.
      *
      * @param menuTitle   the title of the menu
-     * @param backHandler the EventHandler for the back button on the page,
-     *                    or null if there is no back button required
+     * @param backHandler the EventHandler for the back button on the page, or
+     *                    null if there is no back button required
      * @return the node containing the blank menu
      */
     public BorderPane buildBlank(MenuTitle menuTitle, EventHandler<Event> backHandler) {
@@ -147,7 +148,8 @@ public abstract class GameMenu {
     }
 
     /**
-     * Returns the center of the root BorderPane for subclasses to add controls.
+     * Returns the center of the root BorderPane for subclasses to add
+     * controls.
      *
      * @return the center of the BorderPane
      */
