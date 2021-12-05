@@ -40,8 +40,7 @@ public class Inventory {
 
 		final int pad = INVENTORY_PADDING;
 		inventoryNode.setPadding(new Insets(pad, pad, pad, pad));
-		inventoryNode.setStyle("-fx-background-image: url" +
-                "(file:resources/inventorySkin.png);");
+		inventoryNode.setStyle("-fx-background-image: url" + "(file:resources" + "/inventorySkin.png);");
 		inventoryNode.setMinWidth(INVENTORY_WIDTH);
 
 		// Create a set of rows
@@ -97,7 +96,7 @@ public class Inventory {
 
 	/**
 	 * Returns the {@code VBox} containing the inventory itself, with one
-     * random
+	 * random
 	 * item added to it.
 	 *
 	 * @return the inventory's {@code VBox}

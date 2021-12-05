@@ -16,56 +16,58 @@ import players.PlayerProfileManager;
  */
 public class LoginMenu extends GameMenu {
 
-    private static final String MENU_TITLE = " L O G I N ";
-    private static final String NAME_INPUT_PLACEHOLDER = "Enter your name...";
-    private static final String LOGIN_BUTTON_TEXT = "Login";
-    private static final int NAME_CHAR_LIMIT = 20;
-    private static final String NAME_TOO_LONG =
-            "Please choose a name with " + NAME_CHAR_LIMIT + " characters or less";
+	private static final String MENU_TITLE = " L O G I N ";
+	private static final String NAME_INPUT_PLACEHOLDER = "Enter your name...";
+	private static final String LOGIN_BUTTON_TEXT = "Login";
+	private static final int NAME_CHAR_LIMIT = 20;
+	private static final String NAME_TOO_LONG =
+			"Please choose a name with " + NAME_CHAR_LIMIT + " characters or " + "less";
+
+	/**
+	 * A method to build the login menu
+	 *
+	 * @return The node containing the login menu
+	 */
+	@Override
+	public Parent buildMenu() {
+		// Get a blank menu
+		BorderPane menu = buildBlank(new MenuTitle(MENU_TITLE), null);
+
+		// Create a controls container containing a button and text box to
+		// input the user's name
+		HBox nameControlsContainer = new HBox();
+		TextField inputBox = new TextField();
+
+		inputBox.setText(NAME_INPUT_PLACEHOLDER);
+
+		Button loginButton = new Button(LOGIN_BUTTON_TEXT);
+
+		// When the login button is pressed, save their name, and change to
+		// the new screen
+		loginButton.setOnMousePressed(event -> {
+			String input = inputBox.getText();
+
+			if (input.length() > NAME_CHAR_LIMIT) {
+				Alert alert = new Alert(Alert.AlertType.WARNING);
+				alert.setHeaderText(NAME_TOO_LONG);
+				alert.showAndWait();
+			} else {
+				PlayerProfileManager.loginPlayer(input);
+				GameMenu.getStage()
+						.setScene(new Scene(new MainMenu().buildMenu()));
+			}
+		});
 
 
-    /**
-     * A method to build the login menu
-     *
-     * @return The node containing the login menu
-     */
-    @Override
-    public Parent buildMenu() {
-        // Get a blank menu
-        BorderPane menu = buildBlank(new MenuTitle(MENU_TITLE), null);
+		// Add and align the controls
+		nameControlsContainer.getChildren().addAll(inputBox, loginButton);
 
-        // Create a controls container containing a button and text box to input the user's name
-        HBox nameControlsContainer = new HBox();
-        TextField inputBox = new TextField();
+		nameControlsContainer.setTranslateX(100);
+		nameControlsContainer.setTranslateY(300);
 
-        inputBox.setText(NAME_INPUT_PLACEHOLDER);
+		getCenter().getChildren().add(nameControlsContainer);
 
-        Button loginButton = new Button(LOGIN_BUTTON_TEXT);
-
-        // When the login button is pressed, save their name, and change to the new screen
-        loginButton.setOnMousePressed(event -> {
-            String input = inputBox.getText();
-
-            if (input.length() > NAME_CHAR_LIMIT) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText(NAME_TOO_LONG);
-                alert.showAndWait();
-            } else {
-                PlayerProfileManager.loginPlayer(input);
-                GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
-            }
-        });
-
-
-        // Add and align the controls
-        nameControlsContainer.getChildren().addAll(inputBox, loginButton);
-
-        nameControlsContainer.setTranslateX(100);
-        nameControlsContainer.setTranslateY(300);
-
-        getCenter().getChildren().add(nameControlsContainer);
-
-        // Return the constructed menu
-        return menu;
-    }
+		// Return the constructed menu
+		return menu;
+	}
 }

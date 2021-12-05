@@ -34,7 +34,7 @@ public class ItemRow {
 	 * @param inventory  the inventory this row is being stored in
 	 */
 	public ItemRow(final GameObjectType objectType,
-                   final Inventory inventory) {
+				   final Inventory inventory) {
 		this.objectType = objectType;
 		this.hBox = new HBox();
 		this.objectCount = 0;
@@ -74,12 +74,12 @@ public class ItemRow {
 			// Add drag and release event handlers
 			imageOfItem.setOnMouseDragged(event -> onDrag(event, imageOfItem));
 			imageOfItem.setOnMouseReleased(event -> onRelease(imageOfItem,
-                    objectType));
+					objectType));
 
 			// Add the image to the row
 			hBox.getChildren().add(imageOfItem);
 		} else { // If this row is at its max items, try adding a different
-            // item
+			// item
 			inventory.addRandomItem();
 		}
 	}
@@ -131,7 +131,7 @@ public class ItemRow {
 		LevelData levelData = inventory.getLevelData();
 		Tile tile = levelData.getTileSet().getTile(x, y);
 		boolean isTileBlocked = LevelUtils.isTileBlocked(tile,
-                levelData.getObjects());
+				levelData.getObjects());
 
         /*
             If this tile is invalid, or the user placed the item where there
@@ -145,17 +145,17 @@ public class ItemRow {
 			incrementObjectCount();
 		} else {
 			// If player has dropped the item on a valid tile, add item to
-            // board
+			// board
 			// and remove it from row
 			SFXManager.bePlaced();
 			GameObject objForPlacing = ObjectUtils.getObjectFromType(tile,
-                    object, levelData);
+					object, levelData);
 			GameObject.getBoard().addObject(objForPlacing);
 			decrementCount(image);
 		}
 
 		// If there are no objects in row, remove it from row list, and
-        // display.
+		// display.
 		if (objectCount == 0) {
 			inventory.getItemRows().remove(this);
 			inventory.getInventoryNode().getChildren().remove(gethBox());

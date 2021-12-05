@@ -5,80 +5,79 @@ import javafx.scene.image.Image;
 import tile.Tile;
 
 /**
- *
  * @author fahds
  */
 public class GameObject {
 
-    private static Board board;
+	private static Board board;
 
-    // Loaded icon of the object
-    private Image icon;
+	// Loaded icon of the object
+	private Image icon;
 
-    // The Tile the object is currently standing on
-    private Tile standingOn;
-    
-    protected GameObject(Tile standingOn) {
+	// The Tile the object is currently standing on
+	private Tile standingOn;
 
-        this.standingOn = standingOn;
-    }
+	protected GameObject(Tile standingOn) {
 
-    /**
-     * Sets the board
-     *
-     * @param board the board
-     */
-    public static void setBoard(Board board) {
-        GameObject.board = board;
-    }
+		this.standingOn = standingOn;
+	}
 
-    /**
-     * Gets the board
-     *
-     * @return the board
-     */
-    public static Board getBoard() {
+	/**
+	 * Gets the board
+	 *
+	 * @return the board
+	 */
+	public static Board getBoard() {
 
-        return GameObject.board;
-    }
+		return GameObject.board;
+	}
 
-    /**
-     * Gets the icon
-     *
-     * @return the icon
-     */
-    public Image getIcon() {
+	/**
+	 * Sets the board
+	 *
+	 * @param board the board
+	 */
+	public static void setBoard(Board board) {
+		GameObject.board = board;
+	}
 
-        return this.icon;
-    }
+	/**
+	 * Gets the icon
+	 *
+	 * @return the icon
+	 */
+	public Image getIcon() {
 
-    /**
-     * Change icon
-     *
-     * @param icon the icon
-     */
-    public void setIcon(Image icon) {
+		return this.icon;
+	}
 
-        this.icon = icon;
-    }
+	/**
+	 * Change icon
+	 *
+	 * @param icon the icon
+	 */
+	public void setIcon(Image icon) {
 
-    /**
-     * Gets the standing on
-     *
-     * @return the standing on
-     */
-    public Tile getStandingOn() {
+		this.icon = icon;
+	}
 
-        return this.standingOn;
-    }
+	/**
+	 * Gets the standing on
+	 *
+	 * @return the standing on
+	 */
+	public Tile getStandingOn() {
 
-    /**
-     * Stand on
-     *
-     * @param standingOn the standing on
-     */
-    public void standOn(Tile standingOn) {
+		return this.standingOn;
+	}
 
-        this.standingOn = standingOn;
-    }
+	/**
+	 * Stand on
+	 *
+	 * @param standingOn the standing on
+	 */
+	public void standOn(Tile standingOn) {
+
+		this.standingOn = standingOn;
+	}
 }
