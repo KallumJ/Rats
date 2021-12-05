@@ -7,6 +7,11 @@ import objects.rats.PeacefulRat;
 import java.util.Map;
 import java.util.StringJoiner;
 
+/**
+ * A class to generate the file attribute for the provided object
+ *
+ * @author Kallum Jones 2005855
+ */
 public class ObjectAttributeGenerator {
     public static final String RAT_KEY = "rat";
     public static final String DEATH_RAT_KEY = "d_rat";

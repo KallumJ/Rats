@@ -280,6 +280,8 @@ class SavedLevelMenuItem extends MenuItem {
 
 /**
  * A class to model a menu item for level items in the LeaderboardMenu
+ *
+ * @author Kallum Jones 2005855
  */
 class LeaderboardLevelMenuItem extends MenuItem {
 

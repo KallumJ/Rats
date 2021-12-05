@@ -15,6 +15,8 @@ import players.scores.Player;
 
 /**
  * A class to model the MainMenu of the application
+ *
+ * @author Kallum Jones 2005855
  */
 public class MainMenu extends GameMenu {
 
