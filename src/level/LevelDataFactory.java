@@ -39,6 +39,51 @@ public class LevelDataFactory {
     }
 
     /**
+     * A method to construct the saved level data for the provided player and level
+     *
+     * @param currentlyLoggedInPlayer the player
+     * @param id                      the level
+     * @return the complete LevelData object
+     */
+    public static LevelData constructSavedLevelData(Player currentlyLoggedInPlayer, String id) {
+        File file = new File(
+                LevelUtils.constructSavedLevelFileName(currentlyLoggedInPlayer, Integer.parseInt(id))
+        );
+        return constructLevelDataFromFile(file);
+    }
+
+    /**
+     * A method to construct the LevelData object for a given level file
+     *
+     * @param file The level file that needs constructing
+     * @return The complete LevelData object
+     */
+    public static LevelData constructLevelDataFromFile(File file) {
+        XMLFileReader xmlFileReader = new XMLFileReader(file);
+
+        Element levelPropertiesElement = xmlFileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES);
+        Element tileSetElement = xmlFileReader.drilldownToElement(XMLElementNames.TILE_SET);
+        Element inventoryElement = xmlFileReader.drilldownToElement(XMLElementNames.INVENTORY);
+
+        LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
+        TileSet tileSet = readTileSet(tileSetElement);
+
+
+        setAdjacentTiles(tileSet);
+        ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
+
+        LevelData levelData = new LevelData(levelProperties, tileSet, objects);
+
+        // If this level has an inventory, then add it to the level data
+        if (inventoryElement != null) {
+            List<GameObjectType> inventory = readInventory(inventoryElement);
+            levelData.setInventory(inventory);
+        }
+
+        return levelData;
+    }
+
+    /**
      * A method to read the objects that are stored on the tiles
      *
      * @param tileSet An instance of TileSet with all the tiles to read from
@@ -176,51 +221,6 @@ public class LevelDataFactory {
         String propertyStr = propertyName.toString();
         Node propertyElement = propertiesElement.getElementsByTagName(propertyStr).item(0);
         return Integer.parseInt(propertyElement.getTextContent());
-    }
-
-    /**
-     * A method to construct the saved level data for the provided player and level
-     *
-     * @param currentlyLoggedInPlayer the player
-     * @param id                      the level
-     * @return the complete LevelData object
-     */
-    public static LevelData constructSavedLevelData(Player currentlyLoggedInPlayer, String id) {
-        File file = new File(
-                LevelUtils.constructSavedLevelFileName(currentlyLoggedInPlayer, Integer.parseInt(id))
-        );
-        return constructLevelDataFromFile(file);
-    }
-
-    /**
-     * A method to construct the LevelData object for a given level file
-     *
-     * @param file The level file that needs constructing
-     * @return The complete LevelData object
-     */
-    public static LevelData constructLevelDataFromFile(File file) {
-        XMLFileReader xmlFileReader = new XMLFileReader(file);
-
-        Element levelPropertiesElement = xmlFileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES);
-        Element tileSetElement = xmlFileReader.drilldownToElement(XMLElementNames.TILE_SET);
-        Element inventoryElement = xmlFileReader.drilldownToElement(XMLElementNames.INVENTORY);
-
-        LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
-        TileSet tileSet = readTileSet(tileSetElement);
-
-
-        setAdjacentTiles(tileSet);
-        ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
-
-        LevelData levelData = new LevelData(levelProperties, tileSet, objects);
-
-        // If this level has an inventory, then add it to the level data
-        if (inventoryElement != null) {
-            List<GameObjectType> inventory = readInventory(inventoryElement);
-            levelData.setInventory(inventory);
-        }
-
-        return levelData;
     }
 
     /**
