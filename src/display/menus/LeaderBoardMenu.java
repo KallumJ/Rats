@@ -15,7 +15,7 @@ import players.PlayerProfileManager;
 import players.scores.Player;
 
 /**
- * A class to model the leaderboard
+ * A cl
  * @author YIMING LI
  */
 public class LeaderBoardMenu extends GameMenu {
@@ -42,9 +42,10 @@ public class LeaderBoardMenu extends GameMenu {
     public Parent buildMenu() {
 
         // Create the blank menu
-        Scene mainMenu = new Scene(new MainMenu().buildMenu());
         EventHandler<Event> backHandler = event ->
-                GameMenu.getStage().setScene(mainMenu);
+                GameMenu.getStage().setScene(
+                        new Scene(new MainMenu().buildMenu())
+                );
 
         BorderPane menu = buildBlank(null, backHandler);
 
