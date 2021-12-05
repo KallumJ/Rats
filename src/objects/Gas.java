@@ -19,9 +19,10 @@ import tile.Tile;
  */
 public class Gas extends GameObject implements ObjectStoppable {
 
-    public static final int DEFAULT_DURATION = 16;
-    public static final int DEFAULT_RANGE = 4;
+    public static final int DEFAULT_DURATION = 12;
+    public static final int DEFAULT_RANGE = 3;
     public static final boolean DEFAULT_ACTIVATION = false;
+    private static final int EXPANSION_RATE = 4;
     private final int duration;
     private int counter;
     private final int range;
@@ -212,7 +213,7 @@ public class Gas extends GameObject implements ObjectStoppable {
      * A method to delay the expanding of the gas object.
      */
     private void delayExpand(Tile tile) {
-        expandTimeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> expand(tile)));
+        expandTimeline = new Timeline(new KeyFrame(Duration.seconds(EXPANSION_RATE), event -> expand(tile)));
         expandTimeline.play();
     }
 
