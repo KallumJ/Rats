@@ -129,16 +129,8 @@ public abstract class GameMenu {
     public abstract Parent buildMenu();
 
     /**
-     * Returns the center of the root BorderPane for subclasses to add controls.
-     *
-     * @return the center of the BorderPane
-     */
-    protected Pane getCenter() {
-        return (Pane) root.getCenter();
-    }
-
-    /**
      * Gets the current stage on display
+     *
      * @return the current stage on display
      */
     public static Stage getStage() {
@@ -147,10 +139,20 @@ public abstract class GameMenu {
 
     /**
      * Sets the stage to display
+     * 
      * @param stage the stage to display
      */
     public static void setStage(Stage stage) {
         GameMenu.stage = stage;
+    }
+
+    /**
+     * Returns the center of the root BorderPane for subclasses to add controls.
+     *
+     * @return the center of the BorderPane
+     */
+    protected Pane getCenter() {
+        return (Pane) root.getCenter();
     }
 }
 
