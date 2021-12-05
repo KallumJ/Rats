@@ -139,49 +139,6 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
     }
 
     /**
-     * This method will make a pregnant rat give birth and gets it babies to
-     * life.
-     */
-    private void giveBirth() {
-
-        this.pregnant = false;
-        decideIcon();
-
-        // randomly deciding the gender of each baby.
-        for (int i = 0; i < this.numberOfBabies; i++) {
-            String newBornGender;
-            Random random = new Random();
-            int decision = random.nextInt(2);
-
-            if (decision == 1) {
-
-                newBornGender = "m";
-            } else {
-
-                newBornGender = "f";
-            }
-
-            GameObject newBorn = new PeacefulRat(super.getStandingOn(), this.isSterile(), false, false, newBornGender,
-                    this.timeToGiveBirth, this.timeToDevelop, GameObject.getBoard().getLevelProperties()
-                    .getBabyRatSpeed(), super.getDirectionOfMovement());
-
-            GameObject.getBoard().addObject(newBorn);
-
-            this.numberOfBabies = 0;
-        }
-    }
-
-    /**
-     * This method will turn a baby rat into an adult rat.
-     */
-    private void growUp() {
-
-        this.adult = true;
-        decideIcon();
-        super.setSpeed(GameObject.getBoard().getLevelProperties().getAdultRatSpeed());
-    }
-
-    /**
      * This method will set the gender of the rat.
      *
      * @param gender The new gender of the rat
@@ -299,5 +256,48 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
         if (pregnancyTimeline != null) {
             pregnancyTimeline.pause();
         }
+    }
+
+    /**
+     * This method will make a pregnant rat give birth and gets it babies to
+     * life.
+     */
+    private void giveBirth() {
+
+        this.pregnant = false;
+        decideIcon();
+
+        // randomly deciding the gender of each baby.
+        for (int i = 0; i < this.numberOfBabies; i++) {
+            String newBornGender;
+            Random random = new Random();
+            int decision = random.nextInt(2);
+
+            if (decision == 1) {
+
+                newBornGender = "m";
+            } else {
+
+                newBornGender = "f";
+            }
+
+            GameObject newBorn = new PeacefulRat(super.getStandingOn(), this.isSterile(), false, false, newBornGender,
+                    this.timeToGiveBirth, this.timeToDevelop, GameObject.getBoard().getLevelProperties()
+                    .getBabyRatSpeed(), super.getDirectionOfMovement());
+
+            GameObject.getBoard().addObject(newBorn);
+
+            this.numberOfBabies = 0;
+        }
+    }
+
+    /**
+     * This method will turn a baby rat into an adult rat.
+     */
+    private void growUp() {
+
+        this.adult = true;
+        decideIcon();
+        super.setSpeed(GameObject.getBoard().getLevelProperties().getAdultRatSpeed());
     }
 }
