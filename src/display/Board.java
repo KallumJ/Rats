@@ -5,6 +5,8 @@ import display.menus.GameMenu;
 import display.menus.LoseMenu;
 import display.menus.MainMenu;
 import display.menus.WinMenu;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -18,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import level.LevelData;
@@ -32,8 +35,6 @@ import players.PlayerProfileManager;
 import players.scores.Player;
 import tile.Tile;
 
-import java.util.List;
-
 /**
  * @author fahds
  */
@@ -43,8 +44,8 @@ public class Board {
     private static final int INTERACTION_CHECK_INTERVAL = 250; // In ms
     private static final String SAVED_BUTTON_LABEL = "Save and exit";
     private static final int CONTROLS_MARGIN = 5; // in pixels
-    private static final String INFORMATION_LABEL_TEXT =
-            "Time elapsed: %d seconds. Expected time: %d seconds. Score %d. Population to lose %d.";
+    private static final String INFORMATION_LABEL_TEXT
+            = "Time elapsed: %d seconds. Expected time: %d seconds. Score %d. Population to lose %d.";
     private static final int INFO_LABEL_PADDING = 5; // in pixels
 
     private final LevelData levelData;
@@ -54,16 +55,18 @@ public class Board {
     private final Timeline interactionCheckTimeline;
     private final Timeline gameLabelTimeline;
     private Timeline winLoseTimeline;
+    private ArrayList<Rectangle> ProgressBar;
+    private int populationToLose;
 
     public Board(LevelData levelData) {
         this.levelData = levelData;
         LevelProperties levelProperties = levelData.getLevelProperties();
 
         // Find the width and the height of the canvas, in pixels for this level
-        int width =
-                levelProperties.getLevelWidth() * Tile.TILE_SIZE; // in pixels
-        int height =
-                levelProperties.getLevelHeight() * Tile.TILE_SIZE;
+        int width
+                = levelProperties.getLevelWidth() * Tile.TILE_SIZE; // in pixels
+        int height
+                = levelProperties.getLevelHeight() * Tile.TILE_SIZE;
 
         this.canvas = new Canvas(width, height);
 
@@ -79,7 +82,7 @@ public class Board {
         int timeElapsed = levelProperties.getTimeElapsed();
         int expectedTime = levelProperties.getExpectedTime();
         int score = levelProperties.getScore();
-        int populationToLose = levelProperties.getPopulationToLose();
+        populationToLose = levelProperties.getPopulationToLose();
 
         this.timerLabel = new Label(String.format(
                 INFORMATION_LABEL_TEXT, timeElapsed, expectedTime, score,
@@ -94,6 +97,7 @@ public class Board {
 
         this.inventory = new Inventory(levelData);
 
+        ProgressBar = new ArrayList<>(populationToLose);
 
     }
 
@@ -113,6 +117,8 @@ public class Board {
     }
 
     public void interactionCheck() {
+
+        updateProgressBar();
         List<GameObject> objects = levelData.getObjects();
 
         for (int i = 0; i < objects.size(); i++) {
@@ -237,8 +243,7 @@ public class Board {
         HBox controlsContainer = new HBox();
         controlsContainer.setPadding(new Insets(CONTROLS_MARGIN));
         controlsContainer.setBackground(
-                new Background
-                        (new BackgroundFill(
+                new Background(new BackgroundFill(
                                 Color.LIGHTGRAY,
                                 CornerRadii.EMPTY,
                                 Insets.EMPTY
@@ -263,8 +268,7 @@ public class Board {
         // Add time label
         HBox labelContainer = new HBox();
         labelContainer.setBackground(
-                new Background
-                        (new BackgroundFill(
+                new Background(new BackgroundFill(
                                 Color.LIGHTGRAY,
                                 CornerRadii.EMPTY,
                                 Insets.EMPTY
@@ -280,9 +284,48 @@ public class Board {
         labelContainer.getChildren().add(timerLabel);
         root.setTop(labelContainer);
 
-        //root.setRight(callMethod);
+        root.setRight(buildProgressBar());
 
         return root;
+    }
+
+    /**
+     * This method builds the GUI for the rats population bar
+     *
+     * @return the GUI of the rats population bar
+     */
+    private Pane buildProgressBar() {
+
+        Pane ratPopulation = new Pane();
+        double height = canvas.getHeight() / populationToLose;
+        for (int i = 0; i < populationToLose; i++) {
+            Rectangle cell = new Rectangle(Tile.TILE_SIZE, height);
+            cell.setFill(Color.GREY);
+            ProgressBar.add(cell);
+            cell.setTranslateY(i * height);
+            ratPopulation.getChildren().add(cell);
+        }
+
+        return ratPopulation;
+    }
+
+    /**
+     * This method updates the rats population bar
+     */
+    private void updateProgressBar() {
+
+        for (int i = 0; i < getCurrentPopulation().malePopulation(); i++) {
+            ProgressBar.get(i).setFill(Color.valueOf("#0000FF"));
+
+        }
+        for (int i = 0; i < getCurrentPopulation().femalePopulation(); i++) {
+            ProgressBar.get(getCurrentPopulation().malePopulation() + i).setFill(Color.valueOf("#F800B8"));
+
+        }
+        for (int i = 0; i < populationToLose - getCurrentPopulation().getTotalPopulation(); i++) {
+            ProgressBar.get(getCurrentPopulation().femalePopulation() + getCurrentPopulation().malePopulation() + i).setFill(Color.GREY);
+
+        }
     }
 
     /**

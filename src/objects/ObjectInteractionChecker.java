@@ -201,7 +201,6 @@ public class ObjectInteractionChecker {
             if (secondObject instanceof Rat) {
                 Gas gas
                         = (Gas) firstObject;
-                PeacefulRat rat = (PeacefulRat) secondObject;
 
                 gas.activateGas();
             }
