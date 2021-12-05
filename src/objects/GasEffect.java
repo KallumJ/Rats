@@ -41,16 +41,6 @@ public class GasEffect extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to remove the effect of the gas 
-     */
-    private void removeEffect() {
-        sourceGas.getGasEffects().remove(this);
-        if (GameObject.getBoard() != null) {
-            GameObject.getBoard().removeObject(this);
-        }
-    }
-    
-    /**
      * A method to check when the gas has been placed on the board 
      */
     public void enterGas (Rat rat){
@@ -66,6 +56,16 @@ public class GasEffect extends GameObject implements ObjectStoppable {
     public void stop() {
         if (disappearTimer != null) {
             disappearTimer.pause();
+        }
+    }
+
+    /**
+     * A method to remove the effect of the gas
+     */
+    private void removeEffect() {
+        sourceGas.getGasEffects().remove(this);
+        if (GameObject.getBoard() != null) {
+            GameObject.getBoard().removeObject(this);
         }
     }
 }
