@@ -43,7 +43,11 @@ public abstract class MenuItem extends StackPane {
     public MenuItem(String name) {
         this.name = name;
 
-        LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, new Stop(0, Color.DARKVIOLET),
+        LinearGradient gradient =
+                new LinearGradient(0, 0, 1, 0,
+                        true,
+                        CycleMethod.NO_CYCLE,
+                        new Stop(0, Color.DARKVIOLET),
                 new Stop(0.1, Color.BLACK),
                 new Stop(0.9, Color.BLACK),
                 new Stop(1, Color.DARKVIOLET));
@@ -53,7 +57,9 @@ public abstract class MenuItem extends StackPane {
 
         Text text = new Text(name);
         text.setFill(Color.DARKGREY);
-        text.setFont(Font.font(GameMenu.DEFAULT_FONT, FontWeight.SEMI_BOLD, 22));
+        text.setFont(Font.font(
+                GameMenu.DEFAULT_FONT, FontWeight.SEMI_BOLD, 22
+        ));
 
         setAlignment(Pos.CENTER);
         getChildren().addAll(bg, text);
@@ -98,8 +104,9 @@ class PlayMenuItem extends MenuItem {
     public PlayMenuItem() {
         super("PLAY");
 
+        Scene scene = new Scene(new LevelMenu().buildMenu());
         setOnMousePressed(event ->
-                GameMenu.getStage().setScene(new Scene(new LevelMenu().buildMenu())));
+                GameMenu.getStage().setScene(scene));
     }
 }
 
@@ -115,9 +122,10 @@ class LeaderboardMenuItem extends MenuItem {
      */
     public LeaderboardMenuItem() {
         super("LEADERBOARD");
-        
+
+        Scene scene = new Scene(new LeaderboardLevelSelectMenu().buildMenu());
         setOnMousePressed(event ->
-                GameMenu.getStage().setScene(new Scene(new LeaderboardLevelSelectMenu().buildMenu())));
+                GameMenu.getStage().setScene(scene));
     }
 }
 
@@ -150,7 +158,10 @@ class HelpMenuItem extends MenuItem {
      */
     public HelpMenuItem() {
         super("HELP");
-        setOnMousePressed(event -> GameMenu.getStage().setScene(new Scene(new HelpMenu().buildMenu())));
+
+        Scene scene = new Scene(new HelpMenu().buildMenu());
+        setOnMousePressed(event ->
+                GameMenu.getStage().setScene(scene));
     }
 }
 
@@ -162,7 +173,6 @@ class HelpMenuItem extends MenuItem {
 class ContinueMenuItem extends MenuItem {
     private static final String NO_SAVED_LEVELS = "No Saved Levels";
     private static final String ALERT_MSG = "You have no saved levels to continue";
-
 
     /**
      * Constructs a ContinueMenuItem
@@ -206,8 +216,10 @@ class LoadMenuItem extends MenuItem {
      */
     public LoadMenuItem() {
         super("LOAD");
+
+        Scene scene = new Scene(new LoadMenu().buildMenu());
         setOnMousePressed(event ->
-                GameMenu.getStage().setScene(new Scene(new LoadMenu().buildMenu())));
+                GameMenu.getStage().setScene(scene));
     }
 }
 
@@ -232,7 +244,8 @@ class LevelMenuItem extends MenuItem {
             Board board = new Board(levelData);
 
             board.startGame();
-            GameMenu.getStage().setScene(new Scene(board.buildGUI()));
+            Scene scene = new Scene(board.buildGUI());
+            GameMenu.getStage().setScene(scene);
         });
     }
 }
@@ -253,11 +266,15 @@ class SavedLevelMenuItem extends MenuItem {
         super(id);
 
         setOnMousePressed(event -> {
-            LevelData levelData = LevelDataFactory.constructSavedLevelData(PlayerProfileManager.getCurrentlyLoggedInPlayer(), id);
+            LevelData levelData = LevelDataFactory.constructSavedLevelData(
+                    PlayerProfileManager.getCurrentlyLoggedInPlayer(), id
+            );
 
             Board board = new Board(levelData);
             board.startGame();
-            GameMenu.getStage().setScene(new Scene(board.buildGUI()));
+
+            Scene scene = new Scene(board.buildGUI());
+            GameMenu.getStage().setScene(scene);
         });
     }
 }
@@ -275,7 +292,8 @@ class LeaderboardLevelMenuItem extends MenuItem {
     public LeaderboardLevelMenuItem(String id) {
         super(id);
 
+        Scene scene = new Scene(new LeaderBoardMenu(id).buildMenu());
         setOnMousePressed(event ->
-                GameMenu.getStage().setScene(new Scene(new LeaderBoardMenu(id).buildMenu())));
+                GameMenu.getStage().setScene(scene));
     }
 }
