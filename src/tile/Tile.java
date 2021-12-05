@@ -79,7 +79,7 @@ public class Tile {
      * Returns this tiles X location
      * @return this tiles X location
      */
-    public double getTopLeftX() {
+    public double getX() {
         return this.getTileLocation().getX();
     }
 
@@ -87,7 +87,7 @@ public class Tile {
      * Returns this tiles Y location
      * @return this tiles Y location
      */
-    public double getTopLeftY() {
+    public double getY() {
         return this.getTileLocation().getY();
     }
 
