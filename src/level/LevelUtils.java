@@ -27,8 +27,8 @@ import java.util.stream.Stream;
  */
 public class LevelUtils {
 
-    public static final String SAVED_LEVELS_DIR_PATH = LEVELS_PATH + "/savedLevels/";
     private static final String LEVELS_PATH = "levels";
+    public static final String SAVED_LEVELS_DIR_PATH = LEVELS_PATH + "/savedLevels/";
     private static final String INVALID_TILE_TYPE = "%s is an invalid tile type";
     private static final String INVALID_DIRECTION_ERROR = "%s is an unknown direction";
     private static final String INVALID_DIRECTORY = "The provided directory is empty";
