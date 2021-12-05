@@ -20,7 +20,7 @@ public class PlayerProfileManager {
     private static final String PLAYERS_FILE = "players/players.xml";
     public static List<Player> allPlayers;
     private static XMLNode playersRoot;
-    private static Player currentlyLoggedIn;
+    private static String currentlyLoggedInName;
 
     // Load the players list
     static {
@@ -50,25 +50,14 @@ public class PlayerProfileManager {
      */
     public static void loginPlayer(String playerName) {
         String name = playerName.toUpperCase();
+        currentlyLoggedInName = name;
+
         Player player = PlayerProfileManager.getPlayer(name);
 
         // If the player already exists, log them in, if not, create new account
-        if (player != null) {
-            currentlyLoggedIn = player;
-        } else {
+        if (player == null) {
             createPlayerProfile(name);
-            currentlyLoggedIn = PlayerProfileManager.getPlayer(name);
         }
-    }
-
-    /**
-     * A method to create a Player profile in the file
-     *
-     * @param playerName the players name
-     */
-    private static void createPlayerProfile(String playerName) {
-        allPlayers.add(new Player(playerName, 1));
-        savePlayersFile();
     }
 
     /**
@@ -85,6 +74,24 @@ public class PlayerProfileManager {
 
         xmlFileWriter.saveAndClose();
         initAllPlayersList();
+    }
+
+    /**
+     * A method to return the currently logged in player
+     *
+     * @return the currently logged in player
+     */
+    public static Player getCurrentlyLoggedInPlayer() {
+        return getPlayer(currentlyLoggedInName);
+    }
+
+    /**
+     * A method to return all the players currently logged by the system
+     *
+     * @return a List of all Players
+     */
+    public static List<Player> getAllPlayers() {
+        return allPlayers;
     }
 
     /**
@@ -135,21 +142,20 @@ public class PlayerProfileManager {
     }
 
     /**
-     * A method to return the currently logged in player
+     * A method to create a Player profile in the file
      *
-     * @return the currently logged in player
+     * @param playerName the players name
      */
-    public static Player getCurrentlyLoggedInPlayer() {
-        return currentlyLoggedIn;
+    private static void createPlayerProfile(String playerName) {
+        allPlayers.add(new Player(playerName, 1));
+        savePlayersFile();
     }
 
     /**
-     * A method to return all the players currently logged by the system
-     *
-     * @return a List of all Players
+     * Delete the current player from file
      */
-    public static List<Player> getAllPlayers() {
-        return allPlayers;
+    public static void deleteCurrentPlayer() {
+        allPlayers.remove(getPlayer(currentlyLoggedInName));
+        savePlayersFile();
     }
-
 }

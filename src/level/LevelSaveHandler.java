@@ -20,6 +20,12 @@ import java.util.*;
  */
 public class LevelSaveHandler {
 
+    /**
+     * Empty private constructor method, preventing LevelSaveHandler from being
+     * instantiated as an object.
+     */
+    private LevelSaveHandler() {
+    }
 
     /**
      * A method to save the provided level data for the provided player
@@ -53,8 +59,9 @@ public class LevelSaveHandler {
 
     /**
      * A method to save the inventory in this level data to the file
+     *
      * @param xmlFileWriter the file writer to write with
-     * @param levelData the level data for this level
+     * @param levelData     the level data for this level
      */
     private static void saveInventory(XMLFileWriter xmlFileWriter, LevelData levelData) {
 
@@ -109,7 +116,8 @@ public class LevelSaveHandler {
     }
 
     /**
-     * A method to return the provided tile row as a list of XMLNodes representing each tile
+     * A method to return the provided tile row as a list of XMLNodes
+     * representing each tile
      *
      * @param tileRow the list of Tiles in a row
      * @param objects the list of objects on the board
@@ -168,7 +176,7 @@ public class LevelSaveHandler {
         String elapsedTime = String.valueOf(levelProperties.getTimeElapsed());
         String score = String.valueOf(levelProperties.getScore());
 
-        XMLNode[] children = new XMLNode[] {
+        XMLNode[] children = new XMLNode[]{
                 new XMLNode(XMLElementNames.LEVEL_HEIGHT.toString(),
                         levelHeight, null, null),
                 new XMLNode(XMLElementNames.LEVEL_WIDTH.toString(),

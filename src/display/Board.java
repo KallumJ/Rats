@@ -5,8 +5,6 @@ import display.menus.GameMenu;
 import display.menus.LoseMenu;
 import display.menus.MainMenu;
 import display.menus.WinMenu;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import level.LevelData;
@@ -35,18 +32,23 @@ import players.PlayerProfileManager;
 import players.scores.Player;
 import tile.Tile;
 
+import java.util.List;
+
 /**
- * @author fahds
+ * A class to model the current game board
+ *
+ * @author Fahd Alsahali (2015807)
  */
 public class Board {
 
     private static final int POINTS_ON_A_RAT = 10;
-    private static final int INTERACTION_CHECK_INTERVAL = 250; // In ms
+    private static final int INTERACTION_CHECK_INTERVAL = 100; // In ms
     private static final String SAVED_BUTTON_LABEL = "Save and exit";
     private static final int CONTROLS_MARGIN = 5; // in pixels
-    private static final String INFORMATION_LABEL_TEXT
-            = "Time elapsed: %d seconds. Expected time: %d seconds. Score %d. Population to lose %d.";
+    private static final String INFORMATION_LABEL_TEXT =
+            "Time elapsed: %d seconds. Expected time: %d seconds. Score %d. Population to lose %d.";
     private static final int INFO_LABEL_PADDING = 5; // in pixels
+    private static final String IMAGE_NOT_FOUND = "Image for tile type %s not found";
 
     private final LevelData levelData;
     private final Label timerLabel;
@@ -55,34 +57,39 @@ public class Board {
     private final Timeline interactionCheckTimeline;
     private final Timeline gameLabelTimeline;
     private Timeline winLoseTimeline;
-    private ArrayList<Rectangle> ProgressBar;
-    private int populationToLose;
 
+    /**
+     * Constructs a Board object.
+     *
+     * @param levelData the level data for this game board.
+     */
     public Board(LevelData levelData) {
         this.levelData = levelData;
         LevelProperties levelProperties = levelData.getLevelProperties();
 
         // Find the width and the height of the canvas, in pixels for this level
-        int width
-                = levelProperties.getLevelWidth() * Tile.TILE_SIZE; // in pixels
-        int height
-                = levelProperties.getLevelHeight() * Tile.TILE_SIZE;
+        int width =
+                levelProperties.getLevelWidth() * Tile.TILE_SIZE; // in pixels
+        int height =
+                levelProperties.getLevelHeight() * Tile.TILE_SIZE;
 
         this.canvas = new Canvas(width, height);
 
+        // Start an interaction checker to check for interactions between the objects
         interactionCheckTimeline = new Timeline(
                 new KeyFrame(Duration.millis(INTERACTION_CHECK_INTERVAL),
                         event -> interactionCheck())
         );
-
-        // Loop the interaction check forever
         interactionCheckTimeline.setCycleCount(Animation.INDEFINITE);
         interactionCheckTimeline.play();
 
+
+        // Create and start a timeline to update a label containing level
+        // information
         int timeElapsed = levelProperties.getTimeElapsed();
         int expectedTime = levelProperties.getExpectedTime();
         int score = levelProperties.getScore();
-        populationToLose = levelProperties.getPopulationToLose();
+        int populationToLose = levelProperties.getPopulationToLose();
 
         this.timerLabel = new Label(String.format(
                 INFORMATION_LABEL_TEXT, timeElapsed, expectedTime, score,
@@ -95,32 +102,15 @@ public class Board {
         gameLabelTimeline.setCycleCount(Animation.INDEFINITE);
         gameLabelTimeline.play();
 
+        // Create a new inventory for the level
         this.inventory = new Inventory(levelData);
-
-        ProgressBar = new ArrayList<>(populationToLose);
-
     }
 
-    private void updateTimerLabel() {
-        LevelProperties levelProperties = levelData.getLevelProperties();
-        int expectedTime = levelProperties.getExpectedTime();
-        int elapsedTime = levelProperties.getTimeElapsed();
-        int score = levelProperties.getScore();
-        int populationToLose = levelProperties.getPopulationToLose();
-
-        elapsedTime++;
-        levelData.getLevelProperties().setTimeElapsed(elapsedTime);
-        timerLabel.setText(
-                String.format(INFORMATION_LABEL_TEXT, elapsedTime, expectedTime,
-                        score, populationToLose)
-        );
-    }
-
+    /**
+     * A method to check for interactions between objects on the board.
+     */
     public void interactionCheck() {
-
-        updateProgressBar();
         List<GameObject> objects = levelData.getObjects();
-
         for (int i = 0; i < objects.size(); i++) {
             GameObject firstObject = objects.get(i);
 
@@ -128,8 +118,12 @@ public class Board {
                 GameObject secondObject = objects.get(j);
 
                 // If we are comparing 2 objects that are on the same tile, and are not the same object
-                if (firstObject.getStandingOn().equals(secondObject.getStandingOn()) && !(firstObject.equals(secondObject))) {
+                Tile firstObjTile = firstObject.getStandingOn();
+                Tile secondObjTile = secondObject.getStandingOn();
+                boolean diffObjectsOnTile = firstObjTile.equals(secondObjTile) &&
+                        !(firstObject.equals(secondObject));
 
+                if (diffObjectsOnTile) {
                     // Check for every interaction case
                     ObjectInteractionChecker.checkRatsMating(firstObject, secondObject);
                     ObjectInteractionChecker.checkDeathRat(firstObject, secondObject);
@@ -148,14 +142,17 @@ public class Board {
     }
 
     /**
-     * A method to get the canvas of the board
+     * A method to get the canvas of the board.
      *
-     * @return the Canvas for the board
+     * @return the Canvas for the board.
      */
     public Canvas getCanvas() {
         return canvas;
     }
 
+    /**
+     * A method to update the canvas that represents the board.
+     */
     public void updateBoardDisplay() {
 
         // Get the Graphic Context of the canvas. This is what we draw on.
@@ -175,18 +172,11 @@ public class Board {
         displayObjects();
     }
 
-    private void displayObjects() {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        List<GameObject> objects = levelData.getObjects();
-
-        // draw all objects
-        for (GameObject object : objects) {
-            gc.drawImage(object.getIcon(), object.getStandingOn().getTopLeftX() * Tile.TILE_SIZE,
-                    object.getStandingOn().getTopLeftY() * Tile.TILE_SIZE);
-        }
-    }
-
+    /**
+     * Add the provided GameObject to the board.
+     *
+     * @param objectAdded the GameObject to add.
+     */
     public void addObject(GameObject objectAdded) {
         List<GameObject> objects = levelData.getObjects();
 
@@ -194,24 +184,36 @@ public class Board {
         updateBoardDisplay();
     }
 
+    /**
+     * Remove the provided object from the board.
+     *
+     * @param objectRemove the GameObject to remove.
+     */
     public void removeObject(GameObject objectRemove) {
+        // If we are removing a rat, add to the score
         if (objectRemove instanceof PeacefulRat) {
             PeacefulRat killedRat = (PeacefulRat) objectRemove;
             this.addPoints(killedRat);
         }
 
+        // If we are removing a stoppable object, stop it
         if (objectRemove instanceof ObjectStoppable) {
             ObjectStoppable stoppableObj = (ObjectStoppable) objectRemove;
             stoppableObj.stop();
         }
 
+        // Remove from list and update display
         List<GameObject> objects = levelData.getObjects();
-
         objects.remove(objectRemove);
         updateBoardDisplay();
 
     }
 
+    /**
+     * Add points for the provided rat to the points.
+     *
+     * @param killedRat the rat that was killed.
+     */
     public void addPoints(PeacefulRat killedRat) {
         int score = levelData.getLevelProperties().getScore();
         score += POINTS_ON_A_RAT;
@@ -222,14 +224,29 @@ public class Board {
         levelData.getLevelProperties().setScore(score);
     }
 
+    /**
+     * Get the current population of rats on the board.
+     *
+     * @return a RatPopulation object, holding data on the current population.
+     */
     public RatPopulation getCurrentPopulation() {
         return new RatPopulation(levelData);
     }
 
+    /**
+     * Get the current score of the game.
+     *
+     * @return the score of the game.
+     */
     public int getScore() {
         return levelData.getLevelProperties().getScore();
     }
 
+    /**
+     * Construct the GUI for the board.
+     *
+     * @return a JavaFX Node, containing the GUI.
+     */
     public Pane buildGUI() {
         BorderPane root = new BorderPane();
 
@@ -243,7 +260,8 @@ public class Board {
         HBox controlsContainer = new HBox();
         controlsContainer.setPadding(new Insets(CONTROLS_MARGIN));
         controlsContainer.setBackground(
-                new Background(new BackgroundFill(
+                new Background
+                        (new BackgroundFill(
                                 Color.LIGHTGRAY,
                                 CornerRadii.EMPTY,
                                 Insets.EMPTY
@@ -254,21 +272,27 @@ public class Board {
 
         saveButton.setMinWidth(GameMenu.getStage().getWidth());
         saveButton.setAlignment(Pos.CENTER);
+
+        // Save level when mouse is pressed, and stop the current game
         saveButton.setOnMousePressed(event -> {
             levelData.setInventory(inventory.getItemsInInventory());
             LevelSaveHandler.saveLevel(levelData,
                     PlayerProfileManager.getCurrentlyLoggedInPlayer());
             this.stopGame();
-            GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
+            GameMenu.getStage().setScene(
+                    new Scene(new MainMenu().buildMenu())
+            );
         });
 
+        // Add controls to the screen
         controlsContainer.getChildren().add(saveButton);
         root.setBottom(controlsContainer);
 
         // Add time label
         HBox labelContainer = new HBox();
         labelContainer.setBackground(
-                new Background(new BackgroundFill(
+                new Background
+                        (new BackgroundFill(
                                 Color.LIGHTGRAY,
                                 CornerRadii.EMPTY,
                                 Insets.EMPTY
@@ -284,52 +308,13 @@ public class Board {
         labelContainer.getChildren().add(timerLabel);
         root.setTop(labelContainer);
 
-        root.setRight(buildProgressBar());
+        //root.setRight(callMethod);
 
         return root;
     }
 
     /**
-     * This method builds the GUI for the rats population bar
-     *
-     * @return the GUI of the rats population bar
-     */
-    private Pane buildProgressBar() {
-
-        Pane ratPopulation = new Pane();
-        double height = canvas.getHeight() / populationToLose;
-        for (int i = 0; i < populationToLose; i++) {
-            Rectangle cell = new Rectangle(Tile.TILE_SIZE, height);
-            cell.setFill(Color.GREY);
-            ProgressBar.add(cell);
-            cell.setTranslateY(i * height);
-            ratPopulation.getChildren().add(cell);
-        }
-
-        return ratPopulation;
-    }
-
-    /**
-     * This method updates the rats population bar
-     */
-    private void updateProgressBar() {
-
-        for (int i = 0; i < getCurrentPopulation().malePopulation(); i++) {
-            ProgressBar.get(i).setFill(Color.valueOf("#0000FF"));
-
-        }
-        for (int i = 0; i < getCurrentPopulation().femalePopulation(); i++) {
-            ProgressBar.get(getCurrentPopulation().malePopulation() + i).setFill(Color.valueOf("#F800B8"));
-
-        }
-        for (int i = 0; i < populationToLose - getCurrentPopulation().getTotalPopulation(); i++) {
-            ProgressBar.get(getCurrentPopulation().femalePopulation() + getCurrentPopulation().malePopulation() + i).setFill(Color.GREY);
-
-        }
-    }
-
-    /**
-     * Stops the items in the game from running after the game is exited
+     * Stops the items in the game from running after the game is exited.
      */
     public void stopGame() {
         // Stop every object that needs stopping currently on the board
@@ -347,6 +332,9 @@ public class Board {
         GameObject.setBoard(null);
     }
 
+    /**
+     * A method to start the game.
+     */
     public void startGame() {
         // Set the board currently in use to this board
         GameObject.setBoard(this);
@@ -354,37 +342,111 @@ public class Board {
         // Update board display
         updateBoardDisplay();
 
-        winLoseTimeline = new Timeline(new KeyFrame(Duration.millis(250), event -> checkWinLose()));
+        // Starts checking whether the player has won or lost
+        winLoseTimeline = new Timeline(new KeyFrame(Duration.millis(250),
+                event -> checkWinLose()));
         winLoseTimeline.setCycleCount(Animation.INDEFINITE);
         winLoseTimeline.play();
     }
 
-    private void checkWinLose() {
-        LevelProperties levelProperties = levelData.getLevelProperties();
+    /**
+     * Get the objects currently in play.
+     *
+     * @return the List of objects currently in play.
+     */
+    public List<GameObject> getObjects() {
+        return this.levelData.getObjects();
+    }
 
+    /**
+     * Get the level properties for the level in play.
+     *
+     * @return the LevelProperties for this level.
+     */
+    public LevelProperties getLevelProperties() {
+        return levelData.getLevelProperties();
+    }
+
+    /**
+     * A method to update the timer label with the current data.
+     */
+    private void updateTimerLabel() {
+        LevelProperties levelProperties = levelData.getLevelProperties();
+        int expectedTime = levelProperties.getExpectedTime();
+        int elapsedTime = levelProperties.getTimeElapsed();
+        int score = levelProperties.getScore();
         int populationToLose = levelProperties.getPopulationToLose();
 
+        elapsedTime++;
+        levelData.getLevelProperties().setTimeElapsed(elapsedTime);
+        timerLabel.setText(
+                String.format(INFORMATION_LABEL_TEXT, elapsedTime,
+                        expectedTime, score, populationToLose)
+        );
+    }
+
+    /**
+     * Display the objects on the screens
+     */
+    private void displayObjects() {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        List<GameObject> objects = levelData.getObjects();
+
+        // draw all objects
+        for (GameObject object : objects) {
+            double x = object.getStandingOn().getX() * Tile.TILE_SIZE;
+            double y = object.getStandingOn().getY() * Tile.TILE_SIZE;
+            gc.drawImage(object.getIcon(), x, y);
+        }
+    }
+
+    /**
+     * Checks whether the game has been won or lost at the moment the method is
+     * called.
+     */
+    private void checkWinLose() {
+        LevelProperties levelProperties = levelData.getLevelProperties();
+        int populationToLose = levelProperties.getPopulationToLose();
         int currentPopulation = getCurrentPopulation().getTotalPopulation();
 
         // The player has lost
         if (currentPopulation >= populationToLose) {
             stopGame();
-            GameMenu.getStage().setScene(new Scene(new LoseMenu().buildMenu()));
+            GameMenu.getStage().setScene(
+                    new Scene(new LoseMenu().buildMenu())
+            );
         }
 
         // The player has won
         if (currentPopulation <= 0) {
             int levelId = levelProperties.getLevelId();
 
-            Player currentPlayer = PlayerProfileManager.getCurrentlyLoggedInPlayer();
-            currentPlayer.addScoreIfHighest(levelId, getScore());
-            currentPlayer.setMaxLevel(levelId + 1);
+            Player currentPlayer =
+                    PlayerProfileManager.getCurrentlyLoggedInPlayer();
+
+            // Calculate bonus score
+            int elapsedTime = levelProperties.getTimeElapsed();
+            int expectedTime = levelProperties.getExpectedTime();
+
+            int bonusScore = expectedTime - elapsedTime;
+
+            if (bonusScore > 0) {
+                int score = getScore();
+                levelProperties.setScore(score + bonusScore);
+            }
+
+
+            currentPlayer.winGame(levelId, getScore());
 
             stopGame();
             GameMenu.getStage().setScene(new Scene(new WinMenu().buildMenu()));
         }
     }
 
+    /**
+     * Displays the tiles in the level on the board
+     */
     private void displayTiles() {
         // Get the Graphic Context of the canvas. This is what we draw on.
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -405,18 +467,14 @@ public class Board {
                     tileImage = new Image("file:resources/tunnel.jpg");
                     break;
                 default:
-                    throw new RuntimeException("Image for tile type" + tile.getTileType() + " not found");
+                    throw new RuntimeException(String.format(
+                            IMAGE_NOT_FOUND, tile.getTileType()
+                    ));
             }
 
-            gc.drawImage(tileImage, tile.getTopLeftX() * Tile.TILE_SIZE, tile.getTopLeftY() * Tile.TILE_SIZE);
+            double x = tile.getX() * Tile.TILE_SIZE;
+            double y = tile.getY() * Tile.TILE_SIZE;
+            gc.drawImage(tileImage, x, y);
         }
-    }
-
-    public List<GameObject> getObjects() {
-        return this.levelData.getObjects();
-    }
-
-    public LevelProperties getLevelProperties() {
-        return levelData.getLevelProperties();
     }
 }

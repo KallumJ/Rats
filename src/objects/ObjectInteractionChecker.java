@@ -12,6 +12,13 @@ import objects.rats.Rat;
 public class ObjectInteractionChecker {
 
     /**
+     * Empty private constructor method, preventing ObjectInteractionChecker
+     * from being instantiated as an object.
+     */
+    private ObjectInteractionChecker() {
+    }
+
+    /**
      * A method to check whether the two provided objects are 2 rats mating
      *
      * @param firstObject the first object

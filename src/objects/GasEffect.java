@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 import objects.rats.Rat;
 import tile.Tile;
+import tile.TileType;
 
 /**
  *
@@ -26,7 +27,13 @@ public class GasEffect extends GameObject implements ObjectStoppable {
         Image gasEffectImage = new Image(
                 ObjectUtils.getObjectImageUrl(GameObjectType.GAS)
         );
-        super.setIcon(gasEffectImage);
+
+        if (standingOn.getTileType().equals(TileType.PATH)) {
+            super.setIcon(gasEffectImage);
+        } else {
+            super.setIcon(null);
+        }
+
 
         GameObject.getBoard().addObject(this);
     }
@@ -40,14 +47,6 @@ public class GasEffect extends GameObject implements ObjectStoppable {
         disappearTimer.play();
     }
 
-    /**
-     * A method to remove the effect of the gas 
-     */
-    private void removeEffect() {
-        sourceGas.getGasEffects().remove(this);
-        GameObject.getBoard().removeObject(this);
-    }
-    
     /**
      * A method to check when the gas has been placed on the board 
      */
@@ -64,6 +63,16 @@ public class GasEffect extends GameObject implements ObjectStoppable {
     public void stop() {
         if (disappearTimer != null) {
             disappearTimer.pause();
+        }
+    }
+
+    /**
+     * A method to remove the effect of the gas
+     */
+    private void removeEffect() {
+        sourceGas.getGasEffects().remove(this);
+        if (GameObject.getBoard() != null) {
+            GameObject.getBoard().removeObject(this);
         }
     }
 }

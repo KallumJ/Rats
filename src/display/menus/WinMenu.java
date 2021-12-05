@@ -22,7 +22,8 @@ public class WinMenu extends GameMenu {
     private static final int LABEL_FONT_SIZE = 24;
 
     /**
-     * A method to create the pop up window that displays the 'YOU WIN' message.
+     * A method to create the pop up window that displays the 'YOU WIN'
+     * message.
      *
      * @return the node of the created menu layout
      */

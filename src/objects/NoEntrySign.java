@@ -18,6 +18,9 @@ import tile.Tile;
  */
 public class NoEntrySign extends GameObject implements ObjectStoppable {
 
+    public static final int DEFAULT_DAMAGE_DONE = 0;
+    public static final int DEFAULT_DURABILITY = 6;
+
     private final Image noEntrySignImage;
     private final Image noEntrySignOneImage;
     private final Image noEntrySignTwoImage;
@@ -29,9 +32,6 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
     private final ArrayList<NoEntrySignCounter> noEntrySignEffects;
     private final ArrayList<Tile> affectedTiles;
     private final Timeline setUpTimeline;
-
-    public static final int DEFAULT_DAMAGE_DONE = 0;
-    public static final int DEFAULT_DURABILITY = 6;
 
     /**
      * Creates a new no entry sign item on the specified tile
@@ -63,49 +63,6 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
 
         setUpTimeline = new Timeline(new KeyFrame(Duration.millis(100), event -> setUpNoEntrySign()));
         setUpTimeline.play();
-    }
-
-    private void setUpNoEntrySign() {
-        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.UP));
-        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.DOWN));
-        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.RIGHT));
-        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.LEFT));
-
-        for (Tile affectedTile : affectedTiles) {
-            NoEntrySignCounter newEffect = new NoEntrySignCounter(affectedTile, this);
-            noEntrySignEffects.add(newEffect);
-            GameObject.getBoard().addObject(newEffect);
-        }
-
-    }
-
-    /**
-     * A method that decides the icon of the NoEntrySign depending on remaining
-     * damage.
-     */
-    private void decideIcon() {
-
-        switch (durability - damageDone) {
-
-            case 5:
-                super.setIcon(noEntrySignFiveImage);
-                break;
-            case 4:
-                super.setIcon(noEntrySignFourImage);
-                break;
-            case 3:
-                super.setIcon(noEntrySignThreeImage);
-                break;
-            case 2:
-                super.setIcon(noEntrySignTwoImage);
-                break;
-            case 1:
-                super.setIcon(noEntrySignOneImage);
-                break;
-            default:
-                super.setIcon(noEntrySignImage);
-                break;
-        }
     }
 
     /**
@@ -159,4 +116,48 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
             setUpTimeline.pause();
         }
     }
+
+    private void setUpNoEntrySign() {
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.UP));
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.DOWN));
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.RIGHT));
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.LEFT));
+
+        for (Tile affectedTile : affectedTiles) {
+            NoEntrySignCounter newEffect = new NoEntrySignCounter(affectedTile, this);
+            noEntrySignEffects.add(newEffect);
+            GameObject.getBoard().addObject(newEffect);
+        }
+
+    }
+
+    /**
+     * A method that decides the icon of the NoEntrySign depending on remaining
+     * damage.
+     */
+    private void decideIcon() {
+
+        switch (durability - damageDone) {
+
+            case 5:
+                super.setIcon(noEntrySignFiveImage);
+                break;
+            case 4:
+                super.setIcon(noEntrySignFourImage);
+                break;
+            case 3:
+                super.setIcon(noEntrySignThreeImage);
+                break;
+            case 2:
+                super.setIcon(noEntrySignTwoImage);
+                break;
+            case 1:
+                super.setIcon(noEntrySignOneImage);
+                break;
+            default:
+                super.setIcon(noEntrySignImage);
+                break;
+        }
+    }
+
 }

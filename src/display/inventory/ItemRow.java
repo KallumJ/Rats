@@ -15,11 +15,11 @@ import tile.TileType;
 /**
  * A class to model a row of items in the inventory.
  *
- * @author
+ * @author Kallum Jones 2005855
  */
 public class ItemRow {
 
-    public static final int MAX_ITEMS_IN_ROW = 5;
+    public static final int MAX_ITEMS_IN_ROW = 4;
     private final GameObjectType objectType;
     private final HBox hBox;
     private final Inventory inventory;
@@ -30,8 +30,8 @@ public class ItemRow {
     /**
      * Constructs an item row for the provided object type.
      *
-     * @param objectType    The type of items in this row
-     * @param inventory     the inventory this row is being stored in
+     * @param objectType The type of items in this row
+     * @param inventory  the inventory this row is being stored in
      */
     public ItemRow(final GameObjectType objectType, final Inventory inventory) {
         this.objectType = objectType;

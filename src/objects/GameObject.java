@@ -10,14 +10,14 @@ import tile.Tile;
  */
 public class GameObject {
 
+    private static Board board;
+
     // Loaded icon of the object
     private Image icon;
 
     // The Tile the object is currently standing on
     private Tile standingOn;
-
-    private static Board board;
-
+    
     protected GameObject(Tile standingOn) {
 
         this.standingOn = standingOn;

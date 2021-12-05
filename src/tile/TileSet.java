@@ -25,19 +25,6 @@ public class TileSet {
     }
 
     /**
-     * A method to generate a row of tiles if it is not present already
-     * @param y the y co-ordinate of the row
-     */
-    private void generateTileRowIfNotPresent(int y) {
-        // If the provided co-ordinate is out of bounds, put a new row there
-        try {
-            tileSet.get(y);
-        } catch (IndexOutOfBoundsException ex) {
-            tileSet.add(y, new ArrayList<>());
-        }
-    }
-
-    /**
      * A method to put a tile in the set at the specified position
      * @param tile The tile to insert
      * @param x the x co-ordinate
@@ -98,5 +85,18 @@ public class TileSet {
      */
     public ArrayList<ArrayList<Tile>> getTileSetRows() {
         return tileSet;
+    }
+
+    /**
+     * A method to generate a row of tiles if it is not present already
+     * @param y the y co-ordinate of the row
+     */
+    private void generateTileRowIfNotPresent(int y) {
+        // If the provided co-ordinate is out of bounds, put a new row there
+        try {
+            tileSet.get(y);
+        } catch (IndexOutOfBoundsException ex) {
+            tileSet.add(y, new ArrayList<>());
+        }
     }
 }

@@ -28,6 +28,13 @@ public class LevelDataFactory {
     private static final String INVALID_TILE_TYPE = "An invalid tile type was read from file";
 
     /**
+     * Empty private constructor method, preventing LevelDataFactory from being
+     * instantiated as an object.
+     */
+    private LevelDataFactory() {
+    }
+
+    /**
      * A method to construct the LevelData object for a given level id
      *
      * @param id The id of the level that needs constructing
@@ -36,6 +43,52 @@ public class LevelDataFactory {
     public static LevelData constructLevelData(int id) {
         File selectedLevel = LevelUtils.getLevelFileById(id);
         return constructLevelDataFromFile(selectedLevel);
+    }
+
+    /**
+     * A method to construct the saved level data for the provided player and
+     * level
+     *
+     * @param currentlyLoggedInPlayer the player
+     * @param id                      the level
+     * @return the complete LevelData object
+     */
+    public static LevelData constructSavedLevelData(Player currentlyLoggedInPlayer, String id) {
+        File file = new File(
+                LevelUtils.constructSavedLevelFileName(currentlyLoggedInPlayer, Integer.parseInt(id))
+        );
+        return constructLevelDataFromFile(file);
+    }
+
+    /**
+     * A method to construct the LevelData object for a given level file
+     *
+     * @param file The level file that needs constructing
+     * @return The complete LevelData object
+     */
+    public static LevelData constructLevelDataFromFile(File file) {
+        XMLFileReader xmlFileReader = new XMLFileReader(file);
+
+        Element levelPropertiesElement = xmlFileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES);
+        Element tileSetElement = xmlFileReader.drilldownToElement(XMLElementNames.TILE_SET);
+        Element inventoryElement = xmlFileReader.drilldownToElement(XMLElementNames.INVENTORY);
+
+        LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
+        TileSet tileSet = readTileSet(tileSetElement);
+
+
+        setAdjacentTiles(tileSet);
+        ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
+
+        LevelData levelData = new LevelData(levelProperties, tileSet, objects);
+
+        // If this level has an inventory, then add it to the level data
+        if (inventoryElement != null) {
+            List<GameObjectType> inventory = readInventory(inventoryElement);
+            levelData.setInventory(inventory);
+        }
+
+        return levelData;
     }
 
     /**
@@ -138,10 +191,12 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to read the properties from the provided level properties element
+     * A method to read the properties from the provided level properties
+     * element
      *
      * @param levelProperties the levelProperties elememt
-     * @return a LevelProperties object containing the data read from the element
+     * @return a LevelProperties object containing the data read from the
+     * element
      */
     private static LevelProperties readLevelProperties(Element levelProperties) {
         // Load properties into variables
@@ -152,7 +207,7 @@ public class LevelDataFactory {
         int id = getPropertyInt(levelProperties, XMLElementNames.LEVEL_ID);
         int itemInterval = getPropertyInt(levelProperties, XMLElementNames.ITEM_INTERVAL);
         int ratMinBabies = getPropertyInt(levelProperties, XMLElementNames.RAT_MIN_BABIES);
-        int ratMaxBabies = getPropertyInt(levelProperties,  XMLElementNames.RAT_MAX_BABIES);
+        int ratMaxBabies = getPropertyInt(levelProperties, XMLElementNames.RAT_MAX_BABIES);
         int adultRatSpeed = getPropertyInt(levelProperties, XMLElementNames.ADULT_RAT_SPEED);
         int babyRatSpeed = getPropertyInt(levelProperties, XMLElementNames.BABY_RAT_SPEED);
         int deathRatSpeed = getPropertyInt(levelProperties, XMLElementNames.DEATH_RAT_SPEED);
@@ -166,7 +221,8 @@ public class LevelDataFactory {
     }
 
     /**
-     * A utility method to get the property of type integer from the properties element provided, with the provided property name
+     * A utility method to get the property of type integer from the properties
+     * element provided, with the provided property name
      *
      * @param propertiesElement the levelProperties element to read from
      * @param propertyName      The property to read
@@ -179,52 +235,8 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to construct the saved level data for the provided player and level
-     *
-     * @param currentlyLoggedInPlayer the player
-     * @param id                      the level
-     * @return the complete LevelData object
-     */
-    public static LevelData constructSavedLevelData(Player currentlyLoggedInPlayer, String id) {
-        File file = new File(
-                LevelUtils.constructSavedLevelFileName(currentlyLoggedInPlayer, Integer.parseInt(id))
-        );
-        return constructLevelDataFromFile(file);
-    }
-
-    /**
-     * A method to construct the LevelData object for a given level file
-     *
-     * @param file The level file that needs constructing
-     * @return The complete LevelData object
-     */
-    public static LevelData constructLevelDataFromFile(File file) {
-        XMLFileReader xmlFileReader = new XMLFileReader(file);
-
-        Element levelPropertiesElement = xmlFileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES);
-        Element tileSetElement = xmlFileReader.drilldownToElement(XMLElementNames.TILE_SET);
-        Element inventoryElement = xmlFileReader.drilldownToElement(XMLElementNames.INVENTORY);
-
-        LevelProperties levelProperties = readLevelProperties(levelPropertiesElement);
-        TileSet tileSet = readTileSet(tileSetElement);
-
-
-        setAdjacentTiles(tileSet);
-        ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
-
-        LevelData levelData = new LevelData(levelProperties, tileSet, objects);
-
-        // If this level has an inventory, then add it to the level data
-        if (inventoryElement != null) {
-            List<GameObjectType> inventory = readInventory(inventoryElement);
-            levelData.setInventory(inventory);
-        }
-
-        return levelData;
-    }
-
-    /**
      * A method to get the items in the inventory for this level
+     *
      * @param inventoryElement the inventory element read from file
      * @return the list of game object types represented in the file
      */

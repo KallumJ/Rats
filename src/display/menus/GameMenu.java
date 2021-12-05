@@ -24,7 +24,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * A class to model a menu in the GUI. This class is extended by all other menus in the system
+ * A class to model a menu in the GUI. This class is extended by all other menus
+ * in the system
  *
  * @author Samhitha Pinisetti 2035196
  */
@@ -56,10 +57,10 @@ public abstract class GameMenu {
     /**
      * Builds a menu, with a MenuBox of MenuItems to display in the menu.
      *
-     * @param menuBox       the list of menu items to display in the menu
-     * @param backHandler   the EventHandler for the back button on the page, or
-     *                      null if there is no back button required
-     * @return              the node containing the menu
+     * @param menuBox     the list of menu items to display in the menu
+     * @param backHandler the EventHandler for the back button on the page, or
+     *                    null if there is no back button required
+     * @return the node containing the menu
      */
     public BorderPane buildMenu(MenuTitle menuTitle, MenuBox menuBox, EventHandler<Event> backHandler) {
         // First build a blank menu
@@ -77,10 +78,10 @@ public abstract class GameMenu {
     /**
      * Returns a menu with nothing in it.
      *
-     * @param menuTitle     the title of the menu
-     * @param backHandler   the EventHandler for the back button on the page,
-                            or null if there is no back button required
-     * @return              the node containing the blank menu
+     * @param menuTitle   the title of the menu
+     * @param backHandler the EventHandler for the back button on the page, or
+     *                    null if there is no back button required
+     * @return the node containing the blank menu
      */
     public BorderPane buildBlank(MenuTitle menuTitle, EventHandler<Event> backHandler) {
         Pane pane = new Pane();
@@ -129,16 +130,8 @@ public abstract class GameMenu {
     public abstract Parent buildMenu();
 
     /**
-     * Returns the center of the root BorderPane for subclasses to add controls.
-     *
-     * @return the center of the BorderPane
-     */
-    protected Pane getCenter() {
-        return (Pane) root.getCenter();
-    }
-
-    /**
      * Gets the current stage on display
+     *
      * @return the current stage on display
      */
     public static Stage getStage() {
@@ -147,10 +140,21 @@ public abstract class GameMenu {
 
     /**
      * Sets the stage to display
+     *
      * @param stage the stage to display
      */
     public static void setStage(Stage stage) {
         GameMenu.stage = stage;
+    }
+
+    /**
+     * Returns the center of the root BorderPane for subclasses to add
+     * controls.
+     *
+     * @return the center of the BorderPane
+     */
+    protected Pane getCenter() {
+        return (Pane) root.getCenter();
     }
 }
 

@@ -41,6 +41,7 @@ public enum XMLElementNames {
 
     /**
      * Constructs an XMLElementName
+     *
      * @param nodeName the name of the node
      */
     XMLElementNames(String nodeName) {
@@ -49,6 +50,7 @@ public enum XMLElementNames {
 
     /**
      * Returns the name of the node
+     *
      * @return the name of the node
      */
     @Override

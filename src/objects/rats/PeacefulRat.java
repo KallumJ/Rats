@@ -1,7 +1,6 @@
 package objects.rats;
 
 import java.util.Random;
-import java.util.Timer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -20,6 +19,7 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
 
     // Added as being pregnant requires the board to be populated, which it isnt when this is constructed
     private static final int DELAY_TO_MAKE_PREGNANT = 250; // in ms
+    private static final int DELAY_TO_MATE = 1; // in seconds
 
     private boolean sterile;
     private boolean adult;
@@ -27,7 +27,6 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
     private String gender;
     private final int timeToGiveBirth;
     private final int timeToDevelop;
-    private Timer timer;
     private int numberOfBabies;
     private final Image maleRatImage;
     private final Image babyRatImage;
@@ -36,6 +35,8 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
     private Timeline pregnancyTimeline;
     private Timeline pregnancyDelayTimeline;
     private Timeline developmentTimeline;
+    private Timeline delayMating;
+    private Timeline delayBirth;
 
     /**
      * Creates a new rat depending on the rat data.
@@ -111,14 +112,27 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
      * features.
      */
     public void mate(PeacefulRat partner) {
-
-        if (partner.getGender().equalsIgnoreCase("f") && (!partner.isPregnant())) {
-            if ((!(this.isSterile() || partner.isSterile())) && (this.isAdult() && partner.isAdult())) {
-
-                partner.bePregnant();
+            if (partner.getGender().equalsIgnoreCase("f") && (!partner.isPregnant())) {
+                if ((!(this.isSterile() || partner.isSterile())) && (this.isAdult() && partner.isAdult())) {
+                    partner.setPregnant(true);
+                    this.setSpeed(0);
+                    partner.setSpeed(0);
+                    delayMating = new Timeline(new KeyFrame(Duration.seconds(DELAY_TO_MATE),
+                            event -> resetSpeed(partner)));
+                    delayMating.play();
+                }
             }
-        }
+    }
 
+    /**
+     * Resets the speed of this rat and their partner
+     * @param partner their partner
+     */
+    private void resetSpeed(PeacefulRat partner) {
+        int speed = GameObject.getBoard().getLevelProperties().getAdultRatSpeed();
+        partner.setSpeed(speed);
+        this.setSpeed(speed);
+        partner.bePregnant();
     }
 
     /**
@@ -127,7 +141,6 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
     public void bePregnant() {
         pregnancyTimeline = new Timeline(new KeyFrame(Duration.seconds(this.timeToGiveBirth), event -> giveBirth()));
 
-        this.pregnant = true;
         this.decideIcon();
 
         Random random = new Random();
@@ -136,49 +149,6 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
                 + GameObject.getBoard().getLevelProperties().getRatMinBabies();
         pregnancyTimeline.play();
 
-    }
-
-    /**
-     * This method will make a pregnant rat give birth and gets it babies to
-     * life.
-     */
-    private void giveBirth() {
-
-        this.pregnant = false;
-        decideIcon();
-
-        // randomly deciding the gender of each baby.
-        for (int i = 0; i < this.numberOfBabies; i++) {
-            String newBornGender;
-            Random random = new Random();
-            int decision = random.nextInt(2);
-
-            if (decision == 1) {
-
-                newBornGender = "m";
-            } else {
-
-                newBornGender = "f";
-            }
-
-            GameObject newBorn = new PeacefulRat(super.getStandingOn(), this.isSterile(), false, false, newBornGender,
-                    this.timeToGiveBirth, this.timeToDevelop, GameObject.getBoard().getLevelProperties()
-                    .getBabyRatSpeed(), super.getDirectionOfMovement());
-
-            GameObject.getBoard().addObject(newBorn);
-
-            this.numberOfBabies = 0;
-        }
-    }
-
-    /**
-     * This method will turn a baby rat into an adult rat.
-     */
-    private void growUp() {
-
-        this.adult = true;
-        decideIcon();
-        super.setSpeed(GameObject.getBoard().getLevelProperties().getAdultRatSpeed());
     }
 
     /**
@@ -299,5 +269,74 @@ public class PeacefulRat extends Rat implements ObjectStoppable {
         if (pregnancyTimeline != null) {
             pregnancyTimeline.pause();
         }
+
+        if (delayMating != null) {
+            delayMating.pause();
+        }
+
+        if (delayBirth != null) {
+            delayBirth.pause();
+        }
+    }
+
+    /**
+     * This method will make a pregnant rat give birth and gets it babies to
+     * life.
+     */
+    private void giveBirth() {
+
+        // randomly deciding the gender of each baby.
+        delayBirth = new Timeline(new KeyFrame(Duration.millis(super.getSpeed()), event -> spawnBaby()));
+        delayBirth.setCycleCount(this.numberOfBabies);
+        delayBirth.play();
+    }
+
+    /**
+     * Spawns a baby behind its mother
+     */
+    private void spawnBaby() {
+        String newBornGender;
+        Random random = new Random();
+        int decision = random.nextInt(2);
+
+        if (decision == 1) {
+
+            newBornGender = "m";
+        } else {
+
+            newBornGender = "f";
+        }
+        Direction oppositeDirection = turnAround(super.getDirectionOfMovement());
+        Tile tile = super.getStandingOn().getAdjacentTile(oppositeDirection);
+        GameObject newBorn = new PeacefulRat(tile, this.isSterile(), false, false, newBornGender,
+                this.timeToGiveBirth, this.timeToDevelop, GameObject.getBoard().getLevelProperties()
+                .getBabyRatSpeed(), oppositeDirection);
+
+        GameObject.getBoard().addObject(newBorn);
+
+        numberOfBabies = numberOfBabies - 1;
+        if (numberOfBabies == 0) {
+            this.pregnant = false;
+            decideIcon();
+        }
+
+    }
+
+    /**
+     * This method will turn a baby rat into an adult rat.
+     */
+    private void growUp() {
+
+        this.adult = true;
+        decideIcon();
+        super.setSpeed(GameObject.getBoard().getLevelProperties().getAdultRatSpeed());
+    }
+
+    /**
+     * Sets whether this rat is pregnant
+     * @param pregnant true if pregnant, false otherwise
+     */
+    public void setPregnant(boolean pregnant) {
+        this.pregnant = pregnant;
     }
 }

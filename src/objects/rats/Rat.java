@@ -56,8 +56,14 @@ public class Rat extends GameObject implements ObjectStoppable {
      * @param speed the speed
      */
     public void setSpeed(int speed) {
+        // Stop the rat moving
+        moveTimeline.pause();
 
+        // Set the new speed, and start a new moving timeline
         this.speed = speed;
+        moveTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed), event -> move()));
+        moveTimeline.setCycleCount(Animation.INDEFINITE);
+        moveTimeline.play();
     }
 
     /**
@@ -78,6 +84,43 @@ public class Rat extends GameObject implements ObjectStoppable {
     public void setDirectionOfMovement(Direction directionOfMovement) {
 
         this.directionOfMovement = directionOfMovement;
+    }
+
+    /**
+     * Turn around
+     *
+     * @param directionOfMovement the direction of movement
+     * @return Direction
+     */
+    public Direction turnAround(Direction directionOfMovement) {
+
+        Direction oppositeDirection;
+
+        if (directionOfMovement == Direction.UP) {
+
+            oppositeDirection = Direction.DOWN;
+        } else if (directionOfMovement == Direction.LEFT) {
+
+            oppositeDirection = Direction.RIGHT;
+        } else if (directionOfMovement == Direction.DOWN) {
+
+            oppositeDirection = Direction.UP;
+        } else {
+
+            oppositeDirection = Direction.LEFT;
+        }
+
+        return oppositeDirection;
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (moveTimeline != null) {
+            moveTimeline.pause();
+        }
     }
 
     /**
@@ -134,22 +177,22 @@ public class Rat extends GameObject implements ObjectStoppable {
                 this.directionOfMovement = turnAround(directionOfMovement);
             }
         }
-        
+
         if (super.getStandingOn().getTileType().equals(TileType.TUNNEL)){
-            
+
             super.setIcon(null);
         } else {
             if (this instanceof PeacefulRat) {
-                
+
                 PeacefulRat rat = (PeacefulRat) this;
                 rat.decideIcon();
             } else if (this instanceof DeathRat) {
-                
+
                 DeathRat rat = (DeathRat) this;
                 rat.showIcon();
             }
         }
-        
+
         // Update the display
         if (GameObject.getBoard() != null) {
             GameObject.getBoard().updateBoardDisplay();
@@ -208,42 +251,5 @@ public class Rat extends GameObject implements ObjectStoppable {
         }
 
         return rightOfDirection;
-    }
-
-    /**
-     * Turn around
-     *
-     * @param directionOfMovement the direction of movement
-     * @return Direction
-     */
-    public Direction turnAround(Direction directionOfMovement) {
-
-        Direction oppositeDirection;
-
-        if (directionOfMovement == Direction.UP) {
-
-            oppositeDirection = Direction.DOWN;
-        } else if (directionOfMovement == Direction.LEFT) {
-
-            oppositeDirection = Direction.RIGHT;
-        } else if (directionOfMovement == Direction.DOWN) {
-
-            oppositeDirection = Direction.UP;
-        } else {
-
-            oppositeDirection = Direction.LEFT;
-        }
-
-        return oppositeDirection;
-    }
-
-    /**
-     * Stops any timelines running in this object
-     */
-    @Override
-    public void stop() {
-        if (moveTimeline != null) {
-            moveTimeline.pause();
-        }
     }
 }

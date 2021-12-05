@@ -10,7 +10,6 @@ import players.scores.Player;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A class to model a menu for loading saved levels for this player
@@ -22,6 +21,7 @@ public class LoadMenu extends GameMenu {
 
     /**
      * A method to build the Load Menu GUI
+     *
      * @return the Node containing the Load Menu
      */
     @Override

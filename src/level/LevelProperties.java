@@ -23,17 +23,25 @@ public class LevelProperties {
 
     /**
      * Constructs a LevelProperties object with the provided data
-     * @param id the id of the level
-     * @param height the height of the level
-     * @param width the width of the level
+     *
+     * @param id               the id of the level
+     * @param height           the height of the level
+     * @param width            the width of the level
      * @param populationToLose the max population for a level before failure
-     * @param expectedTime the expected time to complete the level in seconds
-     * @param itemInterval the time in between item drops for this level in seconds
-     * @param ratMinBabies the minimum number of babies a rat can birth in a level
-     * @param ratMaxBabies the maximum number of babies a rat can birth in a level
-     * @param adultRatSpeed the speed of an adult rat, in time between movement, in milliseconds
-     * @param babyRatSpeed the speed of a baby rat, in time between movement, in milliseconds
-     * @param deathRatSpeed the speed of a death rat, in time between movement, in milliseconds
+     * @param expectedTime     the expected time to complete the level in
+     *                         seconds
+     * @param itemInterval     the time in between item drops for this level in
+     *                         seconds
+     * @param ratMinBabies     the minimum number of babies a rat can birth in a
+     *                         level
+     * @param ratMaxBabies     the maximum number of babies a rat can birth in a
+     *                         level
+     * @param adultRatSpeed    the speed of an adult rat, in time between
+     *                         movement, in milliseconds
+     * @param babyRatSpeed     the speed of a baby rat, in time between
+     *                         movement, in milliseconds
+     * @param deathRatSpeed    the speed of a death rat, in time between
+     *                         movement, in milliseconds
      */
     public LevelProperties(int id, int height, int width, int populationToLose,
                            int expectedTime, int itemInterval, int ratMinBabies,
@@ -56,6 +64,7 @@ public class LevelProperties {
 
     /**
      * A method to get the level id for this level
+     *
      * @return the level id for this level
      */
     public int getLevelId() {
@@ -64,6 +73,7 @@ public class LevelProperties {
 
     /**
      * A method to get the height for this level
+     *
      * @return height for this level
      */
     public int getLevelHeight() {
@@ -72,6 +82,7 @@ public class LevelProperties {
 
     /**
      * A method to get the width of the level
+     *
      * @return the width of the level
      */
     public int getLevelWidth() {
@@ -80,6 +91,7 @@ public class LevelProperties {
 
     /**
      * A method to get the fail population for the level
+     *
      * @return the fail population for the level
      */
     public int getPopulationToLose() {
@@ -88,6 +100,7 @@ public class LevelProperties {
 
     /**
      * A method to get the time allowed for this level
+     *
      * @return get the time allowed for this level
      */
     public int getExpectedTime() {
@@ -96,6 +109,7 @@ public class LevelProperties {
 
     /**
      * A method to get the item drop interval for this level
+     *
      * @return the item drop interval for this level
      */
     public int getItemInterval() {
@@ -103,7 +117,9 @@ public class LevelProperties {
     }
 
     /**
-     * A method to get the minimum number of babies a rat can birth in this level
+     * A method to get the minimum number of babies a rat can birth in this
+     * level
+     *
      * @return the minimum number of babies a rat can birth in this level
      */
     public int getRatMinBabies() {
@@ -111,7 +127,9 @@ public class LevelProperties {
     }
 
     /**
-     * A method to get the minimum number of babies a rat can birth in this level
+     * A method to get the minimum number of babies a rat can birth in this
+     * level
+     *
      * @return the minimum number of babies a rat can birth in this level
      */
     public int getRatMaxBabies() {
@@ -120,7 +138,9 @@ public class LevelProperties {
 
     /**
      * A method to get the speed of adult rats in this level
-     * @return the speed of adult rats in this level in milliseconds between movements
+     *
+     * @return the speed of adult rats in this level in milliseconds between
+     * movements
      */
     public int getAdultRatSpeed() {
         return adultRatSpeed;
@@ -128,7 +148,9 @@ public class LevelProperties {
 
     /**
      * A method to get the speed of baby rats in this level
-     * @return the speed of baby rats in this level in milliseconds between movements
+     *
+     * @return the speed of baby rats in this level in milliseconds between
+     * movements
      */
     public int getBabyRatSpeed() {
         return babyRatSpeed;
@@ -136,7 +158,9 @@ public class LevelProperties {
 
     /**
      * A method to get the speed of death rats in this level
-     * @return the speed of death rats in this level in milliseconds between movements
+     *
+     * @return the speed of death rats in this level in milliseconds between
+     * movements
      */
     public int getDeathRatSpeed() {
         return deathRatSpeed;
@@ -144,6 +168,7 @@ public class LevelProperties {
 
     /**
      * A method to get the time elapsed for this level
+     *
      * @return the time elapsed for this level, in seconds
      */
     public int getTimeElapsed() {
@@ -152,6 +177,7 @@ public class LevelProperties {
 
     /**
      * A method to set the time elapsed for this level
+     *
      * @param timeElapsed the time elapsed for this level, in seconds
      */
     public void setTimeElapsed(int timeElapsed) {
@@ -160,6 +186,7 @@ public class LevelProperties {
 
     /**
      * Gets the current score of the level
+     *
      * @return the score of the level
      */
     public int getScore() {
@@ -168,6 +195,7 @@ public class LevelProperties {
 
     /**
      * Sets the score for the level
+     *
      * @param score the score for the level
      */
     public void setScore(int score) {

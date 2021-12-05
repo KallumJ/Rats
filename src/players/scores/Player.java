@@ -101,12 +101,12 @@ public class Player {
     }
 
     /**
-     * Adds a score to the high score map, if it is the highest for the given level
+     * Adds their score to the file, and increments the players max level
      *
      * @param levelId the level id
      * @param score   the score to add
      */
-    public void addScoreIfHighest(int levelId, int score) {
+    public void winGame(int levelId, int score) {
         // If score for this level is already recorded, check it's higher.
         // If not, add the score
         if (highScores.containsKey(levelId)) {
@@ -121,6 +121,7 @@ public class Player {
             highScores.put(levelId, score);
         }
 
+        maxLevel += 1;
         PlayerProfileManager.savePlayersFile();
     }
 

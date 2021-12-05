@@ -19,9 +19,10 @@ import tile.Tile;
  */
 public class Gas extends GameObject implements ObjectStoppable {
 
-    public static final int DEFAULT_DURATION = 16;
-    public static final int DEFAULT_RANGE = 4;
+    public static final int DEFAULT_DURATION = 12;
+    public static final int DEFAULT_RANGE = 3;
     public static final boolean DEFAULT_ACTIVATION = false;
+    private static final int EXPANSION_RATE = 4;
     private final int duration;
     private int counter;
     private final int range;
@@ -72,26 +73,7 @@ public class Gas extends GameObject implements ObjectStoppable {
         }
 
     }
-    
-     /**
-     * A method to check if the inventory is empty of the object 'Gas'
-     */
-    private void checkEmpty() {
-        if (gasEffects.isEmpty()) {
-            GameObject.getBoard().removeObject(this);
-            checkEmptyTimeline.pause();
-        }
-    }
-    
-     /**
-     * A method to delay the expanding of the gas object. 
-     */
-    private void delayExpand(Tile tile) {
-        expandTimeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> expand(tile)));
-        expandTimeline.play();
-    }
-    
-    
+
      /**
      * A method to expand the gas object across tiles.
      */
@@ -161,31 +143,13 @@ public class Gas extends GameObject implements ObjectStoppable {
      */
     public void stillHere (Rat rat) {
         
-        if (stillInGas(rat)){
+        if (stillInGas(rat) && GameObject.getBoard() != null){
             GameObject.getBoard().removeObject(rat);
         }
         ratsInGas.remove(rat);
 
     }
-    
-    /**
-     * A method to check if the rat is still in gas effect
-     * 
-     *@return boolean
-     */
-    private boolean stillInGas (Rat rat){
-        // Return true if the rat is stood in a gas effect
-        for (GasEffect gasEffect : gasEffects) {
-           if (gasEffect.getStandingOn().equals(rat.getStandingOn())) {
-               return true;
-           }
-       }
 
-        // If the rat is not stood in a gas effect, return true if it is stood in a gas
-        // Else, it is stood in neither a gas or gas effect return false
-        return rat.getStandingOn().equals(this.getStandingOn());
-    }
-    
     /**
      * A method to get the list of the RatsInGas (Rats effected by the gas)
      * 
@@ -233,5 +197,41 @@ public class Gas extends GameObject implements ObjectStoppable {
      */
     public boolean isActive() {
         return isActive;
+    }
+
+    /**
+     * A method to check if the inventory is empty of the object 'Gas'
+     */
+    private void checkEmpty() {
+        if (gasEffects.isEmpty()) {
+            GameObject.getBoard().removeObject(this);
+            checkEmptyTimeline.pause();
+        }
+    }
+
+    /**
+     * A method to delay the expanding of the gas object.
+     */
+    private void delayExpand(Tile tile) {
+        expandTimeline = new Timeline(new KeyFrame(Duration.seconds(EXPANSION_RATE), event -> expand(tile)));
+        expandTimeline.play();
+    }
+
+    /**
+     * A method to check if the rat is still in gas effect
+     *
+     *@return boolean
+     */
+    private boolean stillInGas (Rat rat){
+        // Return true if the rat is stood in a gas effect
+        for (GasEffect gasEffect : gasEffects) {
+            if (gasEffect.getStandingOn().equals(rat.getStandingOn())) {
+                return true;
+            }
+        }
+
+        // If the rat is not stood in a gas effect, return true if it is stood in a gas
+        // Else, it is stood in neither a gas or gas effect return false
+        return rat.getStandingOn().equals(this.getStandingOn());
     }
 }

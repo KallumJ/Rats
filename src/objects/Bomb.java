@@ -71,6 +71,49 @@ public class Bomb extends GameObject implements ObjectStoppable {
     }
 
     /**
+     * Activates and starts the timer of the bomb.
+     */
+    public void activationOfBomb() {
+        if (!this.timerStarted) {
+            startTimer();
+        }
+    }
+
+    /**
+     * A method to get the amount of time left on the timer.
+     * @return the amount of time left on the timer in seconds
+     */
+    public int getDuration() {
+        return duration;
+    }
+
+    /**
+     * Returns whether the timer has started or not
+     * @return true if the timer has started, false otherwise
+     */
+    public boolean isTimerStarted() {
+        return timerStarted;
+    }
+
+    /**
+     * Gets the time remaining on this bomb before explosion
+     * @return the time remaining, in seconds
+     */
+    public int getTimeRemaining() {
+        return timeRemaining;
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (bombTimer != null) {
+            bombTimer.pause();
+        }
+    }
+
+    /**
      * Finds the tiles horizontally and vertically from the start tile until a
      * grass.
      */
@@ -84,15 +127,6 @@ public class Bomb extends GameObject implements ObjectStoppable {
         affectedTiles.add(currentTile);
         if (!currentTile.getAdjacentTile(direction).getTileType().equals(TileType.GRASS)) {
             findAffectedTilesRecurse(direction, currentTile.getAdjacentTile(direction));
-        }
-    }
-
-    /**
-     * Activates and starts the timer of the bomb.
-     */
-    public void activationOfBomb() {
-        if (!this.timerStarted) {
-            startTimer();
         }
     }
 
@@ -157,38 +191,5 @@ public class Bomb extends GameObject implements ObjectStoppable {
         GameObject.getBoard().removeObject(this);
         GameObject.getBoard().updateBoardDisplay();
 
-    }
-    /**
-     * A method to get the amount of time left on the timer.
-     * @return the amount of time left on the timer in seconds
-     */
-    public int getDuration() {
-        return duration;
-    }
-
-    /**
-     * Returns whether the timer has started or not
-     * @return true if the timer has started, false otherwise
-     */
-    public boolean isTimerStarted() {
-        return timerStarted;
-    }
-
-    /**
-     * Gets the time remaining on this bomb before explosion
-     * @return the time remaining, in seconds
-     */
-    public int getTimeRemaining() {
-        return timeRemaining;
-    }
-
-    /**
-     * Stops any timelines running in this object
-     */
-    @Override
-    public void stop() {
-        if (bombTimer != null) {
-            bombTimer.pause();
-        }
     }
 }
