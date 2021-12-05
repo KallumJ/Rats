@@ -81,6 +81,43 @@ public class Rat extends GameObject implements ObjectStoppable {
     }
 
     /**
+     * Turn around
+     *
+     * @param directionOfMovement the direction of movement
+     * @return Direction
+     */
+    public Direction turnAround(Direction directionOfMovement) {
+
+        Direction oppositeDirection;
+
+        if (directionOfMovement == Direction.UP) {
+
+            oppositeDirection = Direction.DOWN;
+        } else if (directionOfMovement == Direction.LEFT) {
+
+            oppositeDirection = Direction.RIGHT;
+        } else if (directionOfMovement == Direction.DOWN) {
+
+            oppositeDirection = Direction.UP;
+        } else {
+
+            oppositeDirection = Direction.LEFT;
+        }
+
+        return oppositeDirection;
+    }
+
+    /**
+     * Stops any timelines running in this object
+     */
+    @Override
+    public void stop() {
+        if (moveTimeline != null) {
+            moveTimeline.pause();
+        }
+    }
+
+    /**
      * Move - moves left, right and turn around when the rats can otherwise it
      * doesn't move.
      */
@@ -134,22 +171,22 @@ public class Rat extends GameObject implements ObjectStoppable {
                 this.directionOfMovement = turnAround(directionOfMovement);
             }
         }
-        
+
         if (super.getStandingOn().getTileType().equals(TileType.TUNNEL)){
-            
+
             super.setIcon(null);
         } else {
             if (this instanceof PeacefulRat) {
-                
+
                 PeacefulRat rat = (PeacefulRat) this;
                 rat.decideIcon();
             } else if (this instanceof DeathRat) {
-                
+
                 DeathRat rat = (DeathRat) this;
                 rat.showIcon();
             }
         }
-        
+
         // Update the display
         if (GameObject.getBoard() != null) {
             GameObject.getBoard().updateBoardDisplay();
@@ -208,42 +245,5 @@ public class Rat extends GameObject implements ObjectStoppable {
         }
 
         return rightOfDirection;
-    }
-
-    /**
-     * Turn around
-     *
-     * @param directionOfMovement the direction of movement
-     * @return Direction
-     */
-    public Direction turnAround(Direction directionOfMovement) {
-
-        Direction oppositeDirection;
-
-        if (directionOfMovement == Direction.UP) {
-
-            oppositeDirection = Direction.DOWN;
-        } else if (directionOfMovement == Direction.LEFT) {
-
-            oppositeDirection = Direction.RIGHT;
-        } else if (directionOfMovement == Direction.DOWN) {
-
-            oppositeDirection = Direction.UP;
-        } else {
-
-            oppositeDirection = Direction.LEFT;
-        }
-
-        return oppositeDirection;
-    }
-
-    /**
-     * Stops any timelines running in this object
-     */
-    @Override
-    public void stop() {
-        if (moveTimeline != null) {
-            moveTimeline.pause();
-        }
     }
 }
