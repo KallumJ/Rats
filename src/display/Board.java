@@ -97,21 +97,6 @@ public class Board {
 
     }
 
-    private void updateTimerLabel() {
-        LevelProperties levelProperties = levelData.getLevelProperties();
-        int expectedTime = levelProperties.getExpectedTime();
-        int elapsedTime = levelProperties.getTimeElapsed();
-        int score = levelProperties.getScore();
-        int populationToLose = levelProperties.getPopulationToLose();
-
-        elapsedTime++;
-        levelData.getLevelProperties().setTimeElapsed(elapsedTime);
-        timerLabel.setText(
-                String.format(INFORMATION_LABEL_TEXT, elapsedTime, expectedTime,
-                        score, populationToLose)
-        );
-    }
-
     public void interactionCheck() {
         List<GameObject> objects = levelData.getObjects();
 
@@ -167,18 +152,6 @@ public class Board {
 
         // Display the objects on screen
         displayObjects();
-    }
-
-    private void displayObjects() {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        List<GameObject> objects = levelData.getObjects();
-
-        // draw all objects
-        for (GameObject object : objects) {
-            gc.drawImage(object.getIcon(), object.getStandingOn().getTopLeftX() * Tile.TILE_SIZE,
-                    object.getStandingOn().getTopLeftY() * Tile.TILE_SIZE);
-        }
     }
 
     public void addObject(GameObject objectAdded) {
@@ -316,6 +289,41 @@ public class Board {
         winLoseTimeline.play();
     }
 
+    public List<GameObject> getObjects() {
+        return this.levelData.getObjects();
+    }
+
+    public LevelProperties getLevelProperties() {
+        return levelData.getLevelProperties();
+    }
+
+    private void updateTimerLabel() {
+        LevelProperties levelProperties = levelData.getLevelProperties();
+        int expectedTime = levelProperties.getExpectedTime();
+        int elapsedTime = levelProperties.getTimeElapsed();
+        int score = levelProperties.getScore();
+        int populationToLose = levelProperties.getPopulationToLose();
+
+        elapsedTime++;
+        levelData.getLevelProperties().setTimeElapsed(elapsedTime);
+        timerLabel.setText(
+                String.format(INFORMATION_LABEL_TEXT, elapsedTime, expectedTime,
+                        score, populationToLose)
+        );
+    }
+
+    private void displayObjects() {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        List<GameObject> objects = levelData.getObjects();
+
+        // draw all objects
+        for (GameObject object : objects) {
+            gc.drawImage(object.getIcon(), object.getStandingOn().getTopLeftX() * Tile.TILE_SIZE,
+                    object.getStandingOn().getTopLeftY() * Tile.TILE_SIZE);
+        }
+    }
+
     private void checkWinLose() {
         LevelProperties levelProperties = levelData.getLevelProperties();
 
@@ -367,13 +375,5 @@ public class Board {
 
             gc.drawImage(tileImage, tile.getTopLeftX() * Tile.TILE_SIZE, tile.getTopLeftY() * Tile.TILE_SIZE);
         }
-    }
-
-    public List<GameObject> getObjects() {
-        return this.levelData.getObjects();
-    }
-
-    public LevelProperties getLevelProperties() {
-        return levelData.getLevelProperties();
     }
 }
