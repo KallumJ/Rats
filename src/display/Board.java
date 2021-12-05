@@ -5,6 +5,8 @@ import display.menus.GameMenu;
 import display.menus.LoseMenu;
 import display.menus.MainMenu;
 import display.menus.WinMenu;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -18,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import level.LevelData;
@@ -31,8 +34,6 @@ import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
 import players.scores.Player;
 import tile.Tile;
-
-import java.util.List;
 
 /**
  * A class to model the current game board
@@ -57,6 +58,8 @@ public class Board {
     private final Timeline interactionCheckTimeline;
     private final Timeline gameLabelTimeline;
     private Timeline winLoseTimeline;
+    private final int populationToLose;
+    private final ArrayList<Rectangle> progressBar;
 
     /**
      * Constructs a Board object.
@@ -89,7 +92,7 @@ public class Board {
         int timeElapsed = levelProperties.getTimeElapsed();
         int expectedTime = levelProperties.getExpectedTime();
         int score = levelProperties.getScore();
-        int populationToLose = levelProperties.getPopulationToLose();
+        populationToLose = levelProperties.getPopulationToLose();
 
         this.timerLabel = new Label(String.format(
                 INFORMATION_LABEL_TEXT, timeElapsed, expectedTime, score,
@@ -104,12 +107,16 @@ public class Board {
 
         // Create a new inventory for the level
         this.inventory = new Inventory(levelData);
+        
+        progressBar = new ArrayList<>(populationToLose);
     }
 
     /**
      * A method to check for interactions between objects on the board.
      */
     public void interactionCheck() {
+        
+        updateProgressBar();
         List<GameObject> objects = levelData.getObjects();
         for (int i = 0; i < objects.size(); i++) {
             GameObject firstObject = objects.get(i);
@@ -308,9 +315,47 @@ public class Board {
         labelContainer.getChildren().add(timerLabel);
         root.setTop(labelContainer);
 
-        //root.setRight(callMethod);
+        root.setRight(buildProgressBar());
 
         return root;
+    }
+    /**
+    * This method builds the GUI for the rats population bar
+     *
+     * @return the GUI of the rats population bar
+     */
+    private Pane buildProgressBar() {
+
+        Pane ratPopulation = new Pane();
+        double height = canvas.getHeight() / populationToLose;
+        for (int i = 0; i < populationToLose; i++) {
+            Rectangle cell = new Rectangle(Tile.TILE_SIZE, height);
+            cell.setFill(Color.GREY);
+            progressBar.add(cell);
+            cell.setTranslateY(i * height);
+            ratPopulation.getChildren().add(cell);
+        }
+
+        return ratPopulation;
+    }
+
+    /**
+     * This method updates the rats population bar
+     */
+    private void updateProgressBar() {
+
+        for (int i = 0; i < getCurrentPopulation().malePopulation(); i++) {
+            progressBar.get(i).setFill(Color.valueOf("#0000FF"));
+
+        }
+        for (int i = 0; i < getCurrentPopulation().femalePopulation(); i++) {
+            progressBar.get(getCurrentPopulation().malePopulation() + i).setFill(Color.valueOf("#F800B8"));
+
+        }
+        for (int i = 0; i < populationToLose - getCurrentPopulation().getTotalPopulation(); i++) {
+            progressBar.get(getCurrentPopulation().femalePopulation() + getCurrentPopulation().malePopulation() + i).setFill(Color.GREY);
+
+        }
     }
 
     /**

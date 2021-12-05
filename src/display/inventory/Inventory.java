@@ -23,7 +23,6 @@ import java.util.List;
 public class Inventory {
 
     public static final int INVENTORY_WIDTH = 300; // in pixels
-    private static final String INVALID_RANDOM_ITEM = "An invalid random item selection was made. Selection %d is not assigned an item";
     private static final int INVENTORY_PADDING = 10; // px
     private final List<GameObjectType> itemsInInventory;
     private final LevelData levelData;

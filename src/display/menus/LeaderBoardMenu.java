@@ -16,17 +16,16 @@ import players.PlayerProfileManager;
 import players.scores.Player;
 
 /**
- * A cl
+ * The class build a LeaderBoardMenu
  *
  * @author YIMING LI
  */
 public class LeaderBoardMenu extends GameMenu {
     private final static String PLAYER_HEADER = "Player               ";
-    private final static String LEVEL_HEADER = "Level       ";
     private final static String SCORE_HEADER = "Score       ";
-    private final static String SCORE_ENTRY = "%s%s%s";
+    private final static String SCORE_ENTRY = "%s%s";
     private final static String LEADERBOARD_HEADER =
-            PLAYER_HEADER + LEVEL_HEADER + SCORE_HEADER;
+            PLAYER_HEADER + SCORE_HEADER;
     private final int levelId;
 
     /**
@@ -39,7 +38,7 @@ public class LeaderBoardMenu extends GameMenu {
     }
 
     /**
-     * A method to build a LeaderBoardMenu to find top ten players scores for a
+     * A method to build a LeaderBoardMenu to find top ten players
      * level.
      *
      * @return the Node containing the menu items
@@ -84,25 +83,21 @@ public class LeaderBoardMenu extends GameMenu {
             scoreContainer.getChildren().addAll(label);
 
             // Add top ten players and their information into VBox.
-            for (int i = 0; i < playersInLeaderboard.size(); i++) {
-                PlayerInLeaderboard playerInLeaderboard = playersInLeaderboard.get(i);
-
-                if (i <= 10 && playerInLeaderboard.getLevel() == levelId) {
+            int numInLeaderboard = 0;
+            for (PlayerInLeaderboard playerInLeaderboard : playersInLeaderboard) {
+                if (numInLeaderboard < 10 && playerInLeaderboard.getLevel() == levelId) {
+                    numInLeaderboard++;
                     Label playerLabel = new Label();
                     playerLabel.setTextFill(Color.YELLOW);
 
                     // Place user information on the label.
                     String nameStr = matchStringLengths(playerInLeaderboard.getName(), PLAYER_HEADER);
-                    String levelStr = matchStringLengths(
-                            String.valueOf(playerInLeaderboard.getLevel()), LEVEL_HEADER
-                    );
                     String scoreStr = matchStringLengths(
                             String.valueOf(playerInLeaderboard.getScore()), SCORE_HEADER
                     );
 
                     playerLabel.setText(String.format(SCORE_ENTRY,
                             nameStr,
-                            levelStr,
                             scoreStr
                     ));
                     scoreContainer.getChildren().addAll(playerLabel);
