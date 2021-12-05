@@ -47,10 +47,12 @@ public class XMLFileReader {
     }
 
     /**
-     * A method to get each subsequent element in the list from the position of the previous
+     * A method to get each subsequent element in the list from the position of
+     * the previous
      *
      * @param elements The list of elements to go drilldown through
-     * @return The final element in the list as an Element object, or null if this path doesnt exist
+     * @return The final element in the list as an Element object, or null if
+     * this path doesnt exist
      */
     public Element drilldownToElement(XMLElementNames... elements) {
         try {

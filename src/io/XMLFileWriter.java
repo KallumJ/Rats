@@ -64,7 +64,8 @@ public class XMLFileWriter {
     }
 
     /**
-     * A method to save the file that has thus far been written, and close the writer
+     * A method to save the file that has thus far been written, and close the
+     * writer
      */
     public void saveAndClose() {
         // End the document, and close the writer
