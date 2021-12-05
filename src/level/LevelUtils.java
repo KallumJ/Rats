@@ -21,7 +21,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * A utility file to help with general functions around finding levels from file
+ * A utility file to help with general functions around finding levels from
+ * file
  *
  * @author Kallum Jones 2005855
  */
@@ -44,7 +45,9 @@ public class LevelUtils {
     }
 
     /**
-     * A method to return an array of File objects of all the files in the level directory
+     * A method to return an array of File objects of all the files in the level
+     * directory
+     *
      * @return the array of files in the directory
      */
     public static File[] getFilesInLevelDirectory() {
@@ -52,7 +55,9 @@ public class LevelUtils {
     }
 
     /**
-     * A method to return an array of File objects of all the files in the saved levels directory
+     * A method to return an array of File objects of all the files in the saved
+     * levels directory
+     *
      * @return the array of files in the directory
      */
     public static File[] getSavedLevelsFiles() {
@@ -61,6 +66,7 @@ public class LevelUtils {
 
     /**
      * A method to get the LevelFile by the provided id
+     *
      * @param id the level id
      */
     public static File getLevelFileById(int id) {
@@ -102,6 +108,7 @@ public class LevelUtils {
 
     /**
      * A method to convert tile types to a string
+     *
      * @param tileType the tile type
      * @return the converted string
      */
@@ -120,6 +127,7 @@ public class LevelUtils {
 
     /**
      * A method to get the string from a direction
+     *
      * @param directionOfMovement the direction
      * @return the string for this direction
      */
@@ -140,6 +148,7 @@ public class LevelUtils {
 
     /**
      * A method to get the player name associated with a saved level
+     *
      * @param savedLevel the saved level
      * @return the player name associated with this saved level
      */
@@ -154,8 +163,10 @@ public class LevelUtils {
     }
 
     /**
-     * Added a method to construct the file name for a saved level for a given player and level id
-     * @param player the player
+     * Added a method to construct the file name for a saved level for a given
+     * player and level id
+     *
+     * @param player  the player
      * @param levelId the level id
      * @return the file name for a saved level for a given player and level id
      */
@@ -191,9 +202,11 @@ public class LevelUtils {
 
     /**
      * A method to check whether a tile is blocked by other objects
-     * @param tile the tile to check
+     *
+     * @param tile    the tile to check
      * @param objects the list of objects on the board
-     * @return true if this tile is blocked by another object, and can not have an item placed, false otherwise
+     * @return true if this tile is blocked by another object, and can not have
+     * an item placed, false otherwise
      */
     public static boolean isTileBlocked(Tile tile, List<GameObject> objects) {
         List<GameObject> objectsOnTile = getObjectsOnTile(tile, objects);
@@ -204,13 +217,14 @@ public class LevelUtils {
         return !(objectsOnTile.stream().allMatch(
                 object ->
                         object instanceof NoEntrySignCounter ||
-                        object instanceof GasEffect ||
-                        object instanceof Gas
+                                object instanceof GasEffect ||
+                                object instanceof Gas
         ));
     }
 
     /**
      * A method to get the list of saved levels for the provided player
+     *
      * @param player the player to get the levels for
      * @return the List of level files for the provided player
      */
@@ -221,9 +235,9 @@ public class LevelUtils {
 
         // Filter the stream based on whether the current file is
         // for the provided player
-        savedLevelFilesStream =  savedLevelFilesStream.filter(
+        savedLevelFilesStream = savedLevelFilesStream.filter(
                 file -> isSavedLevelForPlayer(file, player)
-                );
+        );
 
         // Return the stream as a list
         return savedLevelFilesStream.collect(Collectors.toList());
@@ -231,6 +245,7 @@ public class LevelUtils {
 
     /**
      * Returns the most recent level for a player
+     *
      * @param player the player
      * @return the most recently level file for the player
      */
@@ -253,6 +268,7 @@ public class LevelUtils {
 
     /**
      * A method to get the files in the provided directory
+     *
      * @param path the path to check
      * @return the list of files in the provided directory
      */
@@ -276,7 +292,8 @@ public class LevelUtils {
 
     /**
      * Check whether the provided level file is for the provided player
-     * @param file the level file
+     *
+     * @param file   the level file
      * @param player the player
      * @return true if yes, false otherwise
      */
