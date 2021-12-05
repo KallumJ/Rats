@@ -3,15 +3,15 @@
     <levelProperties>
         <levelHeight>10</levelHeight>
         <levelWidth>13</levelWidth>
-        <populationToLose>10</populationToLose>
-        <expectedTime>300</expectedTime>
+        <populationToLose>20</populationToLose>
+        <expectedTime>120</expectedTime>
         <id>1</id>
-        <itemInterval>1</itemInterval>
-        <ratMinBabies>2</ratMinBabies>
-        <ratMaxBabies>5</ratMaxBabies>
+        <itemInterval>3</itemInterval>
+        <ratMinBabies>1</ratMinBabies>
+        <ratMaxBabies>3</ratMaxBabies>
         <adultRatSpeed>1000</adultRatSpeed>
-        <babyRatSpeed>750</babyRatSpeed>
-        <deathRatSpeed>600</deathRatSpeed>
+        <babyRatSpeed>700</babyRatSpeed>
+        <deathRatSpeed>1010</deathRatSpeed>
         <timeElapsed>0</timeElapsed>
         <score>0</score>
     </levelProperties>
@@ -20,12 +20,12 @@
         <tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
         <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
         <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile rat="true false false m 5 1 up">p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile d_rat="up 1 1">p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile >p</tile><tile poison= "">p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile xentry="0 10">p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile sex_ch="f">p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile rat="true false false f 5 1 up">p</tile><tile>p</tile><tile>g</tile><tile rat="true false false m 5 2 up">p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile rat="false false false m 9 15 up">p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile >p</tile><tile rat="false false false f 9 15 down">p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
+        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile >p</tile><tile>g</tile></tileRow>
         <tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
     </tileSet>
 </level>
