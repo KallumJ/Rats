@@ -2,7 +2,6 @@ package sfx;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import objects.Bomb;
 
 import java.io.File;
 

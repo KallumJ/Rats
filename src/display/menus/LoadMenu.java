@@ -10,7 +10,6 @@ import players.scores.Player;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A class to model a menu for loading saved levels for this player
