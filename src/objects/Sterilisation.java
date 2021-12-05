@@ -70,45 +70,6 @@ public class Sterilisation extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * Creates the sterilisation effect around the actual Sterilisation item.
-     */
-    private void createSterilisationEffect() {
-        for (int i = 0; i < affectedTiles.size(); i++) {
-
-            SterilisationEffect newEffect = new SterilisationEffect(affectedTiles.get(i));
-            sterilisationEffects.add(newEffect);
-            GameObject.getBoard().addObject(newEffect);
-        }
-        effectTimeline = new Timeline(new KeyFrame(Duration.seconds(duration), event -> endSterilisationEffect()));
-        effectTimeline.play();
-
-    }
-
-    /**
-     * End the sterilisation effect.
-     */
-    private void endSterilisationEffect() {
-        GameObject.getBoard().removeObject(this);
-        for (int i = 0; i < sterilisationEffects.size(); i++) {
-
-            GameObject.getBoard().removeObject(sterilisationEffects.get(i));
-        }
-        
-    }
-
-    /**
-     * Find the area where the effect should be.
-     */
-    private void findAffectedTiles() {
-
-        affectedTiles.add(super.getStandingOn());
-        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.UP));
-        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.DOWN));
-        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.RIGHT));
-        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.LEFT));
-    }
-
-    /**
      * A method to get the duration of the sterilisation
      * 
      * @return the duration of the sterilisation in seconds
@@ -138,5 +99,44 @@ public class Sterilisation extends GameObject implements ObjectStoppable {
         if (effectTimeline != null) {
             effectTimeline.pause();
         }
+    }
+
+    /**
+     * Creates the sterilisation effect around the actual Sterilisation item.
+     */
+    private void createSterilisationEffect() {
+        for (int i = 0; i < affectedTiles.size(); i++) {
+
+            SterilisationEffect newEffect = new SterilisationEffect(affectedTiles.get(i));
+            sterilisationEffects.add(newEffect);
+            GameObject.getBoard().addObject(newEffect);
+        }
+        effectTimeline = new Timeline(new KeyFrame(Duration.seconds(duration), event -> endSterilisationEffect()));
+        effectTimeline.play();
+
+    }
+
+    /**
+     * End the sterilisation effect.
+     */
+    private void endSterilisationEffect() {
+        GameObject.getBoard().removeObject(this);
+        for (int i = 0; i < sterilisationEffects.size(); i++) {
+
+            GameObject.getBoard().removeObject(sterilisationEffects.get(i));
+        }
+
+    }
+
+    /**
+     * Find the area where the effect should be.
+     */
+    private void findAffectedTiles() {
+
+        affectedTiles.add(super.getStandingOn());
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.UP));
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.DOWN));
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.RIGHT));
+        affectedTiles.add(super.getStandingOn().getAdjacentTile(Direction.LEFT));
     }
 }
