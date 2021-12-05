@@ -62,16 +62,6 @@ public class PlayerProfileManager {
     }
 
     /**
-     * A method to create a Player profile in the file
-     *
-     * @param playerName the players name
-     */
-    private static void createPlayerProfile(String playerName) {
-        allPlayers.add(new Player(playerName, 1));
-        savePlayersFile();
-    }
-
-    /**
      * Save the players file with the current root node
      */
     public static void savePlayersFile() {
@@ -85,6 +75,24 @@ public class PlayerProfileManager {
 
         xmlFileWriter.saveAndClose();
         initAllPlayersList();
+    }
+
+    /**
+     * A method to return the currently logged in player
+     *
+     * @return the currently logged in player
+     */
+    public static Player getCurrentlyLoggedInPlayer() {
+        return currentlyLoggedIn;
+    }
+
+    /**
+     * A method to return all the players currently logged by the system
+     *
+     * @return a List of all Players
+     */
+    public static List<Player> getAllPlayers() {
+        return allPlayers;
     }
 
     /**
@@ -135,21 +143,12 @@ public class PlayerProfileManager {
     }
 
     /**
-     * A method to return the currently logged in player
+     * A method to create a Player profile in the file
      *
-     * @return the currently logged in player
+     * @param playerName the players name
      */
-    public static Player getCurrentlyLoggedInPlayer() {
-        return currentlyLoggedIn;
+    private static void createPlayerProfile(String playerName) {
+        allPlayers.add(new Player(playerName, 1));
+        savePlayersFile();
     }
-
-    /**
-     * A method to return all the players currently logged by the system
-     *
-     * @return a List of all Players
-     */
-    public static List<Player> getAllPlayers() {
-        return allPlayers;
-    }
-
 }
