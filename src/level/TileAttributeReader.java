@@ -98,8 +98,9 @@ public class TileAttributeReader {
 
     /**
      * Constructs a Gas object for the gas attribute read from file
+     *
      * @param attributeValue the attribute
-     * @param tile the tile the gas is on
+     * @param tile           the tile the gas is on
      * @return the Gas object represented by this attribute
      */
     private static GameObject readGas(String attributeValue, Tile tile) {
@@ -107,9 +108,11 @@ public class TileAttributeReader {
     }
 
     /**
-     * Constructs a Sterilisation object for the sterilisation attribute read from file
+     * Constructs a Sterilisation object for the sterilisation attribute read
+     * from file
+     *
      * @param attributeValue the attribute
-     * @param tile the tile the sterilisation is on
+     * @param tile           the tile the sterilisation is on
      * @return the Sterilisation object represented by this attribute
      */
     private static Sterilisation readSterile(String attributeValue, Tile tile) {
@@ -136,7 +139,8 @@ public class TileAttributeReader {
     }
 
     /**
-     * A method to construct the relevant SexChanger object from the provided data
+     * A method to construct the relevant SexChanger object from the provided
+     * data
      *
      * @param attributeValue the data to construct the SexChanger with
      * @param tile           The tile the SexChanger is on

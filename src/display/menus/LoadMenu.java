@@ -21,6 +21,7 @@ public class LoadMenu extends GameMenu {
 
     /**
      * A method to build the Load Menu GUI
+     *
      * @return the Node containing the Load Menu
      */
     @Override

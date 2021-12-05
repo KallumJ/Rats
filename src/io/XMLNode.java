@@ -21,9 +21,12 @@ public class XMLNode {
      * Constructs an XMLNode with the provided data
      *
      * @param nodeName   The name of the node, required
-     * @param nodeValue  The value of the node, optional, provide null if not present
-     * @param attributes The attributes of the node as a map of strings, optional, provide null if not present
-     * @param children   The children of the node as a list of XMLNode, optional, provide null if not present
+     * @param nodeValue  The value of the node, optional, provide null if not
+     *                   present
+     * @param attributes The attributes of the node as a map of strings,
+     *                   optional, provide null if not present
+     * @param children   The children of the node as a list of XMLNode,
+     *                   optional, provide null if not present
      */
     public XMLNode(String nodeName, String nodeValue,
                    Map<String, String> attributes, List<XMLNode> children) {

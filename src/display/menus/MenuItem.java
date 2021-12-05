@@ -47,9 +47,9 @@ public abstract class MenuItem extends StackPane {
                         true,
                         CycleMethod.NO_CYCLE,
                         new Stop(0, Color.DARKVIOLET),
-                new Stop(0.1, Color.BLACK),
-                new Stop(0.9, Color.BLACK),
-                new Stop(1, Color.DARKVIOLET));
+                        new Stop(0.1, Color.BLACK),
+                        new Stop(0.9, Color.BLACK),
+                        new Stop(1, Color.DARKVIOLET));
 
         Rectangle bg = new Rectangle(200, 30);
         bg.setOpacity(0.4);

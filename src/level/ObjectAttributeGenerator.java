@@ -25,9 +25,11 @@ public class ObjectAttributeGenerator {
     }
 
     /**
-     * A method to add the attribute string for the provided object to the provided attribute map
+     * A method to add the attribute string for the provided object to the
+     * provided attribute map
+     *
      * @param objectOnTile the object to add
-     * @param attributes the attribute map to add too
+     * @param attributes   the attribute map to add too
      */
     public static void addAttributeForObject(GameObject objectOnTile, Map<String, String> attributes) {
         if (objectOnTile instanceof PeacefulRat) {
@@ -80,6 +82,7 @@ public class ObjectAttributeGenerator {
 
     /**
      * A method to generate the attribute string for Gas
+     *
      * @param gas the gas
      * @return the attribute string for the provided gas
      */
@@ -92,6 +95,7 @@ public class ObjectAttributeGenerator {
 
     /**
      * A method to generate the attribute string for a NoEntrySign
+     *
      * @param noEntrySign the no entry sign
      * @return the attribute string for the provided no entry sign
      */
@@ -106,6 +110,7 @@ public class ObjectAttributeGenerator {
 
     /**
      * A method to generate the attribute string for a FemaleSexChanger
+     *
      * @param femaleSexChanger the female sex changer
      * @return the attribute string for the provided female sex changer
      */
@@ -115,6 +120,7 @@ public class ObjectAttributeGenerator {
 
     /**
      * A method to generate the attribute for a MaleSexChanger
+     *
      * @param maleSexChanger the male sex changer
      * @return the attribute string for the provided male sex changer
      */
@@ -124,6 +130,7 @@ public class ObjectAttributeGenerator {
 
     /**
      * A method to generate the attribute for a Poison object
+     *
      * @param poison the poison
      * @return the attribute string for the provided poison object
      */
@@ -133,6 +140,7 @@ public class ObjectAttributeGenerator {
 
     /**
      * A method to generate the attribute for a Sterilisation object
+     *
      * @param sterilisation the sterilisation object
      * @return the attribute string for the provided sterilisation object.
      */
@@ -147,6 +155,7 @@ public class ObjectAttributeGenerator {
 
     /**
      * A method to generate the attribute for a bomb
+     *
      * @param bomb the bomb object
      * @return the attribute string for a bomb object
      */
@@ -157,11 +166,12 @@ public class ObjectAttributeGenerator {
         attribute.add(String.valueOf(bomb.getTimeRemaining()));
         attribute.add(String.valueOf(bomb.isTimerStarted()));
 
-       return attribute.toString();
+        return attribute.toString();
     }
 
     /**
      * A method to generate the attribute for a death rat
+     *
      * @param deathRat the death rat object
      * @return the attribute string for the death rat object
      */
@@ -181,6 +191,7 @@ public class ObjectAttributeGenerator {
 
     /**
      * A method to generate the attribute for a peaceful rat
+     *
      * @param peacefulRat the peaceful rat object
      * @return the attribute string for the peaceful rat object
      */

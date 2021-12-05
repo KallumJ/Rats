@@ -60,6 +60,7 @@ public class Board {
 
     /**
      * Constructs a Board object.
+     *
      * @param levelData the level data for this game board.
      */
     public Board(LevelData levelData) {
@@ -173,6 +174,7 @@ public class Board {
 
     /**
      * Add the provided GameObject to the board.
+     *
      * @param objectAdded the GameObject to add.
      */
     public void addObject(GameObject objectAdded) {
@@ -184,6 +186,7 @@ public class Board {
 
     /**
      * Remove the provided object from the board.
+     *
      * @param objectRemove the GameObject to remove.
      */
     public void removeObject(GameObject objectRemove) {
@@ -208,6 +211,7 @@ public class Board {
 
     /**
      * Add points for the provided rat to the points.
+     *
      * @param killedRat the rat that was killed.
      */
     public void addPoints(PeacefulRat killedRat) {
@@ -222,6 +226,7 @@ public class Board {
 
     /**
      * Get the current population of rats on the board.
+     *
      * @return a RatPopulation object, holding data on the current population.
      */
     public RatPopulation getCurrentPopulation() {
@@ -230,6 +235,7 @@ public class Board {
 
     /**
      * Get the current score of the game.
+     *
      * @return the score of the game.
      */
     public int getScore() {
@@ -238,6 +244,7 @@ public class Board {
 
     /**
      * Construct the GUI for the board.
+     *
      * @return a JavaFX Node, containing the GUI.
      */
     public Pane buildGUI() {
@@ -344,6 +351,7 @@ public class Board {
 
     /**
      * Get the objects currently in play.
+     *
      * @return the List of objects currently in play.
      */
     public List<GameObject> getObjects() {
@@ -352,6 +360,7 @@ public class Board {
 
     /**
      * Get the level properties for the level in play.
+     *
      * @return the LevelProperties for this level.
      */
     public LevelProperties getLevelProperties() {
@@ -393,7 +402,8 @@ public class Board {
     }
 
     /**
-     * Checks whether the game has been won or lost at the moment the method is called.
+     * Checks whether the game has been won or lost at the moment the method is
+     * called.
      */
     private void checkWinLose() {
         LevelProperties levelProperties = levelData.getLevelProperties();

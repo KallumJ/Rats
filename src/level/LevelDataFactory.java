@@ -46,7 +46,8 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to construct the saved level data for the provided player and level
+     * A method to construct the saved level data for the provided player and
+     * level
      *
      * @param currentlyLoggedInPlayer the player
      * @param id                      the level
@@ -190,10 +191,12 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to read the properties from the provided level properties element
+     * A method to read the properties from the provided level properties
+     * element
      *
      * @param levelProperties the levelProperties elememt
-     * @return a LevelProperties object containing the data read from the element
+     * @return a LevelProperties object containing the data read from the
+     * element
      */
     private static LevelProperties readLevelProperties(Element levelProperties) {
         // Load properties into variables
@@ -204,7 +207,7 @@ public class LevelDataFactory {
         int id = getPropertyInt(levelProperties, XMLElementNames.LEVEL_ID);
         int itemInterval = getPropertyInt(levelProperties, XMLElementNames.ITEM_INTERVAL);
         int ratMinBabies = getPropertyInt(levelProperties, XMLElementNames.RAT_MIN_BABIES);
-        int ratMaxBabies = getPropertyInt(levelProperties,  XMLElementNames.RAT_MAX_BABIES);
+        int ratMaxBabies = getPropertyInt(levelProperties, XMLElementNames.RAT_MAX_BABIES);
         int adultRatSpeed = getPropertyInt(levelProperties, XMLElementNames.ADULT_RAT_SPEED);
         int babyRatSpeed = getPropertyInt(levelProperties, XMLElementNames.BABY_RAT_SPEED);
         int deathRatSpeed = getPropertyInt(levelProperties, XMLElementNames.DEATH_RAT_SPEED);
@@ -218,7 +221,8 @@ public class LevelDataFactory {
     }
 
     /**
-     * A utility method to get the property of type integer from the properties element provided, with the provided property name
+     * A utility method to get the property of type integer from the properties
+     * element provided, with the provided property name
      *
      * @param propertiesElement the levelProperties element to read from
      * @param propertyName      The property to read
@@ -232,6 +236,7 @@ public class LevelDataFactory {
 
     /**
      * A method to get the items in the inventory for this level
+     *
      * @param inventoryElement the inventory element read from file
      * @return the list of game object types represented in the file
      */

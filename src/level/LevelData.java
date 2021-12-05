@@ -19,9 +19,11 @@ public class LevelData {
 
     /**
      * Constructs a LevelData object with the provided data
+     *
      * @param levelProperties The LevelProperties of the Level
-     * @param tileSet the TileSet for the level
-     * @param objects the Objects present on a level, as a List of objects
+     * @param tileSet         the TileSet for the level
+     * @param objects         the Objects present on a level, as a List of
+     *                        objects
      */
     public LevelData(LevelProperties levelProperties, TileSet tileSet, List<GameObject> objects) {
         this.levelProperties = levelProperties;
@@ -31,6 +33,7 @@ public class LevelData {
 
     /**
      * A method to get the LevelProperties for the level
+     *
      * @return the LevelProperties for the level
      */
     public LevelProperties getLevelProperties() {
@@ -39,6 +42,7 @@ public class LevelData {
 
     /**
      * A method to get the TileSet for the level
+     *
      * @return the TileSet for the level
      */
     public TileSet getTileSet() {
@@ -47,6 +51,7 @@ public class LevelData {
 
     /**
      * A method to get the List of Objects present on the level
+     *
      * @return List of Objects present on the level
      */
     public List<GameObject> getObjects() {
@@ -55,6 +60,7 @@ public class LevelData {
 
     /**
      * A method to get the items in the inventory for this level
+     *
      * @return the items in the inventory for this level
      */
     public List<GameObjectType> getInventory() {
@@ -63,6 +69,7 @@ public class LevelData {
 
     /**
      * A method to set the items in the inventory for this level
+     *
      * @param inventory the items in the inventory for this level
      */
     public void setInventory(List<GameObjectType> inventory) {
@@ -71,6 +78,7 @@ public class LevelData {
 
     /**
      * A method to determine whether this level has an inventory assigned
+     *
      * @return true if yes, false otherwise
      */
     public boolean hasInventory() {
@@ -79,6 +87,7 @@ public class LevelData {
 
     /**
      * Sets the list of objects
+     *
      * @param objects a list of objects
      */
     public void setObjects(List<GameObject> objects) {

@@ -30,8 +30,8 @@ public class ItemRow {
     /**
      * Constructs an item row for the provided object type.
      *
-     * @param objectType    The type of items in this row
-     * @param inventory     the inventory this row is being stored in
+     * @param objectType The type of items in this row
+     * @param inventory  the inventory this row is being stored in
      */
     public ItemRow(final GameObjectType objectType, final Inventory inventory) {
         this.objectType = objectType;

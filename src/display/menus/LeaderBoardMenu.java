@@ -3,6 +3,7 @@ package display.menus;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -16,6 +17,7 @@ import players.scores.Player;
 
 /**
  * A cl
+ *
  * @author YIMING LI
  */
 public class LeaderBoardMenu extends GameMenu {
@@ -29,6 +31,7 @@ public class LeaderBoardMenu extends GameMenu {
 
     /**
      * Constructs a LeaderBoardMenu for the provided level
+     *
      * @param id the id of the level to show scores for
      */
     public LeaderBoardMenu(String id) {
@@ -36,7 +39,9 @@ public class LeaderBoardMenu extends GameMenu {
     }
 
     /**
-     * A method to build a LeaderBoardMenu to find top ten players scores for a level.
+     * A method to build a LeaderBoardMenu to find top ten players scores for a
+     * level.
+     *
      * @return the Node containing the menu items
      */
     @Override
@@ -53,23 +58,23 @@ public class LeaderBoardMenu extends GameMenu {
         List<Player> getAllPlayer = PlayerProfileManager.getAllPlayers();
 
         // If there are players
-        if(!getAllPlayer.isEmpty()){
+        if (!getAllPlayer.isEmpty()) {
             // Convert from a map type to an ordered list.
             ArrayList<PlayerInLeaderboard> playersInLeaderboard = convertPlayersToPlayerInLeaderboard(getAllPlayer);
             playersInLeaderboard.sort(new SortPlayerByScore());
 
             // Create score container
-            VBox scoreContainer =new VBox();
+            VBox scoreContainer = new VBox();
             scoreContainer.setMinSize(100, 100);
             scoreContainer.setTranslateX(90);
             scoreContainer.setTranslateY(80);
 
             // Set font style of the leaderboard.
             scoreContainer.setStyle(
-                    "-fx-font-size: 24;"+
-                    "-fx-font-family: 'consolas';"+
-                    "-fx-font-weight: bold;"+
-                    "-fx-font-style: oblique;"
+                    "-fx-font-size: 24;" +
+                            "-fx-font-family: 'consolas';" +
+                            "-fx-font-weight: bold;" +
+                            "-fx-font-style: oblique;"
             );
 
             // Add header to leaderboard
@@ -114,8 +119,9 @@ public class LeaderBoardMenu extends GameMenu {
 
     /**
      * A method to match the 2 provided string lengths
+     *
      * @param stringToMatch the string to lengthen
-     * @param masterString the string whose length we should match
+     * @param masterString  the string whose length we should match
      * @return the stringToMatch, with however many required spaces.
      */
     private static String matchStringLengths(String stringToMatch, String masterString) {
@@ -126,14 +132,14 @@ public class LeaderBoardMenu extends GameMenu {
         }
         return text.toString();
     }
-    
+
     /**
      * A method to convert the list of players to PlayerInLeaderboard's
      *
      * @param players The list of players to convert
      * @return A List of PlayerInLeaderboards.
      */
-    public ArrayList<PlayerInLeaderboard> convertPlayersToPlayerInLeaderboard(List<Player> players){
+    public ArrayList<PlayerInLeaderboard> convertPlayersToPlayerInLeaderboard(List<Player> players) {
         ArrayList<PlayerInLeaderboard> playersInLeaderboard = new ArrayList<>();
         for (Player player : players) {
 
@@ -157,20 +163,22 @@ public class LeaderBoardMenu extends GameMenu {
 
 /**
  * The class Sort the list by scores.
+ *
  * @author YIMING LI
  */
- class SortPlayerByScore implements Comparator<PlayerInLeaderboard> {
+class SortPlayerByScore implements Comparator<PlayerInLeaderboard> {
     /**
      * Sort in descending order.
      */
     @Override
-    public int compare(PlayerInLeaderboard a, PlayerInLeaderboard b){
+    public int compare(PlayerInLeaderboard a, PlayerInLeaderboard b) {
         return b.getScore() - a.getScore();
     }
 }
 
 /**
  * This class collect player information needed for leaderboard
+ *
  * @author YIMING LI
  */
 class PlayerInLeaderboard {
@@ -186,22 +194,25 @@ class PlayerInLeaderboard {
 
     /**
      * Get the player name.
+     *
      * @return The player name.
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     /**
      * Get the level of map of this player.
+     *
      * @return The level of map.
      */
-    public Integer getLevel(){
+    public Integer getLevel() {
         return level;
     }
 
     /**
      * Get the score of level of this player.
+     *
      * @return The score of level.
      */
     public Integer getScore() {
