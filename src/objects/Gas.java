@@ -32,7 +32,11 @@ public class Gas extends GameObject implements ObjectStoppable {
     private Timeline checkEmptyTimeline;
     private Timeline delayConstructionTimeline;
     private boolean isActive;
-
+    
+    
+    /**
+     * A method to construct the gas object 
+     */
     public Gas(Tile standingOn, boolean active) {
         super(standingOn);
 
@@ -52,7 +56,11 @@ public class Gas extends GameObject implements ObjectStoppable {
             delayConstructionTimeline.play();
         }
     }
-
+    
+    
+    /**
+     * A method to activate the object gas 
+     */
     public void activateGas() {
         if (!isActive) {
             isActive = true;
@@ -64,19 +72,29 @@ public class Gas extends GameObject implements ObjectStoppable {
         }
 
     }
-
+    
+     /**
+     * A method to check if the inventory is empty of the object 'Gas'
+     */
     private void checkEmpty() {
         if (gasEffects.isEmpty()) {
             GameObject.getBoard().removeObject(this);
             checkEmptyTimeline.pause();
         }
     }
-
+    
+     /**
+     * A method to delay the expanding of the gas object. 
+     */
     private void delayExpand(Tile tile) {
         expandTimeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> expand(tile)));
         expandTimeline.play();
     }
-
+    
+    
+     /**
+     * A method to expand the gas object across tiles.
+     */
     public void expand(Tile tile) {
         if (GameObject.getBoard() == null) {
              return;
@@ -110,20 +128,37 @@ public class Gas extends GameObject implements ObjectStoppable {
         this.counter++;
     }
 
+     /**
+     * A method to get the time of object on the board
+     * 
+     *@return duration 
+     */
     public int getDuration() {
         return duration;
     }
-
+    
+    /**
+     * A method to get the range of object on the board
+     * 
+     *@return range
+     */
     public int getRange() {
         return range;
     }
     
+    /**
+     * A method to find out when the rat is choking from the gas 
+     */
     public void startChoking (Rat rat) {
         ratsInGas.add(rat);
         chokingTimeline = new Timeline(new KeyFrame(Duration.seconds(4), event -> stillHere(rat)));
         chokingTimeline.play();
     }
     
+    
+    /**
+     * A method to get check is the rat is still alive
+     */
     public void stillHere (Rat rat) {
         
         if (stillInGas(rat)){
@@ -133,6 +168,11 @@ public class Gas extends GameObject implements ObjectStoppable {
 
     }
     
+    /**
+     * A method to check if the rat is still in gas effect
+     * 
+     *@return boolean
+     */
     private boolean stillInGas (Rat rat){
         // Return true if the rat is stood in a gas effect
         for (GasEffect gasEffect : gasEffects) {
@@ -146,11 +186,21 @@ public class Gas extends GameObject implements ObjectStoppable {
         return rat.getStandingOn().equals(this.getStandingOn());
     }
     
+    /**
+     * A method to get the list of the RatsInGas (Rats effected by the gas)
+     * 
+     *@return this.ratsInGas
+     */
     public ArrayList<Rat> getRatsInGas () {
         
         return this.ratsInGas;
     }
 
+    /**
+     * A method to get the list of the gas effect objects 
+     * 
+     *@return gasEffect 
+     */
     public ArrayList<GasEffect> getGasEffects() {
         return gasEffects;
     }
