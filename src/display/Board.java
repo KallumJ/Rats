@@ -58,8 +58,8 @@ public class Board {
     private final Timeline interactionCheckTimeline;
     private final Timeline gameLabelTimeline;
     private Timeline winLoseTimeline;
-    private int populationToLose;
-    private ArrayList<Rectangle> ProgressBar;
+    private final int populationToLose;
+    private final ArrayList<Rectangle> progressBar;
 
     /**
      * Constructs a Board object.
@@ -108,7 +108,7 @@ public class Board {
         // Create a new inventory for the level
         this.inventory = new Inventory(levelData);
         
-        ProgressBar = new ArrayList<>(populationToLose);
+        progressBar = new ArrayList<>(populationToLose);
     }
 
     /**
@@ -331,7 +331,7 @@ public class Board {
         for (int i = 0; i < populationToLose; i++) {
             Rectangle cell = new Rectangle(Tile.TILE_SIZE, height);
             cell.setFill(Color.GREY);
-            ProgressBar.add(cell);
+            progressBar.add(cell);
             cell.setTranslateY(i * height);
             ratPopulation.getChildren().add(cell);
         }
@@ -345,15 +345,15 @@ public class Board {
     private void updateProgressBar() {
 
         for (int i = 0; i < getCurrentPopulation().malePopulation(); i++) {
-            ProgressBar.get(i).setFill(Color.valueOf("#0000FF"));
+            progressBar.get(i).setFill(Color.valueOf("#0000FF"));
 
         }
         for (int i = 0; i < getCurrentPopulation().femalePopulation(); i++) {
-            ProgressBar.get(getCurrentPopulation().malePopulation() + i).setFill(Color.valueOf("#F800B8"));
+            progressBar.get(getCurrentPopulation().malePopulation() + i).setFill(Color.valueOf("#F800B8"));
 
         }
         for (int i = 0; i < populationToLose - getCurrentPopulation().getTotalPopulation(); i++) {
-            ProgressBar.get(getCurrentPopulation().femalePopulation() + getCurrentPopulation().malePopulation() + i).setFill(Color.GREY);
+            progressBar.get(getCurrentPopulation().femalePopulation() + getCurrentPopulation().malePopulation() + i).setFill(Color.GREY);
 
         }
     }

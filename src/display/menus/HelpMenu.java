@@ -92,7 +92,7 @@ public class HelpMenu extends GameMenu {
     }
 
     /**
-     * Applys scrolling effects to the provided Text nodes
+     * Apply scrolling effects to the provided Text nodes
      *
      * @param headerTextNode    the header text node
      * @param subheaderTextNode the subheading text node
@@ -133,6 +133,8 @@ public class HelpMenu extends GameMenu {
 
 /**
  * A class to model text in the HelpMenu
+ *
+ * @author Kallum Jones 2005855
  */
 class HelpText {
     private final String text;
