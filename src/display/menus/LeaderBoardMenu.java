@@ -44,7 +44,7 @@ public class LeaderBoardMenu extends GameMenu {
         // Create the blank menu
         EventHandler<Event> backHandler = event ->
                 GameMenu.getStage().setScene(
-                        new Scene(new MainMenu().buildMenu())
+                        new Scene(new LeaderboardLevelSelectMenu().buildMenu())
                 );
 
         BorderPane menu = buildBlank(null, backHandler);
