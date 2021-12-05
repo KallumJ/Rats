@@ -45,7 +45,9 @@ public class GasEffect extends GameObject implements ObjectStoppable {
      */
     private void removeEffect() {
         sourceGas.getGasEffects().remove(this);
-        GameObject.getBoard().removeObject(this);
+        if (GameObject.getBoard() != null) {
+            GameObject.getBoard().removeObject(this);
+        }
     }
     
     /**
