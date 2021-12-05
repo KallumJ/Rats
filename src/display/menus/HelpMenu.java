@@ -44,27 +44,25 @@ public class HelpMenu extends GameMenu {
                 )
         ));
 
-        HelpText headerText = new HelpText("ABOUT RATS", 350, 50, false);
-        HelpText subheaderText = new HelpText("\nKill all the rats before they can reproduce."
+        HelpText headingsText = new HelpText("ABOUT RATS" + "\nKill all the rats before they can reproduce."
                 + " If you have too many rats in the game, YOU LOSE!!!\n", 75, 50, false);
 
-        Text headerTextNode = headerText.getNode();
-        Text subheaderTextNode = subheaderText.getNode();
-        applyScrollingEffects(headerTextNode, subheaderTextNode);
+        Text headingsTextNode = headingsText.getNode();
+        applyScrollingEffects(headingsTextNode);
 
         HelpText[] helpTexts = new HelpText[]{
-                new HelpText("\nHOW TO PLAY", 350, 150, true),
+                new HelpText("\nHOW TO PLAY", 200, 150, true),
                 new HelpText("\nUSE MOUSE TO DRAG OBJECT AND PLACE IT ON THE PATH TILES.",
-                        150, 175, false),
-                new HelpText("\nOBJECTS:", 150, 200, true),
-                new HelpText("\n--> Bombs explode and kill all the rats and destroys objects nearby"
-                        + "\n--> Female Sex Changers covert male rats that walk past it into females."
-                        + "\n--> Male Sex Changers covert female rats that walk past it into males."
-                        + "\n--> No Entry Signs block the movement of rats."
-                        + "\n--> Death Rats kills other rats they come across."
-                        + "\n--> Poison kills the rat that walk past." +
-                        "\n--> Sterilisation sterilizes rats that encounter it.",
-                        150, 225, false),
+                        35, 175, false),
+                new HelpText("\nOBJECTS:", 35, 200, true),
+                new HelpText("\nBombs explode and kill all the rats and destroys objects nearby"
+                        + "\nFemale Sex Changers covert male rats that walk past it into females."
+                        + "\nMale Sex Changers covert female rats that walk past it into males."
+                        + "\nNo Entry Signs block the movement of rats."
+                        + "\nDeath Rats kills other rats they come across."
+                        + "\nPoison kills the rat that walk past." +
+                        "\nSterilisation sterilizes rats that encounter it.",
+                        35, 225, false),
                 new HelpText("\nNEED HELP? ", 25, 500, true),
                 new HelpText("\nPlease email us on"
                         + "\nCS-230Group41-UsrGrp@SwanseaUniversity.onmicrosoft.com for further support.",
@@ -72,8 +70,7 @@ public class HelpMenu extends GameMenu {
         };
 
         List<Text> textNodes = new ArrayList<>();
-        textNodes.add(headerTextNode);
-        textNodes.add(subheaderTextNode);
+        textNodes.add(headingsTextNode);
         for (HelpText helpText : helpTexts) {
             textNodes.add(helpText.getNode());
         }
@@ -97,37 +94,23 @@ public class HelpMenu extends GameMenu {
      * @param headerTextNode    the header text node
      * @param subheaderTextNode the subheading text node
      */
-    private void applyScrollingEffects(Text headerTextNode, Text subheaderTextNode) {
+    private void applyScrollingEffects(Text headingsTextNode) {
 
         // Use Timeline, Key Value and Key Frame
         // Scrolling Text Effects for text "ABOUT RATS"
         double sceneWidth = getStage().getWidth();
-        double textWidth = headerTextNode.getLayoutBounds().getWidth();
+        double textWidth = headingsTextNode.getLayoutBounds().getWidth();
 
         KeyValue initKeyValue =
-                new KeyValue(headerTextNode.translateXProperty(), sceneWidth);
+                new KeyValue(headingsTextNode.translateXProperty(), sceneWidth);
         KeyFrame initFrame = new KeyFrame(Duration.ZERO, initKeyValue);
         KeyValue endKeyValue =
-                new KeyValue(headerTextNode.translateXProperty(), -3.5 * textWidth);
-        KeyFrame endFrame = new KeyFrame(Duration.seconds(8), endKeyValue);
+                new KeyValue(headingsTextNode.translateXProperty(), -3.5 * textWidth);
+        KeyFrame endFrame = new KeyFrame(Duration.seconds(15), endKeyValue);
 
         Timeline timeline = new Timeline(initFrame, endFrame);
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-
-        // Scrolling Text Effects for text1
-        double text1Width = subheaderTextNode.getLayoutBounds().getWidth();
-
-        KeyValue iKV1 =
-                new KeyValue(subheaderTextNode.translateXProperty(), sceneWidth);
-        KeyFrame iF1 = new KeyFrame(Duration.ZERO, iKV1);
-        KeyValue eKV1 =
-                new KeyValue(subheaderTextNode.translateXProperty(), -1.0 * text1Width);
-        KeyFrame eF1 = new KeyFrame(Duration.seconds(9), eKV1);
-
-        Timeline t1 = new Timeline(iF1, eF1);
-        t1.setCycleCount(Timeline.INDEFINITE);
-        t1.play();
     }
 }
 
