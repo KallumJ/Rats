@@ -342,8 +342,7 @@ public class Board {
             int levelId = levelProperties.getLevelId();
 
             Player currentPlayer = PlayerProfileManager.getCurrentlyLoggedInPlayer();
-            currentPlayer.addScoreIfHighest(levelId, getScore());
-            currentPlayer.setMaxLevel(levelId + 1);
+            currentPlayer.winGame(levelId, getScore());
 
             stopGame();
             GameMenu.getStage().setScene(new Scene(new WinMenu().buildMenu()));

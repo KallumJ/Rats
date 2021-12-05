@@ -142,7 +142,7 @@ public class Gas extends GameObject implements ObjectStoppable {
      */
     public void stillHere (Rat rat) {
         
-        if (stillInGas(rat)){
+        if (stillInGas(rat) && GameObject.getBoard() != null){
             GameObject.getBoard().removeObject(rat);
         }
         ratsInGas.remove(rat);

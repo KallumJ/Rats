@@ -20,7 +20,7 @@ public class PlayerProfileManager {
     private static final String PLAYERS_FILE = "players/players.xml";
     public static List<Player> allPlayers;
     private static XMLNode playersRoot;
-    private static Player currentlyLoggedIn;
+    private static String currentlyLoggedInName;
 
     // Load the players list
     static {
@@ -50,14 +50,13 @@ public class PlayerProfileManager {
      */
     public static void loginPlayer(String playerName) {
         String name = playerName.toUpperCase();
+        currentlyLoggedInName = name;
+
         Player player = PlayerProfileManager.getPlayer(name);
 
         // If the player already exists, log them in, if not, create new account
-        if (player != null) {
-            currentlyLoggedIn = player;
-        } else {
+        if (player == null) {
             createPlayerProfile(name);
-            currentlyLoggedIn = PlayerProfileManager.getPlayer(name);
         }
     }
 
@@ -83,7 +82,7 @@ public class PlayerProfileManager {
      * @return the currently logged in player
      */
     public static Player getCurrentlyLoggedInPlayer() {
-        return currentlyLoggedIn;
+        return getPlayer(currentlyLoggedInName);
     }
 
     /**
