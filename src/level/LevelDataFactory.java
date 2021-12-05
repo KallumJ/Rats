@@ -28,6 +28,13 @@ public class LevelDataFactory {
     private static final String INVALID_TILE_TYPE = "An invalid tile type was read from file";
 
     /**
+     * Empty private constructor method, preventing LevelDataFactory from being
+     * instantiated as an object.
+     */
+    private LevelDataFactory() {
+    }
+
+    /**
      * A method to construct the LevelData object for a given level id
      *
      * @param id The id of the level that needs constructing

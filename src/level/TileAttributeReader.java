@@ -20,6 +20,13 @@ public class TileAttributeReader {
     private static final String INVALID_DIRECTION = "%s is an invalid direction";
 
     /**
+     * Empty private constructor method, preventing TileAttributeReader from
+     * being instantiated as an object.
+     */
+    private TileAttributeReader() {
+    }
+
+    /**
      * A method to get the GameObject that the provided attribute represents
      *
      * @param attributeName  The name of the attribute read from file

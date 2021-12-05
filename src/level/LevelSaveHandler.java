@@ -20,6 +20,12 @@ import java.util.*;
  */
 public class LevelSaveHandler {
 
+    /**
+     * Empty private constructor method, preventing LevelSaveHandler from being
+     * instantiated as an object.
+     */
+    private LevelSaveHandler() {
+    }
 
     /**
      * A method to save the provided level data for the provided player

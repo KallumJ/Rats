@@ -18,6 +18,13 @@ public class ObjectAttributeGenerator {
     public static final String NO_ENTRY_SIGN_KEY = "xentry";
 
     /**
+     * Empty private constructor method, preventing ObjectAttributeGenerator
+     * from being instantiated as an object.
+     */
+    private ObjectAttributeGenerator() {
+    }
+
+    /**
      * A method to add the attribute string for the provided object to the provided attribute map
      * @param objectOnTile the object to add
      * @param attributes the attribute map to add too

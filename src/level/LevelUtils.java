@@ -37,6 +37,13 @@ public class LevelUtils {
     private static final String NO_SAVED_LEVELS = "The player has no saved levels";
 
     /**
+     * Empty private constructor method, preventing LevelUtils from being
+     * instantiated as an object.
+     */
+    private LevelUtils() {
+    }
+
+    /**
      * A method to return an array of File objects of all the files in the level directory
      * @return the array of files in the directory
      */

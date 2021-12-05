@@ -17,6 +17,13 @@ public class ObjectUtils {
     private static final String NO_TYPE_ASSIGNED = "There is no type assigned for string %s";
 
     /**
+     * Empty private constructor method, preventing ObjectUtils from being
+     * instantiated as an object.
+     */
+    private ObjectUtils() {
+    }
+
+    /**
      * A method to get the image URL for the provided object type
      * @param type the type of object
      * @return the object's image URL

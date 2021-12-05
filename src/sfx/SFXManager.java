@@ -14,7 +14,14 @@ public class SFXManager {
     private static final String PUT_SFX_FILE = "resources/sounds/put_sfx.mp3";
     private static final String DEATHRAT_SFX_FILE = "resources/sounds/deathRat.mp3";
     private static final String ENTRYSIGN_SFX_FILE = "resources/sounds/noEntrySign.mp3";
-    
+
+    /**
+     * Empty private constructor method, preventing SFXManager from being
+     * instantiated as an object.
+     */
+    private SFXManager() {
+    }
+
     /**
      * A method to play the sound effect for a bomb
      */
