@@ -1,7 +1,6 @@
 package display.menus;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import javafx.event.Event;
@@ -60,7 +59,7 @@ public class LeaderBoardMenu extends GameMenu {
         if (!getAllPlayer.isEmpty()) {
             // Convert from a map type to an ordered list.
             ArrayList<PlayerInLeaderboard> playersInLeaderboard = convertPlayersToPlayerInLeaderboard(getAllPlayer);
-            playersInLeaderboard.sort(new SortPlayerByScore());
+            playersInLeaderboard.sort(new PlayerInLeaderboard.SortPlayerByScore());
 
             // Create score container
             VBox scoreContainer = new VBox();
@@ -156,61 +155,3 @@ public class LeaderBoardMenu extends GameMenu {
     }
 }
 
-/**
- * The class Sort the list by scores.
- *
- * @author YIMING LI
- */
-class SortPlayerByScore implements Comparator<PlayerInLeaderboard> {
-    /**
-     * Sort in descending order.
-     */
-    @Override
-    public int compare(PlayerInLeaderboard a, PlayerInLeaderboard b) {
-        return b.getScore() - a.getScore();
-    }
-}
-
-/**
- * This class collect player information needed for leaderboard
- *
- * @author YIMING LI
- */
-class PlayerInLeaderboard {
-    private final String name;
-    private final Integer level;
-    private final Integer score;
-
-    public PlayerInLeaderboard(String name, Integer level, Integer score) {
-        this.name = name;
-        this.level = level;
-        this.score = score;
-    }
-
-    /**
-     * Get the player name.
-     *
-     * @return The player name.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Get the level of map of this player.
-     *
-     * @return The level of map.
-     */
-    public Integer getLevel() {
-        return level;
-    }
-
-    /**
-     * Get the score of level of this player.
-     *
-     * @return The score of level.
-     */
-    public Integer getScore() {
-        return score;
-    }
-}
