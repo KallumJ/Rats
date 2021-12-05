@@ -13,9 +13,8 @@ import objects.rats.PeacefulRat;
 
 /**
  * Constructs a RatPopulation object
- * @param numberOfMaleRats The total number of male rats in the level 
- * @param numberOfFemaleRats The total number of female rats in the level
- * @param totalPopulation The total population of all rats in the level 
+ *
+ * @author Samhitha Pinisetti 2035196
  */
 public class RatPopulation {
 	
@@ -30,27 +29,28 @@ public class RatPopulation {
 	
 	/**
      * A method to calculate the population for the level
-     *
      */
 	public void calculatePopulation() {
 		List<GameObject> objects = levelData.getObjects();
-		
-		  for (int i = 0; i < objects.size(); i++) {
-			  if (objects instanceof PeacefulRat) {
-				  	PeacefulRat rat = (PeacefulRat) objects;
-				  	if (rat.getGender().equalsIgnoreCase("f")) {
-				  		List<PeacefulRat> femaleList = new ArrayList<PeacefulRat>();
-				  		femaleList.add(rat);
-				  		numberOfFemaleRats = femaleList.size();
-				  	} else {
-				  		List<PeacefulRat> maleList = new ArrayList<PeacefulRat>();
-				  		maleList.add(rat);
-				  		numberOfMaleRats = maleList.size();
-				  	}
-				  	
-				  	int totalPopulation = numberOfMaleRats + numberOfFemaleRats;
-			  }
+
+
+		List<PeacefulRat> femaleList = new ArrayList<>();
+		List<PeacefulRat> maleList = new ArrayList<>();
+
+		for (GameObject object : objects) {
+			if (object instanceof PeacefulRat) {
+				PeacefulRat rat = (PeacefulRat) object;
+				if (rat.getGender().equalsIgnoreCase("f")) {
+					femaleList.add(rat);
+				} else {
+					maleList.add(rat);
+				}
+			}
 		}
+
+		numberOfFemaleRats = femaleList.size();
+		numberOfMaleRats = maleList.size();
+		totalPopulation = numberOfMaleRats + numberOfFemaleRats;
 	}
 	
 	
@@ -59,6 +59,7 @@ public class RatPopulation {
      * @return the totalPopulation for the level
      */
 	public int getTotalPopulation() {
+		calculatePopulation();
 		return totalPopulation;
 	}
 	
@@ -67,6 +68,7 @@ public class RatPopulation {
      * @return the numberOfFemaleRats for the level
      */	
 	public int femalePopulation() {
+		calculatePopulation();
 		return numberOfFemaleRats;
 	}
 	
@@ -75,6 +77,7 @@ public class RatPopulation {
      * @return the numberOfMaleRats for the level
      */	
 	public int malePopulation() {
+		calculatePopulation();
 		return numberOfMaleRats;
 	}
 	

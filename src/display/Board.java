@@ -21,6 +21,7 @@ import javafx.util.Duration;
 import level.LevelData;
 import level.LevelProperties;
 import level.LevelSaveHandler;
+import level.RatPopulation;
 import objects.GameObject;
 import objects.ObjectInteractionChecker;
 import objects.ObjectStoppable;
@@ -200,9 +201,8 @@ public class Board {
         levelData.getLevelProperties().setScore(score);
     }
 
-    public int getCurrentPouplation() {
-        //TODO: implement
-        return 0;
+    public RatPopulation getCurrentPopulation() {
+        return new RatPopulation(levelData);
     }
 
     public int getScore() {
