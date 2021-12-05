@@ -21,6 +21,7 @@ public class LevelMenu extends GameMenu {
 
     /**
      * A method to build a menu containing all the levels in the level directory as selectable options
+     *
      * @return the Node containing the menu items
      */
     @Override
