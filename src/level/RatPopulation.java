@@ -17,11 +17,11 @@ import objects.rats.PeacefulRat;
  * @author Samhitha Pinisetti 2035196
  */
 public class RatPopulation {
-	
-	private LevelData levelData;
+
 	int numberOfMaleRats;
 	int numberOfFemaleRats;
 	int totalPopulation;
+	private LevelData levelData;
 	
 	public RatPopulation(LevelData levelData) {
 		this.levelData = levelData;
