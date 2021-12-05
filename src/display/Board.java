@@ -2,7 +2,9 @@ package display;
 
 import display.inventory.Inventory;
 import display.menus.GameMenu;
+import display.menus.LoseMenu;
 import display.menus.MainMenu;
+import display.menus.WinMenu;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,6 +29,7 @@ import objects.ObjectInteractionChecker;
 import objects.ObjectStoppable;
 import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
+import players.scores.Player;
 import tile.Tile;
 
 import java.util.List;
@@ -41,7 +44,7 @@ public class Board {
     private static final String SAVED_BUTTON_LABEL = "Save and exit";
     private static final int CONTROLS_MARGIN = 5; // in pixels
     private static final String INFORMATION_LABEL_TEXT =
-            "Time elapsed: %d seconds. Expected time: %d seconds. Score %d.";
+            "Time elapsed: %d seconds. Expected time: %d seconds. Score %d. Population to lose %d.";
     private static final int INFO_LABEL_PADDING = 5; // in pixels
 
     private final LevelData levelData;
@@ -49,13 +52,18 @@ public class Board {
     private final Canvas canvas;
     private final Inventory inventory;
     private final Timeline interactionCheckTimeline;
+    private final Timeline gameLabelTimeline;
+    private Timeline winLoseTimeline;
 
     public Board(LevelData levelData) {
         this.levelData = levelData;
+        LevelProperties levelProperties = levelData.getLevelProperties();
 
         // Find the width and the height of the canvas, in pixels for this level
-        int width = levelData.getLevelProperties().getLevelWidth() * Tile.TILE_SIZE; // in pixels
-        int height = levelData.getLevelProperties().getLevelHeight() * Tile.TILE_SIZE;
+        int width =
+                levelProperties.getLevelWidth() * Tile.TILE_SIZE; // in pixels
+        int height =
+                levelProperties.getLevelHeight() * Tile.TILE_SIZE;
 
         this.canvas = new Canvas(width, height);
 
@@ -68,32 +76,39 @@ public class Board {
         interactionCheckTimeline.setCycleCount(Animation.INDEFINITE);
         interactionCheckTimeline.play();
 
-        int timeElapsed = levelData.getLevelProperties().getTimeElapsed();
-        int expectedTime = levelData.getLevelProperties().getExpectedTime();
-        int score = levelData.getLevelProperties().getScore();
+        int timeElapsed = levelProperties.getTimeElapsed();
+        int expectedTime = levelProperties.getExpectedTime();
+        int score = levelProperties.getScore();
+        int populationToLose = levelProperties.getPopulationToLose();
 
         this.timerLabel = new Label(String.format(
-                INFORMATION_LABEL_TEXT, timeElapsed, expectedTime, score
+                INFORMATION_LABEL_TEXT, timeElapsed, expectedTime, score,
+                populationToLose
         ));
-        Timeline gameTimerTimeline = new Timeline(
+        gameLabelTimeline = new Timeline(
                 new KeyFrame(Duration.seconds(1),
                         event -> updateTimerLabel())
         );
-        gameTimerTimeline.setCycleCount(Animation.INDEFINITE);
-        gameTimerTimeline.play();
+        gameLabelTimeline.setCycleCount(Animation.INDEFINITE);
+        gameLabelTimeline.play();
 
         this.inventory = new Inventory(levelData);
+
+
     }
 
     private void updateTimerLabel() {
-        int expectedTime = levelData.getLevelProperties().getExpectedTime();
-        int elapsedTime = levelData.getLevelProperties().getTimeElapsed();
-        int score = levelData.getLevelProperties().getScore();
+        LevelProperties levelProperties = levelData.getLevelProperties();
+        int expectedTime = levelProperties.getExpectedTime();
+        int elapsedTime = levelProperties.getTimeElapsed();
+        int score = levelProperties.getScore();
+        int populationToLose = levelProperties.getPopulationToLose();
 
         elapsedTime++;
         levelData.getLevelProperties().setTimeElapsed(elapsedTime);
         timerLabel.setText(
-                String.format(INFORMATION_LABEL_TEXT, elapsedTime, expectedTime, score)
+                String.format(INFORMATION_LABEL_TEXT, elapsedTime, expectedTime,
+                        score, populationToLose)
         );
     }
 
@@ -238,8 +253,8 @@ public class Board {
             levelData.setInventory(inventory.getItemsInInventory());
             LevelSaveHandler.saveLevel(levelData,
                     PlayerProfileManager.getCurrentlyLoggedInPlayer());
-            GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
             this.stopGame();
+            GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
         });
 
         controlsContainer.getChildren().add(saveButton);
@@ -273,7 +288,7 @@ public class Board {
     /**
      * Stops the items in the game from running after the game is exited
      */
-    private void stopGame() {
+    public void stopGame() {
         // Stop every object that needs stopping currently on the board
         for (GameObject object : levelData.getObjects()) {
             if (object instanceof ObjectStoppable) {
@@ -283,6 +298,8 @@ public class Board {
         }
 
         interactionCheckTimeline.pause();
+        gameLabelTimeline.pause();
+        winLoseTimeline.pause();
         levelData.setObjects(null);
         GameObject.setBoard(null);
     }
@@ -293,6 +310,36 @@ public class Board {
 
         // Update board display
         updateBoardDisplay();
+
+        winLoseTimeline = new Timeline(new KeyFrame(Duration.millis(250), event -> checkWinLose()));
+        winLoseTimeline.setCycleCount(Animation.INDEFINITE);
+        winLoseTimeline.play();
+    }
+
+    private void checkWinLose() {
+        LevelProperties levelProperties = levelData.getLevelProperties();
+
+        int populationToLose = levelProperties.getPopulationToLose();
+
+        int currentPopulation = getCurrentPopulation().getTotalPopulation();
+
+        // The player has lost
+        if (currentPopulation >= populationToLose) {
+            stopGame();
+            GameMenu.getStage().setScene(new Scene(new LoseMenu().buildMenu()));
+        }
+
+        // The player has won
+        if (currentPopulation <= 0) {
+            int levelId = levelProperties.getLevelId();
+
+            Player currentPlayer = PlayerProfileManager.getCurrentlyLoggedInPlayer();
+            currentPlayer.addScoreIfHighest(levelId, getScore());
+            currentPlayer.setMaxLevel(levelId + 1);
+
+            stopGame();
+            GameMenu.getStage().setScene(new Scene(new WinMenu().buildMenu()));
+        }
     }
 
     private void displayTiles() {
@@ -324,10 +371,6 @@ public class Board {
 
     public List<GameObject> getObjects() {
         return this.levelData.getObjects();
-    }
-
-    public LevelData getLevelData() {
-        return levelData;
     }
 
     public LevelProperties getLevelProperties() {
