@@ -84,10 +84,10 @@ public class LeaderBoardMenu extends GameMenu {
             scoreContainer.getChildren().addAll(label);
 
             // Add top ten players and their information into VBox.
-            for (int i = 0; i < playersInLeaderboard.size(); i++) {
-                PlayerInLeaderboard playerInLeaderboard = playersInLeaderboard.get(i);
-
-                if (i <= 10 && playerInLeaderboard.getLevel() == levelId) {
+            int numInLeaderboard = 0;
+            for (PlayerInLeaderboard playerInLeaderboard : playersInLeaderboard) {
+                if (numInLeaderboard < 10 && playerInLeaderboard.getLevel() == levelId) {
+                    numInLeaderboard++;
                     Label playerLabel = new Label();
                     playerLabel.setTextFill(Color.YELLOW);
 
