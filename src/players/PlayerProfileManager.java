@@ -150,4 +150,12 @@ public class PlayerProfileManager {
         allPlayers.add(new Player(playerName, 1));
         savePlayersFile();
     }
+
+    /**
+     * Delete the current player from file
+     */
+    public static void deleteCurrentPlayer() {
+        allPlayers.remove(getPlayer(currentlyLoggedInName));
+        savePlayersFile();
+    }
 }

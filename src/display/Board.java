@@ -424,6 +424,19 @@ public class Board {
 
             Player currentPlayer =
                     PlayerProfileManager.getCurrentlyLoggedInPlayer();
+
+            // Calculate bonus score
+            int elapsedTime = levelProperties.getTimeElapsed();
+            int expectedTime = levelProperties.getExpectedTime();
+
+            int bonusScore = expectedTime - elapsedTime;
+
+            if (bonusScore > 0) {
+                int score = getScore();
+                levelProperties.setScore(score + bonusScore);
+            }
+
+
             currentPlayer.winGame(levelId, getScore());
 
             stopGame();

@@ -56,8 +56,14 @@ public class Rat extends GameObject implements ObjectStoppable {
      * @param speed the speed
      */
     public void setSpeed(int speed) {
+        // Stop the rat moving
+        moveTimeline.pause();
 
+        // Set the new speed, and start a new moving timeline
         this.speed = speed;
+        moveTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed), event -> move()));
+        moveTimeline.setCycleCount(Animation.INDEFINITE);
+        moveTimeline.play();
     }
 
     /**

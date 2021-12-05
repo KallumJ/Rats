@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 import objects.rats.Rat;
 import tile.Tile;
+import tile.TileType;
 
 /**
  *
@@ -26,7 +27,13 @@ public class GasEffect extends GameObject implements ObjectStoppable {
         Image gasEffectImage = new Image(
                 ObjectUtils.getObjectImageUrl(GameObjectType.GAS)
         );
-        super.setIcon(gasEffectImage);
+
+        if (standingOn.getTileType().equals(TileType.PATH)) {
+            super.setIcon(gasEffectImage);
+        } else {
+            super.setIcon(null);
+        }
+
 
         GameObject.getBoard().addObject(this);
     }

@@ -1,13 +1,17 @@
 package display.menus;
 
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import motd.MssgOfTheDay;
 import players.PlayerProfileManager;
+import players.scores.Player;
 
 /**
  * A class to model the MainMenu of the application
@@ -16,6 +20,10 @@ public class MainMenu extends GameMenu {
 
     private static final String MENU_TITLE = " R A T S ";
     private static final String NAME_LABEL = "Name: %s";
+    private static final String DELETE_TEXT = "Delete";
+    private static final String LOGOUT_TEXT = "Log out";
+    private static final int DELETE_OFFSET = 20;
+    private static final int LOGOUT_OFFSET = 10;
 
     /**
      * A method to create a main menu with all the main menu items we need on
@@ -45,8 +53,14 @@ public class MainMenu extends GameMenu {
 
         mainMenu.setBottom(motdLabel);
 
-        String playerName =
-                PlayerProfileManager.getCurrentlyLoggedInPlayer().getPlayerName();
+        // Create a container for name controls
+        HBox nameContainer = new HBox();
+
+        // Create name label
+        Player player =
+                PlayerProfileManager.getCurrentlyLoggedInPlayer();
+
+        String playerName = player.getPlayerName();
         Label nameLabel = new Label(
                 String.format(NAME_LABEL, playerName)
         );
@@ -55,7 +69,28 @@ public class MainMenu extends GameMenu {
         );
         nameLabel.setTextFill(Color.WHITE);
 
-        getCenter().getChildren().add(nameLabel);
+        // Create buttons to delete and logout of the current player profile
+        Button deleteButton = new Button(DELETE_TEXT);
+        Button logoutButton = new Button(LOGOUT_TEXT);
+        logoutButton.setTranslateX(LOGOUT_OFFSET);
+        deleteButton.setTranslateX(DELETE_OFFSET);
+
+        logoutButton.setOnMousePressed(event -> {
+            Scene scene = new Scene(new LoginMenu().buildMenu());
+            GameMenu.getStage().setScene(scene);
+        });
+
+        deleteButton.setOnMousePressed(event -> {
+            PlayerProfileManager.deleteCurrentPlayer();
+            Scene scene = new Scene(new LoginMenu().buildMenu());
+            GameMenu.getStage().setScene(scene);
+        });
+
+        // Add the controls to the menu
+        nameContainer.getChildren().addAll(
+                nameLabel, logoutButton, deleteButton
+        );
+        getCenter().getChildren().add(nameContainer);
 
         // Return the constructed menu
         return mainMenu;
