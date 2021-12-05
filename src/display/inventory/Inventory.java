@@ -28,13 +28,12 @@ public class Inventory {
     private final List<GameObjectType> itemsInInventory;
     private final LevelData levelData;
     private final Set<ItemRow> itemRows;
-    private VBox inventoryNode;
+    private final VBox inventoryNode;
 
     /**
      * Constructs an inventory object.
      *
-     * @param levelData The LevelData of the level associated with this
-     *                  inventory
+     * @param levelData the LevelData of the level associated to this inventory
      */
     public Inventory(final LevelData levelData) {
         // Set up the JavaFX node for the inventory
@@ -42,9 +41,7 @@ public class Inventory {
 
         final int pad = INVENTORY_PADDING;
         inventoryNode.setPadding(new Insets(pad, pad, pad, pad));
-        inventoryNode.setStyle(
-                "-fx-background-image: url(file:resources/inventorySkin.png);"
-        );
+        inventoryNode.setStyle("-fx-background-image: url(file:resources/inventorySkin.png);");
         inventoryNode.setMinWidth(INVENTORY_WIDTH);
 
         // Create a set of rows
@@ -99,8 +96,8 @@ public class Inventory {
     }
 
     /**
-     * Returns the {@code VBox} containing the inventory itself, with
-     * one random item added to it.
+     * Returns the {@code VBox} containing the inventory itself, with one random
+     * item added to it.
      *
      * @return the inventory's {@code VBox}
      */
@@ -173,8 +170,7 @@ public class Inventory {
     }
 
     /**
-     * A method to return whether there is still an available slot in the
-     * inventory.
+     * Returns whether there is still an available slot in the inventory.
      *
      * @return true if there is a slot open, false otherwise
      */
