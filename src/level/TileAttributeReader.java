@@ -54,6 +54,42 @@ public class TileAttributeReader {
     }
 
     /**
+     * A method to construct a PeacefulRat with the provided attribute data
+     *
+     * @param attributeValue The data to construct a PeacefulRat with
+     * @param tile           The tile the PeacefulRat is on
+     * @return The constructed PeacefulRat
+     */
+    public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile, LevelProperties levelProperties) {
+        Scanner scanner = new Scanner(attributeValue);
+        boolean adult = scanner.nextBoolean();
+        boolean pregnant = scanner.nextBoolean();
+        boolean sterile = scanner.nextBoolean();
+        String gender = scanner.next();
+
+        if (!(gender.equals("f") || gender.equals("m"))) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            INVALID_GENDER, gender
+                    )
+            );
+        }
+
+        int timeToBirth = scanner.nextInt();
+        int timeToDevelop = scanner.nextInt();
+        Direction direction = getDirectionFromString(scanner.next());
+
+        // If the rat is an adult, give them adult speed, if not, baby speed
+        int speed = adult ?
+                levelProperties.getAdultRatSpeed() :
+                levelProperties.getBabyRatSpeed();
+
+        return new PeacefulRat(tile, sterile, adult, pregnant, gender,
+                timeToBirth, timeToDevelop, speed, direction
+        );
+    }
+
+    /**
      * Constructs a Gas object for the gas attribute read from file
      * @param attributeValue the attribute
      * @param tile the tile the gas is on
@@ -142,42 +178,6 @@ public class TileAttributeReader {
         return new DeathRat(
                 tile, levelProperties.getDeathRatSpeed(),
                 direction, numOfKills, killsTarget
-        );
-    }
-
-    /**
-     * A method to construct a PeacefulRat with the provided attribute data
-     *
-     * @param attributeValue The data to construct a PeacefulRat with
-     * @param tile           The tile the PeacefulRat is on
-     * @return The constructed PeacefulRat
-     */
-    public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile, LevelProperties levelProperties) {
-        Scanner scanner = new Scanner(attributeValue);
-        boolean adult = scanner.nextBoolean();
-        boolean pregnant = scanner.nextBoolean();
-        boolean sterile = scanner.nextBoolean();
-        String gender = scanner.next();
-
-        if (!(gender.equals("f") || gender.equals("m"))) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            INVALID_GENDER, gender
-                    )
-            );
-        }
-
-        int timeToBirth = scanner.nextInt();
-        int timeToDevelop = scanner.nextInt();
-        Direction direction = getDirectionFromString(scanner.next());
-
-        // If the rat is an adult, give them adult speed, if not, baby speed
-        int speed = adult ?
-                levelProperties.getAdultRatSpeed() :
-                levelProperties.getBabyRatSpeed();
-
-        return new PeacefulRat(tile, sterile, adult, pregnant, gender,
-                timeToBirth, timeToDevelop, speed, direction
         );
     }
 
