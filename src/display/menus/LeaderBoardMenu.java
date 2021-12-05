@@ -16,7 +16,7 @@ import players.PlayerProfileManager;
 import players.scores.Player;
 
 /**
- * A cl
+ * The class build a LeaderBoardMenu
  *
  * @author YIMING LI
  */
@@ -38,7 +38,7 @@ public class LeaderBoardMenu extends GameMenu {
     }
 
     /**
-     * A method to build a LeaderBoardMenu to find top ten players scores for a
+     * A method to build a LeaderBoardMenu to find top ten players
      * level.
      *
      * @return the Node containing the menu items
