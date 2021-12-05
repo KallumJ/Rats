@@ -1,5 +1,10 @@
 package objects;
 
+/**
+ * A class to list out all the objects in the inventory
+ *
+ * @author Kallum Jones 2005855
+ */
 public enum GameObjectType {
     STERILISATION,
     POISON,
