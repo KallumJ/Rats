@@ -207,10 +207,10 @@ public class Gas extends GameObject implements ObjectStoppable {
 	 */
 	private void checkEmpty() {
 		if (gasEffects.isEmpty()) {
-                    if (GameObject.getBoard() != null ){
-			GameObject.getBoard().removeObject(this);
-			checkEmptyTimeline.pause();
-                    }
+			if (GameObject.getBoard() != null) {
+				GameObject.getBoard().removeObject(this);
+				checkEmptyTimeline.pause();
+			}
 		}
 	}
 
