@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package display.menus;
 
 import java.io.IOException;
@@ -15,7 +10,6 @@ import java.util.Comparator;
 import java.util.List;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,44 +23,42 @@ import players.PlayerProfileManager;
 import players.scores.Player;
 
 /**
- *
+ * This class collect player information needed for leaderboard 
  * @author YIMING LI
  */
 class Player_LBM{
     private String name; 
     private Integer level;
-    private Integer leve_score;
+    private Integer level_score;
     
-    public Player_LBM(String name, Integer level, Integer leve_score) {
+    public Player_LBM(String name, Integer level, Integer level_score) {
         this.name = name;
         this.level = level;
-        this.leve_score = leve_score;
+        this.level_score = level_score;
     }
-    
-    
-    
-    public void setName(String name){
-        this.name = name;
-    }
-    
+
+/**
+* Get the player name.
+* @return The player name.
+*/    
     public String getName(){
         return name;
     }
-    
-    public void setLevel(Integer level){
-        this.level = level;
-    }
-    
+
+/**
+* Get the level of map of this player.
+* @return The level of map.
+*/    
     public Integer getLevel(){
         return level;
     }
 
-    public Integer getLeve_score() {
-        return leve_score;
-    }
-
-    public void setLeve_score(Integer leve_score) {
-        this.leve_score = leve_score;
+/**
+* Get the score of level of this player.
+* @return The score of level.
+*/ 
+    public Integer getLevel_score() {
+        return level_score;
     }
 }
 
@@ -75,53 +67,63 @@ class Player_LBM{
  * @author YIMING LI
  */
 public class LeaderBoardMenu extends GameMenu {
-
-    /**
-     *
-     */
-    public static final String MENU_TITLE = "User Not Found";
-    public static ArrayList<Player_LBM> players_LBM;
+    private static final String MENU_TITLE = "User Not Found";
+    private static final String NO_BACKGROUND = "Could not load the menu background image file";
+    private static ArrayList<Player_LBM> players_LBM;
     
     /**
-     * A method to build a LeaderBoardMenu to find top ten players
+     * A method to build a LeaderBoardMenu to find top ten players.
      * @return the Node containing the menu items
      */
     @Override
     public Parent buildMenu() {
         List<Player> getAllPlayer=PlayerProfileManager.getAllPlayers();
+        //An EventHandler for a back button
         EventHandler<Event> backHandler = event ->
                     GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
+        
         if(!getAllPlayer.isEmpty()){
-            players_LBM = returnScore(getAllPlayer);
+            //Covert from a map type to a ordered list.
+            players_LBM = normalisation(getAllPlayer);
             Collections.sort(players_LBM, new SortPlayerByScore());
-            // If an EventHandler for a back button is provided, add one
+            
+            //A button back to main menu.
             Button backButton = new Button("Back");
             backButton.setOnMousePressed(backHandler);
             backButton.setTranslateX(10);
             backButton.setTranslateY(10);
+            
             VBox v=new VBox();
             v.setMinSize(100, 100);
             v.setTranslateX(90);
             v.setTranslateY(80);
+            
+            //Set font style of the leaderboard.
             v.setStyle(
                     "-fx-font-size: 36;"+
                     "-fx-font-family: 'consolas';"+
                     "-fx-font-weight: bold;"+
                     "-fx-font-style: oblique;"
             );
+            
+            //Add top ten players and their information into VBox.
             for(int i = 0; i < players_LBM.size(); i++){
                 if(i < 10){
                     Label label=new Label();
                     label.setTextFill(Paint.valueOf("#fee140"));
+                    
+                    //Place user information on the label.
                     label.setText(players_LBM.get(i).getName()+
-                            "       "+
-                            players_LBM.get(i).getLeve_score().toString());
+                                    "       "+
+                                    players_LBM.get(i).getLevel_score().toString());
                     v.getChildren().addAll(label);
                 }
             }
             
+            //Build leaderboard menu.
             BorderPane leaderBoardView=buildBlank(new MenuTitle(MENU_TITLE), backHandler);
-            // Get and set the background
+            
+            // Get and set the background.
             try (InputStream is =
                          Files.newInputStream(Paths.get("resources/ratsBG.jpeg"))
             ) {
@@ -130,25 +132,40 @@ public class LeaderBoardMenu extends GameMenu {
                 img.setFitHeight(600);
                 leaderBoardView.getChildren().add(img);
             } catch (IOException e) {
-                throw new RuntimeException("Image Failed Load.");
+                throw new RuntimeException(NO_BACKGROUND);
             }
+            
+            //Place VBox and back button on this menu.
             leaderBoardView.setLeft(backButton);
             leaderBoardView.setCenter(v);
             return leaderBoardView;
-        } else{
+        } 
+        //Return the default menu if the list empty
+        else{
             return buildBlank(new MenuTitle(MENU_TITLE), backHandler);
         }
     }
     
-    public ArrayList<Player_LBM> returnScore(List<Player> players){
+/**
+ * 
+ * @param players
+ * @return A normalisation list of players.
+ */    
+    public ArrayList<Player_LBM> normalisation(List<Player> players){
         players_LBM = new ArrayList<>();
         for(int i = 0; i < players.size(); i++){
+            
+            //Get level and scores of level from the map.
             for(Integer key : players.get(i).getHighScores().keySet()){
+                    
+                    //Build an instance of player
                     Player_LBM playInLadderBoard=new Player_LBM(
-                    players.get(i).getPlayerName(),
-                    key,
-                    Integer.parseInt(players.get(i).getHighScores().get(key).toString())
+                        players.get(i).getPlayerName(),
+                        key,
+                        Integer.parseInt(players.get(i).getHighScores().get(key).toString())
                 );
+                    
+                //Add players in list.
                 players_LBM.add(playInLadderBoard);
             }
         }
@@ -157,12 +174,16 @@ public class LeaderBoardMenu extends GameMenu {
 }
 
 /**
- *
+ * The class Sort the list by scores. 
  * @author YIMING LI
  */
  class SortPlayerByScore implements Comparator<Player_LBM> {
     @Override
+
+/**
+ * Sort in descending order.
+ */
     public int compare(Player_LBM a, Player_LBM b){
-        return b.getLeve_score() - a.getLeve_score();
+        return b.getLevel_score() - a.getLevel_score();
     }
 }
