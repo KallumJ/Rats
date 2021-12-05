@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import sfx.SFXManager;
 import tile.Direction;
 import tile.Tile;
 
@@ -127,6 +128,7 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
 
         }
         GameObject.getBoard().updateBoardDisplay();
+        SFXManager.playEntrysignSFX();
     }
 
     /**

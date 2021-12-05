@@ -2,6 +2,7 @@ package objects.rats;
 
 import javafx.scene.image.Image;
 import objects.GameObject;
+import sfx.SFXManager;
 import tile.Direction;
 import tile.Tile;
 
@@ -50,10 +51,10 @@ public class DeathRat extends Rat {
         this.numberOfKills = this.numberOfKills + 1;
 
         if (this.killsTarget <= this.numberOfKills) {
-
             GameObject.getBoard().removeObject(this);
         }
 
+        SFXManager.playDeathratSFX();
     }
 
     /**
