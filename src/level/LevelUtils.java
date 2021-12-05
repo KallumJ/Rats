@@ -27,8 +27,8 @@ import java.util.stream.Stream;
  */
 public class LevelUtils {
 
-    private static final String LEVELS_PATH = "levels";
     public static final String SAVED_LEVELS_DIR_PATH = LEVELS_PATH + "/savedLevels/";
+    private static final String LEVELS_PATH = "levels";
     private static final String INVALID_TILE_TYPE = "%s is an invalid tile type";
     private static final String INVALID_DIRECTION_ERROR = "%s is an unknown direction";
     private static final String INVALID_DIRECTORY = "The provided directory is empty";
@@ -51,30 +51,6 @@ public class LevelUtils {
     public static File[] getSavedLevelsFiles() {
         return getFilesInDirectory(SAVED_LEVELS_DIR_PATH);
     }
-
-    /**
-     * A method to get the files in the provided directory
-     * @param path the path to check
-     * @return the list of files in the provided directory
-     */
-    private static File[] getFilesInDirectory(String path) {
-        File levelsDirectory = new File(path);
-        File[] filesInLevelDirectory = levelsDirectory.listFiles();
-
-        if (filesInLevelDirectory == null) {
-            throw new RuntimeException(INVALID_DIRECTORY);
-        }
-
-        ArrayList<File> nonDirectoryFiles = new ArrayList<>();
-        for (File file : filesInLevelDirectory) {
-            if (!file.isDirectory()) {
-                nonDirectoryFiles.add(file);
-            }
-        }
-
-        return nonDirectoryFiles.toArray(new File[0]);
-    }
-
 
     /**
      * A method to get the LevelFile by the provided id
@@ -247,18 +223,6 @@ public class LevelUtils {
     }
 
     /**
-     * Check whether the provided level file is for the provided player
-     * @param file the level file
-     * @param player the player
-     * @return true if yes, false otherwise
-     */
-    private static boolean isSavedLevelForPlayer(File file, Player player) {
-        String playerName = player.getPlayerName();
-        String filePlayer = getPlayerNameFromSavedLevel(file);
-        return filePlayer.equals(playerName);
-    }
-
-    /**
      * Returns the most recent level for a player
      * @param player the player
      * @return the most recently level file for the player
@@ -279,4 +243,40 @@ public class LevelUtils {
         }
         return mostRecentLevel;
     }
+
+    /**
+     * A method to get the files in the provided directory
+     * @param path the path to check
+     * @return the list of files in the provided directory
+     */
+    private static File[] getFilesInDirectory(String path) {
+        File levelsDirectory = new File(path);
+        File[] filesInLevelDirectory = levelsDirectory.listFiles();
+
+        if (filesInLevelDirectory == null) {
+            throw new RuntimeException(INVALID_DIRECTORY);
+        }
+
+        ArrayList<File> nonDirectoryFiles = new ArrayList<>();
+        for (File file : filesInLevelDirectory) {
+            if (!file.isDirectory()) {
+                nonDirectoryFiles.add(file);
+            }
+        }
+
+        return nonDirectoryFiles.toArray(new File[0]);
+    }
+
+    /**
+     * Check whether the provided level file is for the provided player
+     * @param file the level file
+     * @param player the player
+     * @return true if yes, false otherwise
+     */
+    private static boolean isSavedLevelForPlayer(File file, Player player) {
+        String playerName = player.getPlayerName();
+        String filePlayer = getPlayerNameFromSavedLevel(file);
+        return filePlayer.equals(playerName);
+    }
+
 }
