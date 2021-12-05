@@ -117,7 +117,7 @@ class LeaderboardMenuItem extends MenuItem {
         super("LEADERBOARD");
         
         setOnMousePressed(event ->
-                GameMenu.getStage().setScene(new Scene(new LeaderBoardMenu().buildMenu())));
+                GameMenu.getStage().setScene(new Scene(new LeaderboardLevelSelectMenu().buildMenu())));
     }
 }
 
@@ -259,5 +259,23 @@ class SavedLevelMenuItem extends MenuItem {
             board.startGame();
             GameMenu.getStage().setScene(new Scene(board.buildGUI()));
         });
+    }
+}
+
+/**
+ * A class to model a menu item for level items in the LeaderboardMenu
+ */
+class LeaderboardLevelMenuItem extends MenuItem {
+
+    /**
+     * Constructs a LeaderboardLevelMenuItem
+     *
+     * @param id the id of the level
+     */
+    public LeaderboardLevelMenuItem(String id) {
+        super(id);
+
+        setOnMousePressed(event ->
+                GameMenu.getStage().setScene(new Scene(new LeaderBoardMenu(id).buildMenu())));
     }
 }
