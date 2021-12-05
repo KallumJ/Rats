@@ -19,11 +19,12 @@ import players.scores.Player;
  * @author YIMING LI
  */
 public class LeaderBoardMenu extends GameMenu {
-    private final static String PLAYER_HEADER = "Player             ";
+    private final static String PLAYER_HEADER = "Player               ";
     private final static String LEVEL_HEADER = "Level       ";
     private final static String SCORE_HEADER = "Score       ";
     private final static String SCORE_ENTRY = "%s%s%s";
-    private final static String LEADERBOARD_HEADER = PLAYER_HEADER + LEVEL_HEADER + SCORE_HEADER;
+    private final static String LEADERBOARD_HEADER =
+            PLAYER_HEADER + LEVEL_HEADER + SCORE_HEADER;
     private final int levelId;
 
     /**
