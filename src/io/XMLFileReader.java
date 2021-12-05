@@ -64,7 +64,7 @@ public class XMLFileReader {
             }
             return current;
         } catch (NullPointerException ex) {
-           return null;
+            return null;
         }
 
     }
