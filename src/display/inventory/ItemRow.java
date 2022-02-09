@@ -1,5 +1,6 @@
 package display.inventory;
 
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -11,6 +12,7 @@ import objects.ObjectUtils;
 import sfx.SFXManager;
 import tile.Tile;
 import tile.TileType;
+import util.TextUtils;
 
 /**
  * A class to model a row of items in the inventory.
@@ -70,6 +72,7 @@ public class ItemRow {
 			// Grab an image of the item
 			String objectImgUrl = ObjectUtils.getObjectImageUrl(objectType);
 			ImageView imageOfItem = new ImageView(objectImgUrl);
+			Tooltip.install(imageOfItem, new Tooltip(TextUtils.fancyFormat(objectType.toString())));
 
 			// Add drag and release event handlers
 			imageOfItem.setOnMouseDragged(event -> onDrag(event, imageOfItem));
