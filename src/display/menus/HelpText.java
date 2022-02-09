@@ -15,6 +15,8 @@ class HelpText {
 	private final int x;
 	private final int y;
 	private final boolean underline;
+	private static final Font TITLE_FONT = Font.font(GameMenu.DEFAULT_FONT,
+		FontWeight.SEMI_BOLD, 25);
 
 	/**
 	 * Constructs a HelpText.
