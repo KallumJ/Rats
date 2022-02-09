@@ -12,12 +12,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +21,8 @@ import java.util.List;
  * The class Help menu.
  *
  * @author Yin Man Cheung
+ * @author Samhitha Pinisetti 
+ * Last updated, 09/02/2022
  */
 public class HelpMenu extends GameMenu {
 	private static final int WINDOW_WIDTH = 860;
@@ -51,10 +49,10 @@ public class HelpMenu extends GameMenu {
 		HelpText[] helpTexts = new HelpText[]{
 				new HelpText("\nHOW TO PLAY", 200, 150, true),
 				new HelpText("\nUSE MOUSE TO DRAG OBJECT AND PLACE IT ON THE " + "PATH TILES.", 35, 175, false),
-				new HelpText("\nOBJECTS:", 35, 200, true),
+				new HelpText("\nOBJECTS:", 230, 230, true),
 				new HelpText("\nBombs explode and kill all the rats and " +
-						"destroys objects nearby" + "\nFemale Sex Changers " + "covert male rats that walk past it into females." + "\nMale Sex Changers covert female rats that walk past" + " it into males." + "\nNo Entry Signs block the " + "movement of rats." + "\nDeath Rats kills other rats " + "they come across." + "\nPoison kills the rat that " + "walk past." + "\nSterilisation sterilizes rats that " + "encounter it.", 35, 225, false),
-				new HelpText("\nNEED HELP? ", 25, 500, true),
+						"destroys objects nearby" + "\nFemale Sex Changers " + "covert male rats that walk past it into females." + "\nMale Sex Changers covert female rats that walk past" + " it into males." + "\nNo Entry Signs block the " + "movement of rats." + "\nDeath Rats kills other rats " + "they come across." + "\nPoison kills the rat that " + "walk past." + "\nSterilisation sterilizes rats that " + "encounter it.", 20, 260, false),
+				new HelpText("\nNEED HELP? ", 290, 490, true),
 				new HelpText("\nPlease email us on" + "\nCS-230Group41-UsrGrp" + "@SwanseaUniversity.onmicrosoft.com for further " + "support.", 25, 525, false)
 		};
 
@@ -103,4 +101,5 @@ public class HelpMenu extends GameMenu {
 		timeline.play();
 	}
 }
+
 
