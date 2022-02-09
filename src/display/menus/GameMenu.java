@@ -28,6 +28,7 @@ import java.nio.file.Paths;
  * in the system
  *
  * @author Samhitha Pinisetti 2035196
+ * Last updated on 09/02/2022
  */
 public abstract class GameMenu {
 	private static final String NO_BACKGROUND = "Could not load the menu " +
@@ -110,7 +111,8 @@ public abstract class GameMenu {
 
 		// If an EventHandler for a back button is provided, add one
 		if (backHandler != null) {
-			Button backButton = new Button("Back");
+			Button backButton = new Button("Back"); //must change this
+			backButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
 			backButton.setOnMousePressed(backHandler);
 			backButton.setTranslateX(pane.getPrefWidth() - 50);
 			backButton.setTranslateY(pane.getPrefHeight() - 30);
