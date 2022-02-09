@@ -41,7 +41,7 @@ class HelpText {
 	public Text getNode() {
 		Text text = new Text(this.text);
 		text.setTextAlignment(TextAlignment.CENTER);
-		text.setFont(TextUtils.getFont(25));
+		text.setFont(TITLE_FONT);
 		text.setFill(Color.WHITE);
 		text.setX(x);
 		text.setY(y);
