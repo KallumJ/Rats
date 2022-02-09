@@ -280,3 +280,19 @@ class LeaderboardLevelMenuItem extends MenuItem {
 		setOnMousePressed(event -> GameMenu.getStage().setScene(scene));
 	}
 }
+
+/**
+ * Forward to Level Editior page.
+ *
+ * @author YIMING LI
+ */
+class LevelEditorMenuItem extends MenuItem {
+	/**
+	 * Constructs a LevelEditor button.
+	 */
+	public LevelEditorMenuItem() {
+		super("Level Editor");
+
+		
+	}
+}
