@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import players.PlayerProfileManager;
+import util.TextUtils;
 
 /**
  * A class to model the login menu.
@@ -29,8 +30,7 @@ public class LoginMenu extends GameMenu {
 	private static final int LOGIN_BUTTON_Y = 335;
 	private static final String NAME_TOO_LONG =
 			"Please choose a name with " + NAME_CHAR_LIMIT + " characters or " + "less";
-	private static final Font TITLE_FONT = Font.font(GameMenu.DEFAULT_FONT,
-			FontWeight.SEMI_BOLD, 20);
+	private static final Font TITLE_FONT = TextUtils.getFont(20);
 
 	/**
 	 * A method to build the login menu.

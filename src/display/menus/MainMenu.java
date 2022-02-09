@@ -1,5 +1,8 @@
 package display.menus;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.util.Duration;
 import motd.MssgOfTheDay;
 import players.PlayerProfileManager;
 import players.scores.Player;
@@ -25,8 +30,7 @@ public class MainMenu extends GameMenu {
 	private static final String LOGOUT_TEXT = "Log out";
 	private static final int DELETE_OFFSET = 20;
 	private static final int LOGOUT_OFFSET = 10;
-	private static final Font TITLE_FONT = Font.font(GameMenu.DEFAULT_FONT,
-		FontWeight.SEMI_BOLD, 15);
+	private static final Font TITLE_FONT = TextUtils.getFont(15);
 
 
 	/**
@@ -48,7 +52,7 @@ public class MainMenu extends GameMenu {
 		// Add Motd and user name labels
 		// make this scrollable 
 		Label motdLabel = new Label(MssgOfTheDay.getMotD());
-		motdLabel.setFont(Font.font(DEFAULT_FONT, FontWeight.SEMI_BOLD, 18));
+		motdLabel.setFont(TextUtils.getFont(18));
 		motdLabel.setTextFill(Color.WHITE);
 
 		mainMenu.setBottom(motdLabel);

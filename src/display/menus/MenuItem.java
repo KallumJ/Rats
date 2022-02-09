@@ -1,6 +1,7 @@
 package display.menus;
 
 import display.Board;
+import display.menus.editor.SizeSelectionMenu;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -282,7 +283,7 @@ class LeaderboardLevelMenuItem extends MenuItem {
 }
 
 /**
- * Forward to Level Editior page.
+ * Forward to Level Editor page.
  *
  * @author YIMING LI
  */
@@ -291,8 +292,9 @@ class LevelEditorMenuItem extends MenuItem {
 	 * Constructs a LevelEditor button.
 	 */
 	public LevelEditorMenuItem() {
-		super("Level Editor");
+		super("LEVEL EDITOR");
 
-		
+		Scene scene = new Scene(new SizeSelectionMenu().buildMenu());
+		setOnMousePressed(event -> GameMenu.getStage().setScene(scene));
 	}
 }

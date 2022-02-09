@@ -1,6 +1,7 @@
 package display.menus;
 
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import util.TextUtils;
@@ -15,8 +16,6 @@ class HelpText {
 	private final int x;
 	private final int y;
 	private final boolean underline;
-	private static final Font TITLE_FONT = Font.font(GameMenu.DEFAULT_FONT,
-		FontWeight.SEMI_BOLD, 25);
 
 	/**
 	 * Constructs a HelpText.
@@ -41,7 +40,7 @@ class HelpText {
 	public Text getNode() {
 		Text text = new Text(this.text);
 		text.setTextAlignment(TextAlignment.CENTER);
-		text.setFont(TITLE_FONT);
+		text.setFont(TextUtils.getFont(25));
 		text.setFill(Color.WHITE);
 		text.setX(x);
 		text.setY(y);
