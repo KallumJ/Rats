@@ -36,6 +36,7 @@ import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
 import players.scores.Player;
 import tile.Tile;
+import util.TextUtils;
 
 /**
  * A class to model the current game board
@@ -302,7 +303,7 @@ public class Board {
 
 		timerLabel.setMinWidth(GameMenu.getStage().getWidth());
 		timerLabel.setAlignment(Pos.CENTER);
-		timerLabel.setFont(Font.font(GameMenu.DEFAULT_FONT, 18));
+		timerLabel.setFont(TextUtils.getFont(18));
 		timerLabel.setPadding(new Insets(INFO_LABEL_PADDING));
 
 		labelContainer.getChildren().add(timerLabel);

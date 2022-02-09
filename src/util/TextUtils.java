@@ -1,9 +1,14 @@
 package util;
 
+import javafx.scene.text.Font;
+
+
 public class TextUtils {
     public static String fancyFormat(String input) {
-        String output = input.replaceAll("_", " ");
+        return input.replaceAll("_", " ");
+    }
 
-        return output;
+    public static Font getFont(int size) {
+        return Font.loadFont("file:resources/font.ttf", size);
     }
 }

@@ -7,11 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import motd.MssgOfTheDay;
 import players.PlayerProfileManager;
 import players.scores.Player;
+import util.TextUtils;
 
 /**
  * A class to model the MainMenu of the application.
@@ -45,7 +44,7 @@ public class MainMenu extends GameMenu {
 
 		// Add Motd and user name labels
 		Label motdLabel = new Label(MssgOfTheDay.getMotD());
-		motdLabel.setFont(Font.font(DEFAULT_FONT, FontWeight.SEMI_BOLD, 18));
+		motdLabel.setFont(TextUtils.getFont(18));
 		motdLabel.setTextFill(Color.WHITE);
 
 		mainMenu.setBottom(motdLabel);
@@ -58,7 +57,7 @@ public class MainMenu extends GameMenu {
 
 		String playerName = player.getPlayerName();
 		Label nameLabel = new Label(String.format(NAME_LABEL, playerName));
-		nameLabel.setFont(Font.font(DEFAULT_FONT, FontWeight.SEMI_BOLD, 18));
+		nameLabel.setFont(TextUtils.getFont(18));
 		nameLabel.setTextFill(Color.WHITE);
 
 		// Create buttons to delete and logout of the current player profile

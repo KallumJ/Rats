@@ -1,10 +1,9 @@
 package display.menus;
 
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import util.TextUtils;
 
 /**
  * A class to model text in the HelpMenu.
@@ -40,8 +39,7 @@ class HelpText {
 	public Text getNode() {
 		Text text = new Text(this.text);
 		text.setTextAlignment(TextAlignment.CENTER);
-		text.setFont(Font.font(GameMenu.DEFAULT_FONT, FontWeight.SEMI_BOLD,
-				25));
+		text.setFont(TextUtils.getFont(25));
 		text.setFill(Color.WHITE);
 		text.setX(x);
 		text.setY(y);

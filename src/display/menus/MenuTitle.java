@@ -5,8 +5,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import util.TextUtils;
 
 /**
  * Models the title of a menu.
@@ -19,8 +19,7 @@ class MenuTitle extends StackPane {
 	private static final int TITLE_HEIGHT = 60;
 	private static final int BORDER_SIZE = 2;
 	private static final int TITLE_FONT_SIZE = 50;
-	private static final Font TITLE_FONT = Font.font(GameMenu.DEFAULT_FONT,
-			FontWeight.SEMI_BOLD, TITLE_FONT_SIZE);
+	private static final Font TITLE_FONT = TextUtils.getFont(TITLE_FONT_SIZE);
 
 	/**
 	 * Constructor for a MenuTitle.

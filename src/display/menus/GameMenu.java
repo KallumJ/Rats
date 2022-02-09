@@ -30,7 +30,6 @@ import java.nio.file.Paths;
  * @author Samhitha Pinisetti 2035196
  */
 public abstract class GameMenu {
-	public static final String DEFAULT_FONT = "Tw Cen MT Condensed";
 	private static final String NO_BACKGROUND = "Could not load the menu " +
 			"background image file";
 	private static final Path RAT_BG_PATH = Paths.get("resources/ratsBG.jpeg");

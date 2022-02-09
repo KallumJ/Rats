@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import util.TextUtils;
 
 /**
  * A class to model a Lose Menu.
@@ -38,7 +38,7 @@ public class LoseMenu extends GameMenu {
 		label.setText(CONTENT);
 
 		label.setTextFill(Color.WHITE);
-		label.setFont(Font.font(DEFAULT_FONT, LABEL_FONT_SIZE));
+		label.setFont(TextUtils.getFont(LABEL_FONT_SIZE));
 		label.setTranslateX(X_POS);
 		label.setTranslateY(Y_POS);
 		getCenter().getChildren().add(label);

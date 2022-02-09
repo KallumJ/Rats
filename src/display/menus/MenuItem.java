@@ -10,14 +10,13 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import level.LevelData;
 import level.LevelDataFactory;
 import level.LevelUtils;
 import players.PlayerProfileManager;
 import players.scores.Player;
+import util.TextUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -49,8 +48,7 @@ public abstract class MenuItem extends StackPane {
 
 		Text text = new Text(name);
 		text.setFill(Color.DARKGREY);
-		text.setFont(Font.font(GameMenu.DEFAULT_FONT, FontWeight.SEMI_BOLD,
-				22));
+		text.setFont(TextUtils.getFont(22));
 
 		setAlignment(Pos.CENTER);
 		getChildren().addAll(bg, text);
