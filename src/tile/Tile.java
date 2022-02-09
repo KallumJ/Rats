@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * A class to represent a Tile on the board
  *
- * @author fahds
+ * @author Kallum
  */
 public class Tile {
 	public final static int TILE_SIZE = 50;
