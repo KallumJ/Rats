@@ -13,7 +13,7 @@ import util.TextUtils;
  *
  * @author Samhitha Pinisetti 2035196
  */
-class MenuTitle extends StackPane {
+public class MenuTitle extends StackPane {
 
 	private static final int TITLE_WIDTH = 250;
 	private static final int TITLE_HEIGHT = 60;
