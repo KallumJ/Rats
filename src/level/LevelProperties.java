@@ -6,17 +6,17 @@ package level;
  * @author Kallum Jones 2005855
  */
 public class LevelProperties {
-	private final int levelId;
-	private final int levelHeight;
-	private final int levelWidth;
-	private final int populationToLose;
-	private final int expectedTime;
-	private final int itemInterval;
-	private final int ratMinBabies;
-	private final int ratMaxBabies;
-	private final int adultRatSpeed;
-	private final int babyRatSpeed;
-	private final int deathRatSpeed;
+	private int levelId;
+	private int levelHeight;
+	private int levelWidth;
+	private int populationToLose;
+	private int expectedTime;
+	private int itemInterval;
+	private int ratMinBabies;
+	private int ratMaxBabies;
+	private int adultRatSpeed;
+	private int babyRatSpeed;
+	private int deathRatSpeed;
 	private int score;
 	private int timeElapsed;
 
@@ -60,6 +60,28 @@ public class LevelProperties {
 		this.deathRatSpeed = deathRatSpeed;
 		this.timeElapsed = timeElapsed;
 		this.score = score;
+	}
+
+	/**
+	 * Constructs a blank LevelProperties object
+	 */
+	public LevelProperties() {
+	}
+
+	/**
+	 * Sets the level height
+	 * @param levelHeight the height of the level
+	 */
+	public void setLevelHeight(int levelHeight) {
+		this.levelHeight = levelHeight;
+	}
+
+	/**
+	 * Sets the level width
+	 * @param levelWidth the width of the level
+	 */
+	public void setLevelWidth(int levelWidth) {
+		this.levelWidth = levelWidth;
 	}
 
 	/**

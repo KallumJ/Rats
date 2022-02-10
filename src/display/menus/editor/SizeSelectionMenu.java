@@ -1,8 +1,9 @@
 package display.menus.editor;
 
+import display.Board;
+import display.CustomBoard;
 import display.menus.CustomLevelsMenu;
 import display.menus.GameMenu;
-import display.menus.MainMenu;
 import display.menus.MenuTitle;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -14,7 +15,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import players.PlayerProfileManager;
+import level.LevelData;
+import level.custom.CustomLevelDataFactory;
 import util.TextUtils;
 
 public class SizeSelectionMenu extends GameMenu {
@@ -92,7 +94,12 @@ public class SizeSelectionMenu extends GameMenu {
                 alert.setHeaderText(INVALID_SIZE);
                 alert.showAndWait();
             } else {
-                System.out.println("SUCCESS");
+                LevelData customLevel = CustomLevelDataFactory.getBlankLevelData(height, width);
+
+                CustomBoard board = new CustomBoard(customLevel);
+                Scene scene = new Scene(board.buildGUI());
+
+                GameMenu.getStage().setScene(scene);
             }
         });
 
