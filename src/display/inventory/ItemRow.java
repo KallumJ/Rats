@@ -72,7 +72,7 @@ public class ItemRow {
 			// Grab an image of the item
 			String objectImgUrl = ObjectUtils.getObjectImageUrl(objectType);
 			ImageView imageOfItem = new ImageView(objectImgUrl);
-			Tooltip.install(imageOfItem, new Tooltip(TextUtils.fancyFormat(objectType.toString())));
+			Tooltip.install(imageOfItem, new Tooltip(TextUtils.removeUnderscores(objectType.toString())));
 
 			// Add drag and release event handlers
 			imageOfItem.setOnMouseDragged(event -> onDrag(event, imageOfItem));
