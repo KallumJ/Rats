@@ -46,6 +46,10 @@ public class LoadMenu extends GameMenu {
 			}
 		}
 
+		//create a menu item to continue the game 
+		ContinueMenuItem ContinueMenuItem = new ContinueMenuItem();
+		menuItems.add(ContinueMenuItem);
+
 		// Add these menu items to a menu box
 		MenuItem[] menuItemsArr = menuItems.toArray(new MenuItem[0]);
 		MenuBox menuBox = new MenuBox(menuItemsArr);
