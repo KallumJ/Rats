@@ -111,10 +111,10 @@ public abstract class GameMenu {
 
 		// If an EventHandler for a back button is provided, add one
 		if (backHandler != null) {
-			Button backButton = new Button("Back"); //must change this
+			Button backButton = new Button("B A C K"); //must change this
 			backButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
 			backButton.setOnMousePressed(backHandler);
-			backButton.setTranslateX(pane.getPrefWidth() - 50);
+			backButton.setTranslateX(pane.getPrefWidth() - 70);
 			backButton.setTranslateY(pane.getPrefHeight() - 30);
 
 			pane.getChildren().add(backButton);
