@@ -13,5 +13,6 @@ public enum GameObjectType {
 	FEMALE_SEX_CHANGER,
 	BOMB,
 	DEATH_RAT,
-	GAS
+	GAS,
+        PORTAL
 }

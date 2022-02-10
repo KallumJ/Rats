@@ -153,6 +153,8 @@ public class Board {
 							secondObject);
 					ObjectInteractionChecker.checkGasEffect(firstObject,
 							secondObject);
+                                        ObjectInteractionChecker.checkPortal(firstObject,
+							secondObject);
 				}
 			}
 		}
@@ -514,4 +516,9 @@ public class Board {
 			gc.drawImage(tileImage, x, y);
 		}
 	}
+        
+        public LevelData getLevelData (){
+            
+            return levelData;
+        }
 }

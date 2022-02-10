@@ -51,6 +51,8 @@ public class ObjectUtils {
 				return "file:resources/deathRat.png";
 			case GAS:
 				return "file:resources/GasGif.gif";
+                        case PORTAL:
+				return "file:resources/Poral.gif";
 			default:
 				throw new IllegalArgumentException(String.format(NO_ASSIGNED_IMAGE, type));
 		}
