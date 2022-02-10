@@ -43,7 +43,7 @@ public class MainMenu extends GameMenu {
 		// Create a menu box with all the menu items required
 		MenuBox menuBox = new MenuBox(new LeaderboardMenuItem(),
 				new PlayMenuItem(), new ExitMenuItem(), new HelpMenuItem(), 
-				new LoadMenuItem(), new LevelEditorMenuItem());
+				new LoadMenuItem(), new CustomLevelsMenuItem());
 
 		// Create the menu
 		BorderPane mainMenu = buildMenu(new MenuTitle(MENU_TITLE), menuBox,

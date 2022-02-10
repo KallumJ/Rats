@@ -1,5 +1,6 @@
 package display.menus.editor;
 
+import display.menus.CustomLevelsMenu;
 import display.menus.GameMenu;
 import display.menus.MainMenu;
 import display.menus.MenuTitle;
@@ -34,7 +35,7 @@ public class SizeSelectionMenu extends GameMenu {
     public Parent buildMenu() {
         // Add a back button event handler
 		EventHandler<Event> backHandler = event -> GameMenu.getStage()
-                .setScene(new Scene(new MainMenu().buildMenu()));
+                .setScene(new Scene(new CustomLevelsMenu().buildMenu()));
 
         // Get a blank menu
         BorderPane menu = buildBlank(new MenuTitle(MENU_TITLE), backHandler);

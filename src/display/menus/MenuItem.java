@@ -5,6 +5,7 @@ import display.menus.editor.SizeSelectionMenu;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Menu;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -283,18 +284,81 @@ class LeaderboardLevelMenuItem extends MenuItem {
 }
 
 /**
- * Forward to Level Editor page.
+ * Forward to Custom Levels menu.
  *
- * @author YIMING LI
+ * @author YIMING LI (09/02/22)
  */
-class LevelEditorMenuItem extends MenuItem {
+class CustomLevelsMenuItem extends MenuItem {
+
 	/**
-	 * Constructs a LevelEditor button.
+	 * Constructs a CustomLevelsMenuItem.
 	 */
-	public LevelEditorMenuItem() {
-		super("LEVEL EDITOR");
+	public CustomLevelsMenuItem() {
+		super("CUSTOM LEVELS");
+
+		Scene scene = new Scene(new CustomLevelsMenu().buildMenu());
+		setOnMousePressed(event -> GameMenu.getStage().setScene(scene));
+	}
+}
+
+/**
+ * A class to model a menu item for starting a custom level
+ *
+ * @author Kallum Jones 2005855 (10/02/22)
+ */
+class StartCustomLevelMenuItem extends MenuItem {
+	/**
+	 * Constructs a StartNewCustomLevelMenuItem button.
+	 */
+	public StartCustomLevelMenuItem() {
+		super("CREATE CUSTOM LEVEL");
 
 		Scene scene = new Scene(new SizeSelectionMenu().buildMenu());
 		setOnMousePressed(event -> GameMenu.getStage().setScene(scene));
+	}
+}
+
+/**
+ * A class to model a menu item for editing a custom level
+ *
+ * @author Kallum Jones 2005855 (10/02/22)
+ */
+class EditCustomLevelMenuItem extends MenuItem {
+
+	/**
+	 * Constructs a EditCustomLevelMenuItem with the provided name.
+	 */
+	public EditCustomLevelMenuItem() {
+		super("EDIT CUSTOM LEVEL");
+	}
+}
+
+/**
+ * A class to model a menu item for loading a custom level
+ *
+ * @author Kallum Jones 2005855 (10/02/22)
+ */
+class LoadCustomLevelMenuItem extends MenuItem {
+
+	/**
+	 * Constructs a MenuItem with the provided name.
+	 */
+	public LoadCustomLevelMenuItem() {
+		super("LOAD CUSTOM LEVEL");
+	}
+}
+
+/**
+ * A class to model a menu item for deleting a custom level
+ *
+ * @author Kallum Jones 2005855 (10/02/22)
+ */
+class DeleteCustomLevelMenuItem extends MenuItem {
+
+	/**
+	 * Constructs a MenuItem with the provided name.
+	 */
+	public DeleteCustomLevelMenuItem() {
+		super("DELETE CUSTOM LEVEL");
 	}
 }
