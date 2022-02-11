@@ -51,8 +51,8 @@ public class ObjectUtils {
 				return "file:resources/deathRat.png";
 			case GAS:
 				return "file:resources/GasGif.gif";
-                        case PORTAL:
-				return "file:resources/Poral.gif";
+				case PORTAL:
+				return "file:resources/portal.gif";
 			default:
 				throw new IllegalArgumentException(String.format(NO_ASSIGNED_IMAGE, type));
 		}
@@ -93,6 +93,8 @@ public class ObjectUtils {
 						DeathRat.DEFAULT_KILLS_TARGET);
 			case GAS:
 				return new Gas(standingOn, Gas.DEFAULT_ACTIVATION);
+			case PORTAL:
+				return new Portal(standingOn, 0, 0);
 			default:
 				throw new IllegalArgumentException(String.format(NO_CONSTRUCTOR_ASSIGNED, type));
 		}
