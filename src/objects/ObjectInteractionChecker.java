@@ -239,5 +239,17 @@ public class ObjectInteractionChecker {
 			}
 		}
 	}
+        
+        public static void checkPortal(GameObject firstObject, GameObject secondObject){
+            if (firstObject instanceof Portal) {
+		if (secondObject instanceof Rat) {
+                    Portal portal = (Portal) firstObject;
+                    Rat rat = (Rat) secondObject;
+                    portal.enterPortal(rat);
+                            
+                }
+            }            
+            
+        }
 
 }

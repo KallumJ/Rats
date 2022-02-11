@@ -141,6 +141,8 @@ public class Board {
 							secondObject);
 					ObjectInteractionChecker.checkGasEffect(firstObject,
 							secondObject);
+                                        ObjectInteractionChecker.checkPortal(firstObject,
+							secondObject);
 				}
 			}
 		}
@@ -437,4 +439,9 @@ public class Board {
 	public Canvas getCanvas() {
 		return tileCanvas.getCanvas();
 	}
+        
+        public LevelData getLevelData (){
+            
+            return levelData;
+        }
 }
