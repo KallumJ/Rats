@@ -1,5 +1,6 @@
 package display;
 
+import display.menus.editor.LevelPropertiesInputMenu;
 import javafx.scene.layout.BorderPane;
 import level.LevelData;
 
@@ -24,6 +25,7 @@ public class CustomBoard {
     public BorderPane buildGUI() {
         BorderPane root = new BorderPane();
         root.setLeft(tileCanvas.getCanvas());
+        root.setBottom(new LevelPropertiesInputMenu().buildGUI());
 
         return root;
     }
