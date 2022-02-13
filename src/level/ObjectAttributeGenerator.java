@@ -21,6 +21,7 @@ public class ObjectAttributeGenerator {
 	public static final String POISON_KEY = "poison";
 	public static final String SEX_CHANGE_KEY = "sex_ch";
 	public static final String NO_ENTRY_SIGN_KEY = "xentry";
+	public static final String PORTAL_KEY = "portal";
 
 	/**
 	 * Empty private constructor method, preventing ObjectAttributeGenerator
@@ -64,7 +65,8 @@ public class ObjectAttributeGenerator {
 			String attributeValue = generatePoisonAttribute(poison);
 
 			attributes.put(POISON_KEY, attributeValue);
-		} else if (objectOnTile instanceof MaleSexChanger || objectOnTile instanceof FemaleSexChanger) {
+		} else if (objectOnTile instanceof MaleSexChanger ||
+				objectOnTile instanceof FemaleSexChanger) {
 			String attributeValue;
 			if (objectOnTile instanceof MaleSexChanger) {
 				MaleSexChanger maleSexChanger = (MaleSexChanger) objectOnTile;
@@ -87,7 +89,22 @@ public class ObjectAttributeGenerator {
 			String attributeValue = generateGasAttribute(gas);
 
 			attributes.put(GAS_KEY, attributeValue);
+		} else if (objectOnTile instanceof Portal) {
+			Portal portal = (Portal) objectOnTile;
+			String attributeValue = generatePortalAttribute(portal);
+
+			attributes.put(PORTAL_KEY, attributeValue);
 		}
+	}
+
+	/**
+	 * A method to generate the attribute string for Portal.
+	 *
+	 * @param portal the portal
+	 * @return the attribute string for the provided portal
+	 */
+	private static String generatePortalAttribute(Portal portal) {
+		return "";
 	}
 
 	/**

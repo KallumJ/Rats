@@ -103,7 +103,7 @@ public class ObjectUtils {
 			case GAS:
 				return new Gas(standingOn, Gas.DEFAULT_ACTIVATION);
 			case PORTAL:
-				return new Portal(standingOn, 0, 0);
+				return new Portal(standingOn);
 			case FEMALE_RAT:
 				return new PeacefulRat(standingOn, false, true, false, "f", 9, 15, 1000, Direction.UP);
 			case MALE_RAT:
@@ -137,6 +137,8 @@ public class ObjectUtils {
 				return ObjectAttributeGenerator.NO_ENTRY_SIGN_KEY;
 			case FEMALE_SEX_CHANGER:
 				return "fsex";
+			case PORTAL:
+				return ObjectAttributeGenerator.PORTAL_KEY;
 			default:
 				throw new IllegalArgumentException(String.format(NO_STRING_ASSIGNED, gameObjectType));
 		}

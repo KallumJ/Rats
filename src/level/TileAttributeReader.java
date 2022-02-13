@@ -58,9 +58,15 @@ public class TileAttributeReader {
 				return readSexChange(attributeValue, tile);
 			case ObjectAttributeGenerator.NO_ENTRY_SIGN_KEY:
 				return readNoEntrySign(attributeValue, tile);
+			case ObjectAttributeGenerator.PORTAL_KEY:
+				return readPortal(attributeValue, tile);
 		}
 		throw new RuntimeException(String.format(INVALID_ATTRIBUTE,
 				attributeName, attributeValue));
+	}
+
+	private static GameObject readPortal(String attributeValue, Tile tile) {
+		return new Portal(tile);
 	}
 
 	/**
