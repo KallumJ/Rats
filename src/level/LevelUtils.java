@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 import players.scores.Player;
 import tile.Direction;
 import tile.Tile;
+import tile.TileSet;
 import tile.TileType;
 
 import java.io.File;
@@ -305,4 +306,26 @@ public class LevelUtils {
 		return filePlayer.equals(playerName);
 	}
 
+	/**
+	 * A method to give every tile in a tile set their adjacent tile.
+	 *
+	 * @param tileSet the tile set to run through
+	 */
+	public static void setAdjacentTiles(TileSet tileSet) {
+		for (int y = 0; y < tileSet.getHeight(); y++) {
+			for (int x = 0; x < tileSet.getWidth(); x++) {
+				Tile tile = tileSet.getTile(x, y);
+
+				tile.setAdjacentTileIfPresent(Direction.UP, tileSet.getTile(x,
+						y - 1));
+				tile.setAdjacentTileIfPresent(Direction.DOWN,
+						tileSet.getTile(x, y + 1));
+				tile.setAdjacentTileIfPresent(Direction.LEFT,
+						tileSet.getTile(x - 1, y));
+				tile.setAdjacentTileIfPresent(Direction.RIGHT,
+						tileSet.getTile(x + 1, y));
+			}
+		}
+
+	}
 }

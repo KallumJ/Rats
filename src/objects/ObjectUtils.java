@@ -3,7 +3,12 @@ package objects;
 import level.LevelData;
 import level.ObjectAttributeGenerator;
 import objects.rats.DeathRat;
+import objects.rats.PeacefulRat;
+import tile.Direction;
 import tile.Tile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class to provide utility methods for working with GameObjects.
@@ -53,6 +58,10 @@ public class ObjectUtils {
 				return "file:resources/GasGif.gif";
 				case PORTAL:
 				return "file:resources/portal.gif";
+			case MALE_RAT:
+				return "file:resources/maleRat.png";
+			case FEMALE_RAT:
+				return "file:resources/femaleRat.png";
 			default:
 				throw new IllegalArgumentException(String.format(NO_ASSIGNED_IMAGE, type));
 		}
@@ -95,6 +104,10 @@ public class ObjectUtils {
 				return new Gas(standingOn, Gas.DEFAULT_ACTIVATION);
 			case PORTAL:
 				return new Portal(standingOn, 0, 0);
+			case FEMALE_RAT:
+				return new PeacefulRat(standingOn, false, true, false, "f", 9, 15, 1000, Direction.UP);
+			case MALE_RAT:
+				return new PeacefulRat(standingOn, false, true, false, "m", 9, 15, 1000, Direction.UP);
 			default:
 				throw new IllegalArgumentException(String.format(NO_CONSTRUCTOR_ASSIGNED, type));
 		}
@@ -156,5 +169,21 @@ public class ObjectUtils {
 			default:
 				throw new IllegalArgumentException(String.format(NO_TYPE_ASSIGNED, itemString));
 		}
+	}
+
+	/**
+	 * Returns a list of all objects that are items in game (i.e, no male or female rats)
+	 * @return a list of all objects that are items in game
+	 */
+	public static GameObjectType[] getAllObjectsList() {
+		List<GameObjectType> objects = new ArrayList<>();
+
+		for (GameObjectType object : GameObjectType.values()) {
+			if (object != GameObjectType.MALE_RAT && object != GameObjectType.FEMALE_RAT) {
+				objects.add(object);
+			}
+		}
+
+		return objects.toArray(new GameObjectType[0]);
 	}
 }

@@ -128,14 +128,16 @@ public class Bomb extends GameObject implements ObjectStoppable {
 		}
 	}
 
-	private void findAffectedTilesRecurse(Direction direction,
-										  Tile currentTile) {
+	/**
+	 * Find affected tiles recursively
+	 * @param direction the direction to check
+	 * @param currentTile the current tile to check
+	 */
+	private void findAffectedTilesRecurse(Direction direction, Tile currentTile) {
 		affectedTiles.add(currentTile);
-		if (!currentTile.getAdjacentTile(direction)
-				.getTileType()
-				.equals(TileType.GRASS)) {
-			findAffectedTilesRecurse(direction,
-					currentTile.getAdjacentTile(direction));
+		Tile adjacentTile = currentTile.getAdjacentTile(direction);
+		if (adjacentTile != null && !adjacentTile.getTileType().equals(TileType.GRASS)) {
+			findAffectedTilesRecurse(direction, adjacentTile);
 		}
 	}
 

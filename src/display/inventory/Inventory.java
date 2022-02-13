@@ -1,13 +1,10 @@
 package display.inventory;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import level.LevelData;
 import objects.GameObjectType;
+import objects.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,7 +23,7 @@ public class Inventory {
 	private static final int INVENTORY_PADDING = 10; // px
 	private final List<GameObjectType> itemsInInventory;
 	private final LevelData levelData;
-	private final Set<ItemRow> itemRows;
+	protected final Set<ItemRow> itemRows;
 	private final VBox inventoryNode;
 
 	/**
@@ -40,7 +37,7 @@ public class Inventory {
 
 		final int pad = INVENTORY_PADDING;
 		inventoryNode.setPadding(new Insets(pad, pad, pad, pad));
-		inventoryNode.setStyle("-fx-background-image: url" + "(file:resources" + "/inventorySkin.png);");
+		inventoryNode.setStyle("-fx-background-image: url(file:resources/inventorySkin.png);");
 		inventoryNode.setMinWidth(INVENTORY_WIDTH);
 
 		// Create a set of rows
@@ -57,15 +54,6 @@ public class Inventory {
 		}
 
 		this.levelData = levelData;
-
-		// Add an item to the inventory after every interval
-		int itemInterval = levelData.getLevelProperties().getItemInterval();
-		Duration intvlDur = Duration.seconds(itemInterval);
-		KeyFrame keyframe = new KeyFrame(intvlDur, event -> addRandomItem());
-		Timeline timeline = new Timeline(keyframe);
-
-		timeline.setCycleCount(Animation.INDEFINITE);
-		timeline.play();
 	}
 
 	/**
@@ -133,7 +121,7 @@ public class Inventory {
 	 * @return a randomly selected GameObjectType
 	 */
 	private static GameObjectType makeRandomObjectSelection() {
-		GameObjectType[] selectionList = GameObjectType.values();
+		GameObjectType[] selectionList = ObjectUtils.getAllObjectsList();
 		int listLength = selectionList.length;
 		Random random = new Random();
 
@@ -145,7 +133,7 @@ public class Inventory {
 	 *
 	 * @param object the object type to add to the inventory
 	 */
-	private void addItem(final GameObjectType object) {
+	protected void addItem(final GameObjectType object) {
 		if (isSlotOpen()) {
 			itemsInInventory.add(object);
 
@@ -174,7 +162,7 @@ public class Inventory {
 	 *
 	 * @return true if there is a slot open, false otherwise
 	 */
-	private boolean isSlotOpen() {
+	protected boolean isSlotOpen() {
 		// Return true if there is a row currently with an empty slot
 		for (ItemRow itemRow : itemRows) {
 			if (itemRow.getObjectCount() < ItemRow.MAX_ITEMS_IN_ROW) {
@@ -184,6 +172,6 @@ public class Inventory {
 
 		// Return true if the number of rows is less than the number of objects
 		// Else return false
-		return itemRows.size() < GameObjectType.values().length;
+		return itemRows.size() < ObjectUtils.getAllObjectsList().length;
 	}
 }

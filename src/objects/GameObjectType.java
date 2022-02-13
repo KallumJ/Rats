@@ -14,5 +14,7 @@ public enum GameObjectType {
 	BOMB,
 	DEATH_RAT,
 	GAS,
-        PORTAL
+	PORTAL,
+	MALE_RAT,
+	FEMALE_RAT
 }

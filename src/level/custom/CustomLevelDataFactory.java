@@ -2,6 +2,7 @@ package level.custom;
 
 import level.LevelData;
 import level.LevelProperties;
+import level.LevelUtils;
 import tile.TileSet;
 import tile.TileType;
 
@@ -24,9 +25,10 @@ public class CustomLevelDataFactory {
         TileSet tileSet = new TileSet();
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tileSet.putTile(TileType.GRASS, x, y);
+                tileSet.putTile(TileType.PATH, x, y);
             }
         }
+        LevelUtils.setAdjacentTiles(tileSet);
 
         LevelProperties levelProperties = new LevelProperties();
         levelProperties.setLevelWidth(width);

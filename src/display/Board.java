@@ -1,5 +1,6 @@
 package display;
 
+import display.inventory.GameInventory;
 import display.inventory.Inventory;
 import display.menus.GameMenu;
 import display.menus.LoseMenu;
@@ -50,14 +51,14 @@ public class Board {
 			"Time elapsed: %d " + "seconds. Expected time: %d seconds. Score " + "%d. Population to lose " + "%d.";
 	private static final int INFO_LABEL_PADDING = 5; // in pixels
 
-	private final LevelData levelData;
-	private final Label timerLabel;
-	private final TileCanvas tileCanvas;
-	private final Inventory inventory;
-	private final Timeline interactionCheckTimeline;
-	private final Timeline gameLabelTimeline;
-	private final int populationToLose;
-	private final ArrayList<Rectangle> progressBar;
+	private LevelData levelData;
+	private Label timerLabel;
+	private TileCanvas tileCanvas;
+	private Inventory inventory;
+	private Timeline interactionCheckTimeline;
+	private Timeline gameLabelTimeline;
+	private int populationToLose;
+	private ArrayList<Rectangle> progressBar;
 	private Timeline winLoseTimeline;
 
 	/**
@@ -93,9 +94,15 @@ public class Board {
 		gameLabelTimeline.play();
 
 		// Create a new inventory for the level
-		this.inventory = new Inventory(levelData);
+		this.inventory = new GameInventory(levelData);
 
 		progressBar = new ArrayList<>(populationToLose);
+	}
+
+	/**
+	 * Constructs a Board object without data, to allow for constructing a CustomBoard
+	 */
+	public Board() {
 	}
 
 	/**
@@ -439,9 +446,12 @@ public class Board {
 	public Canvas getCanvas() {
 		return tileCanvas.getCanvas();
 	}
-        
-        public LevelData getLevelData (){
-            
-            return levelData;
-        }
+
+	/**
+	 * Get the level data for this board
+	 * @return the level data for this board
+	 */
+	public LevelData getLevelData (){
+		return levelData;
+	}
 }

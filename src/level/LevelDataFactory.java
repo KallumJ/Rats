@@ -81,7 +81,7 @@ public class LevelDataFactory {
 		TileSet tileSet = readTileSet(tileSetElement);
 
 
-		setAdjacentTiles(tileSet);
+		LevelUtils.setAdjacentTiles(tileSet);
 		ArrayList<GameObject> objects = readObjects(tileSet, levelProperties);
 
 		LevelData levelData = new LevelData(levelProperties, tileSet, objects);
@@ -172,29 +172,6 @@ public class LevelDataFactory {
 		}
 
 		return tileSet;
-	}
-
-	/**
-	 * A method to give every tile in a tile set their adjacent tile.
-	 *
-	 * @param tileSet the tile set to run through
-	 */
-	private static void setAdjacentTiles(TileSet tileSet) {
-		for (int y = 0; y < tileSet.getHeight(); y++) {
-			for (int x = 0; x < tileSet.getWidth(); x++) {
-				Tile tile = tileSet.getTile(x, y);
-
-				tile.setAdjacentTileIfPresent(Direction.UP, tileSet.getTile(x,
-						y - 1));
-				tile.setAdjacentTileIfPresent(Direction.DOWN,
-						tileSet.getTile(x, y + 1));
-				tile.setAdjacentTileIfPresent(Direction.LEFT,
-						tileSet.getTile(x - 1, y));
-				tile.setAdjacentTileIfPresent(Direction.RIGHT,
-						tileSet.getTile(x + 1, y));
-			}
-		}
-
 	}
 
 	/**
