@@ -1,5 +1,6 @@
 package display.inventory;
 
+import display.CustomBoard;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -155,6 +156,11 @@ public class ItemRow {
 					object, levelData);
 			GameObject.getBoard().addObject(objForPlacing);
 			decrementCount(image);
+
+			// If this row is in a custom board, we dont want to use items
+			if (GameObject.getBoard() instanceof CustomBoard) {
+				incrementObjectCount();
+			}
 		}
 
 		// If there are no objects in row, remove it from row list, and

@@ -2,6 +2,7 @@ package objects.rats;
 
 import java.util.Random;
 
+import display.CustomBoard;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -32,12 +33,15 @@ public class Rat extends GameObject implements ObjectStoppable {
 		this.speed = speed;
 		this.directionOfMovement = directionOfMovement;
 
-		moveTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed),
-				event -> move()));
+		// Only move rats if this is on a normal Board
+		if (!(GameObject.getBoard() instanceof CustomBoard)) {
+			moveTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed),
+					event -> move()));
 
-		// Loop the timeline forever
-		moveTimeline.setCycleCount(Animation.INDEFINITE);
-		moveTimeline.play();
+			// Loop the timeline forever
+			moveTimeline.setCycleCount(Animation.INDEFINITE);
+			moveTimeline.play();
+		}
 	}
 
 	/**
