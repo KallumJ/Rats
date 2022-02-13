@@ -1,6 +1,5 @@
 package display.menus.editor;
 
-import display.Board;
 import display.CustomBoard;
 import display.menus.CustomLevelsMenu;
 import display.menus.GameMenu;

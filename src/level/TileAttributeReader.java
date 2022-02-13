@@ -91,6 +91,7 @@ public class TileAttributeReader {
 		String gender = scanner.next();
 
 		if (!(gender.equals("f") || gender.equals("m"))) {
+			scanner.close();
 			throw new IllegalArgumentException(String.format(INVALID_GENDER,
 					gender));
 		}
@@ -98,6 +99,8 @@ public class TileAttributeReader {
 		int timeToBirth = scanner.nextInt();
 		int timeToDevelop = scanner.nextInt();
 		Direction direction = getDirectionFromString(scanner.next());
+
+		scanner.close();
 
 		// If the rat is an adult, give them adult speed, if not, baby speed
 		int speed = adult ? levelProperties.getAdultRatSpeed() :
@@ -132,6 +135,8 @@ public class TileAttributeReader {
 		int duration = scanner.nextInt();
 		boolean active = scanner.nextBoolean();
 
+		scanner.close();
+
 		return new Sterilisation(tile, duration, active);
 	}
 
@@ -147,6 +152,8 @@ public class TileAttributeReader {
 		Scanner scanner = new Scanner(attributeValue);
 		int damage = scanner.nextInt();
 		int durability = scanner.nextInt();
+
+		scanner.close();
 
 		return new NoEntrySign(tile, damage, durability);
 	}
@@ -182,6 +189,8 @@ public class TileAttributeReader {
 		int duration = scanner.nextInt();
 		int timeRemaining = scanner.nextInt();
 		boolean timerStarted = scanner.nextBoolean();
+		
+		scanner.close();
 
 		return new Bomb(tile, duration, timeRemaining, timerStarted);
 	}
@@ -199,6 +208,8 @@ public class TileAttributeReader {
 		Direction direction = getDirectionFromString(scanner.next());
 		int numOfKills = scanner.nextInt();
 		int killsTarget = scanner.nextInt();
+
+		scanner.close();
 
 		return new DeathRat(tile, levelProperties.getDeathRatSpeed(),
 				direction, numOfKills, killsTarget);

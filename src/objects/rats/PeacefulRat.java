@@ -7,7 +7,6 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import objects.GameObject;
-import objects.ObjectStoppable;
 import tile.Direction;
 import tile.Tile;
 
@@ -16,7 +15,7 @@ import tile.Tile;
  *
  * @author Fahd
  */
-public class PeacefulRat extends Rat implements ObjectStoppable {
+public class PeacefulRat extends Rat {
 
 	// Added as being pregnant requires the board to be populated, which it
 	// isnt when this is constructed

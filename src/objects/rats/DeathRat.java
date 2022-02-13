@@ -5,19 +5,16 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import objects.GameObject;
-import objects.ObjectStoppable;
 import sfx.SFXManager;
 import tile.Direction;
 import tile.Tile;
-
-import java.sql.Time;
 
 /**
  * Represents a Death Rat, as an extension of {@code Rat}.
  *
  * @author fahds
  */
-public class DeathRat extends Rat implements ObjectStoppable {
+public class DeathRat extends Rat {
 
 	public static final Direction DEFAULT_DIRECTION = Direction.UP;
 	public static final int DEFAULT_NUM_OF_KILLS = 0;
