@@ -65,6 +65,12 @@ public class TileAttributeReader {
 				attributeName, attributeValue));
 	}
 
+	/**
+	 * A method to construct a portal object with the provided attribute data
+	 * @param attributeValue the data to construct a Portal with
+	 * @param tile the Tile the Portal is on
+	 * @return the constructed Portal
+	 */
 	private static GameObject readPortal(String attributeValue, Tile tile) {
 		return new Portal(tile);
 	}
