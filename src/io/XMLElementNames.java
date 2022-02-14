@@ -6,55 +6,55 @@ package io;
  * @author Kallum Jones 2005855
  */
 public enum XMLElementNames {
-    LEVEL_ROOT("level"),
+	LEVEL_ROOT("level"),
 
-    LEVEL_PROPERTIES("levelProperties"),
-    LEVEL_HEIGHT("levelHeight"),
-    LEVEL_WIDTH("levelWidth"),
-    POPULATION_TO_LOSE("populationToLose"),
-    EXPECTED_TIME("expectedTime"),
-    LEVEL_ID("id"),
-    ITEM_INTERVAL("itemInterval"),
-    RAT_MIN_BABIES("ratMinBabies"),
-    RAT_MAX_BABIES("ratMaxBabies"),
-    ADULT_RAT_SPEED("adultRatSpeed"),
-    BABY_RAT_SPEED("babyRatSpeed"),
-    DEATH_RAT_SPEED("deathRatSpeed"),
-    LEVEL_SCORE("score"),
+	LEVEL_PROPERTIES("levelProperties"),
+	LEVEL_HEIGHT("levelHeight"),
+	LEVEL_WIDTH("levelWidth"),
+	POPULATION_TO_LOSE("populationToLose"),
+	EXPECTED_TIME("expectedTime"),
+	LEVEL_ID("id"),
+	ITEM_INTERVAL("itemInterval"),
+	RAT_MIN_BABIES("ratMinBabies"),
+	RAT_MAX_BABIES("ratMaxBabies"),
+	ADULT_RAT_SPEED("adultRatSpeed"),
+	BABY_RAT_SPEED("babyRatSpeed"),
+	DEATH_RAT_SPEED("deathRatSpeed"),
+	LEVEL_SCORE("score"),
 
-    TILE_SET("tileSet"),
-    TILE_ROW("tileRow"),
-    TILE("tile"),
+	TILE_SET("tileSet"),
+	TILE_ROW("tileRow"),
+	TILE("tile"),
 
-    PLAYERS_ROOT("players"),
+	PLAYERS_ROOT("players"),
 
-    PLAYER("player"),
-    PLAYER_NAME("name"),
-    PLAYER_MAX_LEVEL("maxLevel"),
-    HIGH_SCORE("highScore"),
-    TIME_ELAPSED("timeElapsed"),
+	PLAYER("player"),
+	PLAYER_NAME("name"),
+	PLAYER_MAX_LEVEL("maxLevel"),
+	HIGH_SCORE("highScore"),
+	TIME_ELAPSED("timeElapsed"),
 
-    INVENTORY("inventory"),
-    ITEM("item");
+	INVENTORY("inventory"),
+	ITEM("item");
 
-    private final String name;
+	private final String name;
 
-    /**
-     * Constructs an XMLElementName
-     *
-     * @param nodeName the name of the node
-     */
-    XMLElementNames(String nodeName) {
-        this.name = nodeName;
-    }
+	/**
+	 * Constructs an XMLElementName
+	 *
+	 * @param nodeName the name of the node
+	 */
+	XMLElementNames(String nodeName) {
+		this.name = nodeName;
+	}
 
-    /**
-     * Returns the name of the node
-     *
-     * @return the name of the node
-     */
-    @Override
-    public String toString() {
-        return name;
-    }
+	/**
+	 * Returns the name of the node
+	 *
+	 * @return the name of the node
+	 */
+	@Override
+	public String toString() {
+		return name;
+	}
 }

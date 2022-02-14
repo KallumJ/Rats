@@ -12,48 +12,53 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * A class to model a menu for loading saved levels for this player
+ * A class to model a menu for loading saved levels for this player.
  *
  * @author Kallum Jones 2005855
  */
 public class LoadMenu extends GameMenu {
-    private static final String MENU_TITLE = " L O A D ";
+	private static final String MENU_TITLE = " L O A D ";
 
-    /**
-     * A method to build the Load Menu GUI
-     *
-     * @return the Node containing the Load Menu
-     */
-    @Override
-    public Parent buildMenu() {
-        Player currentlyLoggedInPlayer = PlayerProfileManager.getCurrentlyLoggedInPlayer();
-        ArrayList<MenuItem> menuItems = new ArrayList<>();
+	/**
+	 * A method to build the Load Menu GUI.
+	 *
+	 * @return the Node containing the Load Menu
+	 */
+	@Override
+	public Parent buildMenu() {
+		Player currentlyLoggedInPlayer =
+				PlayerProfileManager.getCurrentlyLoggedInPlayer();
+		ArrayList<MenuItem> menuItems = new ArrayList<>();
 
-        // For every saved level file for this player, add a menu item to the list of menu items
-        for (File savedLevel : LevelUtils.getSavedLevelsFiles()) {
-            String playerForLevel =
-                    LevelUtils.getPlayerNameFromSavedLevel(savedLevel);
-            String loggedInPlayerName =
-                    currentlyLoggedInPlayer.getPlayerName();
+		// For every saved level file for this player, add a menu item to the
+		// list of menu items
+		for (File savedLevel : LevelUtils.getSavedLevelsFiles()) {
+			String playerForLevel =
+					LevelUtils.getPlayerNameFromSavedLevel(savedLevel);
+			String loggedInPlayerName =
+					currentlyLoggedInPlayer.getPlayerName();
 
-            if (playerForLevel.equals(loggedInPlayerName)) {
-                int levelId = LevelUtils.getFilesLevelId(savedLevel);
-                SavedLevelMenuItem levelMenuItem =
-                        new SavedLevelMenuItem(String.valueOf(levelId));
-                menuItems.add(levelMenuItem);
-            }
-        }
+			if (playerForLevel.equals(loggedInPlayerName)) {
+				int levelId = LevelUtils.getFilesLevelId(savedLevel);
+				SavedLevelMenuItem levelMenuItem =
+						new SavedLevelMenuItem(String.valueOf(levelId));
+				menuItems.add(levelMenuItem);
+			}
+		}
 
-        // Add these menu items to a menu box
-        MenuItem[] menuItemsArr = menuItems.toArray(new MenuItem[0]);
-        MenuBox menuBox = new MenuBox(menuItemsArr);
+		//create a menu item to continue the game 
+		ContinueMenuItem ContinueMenuItem = new ContinueMenuItem();
+		menuItems.add(ContinueMenuItem);
 
-        // Add a back button event handler
-        EventHandler<Event> backHandler = event ->
-                GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu())
-                );
+		// Add these menu items to a menu box
+		MenuItem[] menuItemsArr = menuItems.toArray(new MenuItem[0]);
+		MenuBox menuBox = new MenuBox(menuItemsArr);
 
-        // Return the constructed menu
-        return buildMenu(new MenuTitle(MENU_TITLE), menuBox, backHandler);
-    }
+		// Add a back button event handler
+		EventHandler<Event> backHandler = event -> GameMenu.getStage()
+				.setScene(new Scene(new MainMenu().buildMenu()));
+
+		// Return the constructed menu
+		return buildMenu(new MenuTitle(MENU_TITLE), menuBox, backHandler);
+	}
 }

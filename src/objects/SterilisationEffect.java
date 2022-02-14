@@ -12,27 +12,28 @@ import tile.Tile;
  */
 public class SterilisationEffect extends GameObject {
 
-    /**
-     * Creates a new sterilisation effect object on the specified tile.
-     *
-     * @param standingOn The tile the sterilisation effect will be active on.
-     */
-    public SterilisationEffect(Tile standingOn) {
-        super(standingOn);
+	/**
+	 * Creates a new sterilisation effect object on the specified tile.
+	 *
+	 * @param standingOn The tile the sterilisation effect will be active on.
+	 */
+	public SterilisationEffect(Tile standingOn) {
+		super(standingOn);
 
-        Image sterilisationEffectImage = new Image("file:resources/SterilisationEffect.png");
-        super.setIcon(sterilisationEffectImage);
+		Image sterilisationEffectImage = new Image("file:resources" +
+				"/SterilisationEffect.png");
+		super.setIcon(sterilisationEffectImage);
 
-    }
+	}
 
-    /**
-     * Makes a rat sterile.
-     *
-     * @param rat The Rat which will be sterile.
-     */
-    public void beSterile(PeacefulRat rat) {
+	/**
+	 * Makes a rat sterile.
+	 *
+	 * @param rat The Rat which will be sterile.
+	 */
+	public void beSterile(PeacefulRat rat) {
 
-        rat.setSterilisation(true);
-    }
+		rat.setSterilisation(true);
+	}
 
 }

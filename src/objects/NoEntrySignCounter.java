@@ -14,52 +14,56 @@ import tile.Tile;
  */
 public class NoEntrySignCounter extends GameObject implements ObjectStoppable {
 
-    private static final int DELAY = 1;
-    private final NoEntrySign sourceSign;
-    private boolean recentlyActivated;
-    private Timeline resetActivatedTimeline;
+	private static final int DELAY = 1;
+	private final NoEntrySign sourceSign;
+	private boolean recentlyActivated;
+	private Timeline resetActivatedTimeline;
 
-    /**
-     * Creates NoEntrySignCounter next to the a NoEntrySign and count damage
-     * done.
-     *
-     * @param standingOn The tile the no entry sign is on.
-     * @param sourceSign The original NoEntrySign which it damage will be
-     * updated.
-     */
-    public NoEntrySignCounter(Tile standingOn, NoEntrySign sourceSign) {
-        super(standingOn);
+	/**
+	 * Creates NoEntrySignCounter next to the a NoEntrySign and count damage
+	 * done.
+	 *
+	 * @param standingOn The tile the no entry sign is on.
+	 * @param sourceSign The original NoEntrySign which it damage will be
+	 *                   updated.
+	 */
+	public NoEntrySignCounter(Tile standingOn, NoEntrySign sourceSign) {
+		super(standingOn);
 
-        this.sourceSign = sourceSign;
-    }
+		this.sourceSign = sourceSign;
+	}
 
-    /**
-     * Blocks the rats way and make them change direction.
-     *
-     * @param rat The rat which it direction will be changed in case of contact.
-     */
-    public void blockPath(Rat rat) {
+	/**
+	 * Blocks the rats way and make them change direction.
+	 *
+	 * @param rat The rat which it direction will be changed in case of
+	 *            contact.
+	 */
+	public void blockPath(Rat rat) {
 
-        // If we haven't been activated recently
-        if (!recentlyActivated) {
-            recentlyActivated = true;
+		// If we haven't been activated recently
+		if (!recentlyActivated) {
+			recentlyActivated = true;
 
-            // after the specified delay has passed, allow damage to be done again
-            resetActivatedTimeline = new Timeline(new KeyFrame(Duration.seconds(DELAY), event -> recentlyActivated = false));
-            resetActivatedTimeline.play();
+			// after the specified delay has passed, allow damage to be done
+			// again
+			resetActivatedTimeline =
+					new Timeline(new KeyFrame(Duration.seconds(DELAY),
+							event -> recentlyActivated = false));
+			resetActivatedTimeline.play();
 
-            sourceSign.doDamage();
+			sourceSign.doDamage();
 
-        }
-    }
+		}
+	}
 
-    /**
-     * Stops any timelines running in this object
-     */
-    @Override
-    public void stop() {
-        if (resetActivatedTimeline != null) {
-            resetActivatedTimeline.pause();
-        }
-    }
+	/**
+	 * Stops any timelines running in this object
+	 */
+	@Override
+	public void stop() {
+		if (resetActivatedTimeline != null) {
+			resetActivatedTimeline.pause();
+		}
+	}
 }

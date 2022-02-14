@@ -6,7 +6,5 @@ package tile;
  * @author Kallum Jones 2005855
  */
 public enum TileType {
-    GRASS,
-    PATH,
-    TUNNEL
+	GRASS, PATH, TUNNEL
 }
