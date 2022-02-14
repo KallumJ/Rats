@@ -3,12 +3,16 @@ package weather;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import sfx.SFXManager;
 
 /**
  *Add thunder weather
@@ -55,6 +59,11 @@ public class Thunder {
         Timeline timeline=new Timeline();
         EventHandler<ActionEvent> handler1=(ActionEvent e) -> {
             layer1.toFront();
+            layer1.visibleProperty().addListener((Observable e1) -> {
+                if(layer1.isVisible()){
+                    SFXManager.playThunder();
+                }
+            });
         };
         EventHandler<ActionEvent> handler2=(ActionEvent e) -> {
             layer2.toFront();
@@ -70,6 +79,7 @@ public class Thunder {
     
     /**
      * Used to close thunder weather in level Editor.
+     * @param turnOn
      */
     public void thunderSwitch(String turnOn){
         if(turnOn.equals("turnOff")){

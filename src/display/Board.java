@@ -35,6 +35,7 @@ import players.PlayerProfileManager;
 import players.scores.Player;
 import tile.Tile;
 import util.TextUtils;
+import weather.Thunder;
 
 /**
  * A class to model the current game board
@@ -60,6 +61,7 @@ public class Board {
 	private int populationToLose;
 	private ArrayList<Rectangle> progressBar;
 	private Timeline winLoseTimeline;
+        private Thunder thunder;
 
 	/**
 	 * Constructs a Board object.
@@ -239,9 +241,17 @@ public class Board {
 	 */
 	public Pane buildGUI() {
 		BorderPane root = new BorderPane();
-
+                Pane pane=new Pane();
+                thunder=new Thunder();
+                Canvas thunderLayer=thunder.thunderLayer();
+                
+                tileCanvas.getCanvas().toFront();
 		// Place game board on screen
-		root.setLeft(tileCanvas.getCanvas());
+		pane.getChildren().add(thunderLayer);
+                pane.getChildren().add(tileCanvas.getCanvas());
+                thunder.thunderStart(thunderLayer, tileCanvas.getCanvas());
+                
+                root.setLeft(pane);
 
 		// Add inventory
 		root.setCenter(inventory.buildInventoryGUI());
