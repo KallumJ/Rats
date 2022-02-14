@@ -3,6 +3,7 @@ package display;
 import display.inventory.CustomInventory;
 import display.menus.editor.LevelPropertiesInputMenu;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import level.LevelData;
 import level.LevelProperties;
@@ -27,18 +28,32 @@ public class CustomBoard extends Board {
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
         this.inputMenu = new LevelPropertiesInputMenu();
-        this.tileCanvas.getCanvas().addEventHandler(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, event -> {
-            Tile tile = levelData.getTileSet().getTile(((int)event.getX())/Tile.TILE_SIZE, ((int)event.getY())/Tile.TILE_SIZE);
-            // System.out.println(String.format("X:%s Y:%s", event.getX(), event.getY()));
-            if (tile == null) {
-                System.out.println("Null!");
-            } else if (tile.getTileType() != inputMenu.getTileSelected()) {
-                Tile newTile = new Tile(tile.getTileLocation(), inputMenu.getTileSelected());
-                levelData.changeTile(tile, newTile);
-                System.out.println("Tile changed");
-                tileCanvas.updateBoardDisplay();
-            }
-        });
+        this.eventListeners();
+    }
+
+    /**
+     * Calls all event listeners in class
+     */
+    private void eventListeners() {
+        this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, event -> {changeTile(event);});
+        this.tileCanvas.getCanvas().addEventHandler(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, event -> {changeTile(event);});
+    }
+
+    /**
+     * Changes tile at mouse position with selected tile type
+     * @param event MouseEvent used to get mouse X Y
+     */
+    private void changeTile(MouseEvent event) {
+        Tile tile = levelData.getTileSet().getTile(((int)event.getX())/Tile.TILE_SIZE, ((int)event.getY())/Tile.TILE_SIZE);
+        // System.out.println(String.format("X:%s Y:%s", event.getX(), event.getY()));
+        if (tile == null) {
+            System.out.println("Null!");
+        } else if (tile.getTileType() != inputMenu.getTileSelected()) {
+            Tile newTile = new Tile(tile.getTileLocation(), inputMenu.getTileSelected());
+            levelData.changeTile(tile, newTile);
+            System.out.println("Tile changed");
+            tileCanvas.updateBoardDisplay();
+        }
     }
 
     /**
