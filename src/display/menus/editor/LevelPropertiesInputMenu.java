@@ -1,10 +1,14 @@
 package display.menus.editor;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import tile.TileType;
 
 /**
  * A class to get input from the user for the custom level properties
@@ -22,6 +26,7 @@ public class LevelPropertiesInputMenu {
     private final TextField adultRatSpeedTextField;
     private final TextField babyRatSpeedTextField;
     private final TextField deathRatSpeedTextField;
+    private final ChoiceBox<String> tileSelectChoiceBox;
 
     /**
      * Constructs a LevelPropertiesInputMenu object
@@ -35,6 +40,7 @@ public class LevelPropertiesInputMenu {
         adultRatSpeedTextField = new TextField();
         babyRatSpeedTextField = new TextField();
         deathRatSpeedTextField = new TextField();
+        tileSelectChoiceBox = new ChoiceBox<>();
     }
 
 
@@ -80,11 +86,25 @@ public class LevelPropertiesInputMenu {
         deathRatSpeedLabel.setPadding(PADDING);
         deathRatSpeedTextField.setPadding(PADDING);
 
+        /**
+         * adds a choice box with choice of tiles
+         * event listener added to choice box which is activated when new tile is chosen
+         */
+        tileSelectChoiceBox.getItems().addAll("Grass Tile", "Tunnel Tile", "Path Tile");
+        tileSelectChoiceBox.setValue("Grass Tile");
+        tileSelectChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                System.out.println("Selected Item: " + newValue);
+            }
+        });
+
         row1.getChildren().addAll(
                 populationToLoseLabel,
                 populationToLoseTextField,
                 expectedTimeLabel,
-                expectedTimeTextField
+                expectedTimeTextField,
+                tileSelectChoiceBox
         );
 
         row2.getChildren().addAll(
@@ -177,5 +197,21 @@ public class LevelPropertiesInputMenu {
      */
     public int getDeathRatSpeed() {
         return Integer.parseInt(deathRatSpeedTextField.getText());
+    }
+
+    /**
+     * Returns TileType of selected tile
+     * @return TileType of selected tile
+     */
+    public TileType getTileSelected() {
+        switch (tileSelectChoiceBox.getValue()) {
+            case "Tunnel Tile":
+                return TileType.TUNNEL;
+            case "Path Tile":
+                return TileType.PATH;
+            default:
+                return TileType.GRASS;
+        }
+        
     }
 }
