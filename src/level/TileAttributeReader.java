@@ -3,6 +3,7 @@ package level;
 import objects.*;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
+import objects.rats.ZombieRat;
 import tile.Direction;
 import tile.Tile;
 
@@ -60,9 +61,18 @@ public class TileAttributeReader {
 				return readNoEntrySign(attributeValue, tile);
 			case ObjectAttributeGenerator.PORTAL_KEY:
 				return readPortal(attributeValue, tile);
+			case ObjectAttributeGenerator.ZOMBIE_RAT_KEY:
+				return readZombieRat(attributeValue, tile, levelProperties);
 		}
 		throw new RuntimeException(String.format(INVALID_ATTRIBUTE,
 				attributeName, attributeValue));
+	}
+
+	private static GameObject readZombieRat(String attributeValue, Tile tile,LevelProperties levelProperties) {
+		Scanner scanner = new Scanner(attributeValue);
+		Direction direction = getDirectionFromString(scanner.next());
+		int timeToDisappear = scanner.nextInt();;
+		return new ZombieRat(tile, levelProperties.getDeathRatSpeed(),direction,timeToDisappear);
 	}
 
 	/**

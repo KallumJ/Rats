@@ -3,6 +3,7 @@ package level;
 import objects.*;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
+import objects.rats.ZombieRat;
 
 import java.util.Map;
 import java.util.StringJoiner;
@@ -22,6 +23,8 @@ public class ObjectAttributeGenerator {
 	public static final String SEX_CHANGE_KEY = "sex_ch";
 	public static final String NO_ENTRY_SIGN_KEY = "xentry";
 	public static final String PORTAL_KEY = "portal";
+	public static final String ZOMBIE_RAT_KEY = "zombie";
+
 
 	/**
 	 * Empty private constructor method, preventing ObjectAttributeGenerator
@@ -94,6 +97,11 @@ public class ObjectAttributeGenerator {
 			String attributeValue = generatePortalAttribute(portal);
 
 			attributes.put(PORTAL_KEY, attributeValue);
+		}else if (objectOnTile instanceof ZombieRat) {
+			ZombieRat zombie = (ZombieRat) objectOnTile;
+			String attributeValue = generateZombieRatAttribute(zombie);
+
+			attributes.put(PORTAL_KEY, attributeValue);
 		}
 	}
 
@@ -105,6 +113,16 @@ public class ObjectAttributeGenerator {
 	 */
 	private static String generatePortalAttribute(Portal portal) {
 		return "";
+	}
+
+	private static String generateZombieRatAttribute (ZombieRat zombie){
+		StringJoiner attribute = new StringJoiner(" ");
+
+		attribute.add(LevelUtils.getStringFromDirection(zombie.getDirectionOfMovement()));
+		attribute.add(String.valueOf(zombie.getTimeToDisappear()));
+
+		return attribute.toString();
+
 	}
 
 	/**

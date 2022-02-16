@@ -16,5 +16,6 @@ public enum GameObjectType {
 	GAS,
 	PORTAL,
 	MALE_RAT,
-	FEMALE_RAT
+	FEMALE_RAT,
+	ZOMBIE_RAT
 }

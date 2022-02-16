@@ -4,6 +4,7 @@ import level.LevelData;
 import level.ObjectAttributeGenerator;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
+import objects.rats.ZombieRat;
 import tile.Direction;
 import tile.Tile;
 
@@ -56,8 +57,10 @@ public class ObjectUtils {
 				return "file:resources/deathRat.png";
 			case GAS:
 				return "file:resources/GasGif.gif";
-				case PORTAL:
+			case PORTAL:
 				return "file:resources/portal.gif";
+			case ZOMBIE_RAT:
+				return "file:resources/zombieRat.gif";
 			case MALE_RAT:
 				return "file:resources/maleRat.png";
 			case FEMALE_RAT:
@@ -108,6 +111,8 @@ public class ObjectUtils {
 				return new PeacefulRat(standingOn, false, true, false, "f", 9, 15, 1000, Direction.UP);
 			case MALE_RAT:
 				return new PeacefulRat(standingOn, false, true, false, "m", 9, 15, 1000, Direction.UP);
+			case ZOMBIE_RAT:
+				return new ZombieRat(standingOn,1000,Direction.UP,20);
 			default:
 				throw new IllegalArgumentException(String.format(NO_CONSTRUCTOR_ASSIGNED, type));
 		}
@@ -139,6 +144,8 @@ public class ObjectUtils {
 				return "fsex";
 			case PORTAL:
 				return ObjectAttributeGenerator.PORTAL_KEY;
+			case ZOMBIE_RAT:
+				return ObjectAttributeGenerator.ZOMBIE_RAT_KEY;
 			default:
 				throw new IllegalArgumentException(String.format(NO_STRING_ASSIGNED, gameObjectType));
 		}

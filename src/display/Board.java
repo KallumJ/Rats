@@ -150,7 +150,9 @@ public class Board {
 							secondObject);
 					ObjectInteractionChecker.checkGasEffect(firstObject,
 							secondObject);
-                                        ObjectInteractionChecker.checkPortal(firstObject,
+					ObjectInteractionChecker.checkPortal(firstObject,
+							secondObject);
+					ObjectInteractionChecker.checkZombieRat(firstObject,
 							secondObject);
 				}
 			}

@@ -3,6 +3,7 @@ package objects;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
 import objects.rats.Rat;
+import objects.rats.ZombieRat;
 
 /**
  * A class to check for interactions between 2 provided objects
@@ -239,17 +240,44 @@ public class ObjectInteractionChecker {
 			}
 		}
 	}
-        
-        public static void checkPortal(GameObject firstObject, GameObject secondObject){
-            if (firstObject instanceof Portal) {
-		if (secondObject instanceof Rat) {
-                    Portal portal = (Portal) firstObject;
-                    Rat rat = (Rat) secondObject;
-                    portal.enterPortal(rat);
+
+
+	/**
+	 * A method to check whether the two provided objects is a zombieRat and a
+	 * 	peacefulRat
+	 *
+	 * @param firstObject the first object
+	 * @param secondObject the second object
+	 */
+	public static void checkPortal(GameObject firstObject, GameObject secondObject){
+		if (firstObject instanceof Portal) {
+			if (secondObject instanceof Rat) {
+				Portal portal = (Portal) firstObject;
+				Rat rat = (Rat) secondObject;
+				portal.enterPortal(rat);
                             
-                }
-            }            
+			}
+		}
             
-        }
+	}
+
+	/**
+	 * A method to check whether the two provided objects is a zombieRat and a
+	 * 	peacefulRat
+	 *
+	 * @param firstObject the first object
+	 * @param secondObject the second object
+	 */
+	public static void checkZombieRat(GameObject firstObject, GameObject secondObject){
+		if (firstObject instanceof ZombieRat) {
+			if (secondObject instanceof PeacefulRat) {
+				ZombieRat zombie = (ZombieRat) firstObject;
+				PeacefulRat rat = (PeacefulRat) secondObject;
+				zombie.Bite(rat);
+
+			}
+		}
+
+	}
 
 }
