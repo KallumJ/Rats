@@ -14,7 +14,7 @@ import tile.Tile;
 import tile.TileType;
 
 /**
- * This class is the gender to male.
+ * This class is the superclass of all rats.
  *
  * @author Fahd
  */
