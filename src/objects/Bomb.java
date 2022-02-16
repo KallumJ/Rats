@@ -23,6 +23,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
 
 	private final int duration; // in seconds
 	private final ArrayList<Tile> affectedTiles;
+	private final ArrayList<Explosion> explosionsEffect;
 	private final Image bombImage;
 	private final Image bombOneSecondImage;
 	private final Image bombTwoSecondsImage;
@@ -50,6 +51,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
 		this.timeRemaining = timeRemaining;
 
 		this.affectedTiles = new ArrayList<>();
+		this.explosionsEffect = new ArrayList<>();
 		findAffectedTiles();
 
 		bombImage =
@@ -206,9 +208,32 @@ public class Bomb extends GameObject implements ObjectStoppable {
 			}
 		}
 
+
+		for (int i = 0; i < affectedTiles.size(); i++) {
+			explosionsEffect.add(i, new Explosion(affectedTiles.get(i)));
+			GameObject.getBoard().addObject(explosionsEffect.get(i));
+		}
 		SFXManager.playBombSFX();
 		GameObject.getBoard().removeObject(this);
 		GameObject.getBoard().updateBoardDisplay();
 
+		Timeline endTimeline = new Timeline(new KeyFrame(Duration.millis(1000),
+				event -> endExplosion(explosionsEffect)));
+		endTimeline.play();
+
 	}
+
+	/**
+	 * A method that ends the bomb explosion effect
+	 * @param explosionsEffect the result of the explosion
+	 */
+	private void endExplosion (ArrayList<Explosion> explosionsEffect) {
+
+
+		for (int i = 0; i < affectedTiles.size(); i++) {
+			explosionsEffect.get(i).EndExplosion();
+		}
+	}
+
+
 }

@@ -9,6 +9,7 @@ import display.menus.WinMenu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -27,13 +28,16 @@ import level.LevelData;
 import level.LevelProperties;
 import level.LevelSaveHandler;
 import level.RatPopulation;
+import objects.Explosion;
 import objects.GameObject;
 import objects.ObjectInteractionChecker;
 import objects.ObjectStoppable;
 import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
 import players.scores.Player;
+import sfx.SFXManager;
 import tile.Tile;
+import tile.TileType;
 import util.TextUtils;
 import weather.Thunder;
 
@@ -51,6 +55,7 @@ public class Board {
 	private static final String INFORMATION_LABEL_TEXT =
 			"Time elapsed: %d " + "seconds. Expected time: %d seconds. Score " + "%d. Population to lose " + "%d.";
 	private static final int INFO_LABEL_PADDING = 5; // in pixels
+	private static final int AIRSTRIKE_TARGETS_NUMBER = 10;
 
 	private LevelData levelData;
 	private Label timerLabel;
@@ -61,7 +66,7 @@ public class Board {
 	private int populationToLose;
 	private ArrayList<Rectangle> progressBar;
 	private Timeline winLoseTimeline;
-        private Thunder thunder;
+	private Thunder thunder;
 
 	/**
 	 * Constructs a Board object.
@@ -113,6 +118,7 @@ public class Board {
 	public void interactionCheck() {
 
 		updateProgressBar();
+		LaunchAirstrike();
 		List<GameObject> objects = levelData.getObjects();
 		for (int i = 0; i < objects.size(); i++) {
 			GameObject firstObject = objects.get(i);
@@ -465,5 +471,70 @@ public class Board {
 	 */
 	public LevelData getLevelData (){
 		return levelData;
+	}
+
+	/**
+	 * A method that calls airstrike
+	 */
+	public void LaunchAirstrike () {
+		if (levelData.getLevelProperties().getScore() >= 40) {
+
+			levelData.getLevelProperties().setScore(levelData.getLevelProperties().getScore() - 40);
+
+			int heightOfMap = GameObject.getBoard().getLevelProperties().getLevelHeight();
+			int widthOfMap = GameObject.getBoard().getLevelProperties().getLevelWidth();
+			ArrayList<Tile> airstrikeTargets = new ArrayList<>(AIRSTRIKE_TARGETS_NUMBER);
+			ArrayList<Explosion> explosionsEffect = new ArrayList<>(AIRSTRIKE_TARGETS_NUMBER);
+
+			Tile potentialTarget;
+
+			for (int i = 0; i < AIRSTRIKE_TARGETS_NUMBER; i++) {
+				do {
+
+					Random rand = new Random();
+					int y2 = rand.nextInt(heightOfMap);
+					int x2 = rand.nextInt(widthOfMap);
+					potentialTarget = GameObject.getBoard().getLevelData().getTileSet().getTile(x2, y2);
+
+
+					airstrikeTargets.add(i, potentialTarget);
+				} while ((!potentialTarget.getTileType().equals(TileType.PATH)) && airstrikeTargets.contains(potentialTarget));
+				explosionsEffect.add(i, new Explosion(potentialTarget));
+
+			}
+
+			for (int i = 0; i < AIRSTRIKE_TARGETS_NUMBER; i++) {
+				for (int j = 0; j < getObjects().size(); j++) {
+					if (getObjects().get(j).getStandingOn().equals(airstrikeTargets.get(i))) {
+						removeObject(getObjects().get(j));
+
+					}
+				}
+			}
+			for (int k = 0; k < AIRSTRIKE_TARGETS_NUMBER; k++){
+
+				this.addObject(explosionsEffect.get(k));
+
+			}
+
+			SFXManager.playBombSFX();
+
+			Timeline endTimeline = new Timeline(new KeyFrame(Duration.millis(3000),
+					event -> endAirStarike(explosionsEffect)));
+			endTimeline.play();
+
+		}
+	}
+
+	/**
+	 * A method that ends the airstrike attack
+	 * @param explosionsEffect the result of the attack
+	 */
+	private void endAirStarike (ArrayList<Explosion> explosionsEffect) {
+
+		for (int i = 0; i< 10; i++){
+			explosionsEffect.get(i).EndExplosion();
+		}
+
 	}
 }
