@@ -25,7 +25,7 @@ public class CustomLevelDataFactory {
         TileSet tileSet = new TileSet();
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tileSet.putTile(TileType.PATH, x, y);
+                tileSet.putTile(TileType.GRASS, x, y);
             }
         }
         LevelUtils.setAdjacentTiles(tileSet);
