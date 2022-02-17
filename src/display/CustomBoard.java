@@ -2,15 +2,21 @@ package display;
 
 import display.inventory.CustomInventory;
 import display.menus.GameMenu;
+import display.menus.MainMenu;
 import display.menus.editor.LevelEditorOptionsMenu;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import level.LevelData;
 import level.LevelProperties;
+import level.LevelSaveHandler;
 import objects.GameObject;
+import players.PlayerProfileManager;
 import tile.Tile;
 
 import java.util.List;
@@ -22,6 +28,7 @@ public class CustomBoard extends Board {
     private final TileCanvas tileCanvas;
     private final LevelData levelData;
     private final LevelEditorOptionsMenu inputMenu;
+
 
     /**
      * Constructs a custom board
@@ -67,7 +74,7 @@ public class CustomBoard extends Board {
         BorderPane root = new BorderPane();
         root.setLeft(tileCanvas.getCanvas());
         root.setRight(new CustomInventory(levelData).buildInventoryGUI());
-
+        root.setBottom(createCommandsBox());
         Stage levelOptionsStage = new Stage();
         levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
         levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
@@ -76,6 +83,32 @@ public class CustomBoard extends Board {
 
         GameObject.setBoard(this);
         return root;
+    }
+
+    public HBox createCommandsBox () {
+        HBox commandsBox = new HBox();
+        Button saveButton = new Button("Save for later!");
+        Button createButton = new Button("Create the level!");
+
+        saveButton.setMaxWidth(200);
+        saveButton.setAlignment(Pos.CENTER_LEFT);
+
+        createButton.setMaxWidth(200);
+        createButton.setAlignment(Pos.CENTER_LEFT);
+
+        // Save level when mouse is pressed, and stop the current game
+        saveButton.setOnMousePressed(event -> {
+            // TODO behaviour of save button
+        });
+
+        createButton.setOnMousePressed(event -> {
+            // TODO behaviour of save button
+        });
+
+        commandsBox.getChildren().add(saveButton);
+        commandsBox.getChildren().add(createButton);
+        return commandsBox;
+
     }
 
     /**
