@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  */ 
 public class Main extends Application {
     private static final String APP_HEADER = "Rats CS-230 Group 41";
-
+ 
 	/**
 	 * Starts the application.
 	 *

@@ -35,7 +35,6 @@ public abstract class GameMenu {
 	private static final int TITLE_OFFSET_Y = 200;
 	private static final int MENU_OFFSET_X = 100;
 	private static final int MENU_OFFSET_Y = 300;
-	private static final int ON_CLICK_OFFSET = 10;
 
 	private static Stage stage;
 	private final BorderPane root;

@@ -69,10 +69,11 @@ public class TileAttributeReader {
 	}
 
 	private static GameObject readZombieRat(String attributeValue, Tile tile,LevelProperties levelProperties) {
-		Scanner scanner = new Scanner(attributeValue);
-		Direction direction = getDirectionFromString(scanner.next());
-		int timeToDisappear = scanner.nextInt();;
-		return new ZombieRat(tile, levelProperties.getDeathRatSpeed(),direction,timeToDisappear);
+		try (Scanner scanner = new Scanner(attributeValue)) {
+			Direction direction = getDirectionFromString(scanner.next());
+			int timeToDisappear = scanner.nextInt();;
+			return new ZombieRat(tile, levelProperties.getDeathRatSpeed(),direction,timeToDisappear);
+		}
 	}
 
 	/**

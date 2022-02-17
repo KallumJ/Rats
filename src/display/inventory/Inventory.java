@@ -37,7 +37,7 @@ public class Inventory {
 
 		final int pad = INVENTORY_PADDING;
 		inventoryNode.setPadding(new Insets(pad, pad, pad, pad));
-		inventoryNode.setStyle("-fx-background-image: url(file:resources/inventorySkin.png);");
+		inventoryNode.setStyle("-fx-background-image: url(file:resources/inventoryBg.png);");
 		inventoryNode.setMinWidth(INVENTORY_WIDTH);
 
 		// Create a set of rows

@@ -108,7 +108,6 @@ public class PlayerProfileManager {
 	 * A method to initalise the all players list
 	 */
 	private static void initAllPlayersList() {
-		//TODO: reduce indentation
 		XMLFileReader xmlfileReader =
 				new XMLFileReader(new File(PLAYERS_FILE));
 		playersRoot = xmlfileReader.getAsXMLNode();

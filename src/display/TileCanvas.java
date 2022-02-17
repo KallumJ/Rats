@@ -10,6 +10,8 @@ import objects.GameObject;
 import tile.Tile;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * A class to draw tiles and objects to a JavaFX canvas
@@ -20,6 +22,12 @@ public class TileCanvas {
 
     private final Canvas canvas;
     private final LevelData levelData;
+
+    
+    long start = System.currentTimeMillis();
+    long elapsedTime = System.currentTimeMillis() - start;
+    long elapsedSeconds = elapsedTime / 1000;
+
 
     /**
      * Constructs a TileCanvas object
@@ -36,6 +44,20 @@ public class TileCanvas {
         int height = levelProperties.getLevelHeight() * Tile.TILE_SIZE;
 
         this.canvas = new Canvas(width, height);
+
+        System.out.println(start);
+      
+        //add a timer here and it will work
+
+        Timer myTimer = new Timer();
+        TimerTask task = new TimerTask() {
+            public void run() {
+                elapsedSeconds++;
+                System.out.println(elapsedSeconds);
+            }
+        };
+
+        myTimer.scheduleAtFixedRate(task, 1000, 1000);
 
         updateBoardDisplay();
     }
@@ -86,7 +108,7 @@ public class TileCanvas {
         }
     }
 
-    /**
+/**
      * Displays the tiles in the level on the board
      */
     private void displayTiles() {
@@ -97,16 +119,34 @@ public class TileCanvas {
 
         // Decide what image to display for this tile
         for (Tile tile : tiles) {
-            Image tileImage;
+            Image tileImage = null;
             switch (tile.getTileType()) {
                 case GRASS:
-                    tileImage = new Image("file:resources/grass.jpg");
+                    if (elapsedSeconds >= 0 && elapsedSeconds <= 60) {
+                        tileImage = new Image("file:resources/grass.jpg");
+                    } else if (elapsedSeconds >= 60 && elapsedSeconds <= 120) {
+                        tileImage = new Image("file:resources/grassnight.png");
+                    } else {
+                        tileImage = new Image("file:resources/grass.jpg");
+                    }
                     break;
                 case PATH:
-                    tileImage = new Image("file:resources/path.jpg");
+                    if (elapsedSeconds >= 0 && elapsedSeconds <= 60) {
+                        tileImage = new Image("file:resources/path.jpg");
+                    } else if (elapsedSeconds >= 60 && elapsedSeconds <= 120) {
+                        tileImage = new Image("file:resources/nightpath.png");
+                    } else {
+                        tileImage = new Image("file:resources/path.jpg");
+                    }
                     break;
                 case TUNNEL:
-                    tileImage = new Image("file:resources/tunnel.jpg");
+                    if (elapsedSeconds >= 0 && elapsedSeconds <= 60) {
+                        tileImage = new Image("file:resources/tunnelnew.png");
+                    } else if (elapsedSeconds >= 60 && elapsedSeconds <= 120) {
+                        tileImage = new Image("file:resources/tunnelnew.png"); 
+                    } else {
+                        tileImage = new Image("file:resources/tunnelnew.png");
+                    }
                     break;
                 default:
                     throw new RuntimeException(String.format(IMAGE_NOT_FOUND,
