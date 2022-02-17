@@ -6,6 +6,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import level.LevelUtils;
 import sfx.SFXManager;
 import tile.Direction;
 import tile.Tile;
@@ -62,7 +63,9 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
 
 		setUpTimeline = new Timeline(new KeyFrame(Duration.millis(100),
 				event -> setUpNoEntrySign()));
-		setUpTimeline.play();
+		if (LevelUtils.isCurrentBoardCustom()) {
+			setUpTimeline.play();
+		}
 	}
 
 	/**
