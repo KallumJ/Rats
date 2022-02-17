@@ -67,6 +67,7 @@ public class Board {
 	private int populationToLose;
 	private ArrayList<Rectangle> progressBar;
 	private Timeline winLoseTimeline;
+	private Button airstrikeCallButton;
 
 	/**
 	 * Constructs a Board object.
@@ -116,6 +117,13 @@ public class Board {
 	 * A method to check for interactions between objects on the board.
 	 */
 	public void interactionCheck() {
+		if (levelData.getLevelProperties().getScore() >= POINTS_FOR_AIRSTRIKE &&
+				getLevelProperties().isAirstrikeEnabled()){
+			airstrikeCallButton.setDisable(false);
+		}else {
+			airstrikeCallButton.setDisable(true);
+
+		}
 
 		updateProgressBar();
 		List<GameObject> objects = levelData.getObjects();
@@ -273,9 +281,10 @@ public class Board {
 			GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
 		});
 
-		Button airstrikeCallButton = new Button(AIRSTRIKE_BUTTON_LABEL);
+		airstrikeCallButton = new Button(AIRSTRIKE_BUTTON_LABEL);
 		airstrikeCallButton.setMinWidth(50);
 		airstrikeCallButton.setAlignment(Pos.CENTER_RIGHT);
+		airstrikeCallButton.setDisable(true);
 
 		// Calls for airstrike when mouse is pressed.
 		airstrikeCallButton.setOnMousePressed(event -> {
