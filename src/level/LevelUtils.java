@@ -1,5 +1,6 @@
 package level;
 
+import display.CustomBoard;
 import io.XMLElementNames;
 import io.XMLFileReader;
 import objects.GameObject;
@@ -327,5 +328,10 @@ public class LevelUtils {
 			}
 		}
 
+	}
+
+
+	public static boolean isCurrentBoardCustom() {
+		return !(GameObject.getBoard() instanceof CustomBoard);
 	}
 }

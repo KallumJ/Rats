@@ -1,5 +1,7 @@
 package level;
 
+import envrionment.TimeOfDay;
+
 /**
  * A class to model the properties of a level.
  *
@@ -19,6 +21,11 @@ public class LevelProperties {
 	private int deathRatSpeed;
 	private int score;
 	private int timeElapsed;
+	private TimeOfDay timeOfDay;
+	private int timeInterval;
+	private boolean airstrikeEnabled;
+	private int costOfAirstrike;
+	private int numOfAirstrikeHits;
 
 	/**
 	 * Constructs a LevelProperties object with the provided data.
@@ -41,12 +48,22 @@ public class LevelProperties {
 	 *                         movement, in milliseconds
 	 * @param deathRatSpeed    the speed of a death rat, in time between
 	 *                         movement, in milliseconds
+	 * @param timeOfDay		   the time of day allowed in this level
+	 * @param timeInterval	   the time between changes in time of day,
+	 *                         in seconds
+	 * @param airstrikeEnabled whether or not airstrikes are enabled
+	 * @param costOfAirstrike  the price of calling an airstrike, in score
+	 * @param numOfAirstrikeHits the number of target tiles an airstrike
+	 *                           will hit
 	 */
 	public LevelProperties(int id, int height, int width, int populationToLose
 			, int expectedTime, int itemInterval, int ratMinBabies,
 						   int ratMaxBabies, int adultRatSpeed,
 						   int babyRatSpeed, int deathRatSpeed,
-						   int timeElapsed, int score) {
+						   int timeElapsed, int score,
+						   TimeOfDay timeOfDay, int timeInterval,
+						   boolean airstrikeEnabled, int costOfAirstrike,
+						   int numOfAirstrikeHits) {
 		this.levelId = id;
 		this.levelHeight = height;
 		this.levelWidth = width;
@@ -60,6 +77,11 @@ public class LevelProperties {
 		this.deathRatSpeed = deathRatSpeed;
 		this.timeElapsed = timeElapsed;
 		this.score = score;
+		this.timeOfDay = timeOfDay;
+		this.timeInterval = timeInterval;
+		this.airstrikeEnabled = airstrikeEnabled;
+		this.costOfAirstrike = costOfAirstrike;
+		this.numOfAirstrikeHits = numOfAirstrikeHits;
 	}
 
 	/**
@@ -222,5 +244,46 @@ public class LevelProperties {
 	 */
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	/**
+	 * Gets the time of day allowed in this level
+	 * @return the time of day allowed in this level
+	 */
+	public TimeOfDay getTimeOfDay() {
+		return timeOfDay;
+	}
+
+	/**
+	 * Gets the time between changes in times of day
+	 * @return the time between changes in times of day in seconds
+	 */
+	public int getTimeInterval() {
+		return timeInterval;
+	}
+
+	/**
+	 * Gets whether airstrikes are enabled in this level
+	 * @return whether airstrikes are enabled in this level
+	 * 		   true if they are, false otherwise
+	 */
+	public boolean isAirstrikeEnabled() {
+		return airstrikeEnabled;
+	}
+
+	/**
+	 * Gets the cost of a calling an airstrike
+	 * @return the cost of a calling an airstrike in points
+	 */
+	public int getCostOfAirstrike() {
+		return costOfAirstrike;
+	}
+
+	/**
+	 * Gets the number of tiles an airstrike will hit
+	 * @return the number of tiles an airstrike will hit
+	 */
+	public int getNumOfAirstrikeHits() {
+		return numOfAirstrikeHits;
 	}
 }
