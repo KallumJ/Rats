@@ -19,8 +19,9 @@ public class SFXManager {
 			+ ".mp3";
 	private static final String ENTRYSIGN_SFX_FILE = "resources/sounds" +
 			"/noEntrySign.mp3";
-        private static final String THUNDER_SFX_FILE = "resources/sounds" +
+	private static final String THUNDER_SFX_FILE = "resources/sounds" +
 			"/thunder.mp3";
+	private static final String AIRSTRIKE_SFX_FILE = "resources/sounds/AirstrikeCall.mp3";
 
 	/**
 	 * Empty private constructor method, preventing SFXManager from being
@@ -34,6 +35,13 @@ public class SFXManager {
 	 */
 	public static void playBombSFX() {
 		playSfx(BOMB_SFX_FILE);
+	}
+
+	/**
+	 * A method to play the call sound of an airstrike
+	 */
+	public static void playAirstrikeSFX() {
+		playSfx(AIRSTRIKE_SFX_FILE);
 	}
 
 	/**

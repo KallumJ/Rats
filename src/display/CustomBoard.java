@@ -1,10 +1,13 @@
 package display;
 
 import display.inventory.CustomInventory;
-import display.menus.editor.LevelPropertiesInputMenu;
+import display.menus.GameMenu;
+import display.menus.editor.LevelEditorOptionsMenu;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import level.LevelData;
 import level.LevelProperties;
 import objects.GameObject;
@@ -18,7 +21,7 @@ import java.util.List;
 public class CustomBoard extends Board {
     private final TileCanvas tileCanvas;
     private final LevelData levelData;
-    private final LevelPropertiesInputMenu inputMenu;
+    private final LevelEditorOptionsMenu inputMenu;
 
     /**
      * Constructs a custom board
@@ -27,7 +30,7 @@ public class CustomBoard extends Board {
     public CustomBoard(LevelData levelData) {
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
-        this.inputMenu = new LevelPropertiesInputMenu();
+        this.inputMenu = new LevelEditorOptionsMenu();
         this.eventListeners();
     }
 
@@ -63,8 +66,13 @@ public class CustomBoard extends Board {
     public BorderPane buildGUI() {
         BorderPane root = new BorderPane();
         root.setLeft(tileCanvas.getCanvas());
-        root.setBottom(inputMenu.buildGUI());
         root.setRight(new CustomInventory(levelData).buildInventoryGUI());
+
+        Stage levelOptionsStage = new Stage();
+        levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
+        levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
+        levelOptionsStage.setY(GameMenu.getStage().getY());
+        levelOptionsStage.show();
 
         GameObject.setBoard(this);
         return root;

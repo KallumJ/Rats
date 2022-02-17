@@ -49,8 +49,10 @@ import weather.Thunder;
 public class Board {
 
 	private static final int POINTS_ON_A_RAT = 10;
+	private static final int POINTS_FOR_AIRSTRIKE = 40;
 	private static final int INTERACTION_CHECK_INTERVAL = 100; // In ms
 	private static final String SAVED_BUTTON_LABEL = "Save and exit";
+	private static final String AIRSTRIKE_BUTTON_LABEL = "CALL AIRSTRIKE!!!!";
 	private static final int CONTROLS_MARGIN = 5; // in pixels
 	private static final String INFORMATION_LABEL_TEXT =
 			"Time elapsed: %d " + "seconds. Expected time: %d seconds. Score " + "%d. Population to lose " + "%d.";
@@ -118,7 +120,6 @@ public class Board {
 	public void interactionCheck() {
 
 		updateProgressBar();
-		LaunchAirstrike();
 		List<GameObject> objects = levelData.getObjects();
 		for (int i = 0; i < objects.size(); i++) {
 			GameObject firstObject = objects.get(i);
@@ -272,7 +273,7 @@ public class Board {
 
 		Button saveButton = new Button(SAVED_BUTTON_LABEL);
 
-		saveButton.setMinWidth(GameMenu.getStage().getWidth());
+		saveButton.setMinWidth(GameMenu.getStage().getWidth()-50);
 		saveButton.setAlignment(Pos.CENTER);
 
 		// Save level when mouse is pressed, and stop the current game
@@ -284,8 +285,25 @@ public class Board {
 			GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
 		});
 
+		Button airstrikeCallButton = new Button(AIRSTRIKE_BUTTON_LABEL);
+		airstrikeCallButton.setMinWidth(50);
+		airstrikeCallButton.setAlignment(Pos.CENTER_RIGHT);
+
+		// Calls for airstrike when mouse is pressed.
+		airstrikeCallButton.setOnMousePressed(event -> {
+			if (levelData.getLevelProperties().getScore() >= POINTS_FOR_AIRSTRIKE) {
+
+				SFXManager.playAirstrikeSFX();
+				Timeline moveTimeline = new Timeline(new KeyFrame(Duration.millis(2000),
+								event1 -> LaunchAirstrike()));
+				moveTimeline.play();
+			}
+		});
+
+
 		// Add controls to the screen
 		controlsContainer.getChildren().add(saveButton);
+		controlsContainer.getChildren().add(airstrikeCallButton);
 		root.setBottom(controlsContainer);
 
 		// Add time label
@@ -477,9 +495,8 @@ public class Board {
 	 * A method that calls airstrike
 	 */
 	public void LaunchAirstrike () {
-		if (levelData.getLevelProperties().getScore() >= 40) {
 
-			levelData.getLevelProperties().setScore(levelData.getLevelProperties().getScore() - 40);
+			levelData.getLevelProperties().setScore(levelData.getLevelProperties().getScore() - POINTS_FOR_AIRSTRIKE);
 
 			int heightOfMap = GameObject.getBoard().getLevelProperties().getLevelHeight();
 			int widthOfMap = GameObject.getBoard().getLevelProperties().getLevelWidth();
@@ -519,11 +536,11 @@ public class Board {
 
 			SFXManager.playBombSFX();
 
-			Timeline endTimeline = new Timeline(new KeyFrame(Duration.millis(3000),
+			Timeline endTimeline = new Timeline(new KeyFrame(Duration.millis(1000),
 					event -> endAirStarike(explosionsEffect)));
 			endTimeline.play();
 
-		}
+
 	}
 
 	/**
@@ -532,7 +549,7 @@ public class Board {
 	 */
 	private void endAirStarike (ArrayList<Explosion> explosionsEffect) {
 
-		for (int i = 0; i< 10; i++){
+		for (int i = 0; i< AIRSTRIKE_TARGETS_NUMBER; i++){
 			explosionsEffect.get(i).EndExplosion();
 		}
 

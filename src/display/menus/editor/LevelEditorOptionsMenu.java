@@ -15,8 +15,9 @@ import tile.TileType;
  *
  * @author Kallum Jones (2005855) (11/02/22)
  */
-public class LevelPropertiesInputMenu {
+public class LevelEditorOptionsMenu {
     private static final Insets PADDING = new Insets(0, 5, 0, 5);
+    public static final int WINDOW_OFFSET = 600;
 
     private final TextField populationToLoseTextField;
     private final TextField expectedTimeTextField;
@@ -31,7 +32,7 @@ public class LevelPropertiesInputMenu {
     /**
      * Constructs a LevelPropertiesInputMenu object
      */
-    public LevelPropertiesInputMenu() {
+    public LevelEditorOptionsMenu() {
         populationToLoseTextField = new TextField();
         expectedTimeTextField = new TextField();
         itemIntervalTextField = new TextField();
