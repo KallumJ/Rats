@@ -1,5 +1,7 @@
 package level;
 
+import envrionment.TimeOfDay;
+
 /**
  * A class to model the properties of a level.
  *
@@ -19,6 +21,11 @@ public class LevelProperties {
 	private int deathRatSpeed;
 	private int score;
 	private int timeElapsed;
+	private TimeOfDay timeOfDay;
+	private int timeInterval;
+	private boolean airstrikeEnabled;
+	private int costOfAirstrike;
+	private int numOfAirstrikeHits;
 
 	/**
 	 * Constructs a LevelProperties object with the provided data.
@@ -46,7 +53,10 @@ public class LevelProperties {
 			, int expectedTime, int itemInterval, int ratMinBabies,
 						   int ratMaxBabies, int adultRatSpeed,
 						   int babyRatSpeed, int deathRatSpeed,
-						   int timeElapsed, int score) {
+						   int timeElapsed, int score,
+						   TimeOfDay timeOfDay, int timeInterval,
+						   boolean airstrikeEnabled, int costOfAirstrike,
+						   int numOfAirstrikeHits) {
 		this.levelId = id;
 		this.levelHeight = height;
 		this.levelWidth = width;
@@ -60,6 +70,11 @@ public class LevelProperties {
 		this.deathRatSpeed = deathRatSpeed;
 		this.timeElapsed = timeElapsed;
 		this.score = score;
+		this.timeOfDay = timeOfDay;
+		this.timeInterval = timeInterval;
+		this.airstrikeEnabled = airstrikeEnabled;
+		this.costOfAirstrike = costOfAirstrike;
+		this.numOfAirstrikeHits = numOfAirstrikeHits;
 	}
 
 	/**
@@ -222,5 +237,25 @@ public class LevelProperties {
 	 */
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public TimeOfDay getTimeOfDay() {
+		return timeOfDay;
+	}
+
+	public int getTimeInterval() {
+		return timeInterval;
+	}
+
+	public boolean isAirstrikeEnabled() {
+		return airstrikeEnabled;
+	}
+
+	public int getCostOfAirstrike() {
+		return costOfAirstrike;
+	}
+
+	public int getNumOfAirstrikeHits() {
+		return numOfAirstrikeHits;
 	}
 }

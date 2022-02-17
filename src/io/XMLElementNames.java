@@ -21,6 +21,12 @@ public enum XMLElementNames {
 	BABY_RAT_SPEED("babyRatSpeed"),
 	DEATH_RAT_SPEED("deathRatSpeed"),
 	LEVEL_SCORE("score"),
+	TIME_OF_DAY("timeOfDay"),
+	TIME_INTERVAL("timeInterval"),
+	AIRSTRIKE_ENABLED("airstrikeEnabled"),
+	COST_OF_AIRSTRIKE("costOfAirstrike"),
+	NUM_OF_AIRSTRIKE_HITS("numOfAirstrikeHits"),
+
 
 	TILE_SET("tileSet"),
 	TILE_ROW("tileRow"),

@@ -1,5 +1,6 @@
 package level;
 
+import envrionment.TimeOfDayUtils;
 import io.XMLElementNames;
 import io.XMLFileWriter;
 import io.XMLNode;
@@ -180,6 +181,11 @@ public class LevelSaveHandler {
 				String.valueOf(levelProperties.getDeathRatSpeed());
 		String elapsedTime = String.valueOf(levelProperties.getTimeElapsed());
 		String score = String.valueOf(levelProperties.getScore());
+		String timeOfDay = TimeOfDayUtils.getStringFromEnum(levelProperties.getTimeOfDay());
+		String timeInterval = String.valueOf(levelProperties.getTimeInterval());
+		String airstrikeEnabled = String.valueOf(levelProperties.isAirstrikeEnabled());
+		String costOfAirstrike = String.valueOf(levelProperties.getCostOfAirstrike());
+		String numOfAirstrikeHits = String.valueOf(levelProperties.getNumOfAirstrikeHits());
 
 		XMLNode[] children = new XMLNode[]{
 				new XMLNode(XMLElementNames.LEVEL_HEIGHT.toString(),
@@ -207,6 +213,16 @@ public class LevelSaveHandler {
 				new XMLNode(XMLElementNames.TIME_ELAPSED.toString(),
 						elapsedTime, null, null),
 				new XMLNode(XMLElementNames.LEVEL_SCORE.toString(), score,
+						null, null),
+				new XMLNode(XMLElementNames.TIME_OF_DAY.toString(), timeOfDay,
+						null, null),
+				new XMLNode(XMLElementNames.TIME_INTERVAL.toString(), timeInterval,
+						null, null),
+				new XMLNode(XMLElementNames.AIRSTRIKE_ENABLED.toString(), airstrikeEnabled,
+						null, null),
+				new XMLNode(XMLElementNames.COST_OF_AIRSTRIKE.toString(), costOfAirstrike,
+						null, null),
+				new XMLNode(XMLElementNames.NUM_OF_AIRSTRIKE_HITS.toString(), numOfAirstrikeHits,
 						null, null)
 		};
 

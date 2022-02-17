@@ -1,5 +1,7 @@
 package level;
 
+import envrionment.TimeOfDay;
+import envrionment.TimeOfDayUtils;
 import io.XMLElementNames;
 import io.XMLFileReader;
 import objects.GameObject;
@@ -174,10 +176,10 @@ public class LevelDataFactory {
 	}
 
 	/**
-	 * A method to read the properties from the provided level properties
+	 * A method to read the properties from the provided level properties'
 	 * element.
 	 *
-	 * @param levelProperties the levelProperties elememt
+	 * @param levelProperties the levelProperties element
 	 * @return a LevelProperties object containing the data read from the
 	 * element
 	 */
@@ -208,11 +210,35 @@ public class LevelDataFactory {
 				XMLElementNames.TIME_ELAPSED);
 		int score = getPropertyInt(levelProperties,
 				XMLElementNames.LEVEL_SCORE);
+		TimeOfDay timeOfDay = getPropertyTimeOfDay(levelProperties, XMLElementNames.TIME_OF_DAY);
+		int timeInterval = getPropertyInt(levelProperties, XMLElementNames.TIME_INTERVAL);
+		boolean airstrikeEnabled = getPropertyBool(levelProperties, XMLElementNames.AIRSTRIKE_ENABLED);
+		int costOfAirstrike = getPropertyInt(levelProperties, XMLElementNames.COST_OF_AIRSTRIKE);
+		int numOfAirstrikeHits = getPropertyInt(levelProperties, XMLElementNames.NUM_OF_AIRSTRIKE_HITS);
 
 		return new LevelProperties(id, height, width, populationToLose,
 				expectedTime, itemInterval, ratMinBabies, ratMaxBabies,
 				adultRatSpeed, babyRatSpeed, deathRatSpeed, timeElapsed,
-				score);
+				score, timeOfDay, timeInterval, airstrikeEnabled, costOfAirstrike, numOfAirstrikeHits);
+	}
+
+	private static TimeOfDay getPropertyTimeOfDay(Element propertiesElement, XMLElementNames propertyName) {
+		String propertyStr = propertyName.toString();
+		Node propertyElement =
+				propertiesElement.getElementsByTagName(propertyStr)
+						.item(0);
+
+		String timeOfDayText = propertyElement.getTextContent();
+
+		return TimeOfDayUtils.getEnumFromString(timeOfDayText);
+	}
+
+	private static boolean getPropertyBool(Element propertiesElement, XMLElementNames propertyName) {
+		String propertyStr = propertyName.toString();
+		Node propertyElement =
+				propertiesElement.getElementsByTagName(propertyStr)
+						.item(0);
+		return Boolean.parseBoolean(propertyElement.getTextContent());
 	}
 
 	/**
