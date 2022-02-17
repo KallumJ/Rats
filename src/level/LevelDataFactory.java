@@ -222,6 +222,12 @@ public class LevelDataFactory {
 				score, timeOfDay, timeInterval, airstrikeEnabled, costOfAirstrike, numOfAirstrikeHits);
 	}
 
+	/**
+	 * A method to get the TimeOfDay from a property in file
+	 * @param propertiesElement the levelProperties element to read from
+	 * @param propertyName      The property to read
+	 * @return The read property, of type TimeOfDay
+	 */
 	private static TimeOfDay getPropertyTimeOfDay(Element propertiesElement, XMLElementNames propertyName) {
 		String propertyStr = propertyName.toString();
 		Node propertyElement =
@@ -233,6 +239,12 @@ public class LevelDataFactory {
 		return TimeOfDayUtils.getEnumFromString(timeOfDayText);
 	}
 
+	/**
+	 * A method to get the boolean from a property in file
+	 * @param propertiesElement the levelProperties element to read from
+	 * @param propertyName      The property to read
+	 * @return The read property, of type boolean
+	 */
 	private static boolean getPropertyBool(Element propertiesElement, XMLElementNames propertyName) {
 		String propertyStr = propertyName.toString();
 		Node propertyElement =

@@ -48,6 +48,13 @@ public class LevelProperties {
 	 *                         movement, in milliseconds
 	 * @param deathRatSpeed    the speed of a death rat, in time between
 	 *                         movement, in milliseconds
+	 * @param timeOfDay		   the time of day allowed in this level
+	 * @param timeInterval	   the time between changes in time of day,
+	 *                         in seconds
+	 * @param airstrikeEnabled whether or not airstrikes are enabled
+	 * @param costOfAirstrike  the price of calling an airstrike, in score
+	 * @param numOfAirstrikeHits the number of target tiles an airstrike
+	 *                           will hit
 	 */
 	public LevelProperties(int id, int height, int width, int populationToLose
 			, int expectedTime, int itemInterval, int ratMinBabies,
@@ -239,22 +246,43 @@ public class LevelProperties {
 		this.score = score;
 	}
 
+	/**
+	 * Gets the time of day allowed in this level
+	 * @return the time of day allowed in this level
+	 */
 	public TimeOfDay getTimeOfDay() {
 		return timeOfDay;
 	}
 
+	/**
+	 * Gets the time between changes in times of day
+	 * @return the time between changes in times of day in seconds
+	 */
 	public int getTimeInterval() {
 		return timeInterval;
 	}
 
+	/**
+	 * Gets whether airstrikes are enabled in this level
+	 * @return whether airstrikes are enabled in this level
+	 * 		   true if they are, false otherwise
+	 */
 	public boolean isAirstrikeEnabled() {
 		return airstrikeEnabled;
 	}
 
+	/**
+	 * Gets the cost of a calling an airstrike
+	 * @return the cost of a calling an airstrike in points
+	 */
 	public int getCostOfAirstrike() {
 		return costOfAirstrike;
 	}
 
+	/**
+	 * Gets the number of tiles an airstrike will hit
+	 * @return the number of tiles an airstrike will hit
+	 */
 	public int getNumOfAirstrikeHits() {
 		return numOfAirstrikeHits;
 	}
