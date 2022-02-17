@@ -34,6 +34,7 @@ public class LevelEditorOptionsMenu {
     private final RadioButton dayAndNight;
     private final ToggleGroup dayAndNightRadioButtonGroup;
     private final TextField timeDayAndNightTextField; // period between day and night
+    private final RadioButton deleteItems;
 
 
     /**
@@ -52,6 +53,7 @@ public class LevelEditorOptionsMenu {
         includeAirstrike = new RadioButton("Include airstrike");
         airstrikeCostTextField = new TextField();
         airstrikeNumberOfHitsTextField = new TextField();
+        deleteItems = new RadioButton("Delete items on tile");
 
 
         timeDayAndNightTextField = new TextField();
@@ -153,7 +155,8 @@ public class LevelEditorOptionsMenu {
               ratMinBabiesLabel,
               ratMinBabiesTextField,
               adultRatSpeedLabel,
-              adultRatSpeedTextField
+              adultRatSpeedTextField,
+              deleteItems
         );
 
         row3.getChildren().addAll(
@@ -255,6 +258,10 @@ public class LevelEditorOptionsMenu {
      */
     public int getDeathRatSpeed() {
         return Integer.parseInt(deathRatSpeedTextField.getText());
+    }
+
+    public boolean getDeleteItemsChecked() {
+        return deleteItems.selectedProperty().get();
     }
 
     /**
