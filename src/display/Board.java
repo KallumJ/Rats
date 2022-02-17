@@ -478,6 +478,7 @@ public class Board {
 	 */
 	public void LaunchAirstrike () {
 		if (levelData.getLevelProperties().getScore() >= 40) {
+			SFXManager.playAirstrikeSFX();
 
 			levelData.getLevelProperties().setScore(levelData.getLevelProperties().getScore() - 40);
 
@@ -519,7 +520,7 @@ public class Board {
 
 			SFXManager.playBombSFX();
 
-			Timeline endTimeline = new Timeline(new KeyFrame(Duration.millis(3000),
+			Timeline endTimeline = new Timeline(new KeyFrame(Duration.millis(1500),
 					event -> endAirStarike(explosionsEffect)));
 			endTimeline.play();
 
@@ -532,7 +533,7 @@ public class Board {
 	 */
 	private void endAirStarike (ArrayList<Explosion> explosionsEffect) {
 
-		for (int i = 0; i< 10; i++){
+		for (int i = 0; i< AIRSTRIKE_TARGETS_NUMBER; i++){
 			explosionsEffect.get(i).EndExplosion();
 		}
 
