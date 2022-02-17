@@ -3,9 +3,7 @@ package display.menus.editor;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import tile.TileType;
@@ -28,6 +26,15 @@ public class LevelEditorOptionsMenu {
     private final TextField babyRatSpeedTextField;
     private final TextField deathRatSpeedTextField;
     private final ChoiceBox<String> tileSelectChoiceBox;
+    private final RadioButton includeAirstrike;
+    private final TextField airstrikeCostTextField;
+    private final TextField airstrikeNumberOfHitsTextField;
+    private final RadioButton onlyDayTime;
+    private final RadioButton onlyNightTime;
+    private final RadioButton dayAndNight;
+    private final ToggleGroup dayAndNightRadioButtonGroup;
+    private final TextField timeDayAndNightTextField; // period between day and night
+
 
     /**
      * Constructs a LevelPropertiesInputMenu object
@@ -42,6 +49,24 @@ public class LevelEditorOptionsMenu {
         babyRatSpeedTextField = new TextField();
         deathRatSpeedTextField = new TextField();
         tileSelectChoiceBox = new ChoiceBox<>();
+        includeAirstrike = new RadioButton("Include airstrike");
+        airstrikeCostTextField = new TextField();
+        airstrikeNumberOfHitsTextField = new TextField();
+
+
+        timeDayAndNightTextField = new TextField();
+        onlyDayTime = new RadioButton("Always day time");
+        onlyNightTime = new RadioButton("Always night time");
+        dayAndNight = new RadioButton("Day and night times");
+
+        // makes sure user can't pick more than one option at the same time
+        dayAndNightRadioButtonGroup = new ToggleGroup();
+        onlyDayTime.setToggleGroup(dayAndNightRadioButtonGroup);
+        onlyDayTime.setSelected(true);
+
+        onlyNightTime.setToggleGroup(dayAndNightRadioButtonGroup);
+
+        dayAndNight.setToggleGroup(dayAndNightRadioButtonGroup);
     }
 
 
@@ -54,6 +79,8 @@ public class LevelEditorOptionsMenu {
         HBox row2 = new HBox();
         HBox row3 = new HBox();
         HBox row4 = new HBox();
+        HBox row5 = new HBox();
+        HBox row6 = new HBox();
 
         Label populationToLoseLabel = new Label("Population to Lose:");
         populationToLoseLabel.setPadding(PADDING);
@@ -86,6 +113,20 @@ public class LevelEditorOptionsMenu {
         Label deathRatSpeedLabel = new Label("Death Rat Speed:");
         deathRatSpeedLabel.setPadding(PADDING);
         deathRatSpeedTextField.setPadding(PADDING);
+
+        Label airstrikeCostLabel = new Label("Required points for airstrike:");
+        airstrikeCostLabel.setPadding(PADDING);
+        airstrikeCostTextField.setPadding(PADDING);
+
+
+        Label airstrikeNumberOfHitsLabel = new Label("Number of targets in an airstrike:");
+        airstrikeNumberOfHitsLabel.setPadding(PADDING);
+        airstrikeNumberOfHitsTextField.setPadding(PADDING);
+
+        Label timeDayAndNightLabel = new Label("Period between day and night:");
+        timeDayAndNightLabel.setPadding(PADDING);
+        timeDayAndNightTextField.setPadding(PADDING);
+
 
         /**
          * adds a choice box with choice of tiles
@@ -129,8 +170,24 @@ public class LevelEditorOptionsMenu {
                 itemIntervalTextField
         );
 
+        row5.getChildren().addAll(
+                airstrikeCostLabel,
+                airstrikeCostTextField,
+                airstrikeNumberOfHitsLabel,
+                airstrikeNumberOfHitsTextField,
+                includeAirstrike
+        );
+
+        row6.getChildren().addAll(
+                timeDayAndNightLabel,
+                timeDayAndNightTextField,
+                onlyDayTime,
+                onlyNightTime,
+                dayAndNight
+        );
+
         VBox container = new VBox();
-        container.getChildren().addAll(row1, row2, row3, row4);
+        container.getChildren().addAll(row1, row2, row3, row4,row5,row6);
         container.autosize();
 
         return container;
