@@ -50,7 +50,12 @@ public class ZombieRat extends Rat{
         this.timeToDisappear--;
         if (this.timeToDisappear <= 0) {
 
-            GameObject.getBoard().removeObject(this);
+            try {
+                GameObject.getBoard().removeObject(this);
+            } catch (NullPointerException e) {
+
+
+            }
         }
     }
 
@@ -65,7 +70,7 @@ public class ZombieRat extends Rat{
                 .getLevelProperties()
                 .getDeathRatSpeed();
         ZombieRat zombie = new ZombieRat(rat.getStandingOn(),speed,
-                rat.getDirectionOfMovement(),10);
+                rat.getDirectionOfMovement(),this.timeToDisappear);
         GameObject.getBoard().addObject(zombie);
     }
 
