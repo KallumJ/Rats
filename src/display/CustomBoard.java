@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import level.LevelData;
 import level.LevelProperties;
 import level.LevelSaveHandler;
+import level.LevelUtils;
 import objects.GameObject;
 import players.PlayerProfileManager;
 import tile.Tile;
@@ -45,16 +46,38 @@ public class CustomBoard extends Board {
      * Calls all event listeners in class
      */
     private void eventListeners() {
-        this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, event -> {changeTile(event);});
-        this.tileCanvas.getCanvas().addEventHandler(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, event -> {changeTile(event);});
+        this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, event -> {
+            Tile tile = levelData.getTileSet().getTile((int)event.getX()/Tile.TILE_SIZE, (int)event.getY()/Tile.TILE_SIZE);
+            if (this.inputMenu.getDeleteItemsChecked()) {
+                System.out.println(this.inputMenu.getDeleteItemsChecked());
+                removeItemsFromTile(tile);
+            } else {
+                changeTile(tile);
+        }});
+        this.tileCanvas.getCanvas().addEventHandler(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, event -> {
+            Tile tile = levelData.getTileSet().getTile((int)event.getX()/Tile.TILE_SIZE, (int)event.getY()/Tile.TILE_SIZE);
+            if (this.inputMenu.getDeleteItemsChecked()) {
+                System.out.println(this.inputMenu.getDeleteItemsChecked());
+                removeItemsFromTile(tile);
+            } else {
+                changeTile(tile);
+        }});
+    }
+
+    private void removeItemsFromTile(Tile tile) {
+        List<GameObject> objectsOnTile = LevelUtils.getObjectsOnTile(tile, levelData.getObjects());
+        levelData.getObjects().removeAll(objectsOnTile);
+        for (GameObject object : objectsOnTile) {
+            object.standOn(null);
+        }
+        tileCanvas.updateBoardDisplay();
     }
 
     /**
      * Changes tile at mouse position with selected tile type
      * @param event MouseEvent used to get mouse X Y
      */
-    private void changeTile(MouseEvent event) {
-        Tile tile = levelData.getTileSet().getTile(((int)event.getX())/Tile.TILE_SIZE, ((int)event.getY())/Tile.TILE_SIZE);
+    private void changeTile(Tile tile) {
         // System.out.println(String.format("X:%s Y:%s", event.getX(), event.getY()));
         if (tile == null) {
             System.out.println("Null!");
