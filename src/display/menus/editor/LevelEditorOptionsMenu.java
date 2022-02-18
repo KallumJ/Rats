@@ -1,11 +1,14 @@
 package display.menus.editor;
 
+import envrionment.TimeOfDay;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import level.LevelData;
+import level.LevelProperties;
 import tile.TileType;
 
 /**
@@ -32,8 +35,7 @@ public class LevelEditorOptionsMenu {
     private final RadioButton onlyDayTime;
     private final RadioButton onlyNightTime;
     private final RadioButton dayAndNight;
-    private final ToggleGroup dayAndNightRadioButtonGroup;
-    private final TextField timeDayAndNightTextField; // period between day and night
+    private final TextField timeIntervalTextField; // period between day and night
     private final RadioButton deleteItems;
 
 
@@ -56,13 +58,13 @@ public class LevelEditorOptionsMenu {
         deleteItems = new RadioButton("Delete items on tile");
 
 
-        timeDayAndNightTextField = new TextField();
+        timeIntervalTextField = new TextField();
         onlyDayTime = new RadioButton("Always day time");
         onlyNightTime = new RadioButton("Always night time");
         dayAndNight = new RadioButton("Day and night times");
 
         // makes sure user can't pick more than one option at the same time
-        dayAndNightRadioButtonGroup = new ToggleGroup();
+        ToggleGroup dayAndNightRadioButtonGroup = new ToggleGroup();
         onlyDayTime.setToggleGroup(dayAndNightRadioButtonGroup);
         onlyDayTime.setSelected(true);
 
@@ -127,21 +129,15 @@ public class LevelEditorOptionsMenu {
 
         Label timeDayAndNightLabel = new Label("Period between day and night:");
         timeDayAndNightLabel.setPadding(PADDING);
-        timeDayAndNightTextField.setPadding(PADDING);
+        timeIntervalTextField.setPadding(PADDING);
 
 
-        /**
+        /*
          * adds a choice box with choice of tiles
          * event listener added to choice box which is activated when new tile is chosen
          */
         tileSelectChoiceBox.getItems().addAll("Grass Tile", "Tunnel Tile", "Path Tile");
         tileSelectChoiceBox.setValue("Grass Tile");
-        tileSelectChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                System.out.println("Selected Item: " + newValue);
-            }
-        });
 
         row1.getChildren().addAll(
                 populationToLoseLabel,
@@ -183,7 +179,7 @@ public class LevelEditorOptionsMenu {
 
         row6.getChildren().addAll(
                 timeDayAndNightLabel,
-                timeDayAndNightTextField,
+                timeIntervalTextField,
                 onlyDayTime,
                 onlyNightTime,
                 dayAndNight
@@ -194,6 +190,61 @@ public class LevelEditorOptionsMenu {
         container.autosize();
 
         return container;
+    }
+
+    /**
+     * Sets all the properties in the provided LevelData to those contained in the menu
+     * @param levelData the level data to set the properties for
+     */
+    public void setLevelProperties(LevelData levelData) {
+        LevelProperties levelProperties = levelData.getLevelProperties();
+
+        levelProperties.setLevelId(1);
+        levelProperties.setPopulationToLose(getPopulationToLose());
+        levelProperties.setExpectedTime(getExpectedTime());
+        levelProperties.setItemInterval(getItemInterval());
+        levelProperties.setRatMinBabies(getRatMinBabies());
+        levelProperties.setRatMaxBabies(getRatMaxBabies());
+        levelProperties.setAdultRatSpeed(getAdultRatSpeed());
+        levelProperties.setBabyRatSpeed(getBabyRatSpeed());
+        levelProperties.setDeathRatSpeed(getDeathRatSpeed());
+        levelProperties.setTimeOfDay(getTimeOfDay());
+        levelProperties.setTimeInterval(getTimeInterval());
+        levelProperties.setAirstrikeEnabled(getAirstrikeEnabled());
+        levelProperties.setCostOfAirstrike(getCostOfAirstrike());
+        levelProperties.setNumOfAirstrikeHits(getNumOfAirstrikeHits());
+    }
+
+    /**
+     * Get the number of airstrike hits for this level
+     * @return the number of airstrike hits for this level as a number of tiles
+     */
+    private int getNumOfAirstrikeHits() {
+        return Integer.parseInt(airstrikeNumberOfHitsTextField.getText());
+    }
+
+    /**
+     * Get the cost of calling an airstrike
+     * @return cost of calling an airstrike in points
+     */
+    private int getCostOfAirstrike() {
+        return Integer.parseInt(airstrikeCostTextField.getText());
+    }
+
+    /**
+     * Get whether an airstrike is enabled
+     * @return whether an airstrike is enabled
+     */
+    private boolean getAirstrikeEnabled() {
+        return includeAirstrike.isSelected();
+    }
+
+    /**
+     * Get the time period between day cycle changes
+     * @return the time period between day cycle changes in seconds
+     */
+    private int getTimeInterval() {
+        return Integer.parseInt(timeIntervalTextField.getText());
     }
 
     /**
@@ -278,5 +329,19 @@ public class LevelEditorOptionsMenu {
                 return TileType.GRASS;
         }
         
+    }
+
+    /**
+     * Gets what time of day is selected
+     * @return what time of day is selected
+     */
+    public TimeOfDay getTimeOfDay() {
+        if (onlyDayTime.isSelected()) {
+            return TimeOfDay.DAY;
+        } else if (onlyNightTime.isSelected()) {
+            return TimeOfDay.NIGHT;
+        } else {
+            return TimeOfDay.BOTH;
+        }
     }
 }

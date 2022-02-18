@@ -286,4 +286,116 @@ public class LevelProperties {
 	public int getNumOfAirstrikeHits() {
 		return numOfAirstrikeHits;
 	}
+
+	/**
+	 * Sets the level id for this level
+	 * @param levelId Sets the level id for this level
+	 */
+	public void setLevelId(int levelId) {
+		this.levelId = levelId;
+	}
+
+	/**
+	 * Sets the population to lose
+	 * @param populationToLose Sets the population to lose in total rats
+	 */
+	public void setPopulationToLose(int populationToLose) {
+		this.populationToLose = populationToLose;
+	}
+
+	/**
+	 * Sets the expected time to complete a level
+	 * @param expectedTime the expected time to complete a level in seconds
+	 */
+	public void setExpectedTime(int expectedTime) {
+		this.expectedTime = expectedTime;
+	}
+
+	/**
+	 * Sets the time between item drops, in seconds
+	 * @param itemInterval Sets the time between item drops, in seconds
+	 */
+	public void setItemInterval(int itemInterval) {
+		this.itemInterval = itemInterval;
+	}
+
+	/**
+	 * Sets the minimum number of rats a pregnant rat will birth
+	 * @param ratMinBabies the minimum number of rats a pregnant rat will birth, in number of rats
+	 */
+	public void setRatMinBabies(int ratMinBabies) {
+		this.ratMinBabies = ratMinBabies;
+	}
+
+	/**
+	 * Sets the maximum number of rats a pregnant rat will birth
+	 * @param ratMaxBabies the maximum number of rats a pregnant rat will birth, in number of rats
+	 */
+	public void setRatMaxBabies(int ratMaxBabies) {
+		this.ratMaxBabies = ratMaxBabies;
+	}
+
+	/**
+	 * Sets the speed of adult rats
+	 * @param adultRatSpeed the speed of adult rats in milliseconds between movements
+	 */
+	public void setAdultRatSpeed(int adultRatSpeed) {
+		this.adultRatSpeed = adultRatSpeed;
+	}
+
+	/**
+	 * Sets the speed of baby rats
+	 * @param babyRatSpeed the speed of baby rats in milliseconds between movements
+	 */
+	public void setBabyRatSpeed(int babyRatSpeed) {
+		this.babyRatSpeed = babyRatSpeed;
+	}
+
+	/**
+	 * Sets the speed of death rats
+	 * @param deathRatSpeed the speed of death rats in milliseconds between movements
+	 */
+	public void setDeathRatSpeed(int deathRatSpeed) {
+		this.deathRatSpeed = deathRatSpeed;
+	}
+
+	/**
+	 * Sets the time of day in this level
+	 * @param timeOfDay the time of day in this level
+	 */
+	public void setTimeOfDay(TimeOfDay timeOfDay) {
+		this.timeOfDay = timeOfDay;
+	}
+
+	/**
+	 * Sets the time between changes in time
+	 * @param timeInterval the time between changes in time, in seconds
+	 */
+	public void setTimeInterval(int timeInterval) {
+		this.timeInterval = timeInterval;
+	}
+
+	/**
+	 * Sets whether airstrikes are enabled
+	 * @param airstrikeEnabled whether airstrikes are enabled
+	 */
+	public void setAirstrikeEnabled(boolean airstrikeEnabled) {
+		this.airstrikeEnabled = airstrikeEnabled;
+	}
+
+	/**
+	 * Sets the cost of an airstrike
+	 * @param costOfAirstrike the cost of an airstrike, in total points
+	 */
+	public void setCostOfAirstrike(int costOfAirstrike) {
+		this.costOfAirstrike = costOfAirstrike;
+	}
+
+	/**
+	 * Sets the number of airstrike hits
+	 * @param numOfAirstrikeHits the number of airstrike hits in total tiles
+	 */
+	public void setNumOfAirstrikeHits(int numOfAirstrikeHits) {
+		this.numOfAirstrikeHits = numOfAirstrikeHits;
+	}
 }

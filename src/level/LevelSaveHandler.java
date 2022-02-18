@@ -34,12 +34,31 @@ public class LevelSaveHandler {
 	 * @param levelData The level data currently in play
 	 * @param player    The player playing the level
 	 */
-	public static void saveLevel(LevelData levelData, Player player) {
-
+	public static void saveGameLevel(LevelData levelData, Player player) {
 		// Construct a file name
 		int levelId = levelData.getLevelProperties().getLevelId();
 		String path = LevelUtils.constructSavedLevelFileName(player, levelId);
+		saveLevel(path, levelData);
+	}
 
+	/**
+	 * A method to save the provided custom level for the provided player
+	 * @param levelData The level data of the custom level
+	 * @param player The player creating the level
+	 */
+	public static void saveCustomLevel(LevelData levelData, Player player) {
+		// Construct a file name
+		int levelId = levelData.getLevelProperties().getLevelId();
+		String path = LevelUtils.constructCustomLevelFileName(player, levelId);
+		saveLevel(path, levelData);
+	}
+
+	/**
+	 * Saves the provided level to the provided file path
+	 * @param path the filepath to save too
+	 * @param levelData the level data to save
+	 */
+	private static void saveLevel(String path, LevelData levelData) {
 		// Create a file writer for the generated file path
 		File levelFile = new File(path);
 		XMLFileWriter xmlFileWriter = new XMLFileWriter(levelFile,

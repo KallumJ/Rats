@@ -75,16 +75,12 @@ public class CustomBoard extends Board {
 
     /**
      * Changes tile at mouse position with selected tile type
-     * @param event MouseEvent used to get mouse X Y
+     * @param tile the tile to change
      */
     private void changeTile(Tile tile) {
-        // System.out.println(String.format("X:%s Y:%s", event.getX(), event.getY()));
-        if (tile == null) {
-            System.out.println("Null!");
-        } else if (tile.getTileType() != inputMenu.getTileSelected()) {
+        if (tile.getTileType() != inputMenu.getTileSelected()) {
             Tile newTile = new Tile(tile.getTileLocation(), inputMenu.getTileSelected());
             levelData.changeTile(tile, newTile);
-            System.out.println("Tile changed");
             tileCanvas.updateBoardDisplay();
         }
     }
@@ -121,7 +117,9 @@ public class CustomBoard extends Board {
 
         // Save level when mouse is pressed, and stop the current game
         saveButton.setOnMousePressed(event -> {
-            // TODO behaviour of save button
+            inputMenu.setLevelProperties(levelData);
+            LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
+            GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
         });
 
         createButton.setOnMousePressed(event -> {

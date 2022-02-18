@@ -117,13 +117,8 @@ public class Board {
 	 * A method to check for interactions between objects on the board.
 	 */
 	public void interactionCheck() {
-		if (levelData.getLevelProperties().getScore() >= POINTS_FOR_AIRSTRIKE &&
-				getLevelProperties().isAirstrikeEnabled()){
-			airstrikeCallButton.setDisable(false);
-		}else {
-			airstrikeCallButton.setDisable(true);
-
-		}
+		airstrikeCallButton.setDisable(levelData.getLevelProperties().getScore() < POINTS_FOR_AIRSTRIKE ||
+				!getLevelProperties().isAirstrikeEnabled());
 
 		updateProgressBar();
 		List<GameObject> objects = levelData.getObjects();
@@ -275,7 +270,7 @@ public class Board {
 		// Save level when mouse is pressed, and stop the current game
 		saveButton.setOnMousePressed(event -> {
 			levelData.setInventory(inventory.getItemsInInventory());
-			LevelSaveHandler.saveLevel(levelData,
+			LevelSaveHandler.saveGameLevel(levelData,
 					PlayerProfileManager.getCurrentlyLoggedInPlayer());
 			this.stopGame();
 			GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));

@@ -35,6 +35,10 @@ public class LevelUtils {
 			"/savedLevels/";
 	private static final String SAVED_LEVELS_FILE_PATH =
 			SAVED_LEVELS_DIR_PATH + "/%s-%d.xml";
+	private static final String CUSTOM_LEVELS_DIR_PATH =
+			LEVELS_PATH + "/customLevels/";
+	private static final String CUSTOM_LEVELS_FILE_PATH =
+			CUSTOM_LEVELS_DIR_PATH + "/%s-%d.xml";
 	private static final String INVALID_TILE_TYPE =
 			"%s is an invalid tile " + "type";
 	private static final String INVALID_DIRECTION_ERROR =
@@ -185,6 +189,25 @@ public class LevelUtils {
 		}
 
 		return String.format(SAVED_LEVELS_FILE_PATH, player.getPlayerName(),
+				levelId);
+	}
+
+	/**
+	 * Added a method to construct the file name for a saved custom level for a given
+	 * player and level id.
+	 *
+	 * @param player  the player
+	 * @param levelId the level id
+	 * @return the file name for a saved custom level for a given player and level id
+	 */
+	public static String constructCustomLevelFileName(Player player, int levelId) {
+		// If the directory doesnt exist, create it
+		File file = new File(CUSTOM_LEVELS_DIR_PATH);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+
+		return String.format(CUSTOM_LEVELS_FILE_PATH, player.getPlayerName(),
 				levelId);
 	}
 
