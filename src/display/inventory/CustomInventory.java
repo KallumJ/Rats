@@ -7,6 +7,7 @@ import objects.GameObjectType;
  * A class to an inventory for creating custom levels
  */
 public class CustomInventory extends Inventory {
+    private static final int INVENTORY_WIDTH = 75;
     /**
      * Constructs a CustomInventory object.
      *
@@ -40,4 +41,12 @@ public class CustomInventory extends Inventory {
         return itemRows.size() < GameObjectType.values().length;
     }
 
+    /**
+     * Get the width of the inventory
+     * @return the width of the inventory, in pixels
+     */
+    @Override
+    protected double getInventoryWidth() {
+        return INVENTORY_WIDTH;
+    }
 }

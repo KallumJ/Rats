@@ -38,7 +38,7 @@ public class Inventory {
 		final int pad = INVENTORY_PADDING;
 		inventoryNode.setPadding(new Insets(pad, pad, pad, pad));
 		inventoryNode.setStyle("-fx-background-image: url(file:resources/inventoryBg.png);");
-		inventoryNode.setMinWidth(INVENTORY_WIDTH);
+		inventoryNode.setMinWidth(getInventoryWidth());
 
 		// Create a set of rows
 		this.itemRows = new HashSet<>();
@@ -54,6 +54,14 @@ public class Inventory {
 		}
 
 		this.levelData = levelData;
+	}
+
+	/**
+	 * Get the width of the inventory
+	 * @return the width of the inventory, in pixels
+	 */
+	protected double getInventoryWidth() {
+		return INVENTORY_WIDTH;
 	}
 
 	/**
