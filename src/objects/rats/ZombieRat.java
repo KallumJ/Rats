@@ -66,6 +66,7 @@ public class ZombieRat extends Rat{
                 .getDeathRatSpeed();
         ZombieRat zombie = new ZombieRat(rat.getStandingOn(),speed,
                 rat.getDirectionOfMovement(),10);
+        GameObject.getBoard().addObject(zombie);
     }
 
     /**
