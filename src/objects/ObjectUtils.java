@@ -60,7 +60,7 @@ public class ObjectUtils {
 			case PORTAL:
 				return "file:resources/portal.gif";
 			case ZOMBIE_RAT:
-				return "file:resources/zombieRat.gif";
+				return "file:resources/zombieRat.png";
 			case MALE_RAT:
 				return "file:resources/maleRat.png";
 			case FEMALE_RAT:
