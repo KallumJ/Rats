@@ -1,15 +1,14 @@
-name: checkstyle
-
-on: [push, pull_request]
-
+name: reviewdog
+on: [pull_request]
 jobs:
-  java-checkstyle:
+  checkstyle:
+    name: runner / checkstyle
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Run Java Checkstyle
-        uses: Justintime50/java-checkstyle-action@v1
+      - uses: actions/checkout@v2
+      - uses: dbelyaev/action-checkstyle@v0.5.1
         with:
-          # The name of the style suite to be used, either 'sun' or 'google'.
-          style_suite: sun
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: warning
+          checkstyle_config: sun_checks.xml
