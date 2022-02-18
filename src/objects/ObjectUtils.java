@@ -175,6 +175,8 @@ public class ObjectUtils {
 				return GameObjectType.FEMALE_SEX_CHANGER;
 			case ObjectAttributeGenerator.POISON_KEY:
 				return GameObjectType.POISON;
+			case ObjectAttributeGenerator.PORTAL_KEY:
+				return GameObjectType.PORTAL;
 			default:
 				throw new IllegalArgumentException(String.format(NO_TYPE_ASSIGNED, itemString));
 		}

@@ -29,6 +29,7 @@ public class CustomBoard extends Board {
     private final TileCanvas tileCanvas;
     private final LevelData levelData;
     private final LevelEditorOptionsMenu inputMenu;
+    private final Stage levelOptionsStage;
 
 
     /**
@@ -40,6 +41,10 @@ public class CustomBoard extends Board {
         this.tileCanvas = new TileCanvas(levelData);
         this.inputMenu = new LevelEditorOptionsMenu();
         this.eventListeners();
+        levelOptionsStage = new Stage();
+        levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
+        levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
+        levelOptionsStage.setY(GameMenu.getStage().getY());
     }
 
     /**
@@ -94,10 +99,6 @@ public class CustomBoard extends Board {
         root.setLeft(tileCanvas.getCanvas());
         root.setRight(new CustomInventory(levelData).buildInventoryGUI());
         root.setBottom(createCommandsBox());
-        Stage levelOptionsStage = new Stage();
-        levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
-        levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
-        levelOptionsStage.setY(GameMenu.getStage().getY());
         levelOptionsStage.show();
 
         GameObject.setBoard(this);
@@ -119,6 +120,8 @@ public class CustomBoard extends Board {
         saveButton.setOnMousePressed(event -> {
             inputMenu.setLevelProperties(levelData);
             LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
+            levelOptionsStage.close();
+            GameObject.setBoard(null);
             GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
         });
 
