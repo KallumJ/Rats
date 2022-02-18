@@ -87,6 +87,8 @@ public class LevelEditorOptionsMenu {
         HBox row6 = new HBox();
 
         Label populationToLoseLabel = new Label("Population to Lose:");
+        Tooltip populationToLoseTooltip = new Tooltip("blah blah blah");
+        Tooltip.install(populationToLoseLabel, populationToLoseTooltip);
         populationToLoseLabel.setPadding(PADDING);
         populationToLoseTextField.setPadding(PADDING);
 
