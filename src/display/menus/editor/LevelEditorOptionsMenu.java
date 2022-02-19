@@ -34,6 +34,7 @@ public class LevelEditorOptionsMenu {
     private final RadioButton dayAndNight;
     private final TextField timeIntervalTextField; // period between day and night
     private final RadioButton deleteItems;
+    private Label addSth;
 
 
     /**

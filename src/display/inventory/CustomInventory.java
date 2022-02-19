@@ -46,7 +46,7 @@ public class CustomInventory extends Inventory {
      * @return the width of the inventory, in pixels
      */
     @Override
-    protected double getInventoryWidth() {
+    public double getInventoryWidth() {
         return INVENTORY_WIDTH;
     }
 }
