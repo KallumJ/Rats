@@ -5,8 +5,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import level.LevelData;
 import level.LevelProperties;
 import tile.TileType;
@@ -37,6 +42,7 @@ public class LevelEditorOptionsMenu {
     private final RadioButton dayAndNight;
     private final TextField timeIntervalTextField; // period between day and night
     private final RadioButton deleteItems;
+    private Label addSth;
 
 
     /**
@@ -74,6 +80,8 @@ public class LevelEditorOptionsMenu {
     }
 
 
+    
+    
     /**
      * Builds the LevelPropertiesInputMenu gui
      * @return the menu as a VBox
@@ -85,54 +93,70 @@ public class LevelEditorOptionsMenu {
         HBox row4 = new HBox();
         HBox row5 = new HBox();
         HBox row6 = new HBox();
-
-        Label populationToLoseLabel = new Label("Population to Lose:");
-        Tooltip populationToLoseTooltip = new Tooltip("blah blah blah");
+        HBox row7 = new HBox();
+        
+        Label populationToLoseLabel = new Label("Population to Lose: ");
+        Tooltip populationToLoseTooltip = new Tooltip("");
         Tooltip.install(populationToLoseLabel, populationToLoseTooltip);
         populationToLoseLabel.setPadding(PADDING);
         populationToLoseTextField.setPadding(PADDING);
-
-        Label expectedTimeLabel = new Label("Expected Time:");
+        
+        Label expectedTimeLabel = new Label("Expected Time: ");
         expectedTimeLabel.setPadding(PADDING);
         expectedTimeTextField.setPadding(PADDING);
+        expectedTimeTextField.setOnMouseEntered(event->{
+            addSth.setText("I bet you like challenge:-)");});
 
-        Label itemIntervalLabel = new Label("Item Interval:");
+        Label itemIntervalLabel = new Label("Item Interval: ");
         itemIntervalLabel.setPadding(PADDING);
         itemIntervalTextField.setPadding(PADDING);
+        itemIntervalTextField.setOnMouseEntered(event->{
+            addSth.setText("Enter the time when an item appeared.");});
 
-        Label ratMaxBabiesLabel = new Label("Maximum babies:");
+        Label ratMaxBabiesLabel = new Label("Maximum babies: ");
         ratMaxBabiesLabel.setPadding(PADDING);
         ratMaxBabiesTextField.setPadding(PADDING);
 
-        Label ratMinBabiesLabel = new Label("Minimum babies:");
+        Label ratMinBabiesLabel = new Label("Minimum babies: ");
         ratMinBabiesLabel.setPadding(PADDING);
         ratMinBabiesTextField.setPadding(PADDING);
 
-        Label adultRatSpeedLabel = new Label("Adult Rat Speed:");
+        Label adultRatSpeedLabel = new Label("Adult Rat Speed: ");
         adultRatSpeedLabel.setPadding(PADDING);
         adultRatSpeedTextField.setPadding(PADDING);
 
-        Label babyRatSpeedLabel = new Label("Baby Rat Speed:");
+        Label babyRatSpeedLabel = new Label("Baby Rat Speed: ");
         babyRatSpeedLabel.setPadding(PADDING);
         babyRatSpeedTextField.setPadding(PADDING);
 
-        Label deathRatSpeedLabel = new Label("Death Rat Speed:");
+        Label deathRatSpeedLabel = new Label("Death Rat Speed: ");
         deathRatSpeedLabel.setPadding(PADDING);
         deathRatSpeedTextField.setPadding(PADDING);
 
-        Label airstrikeCostLabel = new Label("Required points for airstrike:");
+        Label airstrikeCostLabel = new Label("Required points for airstrike: ");
         airstrikeCostLabel.setPadding(PADDING);
         airstrikeCostTextField.setPadding(PADDING);
+        airstrikeCostTextField.setOnMouseEntered(event->{
+            addSth.setText("How much points of calling an airstrike?");});
 
 
-        Label airstrikeNumberOfHitsLabel = new Label("Number of targets in an airstrike:");
+        Label airstrikeNumberOfHitsLabel = new Label("Number of targets in an airstrike: ");
         airstrikeNumberOfHitsLabel.setPadding(PADDING);
         airstrikeNumberOfHitsTextField.setPadding(PADDING);
-
-        Label timeDayAndNightLabel = new Label("Period between day and night:");
+        airstrikeNumberOfHitsTextField.setOnMouseEntered(event->{
+            addSth.setText("Enter the number of airstrike hits tiles.");});
+        
+        Label timeDayAndNightLabel = new Label("Period between day and night: ");
         timeDayAndNightLabel.setPadding(PADDING);
         timeIntervalTextField.setPadding(PADDING);
-
+        timeIntervalTextField.setOnMouseEntered(event->{
+            addSth.setText("When dose night come?");});
+        
+        
+        addSth=new Label("Customize your own map !");
+        addSth.setFont(new Font("Consolas", 28));
+        addSth.setTextFill(Color.DARKORCHID);
+        addSth.setPadding(PADDING);
 
         /*
          * adds a choice box with choice of tiles
@@ -186,10 +210,15 @@ public class LevelEditorOptionsMenu {
                 onlyNightTime,
                 dayAndNight
         );
+        
+        row7.getChildren().addAll(
+                addSth);
 
         VBox container = new VBox();
-        container.getChildren().addAll(row1, row2, row3, row4,row5,row6);
+        container.getChildren().addAll(row1, row2, row3, row4,row5,row6,row7);
         container.autosize();
+        container.setOnMouseEntered(event->{
+            addSth.setText("Customize your own map !");});
 
         return container;
     }
