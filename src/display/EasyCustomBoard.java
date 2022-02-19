@@ -3,8 +3,8 @@ package display;
 import display.inventory.CustomInventory;
 import display.menus.GameMenu;
 import display.menus.MainMenu;
-import display.menus.editor.LevelEditorOptionsMenu;
-import display.menus.editor.SizeSelectionMenu;
+import display.menus.editor.DifficultySelectionMenu;
+import display.menus.editor.EasyLevelEditorOptionsMenu;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -25,25 +25,24 @@ import java.util.List;
 /**
  * A class to model a board in a level editor
  */
-public class CustomBoard extends Board {
+public class EasyCustomBoard extends Board {
     private final TileCanvas tileCanvas;
     private final LevelData levelData;
-    private final LevelEditorOptionsMenu inputMenu;
+    private final EasyLevelEditorOptionsMenu inputMenu;
     private final Stage levelOptionsStage;
-
 
     /**
      * Constructs a custom board
      * @param levelData the LevelData for the custom level
      */
-    public CustomBoard(LevelData levelData) {
+    public EasyCustomBoard(LevelData levelData) {
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
-        this.inputMenu = new LevelEditorOptionsMenu();
+        this.inputMenu = new EasyLevelEditorOptionsMenu();
         this.eventListeners();
         levelOptionsStage = new Stage();
         levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
-        levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
+        levelOptionsStage.setX(GameMenu.getStage().getX() - EasyLevelEditorOptionsMenu.WINDOW_OFFSET);
         levelOptionsStage.setY(GameMenu.getStage().getY());
     }
 
@@ -116,6 +115,7 @@ public class CustomBoard extends Board {
         Button backButton = new Button(" B A C K "); 
         backButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
 
+
         saveButton.setMaxWidth(200);
         saveButton.setAlignment(Pos.CENTER_LEFT);
 
@@ -139,7 +139,7 @@ public class CustomBoard extends Board {
         });
 
         backButton.setOnMousePressed(event -> {
-            GameMenu.getStage().setScene(new Scene(new SizeSelectionMenu().buildMenu()));
+            GameMenu.getStage().setScene(new Scene(new DifficultySelectionMenu().buildMenu()));
         });
 
         commandsBox.getChildren().add(saveButton);
@@ -188,4 +188,6 @@ public class CustomBoard extends Board {
         objects.add(objectAdded);
         tileCanvas.updateBoardDisplay();
     }
+
+    
 }

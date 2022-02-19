@@ -17,12 +17,16 @@ import javafx.scene.text.Font;
 import level.LevelData;
 import level.custom.CustomLevelDataFactory;
 import util.TextUtils;
+import javafx.scene.control.Button;
+
 
 public class SizeSelectionMenu extends GameMenu {
-    private static final String MENU_TITLE = " S I Z E ";
+    private static final String MENU_TITLE = " C R E A T E ";
+    private static final String DIFFICULTY_BUTTON_TEXT = "Select Difficulty";
     private static final String START_BUTTON_TEXT = "Start Editing";
     private static final String HEIGHT_LABEL = " S E L E C T  H E I G H T: ";
     private static final String WIDTH_LABEL = " S E L E C T  W I D T H: ";
+    private static final String OR_LABEL = " Or ";
     private static final int HEIGHT_LIMIT = 20;
     private static final int WIDTH_LIMIT = 20;
     private static final int MIN_SIZE = 5;
@@ -50,14 +54,14 @@ public class SizeSelectionMenu extends GameMenu {
         heightLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;");
         
         heightLabel.setTranslateX(120);
-        heightLabel.setTranslateY(270);
+        heightLabel.setTranslateY(280);
 
         //this is the height spinner 
         Spinner<Integer> heightSpinner = new Spinner<>(MIN_SIZE, HEIGHT_LIMIT, MIN_SIZE);
         heightSpinner.setStyle("-fx-background-color: black; -fx-border-color: darkgrey; -fx-border-width: 2px;");
 
         heightSpinner.setTranslateX(130);
-        heightSpinner.setTranslateY(280);
+        heightSpinner.setTranslateY(290);
 
         //this is the label for widthSpinner
         Label widthLabel = new Label(WIDTH_LABEL);
@@ -65,14 +69,14 @@ public class SizeSelectionMenu extends GameMenu {
         widthLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;");
 
         widthLabel.setTranslateX(120);
-        widthLabel.setTranslateY(285);
+        widthLabel.setTranslateY(300);
 
         //this is the width spinner
         Spinner<Integer> widthSpinner = new Spinner<>(MIN_SIZE, WIDTH_LIMIT, MIN_SIZE);
         widthSpinner.setStyle("-fx-background-color: black; -fx-border-color: darkgrey; -fx-border-width: 2px;");
 
         widthSpinner.setTranslateX(130);
-        widthSpinner.setTranslateY(300);
+        widthSpinner.setTranslateY(310);
 
         //this is the 'START EDITING' button
         Button startButton = new Button(START_BUTTON_TEXT);
@@ -80,8 +84,25 @@ public class SizeSelectionMenu extends GameMenu {
         startButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
         startButton.setPrefWidth(170);
 
-        startButton.setTranslateX(120);
-        startButton.setTranslateY(350);
+        startButton.setTranslateX(30);
+        startButton.setTranslateY(330);
+
+        //this is the label for 'OR'
+        Label orLabel = new Label(OR_LABEL);
+        orLabel.setTextFill(Color.WHITE);
+        orLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;");
+
+        orLabel.setTranslateX(205);
+        orLabel.setTranslateY(260);
+
+        //this is the 'SELECT DIFFICULTY' button 
+        Button difficultyButton = new Button(DIFFICULTY_BUTTON_TEXT);
+        difficultyButton.setFont(TITLE_FONT);
+        difficultyButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
+        difficultyButton.setPrefWidth(170);
+
+        difficultyButton.setTranslateX(240);
+        difficultyButton.setTranslateY(290);
 
         // When the start button is pressed, they are taken to a page to start creating their level
         startButton.setOnMousePressed(event -> {
@@ -102,9 +123,14 @@ public class SizeSelectionMenu extends GameMenu {
             }
         });
 
+        // When the 'SELECT DIFFICULTY' button is presses, they are taken to a new Border Pane which displays three more buttons
+        difficultyButton.setOnMousePressed(event -> {
+            Scene scene = new Scene(new DifficultySelectionMenu().buildMenu());
+            GameMenu.getStage().setScene(scene);
+        });
 
         // Add and align the controls
-        sizeControlsContainer.getChildren().addAll(heightLabel, heightSpinner, widthLabel, widthSpinner, startButton);
+        sizeControlsContainer.getChildren().addAll(heightLabel, heightSpinner, widthLabel, widthSpinner, startButton, difficultyButton, orLabel);
         widthLabel.setPadding(new Insets(DEFAULT_PADDING, 0, 0, 0));
         getCenter().getChildren().add(sizeControlsContainer);
 

@@ -13,3 +13,4 @@ jar cfe Rats.jar Main *
 mv Rats.jar ../
 cd ..
 java -jar Rats.jar
+

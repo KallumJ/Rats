@@ -15,7 +15,7 @@ import util.TextUtils;
  */
 public class MenuTitle extends StackPane {
 
-	private static final int TITLE_WIDTH = 250;
+	private static final int TITLE_WIDTH = 280;
 	private static final int TITLE_HEIGHT = 60;
 	private static final int BORDER_SIZE = 2;
 	private static final int TITLE_FONT_SIZE = 50;

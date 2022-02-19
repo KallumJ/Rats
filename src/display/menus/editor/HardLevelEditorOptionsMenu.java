@@ -10,12 +10,12 @@ import level.LevelProperties;
 import tile.TileType;
 
 /**
- * A class to get input from the user for the custom level properties
+ * A class to get input from the user for the easy custom level properties
  *
  * @author Kallum Jones (2005855) (11/02/22)
  */
-public class LevelEditorOptionsMenu {
-    public static final int WINDOW_OFFSET = 800;
+public class HardLevelEditorOptionsMenu {
+    public static int WINDOW_OFFSET = 800;
 
     private final TextField populationToLoseTextField;
     private final TextField expectedTimeTextField;
@@ -35,27 +35,26 @@ public class LevelEditorOptionsMenu {
     private final TextField timeIntervalTextField; // period between day and night
     private final RadioButton deleteItems;
 
-
     /**
      * Constructs a LevelPropertiesInputMenu object
      */
-    public LevelEditorOptionsMenu() {
-        populationToLoseTextField = new TextField();
-        expectedTimeTextField = new TextField();
-        itemIntervalTextField = new TextField();
-        ratMaxBabiesTextField = new TextField();
-        ratMinBabiesTextField = new TextField();
-        adultRatSpeedTextField = new TextField();
-        babyRatSpeedTextField = new TextField();
-        deathRatSpeedTextField = new TextField();
+    public HardLevelEditorOptionsMenu() {
+        populationToLoseTextField = new TextField("40");
+        expectedTimeTextField = new TextField("300");
+        itemIntervalTextField = new TextField("20");
+        ratMaxBabiesTextField = new TextField("30");
+        ratMinBabiesTextField = new TextField("10");
+        adultRatSpeedTextField = new TextField("3000");
+        babyRatSpeedTextField = new TextField("2000");
+        deathRatSpeedTextField = new TextField("5000");
         tileSelectChoiceBox = new ChoiceBox<>();
         includeAirstrike = new RadioButton("Include airstrike");
-        airstrikeCostTextField = new TextField();
-        airstrikeNumberOfHitsTextField = new TextField();
+        airstrikeCostTextField = new TextField("150");
+        airstrikeNumberOfHitsTextField = new TextField("5");
         deleteItems = new RadioButton("Delete items on tile");
 
 
-        timeIntervalTextField = new TextField();
+        timeIntervalTextField = new TextField("60");
         onlyDayTime = new RadioButton("Always day time");
         onlyNightTime = new RadioButton("Always night time");
         dayAndNight = new RadioButton("Day and night times");
@@ -311,7 +310,6 @@ public class LevelEditorOptionsMenu {
         return container;
     }
 
-
     /**
      * Sets all the properties in the provided LevelData to those contained in the menu
      * @param levelData the level data to set the properties for
@@ -435,7 +433,7 @@ public class LevelEditorOptionsMenu {
         return deleteItems.selectedProperty().get();
     }
 
-    /**
+        /**
      * Returns TileType of selected tile
      * @return TileType of selected tile
      */
@@ -465,3 +463,4 @@ public class LevelEditorOptionsMenu {
         }
     }
 }
+
