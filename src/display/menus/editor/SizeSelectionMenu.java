@@ -27,9 +27,9 @@ public class SizeSelectionMenu extends GameMenu {
     private static final String HEIGHT_LABEL = " S E L E C T  H E I G H T: ";
     private static final String WIDTH_LABEL = " S E L E C T  W I D T H: ";
     private static final String OR_LABEL = " Or ";
-    private static final int HEIGHT_LIMIT = 20;
-    private static final int WIDTH_LIMIT = 20;
-    private static final int MIN_SIZE = 5;
+    private static final int HEIGHT_LIMIT = 15;
+    private static final int WIDTH_LIMIT = 15;
+    private static final int MIN_SIZE = 10;
     private static final String INVALID_SIZE =
             "Please choose a size with a height no greater than " + HEIGHT_LIMIT +
                     "and a width no greater than " + WIDTH_LIMIT;
@@ -56,7 +56,7 @@ public class SizeSelectionMenu extends GameMenu {
         heightLabel.setTranslateX(120);
         heightLabel.setTranslateY(280);
 
-        //this is the height spinner 
+        //this is the height spinner
         Spinner<Integer> heightSpinner = new Spinner<>(MIN_SIZE, HEIGHT_LIMIT, MIN_SIZE);
         heightSpinner.setStyle("-fx-background-color: black; -fx-border-color: darkgrey; -fx-border-width: 2px;");
 

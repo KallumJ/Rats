@@ -53,7 +53,6 @@ public class TileCanvas {
         TimerTask task = new TimerTask() {
             public void run() {
                 elapsedSeconds++;
-                System.out.println(elapsedSeconds);
             }
         };
 
