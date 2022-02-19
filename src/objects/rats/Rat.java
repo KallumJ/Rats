@@ -2,7 +2,6 @@ package objects.rats;
 
 import java.util.Random;
 
-import display.CustomBoard;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
