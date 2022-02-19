@@ -100,10 +100,12 @@ public class LevelEditorOptionsMenu {
         Tooltip.install(populationToLoseLabel, populationToLoseTooltip);
         populationToLoseLabel.setPadding(PADDING);
         populationToLoseTextField.setPadding(PADDING);
-
+        
         Label expectedTimeLabel = new Label("Expected Time: ");
         expectedTimeLabel.setPadding(PADDING);
         expectedTimeTextField.setPadding(PADDING);
+        expectedTimeTextField.setOnMouseEntered(event->{
+            addSth.setText("I bet you like challenge:-)");});
 
         Label itemIntervalLabel = new Label("Item Interval: ");
         itemIntervalLabel.setPadding(PADDING);
