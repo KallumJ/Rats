@@ -8,7 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -26,6 +26,8 @@ import java.util.List;
  * A class to model a board in a level editor
  */
 public class CustomBoard extends Board {
+    private static final int INVENTORY_PADDING = 15; // in px
+
     private final TileCanvas tileCanvas;
     private final LevelData levelData;
     private final LevelEditorOptionsMenu inputMenu;
@@ -96,8 +98,16 @@ public class CustomBoard extends Board {
      */
     public BorderPane buildGUI() {
         BorderPane root = new BorderPane();
-        root.setLeft(tileCanvas.getCanvas());
-        root.setRight(new CustomInventory(levelData).buildInventoryGUI());
+
+        Canvas canvas = tileCanvas.getCanvas();
+        root.setLeft(canvas);
+
+        CustomInventory customInventory = new CustomInventory(levelData);
+        ScrollPane scrollingInv = new ScrollPane(customInventory.buildInventoryGUI());
+        scrollingInv.setMaxHeight(canvas.getHeight());
+        scrollingInv.setMinWidth(customInventory.getInventoryWidth() + INVENTORY_PADDING);
+        root.setRight(scrollingInv);
+
         root.setBottom(createCommandsBox());
         levelOptionsStage.show();
 
