@@ -5,6 +5,7 @@ import display.menus.GameMenu;
 import display.menus.MainMenu;
 import display.menus.editor.LevelEditorOptionsMenu;
 import display.menus.editor.SizeSelectionMenu;
+import envrionment.TimeOfDay;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -22,6 +23,7 @@ import players.PlayerProfileManager;
 import tile.Tile;
 
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * A class to model a board in a level editor
@@ -48,6 +50,33 @@ public class CustomBoard extends Board {
         levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
         levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
         levelOptionsStage.setY(GameMenu.getStage().getY());
+    }
+
+    public CustomBoard(LevelData levelData, int populationToLose, int expectedTime, int itemInterval, int ratMaxBabies, int ratMinBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed, boolean includeAirstrike, int costOfAirstrike, int airstrikeNumOfHits, TimeOfDay time, int timeInterval) {
+        this.levelData = levelData;
+        this.tileCanvas = new TileCanvas(levelData);
+
+        this.inputMenu = new LevelEditorOptionsMenu();
+        this.inputMenu.setPopulationToLose(populationToLose);
+        this.inputMenu.setExpectedTime(expectedTime);
+        this.inputMenu.setItemInterval(itemInterval);
+        this.inputMenu.setRatMaxBabies(ratMaxBabies);
+        this.inputMenu.setRatMinBabies(ratMinBabies);
+        this.inputMenu.setAdultRatSpeed(adultRatSpeed);
+        this.inputMenu.setBabyRatSpeed(babyRatSpeed);
+        this.inputMenu.setDeathRatSpeed(deathRatSpeed);
+        this.inputMenu.setIncludeAirstrike(includeAirstrike);
+        this.inputMenu.setAirstrikeCost(costOfAirstrike);
+        this.inputMenu.setAirstrikeNumberOfHits(airstrikeNumOfHits);
+        this.inputMenu.setTimeOfDay(time);
+        this.inputMenu.setTimeInterval(timeInterval);
+
+        this.eventListeners();
+        levelOptionsStage = new Stage();
+        levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
+        levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
+        levelOptionsStage.setY(GameMenu.getStage().getY());
+
     }
 
     /**
@@ -100,9 +129,8 @@ public class CustomBoard extends Board {
     public BorderPane buildGUI() {
         BorderPane root = new BorderPane();
 
-        Canvas canvas = tileCanvas.getCanvas();
-        root.setLeft(canvas);
 
+        Canvas canvas = tileCanvas.getCanvas();
         CustomInventory customInventory = new CustomInventory(levelData);
         ScrollPane scrollingInv = new ScrollPane(customInventory.buildInventoryGUI());
         scrollingInv.setMaxHeight(canvas.getHeight());
@@ -110,6 +138,9 @@ public class CustomBoard extends Board {
         root.setRight(scrollingInv);
 
         root.setBottom(createCommandsBox());
+
+        root.setLeft(canvas);
+
         levelOptionsStage.show();
 
         GameObject.setBoard(this);
@@ -150,6 +181,8 @@ public class CustomBoard extends Board {
         });
 
         backButton.setOnMousePressed(event -> {
+            levelOptionsStage.close();
+            GameObject.setBoard(null);
             GameMenu.getStage().setScene(new Scene(new SizeSelectionMenu().buildMenu()));
         });
 

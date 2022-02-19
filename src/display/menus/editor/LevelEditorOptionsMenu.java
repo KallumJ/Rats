@@ -27,7 +27,7 @@ public class LevelEditorOptionsMenu {
     private final TextField deathRatSpeedTextField;
     private final ChoiceBox<String> tileSelectChoiceBox;
     private final RadioButton includeAirstrike;
-    private TextField airstrikeCostTextField;
+    private final TextField airstrikeCostTextField;
     private final TextField airstrikeNumberOfHitsTextField;
     private final RadioButton onlyDayTime;
     private final RadioButton onlyNightTime;
@@ -462,5 +462,66 @@ public class LevelEditorOptionsMenu {
         } else {
             return TimeOfDay.BOTH;
         }
+    }
+
+    public void setPopulationToLose(int populationToLose) {
+        populationToLoseTextField.setText(String.valueOf(populationToLose));
+    }
+
+    public void setExpectedTime(int expectedTime) {
+        expectedTimeTextField.setText(String.valueOf(expectedTime));
+    }
+
+    public void setItemInterval(int itemInterval) {
+        itemIntervalTextField.setText(String.valueOf(itemInterval));
+    }
+
+    public void setRatMaxBabies(int ratMaxBabies) {
+        ratMaxBabiesTextField.setText(String.valueOf(ratMaxBabies));
+    }
+
+    public void setRatMinBabies(int ratMinBabies) {
+        ratMinBabiesTextField.setText(String.valueOf(ratMinBabies));
+    }
+
+    public void setAdultRatSpeed(int adultRatSpeed) {
+        adultRatSpeedTextField.setText(String.valueOf(adultRatSpeed));
+    }
+
+    public void setBabyRatSpeed(int babyRatSpeed) {
+        babyRatSpeedTextField.setText(String.valueOf(babyRatSpeed));
+    }
+
+    public void setDeathRatSpeed(int deathRatSpeed) {
+        deathRatSpeedTextField.setText(String.valueOf(deathRatSpeed));
+    }
+
+    public void setIncludeAirstrike(boolean include) {
+        includeAirstrike.setSelected(include);
+    }
+
+    public void setAirstrikeCost(int airstrikeCost) {
+        airstrikeCostTextField.setText(String.valueOf(airstrikeCost));
+    }
+
+    public void setAirstrikeNumberOfHits(int numOfTiles) {
+        airstrikeNumberOfHitsTextField.setText(String.valueOf(numOfTiles));
+    }
+
+    public void setTimeOfDay(TimeOfDay timeOfDay) {
+        switch (timeOfDay) {
+            case DAY:
+                onlyDayTime.setSelected(true);
+                break;
+            case NIGHT:
+                onlyNightTime.setSelected(true);
+                break;
+            case BOTH:dayAndNight.setSelected(true);
+                break;
+        }
+    }
+
+    public void setTimeInterval(int timeInterval) {
+        timeIntervalTextField.setText(String.valueOf(timeInterval));
     }
 }
