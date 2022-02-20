@@ -13,6 +13,10 @@ public class Explosion extends GameObject{
     }
 
     public void EndExplosion (){
-        GameObject.getBoard().removeObject(this);
+        try {
+            GameObject.getBoard().removeObject(this);
+        }catch (NullPointerException e){
+
+        }
     }
 }
