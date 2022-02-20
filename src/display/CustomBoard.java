@@ -1,10 +1,10 @@
 package display;
 
 import display.inventory.CustomInventory;
+import display.menus.CustomLevelsMenu;
 import display.menus.GameMenu;
 import display.menus.MainMenu;
 import display.menus.editor.LevelEditorOptionsMenu;
-import display.menus.editor.SizeSelectionMenu;
 import envrionment.TimeOfDay;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -169,7 +169,7 @@ public class CustomBoard extends Board {
         backButton.setOnMousePressed(event -> {
             levelOptionsStage.close();
             GameObject.setBoard(null);
-            GameMenu.getStage().setScene(new Scene(new SizeSelectionMenu().buildMenu()));
+            GameMenu.getStage().setScene(new Scene(new CustomLevelsMenu().buildMenu()));
         });
 
         commandsBox.getChildren().add(saveButton);

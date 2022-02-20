@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import level.LevelData;
 import level.custom.CustomLevelDataFactory;
+import objects.GameObject;
 import util.TextUtils;
 import javafx.scene.control.Button;
 
@@ -118,7 +119,7 @@ public class SizeSelectionMenu extends GameMenu {
 
                 CustomBoard board = new CustomBoard(customLevel);
                 Scene scene = new Scene(board.buildGUI());
-
+                GameObject.setBoard(board);
                 GameMenu.getStage().setScene(scene);
             }
         });

@@ -353,8 +353,19 @@ public class LevelUtils {
 
 	}
 
-
+	/**
+	 * A method to return whether the current board is custom or not
+	 * @return true if board is custom, false otherwise
+	 */
 	public static boolean isCurrentBoardCustom() {
-		return !(GameObject.getBoard() instanceof CustomBoard);
+		return (GameObject.getBoard() instanceof CustomBoard);
+	}
+
+	/**
+	 * A method to get an array of all the custom level files
+	 * @return a File[] of all the custom level files
+	 */
+	public static File[] getCustomLevels() {
+		return getFilesInDirectory(CUSTOM_LEVELS_DIR_PATH);
 	}
 }

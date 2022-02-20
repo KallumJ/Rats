@@ -1,11 +1,14 @@
 package level.custom;
 
 import level.LevelData;
+import level.LevelDataFactory;
 import level.LevelProperties;
 import level.LevelUtils;
+import players.scores.Player;
 import tile.TileSet;
 import tile.TileType;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -34,5 +37,16 @@ public class CustomLevelDataFactory {
         levelProperties.setLevelWidth(width);
         levelProperties.setLevelHeight(height);
         return new LevelData(levelProperties, tileSet, new ArrayList<>());
+    }
+
+    /**
+     * Get the Custom LevelData for the provided player and ID
+     * @param currentlyLoggedInPlayer the current player
+     * @param id the id of the level they selected
+     * @return the constructed LevelData
+     */
+    public static LevelData constructCustomLevelData(Player currentlyLoggedInPlayer, String id) {
+        File file = new File(LevelUtils.constructCustomLevelFileName(currentlyLoggedInPlayer, Integer.parseInt(id)));
+        return LevelDataFactory.constructLevelDataFromFile(file);
     }
 }

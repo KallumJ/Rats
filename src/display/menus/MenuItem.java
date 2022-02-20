@@ -1,6 +1,7 @@
 package display.menus;
 
 import display.Board;
+import display.CustomBoard;
 import display.menus.editor.SizeSelectionMenu;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,6 +16,8 @@ import javafx.scene.text.Text;
 import level.LevelData;
 import level.LevelDataFactory;
 import level.LevelUtils;
+import level.custom.CustomLevelDataFactory;
+import objects.GameObject;
 import players.PlayerProfileManager;
 import players.scores.Player;
 import util.TextUtils;
@@ -329,6 +332,8 @@ class EditCustomLevelMenuItem extends MenuItem {
 	 */
 	public EditCustomLevelMenuItem() {
 		super("EDIT CUSTOM LEVEL");
+		Scene scene = new Scene(new EditLevelMenu().buildMenu());
+		setOnMousePressed(event -> GameMenu.getStage().setScene(scene));
 	}
 }
 
@@ -359,5 +364,28 @@ class DeleteCustomLevelMenuItem extends MenuItem {
 	 */
 	public DeleteCustomLevelMenuItem() {
 		super("DELETE CUSTOM LEVEL");
+	}
+}
+
+/**
+ * A class to model a menu item for selecting a custom level to edit
+ *
+ * @author Kallum Jones 2005855 (20/02/22)
+ */
+class LevelEditItem extends MenuItem {
+
+	/**
+	 * Constructs a LevelEditItem with the provided name.
+	 */
+	public LevelEditItem(String id) {
+		super(id);
+		setOnMousePressed(event -> {
+			LevelData levelData =
+					CustomLevelDataFactory.constructCustomLevelData(PlayerProfileManager.getCurrentlyLoggedInPlayer(), id);
+			CustomBoard customBoard = new CustomBoard(levelData);
+			GameObject.setBoard(customBoard);
+			Scene scene = new Scene(customBoard.buildGUI());
+			GameMenu.getStage().setScene(scene);
+		});
 	}
 }

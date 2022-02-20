@@ -318,7 +318,7 @@ public class LevelEditorOptionsMenu {
     public void setLevelProperties(LevelData levelData) {
         LevelProperties levelProperties = levelData.getLevelProperties();
 
-        levelProperties.setLevelId(1);
+        levelProperties.setLevelId(9999);
         levelProperties.setPopulationToLose(getPopulationToLose());
         levelProperties.setExpectedTime(getExpectedTime());
         levelProperties.setItemInterval(getItemInterval());

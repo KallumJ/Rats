@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import level.LevelUtils;
 import objects.GameObject;
+import objects.ObjectStartable;
 import objects.ObjectStoppable;
 import tile.Direction;
 import tile.Tile;
@@ -18,7 +19,7 @@ import tile.TileType;
  *
  * @author Fahd
  */
-public class Rat extends GameObject implements ObjectStoppable {
+public class Rat extends GameObject implements ObjectStoppable, ObjectStartable {
 
 	// movement speed of the Rat
 	private int speed;
@@ -34,12 +35,11 @@ public class Rat extends GameObject implements ObjectStoppable {
 		this.directionOfMovement = directionOfMovement;
 
 		// Only move rats if this is on a normal Board
-		if (LevelUtils.isCurrentBoardCustom()) {
+		if (!LevelUtils.isCurrentBoardCustom()) {
 			moveTimeline = new Timeline(new KeyFrame(Duration.millis(this.speed),
 					event -> move()));
 			// Loop the timeline forever
 			moveTimeline.setCycleCount(Animation.INDEFINITE);
-			moveTimeline.play();
 		}
 	}
 
@@ -62,7 +62,7 @@ public class Rat extends GameObject implements ObjectStoppable {
 		// Set the new speed, and start a new moving timeline
 		this.speed = speed;
 
-		if (LevelUtils.isCurrentBoardCustom()) {
+		if (!LevelUtils.isCurrentBoardCustom()) {
 			// Stop the rat moving
 			moveTimeline.pause();
 
@@ -136,7 +136,6 @@ public class Rat extends GameObject implements ObjectStoppable {
 	 * doesn't move.
 	 */
 	private void move() {
-
 		boolean isLeftTurnPossible = (super.getStandingOn()
 				.getAdjacentTile(turnLeft(directionOfMovement))
 				.isTraversable());
@@ -271,5 +270,13 @@ public class Rat extends GameObject implements ObjectStoppable {
 		}
 
 		return rightOfDirection;
+	}
+
+	/**
+	 * Starts the rats movement logic
+	 */
+	@Override
+	public void start() {
+		moveTimeline.play();
 	}
 }

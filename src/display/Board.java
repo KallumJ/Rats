@@ -28,10 +28,7 @@ import level.LevelData;
 import level.LevelProperties;
 import level.LevelSaveHandler;
 import level.RatPopulation;
-import objects.Explosion;
-import objects.GameObject;
-import objects.ObjectInteractionChecker;
-import objects.ObjectStoppable;
+import objects.*;
 import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
 import players.scores.Player;
@@ -105,6 +102,13 @@ public class Board {
 		this.inventory = new GameInventory(levelData);
 
 		progressBar = new ArrayList<>(populationToLose);
+
+		// Start all objects that need starting
+		for (GameObject object : getObjects()) {
+			if (object instanceof ObjectStartable) {
+				((ObjectStartable) object).start();
+			}
+		}
 	}
 
 	/**
