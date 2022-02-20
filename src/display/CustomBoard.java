@@ -92,21 +92,29 @@ public class CustomBoard extends Board {
      */
     private void eventListeners() {
         this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, event -> {
-            Tile tile = levelData.getTileSet().getTile((int)event.getX()/Tile.TILE_SIZE, (int)event.getY()/Tile.TILE_SIZE);
-            if (this.inputMenu.getDeleteItemsChecked()) {
-                System.out.println(this.inputMenu.getDeleteItemsChecked());
-                removeItemsFromTile(tile);
-            } else {
-                changeTile(tile);
-        }});
+            // makes sure that borders are always grass
+            if ((int)event.getX()/Tile.TILE_SIZE >=1 && (int)event.getY()/Tile.TILE_SIZE >= 1
+                    && (int)event.getX()/Tile.TILE_SIZE-1 < this.getCanvas().getWidth()/Tile.TILE_SIZE-1
+                    && (int)event.getY()/Tile.TILE_SIZE-1 < this.getCanvas().getHeight()/Tile.TILE_SIZE-1){
+                Tile tile = levelData.getTileSet().getTile((int)event.getX()/Tile.TILE_SIZE, (int)event.getY()/Tile.TILE_SIZE);
+                if (this.inputMenu.getDeleteItemsChecked()) {
+                    System.out.println(this.inputMenu.getDeleteItemsChecked());
+                    removeItemsFromTile(tile);
+                } else {
+                    changeTile(tile);
+        }}});
         this.tileCanvas.getCanvas().addEventHandler(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, event -> {
-            Tile tile = levelData.getTileSet().getTile((int)event.getX()/Tile.TILE_SIZE, (int)event.getY()/Tile.TILE_SIZE);
-            if (this.inputMenu.getDeleteItemsChecked()) {
-                System.out.println(this.inputMenu.getDeleteItemsChecked());
-                removeItemsFromTile(tile);
-            } else {
-                changeTile(tile);
-        }});
+            // makes sure that borders are always grass
+            if ((int)event.getX()/Tile.TILE_SIZE >= 1 && (int)event.getY()/Tile.TILE_SIZE >= 1
+                    && (int)event.getX()/Tile.TILE_SIZE < this.getCanvas().getWidth()/Tile.TILE_SIZE-1
+                    && (int)event.getY()/Tile.TILE_SIZE < this.getCanvas().getHeight()/Tile.TILE_SIZE-1){
+                Tile tile = levelData.getTileSet().getTile((int)event.getX()/Tile.TILE_SIZE, (int)event.getY()/Tile.TILE_SIZE);
+                if (this.inputMenu.getDeleteItemsChecked()) {
+                    System.out.println(this.inputMenu.getDeleteItemsChecked());
+                    removeItemsFromTile(tile);
+                } else {
+                    changeTile(tile);
+        }}});
     }
 
     private void removeItemsFromTile(Tile tile) {
