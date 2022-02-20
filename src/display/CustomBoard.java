@@ -6,11 +6,9 @@ import display.menus.MainMenu;
 import display.menus.editor.LevelEditorOptionsMenu;
 import display.menus.editor.SizeSelectionMenu;
 import envrionment.TimeOfDay;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -23,13 +21,11 @@ import players.PlayerProfileManager;
 import tile.Tile;
 
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * A class to model a board in a level editor
  */
 public class CustomBoard extends Board {
-    private static final int INVENTORY_PADDING = 15; // in px
 
     private final TileCanvas tileCanvas;
     private final LevelData levelData;
@@ -78,6 +74,18 @@ public class CustomBoard extends Board {
         levelOptionsStage.setY(GameMenu.getStage().getY());
 
     }
+    
+    public BorderPane buildGUI() {
+        BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-image: url(file:resources/inventoryBg.png);");
+        root.setLeft(tileCanvas.getCanvas());
+        root.setBottom(createCommandsBox());
+        levelOptionsStage.show();
+        root.setRight(new CustomInventory(levelData).buildInventoryGUI());
+
+        GameObject.setBoard(this);
+        return root;
+    }
 
     /**
      * Calls all event listeners in class
@@ -122,31 +130,6 @@ public class CustomBoard extends Board {
         }
     }
 
-    /**
-     * A method to build the board's GUI
-     * @return the GUI as a BorderPane
-     */
-    public BorderPane buildGUI() {
-        BorderPane root = new BorderPane();
-
-
-        Canvas canvas = tileCanvas.getCanvas();
-        CustomInventory customInventory = new CustomInventory(levelData);
-        ScrollPane scrollingInv = new ScrollPane(customInventory.buildInventoryGUI());
-        scrollingInv.setMaxHeight(canvas.getHeight());
-        scrollingInv.setMinWidth(customInventory.getInventoryWidth() + INVENTORY_PADDING);
-        root.setRight(scrollingInv);
-
-        root.setBottom(createCommandsBox());
-
-        root.setLeft(canvas);
-
-        levelOptionsStage.show();
-
-        GameObject.setBoard(this);
-        return root;
-    }
-
     public HBox createCommandsBox () {
         HBox commandsBox = new HBox();
         Button saveButton = new Button(" S A V E ");
@@ -159,13 +142,16 @@ public class CustomBoard extends Board {
         backButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
 
         saveButton.setMaxWidth(200);
-        saveButton.setAlignment(Pos.CENTER_LEFT);
+        saveButton.setTranslateX(150);
+        saveButton.setTranslateY(0);
 
         createButton.setMaxWidth(200);
-        createButton.setAlignment(Pos.CENTER_LEFT);
+        createButton.setTranslateX(150);
+        createButton.setTranslateY(0);
 
         backButton.setMaxWidth(200);
-        createButton.setAlignment(Pos.CENTER_LEFT);
+        backButton.setTranslateX(150);
+        backButton.setTranslateY(0);
 
         // Save level when mouse is pressed, and stop the current game
         saveButton.setOnMousePressed(event -> {
