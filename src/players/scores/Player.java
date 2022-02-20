@@ -2,6 +2,7 @@ package players.scores;
 
 import io.XMLElementNames;
 import io.XMLNode;
+import level.LevelUtils;
 import players.PlayerProfileManager;
 
 import java.util.ArrayList;
@@ -116,7 +117,10 @@ public class Player {
 			highScores.put(levelId, score);
 		}
 
-		maxLevel += 1;
+		if (!LevelUtils.isIdForCustomLeveL(levelId)) {
+			maxLevel += 1;
+		}
+
 		PlayerProfileManager.savePlayersFile();
 	}
 

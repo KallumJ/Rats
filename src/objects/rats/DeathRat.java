@@ -100,4 +100,12 @@ public class DeathRat extends Rat {
 				.getDeathRatSpeed();
 		super.setSpeed(speed);
 	}
+
+	/**
+	 * A method to get the death rats kill target
+	 * @return the death rats kill target, in number of rats
+	 */
+	public int getKillsTarget() {
+		return killsTarget;
+	}
 }

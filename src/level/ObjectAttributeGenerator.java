@@ -101,7 +101,7 @@ public class ObjectAttributeGenerator {
 			ZombieRat zombie = (ZombieRat) objectOnTile;
 			String attributeValue = generateZombieRatAttribute(zombie);
 
-			attributes.put(PORTAL_KEY, attributeValue);
+			attributes.put(ZOMBIE_RAT_KEY, attributeValue);
 		}
 	}
 
@@ -225,7 +225,7 @@ public class ObjectAttributeGenerator {
 
 		attribute.add(LevelUtils.getStringFromDirection(deathRat.getDirectionOfMovement()));
 		attribute.add(String.valueOf(deathRat.getNumberOfKills()));
-		attribute.add(String.valueOf(deathRat.getNumberOfKills()));
+		attribute.add(String.valueOf(deathRat.getKillsTarget()));
 
 		return attribute.toString();
 	}

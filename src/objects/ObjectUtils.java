@@ -177,6 +177,8 @@ public class ObjectUtils {
 				return GameObjectType.POISON;
 			case ObjectAttributeGenerator.PORTAL_KEY:
 				return GameObjectType.PORTAL;
+			case ObjectAttributeGenerator.ZOMBIE_RAT_KEY:
+				return GameObjectType.ZOMBIE_RAT;
 			default:
 				throw new IllegalArgumentException(String.format(NO_TYPE_ASSIGNED, itemString));
 		}

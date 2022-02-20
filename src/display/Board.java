@@ -187,6 +187,9 @@ public class Board {
 		List<GameObject> objects = levelData.getObjects();
 
 		objects.add(objectAdded);
+		if (objectAdded instanceof ObjectStartable) {
+			((ObjectStartable) objectAdded).start();
+		}
 		updateBoardDisplay();
 	}
 

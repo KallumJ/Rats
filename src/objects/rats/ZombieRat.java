@@ -15,7 +15,7 @@ import tile.Tile;
  * @author Fahd
  */
 
-public class ZombieRat extends Rat{
+public class ZombieRat extends Rat {
 
     private Timeline disappearingTimeline;
     private int timeToDisappear; // life time for the zombie in seconds
