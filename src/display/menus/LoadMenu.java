@@ -39,9 +39,8 @@ public class LoadMenu extends GameMenu {
 					currentlyLoggedInPlayer.getPlayerName();
 
 			if (playerForLevel.equals(loggedInPlayerName)) {
-				int levelId = LevelUtils.getFilesLevelId(savedLevel);
 				SavedLevelMenuItem levelMenuItem =
-						new SavedLevelMenuItem(String.valueOf(levelId));
+						new SavedLevelMenuItem(savedLevel);
 				menuItems.add(levelMenuItem);
 			}
 		}

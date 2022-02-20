@@ -247,14 +247,14 @@ class SavedLevelMenuItem extends MenuItem {
 	/**
 	 * Constructs a SavedLevelMenuItem.
 	 *
-	 * @param id the id of the level
+	 * @param level the Level file that should open when this menu item is pressed
 	 */
-	public SavedLevelMenuItem(String id) {
-		super(id);
+	public SavedLevelMenuItem(File level) {
+		super(String.valueOf(LevelUtils.getFilesLevelId(level)));
 
 		setOnMousePressed(event -> {
 			LevelData levelData =
-					LevelDataFactory.constructSavedLevelData(PlayerProfileManager.getCurrentlyLoggedInPlayer(), id);
+					LevelDataFactory.constructLevelDataFromFile(level);
 
 			Board board = new Board(levelData);
 			board.startGame();
@@ -349,6 +349,11 @@ class LoadCustomLevelMenuItem extends MenuItem {
 	 */
 	public LoadCustomLevelMenuItem() {
 		super("LOAD CUSTOM LEVEL");
+
+		setOnMousePressed(event -> {
+			Scene scene = new Scene(new LoadCustomLevelMenu().buildMenu());
+			GameMenu.getStage().setScene(scene);
+		});
 	}
 }
 
