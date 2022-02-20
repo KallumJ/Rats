@@ -306,14 +306,16 @@ public class LevelUtils {
 		File levelsDirectory = new File(path);
 		File[] filesInLevelDirectory = levelsDirectory.listFiles();
 
-		if (filesInLevelDirectory == null) {
-			throw new RuntimeException(INVALID_DIRECTORY);
+		if (!levelsDirectory.exists()) {
+			levelsDirectory.mkdir();
 		}
 
 		ArrayList<File> nonDirectoryFiles = new ArrayList<>();
-		for (File file : filesInLevelDirectory) {
-			if (!file.isDirectory()) {
-				nonDirectoryFiles.add(file);
+		if (filesInLevelDirectory != null) {
+			for (File file : filesInLevelDirectory) {
+				if (!file.isDirectory()) {
+					nonDirectoryFiles.add(file);
+				}
 			}
 		}
 
