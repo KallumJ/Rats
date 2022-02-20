@@ -37,7 +37,14 @@ public class LevelSaveHandler {
 	public static void saveGameLevel(LevelData levelData, Player player) {
 		// Construct a file name
 		int levelId = levelData.getLevelProperties().getLevelId();
-		String path = LevelUtils.constructSavedLevelFileName(player, levelId);
+
+		String path;
+		if (!LevelUtils.isIdForCustomLeveL(levelId)) {
+			path = LevelUtils.constructSavedLevelFileName(player, levelId);
+		} else {
+			path = LevelUtils.constructCustomSavedLevelFileName(player, levelId);
+		}
+
 		saveLevel(path, levelData);
 	}
 

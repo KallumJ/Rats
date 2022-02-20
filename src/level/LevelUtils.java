@@ -49,6 +49,9 @@ public class LevelUtils {
 			+ "the provided level id";
 	private static final String NO_SAVED_LEVELS =
 			"The player has no saved " + "levels";
+	private static final String SAVED_CUSTOM_LEVELS_DIR_PATH = CUSTOM_LEVELS_DIR_PATH +
+			"/savedLevels/";
+	private static final String SAVED_CUSTOM_LEVELS_FILE_PATH = SAVED_CUSTOM_LEVELS_DIR_PATH + "/%s-%d.xml";
 
 	/**
 	 * Empty private constructor method, preventing LevelUtils from being
@@ -367,5 +370,31 @@ public class LevelUtils {
 	 */
 	public static File[] getCustomLevels() {
 		return getFilesInDirectory(CUSTOM_LEVELS_DIR_PATH);
+	}
+
+	/**
+	 * A method to return whether the level id is for a custom level
+	 * @param levelId the level id to check
+	 * @return true if the id is custom, false otherwise. (ids greater than 100 are custom)
+	 */
+    public static boolean isIdForCustomLeveL(int levelId) {
+		return levelId > 100;
+    }
+
+	/**
+	 * A method to the file path for a saved custom level
+	 * @param player the player saving
+	 * @param levelId the level id of the level
+	 * @return The level's file path
+	 */
+	public static String constructCustomSavedLevelFileName(Player player, int levelId) {
+		// If the directory doesnt exist, create it
+		File file = new File(SAVED_CUSTOM_LEVELS_DIR_PATH);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+
+		return String.format(SAVED_CUSTOM_LEVELS_FILE_PATH, player.getPlayerName(),
+				levelId);
 	}
 }
