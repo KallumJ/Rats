@@ -8,6 +8,8 @@ import javafx.stage.Stage;
  * The Main class to start the application
  *
  * @author Kallum Jones 2005855
+ * @date 2022/02/28
+ *
  */ 
 public class Main extends Application {
     private static final String APP_HEADER = "Rats CS-230 Group 41";

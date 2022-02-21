@@ -9,6 +9,8 @@ import objects.rats.ZombieRat;
  * A class to check for interactions between 2 provided objects
  *
  * @author Kallum Jones 2005855
+ * @date 2022/02/15
+ *
  */
 public class ObjectInteractionChecker {
 

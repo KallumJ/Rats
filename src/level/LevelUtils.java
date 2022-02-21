@@ -26,7 +26,9 @@ import java.util.stream.Stream;
  * A utility file to help with general functions around finding levels from
  * file.
  *
- * @author Kallum Jones 2005855
+ * @author Kallum Jones 2005855 & Aser (minor updates)
+ * @date 2022.02.21
+ *
  */
 public class LevelUtils {
 
@@ -72,7 +74,7 @@ public class LevelUtils {
 
 	/**
 	 * A method to return an array of File objects of all the files in the
-	 * saved levels directory.
+	 * saved level's directory.
 	 *
 	 * @return the array of files in the directory
 	 */
@@ -185,7 +187,7 @@ public class LevelUtils {
 	 */
 	public static String constructSavedLevelFileName(Player player,
 													 int levelId) {
-		// If the directory doesnt exist, create it
+		// If the directory doesn't exist, create it
 		File file = new File(SAVED_LEVELS_DIR_PATH);
 		if (!file.exists()) {
 			file.mkdir();
@@ -204,7 +206,7 @@ public class LevelUtils {
 	 * @return the file name for a saved custom level for a given player and level id
 	 */
 	public static String constructCustomLevelFileName(Player player, int levelId) {
-		// If the directory doesnt exist, create it
+		// If the directory doesn't exist, create it
 		File file = new File(CUSTOM_LEVELS_DIR_PATH);
 		if (!file.exists()) {
 			file.mkdir();
@@ -247,7 +249,7 @@ public class LevelUtils {
 	public static boolean isTileBlocked(Tile tile, List<GameObject> objects) {
 		List<GameObject> objectsOnTile = getObjectsOnTile(tile, objects);
 
-		// return true if all of the items on the tile are of an allowed type
+		// return true if all the items on the tile are of an allowed type
 
 
 		return !(objectsOnTile.stream()
@@ -306,14 +308,16 @@ public class LevelUtils {
 		File levelsDirectory = new File(path);
 		File[] filesInLevelDirectory = levelsDirectory.listFiles();
 
-		if (filesInLevelDirectory == null) {
-			throw new RuntimeException(INVALID_DIRECTORY);
+		if (!levelsDirectory.exists()) {
+			levelsDirectory.mkdir();
 		}
 
 		ArrayList<File> nonDirectoryFiles = new ArrayList<>();
-		for (File file : filesInLevelDirectory) {
-			if (!file.isDirectory()) {
-				nonDirectoryFiles.add(file);
+		if (filesInLevelDirectory != null) {
+			for (File file : filesInLevelDirectory) {
+				if (!file.isDirectory()) {
+					nonDirectoryFiles.add(file);
+				}
 			}
 		}
 
@@ -388,7 +392,7 @@ public class LevelUtils {
 	 * @return The level's file path
 	 */
 	public static String constructCustomSavedLevelFileName(Player player, int levelId) {
-		// If the directory doesnt exist, create it
+		// If the directory doesn't exist, create it
 		File file = new File(SAVED_CUSTOM_LEVELS_DIR_PATH);
 		if (!file.exists()) {
 			file.mkdir();

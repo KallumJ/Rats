@@ -18,6 +18,8 @@ import players.scores.Player;
  * Represents a LeaderBoardMenu.
  *
  * @author YIMING LI
+ * @date 2022.02.20
+ *
  */
 public class LeaderBoardMenu extends GameMenu {
 	private final static String PLAYER_HEADER = "Player               ";

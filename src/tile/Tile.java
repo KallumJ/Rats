@@ -9,6 +9,8 @@ import java.util.Map;
  * A class to represent a Tile on the board
  *
  * @author Kallum
+ * @date 2022/02/18
+ *
  */
 public class Tile {
 	public final static int TILE_SIZE = 50;

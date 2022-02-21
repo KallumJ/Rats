@@ -21,8 +21,9 @@ import java.util.List;
  * The class Help menu.
  *
  * @author Yin Man Cheung
- * @author Samhitha Pinisetti 
- * Last updated, 09/02/2022
+ * @author Samhitha Pinisetti
+ * @date 2022.02.09
+ *
  */
 public class HelpMenu extends GameMenu {
 	private static final int WINDOW_WIDTH = 860;

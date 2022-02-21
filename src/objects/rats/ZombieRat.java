@@ -13,19 +13,21 @@ import tile.Tile;
  * This class represent the zombie rats which will bit other rats and turn them into zombies.
  *
  * @author Fahd
+ * @date 2022/02/21
+ *
  */
 
 public class ZombieRat extends Rat {
 
     private Timeline disappearingTimeline;
-    private int timeToDisappear; // life time for the zombie in seconds
+    private int timeToDisappear; // lifetime for the zombie in seconds
 
     /**
-     * Creats a new zombie rat.
+     * Creates a new zombie rat.
      * @param standingOn The tile the rat is standing on.
      * @param speed Movement speed of the rat.
      * @param directionOfMovement Direction of the rat movement;
-     * @param timeToDisappear life time for the zombie in seconds.
+     * @param timeToDisappear lifetime for the zombie in seconds.
      */
     public ZombieRat(Tile standingOn, int speed, Direction directionOfMovement, int timeToDisappear) {
         super(standingOn, speed, directionOfMovement);

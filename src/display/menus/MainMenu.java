@@ -21,6 +21,8 @@ import util.TextUtils;
  * A class to model the MainMenu of the application.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.12
+ *
  */
 public class MainMenu extends GameMenu {
 

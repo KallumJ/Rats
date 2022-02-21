@@ -15,7 +15,9 @@ import tile.TileType;
  * This class represent the bomb item which explode and destroy anything
  * horizontally and vertically until reaches grass.
  *
- * @author Fahd
+ * @author Fahd & Aser(minor updates)
+ * @date 2022/02/21
+ *
  */
 public class Bomb extends GameObject implements ObjectStoppable {
 

@@ -3,7 +3,8 @@ package envrionment;
 /**
  * A class to provide helper methods pertaining to managing the Time of Day
  *
- * @author Kallum Jones (2005855) (17/02/22)
+ * @author Kallum Jones (2005855)
+ * @date 2022.02.17
  */
 public class TimeOfDayUtils {
     public static final String DAY_STR = "day";

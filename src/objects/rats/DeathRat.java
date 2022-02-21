@@ -13,6 +13,8 @@ import tile.Tile;
  * Represents a Death Rat, as an extension of {@code Rat}.
  *
  * @author fahds
+ * @date 2022/02/21
+ *
  */
 public class DeathRat extends Rat {
 
@@ -29,7 +31,7 @@ public class DeathRat extends Rat {
 	 * Constructs Death rat.
 	 *
 	 * @param standingOn          the standing on
-	 * @param speed               the speed
+	 * @param speed               the speed of the rat
 	 * @param directionOfMovement the direction of movement
 	 * @param killsTarget         the kills target
 	 */

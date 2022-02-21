@@ -12,7 +12,9 @@ import java.util.Scanner;
 /**
  * A class to read attributes and form the GameObject they represent.
  *
- * @author Kallum Jones 2005855
+ * @author Kallum Jones 2005855 & Aser (minor updates)
+ * @date 2022.02.21
+ *
  */
 public class TileAttributeReader {
 	private static final String INVALID_ATTRIBUTE =

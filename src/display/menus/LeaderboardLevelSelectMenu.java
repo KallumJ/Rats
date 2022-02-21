@@ -15,6 +15,8 @@ import java.util.List;
  * A class to model a level select menu for the leaderboard.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.18
+ *
  */
 public class LeaderboardLevelSelectMenu extends GameMenu {
 	private static final String MENU_TITLE = " H I G H  S C O R E ";

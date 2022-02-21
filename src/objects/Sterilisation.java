@@ -15,6 +15,8 @@ import tile.Tile;
  * effect.
  *
  * @author Fahd
+ * @date 2022.02.21
+ *
  */
 public class Sterilisation extends GameObject implements ObjectStoppable {
 

@@ -15,6 +15,8 @@ import java.util.List;
  * A class to provide utility methods for working with GameObjects.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.21
+ *
  */
 public class ObjectUtils {
 	private static final String NO_ASSIGNED_IMAGE = "There is no image " +
@@ -44,7 +46,7 @@ public class ObjectUtils {
 			case BOMB:
 				return "file:resources/bomb.png";
 			case STERILISATION:
-				return "file:resources/sterilistation.png";
+				return "file:resources/sterilisation.png";
 			case NO_ENTRY_SIGN:
 				return "file:resources/noEntrySign.png";
 			case POISON:

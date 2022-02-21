@@ -8,6 +8,8 @@ import javafx.scene.shape.Line;
  * A class to model the box containing all the menu items.
  *
  * @author Samhitha Pinisetti 2035196
+ * @date 2022.02.21
+ *
  */
 public class MenuBox extends VBox {
 

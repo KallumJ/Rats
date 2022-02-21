@@ -187,8 +187,5 @@ nbproject/*
 build.xml
 manifest.mf
 lib/*
-players/players.xml
 levels/savedLevels/YIMINGLI-1.xml
 .classpath
-levels/savedLevels/*
-players/players.xml

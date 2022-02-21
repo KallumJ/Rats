@@ -13,6 +13,8 @@ import java.util.Map;
  * The class Player.
  *
  * @author Yin Man Cheung
+ * @date 2022/02/15
+ *
  */
 public class Player {
 	private final String playerName;
@@ -97,7 +99,7 @@ public class Player {
 	}
 
 	/**
-	 * Adds their score to the file, and increments the players max level
+	 * Adds their score to the file, and increments the player's max level
 	 *
 	 * @param levelId the level id
 	 * @param score   the score to add

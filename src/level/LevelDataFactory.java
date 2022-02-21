@@ -23,7 +23,9 @@ import java.util.List;
 /**
  * A class to load LevelData objects from disk.
  *
- * @author Kallum Jones 2005855
+ * @author Kallum Jones 2005855 & Aser (minor updates)
+ * @date 2022.02.21
+ *
  */
 public class LevelDataFactory {
 	private static final String INVALID_TILE_TYPE = "An invalid tile type was "

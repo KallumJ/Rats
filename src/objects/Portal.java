@@ -11,6 +11,8 @@ import tile.TileType;
  * out from the other side instantly.
  *
  * @author Fahd
+ * @date 2022.02.21
+ *
  */
 public class Portal extends GameObject {
     

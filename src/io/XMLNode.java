@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A class to model an XML node for writing to files.
+ * A class to model an XML node for writing to the files.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.12
+ *
  */
 public class XMLNode {
 	private static final String NO_CHILD_ERR =

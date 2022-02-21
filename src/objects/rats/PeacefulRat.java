@@ -14,11 +14,13 @@ import tile.Tile;
  * This class represent the peaceful rats which will mate and reproduce.
  *
  * @author Fahd
+ * @date 2022/02/21
+ *
  */
 public class PeacefulRat extends Rat {
 
 	// Added as being pregnant requires the board to be populated, which it
-	// isnt when this is constructed
+	// isn't when this is constructed
 	private static final int DELAY_TO_MAKE_PREGNANT = 250; // in ms
 	private static final int DELAY_TO_MATE = 1; // in seconds
 	private final int timeToGiveBirth;
@@ -111,7 +113,7 @@ public class PeacefulRat extends Rat {
 	}
 
 	/**
-	 * This method is only called by a male rat and might makes the other rat
+	 * This method is only called by a male rat and might make the other rat
 	 * pregnant depending on some features.
 	 *
 	 * @param partner The other which will be pregnant depending on some

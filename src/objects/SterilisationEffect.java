@@ -9,6 +9,8 @@ import tile.Tile;
  * when contact happens.
  *
  * @author Fahd
+ * @date 2022.02.21
+ *
  */
 public class SterilisationEffect extends GameObject {
 

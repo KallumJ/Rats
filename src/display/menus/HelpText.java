@@ -9,6 +9,8 @@ import util.TextUtils;
  * A class to model text in the HelpMenu.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.19
+ *
  */
 class HelpText {
 	private final String text;

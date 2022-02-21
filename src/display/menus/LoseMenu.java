@@ -13,6 +13,7 @@ import util.TextUtils;
  * A class to model a Lose Menu.
  *
  * @author Samhitha Pinisetti (2035106)
+ * @date 2022.02.20
  */
 public class LoseMenu extends GameMenu {
 	private static final String HEADER = " Y O U  L O S E ! ";

@@ -11,6 +11,8 @@ import tile.Tile;
  * the damage to a NoEntrySign when a rat tried to walk through it.
  *
  * @author Fahd
+ * @date 2022/02/15
+ *
  */
 public class NoEntrySignCounter extends GameObject implements ObjectStoppable {
 
@@ -20,11 +22,11 @@ public class NoEntrySignCounter extends GameObject implements ObjectStoppable {
 	private Timeline resetActivatedTimeline;
 
 	/**
-	 * Creates NoEntrySignCounter next to the a NoEntrySign and count damage
+	 * Creates NoEntrySignCounter next to the NoEntrySign and count damage
 	 * done.
 	 *
 	 * @param standingOn The tile the no entry sign is on.
-	 * @param sourceSign The original NoEntrySign which it damage will be
+	 * @param sourceSign The original NoEntrySign which it damages will be
 	 *                   updated.
 	 */
 	public NoEntrySignCounter(Tile standingOn, NoEntrySign sourceSign) {
@@ -36,7 +38,7 @@ public class NoEntrySignCounter extends GameObject implements ObjectStoppable {
 	/**
 	 * Blocks the rats way and make them change direction.
 	 *
-	 * @param rat The rat which it direction will be changed in case of
+	 * @param rat The rat which its direction will be changed in case of
 	 *            contact.
 	 */
 	public void blockPath(Rat rat) {

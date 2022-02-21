@@ -29,6 +29,8 @@ import java.io.FileNotFoundException;
  * A class to model an item in a MenuBox.
  *
  * @author Samhitha Pinisetti 2035196
+ * @date 2022.02.21
+ *
  */
 public abstract class MenuItem extends StackPane {
 
@@ -155,7 +157,7 @@ class HelpMenuItem extends MenuItem {
 }
 
 /**
- * A class to model the continue menu item in the MainMenu.
+ * A class to model the -continue menu item in the MainMenu.
  *
  * @author Kallum Jones 2005855
  */
