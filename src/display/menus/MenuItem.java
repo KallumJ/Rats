@@ -5,7 +5,7 @@ import display.CustomBoard;
 import display.menus.editor.SizeSelectionMenu;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -24,6 +24,7 @@ import util.TextUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Optional;
 
 /**
  * A class to model an item in a MenuBox.
@@ -268,6 +269,37 @@ class SavedLevelMenuItem extends MenuItem {
 }
 
 /**
+ * A class to model a menu item for deleting custom levels
+ */
+class DeleteLevelMenuItem extends MenuItem {
+
+	/**
+	 * Constructs a DeleteLevelMenuItem with the name of the provided level.
+	 *
+	 * @param level the Level file that should be deleted when this menu item is pressed
+	 */
+	public DeleteLevelMenuItem(File level) {
+		super(LevelUtils.getFilesLevelId(level));
+
+		String levelId = LevelUtils.getFilesLevelId(level);
+		setOnMousePressed(event -> {
+			String contentMsg = "Are you sure you want to delete level %s? " +
+					"\n Type %s exactly to confirm and delete";
+			TextInputDialog confirmDialog = new TextInputDialog();
+			confirmDialog.setTitle("Confirm level deletion");
+			confirmDialog.setContentText(String.format(contentMsg, levelId, levelId));
+
+			Optional<String> decision = confirmDialog.showAndWait();
+			if (decision.isPresent() && decision.get().equals(levelId)) {
+				level.delete();
+				Scene scene = new Scene(new CustomLevelsMenu().buildMenu());
+				GameMenu.getStage().setScene(scene);
+			}
+		});
+	}
+}
+
+/**
  * A class to model a menu item for level items in the LeaderboardMenu.
  *
  * @author Kallum Jones 2005855
@@ -367,10 +399,15 @@ class LoadCustomLevelMenuItem extends MenuItem {
 class DeleteCustomLevelMenuItem extends MenuItem {
 
 	/**
-	 * Constructs a MenuItem with the provided name.
+	 * Constructs a DeleteCustomLevelMenuItem with the provided name.
 	 */
 	public DeleteCustomLevelMenuItem() {
 		super("DELETE CUSTOM LEVEL");
+
+		setOnMousePressed(event -> {
+			Scene scene = new Scene(new DeleteCustomLevelMenu().buildMenu());
+			GameMenu.getStage().setScene(scene);
+		});
 	}
 }
 
