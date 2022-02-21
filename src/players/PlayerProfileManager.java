@@ -14,6 +14,8 @@ import java.util.List;
  * A class to manage player profiles.
  *
  * @author Kallum Jones 2005855
+ * @date 2022/02/20
+ *
  */
 public class PlayerProfileManager {
 	public static final String HIGH_SCORE_SEPARATOR = ", ";
@@ -105,7 +107,7 @@ public class PlayerProfileManager {
 	}
 
 	/**
-	 * A method to initalise the all players list
+	 * A method to initialise the all players list
 	 */
 	private static void initAllPlayersList() {
 		XMLFileReader xmlfileReader =

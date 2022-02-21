@@ -11,7 +11,9 @@ import java.util.ArrayList;
 /**
  * A class to model the menu for selecting a custom level to edit
  *
- * @author Kallum Jones (2005855) (20/02/22)
+ * @author Kallum Jones (2005855)
+ * @date 2022.02.20
+ *
  */
 public class EditLevelMenu extends GameMenu {
     private static final String MENU_TITLE = " E D I T ";

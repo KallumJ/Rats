@@ -15,6 +15,8 @@ import java.util.ArrayList;
  * A class to write XML files to the disk.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.12
+ *
  */
 public class XMLFileWriter {
 	private static final String UNABLE_TO_CREATE =

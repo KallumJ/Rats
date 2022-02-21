@@ -15,6 +15,8 @@ import tile.Tile;
 
 /**
  * @author fahds
+ * @date 2022/02/15
+ *
  */
 public class Gas extends GameObject implements ObjectStoppable {
 

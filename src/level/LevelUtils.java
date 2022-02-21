@@ -26,7 +26,9 @@ import java.util.stream.Stream;
  * A utility file to help with general functions around finding levels from
  * file.
  *
- * @author Kallum Jones 2005855
+ * @author Kallum Jones 2005855 & Aser (minor updates)
+ * @date 2022.02.21
+ *
  */
 public class LevelUtils {
 
@@ -72,7 +74,7 @@ public class LevelUtils {
 
 	/**
 	 * A method to return an array of File objects of all the files in the
-	 * saved levels directory.
+	 * saved level's directory.
 	 *
 	 * @return the array of files in the directory
 	 */
@@ -126,16 +128,12 @@ public class LevelUtils {
 	 * @return the converted string
 	 */
 	public static String getTileTypeString(TileType tileType) {
-		switch (tileType) {
-			case GRASS:
-				return "g";
-			case TUNNEL:
-				return "t";
-			case PATH:
-				return "p";
-			default:
-				throw new IllegalArgumentException(String.format(INVALID_TILE_TYPE, tileType));
-		}
+		return switch (tileType) {
+			case GRASS -> "g";
+			case TUNNEL -> "t";
+			case PATH -> "p";
+			default -> throw new IllegalArgumentException(String.format(INVALID_TILE_TYPE, tileType));
+		};
 	}
 
 	/**
@@ -145,18 +143,13 @@ public class LevelUtils {
 	 * @return the string for this direction
 	 */
 	public static String getStringFromDirection(Direction directionOfMovement) {
-		switch (directionOfMovement) {
-			case UP:
-				return "up";
-			case DOWN:
-				return "down";
-			case LEFT:
-				return "left";
-			case RIGHT:
-				return "right";
-			default:
-				throw new IllegalArgumentException(String.format(INVALID_DIRECTION_ERROR, directionOfMovement));
-		}
+		return switch (directionOfMovement) {
+			case UP -> "up";
+			case DOWN -> "down";
+			case LEFT -> "left";
+			case RIGHT -> "right";
+			default -> throw new IllegalArgumentException(String.format(INVALID_DIRECTION_ERROR, directionOfMovement));
+		};
 	}
 
 	/**
@@ -185,7 +178,7 @@ public class LevelUtils {
 	 */
 	public static String constructSavedLevelFileName(Player player,
 													 int levelId) {
-		// If the directory doesnt exist, create it
+		// If the directory doesn't exist, create it
 		File file = new File(SAVED_LEVELS_DIR_PATH);
 		if (!file.exists()) {
 			file.mkdir();
@@ -204,7 +197,7 @@ public class LevelUtils {
 	 * @return the file name for a saved custom level for a given player and level id
 	 */
 	public static String constructCustomLevelFileName(Player player, int levelId) {
-		// If the directory doesnt exist, create it
+		// If the directory doesn't exist, create it
 		File file = new File(CUSTOM_LEVELS_DIR_PATH);
 		if (!file.exists()) {
 			file.mkdir();
@@ -247,7 +240,7 @@ public class LevelUtils {
 	public static boolean isTileBlocked(Tile tile, List<GameObject> objects) {
 		List<GameObject> objectsOnTile = getObjectsOnTile(tile, objects);
 
-		// return true if all of the items on the tile are of an allowed type
+		// return true if all the items on the tile are of an allowed type
 
 
 		return !(objectsOnTile.stream()
@@ -390,7 +383,7 @@ public class LevelUtils {
 	 * @return The level's file path
 	 */
 	public static String constructCustomSavedLevelFileName(Player player, int levelId) {
-		// If the directory doesnt exist, create it
+		// If the directory doesn't exist, create it
 		File file = new File(SAVED_CUSTOM_LEVELS_DIR_PATH);
 		if (!file.exists()) {
 			file.mkdir();

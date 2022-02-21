@@ -7,6 +7,8 @@ import java.util.List;
  * A class to model a set of tiles on the game board
  *
  * @author Kallum Jones 2005855
+ * @date 2022/02/20
+ *
  */
 public class TileSet {
 	private final ArrayList<ArrayList<Tile>> tileSet = new ArrayList<>();
@@ -14,7 +16,7 @@ public class TileSet {
 	/**
 	 * A method to put a tile in the set at the specified position
 	 *
-	 * @param tileType The type of the tile to generate
+	 * @param tileType The type of tile to generate
 	 * @param x        the x co-ordinate
 	 * @param y        the y co-ordinate
 	 */

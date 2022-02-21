@@ -4,13 +4,15 @@ package tile;
  * A class to model the location for a tile
  *
  * @author Kallum Jones 2005855
+ * @date 2022/02/20
+ *
  */
 public class TileLocation {
 	private final int x;
 	private final int y;
 
 	/**
-	 * Constructs the location of for a tile
+	 * Constructs the location for a tile
 	 *
 	 * @param x the x co-ordinate
 	 * @param y the y co-ordinate

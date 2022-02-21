@@ -15,7 +15,9 @@ import tile.TileType;
  * This class represent the bomb item which explode and destroy anything
  * horizontally and vertically until reaches grass.
  *
- * @author Fahd
+ * @author Fahd & Aser(minor updates)
+ * @date 2022/02/21
+ *
  */
 public class Bomb extends GameObject implements ObjectStoppable {
 
@@ -158,24 +160,12 @@ public class Bomb extends GameObject implements ObjectStoppable {
 	 */
 	private void tick() {
 		switch (timeRemaining) {
-			case 6:
-				super.setIcon(bombFiveImage);
-				break;
-			case 5:
-				super.setIcon(bombFourImage);
-				break;
-			case 4:
-				super.setIcon(bombThreeSecondsImage);
-				break;
-			case 3:
-				super.setIcon(bombTwoSecondsImage);
-				break;
-			case 2:
-				super.setIcon(bombOneSecondImage);
-				break;
-			default:
-				super.setIcon(bombImage);
-				break;
+			case 6 -> super.setIcon(bombFiveImage);
+			case 5 -> super.setIcon(bombFourImage);
+			case 4 -> super.setIcon(bombThreeSecondsImage);
+			case 3 -> super.setIcon(bombTwoSecondsImage);
+			case 2 -> super.setIcon(bombOneSecondImage);
+			default -> super.setIcon(bombImage);
 		}
 		GameObject.getBoard().updateBoardDisplay();
 

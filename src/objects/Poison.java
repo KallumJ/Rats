@@ -9,6 +9,8 @@ import tile.Tile;
  * contact.
  *
  * @author Fahd
+ * @date 2022.02.21
+ *
  */
 public class Poison extends GameObject {
 

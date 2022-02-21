@@ -6,6 +6,8 @@ import envrionment.TimeOfDay;
  * A class to model the properties of a level.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.12
+ *
  */
 public class LevelProperties {
 	private int levelId;

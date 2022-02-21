@@ -19,6 +19,7 @@ import util.TextUtils;
  * A class to model a row of items in the inventory.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.10
  */
 public class ItemRow {
 
@@ -117,13 +118,13 @@ public class ItemRow {
 	public void onRelease(final ImageView image, final GameObjectType object) {
 		double canvasWidth = GameObject.getBoard().getCanvas().getWidth();
 
-		// Find the dropped items position on the x axis,
+		// Find the dropped items position on the x-axis,
 		// by finding how far it has moved in pixels
 		// Offsetting the width of the canvas, and how far into
 		// the inventory it was
 		int gridX = (int) (image.getTranslateX() + canvasWidth) + originalX;
 
-		// Find the dropped items position on the y axis, by finding how far
+		// Find the dropped items position on the y-axis, by finding how far
 		// it has moved in pixels
 		// Offsetting the position of this row on the screen
 		int gridY = (int) (image.getTranslateY() + hBox.getLayoutY());
@@ -157,7 +158,7 @@ public class ItemRow {
 			GameObject.getBoard().addObject(objForPlacing);
 			decrementCount(image);
 
-			// If this row is in a custom board, we dont want to use items
+			// If this row is in a custom board, we don't want to use items
 			if (GameObject.getBoard() instanceof CustomBoard) {
 				incrementObjectCount();
 			}

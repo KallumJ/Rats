@@ -16,6 +16,8 @@ import objects.rats.PeacefulRat;
  * Constructs a RatPopulation object.
  *
  * @author Samhitha Pinisetti 2035196
+ * @date 2022.02.21
+ *
  */
 public class RatPopulation {
 

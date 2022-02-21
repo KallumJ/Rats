@@ -9,6 +9,8 @@ import tile.Tile;
  * gender to male.
  *
  * @author Fahd
+ * @date 2022/02/21
+ *
  */
 public class FemaleSexChanger extends GameObject {
 
@@ -28,7 +30,7 @@ public class FemaleSexChanger extends GameObject {
 	/**
 	 * Changes the gender of a rat to male.
 	 *
-	 * @param rat The rat which it gender will be changed to female.
+	 * @param rat The rat which their gender will be changed to female.
 	 */
 	public void activationOfFemaleSexChanger(PeacefulRat rat) {
 

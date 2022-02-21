@@ -15,6 +15,8 @@ import java.util.ArrayList;
  * A class to model a menu for loading saved levels for this player.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.14
+ *
  */
 public class LoadMenu extends GameMenu {
 	private static final String MENU_TITLE = " L O A D ";

@@ -23,7 +23,9 @@ import java.util.List;
 /**
  * A class to load LevelData objects from disk.
  *
- * @author Kallum Jones 2005855
+ * @author Kallum Jones 2005855 & Aser (minor updates)
+ * @date 2022.02.21
+ *
  */
 public class LevelDataFactory {
 	private static final String INVALID_TILE_TYPE = "An invalid tile type was "
@@ -150,17 +152,10 @@ public class LevelDataFactory {
 				// Store tile type to the array
 				String tileText = tile.getTextContent();
 				switch (tileText) {
-					case "g":
-						tileSet.putTile(TileType.GRASS, j, i);
-						break;
-					case "t":
-						tileSet.putTile(TileType.TUNNEL, j, i);
-						break;
-					case "p":
-						tileSet.putTile(TileType.PATH, j, i);
-						break;
-					default:
-						throw new IllegalArgumentException(INVALID_TILE_TYPE);
+					case "g" -> tileSet.putTile(TileType.GRASS, j, i);
+					case "t" -> tileSet.putTile(TileType.TUNNEL, j, i);
+					case "p" -> tileSet.putTile(TileType.PATH, j, i);
+					default -> throw new IllegalArgumentException(INVALID_TILE_TYPE);
 				}
 
 				NamedNodeMap attributes = tile.getAttributes();

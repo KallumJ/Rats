@@ -19,6 +19,8 @@ import java.util.Map;
  * A class to read elements and their respective values from a given XML file.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.12
+ *
  */
 public class XMLFileReader {
 	private static final String FAILED_TO_LOAD_ERROR =
@@ -49,7 +51,7 @@ public class XMLFileReader {
 	 *
 	 * @param elements The list of elements to go drilldown through
 	 * @return The final element in the list as an Element object, or null if
-	 * this path doesnt exist
+	 * this path doesn't exist
 	 */
 	public Element drilldownToElement(XMLElementNames... elements) {
 		try {
@@ -92,7 +94,7 @@ public class XMLFileReader {
 			for (int i = 0; i < element.getChildNodes().getLength(); i++) {
 				Node child = element.getChildNodes().item(i);
 
-				// Exclude nodes marked #text, as these arent relevant
+				// Exclude nodes marked #text, as these aren't relevant
 				if (!child.getNodeName().contains("#")) {
 					children.add(getAsXMLNodeRecurse(child));
 				}

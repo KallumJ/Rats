@@ -16,6 +16,8 @@ import java.util.List;
  * A class to display and control the inventory for the game.
  *
  * @author YIMING LI
+ * @date 2022.02.12
+ *
  */
 public class Inventory {
 
@@ -137,7 +139,7 @@ public class Inventory {
 	}
 
 	/**
-	 * A method to add a item to the inventory.
+	 * A method to add an item to the inventory.
 	 *
 	 * @param object the object type to add to the inventory
 	 */

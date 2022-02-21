@@ -21,7 +21,8 @@ import java.nio.file.Paths;
  * in the system
  *
  * @author Samhitha Pinisetti 2035196
- * Last updated on 09/02/2022
+ * @date 2022.02.09
+ *
  */
 public abstract class GameMenu {
 	private static final String NO_BACKGROUND = "Could not load the menu " +

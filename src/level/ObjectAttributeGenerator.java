@@ -12,6 +12,8 @@ import java.util.StringJoiner;
  * A class to generate the file attribute for the provided object.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.14
+ *
  */
 public class ObjectAttributeGenerator {
 	public static final String RAT_KEY = "rat";

@@ -12,7 +12,9 @@ import tile.TileType;
 /**
  * A class to get input from the user for the custom level properties
  *
- * @author Kallum Jones (2005855) (11/02/22)
+ * @author Kallum Jones (2005855) Aser (minor updates)
+ * @date 2022.02.11
+ *
  */
 public class LevelEditorOptionsMenu {
     public static final int WINDOW_OFFSET = 800;
@@ -92,7 +94,7 @@ public class LevelEditorOptionsMenu {
         expectedTimeLabel.setTranslateX(30);
         expectedTimeLabel.setTranslateY(40);
 
-        //Lable for Item Iterval 
+        //Lable for Item Interval
         Label itemIntervalLabel = new Label("Item Interval:");
         itemIntervalLabel.setTextFill(Color.WHITE);
         itemIntervalLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
@@ -439,14 +441,11 @@ public class LevelEditorOptionsMenu {
      * @return TileType of selected tile
      */
     public TileType getTileSelected() {
-        switch (tileSelectChoiceBox.getValue()) {
-            case "Tunnel Tile":
-                return TileType.TUNNEL;
-            case "Path Tile":
-                return TileType.PATH;
-            default:
-                return TileType.GRASS;
-        }
+        return switch (tileSelectChoiceBox.getValue()) {
+            case "Tunnel Tile" -> TileType.TUNNEL;
+            case "Path Tile" -> TileType.PATH;
+            default -> TileType.GRASS;
+        };
         
     }
 
@@ -510,14 +509,9 @@ public class LevelEditorOptionsMenu {
 
     public void setTimeOfDay(TimeOfDay timeOfDay) {
         switch (timeOfDay) {
-            case DAY:
-                onlyDayTime.setSelected(true);
-                break;
-            case NIGHT:
-                onlyNightTime.setSelected(true);
-                break;
-            case BOTH:dayAndNight.setSelected(true);
-                break;
+            case DAY -> onlyDayTime.setSelected(true);
+            case NIGHT -> onlyNightTime.setSelected(true);
+            case BOTH -> dayAndNight.setSelected(true);
         }
     }
 

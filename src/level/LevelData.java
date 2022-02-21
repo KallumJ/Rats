@@ -11,6 +11,8 @@ import java.util.List;
  * A class to model the data required for a Level.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.21
+ *
  */
 public class LevelData {
 	private final LevelProperties levelProperties;

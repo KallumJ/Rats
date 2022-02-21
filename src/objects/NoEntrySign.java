@@ -15,7 +15,9 @@ import tile.Tile;
  * This class represent the NoEntrySign which will block the way on the rats and
  * make them choose a different direction.
  *
- * @author Fahd
+ * @author Fahd & Aser (minor updates)
+ * @date 2022/02/21
+ *
  */
 public class NoEntrySign extends GameObject implements ObjectStoppable {
 
@@ -145,25 +147,12 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
 	private void decideIcon() {
 
 		switch (durability - damageDone) {
-
-			case 5:
-				super.setIcon(noEntrySignFiveImage);
-				break;
-			case 4:
-				super.setIcon(noEntrySignFourImage);
-				break;
-			case 3:
-				super.setIcon(noEntrySignThreeImage);
-				break;
-			case 2:
-				super.setIcon(noEntrySignTwoImage);
-				break;
-			case 1:
-				super.setIcon(noEntrySignOneImage);
-				break;
-			default:
-				super.setIcon(noEntrySignImage);
-				break;
+			case 5 -> super.setIcon(noEntrySignFiveImage);
+			case 4 -> super.setIcon(noEntrySignFourImage);
+			case 3 -> super.setIcon(noEntrySignThreeImage);
+			case 2 -> super.setIcon(noEntrySignTwoImage);
+			case 1 -> super.setIcon(noEntrySignOneImage);
+			default -> super.setIcon(noEntrySignImage);
 		}
 	}
 

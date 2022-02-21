@@ -6,7 +6,9 @@ import javafx.scene.text.Font;
 /**
  * A utility class for manipulating Strings
  *
- * @author Kallum Jones (2005855) (09/02/22)
+ * @author Kallum Jones (2005855)
+ * @date 2022/02/09
+ *
  */
 public class TextUtils {
     /**

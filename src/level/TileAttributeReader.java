@@ -12,7 +12,9 @@ import java.util.Scanner;
 /**
  * A class to read attributes and form the GameObject they represent.
  *
- * @author Kallum Jones 2005855
+ * @author Kallum Jones 2005855 & Aser (minor updates)
+ * @date 2022.02.21
+ *
  */
 public class TileAttributeReader {
 	private static final String INVALID_ATTRIBUTE =
@@ -233,17 +235,12 @@ public class TileAttributeReader {
 	 * @return the parsed Direction enum
 	 */
 	private static Direction getDirectionFromString(String direction) {
-		switch (direction) {
-			case "down":
-				return Direction.DOWN;
-			case "up":
-				return Direction.UP;
-			case "left":
-				return Direction.LEFT;
-			case "right":
-				return Direction.RIGHT;
-			default:
-				throw new RuntimeException(INVALID_DIRECTION);
-		}
+		return switch (direction) {
+			case "down" -> Direction.DOWN;
+			case "up" -> Direction.UP;
+			case "left" -> Direction.LEFT;
+			case "right" -> Direction.RIGHT;
+			default -> throw new RuntimeException(INVALID_DIRECTION);
+		};
 	}
 }

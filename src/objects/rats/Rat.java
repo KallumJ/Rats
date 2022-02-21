@@ -18,6 +18,8 @@ import tile.TileType;
  * This class is the superclass of all rats.
  *
  * @author Fahd
+ * @date 2022/02/21
+ *
  */
 public class Rat extends GameObject implements ObjectStoppable, ObjectStartable {
 

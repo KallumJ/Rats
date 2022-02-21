@@ -16,6 +16,8 @@ import util.TextUtils;
  * A class to model the login menu.
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.15
+ *
  */
 public class LoginMenu extends GameMenu {
 

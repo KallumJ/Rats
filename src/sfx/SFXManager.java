@@ -9,6 +9,8 @@ import java.io.File;
  * A class to manage the playing of sound effects
  *
  * @author Kallum Jones 2005855
+ * @date 2022/02/18
+ *
  */
 public class SFXManager {
 

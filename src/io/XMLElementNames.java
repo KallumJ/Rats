@@ -4,6 +4,8 @@ package io;
  * An enum to store all the names of the elements in our XML file system
  *
  * @author Kallum Jones 2005855
+ * @date 2022.02.12
+ *
  */
 public enum XMLElementNames {
 	LEVEL_ROOT("level"),
