@@ -8,7 +8,9 @@ import display.menus.editor.LevelEditorOptionsMenu;
 import envrionment.TimeOfDay;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -18,8 +20,10 @@ import level.LevelSaveHandler;
 import level.LevelUtils;
 import objects.GameObject;
 import players.PlayerProfileManager;
+import tile.Direction;
 import tile.Tile;
-
+import tile.TileType;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,30 +97,39 @@ public class CustomBoard extends Board {
     private void eventListeners() {
         this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, event -> {
             // makes sure that borders are always grass
-            if ((int)event.getX()/Tile.TILE_SIZE >=1 && (int)event.getY()/Tile.TILE_SIZE >= 1
-                    && (int)event.getX()/Tile.TILE_SIZE-1 < this.getCanvas().getWidth()/Tile.TILE_SIZE-1
-                    && (int)event.getY()/Tile.TILE_SIZE-1 < this.getCanvas().getHeight()/Tile.TILE_SIZE-1){
-                Tile tile = levelData.getTileSet().getTile((int)event.getX()/Tile.TILE_SIZE, (int)event.getY()/Tile.TILE_SIZE);
+            int x = (int)event.getX()/Tile.TILE_SIZE;
+            int y = (int)event.getY()/Tile.TILE_SIZE;
+            int canvasWidth = (int)this.getCanvas().getWidth()/Tile.TILE_SIZE;
+            int canvasHeight = (int)this.getCanvas().getHeight()/Tile.TILE_SIZE;
+
+            // makes sure that borders are always grass
+            if (x >= 1 && y >= 1 && x < canvasWidth-1 && y < canvasHeight-1) { 
+                Tile tile = levelData.getTileSet().getTile(x, y);
                 if (this.inputMenu.getDeleteItemsChecked()) {
-                    System.out.println(this.inputMenu.getDeleteItemsChecked());
                     removeItemsFromTile(tile);
                 } else {
                     changeTile(tile);
         }}});
         this.tileCanvas.getCanvas().addEventHandler(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, event -> {
+            int x = (int)event.getX()/Tile.TILE_SIZE;
+            int y = (int)event.getY()/Tile.TILE_SIZE;
+            int canvasWidth = (int)this.getCanvas().getWidth()/Tile.TILE_SIZE;
+            int canvasHeight = (int)this.getCanvas().getHeight()/Tile.TILE_SIZE;
+
             // makes sure that borders are always grass
-            if ((int)event.getX()/Tile.TILE_SIZE >= 1 && (int)event.getY()/Tile.TILE_SIZE >= 1
-                    && (int)event.getX()/Tile.TILE_SIZE < this.getCanvas().getWidth()/Tile.TILE_SIZE-1
-                    && (int)event.getY()/Tile.TILE_SIZE < this.getCanvas().getHeight()/Tile.TILE_SIZE-1){
-                Tile tile = levelData.getTileSet().getTile((int)event.getX()/Tile.TILE_SIZE, (int)event.getY()/Tile.TILE_SIZE);
+            if (x >= 1 && y >= 1 && x < canvasWidth-1 && y < canvasHeight-1) {
+                Tile tile = levelData.getTileSet().getTile(x, y);
                 if (this.inputMenu.getDeleteItemsChecked()) {
-                    System.out.println(this.inputMenu.getDeleteItemsChecked());
                     removeItemsFromTile(tile);
                 } else {
                     changeTile(tile);
         }}});
     }
 
+    /**
+     * removes all items/objects from tile
+     * @param tile to remove items from
+     */
     private void removeItemsFromTile(Tile tile) {
         List<GameObject> objectsOnTile = LevelUtils.getObjectsOnTile(tile, levelData.getObjects());
         levelData.getObjects().removeAll(objectsOnTile);
@@ -163,11 +176,22 @@ public class CustomBoard extends Board {
 
         // Save level when mouse is pressed, and stop the current game
         saveButton.setOnMousePressed(event -> {
-            inputMenu.setLevelProperties(levelData);
-            LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
-            levelOptionsStage.close();
-            GameObject.setBoard(null);
-            GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
+            // checks if board has atleast minimum number of path tiles and all paths are connected
+            if (minTileCheck() && allPathsConnected()) {
+                inputMenu.setLevelProperties(levelData);
+                LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
+                levelOptionsStage.close();
+                GameObject.setBoard(null);
+                GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
+            } else {
+                Alert alert;
+                if (!minTileCheck()) {
+                    alert = new Alert(AlertType.ERROR, "Minimum number of paths/tunnels not met!");
+                } else {
+                    alert = new Alert(AlertType.ERROR, "All paths/tunnels need to be connected!");
+                }
+                alert.show();
+            }
         });
 
         createButton.setOnMousePressed(event -> {
@@ -185,6 +209,67 @@ public class CustomBoard extends Board {
         commandsBox.getChildren().add(backButton);
         return commandsBox;
 
+    }
+
+    /**
+     * method to check if the custom board has the required number of path tiles
+     * @return true if board has atleast minimum number of path tiles else false
+     */
+    private boolean minTileCheck() {
+        int numOfPathTiles = 0;
+        List<Tile> tiles = levelData.getTileSet().getAllTiles();
+        for (Tile tile : tiles) {
+            if (tile.getTileType() == TileType.PATH || tile.getTileType() == TileType.TUNNEL) {
+                numOfPathTiles++;
+            }
+        }
+        int boardArea = levelData.getTileSet().getHeight() * levelData.getTileSet().getWidth();
+        int minTiles = (int) Math.sqrt(boardArea);
+
+        if (numOfPathTiles < minTiles) return false;
+        return true;
+    }
+
+    /**
+     * finds first available path/tunnel and calls connectedTiles using the path/tunnel as a parameter and an empty array list
+     * @return true if all paths/tunnels are connected
+     */
+    private boolean allPathsConnected() {
+        List<Tile> tiles = this.levelData.getTileSet().getAllTiles();
+        Tile startTile = null;
+        for (Tile tile : tiles) {
+            if (tile.getTileType() == TileType.PATH || tile.getTileType() == TileType.TUNNEL) {
+                startTile = tile;
+                break;
+            }
+        }
+        List<Tile> visitedTiles = connectedTiles(startTile, new ArrayList<>());
+        int numOfPaths = 0;
+        for (Tile tile : tiles) {
+            if (tile.getTileType() == TileType.PATH || tile.getTileType() == TileType.TUNNEL) {
+                numOfPaths++;
+            }
+        }
+        return visitedTiles.size() == numOfPaths;
+    }
+
+    /**
+     * recursively calls itself until tile parameter has no more adjacent tiles of type PATH/TUNNEL 
+     * @param tile current tile used to get new tile from it's adjacent tiles
+     * @param visitedTiles all tiles that have been visited/tile parameter
+     * @return List<Tile> of visited tiles
+     */
+    private List<Tile> connectedTiles(Tile tile, List<Tile> visitedTiles) {
+        visitedTiles.add(tile);
+        Direction directions[] = new Direction[]{Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT};
+        for (Direction direction : directions) {
+            TileType tileType = tile.getAdjacentTile(direction).getTileType();
+            // if adjacent tiles tile type is grass or tunnel and adjacent tile hasn't been visited before
+            if ((tileType == TileType.PATH || tileType == TileType.TUNNEL) && !visitedTiles.contains(tile.getAdjacentTile(direction))) {
+                visitedTiles = connectedTiles(tile.getAdjacentTile(direction), visitedTiles);
+            }
+        }
+        return visitedTiles;
     }
 
     /**
