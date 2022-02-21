@@ -97,10 +97,12 @@ public class DeathRat extends Rat {
 	 * Resets the speed of the death rat.
 	 */
 	private void resetSpeed() {
-		int speed = GameObject.getBoard()
-				.getLevelProperties()
-				.getDeathRatSpeed();
-		super.setSpeed(speed);
+		if (GameObject.getBoard() != null) {
+			int speed = GameObject.getBoard()
+					.getLevelProperties()
+					.getDeathRatSpeed();
+			super.setSpeed(speed);
+		}
 	}
 
 	/**
