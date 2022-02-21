@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import level.LevelUtils;
 import players.PlayerProfileManager;
 import players.scores.Player;
 
@@ -80,8 +81,8 @@ public class LeaderBoardMenu extends GameMenu {
 			int numInLeaderboard = 0;
 			for (PlayerInLeaderboard playerInLeaderboard :
 					playersInLeaderboard) {
-				if (numInLeaderboard < 10 && playerInLeaderboard.getLevel().equals(levelId)) {
-					numInLeaderboard++;
+				if (numInLeaderboard < 10 && playerInLeaderboard.getLevel().equals(levelId) && LevelUtils.isIdNotForCustomLevel(levelId)==true) {
+                                        numInLeaderboard++;
 					Label playerLabel = new Label();
 					playerLabel.setTextFill(Color.YELLOW);
 
