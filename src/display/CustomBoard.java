@@ -162,18 +162,11 @@ public class CustomBoard extends Board {
 
     public HBox createCommandsBox () {
         HBox commandsBox = new HBox();
-        Button saveButton = new Button(" S A V E ");
-        saveButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
-
         Button createButton = new Button(" C R E A T E ");
         createButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
 
         Button backButton = new Button(" B A C K "); 
         backButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
-
-        saveButton.setMaxWidth(200);
-        saveButton.setTranslateX(150);
-        saveButton.setTranslateY(0);
 
         createButton.setMaxWidth(200);
         createButton.setTranslateX(150);
@@ -183,8 +176,7 @@ public class CustomBoard extends Board {
         backButton.setTranslateX(150);
         backButton.setTranslateY(0);
 
-        // Save level when mouse is pressed, and stop the current game
-        saveButton.setOnMousePressed(event -> {
+        createButton.setOnMousePressed(event -> {
             // checks if board has atleast minimum number of path tiles and all paths are connected
             if (minTileCheck() && allPathsConnected()) {
                 inputMenu.setLevelProperties(levelData);
@@ -203,17 +195,12 @@ public class CustomBoard extends Board {
             }
         });
 
-        createButton.setOnMousePressed(event -> {
-            // TODO behaviour of save button
-        });
-
         backButton.setOnMousePressed(event -> {
             levelOptionsStage.close();
             GameObject.setBoard(null);
             GameMenu.getStage().setScene(new Scene(new CustomLevelsMenu().buildMenu()));
         });
 
-        commandsBox.getChildren().add(saveButton);
         commandsBox.getChildren().add(createButton);
         commandsBox.getChildren().add(backButton);
         return commandsBox;
@@ -235,8 +222,7 @@ public class CustomBoard extends Board {
         int boardArea = levelData.getTileSet().getHeight() * levelData.getTileSet().getWidth();
         int minTiles = (int) Math.sqrt(boardArea);
 
-        if (numOfPathTiles < minTiles) return false;
-        return true;
+        return numOfPathTiles >= minTiles;
     }
 
     /**
@@ -270,7 +256,7 @@ public class CustomBoard extends Board {
      */
     private List<Tile> connectedTiles(Tile tile, List<Tile> visitedTiles) {
         visitedTiles.add(tile);
-        Direction directions[] = new Direction[]{Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT};
+        Direction[] directions = new Direction[]{Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT};
         for (Direction direction : directions) {
             TileType tileType = tile.getAdjacentTile(direction).getTileType();
             // if adjacent tiles tile type is grass or tunnel and adjacent tile hasn't been visited before
