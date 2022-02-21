@@ -54,7 +54,6 @@ public class LevelUtils {
 	private static final String SAVED_CUSTOM_LEVELS_DIR_PATH = CUSTOM_LEVELS_DIR_PATH +
 			"/savedLevels/";
 	private static final String SAVED_CUSTOM_LEVELS_FILE_PATH = SAVED_CUSTOM_LEVELS_DIR_PATH + "/%s-%s.xml";
-	private static final int RESERVED_ID_RANGE = 100;
 
 	/**
 	 * Empty private constructor method, preventing LevelUtils from being
@@ -380,11 +379,12 @@ public class LevelUtils {
 	/**
 	 * A method to return whether the level id is for a custom level
 	 * @param levelId the level id to check
-	 * @return true if the id is custom, false otherwise. (ids greater than 100 are custom)
+	 * @return true if the id is custom, false otherwise
 	 */
     public static boolean isIdNotForCustomLevel(String levelId) {
 		try {
-			return Integer.parseInt(levelId) <= RESERVED_ID_RANGE;
+			Integer.parseInt(levelId);
+			return true;
 		} catch (NumberFormatException ex) {
 			return false;
 		}

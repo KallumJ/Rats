@@ -252,7 +252,7 @@ class SavedLevelMenuItem extends MenuItem {
 	 * @param level the Level file that should open when this menu item is pressed
 	 */
 	public SavedLevelMenuItem(File level) {
-		super(TextUtils.levelIdToName(LevelUtils.getFilesLevelId(level)));
+		super(LevelUtils.getFilesLevelId(level));
 
 		setOnMousePressed(event -> {
 			LevelData levelData =
@@ -385,7 +385,7 @@ class LevelEditItem extends MenuItem {
 	 * Constructs a LevelEditItem with the provided name.
 	 */
 	public LevelEditItem(String id) {
-		super(TextUtils.levelIdToName(id));
+		super(id);
 		setOnMousePressed(event -> {
 			LevelData levelData =
 					CustomLevelDataFactory.constructCustomLevelData(PlayerProfileManager.getCurrentlyLoggedInPlayer(), id);
