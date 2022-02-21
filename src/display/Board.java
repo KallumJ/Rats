@@ -175,7 +175,9 @@ public class Board {
 	 * A method to update the canvas that represents the board.
 	 */
 	public void updateBoardDisplay() {
-		tileCanvas.updateBoardDisplay();
+		try {
+			tileCanvas.updateBoardDisplay();
+		} catch (NullPointerException ignored) {}
 	}
 
 	/**
