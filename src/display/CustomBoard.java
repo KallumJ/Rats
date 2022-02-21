@@ -109,6 +109,10 @@ public class CustomBoard extends Board {
                     removeItemsFromTile(tile);
                 } else {
                     changeTile(tile);
+                    if (!(inputMenu.getTileSelected().equals(TileType.PATH))) {
+                        removeItemsFromTile(tile);
+                    }
+
         }}});
         this.tileCanvas.getCanvas().addEventHandler(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, event -> {
             int x = (int)event.getX()/Tile.TILE_SIZE;
@@ -123,6 +127,11 @@ public class CustomBoard extends Board {
                     removeItemsFromTile(tile);
                 } else {
                     changeTile(tile);
+                    if (!(inputMenu.getTileSelected().equals(TileType.PATH))) {
+
+                        removeItemsFromTile(tile);
+                    }
+
         }}});
     }
 
