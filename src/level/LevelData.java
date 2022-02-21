@@ -62,6 +62,7 @@ public class LevelData {
 		if (index >= 0) {
 			tiles.set(index, newTile);
 		}
+		LevelUtils.setAdjacentTiles(tileSet);
 		this.setTileSet(tiles);
 	}
 
