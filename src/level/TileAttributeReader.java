@@ -235,12 +235,17 @@ public class TileAttributeReader {
 	 * @return the parsed Direction enum
 	 */
 	private static Direction getDirectionFromString(String direction) {
-		return switch (direction) {
-			case "down" -> Direction.DOWN;
-			case "up" -> Direction.UP;
-			case "left" -> Direction.LEFT;
-			case "right" -> Direction.RIGHT;
-			default -> throw new RuntimeException(INVALID_DIRECTION);
-		};
+		switch (direction) {
+			case "down":
+				return Direction.DOWN;
+			case "up":
+				return Direction.UP;
+			case "left":
+				return Direction.LEFT;
+			case "right":
+				return Direction.RIGHT;
+			default:
+				throw new RuntimeException(INVALID_DIRECTION);
+		}
 	}
 }

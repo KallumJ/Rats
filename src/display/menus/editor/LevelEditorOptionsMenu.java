@@ -441,11 +441,14 @@ public class LevelEditorOptionsMenu {
      * @return TileType of selected tile
      */
     public TileType getTileSelected() {
-        return switch (tileSelectChoiceBox.getValue()) {
-            case "Tunnel Tile" -> TileType.TUNNEL;
-            case "Path Tile" -> TileType.PATH;
-            default -> TileType.GRASS;
-        };
+        switch (tileSelectChoiceBox.getValue()) {
+            case "Tunnel Tile":
+                return TileType.TUNNEL;
+            case "Path Tile":
+                return TileType.PATH;
+            default:
+                return TileType.GRASS;
+        }
         
     }
 
@@ -509,9 +512,15 @@ public class LevelEditorOptionsMenu {
 
     public void setTimeOfDay(TimeOfDay timeOfDay) {
         switch (timeOfDay) {
-            case DAY -> onlyDayTime.setSelected(true);
-            case NIGHT -> onlyNightTime.setSelected(true);
-            case BOTH -> dayAndNight.setSelected(true);
+            case DAY:
+                onlyDayTime.setSelected(true);
+                break;
+            case NIGHT:
+                onlyNightTime.setSelected(true);
+                break;
+            case BOTH:
+                dayAndNight.setSelected(true);
+                break;
         }
     }
 

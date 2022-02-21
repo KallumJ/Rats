@@ -128,12 +128,16 @@ public class LevelUtils {
 	 * @return the converted string
 	 */
 	public static String getTileTypeString(TileType tileType) {
-		return switch (tileType) {
-			case GRASS -> "g";
-			case TUNNEL -> "t";
-			case PATH -> "p";
-			default -> throw new IllegalArgumentException(String.format(INVALID_TILE_TYPE, tileType));
-		};
+		switch (tileType) {
+			case GRASS:
+				return "g";
+			case TUNNEL:
+				return "t";
+			case PATH:
+				return "p";
+			default:
+				throw new IllegalArgumentException(String.format(INVALID_TILE_TYPE, tileType));
+		}
 	}
 
 	/**
@@ -143,13 +147,18 @@ public class LevelUtils {
 	 * @return the string for this direction
 	 */
 	public static String getStringFromDirection(Direction directionOfMovement) {
-		return switch (directionOfMovement) {
-			case UP -> "up";
-			case DOWN -> "down";
-			case LEFT -> "left";
-			case RIGHT -> "right";
-			default -> throw new IllegalArgumentException(String.format(INVALID_DIRECTION_ERROR, directionOfMovement));
-		};
+		switch (directionOfMovement) {
+			case UP:
+				return "up";
+			case DOWN:
+				return "down";
+			case LEFT:
+				return "left";
+			case RIGHT:
+				return "right";
+			default:
+				throw new IllegalArgumentException(String.format(INVALID_DIRECTION_ERROR, directionOfMovement));
+		}
 	}
 
 	/**
