@@ -44,7 +44,7 @@ public class LevelDataFactory {
 	 * @param id The id of the level that needs constructing
 	 * @return The complete LevelData object
 	 */
-	public static LevelData constructLevelData(int id) {
+	public static LevelData constructLevelData(String id) {
 		File selectedLevel = LevelUtils.getLevelFileById(id);
 		return constructLevelDataFromFile(selectedLevel);
 	}
@@ -59,7 +59,7 @@ public class LevelDataFactory {
 	 */
 	public static LevelData constructSavedLevelData(Player currentlyLoggedInPlayer, String id) {
 		File file =
-				new File(LevelUtils.constructSavedLevelFileName(currentlyLoggedInPlayer, Integer.parseInt(id)));
+				new File(LevelUtils.constructSavedLevelFileName(currentlyLoggedInPlayer, id));
 		return constructLevelDataFromFile(file);
 	}
 
@@ -195,7 +195,7 @@ public class LevelDataFactory {
 				XMLElementNames.POPULATION_TO_LOSE);
 		int expectedTime = getPropertyInt(levelProperties,
 				XMLElementNames.EXPECTED_TIME);
-		int id = getPropertyInt(levelProperties, XMLElementNames.LEVEL_ID);
+		String id = getPropertyStr(levelProperties, XMLElementNames.LEVEL_ID);
 		int itemInterval = getPropertyInt(levelProperties,
 				XMLElementNames.ITEM_INTERVAL);
 		int ratMinBabies = getPropertyInt(levelProperties,
@@ -222,6 +222,20 @@ public class LevelDataFactory {
 				expectedTime, itemInterval, ratMinBabies, ratMaxBabies,
 				adultRatSpeed, babyRatSpeed, deathRatSpeed, timeElapsed,
 				score, timeOfDay, timeInterval, airstrikeEnabled, costOfAirstrike, numOfAirstrikeHits);
+	}
+
+	/**
+	 * A method to get the property from properties file as String
+	 * @param propertiesElement the levelProperties element to read from
+	 * @param propertyName      The property to read
+	 * @return The read property, of type String
+	 */
+	private static String getPropertyStr(Element propertiesElement, XMLElementNames propertyName) {
+		String propertyStr = propertyName.toString();
+		Node propertyElement =
+				propertiesElement.getElementsByTagName(propertyStr)
+						.item(0);
+		return propertyElement.getTextContent();
 	}
 
 	/**

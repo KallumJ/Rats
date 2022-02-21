@@ -48,7 +48,7 @@ public class CustomLevelDataFactory {
      * @return the constructed LevelData
      */
     public static LevelData constructCustomLevelData(Player currentlyLoggedInPlayer, String id) {
-        File file = new File(LevelUtils.constructCustomLevelFileName(currentlyLoggedInPlayer, Integer.parseInt(id)));
+        File file = new File(LevelUtils.constructCustomLevelFileName(currentlyLoggedInPlayer, id));
         return LevelDataFactory.constructLevelDataFromFile(file);
     }
 }

@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class Player {
 	private final String playerName;
-	private final Map<Integer, Integer> highScores;
+	private final Map<String, Integer> highScores;
 	private int maxLevel;
 
 	/**
@@ -41,15 +41,6 @@ public class Player {
 	 */
 	public String getPlayerName() {
 		return playerName;
-	}
-
-	/**
-	 * Gets the Player score
-	 *
-	 * @return the Player score
-	 */
-	public int getPlayerHighScore(int levelId) {
-		return highScores.get(levelId);
 	}
 
 	/**
@@ -104,12 +95,12 @@ public class Player {
 	 * @param levelId the level id
 	 * @param score   the score to add
 	 */
-	public void winGame(int levelId, int score) {
+	public void winGame(String levelId, int score) {
 		// If score for this level is already recorded, check it's higher.
 		// If not, add the score
 		if (highScores.containsKey(levelId)) {
 			highScores.forEach((currentLevelId, currentScore) -> {
-				if (currentLevelId == levelId) {
+				if (currentLevelId.equals(levelId)) {
 					if (score > currentScore) {
 						highScores.put(levelId, score);
 					}
@@ -119,14 +110,14 @@ public class Player {
 			highScores.put(levelId, score);
 		}
 
-		if (!LevelUtils.isIdForCustomLeveL(levelId)) {
+		if (LevelUtils.isIdNotForCustomLevel(levelId)) {
 			maxLevel += 1;
 		}
 
 		PlayerProfileManager.savePlayersFile();
 	}
 
-	public Map<Integer, Integer> getHighScores() {
+	public Map<String, Integer> getHighScores() {
 		return highScores;
 	}
 

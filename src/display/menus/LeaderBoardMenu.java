@@ -27,7 +27,7 @@ public class LeaderBoardMenu extends GameMenu {
 	private final static String SCORE_ENTRY = "%s%s";
 	private final static String LEADERBOARD_HEADER =
 			PLAYER_HEADER + SCORE_HEADER;
-	private final int levelId;
+	private final String levelId;
 
 	/**
 	 * Constructs a LeaderBoardMenu for the provided level.
@@ -35,7 +35,7 @@ public class LeaderBoardMenu extends GameMenu {
 	 * @param id the id of the level to show scores for
 	 */
 	public LeaderBoardMenu(String id) {
-		this.levelId = Integer.parseInt(id);
+		this.levelId = id;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class LeaderBoardMenu extends GameMenu {
 			int numInLeaderboard = 0;
 			for (PlayerInLeaderboard playerInLeaderboard :
 					playersInLeaderboard) {
-				if (numInLeaderboard < 10 && playerInLeaderboard.getLevel() == levelId) {
+				if (numInLeaderboard < 10 && playerInLeaderboard.getLevel().equals(levelId)) {
 					numInLeaderboard++;
 					Label playerLabel = new Label();
 					playerLabel.setTextFill(Color.YELLOW);
@@ -118,7 +118,7 @@ public class LeaderBoardMenu extends GameMenu {
 		for (Player player : players) {
 
 			// Get level and scores of level from the map.
-			for (Integer level : player.getHighScores().keySet()) {
+			for (String level : player.getHighScores().keySet()) {
 
 				//Build an instance of PlayerInLeaderboard
 				PlayerInLeaderboard playInLadderBoard =

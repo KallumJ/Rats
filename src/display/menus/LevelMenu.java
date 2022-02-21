@@ -33,16 +33,22 @@ public class LevelMenu extends GameMenu {
 
 		// For every level file, add a menu item to the list of menu items
 		for (File levelFile : LevelUtils.getFilesInLevelDirectory()) {
-			int levelId = LevelUtils.getFilesLevelId(levelFile);
+			String levelId = LevelUtils.getFilesLevelId(levelFile);
 			Player currentlyLoggedInPlayer =
 					PlayerProfileManager.getCurrentlyLoggedInPlayer();
 
 			// Only add levels the player has unlocked
-			if (currentlyLoggedInPlayer.getMaxLevel() >= levelId) {
-				LevelMenuItem levelMenuItem =
-						new LevelMenuItem(String.valueOf(levelId));
-				menuItems.add(levelMenuItem);
+			try {
+				int id = Integer.parseInt(levelId);
+				if (currentlyLoggedInPlayer.getMaxLevel() >= id) {
+					LevelMenuItem levelMenuItem =
+							new LevelMenuItem(levelId);
+					menuItems.add(levelMenuItem);
+				}
+			} catch (NumberFormatException ex) {
+				break;
 			}
+
 		}
 
 		// Add these menu items to a menu box

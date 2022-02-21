@@ -9,17 +9,16 @@ import java.util.Comparator;
  */
 class PlayerInLeaderboard {
 	private final String name;
-	private final Integer level;
+	private final String level;
 	private final Integer score;
 
 	/**
 	 * Constructs a {@code PlayerInLeaderboard} object.
-	 *
-	 * @param name 	the name of the player
+	 *  @param name    the name of the player
 	 * @param level the level the score was achieved on
-	 * @param score the score reached
-	 */
-	public PlayerInLeaderboard(String name, Integer level, Integer score) {
+     * @param score the score reached
+     */
+	public PlayerInLeaderboard(String name, String level, Integer score) {
 		this.name = name;
 		this.level = level;
 		this.score = score;
@@ -39,7 +38,7 @@ class PlayerInLeaderboard {
 	 *
 	 * @return The level of map.
 	 */
-	public Integer getLevel() {
+	public String getLevel() {
 		return level;
 	}
 

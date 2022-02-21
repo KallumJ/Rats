@@ -450,7 +450,7 @@ public class Board {
 
 		// The player has won
 		if (currentPopulation <= 0) {
-			int levelId = levelProperties.getLevelId();
+			String levelId = levelProperties.getLevelId();
 
 			Player currentPlayer =
 					PlayerProfileManager.getCurrentlyLoggedInPlayer();

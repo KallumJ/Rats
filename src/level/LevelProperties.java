@@ -10,7 +10,7 @@ import envrionment.TimeOfDay;
  *
  */
 public class LevelProperties {
-	private int levelId;
+	private String levelId;
 	private int levelHeight;
 	private int levelWidth;
 	private int populationToLose;
@@ -58,7 +58,7 @@ public class LevelProperties {
 	 * @param numOfAirstrikeHits the number of target tiles an airstrike
 	 *                           will hit
 	 */
-	public LevelProperties(int id, int height, int width, int populationToLose
+	public LevelProperties(String id, int height, int width, int populationToLose
 			, int expectedTime, int itemInterval, int ratMinBabies,
 						   int ratMaxBabies, int adultRatSpeed,
 						   int babyRatSpeed, int deathRatSpeed,
@@ -113,7 +113,7 @@ public class LevelProperties {
 	 *
 	 * @return the level id for this level
 	 */
-	public int getLevelId() {
+	public String getLevelId() {
 		return levelId;
 	}
 
@@ -293,7 +293,7 @@ public class LevelProperties {
 	 * Sets the level id for this level
 	 * @param levelId Sets the level id for this level
 	 */
-	public void setLevelId(int levelId) {
+	public void setLevelId(String levelId) {
 		this.levelId = levelId;
 	}
 

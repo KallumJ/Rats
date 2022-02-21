@@ -1,6 +1,9 @@
 package display.menus;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import level.LevelUtils;
 import players.PlayerProfileManager;
 import players.scores.Player;
@@ -37,15 +40,19 @@ public class EditLevelMenu extends GameMenu {
                     currentlyLoggedInPlayer.getPlayerName();
 
             if (playerForLevel.equals(loggedInPlayerName)) {
-                int levelId = LevelUtils.getFilesLevelId(savedLevel);
+                String levelId = LevelUtils.getFilesLevelId(savedLevel);
                 LevelEditItem levelMenuItem =
-                        new LevelEditItem(String.valueOf(levelId));
+                        new LevelEditItem(levelId);
                 menuItems.add(levelMenuItem);
             }
         }
         MenuItem[] menuItemsArr = menuItems.toArray(new MenuItem[0]);
         MenuBox menuBox = new MenuBox(menuItemsArr);
 
-        return buildMenu(new MenuTitle(MENU_TITLE), menuBox, null);
+        // Add a back button event handler
+        EventHandler<Event> backHandler = event -> GameMenu.getStage()
+                .setScene(new Scene(new CustomLevelsMenu().buildMenu()));
+
+        return buildMenu(new MenuTitle(MENU_TITLE), menuBox, backHandler);
     }
 }

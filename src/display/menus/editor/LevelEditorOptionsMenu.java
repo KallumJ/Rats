@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import level.LevelData;
 import level.LevelProperties;
 import tile.TileType;
+import util.TextUtils;
 
 /**
  * A class to get input from the user for the custom level properties
@@ -36,6 +37,7 @@ public class LevelEditorOptionsMenu {
     private final RadioButton dayAndNight;
     private final TextField timeIntervalTextField; // period between day and night
     private final RadioButton deleteItems;
+    private final TextField levelNameTextField;
 
     /**
      * Constructs a LevelPropertiesInputMenu object
@@ -56,6 +58,7 @@ public class LevelEditorOptionsMenu {
         deleteItems = new RadioButton("Delete items on tile");
 
 
+
         timeIntervalTextField = new TextField();
         onlyDayTime = new RadioButton("Always day time");
         onlyNightTime = new RadioButton("Always night time");
@@ -65,10 +68,10 @@ public class LevelEditorOptionsMenu {
         ToggleGroup dayAndNightRadioButtonGroup = new ToggleGroup();
         onlyDayTime.setToggleGroup(dayAndNightRadioButtonGroup);
         onlyDayTime.setSelected(true);
-
         onlyNightTime.setToggleGroup(dayAndNightRadioButtonGroup);
-
         dayAndNight.setToggleGroup(dayAndNightRadioButtonGroup);
+
+        levelNameTextField = new TextField();
     }
 
     /**
@@ -166,6 +169,10 @@ public class LevelEditorOptionsMenu {
         timeDayAndNightLabel.setTranslateX(30);
         timeDayAndNightLabel.setTranslateY(220);
 
+        Label levelNameLabel = new Label("Level name");
+        levelNameLabel.setTextFill(Color.WHITE);
+        levelNameLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+
         /*
          * adds a choice box with choice of tiles
          * event listener added to choice box which is activated when new tile is chosen
@@ -185,6 +192,7 @@ public class LevelEditorOptionsMenu {
         airstrikeCostTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
         airstrikeNumberOfHitsTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
         timeIntervalTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
+        levelNameTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
 
 
         //Hbox for text fields to fix the textfields covering the page issue
@@ -305,7 +313,7 @@ public class LevelEditorOptionsMenu {
             populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel, 
             adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel, 
             timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
-            tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight
+            tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight, levelNameLabel, levelNameTextField
         );
         container.setStyle("-fx-background-color: #000000;");
 
@@ -320,7 +328,7 @@ public class LevelEditorOptionsMenu {
     public void setLevelProperties(LevelData levelData) {
         LevelProperties levelProperties = levelData.getLevelProperties();
 
-        levelProperties.setLevelId(9999);
+        levelProperties.setLevelId(TextUtils.levelNameToId(getLevelName()));
         levelProperties.setPopulationToLose(getPopulationToLose());
         levelProperties.setExpectedTime(getExpectedTime());
         levelProperties.setItemInterval(getItemInterval());
@@ -334,6 +342,10 @@ public class LevelEditorOptionsMenu {
         levelProperties.setAirstrikeEnabled(getAirstrikeEnabled());
         levelProperties.setCostOfAirstrike(getCostOfAirstrike());
         levelProperties.setNumOfAirstrikeHits(getNumOfAirstrikeHits());
+    }
+
+    private String getLevelName() {
+        return levelNameTextField.getText();
     }
 
     /**

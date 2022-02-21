@@ -140,7 +140,7 @@ public class PlayerProfileManager {
 								highScoreValue.split(HIGH_SCORE_SEPARATOR);
 
 						player.getHighScores()
-								.put(Integer.parseInt(highScoreValueSplit[0]),
+								.put(highScoreValueSplit[0],
 										Integer.parseInt(highScoreValueSplit[1]));
 					}
 				}

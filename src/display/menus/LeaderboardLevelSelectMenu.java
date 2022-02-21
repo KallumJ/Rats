@@ -31,7 +31,7 @@ public class LeaderboardLevelSelectMenu extends GameMenu {
 		ArrayList<MenuItem> menuItems = new ArrayList<>();
 		List<Player> allPlayers = PlayerProfileManager.getAllPlayers();
 
-		HashSet<Integer> levelsWithScore = new HashSet<>();
+		HashSet<String> levelsWithScore = new HashSet<>();
 
 		// Create a set of all the level ids that someone has a score for
 		for (Player allPlayer : allPlayers) {
@@ -40,9 +40,9 @@ public class LeaderboardLevelSelectMenu extends GameMenu {
 		}
 
 		// Create a menu item for each level
-		for (Integer level : levelsWithScore) {
+		for (String level : levelsWithScore) {
 			LeaderboardLevelMenuItem menuItem =
-					new LeaderboardLevelMenuItem(String.valueOf(level));
+					new LeaderboardLevelMenuItem(level);
 			menuItems.add(menuItem);
 		}
 

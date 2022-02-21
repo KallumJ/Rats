@@ -36,11 +36,11 @@ public class LevelUtils {
 	public static final String SAVED_LEVELS_DIR_PATH = LEVELS_PATH +
 			"/savedLevels/";
 	private static final String SAVED_LEVELS_FILE_PATH =
-			SAVED_LEVELS_DIR_PATH + "/%s-%d.xml";
+			SAVED_LEVELS_DIR_PATH + "/%s-%s.xml";
 	private static final String CUSTOM_LEVELS_DIR_PATH =
 			LEVELS_PATH + "/customLevels/";
 	private static final String CUSTOM_LEVELS_FILE_PATH =
-			CUSTOM_LEVELS_DIR_PATH + "/%s-%d.xml";
+			CUSTOM_LEVELS_DIR_PATH + "/%s-%s.xml";
 	private static final String INVALID_TILE_TYPE =
 			"%s is an invalid tile " + "type";
 	private static final String INVALID_DIRECTION_ERROR =
@@ -53,7 +53,8 @@ public class LevelUtils {
 			"The player has no saved " + "levels";
 	private static final String SAVED_CUSTOM_LEVELS_DIR_PATH = CUSTOM_LEVELS_DIR_PATH +
 			"/savedLevels/";
-	private static final String SAVED_CUSTOM_LEVELS_FILE_PATH = SAVED_CUSTOM_LEVELS_DIR_PATH + "/%s-%d.xml";
+	private static final String SAVED_CUSTOM_LEVELS_FILE_PATH = SAVED_CUSTOM_LEVELS_DIR_PATH + "/%s-%s.xml";
+	private static final int RESERVED_ID_RANGE = 100;
 
 	/**
 	 * Empty private constructor method, preventing LevelUtils from being
@@ -87,14 +88,14 @@ public class LevelUtils {
 	 *
 	 * @param id the level id
 	 */
-	public static File getLevelFileById(int id) {
+	public static File getLevelFileById(String id) {
 
 		// Find a file with a matching id to what was passed to the method
 		File selectedLevel = null;
 		for (File file : getFilesInLevelDirectory()) {
-			int fileId = getFilesLevelId(file);
+			String fileId = getFilesLevelId(file);
 
-			if (fileId == id) {
+			if (fileId.equals(id)) {
 				selectedLevel = file;
 			}
 		}
@@ -112,13 +113,13 @@ public class LevelUtils {
 	 * @param file the file to get the id from
 	 * @return the found id
 	 */
-	public static int getFilesLevelId(File file) {
+	public static String getFilesLevelId(File file) {
 		XMLFileReader fileReader = new XMLFileReader(file);
 		Element idElement =
 				fileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES
 						, XMLElementNames.LEVEL_ID);
 
-		return Integer.parseInt(idElement.getTextContent());
+		return idElement.getTextContent();
 	}
 
 	/**
@@ -186,7 +187,7 @@ public class LevelUtils {
 	 * @return the file name for a saved level for a given player and level id
 	 */
 	public static String constructSavedLevelFileName(Player player,
-													 int levelId) {
+													 String levelId) {
 		// If the directory doesn't exist, create it
 		File file = new File(SAVED_LEVELS_DIR_PATH);
 		if (!file.exists()) {
@@ -205,7 +206,7 @@ public class LevelUtils {
 	 * @param levelId the level id
 	 * @return the file name for a saved custom level for a given player and level id
 	 */
-	public static String constructCustomLevelFileName(Player player, int levelId) {
+	public static String constructCustomLevelFileName(Player player, String levelId) {
 		// If the directory doesn't exist, create it
 		File file = new File(CUSTOM_LEVELS_DIR_PATH);
 		if (!file.exists()) {
@@ -381,8 +382,12 @@ public class LevelUtils {
 	 * @param levelId the level id to check
 	 * @return true if the id is custom, false otherwise. (ids greater than 100 are custom)
 	 */
-    public static boolean isIdForCustomLeveL(int levelId) {
-		return levelId > 100;
+    public static boolean isIdNotForCustomLevel(String levelId) {
+		try {
+			return Integer.parseInt(levelId) <= RESERVED_ID_RANGE;
+		} catch (NumberFormatException ex) {
+			return false;
+		}
     }
 
 	/**
@@ -391,7 +396,7 @@ public class LevelUtils {
 	 * @param levelId the level id of the level
 	 * @return The level's file path
 	 */
-	public static String constructCustomSavedLevelFileName(Player player, int levelId) {
+	public static String constructCustomSavedLevelFileName(Player player, String levelId) {
 		// If the directory doesn't exist, create it
 		File file = new File(SAVED_CUSTOM_LEVELS_DIR_PATH);
 		if (!file.exists()) {
