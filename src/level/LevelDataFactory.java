@@ -152,18 +152,17 @@ public class LevelDataFactory {
 				// Store tile type to the array
 				String tileText = tile.getTextContent();
 				switch (tileText) {
-					case "g" -> {
+					case "g":
 						tileSet.putTile(TileType.GRASS, j, i);
-					}
-					case "t" -> {
+						break;
+					case "t":
 						tileSet.putTile(TileType.TUNNEL, j, i);
-					}
-					case "p" -> {
+						break;
+					case "p":
 						tileSet.putTile(TileType.PATH, j, i);
-					}
-					default -> {
+						break;
+					default:
 						throw new IllegalArgumentException(INVALID_TILE_TYPE);
-					}
 				}
 
 				NamedNodeMap attributes = tile.getAttributes();
