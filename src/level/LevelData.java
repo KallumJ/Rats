@@ -2,6 +2,7 @@ package level;
 
 import objects.GameObject;
 import objects.GameObjectType;
+import objects.rats.PeacefulRat;
 import tile.Tile;
 import tile.TileSet;
 
@@ -129,5 +130,29 @@ public class LevelData {
 	 */
 	public boolean hasInventory() {
 		return inventory != null;
+	}
+
+	/**
+	 * A method to make all rats in the level babies
+	 */
+	public void makeRatsBabies() {
+		for (GameObject object : objects) {
+			if (object instanceof PeacefulRat) {
+				PeacefulRat rat = (PeacefulRat) object;
+				rat.setAdult(false);
+			}
+		}
+	}
+
+	/**
+	 * A method to make all rats in the level adults
+	 */
+	public void makeRatsAdults() {
+		for (GameObject object : objects) {
+			if (object instanceof PeacefulRat) {
+				PeacefulRat rat = (PeacefulRat) object;
+				rat.setAdult(true);
+			}
+		}
 	}
 }

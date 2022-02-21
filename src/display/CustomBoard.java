@@ -180,7 +180,10 @@ public class CustomBoard extends Board {
         createButton.setOnMousePressed(event -> {
             // checks if board has atleast minimum number of path tiles and all paths are connected
             if (minTileCheck() && allPathsConnected()) {
-                makeRatsBabies(levelData.getObjects());
+
+                // Rats should be loaded as babies
+                levelData.makeRatsBabies();
+
                 inputMenu.setLevelProperties(levelData);
                 LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
                 levelOptionsStage.close();
@@ -207,19 +210,6 @@ public class CustomBoard extends Board {
         commandsBox.getChildren().add(backButton);
         return commandsBox;
 
-    }
-
-    /**
-     * A method to make all the rats in the list babies
-     * @param objects the list of objects in the level to convert
-     */
-    private void makeRatsBabies(List<GameObject> objects) {
-        for (GameObject object : objects) {
-            if (object instanceof PeacefulRat) {
-                PeacefulRat rat = (PeacefulRat) object;
-                rat.setAdult(false);
-            }
-        }
     }
 
     /**

@@ -426,6 +426,9 @@ class LevelEditItem extends MenuItem {
 		setOnMousePressed(event -> {
 			LevelData levelData =
 					CustomLevelDataFactory.constructCustomLevelData(PlayerProfileManager.getCurrentlyLoggedInPlayer(), id);
+
+			// Rats should appear in the editor as adults
+			levelData.makeRatsAdults();
 			CustomBoard customBoard = new CustomBoard(levelData);
 			GameObject.setBoard(customBoard);
 			Scene scene = new Scene(customBoard.buildGUI());
