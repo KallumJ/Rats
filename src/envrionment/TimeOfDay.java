@@ -5,7 +5,6 @@ package envrionment;
  *
  * @author Kallum Jones (2005855)
  * @date 2022.02.17
- *
  */
 public enum TimeOfDay {
     DAY,

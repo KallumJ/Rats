@@ -5,10 +5,9 @@ package tile;
  *
  * @author fahds
  * @date 2022/02/15
- *
  */
 public enum Direction {
 
-	DOWN, UP, RIGHT, LEFT
+    DOWN, UP, RIGHT, LEFT
 
 }

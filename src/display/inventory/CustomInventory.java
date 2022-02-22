@@ -8,6 +8,7 @@ import objects.GameObjectType;
  */
 public class CustomInventory extends Inventory {
     private static final int INVENTORY_WIDTH = 75;
+
     /**
      * Constructs a CustomInventory object.
      *
@@ -43,6 +44,7 @@ public class CustomInventory extends Inventory {
 
     /**
      * Get the width of the inventory
+     *
      * @return the width of the inventory, in pixels
      */
     @Override

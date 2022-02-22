@@ -10,33 +10,32 @@ import tile.Tile;
  *
  * @author Fahd
  * @date 2022.02.21
- *
  */
 public class Poison extends GameObject {
 
-	/**
-	 * Creates a new sterilisation effect object on the specified tile.
-	 *
-	 * @param standingOn The tile the poison is on.
-	 */
-	public Poison(Tile standingOn) {
-		super(standingOn);
+    /**
+     * Creates a new sterilisation effect object on the specified tile.
+     *
+     * @param standingOn The tile the poison is on.
+     */
+    public Poison(Tile standingOn) {
+        super(standingOn);
 
-		Image poisonImage =
-				new Image(ObjectUtils.getObjectImageUrl(GameObjectType.POISON));
-		super.setIcon(poisonImage);
-	}
+        Image poisonImage =
+                new Image(ObjectUtils.getObjectImageUrl(GameObjectType.POISON));
+        super.setIcon(poisonImage);
+    }
 
-	/**
-	 * Gives poison to a victim.
-	 *
-	 * @param victim The rat which will take the poison and die.
-	 */
-	public void givePoison(Rat victim) {
+    /**
+     * Gives poison to a victim.
+     *
+     * @param victim The rat which will take the poison and die.
+     */
+    public void givePoison(Rat victim) {
 
-		GameObject.getBoard().removeObject(victim);
-		GameObject.getBoard().removeObject(this);
-		GameObject.getBoard().updateBoardDisplay();
-	}
+        GameObject.getBoard().removeObject(victim);
+        GameObject.getBoard().removeObject(this);
+        GameObject.getBoard().updateBoardDisplay();
+    }
 
 }

@@ -1,6 +1,7 @@
 package objects;
 
 import java.util.Random;
+
 import javafx.scene.image.Image;
 import objects.rats.Rat;
 import tile.Tile;
@@ -12,12 +13,10 @@ import tile.TileType;
  *
  * @author Fahd
  * @date 2022.02.21
- *
  */
 public class Portal extends GameObject {
-    
+
     /**
-     *
      * @param standingOn The tile the entrance will be one.
      */
     public Portal(Tile standingOn) {
@@ -26,7 +25,7 @@ public class Portal extends GameObject {
         Image portalImage = new Image(ObjectUtils.getObjectImageUrl(GameObjectType.PORTAL));
         super.setIcon(portalImage);
     }
-    
+
     /**
      * This method transport a rat from the entrance portal to the exit portal.
      *

@@ -5,7 +5,6 @@ package envrionment;
  *
  * @author Kallum Jones (2005855)
  * @date 2022.02.17
- *
  */
 public class TimeOfDayUtils {
     public static final String DAY_STR = "day";
@@ -16,6 +15,7 @@ public class TimeOfDayUtils {
 
     /**
      * Convert the provided enum into a string
+     *
      * @param timeOfDay the TimeOfDay enum to convert
      * @return the time of day as a string
      */
@@ -33,6 +33,7 @@ public class TimeOfDayUtils {
 
     /**
      * Convert the provided string to a TimeOfDay enum
+     *
      * @param timeString the string provided
      * @return The time of day as a TimeOfDay enum
      */

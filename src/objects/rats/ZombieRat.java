@@ -9,12 +9,12 @@ import objects.GameObjectType;
 import objects.ObjectUtils;
 import tile.Direction;
 import tile.Tile;
+
 /**
  * This class represent the zombie rats which will bit other rats and turn them into zombies.
  *
  * @author Fahd
  * @date 2022/02/21
- *
  */
 
 public class ZombieRat extends Rat {
@@ -24,10 +24,11 @@ public class ZombieRat extends Rat {
 
     /**
      * Creates a new zombie rat.
-     * @param standingOn The tile the rat is standing on.
-     * @param speed Movement speed of the rat.
+     *
+     * @param standingOn          The tile the rat is standing on.
+     * @param speed               Movement speed of the rat.
      * @param directionOfMovement Direction of the rat movement;
-     * @param timeToDisappear lifetime for the zombie in seconds.
+     * @param timeToDisappear     lifetime for the zombie in seconds.
      */
     public ZombieRat(Tile standingOn, int speed, Direction directionOfMovement, int timeToDisappear) {
         super(standingOn, speed, directionOfMovement);
@@ -47,7 +48,7 @@ public class ZombieRat extends Rat {
     /**
      * Method which will make the rat disappear.
      */
-    private void Disappear (){
+    private void Disappear() {
 
         this.timeToDisappear--;
         if (this.timeToDisappear <= 0) {
@@ -63,24 +64,26 @@ public class ZombieRat extends Rat {
 
     /**
      * Performs a bite action which will turn the victim into a zombie.
+     *
      * @param rat The victim.
      */
-    public void Bite (PeacefulRat rat){
+    public void Bite(PeacefulRat rat) {
 
         GameObject.getBoard().removeObject(rat);
         int speed = GameObject.getBoard()
                 .getLevelProperties()
                 .getDeathRatSpeed();
-        ZombieRat zombie = new ZombieRat(rat.getStandingOn(),speed,
-                rat.getDirectionOfMovement(),this.timeToDisappear);
+        ZombieRat zombie = new ZombieRat(rat.getStandingOn(), speed,
+                rat.getDirectionOfMovement(), this.timeToDisappear);
         GameObject.getBoard().addObject(zombie);
     }
 
     /**
      * Method which gives back the time left for the zombie rat to disappear.
+     *
      * @return time left for the zombie rat to disappear.
      */
-    public int getTimeToDisappear () {
+    public int getTimeToDisappear() {
 
         return this.timeToDisappear;
     }

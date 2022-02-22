@@ -8,11 +8,11 @@ import javafx.scene.text.Font;
  *
  * @author Kallum Jones (2005855)
  * @date 2022/02/09
- *
  */
 public class TextUtils {
     /**
      * A method to remove all underscores and replace them with spaces
+     *
      * @param input the String to remove underscores from
      * @return the amended string
      */
@@ -22,6 +22,7 @@ public class TextUtils {
 
     /**
      * A method to load our chosen font from file
+     *
      * @param size the size of the font to load
      * @return the loaded font
      */

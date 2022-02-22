@@ -44,6 +44,7 @@ public class CustomBoard extends Board {
 
     /**
      * Constructs a custom board
+     *
      * @param levelData the LevelData for the custom level
      */
     public CustomBoard(LevelData levelData) {
@@ -75,9 +76,8 @@ public class CustomBoard extends Board {
         this.initCustomBoard();
 
 
-
     }
-    
+
     public BorderPane buildGUI() {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-image: url(file:resources/inventoryBg.png);");
@@ -104,13 +104,13 @@ public class CustomBoard extends Board {
 
         EventHandler<MouseEvent> eventHandler = event -> {
             // makes sure that borders are always grass
-            int x = (int)event.getX()/Tile.TILE_SIZE;
-            int y = (int)event.getY()/Tile.TILE_SIZE;
-            int canvasWidth = (int) getCanvas().getWidth()/Tile.TILE_SIZE;
-            int canvasHeight = (int) getCanvas().getHeight()/Tile.TILE_SIZE;
+            int x = (int) event.getX() / Tile.TILE_SIZE;
+            int y = (int) event.getY() / Tile.TILE_SIZE;
+            int canvasWidth = (int) getCanvas().getWidth() / Tile.TILE_SIZE;
+            int canvasHeight = (int) getCanvas().getHeight() / Tile.TILE_SIZE;
 
             // makes sure that borders are always grass
-            if (x >= 1 && y >= 1 && x < canvasWidth-1 && y < canvasHeight-1) {
+            if (x >= 1 && y >= 1 && x < canvasWidth - 1 && y < canvasHeight - 1) {
                 Tile tile = levelData.getTileSet().getTile(x, y);
                 if (inputMenu.getDeleteItemsChecked()) {
                     removeItemsFromTile(tile);
@@ -120,7 +120,8 @@ public class CustomBoard extends Board {
                         removeItemsFromTile(tile);
                     }
 
-                }}
+                }
+            }
         };
         this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, eventHandler);
         this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, eventHandler);
@@ -128,6 +129,7 @@ public class CustomBoard extends Board {
 
     /**
      * removes all items/objects from tile
+     *
      * @param tile to remove items from
      */
     private void removeItemsFromTile(Tile tile) {
@@ -141,6 +143,7 @@ public class CustomBoard extends Board {
 
     /**
      * Changes tile at mouse position with selected tile type
+     *
      * @param tile the tile to change
      */
     private void changeTile(Tile tile) {
@@ -151,12 +154,12 @@ public class CustomBoard extends Board {
         }
     }
 
-    public HBox createCommandsBox () {
+    public HBox createCommandsBox() {
         HBox commandsBox = new HBox();
         Button createButton = new Button(" C R E A T E ");
         createButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
 
-        Button backButton = new Button(" B A C K "); 
+        Button backButton = new Button(" B A C K ");
         backButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
 
         createButton.setMaxWidth(200);
@@ -202,6 +205,7 @@ public class CustomBoard extends Board {
 
     /**
      * method to check if the custom board has the required number of path tiles
+     *
      * @return true if board has atleast minimum number of path tiles else false
      */
     private boolean minTileCheck() {
@@ -220,6 +224,7 @@ public class CustomBoard extends Board {
 
     /**
      * finds first available path/tunnel and calls connectedTiles using the path/tunnel as a parameter and an empty array list
+     *
      * @return true if all paths/tunnels are connected
      */
     private boolean allPathsConnected() {
@@ -242,8 +247,9 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * recursively calls itself until tile parameter has no more adjacent tiles of type PATH/TUNNEL 
-     * @param tile current tile used to get new tile from it's adjacent tiles
+     * recursively calls itself until tile parameter has no more adjacent tiles of type PATH/TUNNEL
+     *
+     * @param tile         current tile used to get new tile from it's adjacent tiles
      * @param visitedTiles all tiles that have been visited/tile parameter
      * @return List<Tile> of visited tiles
      */
@@ -262,6 +268,7 @@ public class CustomBoard extends Board {
 
     /**
      * Returns the TileCanvas as a JavaFX Canvas
+     *
      * @return a JavaFX Canvas
      */
     @Override
@@ -271,6 +278,7 @@ public class CustomBoard extends Board {
 
     /**
      * Get the level properties for the level in play.
+     *
      * @return the LevelProperties for this level.
      */
     @Override
@@ -280,6 +288,7 @@ public class CustomBoard extends Board {
 
     /**
      * Get the level data for this board
+     *
      * @return the level data for this board
      */
     @Override

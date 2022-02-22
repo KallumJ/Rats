@@ -9,22 +9,21 @@ import javafx.scene.image.Image;
  *
  * @author Fahd & Aser (javadoc)
  * @date 2022/02/21
- *
  */
 
-public class Explosion extends GameObject{
+public class Explosion extends GameObject {
     public Explosion(Tile standingOn) {
         super(standingOn);
 
-        Image ExplosionEffect = new Image( "file:resources/ExplosionEffect.gif");
+        Image ExplosionEffect = new Image("file:resources/ExplosionEffect.gif");
         super.setIcon(ExplosionEffect);
 
     }
 
-    public void EndExplosion (){
+    public void EndExplosion() {
         try {
             GameObject.getBoard().removeObject(this);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
 
             /**
              *Create a new explosion item on the specified tile.

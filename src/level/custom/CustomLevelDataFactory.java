@@ -16,14 +16,14 @@ import java.util.ArrayList;
  *
  * @author Kallum Jones (2005855) (10/02/22)
  * @date 2022.02.21
- *
  */
 public class CustomLevelDataFactory {
 
     /**
      * A method to get a blank LevelData ready for editing
+     *
      * @param height the height of the level
-     * @param width the width of the level
+     * @param width  the width of the level
      * @return The blank LevelData
      */
     public static LevelData getBlankLevelData(int height, int width) {
@@ -43,8 +43,9 @@ public class CustomLevelDataFactory {
 
     /**
      * Get the Custom LevelData for the provided player and ID
+     *
      * @param currentlyLoggedInPlayer the current player
-     * @param id the id of the level they selected
+     * @param id                      the id of the level they selected
      * @return the constructed LevelData
      */
     public static LevelData constructCustomLevelData(Player currentlyLoggedInPlayer, String id) {

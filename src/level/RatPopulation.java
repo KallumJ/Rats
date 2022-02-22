@@ -17,74 +17,73 @@ import objects.rats.PeacefulRat;
  *
  * @author Samhitha Pinisetti 2035196
  * @date 2022.02.21
- *
  */
 public class RatPopulation {
 
-	private final LevelData levelData;
-	int numberOfMaleRats;
-	int numberOfFemaleRats;
-	int totalPopulation;
+    private final LevelData levelData;
+    int numberOfMaleRats;
+    int numberOfFemaleRats;
+    int totalPopulation;
 
-	public RatPopulation(LevelData levelData) {
-		this.levelData = levelData;
-	}
+    public RatPopulation(LevelData levelData) {
+        this.levelData = levelData;
+    }
 
-	/**
-	 * A method to calculate the population for the level.
-	 */
-	public void calculatePopulation() {
-		List<GameObject> objects = levelData.getObjects();
+    /**
+     * A method to calculate the population for the level.
+     */
+    public void calculatePopulation() {
+        List<GameObject> objects = levelData.getObjects();
 
 
-		List<PeacefulRat> femaleList = new ArrayList<>();
-		List<PeacefulRat> maleList = new ArrayList<>();
+        List<PeacefulRat> femaleList = new ArrayList<>();
+        List<PeacefulRat> maleList = new ArrayList<>();
 
-		for (GameObject object : objects) {
-			if (object instanceof PeacefulRat) {
-				PeacefulRat rat = (PeacefulRat) object;
-				if (rat.getGender().equalsIgnoreCase("f")) {
-					femaleList.add(rat);
-				} else {
-					maleList.add(rat);
-				}
-			}
-		}
+        for (GameObject object : objects) {
+            if (object instanceof PeacefulRat) {
+                PeacefulRat rat = (PeacefulRat) object;
+                if (rat.getGender().equalsIgnoreCase("f")) {
+                    femaleList.add(rat);
+                } else {
+                    maleList.add(rat);
+                }
+            }
+        }
 
-		numberOfFemaleRats = femaleList.size();
-		numberOfMaleRats = maleList.size();
-		totalPopulation = numberOfMaleRats + numberOfFemaleRats;
-	}
+        numberOfFemaleRats = femaleList.size();
+        numberOfMaleRats = maleList.size();
+        totalPopulation = numberOfMaleRats + numberOfFemaleRats;
+    }
 
-	/**
-	 * A method to get the total population for the level.
-	 *
-	 * @return the totalPopulation for the level
-	 */
-	public int getTotalPopulation() {
-		calculatePopulation();
-		return totalPopulation;
-	}
+    /**
+     * A method to get the total population for the level.
+     *
+     * @return the totalPopulation for the level
+     */
+    public int getTotalPopulation() {
+        calculatePopulation();
+        return totalPopulation;
+    }
 
-	/**
-	 * A method to get the population of female rats for the level.
-	 *
-	 * @return the numberOfFemaleRats for the level
-	 */
-	public int femalePopulation() {
-		calculatePopulation();
-		return numberOfFemaleRats;
-	}
+    /**
+     * A method to get the population of female rats for the level.
+     *
+     * @return the numberOfFemaleRats for the level
+     */
+    public int femalePopulation() {
+        calculatePopulation();
+        return numberOfFemaleRats;
+    }
 
-	/**
-	 * A method to get the population of male rats for the level.
-	 *
-	 * @return the numberOfMaleRats for the level
-	 */
-	public int malePopulation() {
-		calculatePopulation();
-		return numberOfMaleRats;
-	}
+    /**
+     * A method to get the population of male rats for the level.
+     *
+     * @return the numberOfMaleRats for the level
+     */
+    public int malePopulation() {
+        calculatePopulation();
+        return numberOfMaleRats;
+    }
 
 }
 
