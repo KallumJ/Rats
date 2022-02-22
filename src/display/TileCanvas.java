@@ -45,8 +45,6 @@ public class TileCanvas {
 
         this.canvas = new Canvas(width, height);
 
-        System.out.println(start);
-      
         //add a timer here and it will work
 
         Timer myTimer = new Timer();
@@ -118,7 +116,7 @@ public class TileCanvas {
 
         // Decide what image to display for this tile
         for (Tile tile : tiles) {
-            Image tileImage = null;
+            Image tileImage;
             switch (tile.getTileType()) {
                 case GRASS:
                     if (elapsedSeconds >= 0 && elapsedSeconds <= 60) {

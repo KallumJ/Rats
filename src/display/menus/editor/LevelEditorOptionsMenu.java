@@ -551,7 +551,6 @@ public class LevelEditorOptionsMenu {
     }
 
     public HashSet<GameObjectType> getSelectedObjects() {
-        objectSelectionGroup.getSelectedObjects().forEach(gameObjectType -> System.out.println(gameObjectType.toString()));
         return objectSelectionGroup.getSelectedObjects();
     }
 }
