@@ -12,6 +12,8 @@ import util.TextUtils;
  * Models the title of a menu.
  *
  * @author Samhitha Pinisetti 2035196
+ * @date 2022/02/18
+ *
  */
 public class MenuTitle extends StackPane {
 

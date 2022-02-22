@@ -6,6 +6,8 @@ import java.util.Comparator;
  * Collects player information needed for leaderboard.
  *
  * @author YIMING LI
+ * @date 2022/02/16
+ *
  */
 class PlayerInLeaderboard {
 	private final String name;

@@ -5,6 +5,12 @@ import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ *  The menu section for the custom levels
+ * @date 2022/02/22
+ *
+ */
+
 public class CustomLevelsMenu extends GameMenu {
     private static final String MENU_TITLE = " C U S T O M ";
 

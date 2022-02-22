@@ -5,6 +5,7 @@ package objects;
  *
  * @author Kallum Jones 2005855
  * @date 2022/02/15
+ *
  */
 public enum GameObjectType {
 	STERILISATION,

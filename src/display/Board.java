@@ -41,6 +41,8 @@ import util.TextUtils;
  * A class to model the current game board
  *
  * @author Fahd Alsahali (2015807)
+ * @date 2022/02/18
+ *
  */
 public class Board {
 

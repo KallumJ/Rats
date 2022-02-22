@@ -6,6 +6,7 @@ package objects;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.21
+ *
  */
 public interface ObjectStoppable {
 	/**

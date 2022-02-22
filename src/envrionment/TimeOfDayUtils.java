@@ -5,6 +5,7 @@ package envrionment;
  *
  * @author Kallum Jones (2005855)
  * @date 2022.02.17
+ *
  */
 public class TimeOfDayUtils {
     public static final String DAY_STR = "day";

@@ -13,6 +13,8 @@ import util.TextUtils;
  * A class to model a Win Menu
  *
  * @author Samhitha Pinisetti (2035196)
+ * @date 2022/02/19
+ *
  */
 public class WinMenu extends GameMenu {
 	private static final String HEADER = " Y O U  W I N ! ";

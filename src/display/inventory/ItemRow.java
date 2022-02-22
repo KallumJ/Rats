@@ -20,6 +20,7 @@ import util.TextUtils;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.10
+ *
  */
 public class ItemRow {
 
