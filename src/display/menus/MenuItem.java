@@ -292,6 +292,14 @@ class DeleteLevelMenuItem extends MenuItem {
 			Optional<String> decision = confirmDialog.showAndWait();
 			if (decision.isPresent() && decision.get().equals(levelId)) {
 				level.delete();
+
+				// Delete all saves for this level also
+				File[] savedLevels = LevelUtils.getSavedCustomLevelFiles();
+				for (File savedLevel : savedLevels) {
+					if (level.getName().equals(savedLevel.getName())) {
+						savedLevel.delete();
+					}
+				}
 				Scene scene = new Scene(new CustomLevelsMenu().buildMenu());
 				GameMenu.getStage().setScene(scene);
 			}
@@ -432,6 +440,26 @@ class LevelEditItem extends MenuItem {
 			CustomBoard customBoard = new CustomBoard(levelData);
 			GameObject.setBoard(customBoard);
 			Scene scene = new Scene(customBoard.buildGUI());
+			GameMenu.getStage().setScene(scene);
+		});
+	}
+}
+
+/**
+ * A class to model a menu item for resuming an in progress custom level
+ * @author Kallum Jones 2005855
+ * @date 22/02/22
+ */
+class ResumeCustomLevelMenuItem extends MenuItem {
+
+	/**
+	 * Constructs a ResumeCustomLevelMenuItem with the provided name.
+	 */
+	public ResumeCustomLevelMenuItem() {
+		super("RESUME CUSTOM LEVEL");
+
+		setOnMousePressed(event -> {
+			Scene scene = new Scene(new ResumeCustomLevelMenu().buildMenu());
 			GameMenu.getStage().setScene(scene);
 		});
 	}

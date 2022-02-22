@@ -74,6 +74,14 @@ public class LevelUtils {
 
 	/**
 	 * A method to return an array of File objects of all the files in the
+	 * saved level directory for custom levels.
+	 *
+	 * @return the array of files in the directory
+	 */
+	public static File[] getSavedCustomLevelFiles() { return getFilesInDirectory(SAVED_CUSTOM_LEVELS_DIR_PATH); }
+
+	/**
+	 * A method to return an array of File objects of all the files in the
 	 * saved level's directory.
 	 *
 	 * @return the array of files in the directory
