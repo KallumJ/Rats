@@ -8,6 +8,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ *A class for the difficulty selection in the games menu
+ *
+ * @date 2022/02/22
+ *
+ */
+
 public class DifficultySelectionMenu extends GameMenu{
     private static final String MENU_TITLE = " D I F F I C U L T Y ";
 

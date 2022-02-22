@@ -46,7 +46,7 @@ public class SizeSelectionMenu extends GameMenu {
         // Get a blank menu
         BorderPane menu = buildBlank(new MenuTitle(MENU_TITLE), backHandler);
 
-        // Create a controls container containing some spinners to select a size values
+        // Create a control's container containing some spinners to select a size values
         VBox sizeControlsContainer = new VBox();
 
         //this is the label for heightSpinner

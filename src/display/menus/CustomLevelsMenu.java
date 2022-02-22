@@ -6,7 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
- *  The menu section for the custom levels
+ *  A class to show the menu section for the custom levels
+ *
  * @author Kallum Jones 2005855
  * @date 2022/02/22
  *
