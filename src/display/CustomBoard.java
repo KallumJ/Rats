@@ -6,6 +6,7 @@ import display.menus.GameMenu;
 import display.menus.MainMenu;
 import display.menus.editor.LevelEditorOptionsMenu;
 import envrionment.TimeOfDay;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -34,10 +35,11 @@ import java.util.List;
  */
 public class CustomBoard extends Board {
 
+    private static final String OPTIONS_TITLE = "Level Options";
     private final TileCanvas tileCanvas;
     private final LevelData levelData;
     private final LevelEditorOptionsMenu inputMenu;
-    private final Stage levelOptionsStage;
+    private final Stage levelOptionsStage = new Stage();
 
 
     /**
@@ -48,11 +50,7 @@ public class CustomBoard extends Board {
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
         this.inputMenu = new LevelEditorOptionsMenu();
-        this.eventListeners();
-        levelOptionsStage = new Stage();
-        levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
-        levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
-        levelOptionsStage.setY(GameMenu.getStage().getY());
+        this.initCustomBoard();
     }
 
     public CustomBoard(LevelData levelData, int populationToLose, int expectedTime, int itemInterval, int ratMaxBabies, int ratMinBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed, boolean includeAirstrike, int costOfAirstrike, int airstrikeNumOfHits, TimeOfDay time, int timeInterval) {
@@ -74,11 +72,9 @@ public class CustomBoard extends Board {
         this.inputMenu.setTimeOfDay(time);
         this.inputMenu.setTimeInterval(timeInterval);
 
-        this.eventListeners();
-        levelOptionsStage = new Stage();
-        levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
-        levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
-        levelOptionsStage.setY(GameMenu.getStage().getY());
+        this.initCustomBoard();
+
+
 
     }
     
@@ -95,9 +91,17 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * Calls all event listeners in class
+     * Calls all event listeners in classTest
      */
-    private void eventListeners() {
+    private void initCustomBoard() {
+        levelOptionsStage.setTitle(OPTIONS_TITLE);
+        levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
+        levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
+        levelOptionsStage.setY(GameMenu.getStage().getY());
+
+        // Prevent dismissing of the options menu
+        levelOptionsStage.setOnCloseRequest(Event::consume);
+
         EventHandler<MouseEvent> eventHandler = event -> {
             // makes sure that borders are always grass
             int x = (int)event.getX()/Tile.TILE_SIZE;

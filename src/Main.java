@@ -21,6 +21,8 @@ public class Main extends Application {
 	 */
 	@Override
 	public void start(Stage stage) {
+		stage.setOnCloseRequest(event -> System.exit(0));
+
 		LoginMenu loginMenu = new LoginMenu();
 		stage.setScene(new Scene(loginMenu.buildMenu()));
 		stage.setTitle(APP_HEADER); 
