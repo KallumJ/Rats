@@ -10,34 +10,33 @@ import tile.Tile;
  *
  * @author Fahd
  * @date 2022/02/21
- *
  */
 public class FemaleSexChanger extends GameObject {
 
-	/**
-	 * Create a new female sex changer item on the specified tile.
-	 *
-	 * @param standingOn The tile the female sex changer is on.
-	 */
-	public FemaleSexChanger(Tile standingOn) {
-		super(standingOn);
+    /**
+     * Create a new female sex changer item on the specified tile.
+     *
+     * @param standingOn The tile the female sex changer is on.
+     */
+    public FemaleSexChanger(Tile standingOn) {
+        super(standingOn);
 
-		Image femaleSexChangerImage =
-				new Image(ObjectUtils.getObjectImageUrl(GameObjectType.FEMALE_SEX_CHANGER));
-		super.setIcon(femaleSexChangerImage);
-	}
+        Image femaleSexChangerImage =
+                new Image(ObjectUtils.getObjectImageUrl(GameObjectType.FEMALE_SEX_CHANGER));
+        super.setIcon(femaleSexChangerImage);
+    }
 
-	/**
-	 * Changes the gender of a rat to male.
-	 *
-	 * @param rat The rat which their gender will be changed to female.
-	 */
-	public void activationOfFemaleSexChanger(PeacefulRat rat) {
+    /**
+     * Changes the gender of a rat to male.
+     *
+     * @param rat The rat which their gender will be changed to female.
+     */
+    public void activationOfFemaleSexChanger(PeacefulRat rat) {
 
-		rat.setGender("f");
+        rat.setGender("f");
 
-		GameObject.getBoard().removeObject(this);
-		GameObject.getBoard().updateBoardDisplay();
-	}
+        GameObject.getBoard().removeObject(this);
+        GameObject.getBoard().updateBoardDisplay();
+    }
 
 }

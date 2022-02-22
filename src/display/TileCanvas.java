@@ -23,7 +23,7 @@ public class TileCanvas {
     private final Canvas canvas;
     private final LevelData levelData;
 
-    
+
     long start = System.currentTimeMillis();
     long elapsedTime = System.currentTimeMillis() - start;
     long elapsedSeconds = elapsedTime / 1000;
@@ -31,6 +31,7 @@ public class TileCanvas {
 
     /**
      * Constructs a TileCanvas object
+     *
      * @param levelData the level data to draw a canvas for
      */
     public TileCanvas(LevelData levelData) {
@@ -61,6 +62,7 @@ public class TileCanvas {
 
     /**
      * Returns the TileCanvas as a JavaFX Canvas
+     *
      * @return a JavaFX Canvas
      */
     public Canvas getCanvas() {
@@ -105,7 +107,7 @@ public class TileCanvas {
         }
     }
 
-/**
+    /**
      * Displays the tiles in the level on the board
      */
     private void displayTiles() {
@@ -140,7 +142,7 @@ public class TileCanvas {
                     if (elapsedSeconds >= 0 && elapsedSeconds <= 60) {
                         tileImage = new Image("file:resources/tunnelnew.png");
                     } else if (elapsedSeconds >= 60 && elapsedSeconds <= 120) {
-                        tileImage = new Image("file:resources/tunnelnew.png"); 
+                        tileImage = new Image("file:resources/tunnelnew.png");
                     } else {
                         tileImage = new Image("file:resources/tunnelnew.png");
                     }

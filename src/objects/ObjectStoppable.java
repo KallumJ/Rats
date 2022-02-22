@@ -6,11 +6,10 @@ package objects;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.21
- *
  */
 public interface ObjectStoppable {
-	/**
-	 * Stops any timelines running in this object
-	 */
-	void stop();
+    /**
+     * Stops any timelines running in this object
+     */
+    void stop();
 }
