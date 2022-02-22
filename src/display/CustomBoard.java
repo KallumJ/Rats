@@ -19,7 +19,6 @@ import level.LevelProperties;
 import level.LevelSaveHandler;
 import level.LevelUtils;
 import objects.GameObject;
-import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
 import tile.Direction;
 import tile.Tile;
@@ -180,10 +179,8 @@ public class CustomBoard extends Board {
         createButton.setOnMousePressed(event -> {
             // checks if board has atleast minimum number of path tiles and all paths are connected
             if (minTileCheck() && allPathsConnected()) {
-
                 // Rats should be loaded as babies
                 levelData.makeRatsBabies();
-
                 inputMenu.setLevelProperties(levelData);
                 LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
                 levelOptionsStage.close();

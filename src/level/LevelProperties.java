@@ -1,6 +1,9 @@
 package level;
 
 import envrionment.TimeOfDay;
+import objects.GameObjectType;
+
+import java.util.HashSet;
 
 /**
  * A class to model the properties of a level.
@@ -28,6 +31,7 @@ public class LevelProperties {
 	private boolean airstrikeEnabled;
 	private int costOfAirstrike;
 	private int numOfAirstrikeHits;
+	private HashSet<GameObjectType> allowedItems;
 
 	/**
 	 * Constructs a LevelProperties object with the provided data.
@@ -57,6 +61,9 @@ public class LevelProperties {
 	 * @param costOfAirstrike  the price of calling an airstrike, in score
 	 * @param numOfAirstrikeHits the number of target tiles an airstrike
 	 *                           will hit
+	 * @param allowedItems 		a list of allowed items in the inventory for this level
+	 * @param score 			the current score of the level
+	 * @param timeElapsed  		the amount of time that has elapsed so far in this level in seconds
 	 */
 	public LevelProperties(String id, int height, int width, int populationToLose
 			, int expectedTime, int itemInterval, int ratMinBabies,
@@ -65,7 +72,7 @@ public class LevelProperties {
 						   int timeElapsed, int score,
 						   TimeOfDay timeOfDay, int timeInterval,
 						   boolean airstrikeEnabled, int costOfAirstrike,
-						   int numOfAirstrikeHits) {
+						   int numOfAirstrikeHits, HashSet<GameObjectType> allowedItems) {
 		this.levelId = id;
 		this.levelHeight = height;
 		this.levelWidth = width;
@@ -84,12 +91,14 @@ public class LevelProperties {
 		this.airstrikeEnabled = airstrikeEnabled;
 		this.costOfAirstrike = costOfAirstrike;
 		this.numOfAirstrikeHits = numOfAirstrikeHits;
+		this.allowedItems = allowedItems;
 	}
 
 	/**
 	 * Constructs a blank LevelProperties object
 	 */
 	public LevelProperties() {
+		this.allowedItems = new HashSet<>();
 	}
 
 	/**
@@ -399,5 +408,21 @@ public class LevelProperties {
 	 */
 	public void setNumOfAirstrikeHits(int numOfAirstrikeHits) {
 		this.numOfAirstrikeHits = numOfAirstrikeHits;
+	}
+
+	/**
+	 * Sets the set of allowed items
+	 * @param allowedItems the set of allowed items
+	 */
+	public void setAllowedItems(HashSet<GameObjectType> allowedItems) {
+		this.allowedItems = allowedItems;
+	}
+
+	/**
+	 * Gets the set of allowed items
+	 * @return the set of allowed items
+	 */
+	public HashSet<GameObjectType> getAllowedItems() {
+		return allowedItems;
 	}
 }

@@ -7,8 +7,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import level.LevelData;
 import level.LevelProperties;
+import objects.GameObjectType;
 import tile.TileType;
-import util.TextUtils;
+
+import java.util.HashSet;
 
 /**
  * A class to get input from the user for the custom level properties
@@ -38,6 +40,7 @@ public class LevelEditorOptionsMenu {
     private final TextField timeIntervalTextField; // period between day and night
     private final RadioButton deleteItems;
     private final TextField levelNameTextField;
+    private final ObjectSelectionGroup objectSelectionGroup;
 
     /**
      * Constructs a LevelPropertiesInputMenu object
@@ -72,6 +75,7 @@ public class LevelEditorOptionsMenu {
         dayAndNight.setToggleGroup(dayAndNightRadioButtonGroup);
 
         levelNameTextField = new TextField();
+        objectSelectionGroup = new ObjectSelectionGroup();
     }
 
     /**
@@ -172,6 +176,10 @@ public class LevelEditorOptionsMenu {
         Label levelNameLabel = new Label("Level name");
         levelNameLabel.setTextFill(Color.WHITE);
         levelNameLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+
+        Label allowedItemsLabel = new Label("Allowed items");
+        allowedItemsLabel.setTextFill(Color.WHITE);
+        allowedItemsLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
 
         /*
          * adds a choice box with choice of tiles
@@ -313,7 +321,8 @@ public class LevelEditorOptionsMenu {
             populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel, 
             adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel, 
             timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
-            tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight, levelNameLabel, levelNameTextField
+            tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight,
+                allowedItemsLabel, objectSelectionGroup.getObjectSelectionGroup(), levelNameLabel, levelNameTextField
         );
         container.setStyle("-fx-background-color: #000000;");
 
@@ -342,6 +351,7 @@ public class LevelEditorOptionsMenu {
         levelProperties.setAirstrikeEnabled(getAirstrikeEnabled());
         levelProperties.setCostOfAirstrike(getCostOfAirstrike());
         levelProperties.setNumOfAirstrikeHits(getNumOfAirstrikeHits());
+        levelProperties.setAllowedItems(getSelectedObjects());
     }
 
     private String getLevelName() {
@@ -538,5 +548,10 @@ public class LevelEditorOptionsMenu {
 
     public void setTimeInterval(int timeInterval) {
         timeIntervalTextField.setText(String.valueOf(timeInterval));
+    }
+
+    public HashSet<GameObjectType> getSelectedObjects() {
+        objectSelectionGroup.getSelectedObjects().forEach(gameObjectType -> System.out.println(gameObjectType.toString()));
+        return objectSelectionGroup.getSelectedObjects();
     }
 }

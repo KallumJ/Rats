@@ -18,6 +18,7 @@ import tile.TileType;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -217,11 +218,32 @@ public class LevelDataFactory {
 		boolean airstrikeEnabled = getPropertyBool(levelProperties, XMLElementNames.AIRSTRIKE_ENABLED);
 		int costOfAirstrike = getPropertyInt(levelProperties, XMLElementNames.COST_OF_AIRSTRIKE);
 		int numOfAirstrikeHits = getPropertyInt(levelProperties, XMLElementNames.NUM_OF_AIRSTRIKE_HITS);
+		HashSet<GameObjectType> allowedItems = getPropertyAllowedItems(levelProperties, XMLElementNames.ALLOWED_ITEMS);
 
 		return new LevelProperties(id, height, width, populationToLose,
 				expectedTime, itemInterval, ratMinBabies, ratMaxBabies,
 				adultRatSpeed, babyRatSpeed, deathRatSpeed, timeElapsed,
-				score, timeOfDay, timeInterval, airstrikeEnabled, costOfAirstrike, numOfAirstrikeHits);
+				score, timeOfDay, timeInterval, airstrikeEnabled, costOfAirstrike,
+				numOfAirstrikeHits, allowedItems);
+	}
+
+	/**
+	 * A method to get the allowed items property from the file
+	 * @param propertiesElement the levelProperties element to read from
+	 * @param propertyName The property to read
+	 * @return The read property, of type String
+	 */
+	private static HashSet<GameObjectType> getPropertyAllowedItems(Element propertiesElement, XMLElementNames propertyName) {
+		String propertyStr = propertyName.toString();
+		Node propertyElement =
+				propertiesElement.getElementsByTagName(propertyStr)
+						.item(0);
+		String[] items = propertyElement.getTextContent().split(",");
+		HashSet<GameObjectType> allowedItems = new HashSet<>();
+		for (String item : items) {
+			allowedItems.add(ObjectUtils.getTypeFromString(item));
+		}
+		return allowedItems;
 	}
 
 	/**

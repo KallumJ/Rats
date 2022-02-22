@@ -28,6 +28,7 @@ public enum XMLElementNames {
 	AIRSTRIKE_ENABLED("airstrikeEnabled"),
 	COST_OF_AIRSTRIKE("costOfAirstrike"),
 	NUM_OF_AIRSTRIKE_HITS("numOfAirstrikeHits"),
+	ALLOWED_ITEMS("allowedItems"),
 
 
 	TILE_SET("tileSet"),

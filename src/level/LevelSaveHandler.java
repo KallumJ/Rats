@@ -214,6 +214,7 @@ public class LevelSaveHandler {
 		String airstrikeEnabled = String.valueOf(levelProperties.isAirstrikeEnabled());
 		String costOfAirstrike = String.valueOf(levelProperties.getCostOfAirstrike());
 		String numOfAirstrikeHits = String.valueOf(levelProperties.getNumOfAirstrikeHits());
+		String allowedItems = createAllowedItemsStr(levelProperties.getAllowedItems());
 
 		XMLNode[] children = new XMLNode[]{
 				new XMLNode(XMLElementNames.LEVEL_HEIGHT.toString(),
@@ -251,6 +252,8 @@ public class LevelSaveHandler {
 				new XMLNode(XMLElementNames.COST_OF_AIRSTRIKE.toString(), costOfAirstrike,
 						null, null),
 				new XMLNode(XMLElementNames.NUM_OF_AIRSTRIKE_HITS.toString(), numOfAirstrikeHits,
+						null, null),
+				new XMLNode(XMLElementNames.ALLOWED_ITEMS.toString(), allowedItems,
 						null, null)
 		};
 
@@ -261,5 +264,19 @@ public class LevelSaveHandler {
 						null, childrenList);
 
 		xmlFileWriter.writeNode(levelPropertiesNode);
+	}
+
+	/**
+	 * A method to create the allowed items string to be stored in file
+	 * @param allowedItems the set of allowed items
+	 * @return the allowed items as a string
+	 */
+	private static String createAllowedItemsStr(HashSet<GameObjectType> allowedItems) {
+		StringJoiner allowedItemsStr = new StringJoiner(",");
+		for (GameObjectType allowedItem : allowedItems) {
+			allowedItemsStr.add(ObjectUtils.getStringForItem(allowedItem));
+		}
+
+		return allowedItemsStr.toString();
 	}
 }

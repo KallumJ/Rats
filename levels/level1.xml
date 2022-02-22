@@ -6,7 +6,7 @@
         <populationToLose>20</populationToLose>
         <expectedTime>120</expectedTime>
         <id>1</id>
-        <itemInterval>3</itemInterval>
+        <itemInterval>1</itemInterval>
         <ratMinBabies>1</ratMinBabies>
         <ratMaxBabies>3</ratMaxBabies>
         <adultRatSpeed>1000</adultRatSpeed>
@@ -19,18 +19,159 @@
         <airstrikeEnabled>true</airstrikeEnabled>
         <costOfAirstrike>40</costOfAirstrike>
         <numOfAirstrikeHits>8</numOfAirstrikeHits>
+        <allowedItems>d_rat,gas,msex,fsex,portal,sterile,poison,bomb,xentry,zombie</allowedItems>
     </levelProperties>
 
     <tileSet>
-        <tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile rat="false false false m 9 15 down">p</tile><tile>p</tile><tile rat="false false false m 9 15 down">p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile rat="false false false m 9 15 up">p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile >p</tile><tile rat="false false false m 9 15 down">p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile rat="false false false m 9 15 down">p</tile><tile>g</tile><tile>p</tile><tile>g</tile><tile>p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile>p</tile><tile rat="false false false m 9 15 down">p</tile><tile>p</tile><tile rat="false false false m 9 15 down">p</tile><tile>g</tile><tile >p</tile><tile>g</tile></tileRow>
-        <tileRow><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile><tile>g</tile></tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile rat="false false false m 9 15 down">p</tile>
+            <tile>p</tile>
+            <tile rat="false false false m 9 15 down">p</tile>
+            <tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile rat="false false false m 9 15 up">p</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile rat="false false false m 9 15 down">p</tile>
+            <tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile rat="false false false m 9 15 down">p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile>p</tile>
+            <tile rat="false false false m 9 15 down">p</tile>
+            <tile>p</tile>
+            <tile rat="false false false m 9 15 down">p</tile>
+            <tile>g</tile>
+            <tile>p</tile>
+            <tile>g</tile>
+        </tileRow>
+        <tileRow>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+            <tile>g</tile>
+        </tileRow>
     </tileSet>
 </level>

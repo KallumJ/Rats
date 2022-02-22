@@ -27,6 +27,7 @@ public class Inventory {
 	private final LevelData levelData;
 	protected final Set<ItemRow> itemRows;
 	private final VBox inventoryNode;
+	private final GameObjectType[] selectionList;
 
 	/**
 	 * Constructs an inventory object.
@@ -56,6 +57,13 @@ public class Inventory {
 		}
 
 		this.levelData = levelData;
+		HashSet<GameObjectType> allowedItems =
+				levelData.getLevelProperties().getAllowedItems();
+		if (!allowedItems.isEmpty()) {
+			selectionList = allowedItems.toArray(new GameObjectType[0]);
+		} else {
+			selectionList = ObjectUtils.getAllObjectsList();
+		}
 	}
 
 	/**
@@ -130,8 +138,7 @@ public class Inventory {
 	 *
 	 * @return a randomly selected GameObjectType
 	 */
-	private static GameObjectType makeRandomObjectSelection() {
-		GameObjectType[] selectionList = ObjectUtils.getAllObjectsList();
+	private GameObjectType makeRandomObjectSelection() {
 		int listLength = selectionList.length;
 		Random random = new Random();
 
@@ -182,6 +189,6 @@ public class Inventory {
 
 		// Return true if the number of rows is less than the number of objects
 		// Else return false
-		return itemRows.size() < ObjectUtils.getAllObjectsList().length;
+		return itemRows.size() < selectionList.length;
 	}
 }

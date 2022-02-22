@@ -19,6 +19,7 @@
         <airstrikeEnabled>true</airstrikeEnabled>
         <costOfAirstrike>40</costOfAirstrike>
         <numOfAirstrikeHits>8</numOfAirstrikeHits>
+        <allowedItems>d_rat,gas,msex,fsex,portal,sterile,poison,bomb,xentry,zombie</allowedItems>
     </levelProperties>
 
 	<tileSet>
