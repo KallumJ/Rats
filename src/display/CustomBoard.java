@@ -6,11 +6,13 @@ import display.menus.GameMenu;
 import display.menus.MainMenu;
 import display.menus.editor.LevelEditorOptionsMenu;
 import envrionment.TimeOfDay;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -23,6 +25,7 @@ import players.PlayerProfileManager;
 import tile.Direction;
 import tile.Tile;
 import tile.TileType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,44 +98,28 @@ public class CustomBoard extends Board {
      * Calls all event listeners in class
      */
     private void eventListeners() {
-        this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, event -> {
+        EventHandler<MouseEvent> eventHandler = event -> {
             // makes sure that borders are always grass
             int x = (int)event.getX()/Tile.TILE_SIZE;
             int y = (int)event.getY()/Tile.TILE_SIZE;
-            int canvasWidth = (int)this.getCanvas().getWidth()/Tile.TILE_SIZE;
-            int canvasHeight = (int)this.getCanvas().getHeight()/Tile.TILE_SIZE;
-
-            // makes sure that borders are always grass
-            if (x >= 1 && y >= 1 && x < canvasWidth-1 && y < canvasHeight-1) { 
-                Tile tile = levelData.getTileSet().getTile(x, y);
-                if (this.inputMenu.getDeleteItemsChecked()) {
-                    removeItemsFromTile(tile);
-                } else {
-                    changeTile(tile);
-                    if (!(inputMenu.getTileSelected().equals(TileType.PATH))) {
-                        removeItemsFromTile(tile);
-                    }
-
-        }}});
-        this.tileCanvas.getCanvas().addEventHandler(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, event -> {
-            int x = (int)event.getX()/Tile.TILE_SIZE;
-            int y = (int)event.getY()/Tile.TILE_SIZE;
-            int canvasWidth = (int)this.getCanvas().getWidth()/Tile.TILE_SIZE;
-            int canvasHeight = (int)this.getCanvas().getHeight()/Tile.TILE_SIZE;
+            int canvasWidth = (int) getCanvas().getWidth()/Tile.TILE_SIZE;
+            int canvasHeight = (int) getCanvas().getHeight()/Tile.TILE_SIZE;
 
             // makes sure that borders are always grass
             if (x >= 1 && y >= 1 && x < canvasWidth-1 && y < canvasHeight-1) {
                 Tile tile = levelData.getTileSet().getTile(x, y);
-                if (this.inputMenu.getDeleteItemsChecked()) {
+                if (inputMenu.getDeleteItemsChecked()) {
                     removeItemsFromTile(tile);
                 } else {
                     changeTile(tile);
                     if (!(inputMenu.getTileSelected().equals(TileType.PATH))) {
-
                         removeItemsFromTile(tile);
                     }
 
-        }}});
+                }}
+        };
+        this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, eventHandler);
+        this.tileCanvas.getCanvas().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_DRAGGED, eventHandler);
     }
 
     /**
