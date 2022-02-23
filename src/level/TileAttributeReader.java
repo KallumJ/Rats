@@ -1,6 +1,5 @@
 package level;
 
-import objects.*;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
 import objects.rats.ZombieRat;
@@ -8,6 +7,15 @@ import tile.Direction;
 import tile.Tile;
 
 import java.util.Scanner;
+import objects.Bomb;
+import objects.FemaleSexChanger;
+import objects.GameObject;
+import objects.Gas;
+import objects.MaleSexChanger;
+import objects.NoEntrySign;
+import objects.Poison;
+import objects.Portal;
+import objects.Sterilisation;
 
 /**
  * A class to read attributes and form the GameObject they represent.

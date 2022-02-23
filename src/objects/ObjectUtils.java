@@ -83,6 +83,9 @@ public class ObjectUtils {
     public static GameObject getObjectFromType(Tile standingOn,
                                                GameObjectType type,
                                                LevelData levelData) {
+        
+        int adultRatSpeed = GameObject.getBoard().getLevelProperties().getAdultRatSpeed();
+        
         switch (type) {
             case BOMB:
                 return new Bomb(standingOn, Bomb.DEFAULT_DURATION,
@@ -110,11 +113,11 @@ public class ObjectUtils {
             case PORTAL:
                 return new Portal(standingOn);
             case FEMALE_RAT:
-                return new PeacefulRat(standingOn, false, true, false, "f", 9, 15, 1000, Direction.UP);
+                return new PeacefulRat(standingOn, false, true, false, "f", 9, 15, adultRatSpeed, Direction.UP);
             case MALE_RAT:
-                return new PeacefulRat(standingOn, false, true, false, "m", 9, 15, 1000, Direction.UP);
+                return new PeacefulRat(standingOn, false, true, false, "m", 9, 15, adultRatSpeed, Direction.UP);
             case ZOMBIE_RAT:
-                return new ZombieRat(standingOn, 1000, Direction.UP, 20);
+                return new ZombieRat(standingOn, adultRatSpeed, Direction.UP, 20);
             default:
                 throw new IllegalArgumentException(String.format(NO_CONSTRUCTOR_ASSIGNED, type));
         }
