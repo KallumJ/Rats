@@ -22,6 +22,36 @@ import java.util.HashSet;
  */
 public class LevelEditorOptionsMenu {
     public static final int WINDOW_OFFSET = 800;
+    private static final String POP_TO_LOSE_TOOLTIP =
+            "The number of rats that cause game failure";
+    private static final String EXPECTED_TIME_TOOLTIP =
+            "The time the user is expected to beat the level, in seconds";
+    private static final String ITEM_INTERVAL_TOOLTIP =
+            "The number of seconds between item drops";
+    private static final String RAT_MAX_BABIES_TOOLTIP =
+            "The maximum number of rats a rat can give birth to";
+    private static final String RAT_MIN_BABIES_TOOLTIP =
+            "The minimum number of rats a rat can give birth to";
+    private static final String ADULT_RAT_SPEED_TOOLTIP =
+            "The time between adult rat movements, in milliseconds";
+    private static final String BABY_RAT_SPEED_TOOLTIP =
+            "The time between baby rat movements, in milliseconds";
+    private static final String DEATH_RAT_SPEED_TOOLTIP =
+            "The time between death rat movements, in milliseconds";
+    private static final String AIRSTRIKE_COST_TOOLTIP =
+            "Cost of calling an airstrike, in points";
+    private static final String TIME_INTERVAL_TOOLTIP =
+            "The time between changes in time, in seconds";
+    private static final String LEVEL_NAME_TOOLTIP =
+            "Name for your level, must contain at least 1 non number character";
+    private static final String ALLOWED_ITEMS_TOOLTIP =
+            "Select the items the user is allowed to use in the level";
+    private static final String LABEL_STYLE =
+            "-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;";
+    private static final String TEXT_FIELD_STYLE =
+            "-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;";
+    private static final String RADIO_BUTTON_STYLE =
+            "-fx-text-fill: white; -fx-font-size: 14;";
 
     private final TextField populationToLoseTextField;
     private final TextField expectedTimeTextField;
@@ -91,8 +121,8 @@ public class LevelEditorOptionsMenu {
         //Label for Population to Lose
         Label populationToLoseLabel = new Label("Population to Lose:");
         populationToLoseLabel.setTextFill(Color.WHITE);
-        populationToLoseLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
-        Tooltip populationToLoseTooltip = new Tooltip("Population to Lose");
+        populationToLoseLabel.setStyle(LABEL_STYLE);
+        Tooltip populationToLoseTooltip = new Tooltip(POP_TO_LOSE_TOOLTIP);
         Tooltip.install(populationToLoseLabel, populationToLoseTooltip);
 
         populationToLoseLabel.setTranslateX(30);
@@ -100,64 +130,80 @@ public class LevelEditorOptionsMenu {
 
         //Label for Expected Time 
         Label expectedTimeLabel = new Label("Expected Time:");
+        Tooltip expectedTimeTooltip = new Tooltip(EXPECTED_TIME_TOOLTIP);
+        Tooltip.install(expectedTimeLabel, expectedTimeTooltip);
         expectedTimeLabel.setTextFill(Color.WHITE);
-        expectedTimeLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        expectedTimeLabel.setStyle(LABEL_STYLE);
 
         expectedTimeLabel.setTranslateX(30);
         expectedTimeLabel.setTranslateY(40);
 
         //Lable for Item Interval
         Label itemIntervalLabel = new Label("Item Interval:");
+        Tooltip itemIntervalTooltip = new Tooltip(ITEM_INTERVAL_TOOLTIP);
+        Tooltip.install(itemIntervalLabel, itemIntervalTooltip);
         itemIntervalLabel.setTextFill(Color.WHITE);
-        itemIntervalLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        itemIntervalLabel.setStyle(LABEL_STYLE);
 
         itemIntervalLabel.setTranslateX(30);
         itemIntervalLabel.setTranslateY(60);
 
         //Label for Maximum number of Rat Babies 
         Label ratMaxBabiesLabel = new Label("Maximum babies:");
+        Tooltip ratMaxBabiesTooltip = new Tooltip(RAT_MAX_BABIES_TOOLTIP);
+        Tooltip.install(ratMaxBabiesLabel, ratMaxBabiesTooltip);
         ratMaxBabiesLabel.setTextFill(Color.WHITE);
-        ratMaxBabiesLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        ratMaxBabiesLabel.setStyle(LABEL_STYLE);
 
         ratMaxBabiesLabel.setTranslateX(30);
         ratMaxBabiesLabel.setTranslateY(80);
 
         //Label for Minimum number of Rat Babies 
         Label ratMinBabiesLabel = new Label("Minimum babies:");
+        Tooltip ratMinBabiesTooltip = new Tooltip(RAT_MIN_BABIES_TOOLTIP);
+        Tooltip.install(ratMinBabiesLabel, ratMinBabiesTooltip);
         ratMinBabiesLabel.setTextFill(Color.WHITE);
-        ratMinBabiesLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        ratMinBabiesLabel.setStyle(LABEL_STYLE);
 
         ratMinBabiesLabel.setTranslateX(30);
         ratMinBabiesLabel.setTranslateY(100);
 
         //Label for Adult Rat Speed 
         Label adultRatSpeedLabel = new Label("Adult Rat Speed:");
+        Tooltip adultRatSpeedTooltip = new Tooltip(ADULT_RAT_SPEED_TOOLTIP);
+        Tooltip.install(adultRatSpeedLabel, adultRatSpeedTooltip);
         adultRatSpeedLabel.setTextFill(Color.WHITE);
-        adultRatSpeedLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        adultRatSpeedLabel.setStyle(LABEL_STYLE);
 
         adultRatSpeedLabel.setTranslateX(30);
         adultRatSpeedLabel.setTranslateY(120);
 
         //Label for Baby Rat Speed 
         Label babyRatSpeedLabel = new Label("Baby Rat Speed:");
+        Tooltip babyRatSpeedTooltip = new Tooltip(BABY_RAT_SPEED_TOOLTIP);
+        Tooltip.install(babyRatSpeedLabel, babyRatSpeedTooltip);
         babyRatSpeedLabel.setTextFill(Color.WHITE);
-        babyRatSpeedLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        babyRatSpeedLabel.setStyle(LABEL_STYLE);
 
         babyRatSpeedLabel.setTranslateX(30);
         babyRatSpeedLabel.setTranslateY(140);
 
         //Label for Death Rat Speed 
         Label deathRatSpeedLabel = new Label("Death Rat Speed:");
+        Tooltip deathRatSpeedTooltip = new Tooltip(DEATH_RAT_SPEED_TOOLTIP);
+        Tooltip.install(deathRatSpeedLabel, deathRatSpeedTooltip);
         deathRatSpeedLabel.setTextFill(Color.WHITE);
-        deathRatSpeedLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        deathRatSpeedLabel.setStyle(LABEL_STYLE);
 
         deathRatSpeedLabel.setTranslateX(30);
         deathRatSpeedLabel.setTranslateY(160);
 
         //Label for Cost of Airstrike 
         Label airstrikeCostLabel = new Label("Required points for airstrike:");
+        Tooltip airstrikeCostTooltip = new Tooltip(AIRSTRIKE_COST_TOOLTIP);
+        Tooltip.install(airstrikeCostLabel, airstrikeCostTooltip);
         airstrikeCostLabel.setTextFill(Color.WHITE);
-        airstrikeCostLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        airstrikeCostLabel.setStyle(LABEL_STYLE);
 
         airstrikeCostLabel.setTranslateX(30);
         airstrikeCostLabel.setTranslateY(180);
@@ -165,26 +211,32 @@ public class LevelEditorOptionsMenu {
         //Label for Number of Airstrike Hits 
         Label airstrikeNumberOfHitsLabel = new Label("Number of targets in an airstrike:");
         airstrikeNumberOfHitsLabel.setTextFill(Color.WHITE);
-        airstrikeNumberOfHitsLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        airstrikeNumberOfHitsLabel.setStyle(LABEL_STYLE);
 
         airstrikeNumberOfHitsLabel.setTranslateX(30);
         airstrikeNumberOfHitsLabel.setTranslateY(200);
 
         //Label for Day and Night 
         Label timeDayAndNightLabel = new Label("Period between day and night:");
+        Tooltip timePeriodTooltip = new Tooltip(TIME_INTERVAL_TOOLTIP);
+        Tooltip.install(timeDayAndNightLabel, timePeriodTooltip);
         timeDayAndNightLabel.setTextFill(Color.WHITE);
-        timeDayAndNightLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        timeDayAndNightLabel.setStyle(LABEL_STYLE);
 
         timeDayAndNightLabel.setTranslateX(30);
         timeDayAndNightLabel.setTranslateY(220);
 
         Label levelNameLabel = new Label("Level name");
+        Tooltip levelNameTooltip = new Tooltip(LEVEL_NAME_TOOLTIP);
+        Tooltip.install(levelNameLabel, levelNameTooltip);
         levelNameLabel.setTextFill(Color.WHITE);
-        levelNameLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        levelNameLabel.setStyle(LABEL_STYLE);
 
         Label allowedItemsLabel = new Label("Allowed items");
+        Tooltip allowedItemsTooltip = new Tooltip(ALLOWED_ITEMS_TOOLTIP);
+        Tooltip.install(allowedItemsLabel, allowedItemsTooltip);
         allowedItemsLabel.setTextFill(Color.WHITE);
-        allowedItemsLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14;");
+        allowedItemsLabel.setStyle(LABEL_STYLE);
 
         /*
          * adds a choice box with choice of tiles
@@ -194,18 +246,18 @@ public class LevelEditorOptionsMenu {
         tileSelectChoiceBox.setValue("Grass Tile");
 
         // Setting style for the textfields
-        populationToLoseTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        expectedTimeTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        itemIntervalTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        ratMaxBabiesTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        ratMinBabiesTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        adultRatSpeedTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        babyRatSpeedTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        deathRatSpeedTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        airstrikeCostTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        airstrikeNumberOfHitsTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        timeIntervalTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
-        levelNameTextField.setStyle("-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;");
+        populationToLoseTextField.setStyle(TEXT_FIELD_STYLE);
+        expectedTimeTextField.setStyle(TEXT_FIELD_STYLE);
+        itemIntervalTextField.setStyle(TEXT_FIELD_STYLE);
+        ratMaxBabiesTextField.setStyle(TEXT_FIELD_STYLE);
+        ratMinBabiesTextField.setStyle(TEXT_FIELD_STYLE);
+        adultRatSpeedTextField.setStyle(TEXT_FIELD_STYLE);
+        babyRatSpeedTextField.setStyle(TEXT_FIELD_STYLE);
+        deathRatSpeedTextField.setStyle(TEXT_FIELD_STYLE);
+        airstrikeCostTextField.setStyle(TEXT_FIELD_STYLE);
+        airstrikeNumberOfHitsTextField.setStyle(TEXT_FIELD_STYLE);
+        timeIntervalTextField.setStyle(TEXT_FIELD_STYLE);
+        levelNameTextField.setStyle(TEXT_FIELD_STYLE);
 
 
         //Hbox for text fields to fix the textfields covering the page issue
@@ -299,23 +351,23 @@ public class LevelEditorOptionsMenu {
         tileSelectChoiceBox.setTranslateX(450);
         tileSelectChoiceBox.setTranslateY(-505);
 
-        includeAirstrike.setStyle("-fx-text-fill: white; -fx-font-size: 14;");
+        includeAirstrike.setStyle(RADIO_BUTTON_STYLE);
         includeAirstrike.setTranslateX(450);
         includeAirstrike.setTranslateY(-480);
 
-        deleteItems.setStyle("-fx-text-fill: white; -fx-font-size: 14;");
+        deleteItems.setStyle(RADIO_BUTTON_STYLE);
         deleteItems.setTranslateX(450);
         deleteItems.setTranslateY(-460);
 
-        onlyDayTime.setStyle("-fx-text-fill: white; -fx-font-size: 14;");
+        onlyDayTime.setStyle(RADIO_BUTTON_STYLE);
         onlyDayTime.setTranslateX(450);
         onlyDayTime.setTranslateY(-440);
 
-        onlyNightTime.setStyle("-fx-text-fill: white; -fx-font-size: 14;");
+        onlyNightTime.setStyle(RADIO_BUTTON_STYLE);
         onlyNightTime.setTranslateX(450);
         onlyNightTime.setTranslateY(-420);
 
-        dayAndNight.setStyle("-fx-text-fill: white; -fx-font-size: 14;");
+        dayAndNight.setStyle(RADIO_BUTTON_STYLE);
         dayAndNight.setTranslateX(450);
         dayAndNight.setTranslateY(-400);
 
@@ -544,6 +596,11 @@ public class LevelEditorOptionsMenu {
         }
     }
 
+    /**
+     * Sets the time of day in the options menu
+     *
+     * @param timeOfDay The TimeOfDay to set
+     */
     public void setTimeOfDay(TimeOfDay timeOfDay) {
         switch (timeOfDay) {
             case DAY:
@@ -558,22 +615,47 @@ public class LevelEditorOptionsMenu {
         }
     }
 
+    /**
+     * Sets whether air strike is included in the level
+     *
+     * @param include true if included, false otherwise
+     */
     public void setIncludeAirstrike(boolean include) {
         includeAirstrike.setSelected(include);
     }
 
+    /**
+     * Sets the cost of an airstrike
+     *
+     * @param airstrikeCost the cost of an airstrike
+     */
     public void setAirstrikeCost(int airstrikeCost) {
         airstrikeCostTextField.setText(String.valueOf(airstrikeCost));
     }
 
+    /**
+     * Sets the number of airstrike hits
+     *
+     * @param numOfTiles the number of tiles an airstrike hits
+     */
     public void setAirstrikeNumberOfHits(int numOfTiles) {
         airstrikeNumberOfHitsTextField.setText(String.valueOf(numOfTiles));
     }
 
+    /**
+     * Gets the selected allowed objects
+     *
+     * @return the set of allowed objects
+     */
     public HashSet<GameObjectType> getSelectedObjects() {
         return objectSelectionGroup.getSelectedObjects();
     }
 
+    /**
+     * Sets the set of selected objects
+     *
+     * @param allowedItems the set of selected objects
+     */
     public void setSelectedObjects(HashSet<GameObjectType> allowedItems) {
         objectSelectionGroup.setSelectedObjectsValues(allowedItems);
     }
