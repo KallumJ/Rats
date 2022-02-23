@@ -46,7 +46,7 @@ public class MediumMenuItem extends MenuItem{
                 CustomBoard board = new CustomBoard(customLevel, POPULATION_TO_LOSE,
                         EXPECTED_TIME, ITEM_INTERVAL, RAT_MAX_BABIES, RAT_MIN_BABIES,
                         ADULT_RAT_SPEED, BABY_RAT_SPEED, DEATH_RAT_SPEED, INCLUDE_AIRSTRIKE, COST_OF_AIRSTRIKE,
-                        AIRSTRIKE_NUM_OF_HITS, TIME_OF_DAY, TIME_INTERVAL
+                        AIRSTRIKE_NUM_OF_HITS, TIME_OF_DAY, TIME_INTERVAL, null, null
                 );
                 Scene scene = new Scene(board.buildGUI());              
 

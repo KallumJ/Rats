@@ -22,12 +22,14 @@ import level.LevelProperties;
 import level.LevelSaveHandler;
 import level.LevelUtils;
 import objects.GameObject;
+import objects.GameObjectType;
 import players.PlayerProfileManager;
 import tile.Direction;
 import tile.Tile;
 import tile.TileType;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -53,8 +55,8 @@ public class CustomBoard extends Board {
         this.inputMenu = new LevelEditorOptionsMenu();
         this.initCustomBoard();
     }
-
-    public CustomBoard(LevelData levelData, int populationToLose, int expectedTime, int itemInterval, int ratMaxBabies, int ratMinBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed, boolean includeAirstrike, int costOfAirstrike, int airstrikeNumOfHits, TimeOfDay time, int timeInterval) {
+    
+    public CustomBoard(LevelData levelData, int populationToLose, int expectedTime, int itemInterval, int ratMaxBabies, int ratMinBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed, boolean includeAirstrike, int costOfAirstrike, int airstrikeNumOfHits, TimeOfDay time, int timeInterval, HashSet<GameObjectType> allowedItems, String name) {        
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
 
@@ -72,6 +74,8 @@ public class CustomBoard extends Board {
         this.inputMenu.setAirstrikeNumberOfHits(airstrikeNumOfHits);
         this.inputMenu.setTimeOfDay(time);
         this.inputMenu.setTimeInterval(timeInterval);
+        if (allowedItems != null) this.inputMenu.setSelectedObjects(allowedItems);
+        if (name != null) this.inputMenu.setLevelNameTextField(name);
 
         this.initCustomBoard();
 
