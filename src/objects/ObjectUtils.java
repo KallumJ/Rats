@@ -18,12 +18,12 @@ import java.util.List;
  * @date 2022.02.21
  */
 public class ObjectUtils {
-    private static final String NO_ASSIGNED_IMAGE = "There is no image " +
-            "assigned to %s";
+    private static final String NO_ASSIGNED_IMAGE = "There is no image "
+            + "assigned to %s";
     private static final String NO_CONSTRUCTOR_ASSIGNED = "There is no object "
             + "constructor assigned to %s";
-    private static final String NO_STRING_ASSIGNED = "There is no string " +
-            "assigned for object type %s";
+    private static final String NO_STRING_ASSIGNED = "There is no string "
+            + "assigned for object type %s";
     private static final String NO_TYPE_ASSIGNED = "There is no type assigned "
             + "for string %s";
 

@@ -131,8 +131,8 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
                 .getAdjacentTile(Direction.LEFT));
 
         for (Tile affectedTile : affectedTiles) {
-            NoEntrySignCounter newEffect = new NoEntrySignCounter(affectedTile
-                    , this);
+            NoEntrySignCounter newEffect = new NoEntrySignCounter(affectedTile,
+                    this);
             noEntrySignEffects.add(newEffect);
             GameObject.getBoard().addObject(newEffect);
         }

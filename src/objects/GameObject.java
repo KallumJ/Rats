@@ -7,7 +7,7 @@ import tile.Tile;
 /**
  * Superclass for GameObjects.
  *
- * @author fahds
+ * @author Fahd
  * @date 2022/02/20
  */
 public class GameObject {

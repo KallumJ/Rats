@@ -21,8 +21,8 @@ public class SterilisationEffect extends GameObject {
     public SterilisationEffect(Tile standingOn) {
         super(standingOn);
 
-        Image sterilisationEffectImage = new Image("file:resources" +
-                "/SterilisationEffect.png");
+        Image sterilisationEffectImage = new Image("file:resources"
+                + "/SterilisationEffect.png");
         super.setIcon(sterilisationEffectImage);
 
     }

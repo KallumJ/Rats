@@ -97,13 +97,16 @@ public class PeacefulRat extends Rat {
         if (!adult) {
 
             decidedIcon = babyRatImage;
-        } else if (gender.equalsIgnoreCase("m")) {
+        }
+        else if (gender.equalsIgnoreCase("m")) {
 
             decidedIcon = maleRatImage;
-        } else if (pregnant) {
+        }
+        else if (pregnant) {
 
             decidedIcon = pregnantFemaleRatImage;
-        } else {
+        }
+        else {
 
             decidedIcon = femaleRatImage;
         }
@@ -312,8 +315,7 @@ public class PeacefulRat extends Rat {
 
         // randomly deciding the gender of each baby.
         delayBirth =
-                new Timeline(new KeyFrame(Duration.millis(super.getSpeed()),
-                        event -> spawnBaby()));
+                new Timeline(new KeyFrame(Duration.millis(super.getSpeed()), event -> spawnBaby()));
         delayBirth.setCycleCount(this.numberOfBabies);
         delayBirth.play();
     }
@@ -329,7 +331,8 @@ public class PeacefulRat extends Rat {
         if (decision == 1) {
 
             newBornGender = "m";
-        } else {
+        }
+        else {
 
             newBornGender = "f";
         }
@@ -337,10 +340,9 @@ public class PeacefulRat extends Rat {
                 turnAround(super.getDirectionOfMovement());
         Tile tile = super.getStandingOn().getAdjacentTile(oppositeDirection);
         GameObject newBorn = new PeacefulRat(tile, this.isSterile(), false,
-                false, newBornGender, this.timeToGiveBirth, this.timeToDevelop
-                , GameObject.getBoard()
-                .getLevelProperties()
-                .getBabyRatSpeed(), oppositeDirection);
+                false, newBornGender, this.timeToGiveBirth, this.timeToDevelop,
+                GameObject.getBoard().getLevelProperties().getBabyRatSpeed(),
+                oppositeDirection);
 
         GameObject.getBoard().addObject(newBorn);
 

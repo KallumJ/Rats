@@ -50,11 +50,14 @@ public class Board {
     private static final int INTERACTION_CHECK_INTERVAL = 100; // In ms
     private static final String SAVED_BUTTON_LABEL = "Save and exit";
     private static final String AIRSTRIKE_BUTTON_LABEL = "CALL AIRSTRIKE!!!!";
+    private static final int AIRSTRIKE_BUTTON_WIDTH = 50;
     private static final int CONTROLS_MARGIN = 5; // in pixels
     private static final String INFORMATION_LABEL_TEXT =
             "Time elapsed: %d " + "seconds. Expected time: %d seconds. Score " + "%d. Population to lose " + "%d.";
     private static final int INFO_LABEL_PADDING = 5; // in pixels
     private static final int AIRSTRIKE_TARGETS_NUMBER = 10;
+    // the time for the program to check id the player won/lost in millisecond
+    private static final int CHECK_WIN_LOST_PERIOD = 250;
 
     private LevelData levelData;
     private Label timerLabel;
@@ -122,8 +125,8 @@ public class Board {
      * A method to check for interactions between objects on the board.
      */
     public void interactionCheck() {
-        airstrikeCallButton.setDisable(levelData.getLevelProperties().getScore() < POINTS_FOR_AIRSTRIKE ||
-                !getLevelProperties().isAirstrikeEnabled());
+        airstrikeCallButton.setDisable(levelData.getLevelProperties().getScore() < POINTS_FOR_AIRSTRIKE
+                || !getLevelProperties().isAirstrikeEnabled());
 
         updateProgressBar();
         List<GameObject> objects = levelData.getObjects();
@@ -150,8 +153,8 @@ public class Board {
                             secondObject);
                     ObjectInteractionChecker.checkNoEntrySign(firstObject,
                             secondObject);
-                    ObjectInteractionChecker.checkFemaleSexChanger(firstObject
-                            , secondObject);
+                    ObjectInteractionChecker.checkFemaleSexChanger(firstObject,
+                            secondObject);
                     ObjectInteractionChecker.checkMaleSexChanger(firstObject,
                             secondObject);
                     ObjectInteractionChecker.checkPoison(firstObject,
@@ -275,7 +278,7 @@ public class Board {
 
         Button saveButton = new Button(SAVED_BUTTON_LABEL);
 
-        saveButton.setMinWidth(GameMenu.getStage().getWidth() - 50);
+        saveButton.setMinWidth(GameMenu.getStage().getWidth() - AIRSTRIKE_BUTTON_WIDTH);
         saveButton.setAlignment(Pos.CENTER);
 
         // Save level when mouse is pressed, and stop the current game
@@ -288,7 +291,7 @@ public class Board {
         });
 
         airstrikeCallButton = new Button(AIRSTRIKE_BUTTON_LABEL);
-        airstrikeCallButton.setMinWidth(50);
+        airstrikeCallButton.setMinWidth(AIRSTRIKE_BUTTON_WIDTH);
         airstrikeCallButton.setAlignment(Pos.CENTER_RIGHT);
         airstrikeCallButton.setDisable(true);
 
@@ -297,8 +300,8 @@ public class Board {
             if (levelData.getLevelProperties().getScore() >= POINTS_FOR_AIRSTRIKE) {
 
                 SFXManager.playAirstrikeSFX();
-                Timeline moveTimeline = new Timeline(new KeyFrame(Duration.millis(2000),
-                        event1 -> LaunchAirstrike()));
+                Timeline moveTimeline = new Timeline(new KeyFrame(Duration.seconds(2),
+                        event1 -> launchAirstrike()));
                 moveTimeline.play();
             }
         });
@@ -356,7 +359,7 @@ public class Board {
         updateBoardDisplay();
 
         // Starts checking whether the player has won or lost
-        winLoseTimeline = new Timeline(new KeyFrame(Duration.millis(250),
+        winLoseTimeline = new Timeline(new KeyFrame(Duration.millis(CHECK_WIN_LOST_PERIOD),
                 event -> checkWinLose()));
         winLoseTimeline.setCycleCount(Animation.INDEFINITE);
         winLoseTimeline.play();
@@ -499,7 +502,7 @@ public class Board {
     /**
      * A method that calls airstrike
      */
-    public void LaunchAirstrike() {
+    public void launchAirstrike() {
 
         levelData.getLevelProperties().setScore(levelData.getLevelProperties().getScore() - POINTS_FOR_AIRSTRIKE);
 
@@ -541,7 +544,7 @@ public class Board {
 
         SFXManager.playBombSFX();
 
-        Timeline endTimeline = new Timeline(new KeyFrame(Duration.millis(1000),
+        Timeline endTimeline = new Timeline(new KeyFrame(Duration.seconds(1),
                 event -> endAirStarike(explosionsEffect)));
         endTimeline.play();
 
@@ -556,7 +559,7 @@ public class Board {
     private void endAirStarike(ArrayList<Explosion> explosionsEffect) {
 
         for (int i = 0; i < AIRSTRIKE_TARGETS_NUMBER; i++) {
-            explosionsEffect.get(i).EndExplosion();
+            explosionsEffect.get(i).endExplosion();
         }
 
     }

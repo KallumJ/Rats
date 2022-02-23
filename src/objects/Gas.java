@@ -102,7 +102,8 @@ public class Gas extends GameObject implements ObjectStoppable {
 
                 if (counter < range) {
                     delayExpand(adjacentTile);
-                } else {
+                }
+                else {
                     for (GasEffect gasEffect : gasEffects) {
                         gasEffect.disappear();
                     }

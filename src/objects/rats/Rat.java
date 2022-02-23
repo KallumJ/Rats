@@ -108,13 +108,16 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
         if (directionOfMovement == Direction.UP) {
 
             oppositeDirection = Direction.DOWN;
-        } else if (directionOfMovement == Direction.LEFT) {
+        }
+        else if (directionOfMovement == Direction.LEFT) {
 
             oppositeDirection = Direction.RIGHT;
-        } else if (directionOfMovement == Direction.DOWN) {
+        }
+        else if (directionOfMovement == Direction.DOWN) {
 
             oppositeDirection = Direction.UP;
-        } else {
+        }
+        else {
 
             oppositeDirection = Direction.LEFT;
         }
@@ -190,7 +193,8 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
                         break;
                 }
             }
-        } else { // No other direction is possible, turn around
+        }
+        else { // No other direction is possible, turn around
             if (isTurningAroundPossible) {
                 super.standOn(super.getStandingOn()
                         .getAdjacentTile(turnAround(directionOfMovement)));
@@ -201,12 +205,14 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
         if (super.getStandingOn().getTileType().equals(TileType.TUNNEL)) {
 
             super.setIcon(null);
-        } else {
+        }
+        else {
             if (this instanceof PeacefulRat) {
 
                 PeacefulRat rat = (PeacefulRat) this;
                 rat.decideIcon();
-            } else if (this instanceof DeathRat) {
+            }
+            else if (this instanceof DeathRat) {
 
                 DeathRat rat = (DeathRat) this;
                 rat.showIcon();
@@ -232,13 +238,16 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
         if (directionOfMovement == Direction.UP) {
 
             leftOfDirection = Direction.LEFT;
-        } else if (directionOfMovement == Direction.LEFT) {
+        }
+        else if (directionOfMovement == Direction.LEFT) {
 
             leftOfDirection = Direction.DOWN;
-        } else if (directionOfMovement == Direction.DOWN) {
+        }
+        else if (directionOfMovement == Direction.DOWN) {
 
             leftOfDirection = Direction.RIGHT;
-        } else {
+        }
+        else {
 
             leftOfDirection = Direction.UP;
         }
@@ -259,13 +268,16 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
         if (directionOfMovement == Direction.UP) {
 
             rightOfDirection = Direction.RIGHT;
-        } else if (directionOfMovement == Direction.LEFT) {
+        }
+        else if (directionOfMovement == Direction.LEFT) {
 
             rightOfDirection = Direction.UP;
-        } else if (directionOfMovement == Direction.DOWN) {
+        }
+        else if (directionOfMovement == Direction.DOWN) {
 
             rightOfDirection = Direction.LEFT;
-        } else {
+        }
+        else {
 
             rightOfDirection = Direction.DOWN;
         }

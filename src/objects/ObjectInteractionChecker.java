@@ -274,7 +274,7 @@ public class ObjectInteractionChecker {
             if (secondObject instanceof PeacefulRat) {
                 ZombieRat zombie = (ZombieRat) firstObject;
                 PeacefulRat rat = (PeacefulRat) secondObject;
-                zombie.Bite(rat);
+                zombie.bite(rat);
 
             }
         }

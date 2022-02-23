@@ -38,8 +38,8 @@ public class ZombieRat extends Rat {
 
         this.timeToDisappear = timeToDisappear;
 
-        disappearingTimeline = new Timeline(new KeyFrame(Duration.millis(1000),
-                event -> Disappear()));
+        disappearingTimeline = new Timeline(new KeyFrame(Duration.seconds(1),
+                event -> disappear()));
         disappearingTimeline.setCycleCount(this.timeToDisappear);
         disappearingTimeline.play();
 
@@ -48,14 +48,15 @@ public class ZombieRat extends Rat {
     /**
      * Method which will make the rat disappear.
      */
-    private void Disappear() {
+    private void disappear() {
 
         this.timeToDisappear--;
         if (this.timeToDisappear <= 0) {
 
             try {
                 GameObject.getBoard().removeObject(this);
-            } catch (NullPointerException e) {
+            }
+            catch (NullPointerException e) {
 
 
             }
@@ -67,7 +68,7 @@ public class ZombieRat extends Rat {
      *
      * @param rat The victim.
      */
-    public void Bite(PeacefulRat rat) {
+    public void bite(PeacefulRat rat) {
 
         GameObject.getBoard().removeObject(rat);
         int speed = GameObject.getBoard()

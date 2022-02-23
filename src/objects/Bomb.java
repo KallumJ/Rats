@@ -60,8 +60,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
         super.setIcon(bombImage);
         bombOneSecondImage = new Image("file:resources/bombOneSecond.png");
         bombTwoSecondsImage = new Image("file:resources/bombTwoSeconds.png");
-        bombThreeSecondsImage = new Image("file:resources/bombThreeSeconds" +
-                ".png");
+        bombThreeSecondsImage = new Image("file:resources/bombThreeSeconds.png");
         bombFourImage = new Image("file:resources/bombFourSeconds.png");
         bombFiveImage = new Image("file:resources/bombFiveSeconds.png");
 
@@ -234,7 +233,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
 
 
         for (int i = 0; i < affectedTiles.size(); i++) {
-            explosionsEffect.get(i).EndExplosion();
+            explosionsEffect.get(i).endExplosion();
         }
     }
 
