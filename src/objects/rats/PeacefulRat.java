@@ -358,8 +358,13 @@ public class PeacefulRat extends Rat {
 
         this.adult = true;
         decideIcon();
-        super.setSpeed(GameObject.getBoard()
-                .getLevelProperties()
-                .getAdultRatSpeed());
+        try {
+            super.setSpeed(GameObject.getBoard()
+                    .getLevelProperties()
+                    .getAdultRatSpeed());
+        }
+        catch (NullPointerException ignored) {
+
+        }
     }
 }
