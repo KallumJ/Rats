@@ -1,6 +1,5 @@
 package level;
 
-import objects.*;
 import objects.rats.DeathRat;
 import objects.rats.PeacefulRat;
 import objects.rats.ZombieRat;
@@ -8,6 +7,15 @@ import tile.Direction;
 import tile.Tile;
 
 import java.util.Scanner;
+import objects.Bomb;
+import objects.FemaleSexChanger;
+import objects.GameObject;
+import objects.Gas;
+import objects.MaleSexChanger;
+import objects.NoEntrySign;
+import objects.Poison;
+import objects.Portal;
+import objects.Sterilisation;
 
 /**
  * A class to read attributes and form the GameObject they represent.
@@ -23,8 +31,7 @@ public class TileAttributeReader {
     private static final String INVALID_SEX_CHANGER =
             "An invalid sex change " + "gender has been read";
     private static final String INVALID_GENDER = "%s is an invalid gender";
-    private static final String INVALID_DIRECTION = "%s is an invalid " +
-            "direction";
+    private static final String INVALID_DIRECTION = "%s is an invalid direction";
 
     /**
      * Empty private constructor method, preventing TileAttributeReader from
@@ -75,7 +82,6 @@ public class TileAttributeReader {
         try (Scanner scanner = new Scanner(attributeValue)) {
             Direction direction = getDirectionFromString(scanner.next());
             int timeToDisappear = scanner.nextInt();
-            ;
             return new ZombieRat(tile, levelProperties.getDeathRatSpeed(), direction, timeToDisappear);
         }
     }
@@ -98,8 +104,8 @@ public class TileAttributeReader {
      * @param tile           The tile the PeacefulRat is on.
      * @return The constructed PeacefulRat.
      */
-    public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile
-            , LevelProperties levelProperties) {
+    public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile,
+            LevelProperties levelProperties) {
         Scanner scanner = new Scanner(attributeValue);
         boolean adult = scanner.nextBoolean();
         boolean pregnant = scanner.nextBoolean();
@@ -119,8 +125,8 @@ public class TileAttributeReader {
         scanner.close();
 
         // If the rat is an adult, give them adult speed, if not, baby speed
-        int speed = adult ? levelProperties.getAdultRatSpeed() :
-                levelProperties.getBabyRatSpeed();
+        int speed = adult ? levelProperties.getAdultRatSpeed() 
+                : levelProperties.getBabyRatSpeed();
 
         return new PeacefulRat(tile, sterile, adult, pregnant, gender,
                 timeToBirth, timeToDevelop, speed, direction);

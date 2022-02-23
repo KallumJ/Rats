@@ -65,8 +65,8 @@ public class LevelProperties {
      * @param score              the current score of the level.
      * @param timeElapsed        the amount of time that has elapsed so far in this level in seconds.
      */
-    public LevelProperties(String id, int height, int width, int populationToLose
-            , int expectedTime, int itemInterval, int ratMinBabies,
+    public LevelProperties(String id, int height, int width, int populationToLose,
+            int expectedTime, int itemInterval, int ratMinBabies,
                            int ratMaxBabies, int adultRatSpeed,
                            int babyRatSpeed, int deathRatSpeed,
                            int timeElapsed, int score,

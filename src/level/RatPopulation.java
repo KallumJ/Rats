@@ -22,9 +22,9 @@ import java.util.List;
 public class RatPopulation {
 
     private final LevelData levelData;
-    int numberOfMaleRats;
-    int numberOfFemaleRats;
-    int totalPopulation;
+    private int numberOfMaleRats;
+    private int numberOfFemaleRats;
+    private int totalPopulation;
 
     public RatPopulation(LevelData levelData) {
         this.levelData = levelData;
