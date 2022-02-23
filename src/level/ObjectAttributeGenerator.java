@@ -70,8 +70,8 @@ public class ObjectAttributeGenerator {
             String attributeValue = generatePoisonAttribute(poison);
 
             attributes.put(POISON_KEY, attributeValue);
-        } else if (objectOnTile instanceof MaleSexChanger ||
-                objectOnTile instanceof FemaleSexChanger) {
+        } else if (objectOnTile instanceof MaleSexChanger 
+                || objectOnTile instanceof FemaleSexChanger) {
             String attributeValue;
             if (objectOnTile instanceof MaleSexChanger) {
                 MaleSexChanger maleSexChanger = (MaleSexChanger) objectOnTile;

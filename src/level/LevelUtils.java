@@ -34,16 +34,16 @@ import java.util.stream.Stream;
 public class LevelUtils {
 
     private static final String LEVELS_PATH = "levels";
-    public static final String SAVED_LEVELS_DIR_PATH = LEVELS_PATH +
-            "/savedLevels/";
+    public static final String SAVED_LEVELS_DIR_PATH = LEVELS_PATH 
+            + "/savedLevels/";
     private static final String SAVED_LEVELS_FILE_PATH =
             SAVED_LEVELS_DIR_PATH + "/%s-%s.xml";
     private static final String CUSTOM_LEVELS_DIR_PATH =
             LEVELS_PATH + "/customLevels/";
     private static final String CUSTOM_LEVELS_FILE_PATH =
             CUSTOM_LEVELS_DIR_PATH + "/%s-%s.xml";
-    private static final String SAVED_CUSTOM_LEVELS_DIR_PATH = CUSTOM_LEVELS_DIR_PATH +
-            "/savedLevels/";
+    private static final String SAVED_CUSTOM_LEVELS_DIR_PATH = CUSTOM_LEVELS_DIR_PATH 
+            + "/savedLevels/";
     private static final String SAVED_CUSTOM_LEVELS_FILE_PATH = SAVED_CUSTOM_LEVELS_DIR_PATH + "/%s-%s.xml";
     private static final String INVALID_TILE_TYPE =
             "%s is an invalid tile " + "type";
@@ -126,8 +126,8 @@ public class LevelUtils {
     public static String getFilesLevelId(File file) {
         XMLFileReader fileReader = new XMLFileReader(file);
         Element idElement =
-                fileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES
-                        , XMLElementNames.LEVEL_ID);
+                fileReader.drilldownToElement(XMLElementNames.LEVEL_PROPERTIES,
+                        XMLElementNames.LEVEL_ID);
 
         return idElement.getTextContent();
     }

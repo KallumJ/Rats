@@ -12,7 +12,14 @@ import tile.Tile;
 import tile.TileSet;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
+
 
 /**
  * A class to handle the saving of level files.
@@ -221,8 +228,8 @@ public class LevelSaveHandler {
         XMLNode[] children = new XMLNode[]{
                 new XMLNode(XMLElementNames.LEVEL_HEIGHT.toString(),
                         levelHeight, null, null),
-                new XMLNode(XMLElementNames.LEVEL_WIDTH.toString(), levelWidth
-                        , null, null),
+                new XMLNode(XMLElementNames.LEVEL_WIDTH.toString(), levelWidth,
+                        null, null),
                 new XMLNode(XMLElementNames.POPULATION_TO_LOSE.toString(),
                         populationToLose, null, null),
                 new XMLNode(XMLElementNames.EXPECTED_TIME.toString(),
