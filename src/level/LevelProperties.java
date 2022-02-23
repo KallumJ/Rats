@@ -56,7 +56,7 @@ public class LevelProperties {
      * @param timeOfDay          the time of day allowed in this level
      * @param timeInterval       the time between changes in time of day,
      *                           in seconds
-     * @param airstrikeEnabled   whether or not airstrikes are enabled
+     * @param airstrikeEnabled   whether airstrikes are enabled
      * @param costOfAirstrike    the price of calling an airstrike, in score
      * @param numOfAirstrikeHits the number of target tiles an airstrike
      *                           will hit
@@ -95,7 +95,7 @@ public class LevelProperties {
     }
 
     /**
-     * Constructs a blank LevelProperties object
+     * Constructs a blank LevelProperties object.
      */
     public LevelProperties() {
         this.allowedItems = new HashSet<>();
@@ -111,7 +111,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the level id for this level
+     * Sets the level id for this level.
      *
      * @param levelId Sets the level id for this level
      */
@@ -129,7 +129,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the level height
+     * Sets the level height.
      *
      * @param levelHeight the height of the level
      */
@@ -147,7 +147,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the level width
+     * Sets the level width.
      *
      * @param levelWidth the width of the level
      */
@@ -165,7 +165,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the population to lose
+     * Sets the population to lose.
      *
      * @param populationToLose Sets the population to lose in total rats
      */
@@ -183,7 +183,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the expected time to complete a level
+     * Sets the expected time to complete a level.
      *
      * @param expectedTime the expected time to complete a level in seconds
      */
@@ -201,7 +201,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the time between item drops, in seconds
+     * Sets the time between item drops, in seconds.
      *
      * @param itemInterval Sets the time between item drops, in seconds
      */
@@ -220,7 +220,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the minimum number of rats a pregnant rat will birth
+     * Sets the minimum number of rats a pregnant rat will birth.
      *
      * @param ratMinBabies the minimum number of rats a pregnant rat will birth, in number of rats
      */
@@ -239,7 +239,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the maximum number of rats a pregnant rat will birth
+     * Sets the maximum number of rats a pregnant rat will birth.
      *
      * @param ratMaxBabies the maximum number of rats a pregnant rat will birth, in number of rats
      */
@@ -258,7 +258,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the speed of adult rats
+     * Sets the speed of adult rats.
      *
      * @param adultRatSpeed the speed of adult rats in milliseconds between movements
      */
@@ -277,7 +277,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the speed of baby rats
+     * Sets the speed of baby rats.
      *
      * @param babyRatSpeed the speed of baby rats in milliseconds between movements
      */
@@ -296,7 +296,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the speed of death rats
+     * Sets the speed of death rats.
      *
      * @param deathRatSpeed the speed of death rats in milliseconds between movements
      */
@@ -341,7 +341,7 @@ public class LevelProperties {
     }
 
     /**
-     * Gets the time of day allowed in this level
+     * Gets the time of day allowed in this level.
      *
      * @return the time of day allowed in this level
      */
@@ -350,7 +350,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the time of day in this level
+     * Sets the time of day in this level.
      *
      * @param timeOfDay the time of day in this level
      */
@@ -359,7 +359,7 @@ public class LevelProperties {
     }
 
     /**
-     * Gets the time between changes in times of day
+     * Gets the time between changes in times of day.
      *
      * @return the time between changes in times of day in seconds
      */
@@ -368,7 +368,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the time between changes in time
+     * Sets the time between changes in time.
      *
      * @param timeInterval the time between changes in time, in seconds
      */
@@ -377,7 +377,7 @@ public class LevelProperties {
     }
 
     /**
-     * Gets whether airstrikes are enabled in this level
+     * Gets whether airstrikes are enabled in this level.
      *
      * @return whether airstrikes are enabled in this level
      * true if they are, false otherwise
@@ -387,7 +387,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets whether airstrikes are enabled
+     * Sets whether airstrikes are enabled.
      *
      * @param airstrikeEnabled whether airstrikes are enabled
      */
@@ -396,7 +396,7 @@ public class LevelProperties {
     }
 
     /**
-     * Gets the cost of a calling an airstrike
+     * Gets the cost of a calling an airstrike.
      *
      * @return the cost of a calling an airstrike in points
      */
@@ -405,7 +405,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the cost of an airstrike
+     * Sets the cost of an airstrike.
      *
      * @param costOfAirstrike the cost of an airstrike, in total points
      */
@@ -414,7 +414,7 @@ public class LevelProperties {
     }
 
     /**
-     * Gets the number of tiles an airstrike will hit
+     * Gets the number of tiles an airstrike will hit.
      *
      * @return the number of tiles an airstrike will hit
      */
@@ -423,7 +423,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the number of airstrike hits
+     * Sets the number of airstrike hits.
      *
      * @param numOfAirstrikeHits the number of airstrike hits in total tiles
      */
@@ -432,7 +432,7 @@ public class LevelProperties {
     }
 
     /**
-     * Gets the set of allowed items
+     * Gets the set of allowed items.
      *
      * @return the set of allowed items
      */
@@ -441,7 +441,7 @@ public class LevelProperties {
     }
 
     /**
-     * Sets the set of allowed items
+     * Sets the set of allowed items.
      *
      * @param allowedItems the set of allowed items
      */
