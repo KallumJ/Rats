@@ -171,7 +171,7 @@ public class CustomBoard extends Board {
         createButton.setTranslateY(0);
 
         backButton.setMaxWidth(200);
-        backButton.setTranslateX(150);
+        backButton.setTranslateX(250);
         backButton.setTranslateY(0);
 
         createButton.setOnMousePressed(event -> {
