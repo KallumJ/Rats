@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 /**
- * A class to model a group of checkboxes to select what items are available in the level
+ * A class to model a group of checkboxes to select what items are available in the level.
  */
 public class ObjectSelectionGroup {
 
@@ -18,7 +18,7 @@ public class ObjectSelectionGroup {
     private final HashSet<GameObjectType> selectedObjects;
 
     /**
-     * Constructs an ObjectSelectionGroup
+     * Constructs an ObjectSelectionGroup.
      */
     public ObjectSelectionGroup() {
         this.container = new VBox();
@@ -52,18 +52,18 @@ public class ObjectSelectionGroup {
     }
 
     /**
-     * A method to get the container with all the controls
+     * A method to get the container with all the controls.
      *
-     * @return the object selection group
+     * @return the object selection group.
      */
     public VBox getObjectSelectionGroup() {
         return container;
     }
 
     /**
-     * A method to set the CheckBox values
+     * A method to set the CheckBox values.
      *
-     * @param selectedObjects
+     * @param selectedObjects.
      */
     public void setSelectedObjectsValues(HashSet<GameObjectType> selectedObjects) {
         Iterator values = this.container.getChildren().iterator();

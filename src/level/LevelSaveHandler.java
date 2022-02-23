@@ -19,6 +19,7 @@ import java.util.*;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.19
+ *
  */
 public class LevelSaveHandler {
 
@@ -32,8 +33,8 @@ public class LevelSaveHandler {
     /**
      * A method to save the provided level data for the provided player.
      *
-     * @param levelData The level data currently in play
-     * @param player    The player playing the level
+     * @param levelData The level data currently in play.
+     * @param player    The player playing the level.
      */
     public static void saveGameLevel(LevelData levelData, Player player) {
         // Construct a file name
@@ -50,10 +51,10 @@ public class LevelSaveHandler {
     }
 
     /**
-     * A method to save the provided custom level for the provided player
+     * A method to save the provided custom level for the provided player.
      *
-     * @param levelData The level data of the custom level
-     * @param player    The player creating the level
+     * @param levelData The level data of the custom level.
+     * @param player    The player creating the level.
      */
     public static void saveCustomLevel(LevelData levelData, Player player) {
         // Construct a file name
@@ -63,10 +64,10 @@ public class LevelSaveHandler {
     }
 
     /**
-     * Saves the provided level to the provided file path
+     * Saves the provided level to the provided file path.
      *
-     * @param path      the filepath to save too
-     * @param levelData the level data to save
+     * @param path      the filepath to save too.
+     * @param levelData the level data to save.
      */
     private static void saveLevel(String path, LevelData levelData) {
         // Create a file writer for the generated file path
@@ -89,8 +90,8 @@ public class LevelSaveHandler {
     /**
      * A method to save the inventory in this level data to the file.
      *
-     * @param xmlFileWriter the file writer to write with
-     * @param levelData     the level data for this level
+     * @param xmlFileWriter the file writer to write with.
+     * @param levelData     the level data for this level.
      */
     private static void saveInventory(XMLFileWriter xmlFileWriter,
                                       LevelData levelData) {
@@ -113,8 +114,8 @@ public class LevelSaveHandler {
     /**
      * A method to save the provided tile set.
      *
-     * @param xmlFileWriter the file writer to write with
-     * @param levelData     the level data containing the tile set
+     * @param xmlFileWriter the file writer to write with.
+     * @param levelData     the level data containing the tile set.
      */
     private static void saveTileSet(XMLFileWriter xmlFileWriter,
                                     LevelData levelData) {
@@ -144,9 +145,9 @@ public class LevelSaveHandler {
      * A method to return the provided tile row as a list of XMLNodes
      * representing each tile.
      *
-     * @param tileRow the list of Tiles in a row
-     * @param objects the list of objects on the board
-     * @return the list of XMLNodes representing each tile on a row
+     * @param tileRow the list of Tiles in a row.
+     * @param objects the list of objects on the board.
+     * @return the list of XMLNodes representing each tile on a row.
      */
     private static List<XMLNode> getRowAsXMLNodes(ArrayList<Tile> tileRow,
                                                   List<GameObject> objects) {
@@ -182,8 +183,8 @@ public class LevelSaveHandler {
     /**
      * A method to write the level properties to the file.
      *
-     * @param xmlFileWriter the file writer to use
-     * @param levelData     the level data to obtain the properties from
+     * @param xmlFileWriter the file writer to use.
+     * @param levelData     the level data to obtain the properties from.
      */
     private static void saveLevelProperties(XMLFileWriter xmlFileWriter,
                                             LevelData levelData) {
@@ -268,10 +269,10 @@ public class LevelSaveHandler {
     }
 
     /**
-     * A method to create the allowed items string to be stored in file
+     * A method to create the allowed items string to be stored in file.
      *
-     * @param allowedItems the set of allowed items
-     * @return the allowed items as a string
+     * @param allowedItems the set of allowed items.
+     * @return the allowed items as a string.
      */
     private static String createAllowedItemsStr(HashSet<GameObjectType> allowedItems) {
         StringJoiner allowedItemsStr = new StringJoiner(",");

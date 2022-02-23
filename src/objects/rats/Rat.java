@@ -19,6 +19,7 @@ import java.util.Random;
  *
  * @author Fahd
  * @date 2022/02/21
+ *
  */
 public class Rat extends GameObject implements ObjectStoppable, ObjectStartable {
 
@@ -45,9 +46,9 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
     }
 
     /**
-     * Gets the speed
+     * Gets the speed.
      *
-     * @return the speed
+     * @return the speed.
      */
     public int getSpeed() {
 
@@ -55,9 +56,9 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
     }
 
     /**
-     * Sets the speed
+     * Sets the speed.
      *
-     * @param speed the speed
+     * @param speed the speed.
      */
     public void setSpeed(int speed) {
         // Set the new speed, and start a new moving timeline
@@ -76,9 +77,9 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
     }
 
     /**
-     * Gets the direction of movement
+     * Gets the direction of movement.
      *
-     * @return the direction of movement
+     * @return the direction of movement.
      */
     public Direction getDirectionOfMovement() {
 
@@ -86,9 +87,9 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
     }
 
     /**
-     * Sets the direction of movement
+     * Sets the direction of movement.
      *
-     * @param directionOfMovement the direction of movement
+     * @param directionOfMovement the direction of movement.
      */
     public void setDirectionOfMovement(Direction directionOfMovement) {
 
@@ -96,10 +97,10 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
     }
 
     /**
-     * Turn around
+     * Turn around.
      *
-     * @param directionOfMovement the direction of movement
-     * @return Direction
+     * @param directionOfMovement the direction of movement.
+     * @return Direction.
      */
     public Direction turnAround(Direction directionOfMovement) {
 
@@ -123,7 +124,7 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
     }
 
     /**
-     * Stops any timelines running in this object
+     * Stops any timelines running in this object.
      */
     @Override
     public void stop() {
@@ -220,10 +221,10 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
     }
 
     /**
-     * Turn left
+     * Turn left.
      *
-     * @param directionOfMovement the direction of movement
-     * @return Direction
+     * @param directionOfMovement the direction of movement.
+     * @return Direction.
      */
     private Direction turnLeft(Direction directionOfMovement) {
 
@@ -247,10 +248,10 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
     }
 
     /**
-     * Turn right
+     * Turn right.
      *
-     * @param directionOfMovement the direction of movement
-     * @return Direction
+     * @param directionOfMovement the direction of movement.
+     * @return Direction.
      */
     private Direction turnRight(Direction directionOfMovement) {
 
@@ -274,7 +275,7 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
     }
 
     /**
-     * Starts the rats movement logic
+     * Starts the rats movement logic.
      */
     @Override
     public void start() {

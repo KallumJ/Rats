@@ -9,6 +9,7 @@ import java.util.Map;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.12
+ *
  */
 public class XMLNode {
     private static final String NO_CHILD_ERR =
@@ -22,13 +23,13 @@ public class XMLNode {
     /**
      * Constructs an XMLNode with the provided data.
      *
-     * @param nodeName   The name of the node, required
+     * @param nodeName   The name of the node, required.
      * @param nodeValue  The value of the node, optional, provide null if not
-     *                   present
+     *                   present.
      * @param attributes The attributes of the node as a map of strings,
-     *                   optional, provide null if not present
+     *                   optional, provide null if not present.
      * @param children   The children of the node as a list of XMLNode,
-     *                   optional, provide null if not present
+     *                   optional, provide null if not present.
      */
     public XMLNode(String nodeName, String nodeValue,
                    Map<String, String> attributes, List<XMLNode> children) {
@@ -41,7 +42,7 @@ public class XMLNode {
     /**
      * Returns the XMLNode name.
      *
-     * @return the XMLNode's name as String
+     * @return the XMLNode's name as String.
      */
     public String getNodeName() {
         return nodeName;
@@ -50,7 +51,7 @@ public class XMLNode {
     /**
      * Returns the XMLNode's value.
      *
-     * @return the XMLNode's value as a String
+     * @return the XMLNode's value as a String.
      */
     public String getNodeValue() {
         return nodeValue;
@@ -59,7 +60,7 @@ public class XMLNode {
     /**
      * Returns the XMLNode's attributes.
      *
-     * @return the XMLNode's attributes, as a Map of strings
+     * @return the XMLNode's attributes, as a Map of strings.
      */
     public Map<String, String> getAttributes() {
         return attributes;
@@ -68,7 +69,7 @@ public class XMLNode {
     /**
      * Returns the XMLNode's children.
      *
-     * @return the XMLNode's children as a List of XMLNode
+     * @return the XMLNode's children as a List of XMLNode.
      */
     public List<XMLNode> getChildren() {
         return children;
@@ -77,7 +78,7 @@ public class XMLNode {
     /**
      * Returns whether this node has children.
      *
-     * @return true or false
+     * @return true or false.
      */
     public boolean hasChildren() {
         return this.children != null;
@@ -86,7 +87,7 @@ public class XMLNode {
     /**
      * Returns whether this node has attributes.
      *
-     * @return true or false
+     * @return true or false.
      */
     public boolean hasAttributes() {
         return this.attributes != null;
@@ -95,7 +96,7 @@ public class XMLNode {
     /**
      * Returns whether this node has a value.
      *
-     * @return true or false
+     * @return true or false.
      */
     public boolean hasValue() {
         return this.nodeValue != null;
@@ -104,8 +105,8 @@ public class XMLNode {
     /**
      * A method to get the first child with the provided name.
      *
-     * @param elementName the element name
-     * @return the found XMLNode
+     * @param elementName the element name.
+     * @return the found XMLNode.
      */
     public XMLNode getChildByElementName(String elementName) {
         for (XMLNode child : children) {
@@ -121,8 +122,8 @@ public class XMLNode {
     /**
      * A method to get a list of child nodes that match the child name.
      *
-     * @param elementName the element name
-     * @return List of XMLNodes matching the element name
+     * @param elementName the element name.
+     * @return List of XMLNodes matching the element name.
      */
     public List<XMLNode> getChildrenByElementName(String elementName) {
         ArrayList<XMLNode> foundChildren = new ArrayList<>();

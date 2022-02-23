@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * A class to model a menu to delete custom levels
+ * A class to model a menu to delete custom levels.
  */
 public class DeleteCustomLevelMenu extends GameMenu {
     private static final String MENU_TITLE = " D E L E T E ";

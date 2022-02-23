@@ -20,6 +20,7 @@ import java.util.List;
  *
  * @author YIMING LI
  * @date 2022.02.20
+ *
  */
 public class LeaderBoardMenu extends GameMenu {
     private final static String PLAYER_HEADER = "Player               ";
@@ -32,7 +33,7 @@ public class LeaderBoardMenu extends GameMenu {
     /**
      * Constructs a LeaderBoardMenu for the provided level.
      *
-     * @param id the id of the level to show scores for
+     * @param id the id of the level to show scores for.
      */
     public LeaderBoardMenu(String id) {
         this.levelId = id;
@@ -41,9 +42,9 @@ public class LeaderBoardMenu extends GameMenu {
     /**
      * A method to match the 2 provided string lengths.
      *
-     * @param stringToMatch the string to lengthen
-     * @param masterString  the string whose length we should match
-     * @return the stringToMatch, with however many required spaces
+     * @param stringToMatch the string to lengthen.
+     * @param masterString  the string whose length we should match.
+     * @return the stringToMatch, with however many required spaces.
      */
     private static String matchStringLengths(String stringToMatch,
                                              String masterString) {
@@ -58,7 +59,7 @@ public class LeaderBoardMenu extends GameMenu {
     /**
      * A method to build a LeaderBoardMenu to find top ten players level.
      *
-     * @return the Node containing the menu items
+     * @return the Node containing the menu items.
      */
     @Override
     public Parent buildMenu() {
@@ -126,8 +127,8 @@ public class LeaderBoardMenu extends GameMenu {
     /**
      * A method to convert the list of players to PlayerInLeaderboard's.
      *
-     * @param players the list of players to convert
-     * @return a List of PlayerInLeaderboards
+     * @param players the list of players to convert.
+     * @return a List of PlayerInLeaderboards.
      */
     public ArrayList<PlayerInLeaderboard> convertPlayersToPlayerInLeaderboard(List<Player> players) {
         ArrayList<PlayerInLeaderboard> playersInLeaderboard =

@@ -20,6 +20,7 @@ import java.util.Map;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.12
+ *
  */
 public class XMLFileReader {
     private static final String FAILED_TO_LOAD_ERROR =
@@ -30,7 +31,7 @@ public class XMLFileReader {
     /**
      * Constructs an XMLFileReader object.
      *
-     * @param file the file this XMLFileReader will read from
+     * @param file the file this XMLFileReader will read from.
      */
     public XMLFileReader(File file) {
         try {
@@ -48,9 +49,9 @@ public class XMLFileReader {
      * A method to get each subsequent element in the list from the position of
      * the previous.
      *
-     * @param elements The list of elements to go drilldown through
+     * @param elements The list of elements to go drilldown through.
      * @return The final element in the list as an Element object, or null if
-     * this path doesn't exist
+     * this path doesn't exist.
      */
     public Element drilldownToElement(XMLElementNames... elements) {
         try {
@@ -73,7 +74,7 @@ public class XMLFileReader {
     /**
      * A method to get the XML file as an XMLNode.
      *
-     * @return the XMLNode for this file
+     * @return the XMLNode for this file.
      */
     public XMLNode getAsXMLNode() {
         return getAsXMLNodeRecurse(this.rootElement);
@@ -82,8 +83,8 @@ public class XMLFileReader {
     /**
      * A method to recursively construct the provided element as an XMLNode.
      *
-     * @param element the element
-     * @return the element as an XMLNode
+     * @param element the element.
+     * @return the element as an XMLNode.
      */
     private XMLNode getAsXMLNodeRecurse(Node element) {
 

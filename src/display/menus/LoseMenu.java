@@ -26,7 +26,7 @@ public class LoseMenu extends GameMenu {
      * A method to create the popup window that displays the 'YOU Lose'
      * message.
      *
-     * @return the node of the created menu layout
+     * @return the node of the created menu layout.
      */
     @Override
     public Parent buildMenu() {

@@ -15,8 +15,10 @@ import java.util.ArrayList;
  * This class represent the NoEntrySign which will block the way on the rats and
  * make them choose a different direction.
  *
- * @author Fahd & Aser (minor updates)
+ * @author Fahd
+ * @author Aser (minor updates)
  * @date 2022/02/21
+ *
  */
 public class NoEntrySign extends GameObject implements ObjectStoppable {
 
@@ -36,7 +38,7 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
     private int damageDone;
 
     /**
-     * Creates a new no entry sign item on the specified tile
+     * Creates a new no entry sign item on the specified tile.
      *
      * @param standingOn The tile the no entry sign is on.
      * @param damageDone The damage done to the entry sign.
@@ -93,7 +95,7 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * Gets the damage done to the sign
+     * Gets the damage done to the sign.
      *
      * @return The damage done to the sign.
      */
@@ -103,16 +105,16 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to get the durability remaining on the sign
+     * A method to get the durability remaining on the sign.
      *
-     * @return the durability remaining on the sign, in hits
+     * @return the durability remaining on the sign, in hits.
      */
     public int getDurability() {
         return durability;
     }
 
     /**
-     * Stops any timelines running in this object
+     * Stops any timelines running in this object.
      */
     @Override
     public void stop() {

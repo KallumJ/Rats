@@ -13,6 +13,7 @@ import java.util.*;
  *
  * @author YIMING LI
  * @date 2022.02.12
+ *
  */
 public class Inventory {
 
@@ -27,7 +28,7 @@ public class Inventory {
     /**
      * Constructs an inventory object.
      *
-     * @param levelData the LevelData of the level associated to this inventory
+     * @param levelData the LevelData of the level associated to this inventory.
      */
     public Inventory(final LevelData levelData) {
         // Set up the JavaFX node for the inventory
@@ -62,9 +63,9 @@ public class Inventory {
     }
 
     /**
-     * Get the width of the inventory
+     * Get the width of the inventory.
      *
-     * @return the width of the inventory, in pixels
+     * @return the width of the inventory, in pixels.
      */
     protected double getInventoryWidth() {
         return INVENTORY_WIDTH;
@@ -73,7 +74,7 @@ public class Inventory {
     /**
      * A method to get the item rows in the inventory.
      *
-     * @return the item rows in the inventory
+     * @return the item rows in the inventory.
      */
     public Set<ItemRow> getItemRows() {
         return itemRows;
@@ -90,7 +91,7 @@ public class Inventory {
     /**
      * A method to get the level data associated with this inventory.
      *
-     * @return the level data associated with this inventory
+     * @return the level data associated with this inventory.
      */
     public LevelData getLevelData() {
         return levelData;
@@ -98,10 +99,10 @@ public class Inventory {
 
     /**
      * Returns the {@code VBox} containing the inventory itself, with one
-     * random
+     * random.
      * item added to it.
      *
-     * @return the inventory's {@code VBox}
+     * @return the inventory's {@code VBox}.
      */
     public VBox buildInventoryGUI() {
         // Start game Inventory with 1 item in it
@@ -114,7 +115,7 @@ public class Inventory {
     /**
      * A method to get the items currently stored in the inventory.
      *
-     * @return the items currently stored in the inventory
+     * @return the items currently stored in the inventory.
      */
     public List<GameObjectType> getItemsInInventory() {
         return itemsInInventory;
@@ -123,7 +124,7 @@ public class Inventory {
     /**
      * A method to get the JavaFX node representing the inventory.
      *
-     * @return the JavaFX node representing the inventory
+     * @return the JavaFX node representing the inventory.
      */
     public VBox getInventoryNode() {
         return inventoryNode;
@@ -132,7 +133,7 @@ public class Inventory {
     /**
      * A method to return a random GameObjectType.
      *
-     * @return a randomly selected GameObjectType
+     * @return a randomly selected GameObjectType.
      */
     private GameObjectType makeRandomObjectSelection() {
         int listLength = selectionList.length;
@@ -144,7 +145,7 @@ public class Inventory {
     /**
      * A method to add an item to the inventory.
      *
-     * @param object the object type to add to the inventory
+     * @param object the object type to add to the inventory.
      */
     protected void addItem(final GameObjectType object) {
         if (isSlotOpen()) {
@@ -173,7 +174,7 @@ public class Inventory {
     /**
      * Returns whether there is still an available slot in the inventory.
      *
-     * @return true if there is a slot open, false otherwise
+     * @return true if there is a slot open, false otherwise.
      */
     protected boolean isSlotOpen() {
         // Return true if there is a row currently with an empty slot

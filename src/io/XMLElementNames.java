@@ -1,10 +1,11 @@
 package io;
 
 /**
- * An enum to store all the names of the elements in our XML file system
+ * An enum to store all the names of the elements in our XML file system.
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.12
+ *
  */
 public enum XMLElementNames {
     LEVEL_ROOT("level"),
@@ -48,18 +49,18 @@ public enum XMLElementNames {
     private final String name;
 
     /**
-     * Constructs an XMLElementName
+     * Constructs an XMLElementName.
      *
-     * @param nodeName the name of the node
+     * @param nodeName the name of the node.
      */
     XMLElementNames(String nodeName) {
         this.name = nodeName;
     }
 
     /**
-     * Returns the name of the node
+     * Returns the name of the node.
      *
-     * @return the name of the node
+     * @return the name of the node.
      */
     @Override
     public String toString() {

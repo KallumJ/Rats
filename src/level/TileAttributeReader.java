@@ -12,8 +12,10 @@ import java.util.Scanner;
 /**
  * A class to read attributes and form the GameObject they represent.
  *
- * @author Kallum Jones 2005855 & Aser (minor updates)
+ * @author Kallum Jones 2005855
+ * @author Aser (minor updates)
  * @date 2022.02.21
+ *
  */
 public class TileAttributeReader {
     private static final String INVALID_ATTRIBUTE =
@@ -34,10 +36,10 @@ public class TileAttributeReader {
     /**
      * A method to get the GameObject that the provided attribute represents.
      *
-     * @param attributeName  The name of the attribute read from file
-     * @param attributeValue The value of the attribute read from file
-     * @param tile           The tile this attribute was read from
-     * @return The constructed GameObject
+     * @param attributeName  The name of the attribute read from file.
+     * @param attributeValue The value of the attribute read from file.
+     * @param tile           The tile this attribute was read from.
+     * @return The constructed GameObject.
      */
     public static GameObject getObjectFromAttribute(String attributeName,
                                                     String attributeValue,
@@ -79,11 +81,11 @@ public class TileAttributeReader {
     }
 
     /**
-     * A method to construct a portal object with the provided attribute data
+     * A method to construct a portal object with the provided attribute data.
      *
-     * @param attributeValue the data to construct a Portal with
-     * @param tile           the Tile the Portal is on
-     * @return the constructed Portal
+     * @param attributeValue the data to construct a Portal with.
+     * @param tile           the Tile the Portal is on.
+     * @return the constructed Portal.
      */
     private static GameObject readPortal(String attributeValue, Tile tile) {
         return new Portal(tile);
@@ -92,9 +94,9 @@ public class TileAttributeReader {
     /**
      * A method to construct a PeacefulRat with the provided attribute data.
      *
-     * @param attributeValue The data to construct a PeacefulRat with
-     * @param tile           The tile the PeacefulRat is on
-     * @return The constructed PeacefulRat
+     * @param attributeValue The data to construct a PeacefulRat with.
+     * @param tile           The tile the PeacefulRat is on.
+     * @return The constructed PeacefulRat.
      */
     public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile
             , LevelProperties levelProperties) {
@@ -127,9 +129,9 @@ public class TileAttributeReader {
     /**
      * Constructs a Gas object for the gas attribute read from file.
      *
-     * @param attributeValue the attribute
-     * @param tile           the tile the gas is on
-     * @return the Gas object represented by this attribute
+     * @param attributeValue the attribute.
+     * @param tile           the tile the gas is on.
+     * @return the Gas object represented by this attribute.
      */
     private static GameObject readGas(String attributeValue, Tile tile) {
         return new Gas(tile, Boolean.parseBoolean(attributeValue));
@@ -139,9 +141,9 @@ public class TileAttributeReader {
      * Constructs a Sterilisation object for the sterilisation attribute read
      * from file.
      *
-     * @param attributeValue the attribute
-     * @param tile           the tile the sterilisation is on
-     * @return the Sterilisation object represented by this attribute
+     * @param attributeValue the attribute.
+     * @param tile           the tile the sterilisation is on.
+     * @return the Sterilisation object represented by this attribute.
      */
     private static Sterilisation readSterile(String attributeValue,
                                              Tile tile) {
@@ -157,9 +159,9 @@ public class TileAttributeReader {
     /**
      * A method to construct a NoEntrySign with the provided data.
      *
-     * @param attributeValue the data to construct the NoEntrySign with
-     * @param tile           the Tile the NoEntrySign is on
-     * @return The constructed NoEntrySign
+     * @param attributeValue the data to construct the NoEntrySign with.
+     * @param tile           the Tile the NoEntrySign is on.
+     * @return The constructed NoEntrySign.
      */
     private static NoEntrySign readNoEntrySign(String attributeValue,
                                                Tile tile) {
@@ -176,9 +178,9 @@ public class TileAttributeReader {
      * A method to construct the relevant SexChanger object from the provided
      * data.
      *
-     * @param attributeValue the data to construct the SexChanger with
-     * @param tile           The tile the SexChanger is on
-     * @return the constructed SexChanger
+     * @param attributeValue the data to construct the SexChanger with.
+     * @param tile           The tile the SexChanger is on.
+     * @return the constructed SexChanger.
      */
     private static GameObject readSexChange(String attributeValue, Tile tile) {
         switch (attributeValue) {
@@ -193,9 +195,9 @@ public class TileAttributeReader {
     /**
      * A method to construct a Bomb object with the provided data.
      *
-     * @param attributeValue the data to construct the Bomb with
-     * @param tile           the tile the Bomb is on
-     * @return the constructed Bomb
+     * @param attributeValue the data to construct the Bomb with.
+     * @param tile           the tile the Bomb is on.
+     * @return the constructed Bomb.
      */
     private static Bomb readBomb(String attributeValue, Tile tile) {
         Scanner scanner = new Scanner(attributeValue);
@@ -212,9 +214,9 @@ public class TileAttributeReader {
     /**
      * A method to construct a DeathRat with the provided attribute data.
      *
-     * @param attributeValue the data to construct a DeathRat with
-     * @param tile           the tile the DeathRat is on
-     * @return the constructed DeathRat
+     * @param attributeValue the data to construct a DeathRat with.
+     * @param tile           the tile the DeathRat is on.
+     * @return the constructed DeathRat.
      */
     private static DeathRat readDeathRat(String attributeValue, Tile tile,
                                          LevelProperties levelProperties) {
@@ -232,8 +234,8 @@ public class TileAttributeReader {
     /**
      * A method to return the relevant Direction enum from a String.
      *
-     * @param direction the direction String
-     * @return the parsed Direction enum
+     * @param direction the direction String.
+     * @return the parsed Direction enum.
      */
     private static Direction getDirectionFromString(String direction) {
         switch (direction) {

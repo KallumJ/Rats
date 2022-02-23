@@ -15,7 +15,7 @@ public class MenuBox extends VBox {
     /**
      * Constructor for {@code MenuBox}.
      *
-     * @param items the items to add within the {@code MenuBox}
+     * @param items the items to add within the {@code MenuBox}.
      */
     public MenuBox(MenuItem... items) {
         getChildren().add(createSeparator());
@@ -28,7 +28,7 @@ public class MenuBox extends VBox {
     /**
      * Creates the line separator for placing between menu items.
      *
-     * @return the line
+     * @return the line.
      */
     private Line createSeparator() {
         Line sep = new Line();

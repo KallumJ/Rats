@@ -11,10 +11,11 @@ import tile.Direction;
 import tile.Tile;
 
 /**
- * This class represent the zombie rats which will bit other rats and turn them into zombies.
+ * This class represent the zombie rats which will bite other rats and turn them into zombies.
  *
  * @author Fahd
  * @date 2022/02/21
+ *
  */
 
 public class ZombieRat extends Rat {
@@ -27,7 +28,7 @@ public class ZombieRat extends Rat {
      *
      * @param standingOn          The tile the rat is standing on.
      * @param speed               Movement speed of the rat.
-     * @param directionOfMovement Direction of the rat movement;
+     * @param directionOfMovement Direction of the rat movement.
      * @param timeToDisappear     lifetime for the zombie in seconds.
      */
     public ZombieRat(Tile standingOn, int speed, Direction directionOfMovement, int timeToDisappear) {

@@ -13,6 +13,7 @@ import tile.TileType;
  *
  * @author fahds
  * @date 2022/02/15
+ *
  */
 public class GasEffect extends GameObject implements ObjectStoppable {
 
@@ -40,7 +41,7 @@ public class GasEffect extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to check when the gas effect stops
+     * A method to check when the gas effect stops.
      */
     public void disappear() {
 
@@ -50,7 +51,7 @@ public class GasEffect extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to check when the gas has been placed on the board
+     * A method to check when the gas has been placed on the board.
      */
     public void enterGas(Rat rat) {
         if (!(sourceGas.getRatsInGas().contains(rat))) {
@@ -59,7 +60,7 @@ public class GasEffect extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * Stops any timelines running in this object
+     * Stops any timelines running in this object.
      */
     @Override
     public void stop() {
@@ -69,7 +70,7 @@ public class GasEffect extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to remove the effect of the gas
+     * A method to remove the effect of the gas.
      */
     private void removeEffect() {
         sourceGas.getGasEffects().remove(this);

@@ -10,6 +10,7 @@ import java.util.HashSet;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.12
+ *
  */
 public class LevelProperties {
     private String levelId;
@@ -35,34 +36,34 @@ public class LevelProperties {
     /**
      * Constructs a LevelProperties object with the provided data.
      *
-     * @param id                 the id of the level
-     * @param height             the height of the level
-     * @param width              the width of the level
-     * @param populationToLose   the max population for a level before failure
+     * @param id                 the id of the level.
+     * @param height             the height of the level.
+     * @param width              the width of the level.
+     * @param populationToLose   the max population for a level before failure.
      * @param expectedTime       the expected time to complete the level in
-     *                           seconds
+     *                           seconds.
      * @param itemInterval       the time in between item drops for this level in
-     *                           seconds
+     *                           seconds.
      * @param ratMinBabies       the minimum number of babies a rat can birth
-     *                           in a level
+     *                           in a level.
      * @param ratMaxBabies       the maximum number of babies a rat can birth
-     *                           in a level
+     *                           in a level.
      * @param adultRatSpeed      the speed of an adult rat, in time between
-     *                           movement, in milliseconds
+     *                           movement, in milliseconds.
      * @param babyRatSpeed       the speed of a baby rat, in time between
-     *                           movement, in milliseconds
+     *                           movement, in milliseconds.
      * @param deathRatSpeed      the speed of a death rat, in time between
-     *                           movement, in milliseconds
-     * @param timeOfDay          the time of day allowed in this level
+     *                           movement, in milliseconds.
+     * @param timeOfDay          the time of day allowed in this level.
      * @param timeInterval       the time between changes in time of day,
-     *                           in seconds
-     * @param airstrikeEnabled   whether airstrikes are enabled
+     *                           in seconds.
+     * @param airstrikeEnabled   whether airstrikes are enabled.
      * @param costOfAirstrike    the price of calling an airstrike, in score
      * @param numOfAirstrikeHits the number of target tiles an airstrike
-     *                           will hit
+     *                           will hit.
      * @param allowedItems       a list of allowed items in the inventory for this level
-     * @param score              the current score of the level
-     * @param timeElapsed        the amount of time that has elapsed so far in this level in seconds
+     * @param score              the current score of the level.
+     * @param timeElapsed        the amount of time that has elapsed so far in this level in seconds.
      */
     public LevelProperties(String id, int height, int width, int populationToLose
             , int expectedTime, int itemInterval, int ratMinBabies,
@@ -104,7 +105,7 @@ public class LevelProperties {
     /**
      * A method to get the level id for this level.
      *
-     * @return the level id for this level
+     * @return the level id for this level.
      */
     public String getLevelId() {
         return levelId;
@@ -113,7 +114,7 @@ public class LevelProperties {
     /**
      * Sets the level id for this level.
      *
-     * @param levelId Sets the level id for this level
+     * @param levelId Sets the level id for this level.
      */
     public void setLevelId(String levelId) {
         this.levelId = levelId;
@@ -122,7 +123,7 @@ public class LevelProperties {
     /**
      * A method to get the height for this level.
      *
-     * @return height for this level
+     * @return height for this level.
      */
     public int getLevelHeight() {
         return levelHeight;
@@ -131,7 +132,7 @@ public class LevelProperties {
     /**
      * Sets the level height.
      *
-     * @param levelHeight the height of the level
+     * @param levelHeight the height of the level.
      */
     public void setLevelHeight(int levelHeight) {
         this.levelHeight = levelHeight;
@@ -140,7 +141,7 @@ public class LevelProperties {
     /**
      * A method to get the width of the level.
      *
-     * @return the width of the level
+     * @return the width of the level.
      */
     public int getLevelWidth() {
         return levelWidth;
@@ -149,7 +150,7 @@ public class LevelProperties {
     /**
      * Sets the level width.
      *
-     * @param levelWidth the width of the level
+     * @param levelWidth the width of the level.
      */
     public void setLevelWidth(int levelWidth) {
         this.levelWidth = levelWidth;
@@ -158,7 +159,7 @@ public class LevelProperties {
     /**
      * A method to get the fail population for the level.
      *
-     * @return the fail population for the level
+     * @return the fail population for the level.
      */
     public int getPopulationToLose() {
         return populationToLose;
@@ -167,7 +168,7 @@ public class LevelProperties {
     /**
      * Sets the population to lose.
      *
-     * @param populationToLose Sets the population to lose in total rats
+     * @param populationToLose Sets the population to lose in total rats.
      */
     public void setPopulationToLose(int populationToLose) {
         this.populationToLose = populationToLose;
@@ -176,7 +177,7 @@ public class LevelProperties {
     /**
      * A method to get the time allowed for this level.
      *
-     * @return get the time allowed for this level
+     * @return get the time allowed for this level.
      */
     public int getExpectedTime() {
         return expectedTime;
@@ -185,7 +186,7 @@ public class LevelProperties {
     /**
      * Sets the expected time to complete a level.
      *
-     * @param expectedTime the expected time to complete a level in seconds
+     * @param expectedTime the expected time to complete a level in seconds.
      */
     public void setExpectedTime(int expectedTime) {
         this.expectedTime = expectedTime;
@@ -194,7 +195,7 @@ public class LevelProperties {
     /**
      * A method to get the item drop interval for this level.
      *
-     * @return the item drop interval for this level
+     * @return the item drop interval for this level.
      */
     public int getItemInterval() {
         return itemInterval;
@@ -203,7 +204,7 @@ public class LevelProperties {
     /**
      * Sets the time between item drops, in seconds.
      *
-     * @param itemInterval Sets the time between item drops, in seconds
+     * @param itemInterval Sets the time between item drops, in seconds.
      */
     public void setItemInterval(int itemInterval) {
         this.itemInterval = itemInterval;
@@ -213,7 +214,7 @@ public class LevelProperties {
      * A method to get the minimum number of babies a rat can birth in this
      * level.
      *
-     * @return the minimum number of babies a rat can birth in this level
+     * @return the minimum number of babies a rat can birth in this level.
      */
     public int getRatMinBabies() {
         return ratMinBabies;
@@ -222,7 +223,7 @@ public class LevelProperties {
     /**
      * Sets the minimum number of rats a pregnant rat will birth.
      *
-     * @param ratMinBabies the minimum number of rats a pregnant rat will birth, in number of rats
+     * @param ratMinBabies the minimum number of rats a pregnant rat will birth, in number of rats.
      */
     public void setRatMinBabies(int ratMinBabies) {
         this.ratMinBabies = ratMinBabies;
@@ -232,7 +233,7 @@ public class LevelProperties {
      * A method to get the minimum number of babies a rat can birth in this
      * level.
      *
-     * @return the minimum number of babies a rat can birth in this level
+     * @return the minimum number of babies a rat can birth in this level.
      */
     public int getRatMaxBabies() {
         return ratMaxBabies;
@@ -241,7 +242,7 @@ public class LevelProperties {
     /**
      * Sets the maximum number of rats a pregnant rat will birth.
      *
-     * @param ratMaxBabies the maximum number of rats a pregnant rat will birth, in number of rats
+     * @param ratMaxBabies the maximum number of rats a pregnant rat will birth, in number of rats.
      */
     public void setRatMaxBabies(int ratMaxBabies) {
         this.ratMaxBabies = ratMaxBabies;
@@ -251,7 +252,7 @@ public class LevelProperties {
      * A method to get the speed of adult rats in this level.
      *
      * @return the speed of adult rats in this level in milliseconds between
-     * movements
+     * movements.
      */
     public int getAdultRatSpeed() {
         return adultRatSpeed;
@@ -260,7 +261,7 @@ public class LevelProperties {
     /**
      * Sets the speed of adult rats.
      *
-     * @param adultRatSpeed the speed of adult rats in milliseconds between movements
+     * @param adultRatSpeed the speed of adult rats in milliseconds between movements.
      */
     public void setAdultRatSpeed(int adultRatSpeed) {
         this.adultRatSpeed = adultRatSpeed;
@@ -270,7 +271,7 @@ public class LevelProperties {
      * A method to get the speed of baby rats in this level.
      *
      * @return the speed of baby rats in this level in milliseconds between
-     * movements
+     * movements.
      */
     public int getBabyRatSpeed() {
         return babyRatSpeed;
@@ -279,7 +280,7 @@ public class LevelProperties {
     /**
      * Sets the speed of baby rats.
      *
-     * @param babyRatSpeed the speed of baby rats in milliseconds between movements
+     * @param babyRatSpeed the speed of baby rats in milliseconds between movements.
      */
     public void setBabyRatSpeed(int babyRatSpeed) {
         this.babyRatSpeed = babyRatSpeed;
@@ -289,7 +290,7 @@ public class LevelProperties {
      * A method to get the speed of death rats in this level.
      *
      * @return the speed of death rats in this level in milliseconds between
-     * movements
+     * movements.
      */
     public int getDeathRatSpeed() {
         return deathRatSpeed;
@@ -298,7 +299,7 @@ public class LevelProperties {
     /**
      * Sets the speed of death rats.
      *
-     * @param deathRatSpeed the speed of death rats in milliseconds between movements
+     * @param deathRatSpeed the speed of death rats in milliseconds between movements.
      */
     public void setDeathRatSpeed(int deathRatSpeed) {
         this.deathRatSpeed = deathRatSpeed;
@@ -307,7 +308,7 @@ public class LevelProperties {
     /**
      * A method to get the time elapsed for this level.
      *
-     * @return the time elapsed for this level, in seconds
+     * @return the time elapsed for this level, in seconds.
      */
     public int getTimeElapsed() {
         return timeElapsed;
@@ -316,7 +317,7 @@ public class LevelProperties {
     /**
      * A method to set the time elapsed for this level.
      *
-     * @param timeElapsed the time elapsed for this level, in seconds
+     * @param timeElapsed the time elapsed for this level, in seconds.
      */
     public void setTimeElapsed(int timeElapsed) {
         this.timeElapsed = timeElapsed;
@@ -325,7 +326,7 @@ public class LevelProperties {
     /**
      * Gets the current score of the level.
      *
-     * @return the score of the level
+     * @return the score of the level.
      */
     public int getScore() {
         return score;
@@ -334,7 +335,7 @@ public class LevelProperties {
     /**
      * Sets the score for the level.
      *
-     * @param score the score for the level
+     * @param score the score for the level.
      */
     public void setScore(int score) {
         this.score = score;
@@ -343,7 +344,7 @@ public class LevelProperties {
     /**
      * Gets the time of day allowed in this level.
      *
-     * @return the time of day allowed in this level
+     * @return the time of day allowed in this level.
      */
     public TimeOfDay getTimeOfDay() {
         return timeOfDay;
@@ -352,7 +353,7 @@ public class LevelProperties {
     /**
      * Sets the time of day in this level.
      *
-     * @param timeOfDay the time of day in this level
+     * @param timeOfDay the time of day in this level.
      */
     public void setTimeOfDay(TimeOfDay timeOfDay) {
         this.timeOfDay = timeOfDay;
@@ -361,7 +362,7 @@ public class LevelProperties {
     /**
      * Gets the time between changes in times of day.
      *
-     * @return the time between changes in times of day in seconds
+     * @return the time between changes in times of day in seconds.
      */
     public int getTimeInterval() {
         return timeInterval;
@@ -370,7 +371,7 @@ public class LevelProperties {
     /**
      * Sets the time between changes in time.
      *
-     * @param timeInterval the time between changes in time, in seconds
+     * @param timeInterval the time between changes in time, in seconds.
      */
     public void setTimeInterval(int timeInterval) {
         this.timeInterval = timeInterval;
@@ -380,7 +381,7 @@ public class LevelProperties {
      * Gets whether airstrikes are enabled in this level.
      *
      * @return whether airstrikes are enabled in this level
-     * true if they are, false otherwise
+     * true if they are, false otherwise.
      */
     public boolean isAirstrikeEnabled() {
         return airstrikeEnabled;
@@ -389,7 +390,7 @@ public class LevelProperties {
     /**
      * Sets whether airstrikes are enabled.
      *
-     * @param airstrikeEnabled whether airstrikes are enabled
+     * @param airstrikeEnabled whether airstrikes are enabled.
      */
     public void setAirstrikeEnabled(boolean airstrikeEnabled) {
         this.airstrikeEnabled = airstrikeEnabled;
@@ -398,7 +399,7 @@ public class LevelProperties {
     /**
      * Gets the cost of a calling an airstrike.
      *
-     * @return the cost of a calling an airstrike in points
+     * @return the cost of a calling an airstrike in points.
      */
     public int getCostOfAirstrike() {
         return costOfAirstrike;
@@ -407,7 +408,7 @@ public class LevelProperties {
     /**
      * Sets the cost of an airstrike.
      *
-     * @param costOfAirstrike the cost of an airstrike, in total points
+     * @param costOfAirstrike the cost of an airstrike, in total points.
      */
     public void setCostOfAirstrike(int costOfAirstrike) {
         this.costOfAirstrike = costOfAirstrike;
@@ -416,7 +417,7 @@ public class LevelProperties {
     /**
      * Gets the number of tiles an airstrike will hit.
      *
-     * @return the number of tiles an airstrike will hit
+     * @return the number of tiles an airstrike will hit.
      */
     public int getNumOfAirstrikeHits() {
         return numOfAirstrikeHits;
@@ -425,7 +426,7 @@ public class LevelProperties {
     /**
      * Sets the number of airstrike hits.
      *
-     * @param numOfAirstrikeHits the number of airstrike hits in total tiles
+     * @param numOfAirstrikeHits the number of airstrike hits in total tiles.
      */
     public void setNumOfAirstrikeHits(int numOfAirstrikeHits) {
         this.numOfAirstrikeHits = numOfAirstrikeHits;
@@ -434,7 +435,7 @@ public class LevelProperties {
     /**
      * Gets the set of allowed items.
      *
-     * @return the set of allowed items
+     * @return the set of allowed items.
      */
     public HashSet<GameObjectType> getAllowedItems() {
         return allowedItems;
@@ -443,7 +444,7 @@ public class LevelProperties {
     /**
      * Sets the set of allowed items.
      *
-     * @param allowedItems the set of allowed items
+     * @param allowedItems the set of allowed items.
      */
     public void setAllowedItems(HashSet<GameObjectType> allowedItems) {
         this.allowedItems = allowedItems;

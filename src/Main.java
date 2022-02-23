@@ -5,18 +5,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * The Main class to start the application
+ * The Main class to start the application.
  *
  * @author Kallum Jones 2005855
  * @date 2022/02/28
+ *
  */
 public class Main extends Application {
     private static final String APP_HEADER = "Rats CS-230 Group 41";
 
     /**
-     * Method for java to launch the application
+     * Method for java to launch the application.
      *
-     * @param args the command line args
+     * @param args the command line args.
      */
     public static void main(String[] args) {
         launch(args);
@@ -25,7 +26,7 @@ public class Main extends Application {
     /**
      * Starts the application.
      *
-     * @param stage the stage
+     * @param stage the stage.
      */
     @Override
     public void start(Stage stage) {

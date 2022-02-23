@@ -35,7 +35,7 @@ public class LoginMenu extends GameMenu {
     /**
      * A method to build the login menu.
      *
-     * @return the node containing the login menu
+     * @return the node containing the login menu.
      */
     @Override
     public Parent buildMenu() {

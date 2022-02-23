@@ -4,7 +4,7 @@ import level.LevelData;
 import objects.GameObjectType;
 
 /**
- * A class to an inventory for creating custom levels
+ * A class to an inventory for creating custom levels.
  */
 public class CustomInventory extends Inventory {
     private static final int INVENTORY_WIDTH = 75;
@@ -12,7 +12,7 @@ public class CustomInventory extends Inventory {
     /**
      * Constructs a CustomInventory object.
      *
-     * @param levelData the LevelData of the level associated to this inventory
+     * @param levelData the LevelData of the level associated to this inventory.
      */
     public CustomInventory(LevelData levelData) {
         super(levelData);
@@ -26,7 +26,7 @@ public class CustomInventory extends Inventory {
     /**
      * Returns whether there is still an available slot in the inventory.
      *
-     * @return true if there is a slot open, false otherwise
+     * @return true if there is a slot open, false otherwise.
      */
     @Override
     protected boolean isSlotOpen() {
@@ -43,9 +43,9 @@ public class CustomInventory extends Inventory {
     }
 
     /**
-     * Get the width of the inventory
+     * Get the width of the inventory.
      *
-     * @return the width of the inventory, in pixels
+     * @return the width of the inventory, in pixels.
      */
     @Override
     public double getInventoryWidth() {

@@ -16,9 +16,9 @@ class PlayerInLeaderboard {
     /**
      * Constructs a {@code PlayerInLeaderboard} object.
      *
-     * @param name  the name of the player
-     * @param level the level the score was achieved on
-     * @param score the score reached
+     * @param name  the name of the player.
+     * @param level the level the score was achieved on.
+     * @param score the score reached.
      */
     public PlayerInLeaderboard(String name, String level, Integer score) {
         this.name = name;

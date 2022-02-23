@@ -12,15 +12,15 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * A class to model a menu to resume in progress custom levels
+ * A class to model a menu to resume in progress custom levels.
  */
 public class ResumeCustomLevelMenu extends GameMenu {
     private static final String MENU_TITLE = " R E S U M E ";
 
     /**
-     * A method to build the designed menu
+     * A method to build the designed menu.
      *
-     * @return the designed menu
+     * @return the designed menu.
      */
     @Override
     public Parent buildMenu() {

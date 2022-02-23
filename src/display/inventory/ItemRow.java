@@ -34,8 +34,8 @@ public class ItemRow {
     /**
      * Constructs an item row for the provided object type.
      *
-     * @param objectType The type of items in this row
-     * @param inventory  the inventory this row is being stored in
+     * @param objectType The type of items in this row.
+     * @param inventory  the inventory this row is being stored in.
      */
     public ItemRow(final GameObjectType objectType,
                    final Inventory inventory) {
@@ -48,7 +48,7 @@ public class ItemRow {
     /**
      * Gets the type of object being stored in this row.
      *
-     * @return the type of object being stored in this row
+     * @return the type of object being stored in this row.
      */
     public GameObjectType getObjectType() {
         return objectType;
@@ -57,7 +57,7 @@ public class ItemRow {
     /**
      * Gets the HBox node representing this row.
      *
-     * @return the HBox node representing this row
+     * @return the HBox node representing this row.
      */
     public HBox gethBox() {
         return hBox;
@@ -92,8 +92,8 @@ public class ItemRow {
     /**
      * An event handler for dragging item images.
      *
-     * @param event the MouseEvent that triggered the handler
-     * @param image the image being dragged
+     * @param event the MouseEvent that triggered the handler.
+     * @param image the image being dragged.
      */
     public void onDrag(final MouseEvent event, final ImageView image) {
         if (originalX == -1) {
@@ -112,8 +112,8 @@ public class ItemRow {
     /**
      * An event handler for releasing an item image.
      *
-     * @param image  the image being released
-     * @param object the type of the object being released
+     * @param image  the image being released.
+     * @param object the type of the object being released.
      */
     public void onRelease(final ImageView image, final GameObjectType object) {
         double canvasWidth = GameObject.getBoard().getCanvas().getWidth();
@@ -178,7 +178,7 @@ public class ItemRow {
     /**
      * Gets the count of objects in this row.
      *
-     * @return the count of objects in this row
+     * @return the count of objects in this row.
      */
     public int getObjectCount() {
         return objectCount;

@@ -13,6 +13,7 @@ import java.util.Random;
  *
  * @author Fahd
  * @date 2022.02.21
+ *
  */
 public class Portal extends GameObject {
 
