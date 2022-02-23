@@ -21,7 +21,8 @@ import java.util.ArrayList;
 public class XMLFileWriter {
     private static final String UNABLE_TO_CREATE =
             "Unable to create an XML " + "file %s with the root %s";
-    private static final String UNABLE_TO_SAVE = "Unable to save XML file " +
+    private static final String UNABLE_TO_SAVE = "Unable to save XML file " 
+            +
             "with" + " the root %s";
     private static final String UNABLE_TO_WRITE =
             "Unable to write %s to the " + "xml file";
@@ -99,8 +100,8 @@ public class XMLFileWriter {
             }
 
             // Create and write the start of the element with the attributes
-            StartElement startElement = eventFactory.createStartElement("", ""
-                    , xmlNode.getNodeName(), attributesList.iterator(), null);
+            StartElement startElement = eventFactory.createStartElement("", "", 
+                    xmlNode.getNodeName(), attributesList.iterator(), null);
             writer.add(startElement);
 
             // Create and write the value of the element

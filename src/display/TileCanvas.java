@@ -28,7 +28,6 @@ public class TileCanvas {
     long elapsedTime = System.currentTimeMillis() - start;
     long elapsedSeconds = elapsedTime / 1000;
 
-
     /**
      * Constructs a TileCanvas object.
      *
@@ -54,8 +53,10 @@ public class TileCanvas {
                 elapsedSeconds++;
             }
         };
-
-        myTimer.scheduleAtFixedRate(task, 1000, 1000);
+        
+        int delay=1000;
+        int period=1000;
+        myTimer.scheduleAtFixedRate(task, delay, period);
 
         updateBoardDisplay();
     }
@@ -115,33 +116,43 @@ public class TileCanvas {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         List<Tile> tiles = levelData.getTileSet().getAllTiles();
-
+        
+        int minElapsedSeconds=0;
+        int dayChange=60;
+        int maxElapsedSeconds_night=120;
+        
         // Decide what image to display for this tile
         for (Tile tile : tiles) {
             Image tileImage;
             switch (tile.getTileType()) {
                 case GRASS:
-                    if (elapsedSeconds >= 0 && elapsedSeconds <= 60) {
+                    if (elapsedSeconds >= minElapsedSeconds &&
+                            elapsedSeconds <= dayChange) {
                         tileImage = new Image("file:resources/grass.jpg");
-                    } else if (elapsedSeconds >= 60 && elapsedSeconds <= 120) {
+                    } else if (elapsedSeconds >= dayChange &&
+                            elapsedSeconds <= maxElapsedSeconds_night) {
                         tileImage = new Image("file:resources/grassnight.png");
                     } else {
                         tileImage = new Image("file:resources/grass.jpg");
                     }
                     break;
                 case PATH:
-                    if (elapsedSeconds >= 0 && elapsedSeconds <= 60) {
+                    if (elapsedSeconds >= minElapsedSeconds &&
+                            elapsedSeconds <= dayChange) {
                         tileImage = new Image("file:resources/path.jpg");
-                    } else if (elapsedSeconds >= 60 && elapsedSeconds <= 120) {
+                    } else if (elapsedSeconds >= dayChange &&
+                            elapsedSeconds <= maxElapsedSeconds_night) {
                         tileImage = new Image("file:resources/nightpath.png");
                     } else {
                         tileImage = new Image("file:resources/path.jpg");
                     }
                     break;
                 case TUNNEL:
-                    if (elapsedSeconds >= 0 && elapsedSeconds <= 60) {
+                    if (elapsedSeconds >= minElapsedSeconds &&
+                            elapsedSeconds <= dayChange) {
                         tileImage = new Image("file:resources/tunnelnew.png");
-                    } else if (elapsedSeconds >= 60 && elapsedSeconds <= 120) {
+                    } else if (elapsedSeconds >= dayChange &&
+                            elapsedSeconds <= maxElapsedSeconds_night) {
                         tileImage = new Image("file:resources/tunnelnew.png");
                     } else {
                         tileImage = new Image("file:resources/tunnelnew.png");

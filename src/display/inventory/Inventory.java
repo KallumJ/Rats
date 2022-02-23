@@ -5,7 +5,6 @@ import javafx.scene.layout.VBox;
 import level.LevelData;
 import objects.GameObjectType;
 import objects.ObjectUtils;
-
 import java.util.*;
 
 /**

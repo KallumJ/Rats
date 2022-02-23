@@ -28,6 +28,8 @@ public class TimeOfDayUtils {
                 return NIGHT_STR;
             case BOTH:
                 return BOTH_STR;
+            default:
+                break;
         }
         throw new IllegalArgumentException(String.format(UNKNOWN_ENUM_ERR, timeOfDay));
     }
@@ -46,6 +48,8 @@ public class TimeOfDayUtils {
                 return TimeOfDay.NIGHT;
             case BOTH_STR:
                 return TimeOfDay.BOTH;
+            default:
+                break;
         }
 
         throw new IllegalArgumentException(String.format(UNKNOWN_STR_ERR, timeString));

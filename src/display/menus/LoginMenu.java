@@ -39,6 +39,9 @@ public class LoginMenu extends GameMenu {
      */
     @Override
     public Parent buildMenu() {
+        int inputBoxWidth=170;
+        int loginButtonWidth=100;
+        
         // Get a blank menu
         BorderPane menu = buildBlank(new MenuTitle(MENU_TITLE), null);
 
@@ -47,19 +50,25 @@ public class LoginMenu extends GameMenu {
         HBox nameControlsContainer = new HBox();
         TextField inputBox = new TextField();
         inputBox.setText(NAME_INPUT_PLACEHOLDER);
-        inputBox.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
-        inputBox.setPrefWidth(170);
+        inputBox.setStyle("-fx-background-color: black; "
+                + "-fx-text-fill: white; "
+                + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
+        inputBox.setPrefWidth(inputBoxWidth);
 
         inputBox.setTranslateX(INPUT_BOX_X);
         inputBox.setTranslateY(INPUT_BOX_Y);
 
         Button loginButton = new Button(LOGIN_BUTTON_TEXT);
         loginButton.setFont(TITLE_FONT);
-        loginButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
-        loginButton.setPrefWidth(100);
+        loginButton.setStyle("-fx-background-color: black; "
+                + "-fx-text-fill: white;");
+        loginButton.setPrefWidth(loginButtonWidth);
 
         loginButton.setOnMouseEntered(event -> {
-            loginButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
+            loginButton.setStyle("-fx-background-color: black; "
+                    + "-fx-text-fill: white; "
+                    + "-fx-border-color: darkgrey; "
+                    + "-fx-border-width: 1px;");
         });
 
         loginButton.setTranslateX(LOGIN_BUTTON_X);

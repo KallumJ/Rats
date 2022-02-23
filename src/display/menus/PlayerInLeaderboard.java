@@ -20,7 +20,7 @@ class PlayerInLeaderboard {
      * @param level the level the score was achieved on.
      * @param score the score reached.
      */
-    public PlayerInLeaderboard(String name, String level, Integer score) {
+    PlayerInLeaderboard(String name, String level, Integer score) {
         this.name = name;
         this.level = level;
         this.score = score;

@@ -338,7 +338,7 @@ class CustomLevelsMenuItem extends MenuItem {
     /**
      * Constructs a CustomLevelsMenuItem.
      */
-    public CustomLevelsMenuItem() {
+    CustomLevelsMenuItem() {
         super("CUSTOM LEVELS");
 
         Scene scene = new Scene(new CustomLevelsMenu().buildMenu());
@@ -355,7 +355,7 @@ class StartCustomLevelMenuItem extends MenuItem {
     /**
      * Constructs a StartNewCustomLevelMenuItem button.
      */
-    public StartCustomLevelMenuItem() {
+    StartCustomLevelMenuItem() {
         super("CREATE CUSTOM LEVEL");
 
         Scene scene = new Scene(new SizeSelectionMenu().buildMenu());
@@ -373,7 +373,7 @@ class EditCustomLevelMenuItem extends MenuItem {
     /**
      * Constructs a EditCustomLevelMenuItem with the provided name.
      */
-    public EditCustomLevelMenuItem() {
+    EditCustomLevelMenuItem() {
         super("EDIT CUSTOM LEVEL");
         Scene scene = new Scene(new EditLevelMenu().buildMenu());
         setOnMousePressed(event -> GameMenu.getStage().setScene(scene));
@@ -390,7 +390,7 @@ class LoadCustomLevelMenuItem extends MenuItem {
     /**
      * Constructs a MenuItem with the provided name.
      */
-    public LoadCustomLevelMenuItem() {
+    LoadCustomLevelMenuItem() {
         super("LOAD CUSTOM LEVEL");
 
         setOnMousePressed(event -> {
@@ -410,7 +410,7 @@ class DeleteCustomLevelMenuItem extends MenuItem {
     /**
      * Constructs a DeleteCustomLevelMenuItem with the provided name.
      */
-    public DeleteCustomLevelMenuItem() {
+    DeleteCustomLevelMenuItem() {
         super("DELETE CUSTOM LEVEL");
 
         setOnMousePressed(event -> {
@@ -430,20 +430,33 @@ class LevelEditItem extends MenuItem {
     /**
      * Constructs a LevelEditItem with the provided name.
      */
-    public LevelEditItem(String id) {
+    LevelEditItem(String id) {
         super(id);
         setOnMousePressed(event -> {
             LevelData levelData =
-                    CustomLevelDataFactory.constructCustomLevelData(PlayerProfileManager.getCurrentlyLoggedInPlayer(), id);
+                    CustomLevelDataFactory.constructCustomLevelData(
+                            PlayerProfileManager.getCurrentlyLoggedInPlayer(), 
+                            id);
             LevelProperties levelProperties = levelData.getLevelProperties();
             // Rats should appear in the editor as adults
             levelData.makeRatsAdults();
             CustomBoard customBoard =
-                    new CustomBoard(levelData, levelProperties.getPopulationToLose(), levelProperties.getExpectedTime(),
-                            levelProperties.getItemInterval(), levelProperties.getRatMaxBabies(), levelProperties.getRatMinBabies(),
-                            levelProperties.getAdultRatSpeed(), levelProperties.getBabyRatSpeed(), levelProperties.getDeathRatSpeed(),
-                            levelProperties.isAirstrikeEnabled(), levelProperties.getCostOfAirstrike(), levelProperties.getNumOfAirstrikeHits(),
-                            levelProperties.getTimeOfDay(), levelProperties.getTimeInterval(), levelProperties.getAllowedItems(), levelProperties.getLevelId());
+                new CustomBoard(levelData, 
+                            levelProperties.getPopulationToLose(),
+                            levelProperties.getExpectedTime(),
+                            levelProperties.getItemInterval(), 
+                            levelProperties.getRatMaxBabies(), 
+                            levelProperties.getRatMinBabies(),
+                            levelProperties.getAdultRatSpeed(),
+                            levelProperties.getBabyRatSpeed(),
+                            levelProperties.getDeathRatSpeed(),
+                            levelProperties.isAirstrikeEnabled(), 
+                            levelProperties.getCostOfAirstrike(), 
+                            levelProperties.getNumOfAirstrikeHits(),
+                            levelProperties.getTimeOfDay(), 
+                            levelProperties.getTimeInterval(), 
+                            levelProperties.getAllowedItems(), 
+                            levelProperties.getLevelId());
             GameObject.setBoard(customBoard);
             Scene scene = new Scene(customBoard.buildGUI());
             GameMenu.getStage().setScene(scene);

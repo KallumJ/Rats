@@ -69,8 +69,8 @@ public class PlayerProfileManager {
      * Save the players file with the current root node.
      */
     public static void savePlayersFile() {
-        XMLFileWriter xmlFileWriter = new XMLFileWriter(new File(PLAYERS_FILE)
-                , playersRoot.getNodeName());
+        XMLFileWriter xmlFileWriter = new XMLFileWriter(new File(PLAYERS_FILE), 
+                playersRoot.getNodeName());
 
         for (Player player : allPlayers) {
             xmlFileWriter.writeNode(player.getAsXMLNode());

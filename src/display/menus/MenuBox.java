@@ -31,8 +31,9 @@ public class MenuBox extends VBox {
      * @return the line.
      */
     private Line createSeparator() {
+        int lineSeparator=200;
         Line sep = new Line();
-        sep.setEndX(200);
+        sep.setEndX(lineSeparator);
         sep.setStroke(Color.DARKGREY);
         return sep;
     }
