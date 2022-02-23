@@ -7,6 +7,7 @@ import objects.GameObjectType;
 import util.TextUtils;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * A class to model a group of checkboxes to select what items are available in the level
@@ -56,6 +57,25 @@ public class ObjectSelectionGroup {
      */
     public VBox getObjectSelectionGroup() {
         return container;
+    }
+
+    /**
+     * A method to set the CheckBox values
+     * @param selectedObjects
+     */
+    public void setSelectedObjectsValues(HashSet<GameObjectType> selectedObjects) {
+        Iterator values = this.container.getChildren().iterator();
+        while (values.hasNext()) {
+            CheckBox checkBox = (CheckBox)values.next();
+            checkBox.setSelected(false); // default to false
+            Iterator objectTypes = selectedObjects.iterator();
+            while (objectTypes.hasNext()) {
+                String objectTypeName = objectTypes.next().toString().replace("_", " ");
+                if (checkBox.getText().equals(objectTypeName)) {
+                    checkBox.setSelected(true);
+                }
+            }
+        }
     }
 
     /**
