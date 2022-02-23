@@ -8,4 +8,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run Java Checkstyle
-        uses: kallumj/java-checkstyle-action@v7
+        uses: kallumj/java-checkstyle-action@v14
