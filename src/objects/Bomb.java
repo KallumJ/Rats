@@ -1,7 +1,5 @@
 package objects;
 
-import java.util.ArrayList;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -10,6 +8,8 @@ import sfx.SFXManager;
 import tile.Direction;
 import tile.Tile;
 import tile.TileType;
+
+import java.util.ArrayList;
 
 /**
  * This class represent the bomb item which explode and destroy anything

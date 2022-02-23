@@ -16,13 +16,13 @@ import java.util.ArrayList;
  *
  * @author Kallum Jones (2005855)
  * @date 2022.02.20
- *
  */
 public class EditLevelMenu extends GameMenu {
     private static final String MENU_TITLE = " E D I T ";
 
     /**
      * A method to build the designed menu for editing a selected level
+     *
      * @return the constructed menu
      */
     @Override

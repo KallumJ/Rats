@@ -6,11 +6,11 @@
  */
 package level;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import objects.GameObject;
 import objects.rats.PeacefulRat;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Constructs a RatPopulation object.

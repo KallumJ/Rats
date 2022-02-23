@@ -14,6 +14,15 @@ public class Main extends Application {
     private static final String APP_HEADER = "Rats CS-230 Group 41";
 
     /**
+     * Method for java to launch the application
+     *
+     * @param args the command line args
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    /**
      * Starts the application.
      *
      * @param stage the stage
@@ -28,14 +37,5 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
         GameMenu.setStage(stage);
-    }
-
-    /**
-     * Method for java to launch the application
-     *
-     * @param args the command line args
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 }

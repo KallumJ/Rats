@@ -1,7 +1,7 @@
 package objects;
 
-import tile.Tile;
 import javafx.scene.image.Image;
+import tile.Tile;
 
 /**
  * This class represent the explosion effect of any explosive object.
@@ -12,9 +12,9 @@ import javafx.scene.image.Image;
 
 public class Explosion extends GameObject {
     /**
-     *Create a new explosion item on the specified tile.
-     *@param standingOn      The tile the explosion effect is on.
+     * Create a new explosion item on the specified tile.
      *
+     * @param standingOn The tile the explosion effect is on.
      */
     public Explosion(Tile standingOn) {
         super(standingOn);
@@ -30,8 +30,7 @@ public class Explosion extends GameObject {
     public void endExplosion() {
         try {
             GameObject.getBoard().removeObject(this);
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
 
 
         }

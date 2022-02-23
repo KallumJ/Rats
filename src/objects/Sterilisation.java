@@ -1,7 +1,5 @@
 package objects;
 
-import java.util.ArrayList;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -9,6 +7,8 @@ import javafx.util.Duration;
 import objects.rats.PeacefulRat;
 import tile.Direction;
 import tile.Tile;
+
+import java.util.ArrayList;
 
 /**
  * This class represent the sterilisation item which start the sterilisation

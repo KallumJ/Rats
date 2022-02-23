@@ -53,6 +53,7 @@ public class ObjectSelectionGroup {
 
     /**
      * A method to get the container with all the controls
+     *
      * @return the object selection group
      */
     public VBox getObjectSelectionGroup() {
@@ -61,12 +62,13 @@ public class ObjectSelectionGroup {
 
     /**
      * A method to set the CheckBox values
+     *
      * @param selectedObjects
      */
     public void setSelectedObjectsValues(HashSet<GameObjectType> selectedObjects) {
         Iterator values = this.container.getChildren().iterator();
         while (values.hasNext()) {
-            CheckBox checkBox = (CheckBox)values.next();
+            CheckBox checkBox = (CheckBox) values.next();
             checkBox.setSelected(false); // default to false
             Iterator objectTypes = selectedObjects.iterator();
             while (objectTypes.hasNext()) {
@@ -80,6 +82,7 @@ public class ObjectSelectionGroup {
 
     /**
      * A method to get the set of selected objects
+     *
      * @return the set of selected objects
      */
     public HashSet<GameObjectType> getSelectedObjects() {

@@ -54,22 +54,6 @@ public class LevelData {
     }
 
     /**
-     * A method to change a tile in a tileset with another
-     *
-     * @param tileToChange The object of the Tile you'd like to change
-     * @param newTile      A new Tile object which will be put in the old tiles place
-     */
-    public void changeTile(Tile tileToChange, Tile newTile) {
-        List<Tile> tiles = this.tileSet.getAllTiles();
-        int index = tiles.indexOf(tileToChange);
-        if (index >= 0) {
-            tiles.set(index, newTile);
-        }
-        this.setTileSet(tiles);
-        LevelUtils.setAdjacentTiles(this.tileSet);
-    }
-
-    /**
      * Takes in a list of Tiles and produces a tileset
      *
      * @param tiles list of tiles in tile set
@@ -86,6 +70,22 @@ public class LevelData {
             }
         }
 
+    }
+
+    /**
+     * A method to change a tile in a tileset with another
+     *
+     * @param tileToChange The object of the Tile you'd like to change
+     * @param newTile      A new Tile object which will be put in the old tiles place
+     */
+    public void changeTile(Tile tileToChange, Tile newTile) {
+        List<Tile> tiles = this.tileSet.getAllTiles();
+        int index = tiles.indexOf(tileToChange);
+        if (index >= 0) {
+            tiles.set(index, newTile);
+        }
+        this.setTileSet(tiles);
+        LevelUtils.setAdjacentTiles(this.tileSet);
     }
 
     /**

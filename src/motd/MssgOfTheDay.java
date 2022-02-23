@@ -3,9 +3,9 @@ package motd;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URI;
 
 /**
  * Contains methods to return the Message of the Day from the

@@ -1,11 +1,11 @@
 package objects;
 
-import java.util.Random;
-
 import javafx.scene.image.Image;
 import objects.rats.Rat;
 import tile.Tile;
 import tile.TileType;
+
+import java.util.Random;
 
 /**
  * This class represent a portal that takes something for one side and gets it

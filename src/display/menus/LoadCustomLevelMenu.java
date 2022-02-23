@@ -19,6 +19,7 @@ public class LoadCustomLevelMenu extends GameMenu {
 
     /**
      * Constructs the designed menu
+     *
      * @return the constructed menu
      */
     @Override

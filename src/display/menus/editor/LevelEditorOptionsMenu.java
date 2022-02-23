@@ -17,7 +17,6 @@ import java.util.HashSet;
  *
  * @author Kallum Jones (2005855) Aser (minor updates)
  * @date 2022.02.11
- *
  */
 public class LevelEditorOptionsMenu {
     public static final int WINDOW_OFFSET = 800;
@@ -61,7 +60,6 @@ public class LevelEditorOptionsMenu {
         deleteItems = new RadioButton("Delete items on tile");
 
 
-
         timeIntervalTextField = new TextField();
         onlyDayTime = new RadioButton("Always day time");
         onlyNightTime = new RadioButton("Always night time");
@@ -84,6 +82,7 @@ public class LevelEditorOptionsMenu {
 
     /**
      * Builds the LevelPropertiesInputMenu gui
+     *
      * @return the menu as a VBox
      */
     public VBox buildGUI() {
@@ -322,10 +321,10 @@ public class LevelEditorOptionsMenu {
         VBox container = new VBox();
         container.setPrefSize(600, 600);
         container.getChildren().addAll(
-            populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel, 
-            adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel, 
-            timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
-            tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight,
+                populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel,
+                adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel,
+                timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
+                tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight,
                 allowedItemsLabel, objectSelectionGroup.getObjectSelectionGroup(), levelNameLabel, levelNameTextField
         );
         container.setStyle("-fx-background-color: #000000;");
@@ -336,6 +335,7 @@ public class LevelEditorOptionsMenu {
 
     /**
      * Sets all the properties in the provided LevelData to those contained in the menu
+     *
      * @param levelData the level data to set the properties for
      */
     public void setLevelProperties(LevelData levelData) {
@@ -364,6 +364,7 @@ public class LevelEditorOptionsMenu {
 
     /**
      * Get the number of airstrike hits for this level
+     *
      * @return the number of airstrike hits for this level as a number of tiles
      */
     private int getNumOfAirstrikeHits() {
@@ -372,6 +373,7 @@ public class LevelEditorOptionsMenu {
 
     /**
      * Get the cost of calling an airstrike
+     *
      * @return cost of calling an airstrike in points
      */
     private int getCostOfAirstrike() {
@@ -380,6 +382,7 @@ public class LevelEditorOptionsMenu {
 
     /**
      * Get whether an airstrike is enabled
+     *
      * @return whether an airstrike is enabled
      */
     private boolean getAirstrikeEnabled() {
@@ -388,74 +391,119 @@ public class LevelEditorOptionsMenu {
 
     /**
      * Get the time period between day cycle changes
+     *
      * @return the time period between day cycle changes in seconds
      */
     private int getTimeInterval() {
         return Integer.parseInt(timeIntervalTextField.getText());
     }
 
+    public void setTimeInterval(int timeInterval) {
+        timeIntervalTextField.setText(String.valueOf(timeInterval));
+    }
+
     /**
      * Returns the input population to lose
+     *
      * @return the input population to lose
      */
     public int getPopulationToLose() {
         return Integer.parseInt(populationToLoseTextField.getText());
     }
 
+    public void setPopulationToLose(int populationToLose) {
+        populationToLoseTextField.setText(String.valueOf(populationToLose));
+    }
+
     /**
      * Returns the input expected time to finish the level
+     *
      * @return the input expected time to finish the level
      */
     public int getExpectedTime() {
         return Integer.parseInt(expectedTimeTextField.getText());
     }
 
+    public void setExpectedTime(int expectedTime) {
+        expectedTimeTextField.setText(String.valueOf(expectedTime));
+    }
+
     /**
      * Returns the input item drop interval
+     *
      * @return the input item drop interval
      */
     public int getItemInterval() {
         return Integer.parseInt(itemIntervalTextField.getText());
     }
 
+    public void setItemInterval(int itemInterval) {
+        itemIntervalTextField.setText(String.valueOf(itemInterval));
+    }
+
     /**
      * Returns the input maximum number of babies a rat can have
+     *
      * @return the input maximum number of babies a rat can have
      */
     public int getRatMaxBabies() {
         return Integer.parseInt(ratMaxBabiesTextField.getText());
     }
 
+    public void setRatMaxBabies(int ratMaxBabies) {
+        ratMaxBabiesTextField.setText(String.valueOf(ratMaxBabies));
+    }
+
     /**
      * Returns the input minimum number of babies a rat can have
+     *
      * @return the input minimum number of babies a rat can have
      */
     public int getRatMinBabies() {
         return Integer.parseInt(ratMinBabiesTextField.getText());
     }
 
+    public void setRatMinBabies(int ratMinBabies) {
+        ratMinBabiesTextField.setText(String.valueOf(ratMinBabies));
+    }
+
     /**
      * Returns the input speed of an adult rat
+     *
      * @return the input speed of an adult rat
      */
     public int getAdultRatSpeed() {
         return Integer.parseInt(adultRatSpeedTextField.getText());
     }
 
+    public void setAdultRatSpeed(int adultRatSpeed) {
+        adultRatSpeedTextField.setText(String.valueOf(adultRatSpeed));
+    }
+
     /**
      * Returns the input speed of a baby rat
+     *
      * @return the input speed of a baby rat
      */
     public int getBabyRatSpeed() {
         return Integer.parseInt(babyRatSpeedTextField.getText());
     }
 
+    public void setBabyRatSpeed(int babyRatSpeed) {
+        babyRatSpeedTextField.setText(String.valueOf(babyRatSpeed));
+    }
+
     /**
      * Returns the input speed of a death rat
+     *
      * @return the input speed of a death rat
      */
     public int getDeathRatSpeed() {
         return Integer.parseInt(deathRatSpeedTextField.getText());
+    }
+
+    public void setDeathRatSpeed(int deathRatSpeed) {
+        deathRatSpeedTextField.setText(String.valueOf(deathRatSpeed));
     }
 
     public boolean getDeleteItemsChecked() {
@@ -464,6 +512,7 @@ public class LevelEditorOptionsMenu {
 
     /**
      * Returns TileType of selected tile
+     *
      * @return TileType of selected tile
      */
     public TileType getTileSelected() {
@@ -475,11 +524,12 @@ public class LevelEditorOptionsMenu {
             default:
                 return TileType.GRASS;
         }
-        
+
     }
 
     /**
      * Gets what time of day is selected
+     *
      * @return what time of day is selected
      */
     public TimeOfDay getTimeOfDay() {
@@ -490,50 +540,6 @@ public class LevelEditorOptionsMenu {
         } else {
             return TimeOfDay.BOTH;
         }
-    }
-
-    public void setPopulationToLose(int populationToLose) {
-        populationToLoseTextField.setText(String.valueOf(populationToLose));
-    }
-
-    public void setExpectedTime(int expectedTime) {
-        expectedTimeTextField.setText(String.valueOf(expectedTime));
-    }
-
-    public void setItemInterval(int itemInterval) {
-        itemIntervalTextField.setText(String.valueOf(itemInterval));
-    }
-
-    public void setRatMaxBabies(int ratMaxBabies) {
-        ratMaxBabiesTextField.setText(String.valueOf(ratMaxBabies));
-    }
-
-    public void setRatMinBabies(int ratMinBabies) {
-        ratMinBabiesTextField.setText(String.valueOf(ratMinBabies));
-    }
-
-    public void setAdultRatSpeed(int adultRatSpeed) {
-        adultRatSpeedTextField.setText(String.valueOf(adultRatSpeed));
-    }
-
-    public void setBabyRatSpeed(int babyRatSpeed) {
-        babyRatSpeedTextField.setText(String.valueOf(babyRatSpeed));
-    }
-
-    public void setDeathRatSpeed(int deathRatSpeed) {
-        deathRatSpeedTextField.setText(String.valueOf(deathRatSpeed));
-    }
-
-    public void setIncludeAirstrike(boolean include) {
-        includeAirstrike.setSelected(include);
-    }
-
-    public void setAirstrikeCost(int airstrikeCost) {
-        airstrikeCostTextField.setText(String.valueOf(airstrikeCost));
-    }
-
-    public void setAirstrikeNumberOfHits(int numOfTiles) {
-        airstrikeNumberOfHitsTextField.setText(String.valueOf(numOfTiles));
     }
 
     public void setTimeOfDay(TimeOfDay timeOfDay) {
@@ -550,15 +556,23 @@ public class LevelEditorOptionsMenu {
         }
     }
 
-    public void setTimeInterval(int timeInterval) {
-        timeIntervalTextField.setText(String.valueOf(timeInterval));
+    public void setIncludeAirstrike(boolean include) {
+        includeAirstrike.setSelected(include);
     }
 
-    public void setSelectedObjects(HashSet<GameObjectType> allowedItems) {
-        objectSelectionGroup.setSelectedObjectsValues(allowedItems);
+    public void setAirstrikeCost(int airstrikeCost) {
+        airstrikeCostTextField.setText(String.valueOf(airstrikeCost));
+    }
+
+    public void setAirstrikeNumberOfHits(int numOfTiles) {
+        airstrikeNumberOfHitsTextField.setText(String.valueOf(numOfTiles));
     }
 
     public HashSet<GameObjectType> getSelectedObjects() {
         return objectSelectionGroup.getSelectedObjects();
+    }
+
+    public void setSelectedObjects(HashSet<GameObjectType> allowedItems) {
+        objectSelectionGroup.setSelectedObjectsValues(allowedItems);
     }
 }

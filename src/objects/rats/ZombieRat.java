@@ -55,8 +55,7 @@ public class ZombieRat extends Rat {
 
             try {
                 GameObject.getBoard().removeObject(this);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
 
 
             }

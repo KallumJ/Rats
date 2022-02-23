@@ -6,11 +6,7 @@ import level.LevelData;
 import objects.GameObjectType;
 import objects.ObjectUtils;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
-import java.util.List;
+import java.util.*;
 
 /**
  * A class to display and control the inventory for the game.
@@ -22,9 +18,9 @@ public class Inventory {
 
     public static final int INVENTORY_WIDTH = 300; // in pixels
     private static final int INVENTORY_PADDING = 10; // px
+    protected final Set<ItemRow> itemRows;
     private final List<GameObjectType> itemsInInventory;
     private final LevelData levelData;
-    protected final Set<ItemRow> itemRows;
     private final VBox inventoryNode;
     private final GameObjectType[] selectionList;
 

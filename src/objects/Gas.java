@@ -1,8 +1,5 @@
 package objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -12,6 +9,9 @@ import level.LevelUtils;
 import objects.rats.Rat;
 import tile.Direction;
 import tile.Tile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author fahds
@@ -102,8 +102,7 @@ public class Gas extends GameObject implements ObjectStoppable {
 
                 if (counter < range) {
                     delayExpand(adjacentTile);
-                }
-                else {
+                } else {
                     for (GasEffect gasEffect : gasEffects) {
                         gasEffect.disappear();
                     }

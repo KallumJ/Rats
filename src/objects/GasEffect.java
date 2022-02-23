@@ -31,8 +31,7 @@ public class GasEffect extends GameObject implements ObjectStoppable {
 
         if (standingOn.getTileType().equals(TileType.PATH)) {
             super.setIcon(gasEffectImage);
-        }
-        else {
+        } else {
             super.setIcon(null);
         }
 

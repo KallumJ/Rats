@@ -1,7 +1,5 @@
 package objects.rats;
 
-import java.util.Random;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -9,6 +7,8 @@ import javafx.util.Duration;
 import objects.GameObject;
 import tile.Direction;
 import tile.Tile;
+
+import java.util.Random;
 
 /**
  * This class represent the peaceful rats which will mate and reproduce.
@@ -97,16 +97,13 @@ public class PeacefulRat extends Rat {
         if (!adult) {
 
             decidedIcon = babyRatImage;
-        }
-        else if (gender.equalsIgnoreCase("m")) {
+        } else if (gender.equalsIgnoreCase("m")) {
 
             decidedIcon = maleRatImage;
-        }
-        else if (pregnant) {
+        } else if (pregnant) {
 
             decidedIcon = pregnantFemaleRatImage;
-        }
-        else {
+        } else {
 
             decidedIcon = femaleRatImage;
         }
@@ -331,8 +328,7 @@ public class PeacefulRat extends Rat {
         if (decision == 1) {
 
             newBornGender = "m";
-        }
-        else {
+        } else {
 
             newBornGender = "f";
         }

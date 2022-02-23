@@ -9,7 +9,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -18,7 +21,6 @@ import level.LevelData;
 import level.custom.CustomLevelDataFactory;
 import objects.GameObject;
 import util.TextUtils;
-import javafx.scene.control.Button;
 
 
 public class SizeSelectionMenu extends GameMenu {
@@ -40,7 +42,7 @@ public class SizeSelectionMenu extends GameMenu {
     @Override
     public Parent buildMenu() {
         // Add a back button event handler
-		EventHandler<Event> backHandler = event -> GameMenu.getStage()
+        EventHandler<Event> backHandler = event -> GameMenu.getStage()
                 .setScene(new Scene(new CustomLevelsMenu().buildMenu()));
 
         // Get a blank menu
@@ -53,7 +55,7 @@ public class SizeSelectionMenu extends GameMenu {
         Label heightLabel = new Label(HEIGHT_LABEL);
         heightLabel.setTextFill(Color.WHITE);
         heightLabel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;");
-        
+
         heightLabel.setTranslateX(120);
         heightLabel.setTranslateY(280);
 

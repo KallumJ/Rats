@@ -40,6 +40,9 @@ public class LevelUtils {
             LEVELS_PATH + "/customLevels/";
     private static final String CUSTOM_LEVELS_FILE_PATH =
             CUSTOM_LEVELS_DIR_PATH + "/%s-%s.xml";
+    private static final String SAVED_CUSTOM_LEVELS_DIR_PATH = CUSTOM_LEVELS_DIR_PATH +
+            "/savedLevels/";
+    private static final String SAVED_CUSTOM_LEVELS_FILE_PATH = SAVED_CUSTOM_LEVELS_DIR_PATH + "/%s-%s.xml";
     private static final String INVALID_TILE_TYPE =
             "%s is an invalid tile " + "type";
     private static final String INVALID_DIRECTION_ERROR =
@@ -50,9 +53,6 @@ public class LevelUtils {
             + "the provided level id";
     private static final String NO_SAVED_LEVELS =
             "The player has no saved " + "levels";
-    private static final String SAVED_CUSTOM_LEVELS_DIR_PATH = CUSTOM_LEVELS_DIR_PATH +
-            "/savedLevels/";
-    private static final String SAVED_CUSTOM_LEVELS_FILE_PATH = SAVED_CUSTOM_LEVELS_DIR_PATH + "/%s-%s.xml";
 
     /**
      * Empty private constructor method, preventing LevelUtils from being

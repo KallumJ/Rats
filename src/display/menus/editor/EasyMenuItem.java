@@ -10,13 +10,10 @@ import level.LevelData;
 import level.custom.CustomLevelDataFactory;
 
 /**
- *
- *
  * @date 2022/02/22
- *
  */
 
-public class EasyMenuItem extends MenuItem{
+public class EasyMenuItem extends MenuItem {
     private static final int HEIGHT_LIMIT = 20;
     private static final int WIDTH_LIMIT = 20;
     private static final String INVALID_SIZE =
@@ -52,11 +49,11 @@ public class EasyMenuItem extends MenuItem{
                 LevelData customLevel = CustomLevelDataFactory.getBlankLevelData(height, width);
 
                 CustomBoard board = new CustomBoard(customLevel, POPULATION_TO_LOSE,
-                    EXPECTED_TIME, ITEM_INTERVAL, RAT_MAX_BABIES, RAT_MIN_BABIES,
-                    ADULT_RAT_SPEED, BABY_RAT_SPEED, DEATH_RAT_SPEED, INCLUDE_AIRSTRIKE, COST_OF_AIRSTRIKE,
-                        AIRSTRIKE_NUM_OF_HITS, TIME_OF_DAY, TIME_INTERVAL, null ,null
+                        EXPECTED_TIME, ITEM_INTERVAL, RAT_MAX_BABIES, RAT_MIN_BABIES,
+                        ADULT_RAT_SPEED, BABY_RAT_SPEED, DEATH_RAT_SPEED, INCLUDE_AIRSTRIKE, COST_OF_AIRSTRIKE,
+                        AIRSTRIKE_NUM_OF_HITS, TIME_OF_DAY, TIME_INTERVAL, null, null
                 );
-                Scene scene = new Scene(board.buildGUI());              
+                Scene scene = new Scene(board.buildGUI());
 
                 GameMenu.getStage().setScene(scene);
             }

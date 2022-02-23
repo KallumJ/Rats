@@ -6,11 +6,6 @@ import display.menus.GameMenu;
 import display.menus.LoseMenu;
 import display.menus.MainMenu;
 import display.menus.WinMenu;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -36,6 +31,10 @@ import sfx.SFXManager;
 import tile.Tile;
 import tile.TileType;
 import util.TextUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * A class to model the current game board

@@ -19,6 +19,7 @@ public class ResumeCustomLevelMenu extends GameMenu {
 
     /**
      * A method to build the designed menu
+     *
      * @return the designed menu
      */
     @Override
