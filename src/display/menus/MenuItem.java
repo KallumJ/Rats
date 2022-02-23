@@ -15,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import level.LevelData;
 import level.LevelDataFactory;
+import level.LevelProperties;
 import level.LevelUtils;
 import level.custom.CustomLevelDataFactory;
 import objects.GameObject;
@@ -434,10 +435,15 @@ class LevelEditItem extends MenuItem {
 		setOnMousePressed(event -> {
 			LevelData levelData =
 					CustomLevelDataFactory.constructCustomLevelData(PlayerProfileManager.getCurrentlyLoggedInPlayer(), id);
-
+			LevelProperties levelProperties = levelData.getLevelProperties();
 			// Rats should appear in the editor as adults
 			levelData.makeRatsAdults();
-			CustomBoard customBoard = new CustomBoard(levelData);
+			CustomBoard customBoard = 
+					new CustomBoard(levelData, levelProperties.getPopulationToLose(), levelProperties.getExpectedTime(), 
+					levelProperties.getItemInterval(), levelProperties.getRatMaxBabies(), levelProperties.getRatMinBabies(), 
+					levelProperties.getAdultRatSpeed(), levelProperties.getBabyRatSpeed(), levelProperties.getDeathRatSpeed(), 
+					levelProperties.isAirstrikeEnabled(), levelProperties.getCostOfAirstrike(), levelProperties.getNumOfAirstrikeHits(), 
+					levelProperties.getTimeOfDay(), levelProperties.getTimeInterval(), levelProperties.getAllowedItems(), levelProperties.getLevelId());
 			GameObject.setBoard(customBoard);
 			Scene scene = new Scene(customBoard.buildGUI());
 			GameMenu.getStage().setScene(scene);

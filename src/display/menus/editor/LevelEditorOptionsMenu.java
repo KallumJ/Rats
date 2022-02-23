@@ -78,6 +78,10 @@ public class LevelEditorOptionsMenu {
         objectSelectionGroup = new ObjectSelectionGroup();
     }
 
+    public void setLevelNameTextField(String text) {
+        levelNameTextField.setText(text);
+    }
+
     /**
      * Builds the LevelPropertiesInputMenu gui
      * @return the menu as a VBox
@@ -548,6 +552,10 @@ public class LevelEditorOptionsMenu {
 
     public void setTimeInterval(int timeInterval) {
         timeIntervalTextField.setText(String.valueOf(timeInterval));
+    }
+
+    public void setSelectedObjects(HashSet<GameObjectType> allowedItems) {
+        objectSelectionGroup.setSelectedObjectsValues(allowedItems);
     }
 
     public HashSet<GameObjectType> getSelectedObjects() {
