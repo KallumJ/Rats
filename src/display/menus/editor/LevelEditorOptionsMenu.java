@@ -13,10 +13,12 @@ import tile.TileType;
 import java.util.HashSet;
 
 /**
- * A class to get input from the user for the custom level properties
+ * A class to get input from the user for the custom level properties.
  *
- * @author Kallum Jones (2005855) Aser (minor updates)
+ * @author Kallum Jones (2005855)
+ * @author Aser (minor updates)
  * @date 2022.02.11
+ *
  */
 public class LevelEditorOptionsMenu {
     public static final int WINDOW_OFFSET = 800;
@@ -42,7 +44,7 @@ public class LevelEditorOptionsMenu {
     private final ObjectSelectionGroup objectSelectionGroup;
 
     /**
-     * Constructs a LevelPropertiesInputMenu object
+     * Constructs a LevelPropertiesInputMenu object.
      */
     public LevelEditorOptionsMenu() {
         populationToLoseTextField = new TextField();
@@ -81,9 +83,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Builds the LevelPropertiesInputMenu gui
+     * Builds the LevelPropertiesInputMenu gui.
      *
-     * @return the menu as a VBox
+     * @return the menu as a VBox.
      */
     public VBox buildGUI() {
         //Label for Population to Lose
@@ -334,9 +336,9 @@ public class LevelEditorOptionsMenu {
 
 
     /**
-     * Sets all the properties in the provided LevelData to those contained in the menu
+     * Sets all the properties in the provided LevelData to those contained in the menu.
      *
-     * @param levelData the level data to set the properties for
+     * @param levelData the level data to set the properties for.
      */
     public void setLevelProperties(LevelData levelData) {
         LevelProperties levelProperties = levelData.getLevelProperties();
@@ -363,36 +365,36 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Get the number of airstrike hits for this level
+     * Get the number of airstrike hits for this level.
      *
-     * @return the number of airstrike hits for this level as a number of tiles
+     * @return the number of airstrike hits for this level as a number of tiles.
      */
     private int getNumOfAirstrikeHits() {
         return Integer.parseInt(airstrikeNumberOfHitsTextField.getText());
     }
 
     /**
-     * Get the cost of calling an airstrike
+     * Get the cost of calling an airstrike.
      *
-     * @return cost of calling an airstrike in points
+     * @return cost of calling an airstrike in points.
      */
     private int getCostOfAirstrike() {
         return Integer.parseInt(airstrikeCostTextField.getText());
     }
 
     /**
-     * Get whether an airstrike is enabled
+     * Get whether an airstrike is enabled.
      *
-     * @return whether an airstrike is enabled
+     * @return whether an airstrike is enabled.
      */
     private boolean getAirstrikeEnabled() {
         return includeAirstrike.isSelected();
     }
 
     /**
-     * Get the time period between day cycle changes
+     * Get the time period between day cycle changes.
      *
-     * @return the time period between day cycle changes in seconds
+     * @return the time period between day cycle changes in seconds.
      */
     private int getTimeInterval() {
         return Integer.parseInt(timeIntervalTextField.getText());
@@ -403,9 +405,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Returns the input population to lose
+     * Returns the input population to lose.
      *
-     * @return the input population to lose
+     * @return the input population to lose.
      */
     public int getPopulationToLose() {
         return Integer.parseInt(populationToLoseTextField.getText());
@@ -416,9 +418,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Returns the input expected time to finish the level
+     * Returns the input expected time to finish the level.
      *
-     * @return the input expected time to finish the level
+     * @return the input expected time to finish the level.
      */
     public int getExpectedTime() {
         return Integer.parseInt(expectedTimeTextField.getText());
@@ -429,9 +431,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Returns the input item drop interval
+     * Returns the input item drop interval.
      *
-     * @return the input item drop interval
+     * @return the input item drop interval.
      */
     public int getItemInterval() {
         return Integer.parseInt(itemIntervalTextField.getText());
@@ -442,9 +444,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Returns the input maximum number of babies a rat can have
+     * Returns the input maximum number of babies a rat can have.
      *
-     * @return the input maximum number of babies a rat can have
+     * @return the input maximum number of babies a rat can have.
      */
     public int getRatMaxBabies() {
         return Integer.parseInt(ratMaxBabiesTextField.getText());
@@ -455,9 +457,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Returns the input minimum number of babies a rat can have
+     * Returns the input minimum number of babies a rat can have.
      *
-     * @return the input minimum number of babies a rat can have
+     * @return the input minimum number of babies a rat can have.
      */
     public int getRatMinBabies() {
         return Integer.parseInt(ratMinBabiesTextField.getText());
@@ -468,9 +470,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Returns the input speed of an adult rat
+     * Returns the input speed of an adult rat.
      *
-     * @return the input speed of an adult rat
+     * @return the input speed of an adult rat.
      */
     public int getAdultRatSpeed() {
         return Integer.parseInt(adultRatSpeedTextField.getText());
@@ -481,9 +483,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Returns the input speed of a baby rat
+     * Returns the input speed of a baby rat.
      *
-     * @return the input speed of a baby rat
+     * @return the input speed of a baby rat.
      */
     public int getBabyRatSpeed() {
         return Integer.parseInt(babyRatSpeedTextField.getText());
@@ -494,9 +496,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Returns the input speed of a death rat
+     * Returns the input speed of a death rat.
      *
-     * @return the input speed of a death rat
+     * @return the input speed of a death rat.
      */
     public int getDeathRatSpeed() {
         return Integer.parseInt(deathRatSpeedTextField.getText());
@@ -511,9 +513,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Returns TileType of selected tile
+     * Returns TileType of selected tile.
      *
-     * @return TileType of selected tile
+     * @return TileType of selected tile.
      */
     public TileType getTileSelected() {
         switch (tileSelectChoiceBox.getValue()) {
@@ -528,9 +530,9 @@ public class LevelEditorOptionsMenu {
     }
 
     /**
-     * Gets what time of day is selected
+     * Gets what time of day is selected.
      *
-     * @return what time of day is selected
+     * @return what time of day is selected.
      */
     public TimeOfDay getTimeOfDay() {
         if (onlyDayTime.isSelected()) {

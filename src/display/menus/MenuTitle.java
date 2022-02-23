@@ -25,7 +25,7 @@ public class MenuTitle extends StackPane {
     /**
      * Constructor for a MenuTitle.
      *
-     * @param name the title text
+     * @param name the title text.
      */
     public MenuTitle(final String name) {
         Rectangle bg = new Rectangle(TITLE_WIDTH, TITLE_HEIGHT);

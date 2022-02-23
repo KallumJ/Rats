@@ -33,7 +33,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * A class to model a board in a level editor
+ * A class to model a board in a level editor.
  */
 public class CustomBoard extends Board {
 
@@ -45,9 +45,9 @@ public class CustomBoard extends Board {
 
 
     /**
-     * Constructs a custom board
+     * Constructs a custom board.
      *
-     * @param levelData the LevelData for the custom level
+     * @param levelData the LevelData for the custom level.
      */
     public CustomBoard(LevelData levelData) {
         this.levelData = levelData;
@@ -95,7 +95,7 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * Calls all event listeners in classTest
+     * Calls all event listeners in classTest.
      */
     private void initCustomBoard() {
         levelOptionsStage.setTitle(OPTIONS_TITLE);
@@ -132,9 +132,9 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * removes all items/objects from tile
+     * removes all items/objects from tile.
      *
-     * @param tile to remove items from
+     * @param tile to remove items from.
      */
     private void removeItemsFromTile(Tile tile) {
         List<GameObject> objectsOnTile = LevelUtils.getObjectsOnTile(tile, levelData.getObjects());
@@ -146,9 +146,9 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * Changes tile at mouse position with selected tile type
+     * Changes tile at mouse position with selected tile type.
      *
-     * @param tile the tile to change
+     * @param tile the tile to change.
      */
     private void changeTile(Tile tile) {
         if (tile.getTileType() != inputMenu.getTileSelected()) {
@@ -208,9 +208,9 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * method to check if the custom board has the required number of path tiles
+     * method to check if the custom board has the required number of path tiles.
      *
-     * @return true if board has atleast minimum number of path tiles else false
+     * @return true if board has at least minimum number of path tiles else false.
      */
     private boolean minTileCheck() {
         int numOfPathTiles = 0;
@@ -227,9 +227,9 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * finds first available path/tunnel and calls connectedTiles using the path/tunnel as a parameter and an empty array list
+     * finds first available path/tunnel and calls connectedTiles using the path/tunnel as a parameter and an empty array list.
      *
-     * @return true if all paths/tunnels are connected
+     * @return true if all paths/tunnels are connected.
      */
     private boolean allPathsConnected() {
         List<Tile> tiles = this.levelData.getTileSet().getAllTiles();
@@ -251,11 +251,11 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * recursively calls itself until tile parameter has no more adjacent tiles of type PATH/TUNNEL
+     * recursively calls itself until tile parameter has no more adjacent tiles of type PATH/TUNNEL.
      *
-     * @param tile         current tile used to get new tile from it's adjacent tiles
-     * @param visitedTiles all tiles that have been visited/tile parameter
-     * @return List<Tile> of visited tiles
+     * @param tile         current tile used to get new tile from its adjacent tiles.
+     * @param visitedTiles all tiles that have been visited/tile parameter.
+     * @return List<Tile> of visited tiles.
      */
     private List<Tile> connectedTiles(Tile tile, List<Tile> visitedTiles) {
         visitedTiles.add(tile);
@@ -271,9 +271,9 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * Returns the TileCanvas as a JavaFX Canvas
+     * Returns the TileCanvas as a JavaFX Canvas.
      *
-     * @return a JavaFX Canvas
+     * @return a JavaFX Canvas.
      */
     @Override
     public Canvas getCanvas() {
@@ -291,9 +291,9 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * Get the level data for this board
+     * Get the level data for this board.
      *
-     * @return the level data for this board
+     * @return the level data for this board.
      */
     @Override
     public LevelData getLevelData() {

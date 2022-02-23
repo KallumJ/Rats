@@ -18,10 +18,11 @@ import java.nio.file.Paths;
 
 /**
  * A class to model a menu in the GUI. This class is extended by all other menus
- * in the system
+ * in the system.
  *
  * @author Samhitha Pinisetti 2035196
  * @date 2022.02.09
+ *
  */
 public abstract class GameMenu {
     private static final String NO_BACKGROUND = "Could not load the menu " +
@@ -50,7 +51,7 @@ public abstract class GameMenu {
     /**
      * Gets the current stage on display.
      *
-     * @return the current stage on display
+     * @return the current stage on display.
      */
     public static Stage getStage() {
         return stage;
@@ -59,7 +60,7 @@ public abstract class GameMenu {
     /**
      * Sets the stage to display.
      *
-     * @param stage the stage to display
+     * @param stage the stage to display.
      */
     public static void setStage(Stage stage) {
         GameMenu.stage = stage;
@@ -68,10 +69,10 @@ public abstract class GameMenu {
     /**
      * Builds a menu, with a MenuBox of MenuItems to display in the menu.
      *
-     * @param menuBox     the list of menu items to display in the menu
+     * @param menuBox     the list of menu items to display in the menu.
      * @param backHandler the EventHandler for the back button on the page, or
-     *                    null if there is no back button required
-     * @return the node containing the menu
+     *                    null if there is no back button required.
+     * @return the node containing the menu.
      */
     public BorderPane buildMenu(MenuTitle menuTitle, MenuBox menuBox,
                                 EventHandler<Event> backHandler) {
@@ -90,10 +91,10 @@ public abstract class GameMenu {
     /**
      * Returns a menu with nothing in it.
      *
-     * @param menuTitle   the title of the menu
+     * @param menuTitle   the title of the menu.
      * @param backHandler the EventHandler for the back button on the page, or
-     *                    null if there is no back button required
-     * @return the node containing the blank menu
+     *                    null if there is no back button required.
+     * @return the node containing the blank menu.
      */
     public BorderPane buildBlank(MenuTitle menuTitle,
                                  EventHandler<Event> backHandler) {
@@ -139,7 +140,7 @@ public abstract class GameMenu {
      * An abstract method for subclasses to override and create their menu
      * layouts.
      *
-     * @return the node of the created menu layout
+     * @return the node of the created menu layout.
      */
     public abstract Parent buildMenu();
 
@@ -147,7 +148,7 @@ public abstract class GameMenu {
      * Returns the center of the root BorderPane for subclasses to add
      * controls.
      *
-     * @return the center of the BorderPane
+     * @return the center of the BorderPane.
      */
     protected Pane getCenter() {
         return (Pane) root.getCenter();

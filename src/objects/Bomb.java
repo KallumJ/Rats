@@ -15,8 +15,10 @@ import java.util.ArrayList;
  * This class represent the bomb item which explode and destroy anything
  * horizontally and vertically until reaches grass.
  *
- * @author Fahd & Aser(minor updates)
+ * @author Fahd
+ * @author Aser(minor updates)
  * @date 2022/02/21
+ *
  */
 public class Bomb extends GameObject implements ObjectStoppable {
 
@@ -40,7 +42,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
      *
      * @param standingOn    The tile the bomb is on.
      * @param duration      The Timer length to explode after its activation.
-     * @param timeRemaining the time remaining on the bomb
+     * @param timeRemaining the time remaining on the bomb.
      * @param timerStarted  Indicates if the bomb has been activated.
      */
     public Bomb(Tile standingOn, int duration, int timeRemaining,
@@ -86,7 +88,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
     /**
      * A method to get the amount of time left on the timer.
      *
-     * @return the amount of time left on the timer in seconds
+     * @return the amount of time left on the timer in seconds.
      */
     public int getDuration() {
         return duration;
@@ -95,7 +97,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
     /**
      * Returns whether the timer has started or not.
      *
-     * @return true if the timer has started, false otherwise
+     * @return true if the timer has started, false otherwise.
      */
     public boolean isTimerStarted() {
         return timerStarted;
@@ -104,7 +106,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
     /**
      * Gets the time remaining on this bomb before explosion.
      *
-     * @return the time remaining, in seconds
+     * @return the time remaining, in seconds.
      */
     public int getTimeRemaining() {
         return timeRemaining;
@@ -131,10 +133,10 @@ public class Bomb extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * Find affected tiles recursively
+     * Find affected tiles recursively.
      *
-     * @param direction   the direction to check
-     * @param currentTile the current tile to check
+     * @param direction   the direction to check.
+     * @param currentTile the current tile to check.
      */
     private void findAffectedTilesRecurse(Direction direction, Tile currentTile) {
         affectedTiles.add(currentTile);
@@ -225,9 +227,9 @@ public class Bomb extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method that ends the bomb explosion effect
+     * A method that ends the bomb explosion effect.
      *
-     * @param explosionsEffect the result of the explosion
+     * @param explosionsEffect the result of the explosion.
      */
     private void endExplosion(ArrayList<Explosion> explosionsEffect) {
 

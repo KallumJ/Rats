@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
- * A class for the difficulty selection in the games menu
+ * A class for the difficulty selection in the games menu.
  *
  * @date 2022/02/22
  */

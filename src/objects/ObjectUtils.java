@@ -16,6 +16,7 @@ import java.util.List;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.21
+ *
  */
 public class ObjectUtils {
     private static final String NO_ASSIGNED_IMAGE = "There is no image "
@@ -35,10 +36,10 @@ public class ObjectUtils {
     }
 
     /**
-     * A method to get the image URL for the provided object type
+     * A method to get the image URL for the provided object type.
      *
-     * @param type the type of object
-     * @return the object's image URL
+     * @param type the type of object.
+     * @return the object's image URL.
      */
     public static String getObjectImageUrl(GameObjectType type) {
         switch (type) {
@@ -72,12 +73,12 @@ public class ObjectUtils {
     }
 
     /**
-     * A method to get the default object for the provided type
+     * A method to get the default object for the provided type.
      *
-     * @param standingOn The tile the object is standing on
-     * @param type       the type of the object
-     * @param levelData  the level data for this object
-     * @return The constructed object
+     * @param standingOn The tile the object is standing on.
+     * @param type       the type of the object.
+     * @param levelData  the level data for this object.
+     * @return The constructed object.
      */
     public static GameObject getObjectFromType(Tile standingOn,
                                                GameObjectType type,
@@ -120,10 +121,10 @@ public class ObjectUtils {
     }
 
     /**
-     * A method to get the string for a given item
+     * A method to get the string for a given item.
      *
-     * @param gameObjectType the item type
-     * @return the string
+     * @param gameObjectType the item type.
+     * @return the string.
      */
     public static String getStringForItem(GameObjectType gameObjectType) {
         switch (gameObjectType) {
@@ -153,10 +154,10 @@ public class ObjectUtils {
     }
 
     /**
-     * A method to get the item type for a given string
+     * A method to get the item type for a given string.
      *
-     * @param itemString the string
-     * @return the item type
+     * @param itemString the string.
+     * @return the item type.
      */
     public static GameObjectType getTypeFromString(String itemString) {
         switch (itemString) {
@@ -186,9 +187,9 @@ public class ObjectUtils {
     }
 
     /**
-     * Returns a list of all objects that are items in game (i.e, no male or female rats)
+     * Returns a list of all objects that are items in game (i.e, no male or female rats).
      *
-     * @return a list of all objects that are items in game
+     * @return a list of all objects that are items in game.
      */
     public static GameObjectType[] getAllObjectsList() {
         List<GameObjectType> objects = new ArrayList<>();

@@ -12,6 +12,7 @@ import tile.Tile;
  *
  * @author Fahd
  * @date 2022/02/15
+ *
  */
 public class NoEntrySignCounter extends GameObject implements ObjectStoppable {
 
@@ -59,7 +60,7 @@ public class NoEntrySignCounter extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * Stops any timelines running in this object
+     * Stops any timelines running in this object.
      */
     @Override
     public void stop() {

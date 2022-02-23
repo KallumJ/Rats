@@ -1,10 +1,11 @@
 package envrionment;
 
 /**
- * A class to provide helper methods pertaining to managing the Time of Day
+ * A class to provide helper methods pertaining to managing the Time of Day.
  *
  * @author Kallum Jones (2005855)
  * @date 2022.02.17
+ *
  */
 public class TimeOfDayUtils {
     public static final String DAY_STR = "day";
@@ -14,10 +15,10 @@ public class TimeOfDayUtils {
     private static final String UNKNOWN_STR_ERR = "%s has no enum assigned";
 
     /**
-     * Convert the provided enum into a string
+     * Convert the provided enum into a string.
      *
-     * @param timeOfDay the TimeOfDay enum to convert
-     * @return the time of day as a string
+     * @param timeOfDay the TimeOfDay enum to convert.
+     * @return the time of day as a string.
      */
     public static String getStringFromEnum(TimeOfDay timeOfDay) {
         switch (timeOfDay) {
@@ -32,10 +33,10 @@ public class TimeOfDayUtils {
     }
 
     /**
-     * Convert the provided string to a TimeOfDay enum
+     * Convert the provided string to a TimeOfDay enum.
      *
-     * @param timeString the string provided
-     * @return The time of day as a TimeOfDay enum
+     * @param timeString the string provided.
+     * @return The time of day as a TimeOfDay enum.
      */
     public static TimeOfDay getEnumFromString(String timeString) {
         switch (timeString) {

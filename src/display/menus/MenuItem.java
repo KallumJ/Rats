@@ -41,7 +41,7 @@ public abstract class MenuItem extends StackPane {
     /**
      * Constructs a MenuItem with the provided name.
      *
-     * @param name the name of the menu item
+     * @param name the name of the menu item.
      */
     public MenuItem(String name) {
         this.name = name;
@@ -80,7 +80,7 @@ public abstract class MenuItem extends StackPane {
     /**
      * A method to return the name of the MenuItem.
      *
-     * @return the name of the menu item
+     * @return the name of the menu item.
      */
     public String getName() {
         return name;
@@ -113,7 +113,7 @@ class PlayMenuItem extends MenuItem {
 class LeaderboardMenuItem extends MenuItem {
 
     /**
-     * Constructs a LeaderboardMenuItem
+     * Constructs a LeaderboardMenuItem.
      */
     public LeaderboardMenuItem() {
         super("LEADERBOARD");
@@ -223,7 +223,7 @@ class LevelMenuItem extends MenuItem {
     /**
      * Constructs a levelMenuItem.
      *
-     * @param id the id of the level
+     * @param id the id of the level.
      */
     public LevelMenuItem(String id) {
         super(id);
@@ -251,7 +251,7 @@ class SavedLevelMenuItem extends MenuItem {
     /**
      * Constructs a SavedLevelMenuItem.
      *
-     * @param level the Level file that should open when this menu item is pressed
+     * @param level the Level file that should open when this menu item is pressed.
      */
     public SavedLevelMenuItem(File level) {
         super(LevelUtils.getFilesLevelId(level));
@@ -270,14 +270,14 @@ class SavedLevelMenuItem extends MenuItem {
 }
 
 /**
- * A class to model a menu item for deleting custom levels
+ * A class to model a menu item for deleting custom levels.
  */
 class DeleteLevelMenuItem extends MenuItem {
 
     /**
      * Constructs a DeleteLevelMenuItem with the name of the provided level.
      *
-     * @param level the Level file that should be deleted when this menu item is pressed
+     * @param level the Level file that should be deleted when this menu item is pressed.
      */
     public DeleteLevelMenuItem(File level) {
         super(LevelUtils.getFilesLevelId(level));
@@ -318,7 +318,7 @@ class LeaderboardLevelMenuItem extends MenuItem {
     /**
      * Constructs a LeaderboardLevelMenuItem.
      *
-     * @param id the id of the level
+     * @param id the id of the level.
      */
     public LeaderboardLevelMenuItem(String id) {
         super(id);
@@ -347,7 +347,7 @@ class CustomLevelsMenuItem extends MenuItem {
 }
 
 /**
- * A class to model a menu item for starting a custom level
+ * A class to model a menu item for starting a custom level.
  *
  * @author Kallum Jones 2005855 (10/02/22)
  */
@@ -364,7 +364,7 @@ class StartCustomLevelMenuItem extends MenuItem {
 }
 
 /**
- * A class to model a menu item for editing a custom level
+ * A class to model a menu item for editing a custom level.
  *
  * @author Kallum Jones 2005855 (10/02/22)
  */
@@ -381,7 +381,7 @@ class EditCustomLevelMenuItem extends MenuItem {
 }
 
 /**
- * A class to model a menu item for loading a custom level
+ * A class to model a menu item for loading a custom level.
  *
  * @author Kallum Jones 2005855 (10/02/22)
  */
@@ -401,7 +401,7 @@ class LoadCustomLevelMenuItem extends MenuItem {
 }
 
 /**
- * A class to model a menu item for deleting a custom level
+ * A class to model a menu item for deleting a custom level.
  *
  * @author Kallum Jones 2005855 (10/02/22)
  */
@@ -421,7 +421,7 @@ class DeleteCustomLevelMenuItem extends MenuItem {
 }
 
 /**
- * A class to model a menu item for selecting a custom level to edit
+ * A class to model a menu item for selecting a custom level to edit.
  *
  * @author Kallum Jones 2005855 (20/02/22)
  */
@@ -452,7 +452,7 @@ class LevelEditItem extends MenuItem {
 }
 
 /**
- * A class to model a menu item for resuming an in progress custom level
+ * A class to model a menu item for resuming an in progress custom level.
  *
  * @author Kallum Jones 2005855
  * @date 22/02/22

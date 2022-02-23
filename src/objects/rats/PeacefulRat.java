@@ -15,6 +15,7 @@ import java.util.Random;
  *
  * @author Fahd
  * @date 2022/02/21
+ *
  */
 public class PeacefulRat extends Rat {
 
@@ -230,7 +231,7 @@ public class PeacefulRat extends Rat {
     /**
      * Sets whether this rat is pregnant.
      *
-     * @param pregnant true if pregnant, false otherwise
+     * @param pregnant true if pregnant, false otherwise.
      */
     public void setPregnant(boolean pregnant) {
         this.pregnant = pregnant;
@@ -249,7 +250,7 @@ public class PeacefulRat extends Rat {
     /**
      * A method to get the time til this rat gives birth.
      *
-     * @return the time til this rat gives birth in seconds
+     * @return the time til this rat gives birth in seconds.
      */
     public int getTimeToGiveBirth() {
         return timeToGiveBirth;
@@ -258,7 +259,7 @@ public class PeacefulRat extends Rat {
     /**
      * A method to get the time for this rat to grow up.
      *
-     * @return the time for this rat to grow up in seconds
+     * @return the time for this rat to grow up in seconds.
      */
     public int getTimeToDevelop() {
         return timeToDevelop;
@@ -293,7 +294,7 @@ public class PeacefulRat extends Rat {
     /**
      * Resets the speed of this rat and their partner.
      *
-     * @param partner their partner
+     * @param partner their partner.
      */
     private void resetSpeed(PeacefulRat partner) {
         int speed = GameObject.getBoard()

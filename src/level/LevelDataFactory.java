@@ -26,6 +26,7 @@ import java.util.List;
  *
  * @author Kallum Jones 2005855 & Aser (minor updates)
  * @date 2022.02.21
+ *
  */
 public class LevelDataFactory {
     private static final String INVALID_TILE_TYPE = "An invalid tile type was "
@@ -41,8 +42,8 @@ public class LevelDataFactory {
     /**
      * A method to construct the LevelData object for a given level id.
      *
-     * @param id The id of the level that needs constructing
-     * @return The complete LevelData object
+     * @param id The id of the level that needs constructing.
+     * @return The complete LevelData object.
      */
     public static LevelData constructLevelData(String id) {
         File selectedLevel = LevelUtils.getLevelFileById(id);
@@ -53,9 +54,9 @@ public class LevelDataFactory {
      * A method to construct the saved level data for the provided player and
      * level.
      *
-     * @param currentlyLoggedInPlayer the player
-     * @param id                      the level
-     * @return the complete LevelData object
+     * @param currentlyLoggedInPlayer the player.
+     * @param id                      the level.
+     * @return the complete LevelData object.
      */
     public static LevelData constructSavedLevelData(Player currentlyLoggedInPlayer, String id) {
         File file =
@@ -66,8 +67,8 @@ public class LevelDataFactory {
     /**
      * A method to construct the LevelData object for a given level file.
      *
-     * @param file The level file that needs constructing
-     * @return The complete LevelData object
+     * @param file The level file that needs constructing.
+     * @return The complete LevelData object.
      */
     public static LevelData constructLevelDataFromFile(File file) {
         XMLFileReader xmlFileReader = new XMLFileReader(file);
@@ -101,8 +102,8 @@ public class LevelDataFactory {
     /**
      * A method to read the objects that are stored on the tiles.
      *
-     * @param tileSet An instance of TileSet with all the tiles to read from
-     * @return an ArrayList of Objects with the required information
+     * @param tileSet An instance of TileSet with all the tiles to read from.
+     * @return an ArrayList of Objects with the required information.
      */
     private static ArrayList<GameObject> readObjects(TileSet tileSet,
                                                      LevelProperties levelProperties) {
@@ -130,8 +131,8 @@ public class LevelDataFactory {
     /**
      * A method to create a TileSet for the provided tileSet element.
      *
-     * @param tileSetElement the tileSet element
-     * @return a TileSet representing the tiles in the tile set element
+     * @param tileSetElement the tileSet element.
+     * @return a TileSet representing the tiles in the tile set element.
      */
     private static TileSet readTileSet(Element tileSetElement) {
         TileSet tileSet = new TileSet();
@@ -181,9 +182,9 @@ public class LevelDataFactory {
      * A method to read the properties from the provided level properties'
      * element.
      *
-     * @param levelProperties the levelProperties element
+     * @param levelProperties the levelProperties element.
      * @return a LevelProperties object containing the data read from the
-     * element
+     * element.
      */
     private static LevelProperties readLevelProperties(Element levelProperties) {
         // Load properties into variables
@@ -227,11 +228,11 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to get the allowed items property from the file
+     * A method to get the allowed items property from the file.
      *
-     * @param propertiesElement the levelProperties element to read from
-     * @param propertyName      The property to read
-     * @return The read property, of type String
+     * @param propertiesElement the levelProperties element to read from.
+     * @param propertyName      The property to read.
+     * @return The read property, of type String.
      */
     private static HashSet<GameObjectType> getPropertyAllowedItems(Element propertiesElement, XMLElementNames propertyName) {
         String propertyStr = propertyName.toString();
@@ -247,11 +248,11 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to get the property from properties file as String
+     * A method to get the property from properties file as String.
      *
-     * @param propertiesElement the levelProperties element to read from
-     * @param propertyName      The property to read
-     * @return The read property, of type String
+     * @param propertiesElement the levelProperties element to read from.
+     * @param propertyName      The property to read.
+     * @return The read property, of type String.
      */
     private static String getPropertyStr(Element propertiesElement, XMLElementNames propertyName) {
         String propertyStr = propertyName.toString();
@@ -262,11 +263,11 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to get the TimeOfDay from a property in file
+     * A method to get the TimeOfDay from a property in file.
      *
-     * @param propertiesElement the levelProperties element to read from
-     * @param propertyName      The property to read
-     * @return The read property, of type TimeOfDay
+     * @param propertiesElement the levelProperties element to read from.
+     * @param propertyName      The property to read.
+     * @return The read property, of type TimeOfDay.
      */
     private static TimeOfDay getPropertyTimeOfDay(Element propertiesElement, XMLElementNames propertyName) {
         String propertyStr = propertyName.toString();
@@ -280,11 +281,11 @@ public class LevelDataFactory {
     }
 
     /**
-     * A method to get the boolean from a property in file
+     * A method to get the boolean from a property in file.
      *
-     * @param propertiesElement the levelProperties element to read from
-     * @param propertyName      The property to read
-     * @return The read property, of type boolean
+     * @param propertiesElement the levelProperties element to read from.
+     * @param propertyName      The property to read.
+     * @return The read property, of type boolean.
      */
     private static boolean getPropertyBool(Element propertiesElement, XMLElementNames propertyName) {
         String propertyStr = propertyName.toString();
@@ -298,9 +299,9 @@ public class LevelDataFactory {
      * A utility method to get the property of type integer from the properties
      * element provided, with the provided property name.
      *
-     * @param propertiesElement the levelProperties element to read from
-     * @param propertyName      The property to read
-     * @return The read property, of type int
+     * @param propertiesElement the levelProperties element to read from.
+     * @param propertyName      The property to read.
+     * @return The read property, of type int.
      */
     private static int getPropertyInt(Element propertiesElement,
                                       XMLElementNames propertyName) {
@@ -314,8 +315,8 @@ public class LevelDataFactory {
     /**
      * A method to get the items in the inventory for this level.
      *
-     * @param inventoryElement the inventory element read from file
-     * @return the list of game object types represented in the file
+     * @param inventoryElement the inventory element read from file.
+     * @return the list of game object types represented in the file.
      */
     private static List<GameObjectType> readInventory(Element inventoryElement) {
         NodeList itemElements =

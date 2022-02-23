@@ -7,13 +7,13 @@ import javafx.util.Duration;
 import level.LevelData;
 
 /**
- * A class to model an Inventory used in actual ongoing games
+ * A class to model an Inventory used in actual ongoing games.
  */
 public class GameInventory extends Inventory {
     /**
      * Constructs a GameInventory object.
      *
-     * @param levelData the LevelData of the level associated to this inventory
+     * @param levelData the LevelData of the level associated to this inventory.
      */
     public GameInventory(LevelData levelData) {
         super(levelData);

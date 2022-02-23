@@ -16,6 +16,7 @@ import java.util.List;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.18
+ *
  */
 public class LeaderboardLevelSelectMenu extends GameMenu {
     private static final String MENU_TITLE = " H I G H  S C O R E ";
@@ -23,7 +24,7 @@ public class LeaderboardLevelSelectMenu extends GameMenu {
     /**
      * Creates a Leaderboard level select menu.
      *
-     * @return the node of the created menu layout
+     * @return the node of the created menu layout.
      */
     @Override
     public Parent buildMenu() {

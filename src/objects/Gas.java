@@ -16,6 +16,7 @@ import java.util.List;
 /**
  * @author fahds
  * @date 2022/02/15
+ *
  */
 public class Gas extends GameObject implements ObjectStoppable {
 
@@ -35,7 +36,7 @@ public class Gas extends GameObject implements ObjectStoppable {
     private boolean isActive;
 
     /**
-     * A method to construct the gas object
+     * A method to construct the gas object.
      */
     public Gas(Tile standingOn, boolean active) {
         super(standingOn);
@@ -59,7 +60,7 @@ public class Gas extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to activate the object gas
+     * A method to activate the object gas.
      */
     public void activateGas() {
         if (!isActive) {
@@ -114,25 +115,25 @@ public class Gas extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to get the time of object on the board
+     * A method to get the time of object on the board.
      *
-     * @return duration
+     * @return duration.
      */
     public int getDuration() {
         return duration;
     }
 
     /**
-     * A method to get the range of object on the board
+     * A method to get the range of object on the board.
      *
-     * @return range
+     * @return range.
      */
     public int getRange() {
         return range;
     }
 
     /**
-     * A method to find out when the rat is choking from the gas
+     * A method to find out when the rat is choking from the gas.
      */
     public void startChoking(Rat rat) {
         ratsInGas.add(rat);
@@ -142,7 +143,7 @@ public class Gas extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to get check is the rat is still alive
+     * A method to get check is the rat is still alive.
      */
     public void stillHere(Rat rat) {
 
@@ -154,9 +155,9 @@ public class Gas extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to get the list of the RatsInGas (Rats effected by the gas)
+     * A method to get the list of the RatsInGas (Rats effected by the gas).
      *
-     * @return this.ratsInGas
+     * @return this.ratsInGas.
      */
     public ArrayList<Rat> getRatsInGas() {
 
@@ -164,16 +165,16 @@ public class Gas extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to get the list of the gas effect objects
+     * A method to get the list of the gas effect objects.
      *
-     * @return gasEffect
+     * @return gasEffect.
      */
     public ArrayList<GasEffect> getGasEffects() {
         return gasEffects;
     }
 
     /**
-     * Stops any timelines running in this object
+     * Stops any timelines running in this object.
      */
     @Override
     public void stop() {
@@ -195,16 +196,16 @@ public class Gas extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * Gets whether this gas is active
+     * Gets whether this gas is active.
      *
-     * @return true if the gas is active, false otherwise
+     * @return true if the gas is active, false otherwise.
      */
     public boolean isActive() {
         return isActive;
     }
 
     /**
-     * A method to check if the inventory is empty of the object 'Gas'
+     * A method to check if the inventory is empty of the object 'Gas'.
      */
     private void checkEmpty() {
         if (gasEffects.isEmpty()) {
@@ -226,9 +227,9 @@ public class Gas extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to check if the rat is still in gas effect
+     * A method to check if the rat is still in gas effect.
      *
-     * @return boolean
+     * @return boolean.
      */
     private boolean stillInGas(Rat rat) {
         // Return true if the rat is stood in a gas effect

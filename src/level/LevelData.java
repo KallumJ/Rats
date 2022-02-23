@@ -13,6 +13,7 @@ import java.util.List;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.21
+ *
  */
 public class LevelData {
     private final LevelProperties levelProperties;
@@ -23,10 +24,10 @@ public class LevelData {
     /**
      * Constructs a LevelData object with the provided data.
      *
-     * @param levelProperties The LevelProperties of the Level
-     * @param tileSet         the TileSet for the level
+     * @param levelProperties The LevelProperties of the Level.
+     * @param tileSet         the TileSet for the level.
      * @param objects         the Objects present on a level, as a List of
-     *                        objects
+     *                        objects.
      */
     public LevelData(LevelProperties levelProperties, TileSet tileSet,
                      List<GameObject> objects) {
@@ -38,7 +39,7 @@ public class LevelData {
     /**
      * A method to get the LevelProperties for the level.
      *
-     * @return the LevelProperties for the level
+     * @return the LevelProperties for the level.
      */
     public LevelProperties getLevelProperties() {
         return levelProperties;
@@ -47,7 +48,7 @@ public class LevelData {
     /**
      * A method to get the TileSet for the level.
      *
-     * @return the TileSet for the level
+     * @return the TileSet for the level.
      */
     public TileSet getTileSet() {
         return tileSet;
@@ -56,7 +57,7 @@ public class LevelData {
     /**
      * Takes in a list of Tiles and produces a tileset
      *
-     * @param tiles list of tiles in tile set
+     * @param tiles list of tiles in tile set.
      */
     public void setTileSet(List<Tile> tiles) {
         TileSet oldTileSet = this.tileSet;
@@ -73,10 +74,10 @@ public class LevelData {
     }
 
     /**
-     * A method to change a tile in a tileset with another
+     * A method to change a tile in a tileset with another.
      *
-     * @param tileToChange The object of the Tile you'd like to change
-     * @param newTile      A new Tile object which will be put in the old tiles place
+     * @param tileToChange The object of the Tile you'd like to change.
+     * @param newTile      A new Tile object which will be put in the old tiles place.
      */
     public void changeTile(Tile tileToChange, Tile newTile) {
         List<Tile> tiles = this.tileSet.getAllTiles();
@@ -91,7 +92,7 @@ public class LevelData {
     /**
      * A method to get the List of Objects present on the level.
      *
-     * @return List of Objects present on the level
+     * @return List of Objects present on the level.
      */
     public List<GameObject> getObjects() {
         return objects;
@@ -100,7 +101,7 @@ public class LevelData {
     /**
      * Sets the list of objects.
      *
-     * @param objects a list of objects
+     * @param objects a list of objects.
      */
     public void setObjects(List<GameObject> objects) {
         this.objects = objects;
@@ -109,7 +110,7 @@ public class LevelData {
     /**
      * A method to get the items in the inventory for this level.
      *
-     * @return the items in the inventory for this level
+     * @return the items in the inventory for this level.
      */
     public List<GameObjectType> getInventory() {
         return inventory;
@@ -118,7 +119,7 @@ public class LevelData {
     /**
      * A method to set the items in the inventory for this level.
      *
-     * @param inventory the items in the inventory for this level
+     * @param inventory the items in the inventory for this level.
      */
     public void setInventory(List<GameObjectType> inventory) {
         this.inventory = inventory;
@@ -127,14 +128,14 @@ public class LevelData {
     /**
      * A method to determine whether this level has an inventory assigned.
      *
-     * @return true if yes, false otherwise
+     * @return true if yes, false otherwise.
      */
     public boolean hasInventory() {
         return inventory != null;
     }
 
     /**
-     * A method to make all rats in the level babies
+     * A method to make all rats in the level babies.
      */
     public void makeRatsBabies() {
         for (GameObject object : objects) {
@@ -146,7 +147,7 @@ public class LevelData {
     }
 
     /**
-     * A method to make all rats in the level adults
+     * A method to make all rats in the level adults.
      */
     public void makeRatsAdults() {
         for (GameObject object : objects) {

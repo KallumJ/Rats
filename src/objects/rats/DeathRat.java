@@ -14,6 +14,7 @@ import tile.Tile;
  *
  * @author fahds
  * @date 2022/02/21
+ *
  */
 public class DeathRat extends Rat {
 
@@ -29,10 +30,10 @@ public class DeathRat extends Rat {
     /**
      * Constructs Death rat.
      *
-     * @param standingOn          the standing on
-     * @param speed               the speed of the rat
-     * @param directionOfMovement the direction of movement
-     * @param killsTarget         the kills target
+     * @param standingOn          the standing on.
+     * @param speed               the speed of the rat.
+     * @param directionOfMovement the direction of movement.
+     * @param killsTarget         the kills target.
      */
     public DeathRat(Tile standingOn, int speed, Direction directionOfMovement,
                     int numberOfKills, int killsTarget) {
@@ -53,7 +54,7 @@ public class DeathRat extends Rat {
     /**
      * Kills the provided rat.
      *
-     * @param victim the victim
+     * @param victim the victim.
      */
     public void kill(Rat victim) {
 
@@ -70,7 +71,7 @@ public class DeathRat extends Rat {
     /**
      * Gets the number of kills.
      *
-     * @return the number of kills
+     * @return the number of kills.
      */
     public int getNumberOfKills() {
 
@@ -105,9 +106,9 @@ public class DeathRat extends Rat {
     }
 
     /**
-     * A method to get the death rats kill target
+     * A method to get the death rats kill target.
      *
-     * @return the death rats kill target, in number of rats
+     * @return the death rats kill target, in number of rats.
      */
     public int getKillsTarget() {
         return killsTarget;

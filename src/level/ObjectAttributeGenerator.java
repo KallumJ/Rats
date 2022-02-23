@@ -13,6 +13,7 @@ import java.util.StringJoiner;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.14
+ *
  */
 public class ObjectAttributeGenerator {
     public static final String RAT_KEY = "rat";
@@ -38,8 +39,8 @@ public class ObjectAttributeGenerator {
      * A method to add the attribute string for the provided object to the
      * provided attribute map.
      *
-     * @param objectOnTile the object to add
-     * @param attributes   the attribute map to add too
+     * @param objectOnTile the object to add.
+     * @param attributes   the attribute map to add too.
      */
     public static void addAttributeForObject(GameObject objectOnTile,
                                              Map<String, String> attributes) {
@@ -109,8 +110,8 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute string for Portal.
      *
-     * @param portal the portal
-     * @return the attribute string for the provided portal
+     * @param portal the portal.
+     * @return the attribute string for the provided portal.
      */
     private static String generatePortalAttribute(Portal portal) {
         return "";
@@ -129,8 +130,8 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute string for Gas.
      *
-     * @param gas the gas
-     * @return the attribute string for the provided gas
+     * @param gas the gas.
+     * @return the attribute string for the provided gas.
      */
     private static String generateGasAttribute(Gas gas) {
         StringJoiner attribute = new StringJoiner(" ");
@@ -142,8 +143,8 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute string for a NoEntrySign.
      *
-     * @param noEntrySign the no entry sign
-     * @return the attribute string for the provided no entry sign
+     * @param noEntrySign the no entry sign.
+     * @return the attribute string for the provided no entry sign.
      */
     private static String generateNoEntrySignAttribute(NoEntrySign noEntrySign) {
         StringJoiner attribute = new StringJoiner(" ");
@@ -157,8 +158,8 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute string for a FemaleSexChanger.
      *
-     * @param femaleSexChanger the female sex changer
-     * @return the attribute string for the provided female sex changer
+     * @param femaleSexChanger the female sex changer.
+     * @return the attribute string for the provided female sex changer.
      */
     private static String generateFemaleSexChangeAttribute(FemaleSexChanger femaleSexChanger) {
         return "f";
@@ -167,8 +168,8 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute for a MaleSexChanger.
      *
-     * @param maleSexChanger the male sex changer
-     * @return the attribute string for the provided male sex changer
+     * @param maleSexChanger the male sex changer.
+     * @return the attribute string for the provided male sex changer.
      */
     private static String generateMaleSexChangeAttribute(MaleSexChanger maleSexChanger) {
         return "m";
@@ -177,8 +178,8 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute for a Poison object.
      *
-     * @param poison the poison
-     * @return the attribute string for the provided poison object
+     * @param poison the poison.
+     * @return the attribute string for the provided poison object.
      */
     private static String generatePoisonAttribute(Poison poison) {
         return "";
@@ -187,7 +188,7 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute for a Sterilisation object.
      *
-     * @param sterilisation the sterilisation object
+     * @param sterilisation the sterilisation object.
      * @return the attribute string for the provided sterilisation object.
      */
     private static String generateSterilisationAttribute(Sterilisation sterilisation) {
@@ -202,8 +203,8 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute for a bomb.
      *
-     * @param bomb the bomb object
-     * @return the attribute string for a bomb object
+     * @param bomb the bomb object.
+     * @return the attribute string for a bomb object.
      */
     private static String generateBombAttribute(Bomb bomb) {
         StringJoiner attribute = new StringJoiner(" ");
@@ -218,8 +219,8 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute for a death rat.
      *
-     * @param deathRat the death rat object
-     * @return the attribute string for the death rat object
+     * @param deathRat the death rat object.
+     * @return the attribute string for the death rat object.
      */
     private static String generateDeathRatAttribute(DeathRat deathRat) {
         StringJoiner attribute = new StringJoiner(" ");
@@ -234,8 +235,8 @@ public class ObjectAttributeGenerator {
     /**
      * A method to generate the attribute for a peaceful rat.
      *
-     * @param peacefulRat the peaceful rat object
-     * @return the attribute string for the peaceful rat object
+     * @param peacefulRat the peaceful rat object.
+     * @return the attribute string for the peaceful rat object.
      */
     private static String generateRatAttribute(PeacefulRat peacefulRat) {
         StringJoiner attribute = new StringJoiner(" ");

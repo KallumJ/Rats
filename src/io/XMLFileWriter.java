@@ -16,6 +16,7 @@ import java.util.ArrayList;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.12
+ *
  */
 public class XMLFileWriter {
     private static final String UNABLE_TO_CREATE =
@@ -33,8 +34,8 @@ public class XMLFileWriter {
     /**
      * Constructs an XMLFileWriter object.
      *
-     * @param file     The file to write too
-     * @param rootName The name of the root node in this xml file
+     * @param file     The file to write too.
+     * @param rootName The name of the root node in this xml file.
      */
     public XMLFileWriter(File file, String rootName) {
         try {
@@ -83,7 +84,7 @@ public class XMLFileWriter {
     /**
      * A method to write a provided XMLNode to the file.
      *
-     * @param xmlNode the XMLNode to write to the file
+     * @param xmlNode the XMLNode to write to the file.
      */
     public void writeNode(XMLNode xmlNode) {
         try {

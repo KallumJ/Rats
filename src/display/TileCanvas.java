@@ -14,7 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * A class to draw tiles and objects to a JavaFX canvas
+ * A class to draw tiles and objects to a JavaFX canvas.
  */
 public class TileCanvas {
     private static final String IMAGE_NOT_FOUND = "Image for tile type %s not "
@@ -30,9 +30,9 @@ public class TileCanvas {
 
 
     /**
-     * Constructs a TileCanvas object
+     * Constructs a TileCanvas object.
      *
-     * @param levelData the level data to draw a canvas for
+     * @param levelData the level data to draw a canvas for.
      */
     public TileCanvas(LevelData levelData) {
 
@@ -61,9 +61,9 @@ public class TileCanvas {
     }
 
     /**
-     * Returns the TileCanvas as a JavaFX Canvas
+     * Returns the TileCanvas as a JavaFX Canvas.
      *
-     * @return a JavaFX Canvas
+     * @return a JavaFX Canvas.
      */
     public Canvas getCanvas() {
         return canvas;
@@ -92,7 +92,7 @@ public class TileCanvas {
     }
 
     /**
-     * Display the objects on the screens
+     * Display the objects on the screens.
      */
     private void displayObjects() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -108,7 +108,7 @@ public class TileCanvas {
     }
 
     /**
-     * Displays the tiles in the level on the board
+     * Displays the tiles in the level on the board.
      */
     private void displayTiles() {
         // Get the Graphic Context of the canvas. This is what we draw on.

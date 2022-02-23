@@ -10,10 +10,11 @@ import javafx.scene.paint.Color;
 import util.TextUtils;
 
 /**
- * A class to model a Win Menu
+ * A class to model a Win Menu.
  *
  * @author Samhitha Pinisetti (2035196)
  * @date 2022/02/19
+ *
  */
 public class WinMenu extends GameMenu {
     private static final String HEADER = " Y O U  W I N ! ";
@@ -26,7 +27,7 @@ public class WinMenu extends GameMenu {
      * A method to create the pop up window that displays the 'YOU WIN'
      * message.
      *
-     * @return the node of the created menu layout
+     * @return the node of the created menu layout.
      */
     @Override
     public Parent buildMenu() {

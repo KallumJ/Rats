@@ -38,7 +38,7 @@ public class MainMenu extends GameMenu {
      * A method to create a main menu with all the main menu items we need on
      * it.
      *
-     * @return The node containing all the main menu items
+     * @return The node containing all the main menu items.
      */
     public Parent buildMenu() {
         // Create a menu box with all the menu items required

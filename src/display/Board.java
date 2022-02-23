@@ -115,7 +115,7 @@ public class Board {
     }
 
     /**
-     * Constructs a Board object without data, to allow for constructing a CustomBoard
+     * Constructs a Board object without data, to allow for constructing a CustomBoard.
      */
     public Board() {
     }
@@ -383,9 +383,9 @@ public class Board {
     }
 
     /**
-     * This method builds the GUI for the rats population bar
+     * This method builds the GUI for the rats population bar.
      *
-     * @return the GUI of the rats population bar
+     * @return the GUI of the rats population bar.
      */
     private Pane buildProgressBar() {
 
@@ -403,7 +403,7 @@ public class Board {
     }
 
     /**
-     * This method updates the rats population bar
+     * This method updates the rats population bar.
      */
     private void updateProgressBar() {
 
@@ -481,25 +481,25 @@ public class Board {
     }
 
     /**
-     * Returns the canvas for this board as a JavaFX Canvas
+     * Returns the canvas for this board as a JavaFX Canvas.
      *
-     * @return the JavaFX canvas for this board
+     * @return the JavaFX canvas for this board.
      */
     public Canvas getCanvas() {
         return tileCanvas.getCanvas();
     }
 
     /**
-     * Get the level data for this board
+     * Get the level data for this board.
      *
-     * @return the level data for this board
+     * @return the level data for this board.
      */
     public LevelData getLevelData() {
         return levelData;
     }
 
     /**
-     * A method that calls airstrike
+     * A method that calls airstrike.
      */
     public void launchAirstrike() {
 
@@ -551,9 +551,9 @@ public class Board {
     }
 
     /**
-     * A method that ends the airstrike attack
+     * A method that ends the airstrike attack.
      *
-     * @param explosionsEffect the result of the attack
+     * @param explosionsEffect the result of the attack.
      */
     private void endAirStarike(ArrayList<Explosion> explosionsEffect) {
 

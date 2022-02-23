@@ -12,19 +12,20 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * A class to construct custom level data objects
+ * A class to construct custom level data objects.
  *
- * @author Kallum Jones (2005855) (10/02/22)
- * @date 2022.02.21
+ * @author Kallum Jones (2005855)
+ * @date 2022.02.22
+ *
  */
 public class CustomLevelDataFactory {
 
     /**
-     * A method to get a blank LevelData ready for editing
+     * A method to get a blank LevelData ready for editing.
      *
-     * @param height the height of the level
-     * @param width  the width of the level
-     * @return The blank LevelData
+     * @param height the height of the level.
+     * @param width  the width of the level.
+     * @return The blank LevelData.
      */
     public static LevelData getBlankLevelData(int height, int width) {
         TileSet tileSet = new TileSet();
@@ -42,11 +43,11 @@ public class CustomLevelDataFactory {
     }
 
     /**
-     * Get the Custom LevelData for the provided player and ID
+     * Get the Custom LevelData for the provided player and ID.
      *
-     * @param currentlyLoggedInPlayer the current player
-     * @param id                      the id of the level they selected
-     * @return the constructed LevelData
+     * @param currentlyLoggedInPlayer the current player.
+     * @param id                      the id of the level they selected.
+     * @return the constructed LevelData.
      */
     public static LevelData constructCustomLevelData(Player currentlyLoggedInPlayer, String id) {
         File file = new File(LevelUtils.constructCustomLevelFileName(currentlyLoggedInPlayer, id));

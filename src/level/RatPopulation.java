@@ -17,6 +17,7 @@ import java.util.List;
  *
  * @author Samhitha Pinisetti 2035196
  * @date 2022.02.21
+ *
  */
 public class RatPopulation {
 
@@ -58,7 +59,7 @@ public class RatPopulation {
     /**
      * A method to get the total population for the level.
      *
-     * @return the totalPopulation for the level
+     * @return the totalPopulation for the level.
      */
     public int getTotalPopulation() {
         calculatePopulation();
@@ -68,7 +69,7 @@ public class RatPopulation {
     /**
      * A method to get the population of female rats for the level.
      *
-     * @return the numberOfFemaleRats for the level
+     * @return the numberOfFemaleRats for the level.
      */
     public int femalePopulation() {
         calculatePopulation();
@@ -78,7 +79,7 @@ public class RatPopulation {
     /**
      * A method to get the population of male rats for the level.
      *
-     * @return the numberOfMaleRats for the level
+     * @return the numberOfMaleRats for the level.
      */
     public int malePopulation() {
         calculatePopulation();
@@ -86,23 +87,3 @@ public class RatPopulation {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

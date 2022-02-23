@@ -10,6 +10,7 @@ import util.TextUtils;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.19
+ *
  */
 class HelpText {
     private final String text;
@@ -20,10 +21,10 @@ class HelpText {
     /**
      * Constructs a HelpText.
      *
-     * @param text      the text to display
-     * @param x         the x position
-     * @param y         the y position
-     * @param underline true if underlined, false otherwise
+     * @param text      the text to display.
+     * @param x         the x position.
+     * @param y         the y position.
+     * @param underline true if underlined, false otherwise.
      */
     HelpText(String text, int x, int y, boolean underline) {
         this.text = text;
@@ -35,7 +36,7 @@ class HelpText {
     /**
      * A method to get the HelpText as a JavaFX node.
      *
-     * @return Text node for this HelpText
+     * @return Text node for this HelpText.
      */
     public Text getNode() {
         Text text = new Text(this.text);

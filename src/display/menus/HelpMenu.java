@@ -24,6 +24,7 @@ import java.util.List;
  * @author Yin Man Cheung
  * @author Samhitha Pinisetti
  * @date 2022.02.09
+ *
  */
 public class HelpMenu extends GameMenu {
     private static final int WINDOW_WIDTH = 860;
@@ -32,7 +33,7 @@ public class HelpMenu extends GameMenu {
     /**
      * Builds the HelpMenu.
      *
-     * @return the HelpMenu as a JavaFX node
+     * @return the HelpMenu as a JavaFX node.
      */
     @Override
     public Parent buildMenu() {
@@ -78,8 +79,8 @@ public class HelpMenu extends GameMenu {
     /**
      * Apply scrolling effects to the provided Text nodes.
      *
-     * @param headerTextNode    the header text node
-     * @param subheaderTextNode the subheading text node
+     * @param headerTextNode    the header text node.
+     * @param subheaderTextNode the subheading text node.
      */
     private void applyScrollingEffects(Text headingsTextNode) {
 

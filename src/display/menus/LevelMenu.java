@@ -16,6 +16,7 @@ import java.util.ArrayList;
  *
  * @author Kallum Jones 2005855
  * @date 2022.02.21
+ *
  */
 public class LevelMenu extends GameMenu {
     public static final String MENU_TITLE = " L E V E L S ";
@@ -24,7 +25,7 @@ public class LevelMenu extends GameMenu {
      * A method to build a menu containing all the levels in the level
      * directory as selectable options.
      *
-     * @return the Node containing the menu items
+     * @return the Node containing the menu items.
      */
     @Override
     public Parent buildMenu() {

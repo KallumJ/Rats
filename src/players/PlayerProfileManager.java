@@ -15,6 +15,7 @@ import java.util.List;
  *
  * @author Kallum Jones 2005855
  * @date 2022/02/20
+ *
  */
 public class PlayerProfileManager {
     public static final String HIGH_SCORE_SEPARATOR = ", ";
@@ -29,10 +30,10 @@ public class PlayerProfileManager {
     }
 
     /**
-     * Get the player by their name
+     * Get the player by their name.
      *
-     * @param playerName the players name
-     * @return the found Player object, null if they do not exist
+     * @param playerName the players name.
+     * @return the found Player object, null if they do not exist.
      */
     public static Player getPlayer(String playerName) {
         for (Player player : allPlayers) {
@@ -47,9 +48,9 @@ public class PlayerProfileManager {
     /**
      * A method to log in the player with the provided name, or create a
      * profile
-     * for them if they don't exist
+     * for them if they don't exist.
      *
-     * @param playerName the players name
+     * @param playerName the players name.
      */
     public static void loginPlayer(String playerName) {
         String name = playerName.toUpperCase();
@@ -65,7 +66,7 @@ public class PlayerProfileManager {
     }
 
     /**
-     * Save the players file with the current root node
+     * Save the players file with the current root node.
      */
     public static void savePlayersFile() {
         XMLFileWriter xmlFileWriter = new XMLFileWriter(new File(PLAYERS_FILE)
@@ -80,25 +81,25 @@ public class PlayerProfileManager {
     }
 
     /**
-     * A method to return the currently logged in player
+     * A method to return the currently logged in player.
      *
-     * @return the currently logged in player
+     * @return the currently logged in player.
      */
     public static Player getCurrentlyLoggedInPlayer() {
         return getPlayer(currentlyLoggedInName);
     }
 
     /**
-     * A method to return all the players currently logged by the system
+     * A method to return all the players currently logged by the system.
      *
-     * @return a List of all Players
+     * @return a List of all Players.
      */
     public static List<Player> getAllPlayers() {
         return allPlayers;
     }
 
     /**
-     * Delete the current player from file
+     * Delete the current player from file.
      */
     public static void deleteCurrentPlayer() {
         allPlayers.remove(getPlayer(currentlyLoggedInName));
@@ -106,7 +107,7 @@ public class PlayerProfileManager {
     }
 
     /**
-     * A method to initialise the all players list
+     * A method to initialise the all players list.
      */
     private static void initAllPlayersList() {
         XMLFileReader xmlfileReader =
@@ -148,9 +149,9 @@ public class PlayerProfileManager {
     }
 
     /**
-     * A method to create a Player profile in the file
+     * A method to create a Player profile in the file.
      *
-     * @param playerName the players name
+     * @param playerName the players name.
      */
     private static void createPlayerProfile(String playerName) {
         allPlayers.add(new Player(playerName, 1));

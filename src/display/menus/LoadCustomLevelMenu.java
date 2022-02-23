@@ -12,15 +12,15 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * A class to model a menu for loading a players custom levels
+ * A class to model a menu for loading a players custom levels.
  */
 public class LoadCustomLevelMenu extends GameMenu {
     private static final String MENU_TITLE = " L O A D ";
 
     /**
-     * Constructs the designed menu
+     * Constructs the designed menu.
      *
-     * @return the constructed menu
+     * @return the constructed menu.
      */
     @Override
     public Parent buildMenu() {

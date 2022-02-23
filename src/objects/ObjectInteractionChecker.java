@@ -6,10 +6,11 @@ import objects.rats.Rat;
 import objects.rats.ZombieRat;
 
 /**
- * A class to check for interactions between 2 provided objects
+ * A class to check for interactions between 2 provided objects.
  *
  * @author Kallum Jones 2005855
  * @date 2022/02/15
+ *
  */
 public class ObjectInteractionChecker {
 
@@ -21,10 +22,10 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects are 2 rats mating
+     * A method to check whether the two provided objects are 2 rats mating.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkRatsMating(GameObject firstObject,
                                        GameObject secondObject) {
@@ -48,11 +49,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a death rat
-     * killing
-     * another rat
+     * killing another rat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkDeathRat(GameObject firstObject,
                                      GameObject secondObject) {
@@ -69,10 +69,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a bomb being
-     * activated
+     * activated.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkBomb(GameObject firstObject,
                                  GameObject secondObject) {
@@ -87,10 +87,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a NoEntrySign
-     * blocking a rat
+     * blocking a rat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkNoEntrySign(GameObject firstObject,
                                         GameObject secondObject) {
@@ -106,10 +106,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a female sex
-     * changer activating on a rat
+     * changer activating on a rat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkFemaleSexChanger(GameObject firstObject,
                                              GameObject secondObject) {
@@ -127,10 +127,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a male sex changer
-     * activating on a rat
+     * activating on a rat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkMaleSexChanger(GameObject firstObject,
                                            GameObject secondObject) {
@@ -148,10 +148,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a poison killing a
-     * rat
+     * rat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkPoison(GameObject firstObject,
                                    GameObject secondObject) {
@@ -168,10 +168,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a sterilisation
-     * sterilising a rat
+     * sterilising a rat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkSterilisation(GameObject firstObject,
                                           GameObject secondObject) {
@@ -188,10 +188,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a sterilisation
-     * effect sterilising a rat
+     * effect sterilising a rat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkSterilisationEffect(GameObject firstObject,
                                                 GameObject secondObject) {
@@ -207,10 +207,10 @@ public class ObjectInteractionChecker {
     }
 
     /**
-     * A method to check whether the two provided objects is a gas and a rat
+     * A method to check whether the two provided objects is a gas and a rat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkGas(GameObject firstObject,
                                 GameObject secondObject) {
@@ -225,10 +225,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a gasEffect and a
-     * rat
+     * rat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkGasEffect(GameObject firstObject,
                                       GameObject secondObject) {
@@ -245,10 +245,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a zombieRat and a
-     * peacefulRat
+     * peacefulRat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkPortal(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof Portal) {
@@ -264,10 +264,10 @@ public class ObjectInteractionChecker {
 
     /**
      * A method to check whether the two provided objects is a zombieRat and a
-     * peacefulRat
+     * peacefulRat.
      *
-     * @param firstObject  the first object
-     * @param secondObject the second object
+     * @param firstObject  the first object.
+     * @param secondObject the second object.
      */
     public static void checkZombieRat(GameObject firstObject, GameObject secondObject) {
         if (firstObject instanceof ZombieRat) {

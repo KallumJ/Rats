@@ -16,6 +16,7 @@ import java.util.ArrayList;
  *
  * @author Fahd
  * @date 2022.02.21
+ *
  */
 public class Sterilisation extends GameObject implements ObjectStoppable {
 
@@ -70,25 +71,25 @@ public class Sterilisation extends GameObject implements ObjectStoppable {
     }
 
     /**
-     * A method to get the duration of the sterilisation
+     * A method to get the duration of the sterilisation.
      *
-     * @return the duration of the sterilisation in seconds
+     * @return the duration of the sterilisation in seconds.
      */
     public int getDuration() {
         return duration;
     }
 
     /**
-     * A method to get whether this sterilisation is active or not
+     * A method to get whether this sterilisation is active or not.
      *
-     * @return true if active, false otherwise
+     * @return true if active, false otherwise.
      */
     public boolean isActive() {
         return active;
     }
 
     /**
-     * Stops any timelines running in this object
+     * Stops any timelines running in this object.
      */
     @Override
     public void stop() {

@@ -9,6 +9,7 @@ import tile.Tile;
  *
  * @author Fahd
  * @date 2022/02/20
+ *
  */
 public class GameObject {
 
@@ -28,7 +29,7 @@ public class GameObject {
     /**
      * Gets the board.
      *
-     * @return the board
+     * @return the board.
      */
     public static Board getBoard() {
 
@@ -38,7 +39,7 @@ public class GameObject {
     /**
      * Sets the board.
      *
-     * @param board the board
+     * @param board the board.
      */
     public static void setBoard(Board board) {
         GameObject.board = board;
@@ -47,7 +48,7 @@ public class GameObject {
     /**
      * Gets the icon.
      *
-     * @return the icon
+     * @return the icon.
      */
     public Image getIcon() {
 
@@ -57,7 +58,7 @@ public class GameObject {
     /**
      * Change icon.
      *
-     * @param icon the icon
+     * @param icon the icon.
      */
     public void setIcon(Image icon) {
 
@@ -67,7 +68,7 @@ public class GameObject {
     /**
      * Gets the standing on.
      *
-     * @return the standing on
+     * @return the standing on.
      */
     public Tile getStandingOn() {
 
@@ -77,7 +78,7 @@ public class GameObject {
     /**
      * Stand on.
      *
-     * @param standingOn the standing on
+     * @param standingOn the standing on.
      */
     public void standOn(Tile standingOn) {
 
