@@ -44,13 +44,6 @@ public class Inventory {
         // Create an item list
         this.itemsInInventory = new ArrayList<>();
 
-        // if the inventory is already preexisting, load it
-        if (levelData.hasInventory()) {
-            for (GameObjectType gameObjectType : levelData.getInventory()) {
-                addItem(gameObjectType);
-            }
-        }
-
         this.levelData = levelData;
         HashSet<GameObjectType> allowedItems =
                 levelData.getLevelProperties().getAllowedItems();
@@ -58,6 +51,13 @@ public class Inventory {
             selectionList = allowedItems.toArray(new GameObjectType[0]);
         } else {
             selectionList = ObjectUtils.getAllObjectsList();
+        }
+
+        // if the inventory is already preexisting, load it
+        if (levelData.hasInventory()) {
+            for (GameObjectType gameObjectType : levelData.getInventory()) {
+                addItem(gameObjectType);
+            }
         }
     }
 
