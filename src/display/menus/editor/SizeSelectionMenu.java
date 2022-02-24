@@ -34,8 +34,8 @@ public class SizeSelectionMenu extends GameMenu {
     private static final int WIDTH_LIMIT = 15;
     private static final int MIN_SIZE = 10;
     private static final String INVALID_SIZE =
-            "Please choose a size with a height no greater than " + HEIGHT_LIMIT +
-                    "and a width no greater than " + WIDTH_LIMIT;
+            "Please choose a size with a height no greater than " + HEIGHT_LIMIT
+                  + "and a width no greater than " + WIDTH_LIMIT;
     private static final int DEFAULT_PADDING = 10;
     private static final Font TITLE_FONT = TextUtils.getFont(20);
 

@@ -13,8 +13,8 @@ public class HardMenuItem extends MenuItem {
     private static final int HEIGHT_LIMIT = 20;
     private static final int WIDTH_LIMIT = 20;
     private static final String INVALID_SIZE =
-            "Please choose a size with a height no greater than " + HEIGHT_LIMIT +
-                    "and a width no greater than " + WIDTH_LIMIT;
+            "Please choose a size with a height no greater than " + HEIGHT_LIMIT
+                    + "and a width no greater than " + WIDTH_LIMIT;
     private static final int POPULATION_TO_LOSE = 20;
     private static final int EXPECTED_TIME = 90;
     private static final int ITEM_INTERVAL = 9;
