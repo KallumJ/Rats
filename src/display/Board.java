@@ -45,7 +45,7 @@ import java.util.Random;
 public class Board {
 
     private static final int POINTS_ON_A_RAT = 10;
-    private static final int POINTS_FOR_AIRSTRIKE = 40;
+    private static int pointsForAirstrike = 40;
     private static final int INTERACTION_CHECK_INTERVAL = 100; // In ms
     private static final String SAVED_BUTTON_LABEL = "Save and exit";
     private static final String AIRSTRIKE_BUTTON_LABEL = "CALL AIRSTRIKE!!!!";
@@ -105,6 +105,8 @@ public class Board {
         this.inventory = new GameInventory(levelData);
 
         progressBar = new ArrayList<>(populationToLose);
+        pointsForAirstrike = this.getLevelProperties().getCostOfAirstrike();
+        
 
         // Start all objects that need starting
         for (GameObject object : getObjects()) {
@@ -124,7 +126,7 @@ public class Board {
      * A method to check for interactions between objects on the board.
      */
     public void interactionCheck() {
-        airstrikeCallButton.setDisable(levelData.getLevelProperties().getScore() < POINTS_FOR_AIRSTRIKE
+        airstrikeCallButton.setDisable(levelData.getLevelProperties().getScore() < pointsForAirstrike
                 || !getLevelProperties().isAirstrikeEnabled());
 
         updateProgressBar();
@@ -296,7 +298,7 @@ public class Board {
 
         // Calls for airstrike when mouse is pressed.
         airstrikeCallButton.setOnMousePressed(event -> {
-            if (levelData.getLevelProperties().getScore() >= POINTS_FOR_AIRSTRIKE) {
+            if (levelData.getLevelProperties().getScore() >= pointsForAirstrike) {
 
                 SFXManager.playAirstrikeSFX();
                 Timeline moveTimeline = new Timeline(new KeyFrame(Duration.seconds(2),
@@ -503,7 +505,7 @@ public class Board {
      */
     public void launchAirstrike() {
 
-        levelData.getLevelProperties().setScore(levelData.getLevelProperties().getScore() - POINTS_FOR_AIRSTRIKE);
+        levelData.getLevelProperties().setScore(levelData.getLevelProperties().getScore() - pointsForAirstrike);
 
         int heightOfMap = GameObject.getBoard().getLevelProperties().getLevelHeight();
         int widthOfMap = GameObject.getBoard().getLevelProperties().getLevelWidth();
