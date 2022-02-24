@@ -25,8 +25,11 @@ import java.nio.file.Paths;
  *
  */
 public abstract class GameMenu {
-    private static final String NO_BACKGROUND = "Could not load the menu " +
-            "background image file";
+    public static final String BUTTON_STYLE =
+            "-fx-background-color: black; -fx-text-fill: white; "
+                    + "-fx-border-color: darkgrey; -fx-border-width: 1px;";
+    private static final String NO_BACKGROUND = "Could not load the menu "
+            + "background image file";
     private static final Path RAT_BG_PATH = Paths.get("resources/ratsBG.jpeg");
 
     // all in px:
@@ -36,6 +39,8 @@ public abstract class GameMenu {
     private static final int TITLE_OFFSET_Y = 200;
     private static final int MENU_OFFSET_X = 100;
     private static final int MENU_OFFSET_Y = 300;
+    private static final int BUTTON_OFFSET_X = 70;
+    private static final int BUTTON_OFFSET_Y = 30;
 
     private static Stage stage;
     private final BorderPane root;
@@ -123,10 +128,10 @@ public abstract class GameMenu {
         // If an EventHandler for a back button is provided, add one
         if (backHandler != null) {
             Button backButton = new Button("B A C K"); //must change this
-            backButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
+            backButton.setStyle(BUTTON_STYLE);
             backButton.setOnMousePressed(backHandler);
-            backButton.setTranslateX(pane.getPrefWidth() - 70);
-            backButton.setTranslateY(pane.getPrefHeight() - 30);
+            backButton.setTranslateX(pane.getPrefWidth() - BUTTON_OFFSET_X);
+            backButton.setTranslateY(pane.getPrefHeight() - BUTTON_OFFSET_Y);
 
             pane.getChildren().add(backButton);
         }

@@ -97,7 +97,7 @@ class PlayMenuItem extends MenuItem {
     /**
      * Constructs a PlayMenuItem.
      */
-    public PlayMenuItem() {
+    PlayMenuItem() {
         super("PLAY");
 
         Scene scene = new Scene(new LevelMenu().buildMenu());
@@ -115,7 +115,7 @@ class LeaderboardMenuItem extends MenuItem {
     /**
      * Constructs a LeaderboardMenuItem.
      */
-    public LeaderboardMenuItem() {
+    LeaderboardMenuItem() {
         super("LEADERBOARD");
 
         Scene scene = new Scene(new LeaderboardLevelSelectMenu().buildMenu());
@@ -133,7 +133,7 @@ class ExitMenuItem extends MenuItem {
     /**
      * Constructs an ExitMenuItem.
      */
-    public ExitMenuItem() {
+    ExitMenuItem() {
         super("EXIT");
 
         setOnMousePressed(event -> System.exit(0));
@@ -150,7 +150,7 @@ class HelpMenuItem extends MenuItem {
     /**
      * Constructs a HelpMenuItem.
      */
-    public HelpMenuItem() {
+    HelpMenuItem() {
         super("HELP");
 
         Scene scene = new Scene(new HelpMenu().buildMenu());
@@ -165,13 +165,13 @@ class HelpMenuItem extends MenuItem {
  */
 class ContinueMenuItem extends MenuItem {
     private static final String NO_SAVED_LEVELS = "No Saved Levels";
-    private static final String ALERT_MSG = "You have no saved levels to " +
-            "continue";
+    private static final String ALERT_MSG = "You have no saved levels to "
+            + "continue";
 
     /**
      * Constructs a ContinueMenuItem.
      */
-    public ContinueMenuItem() {
+    ContinueMenuItem() {
         super("CONTINUE");
         setOnMousePressed(event -> {
             Player player = PlayerProfileManager.getCurrentlyLoggedInPlayer();
@@ -206,7 +206,7 @@ class LoadMenuItem extends MenuItem {
     /**
      * Constructs a LoadMenuItem.
      */
-    public LoadMenuItem() {
+    LoadMenuItem() {
         super("LOAD");
 
         Scene scene = new Scene(new LoadMenu().buildMenu());
@@ -225,7 +225,7 @@ class LevelMenuItem extends MenuItem {
      *
      * @param id the id of the level.
      */
-    public LevelMenuItem(String id) {
+    LevelMenuItem(String id) {
         super(id);
 
         setOnMousePressed(event -> {
@@ -253,7 +253,7 @@ class SavedLevelMenuItem extends MenuItem {
      *
      * @param level the Level file that should open when this menu item is pressed.
      */
-    public SavedLevelMenuItem(File level) {
+    SavedLevelMenuItem(File level) {
         super(LevelUtils.getFilesLevelId(level));
 
         setOnMousePressed(event -> {
@@ -279,7 +279,7 @@ class DeleteLevelMenuItem extends MenuItem {
      *
      * @param level the Level file that should be deleted when this menu item is pressed.
      */
-    public DeleteLevelMenuItem(File level) {
+    DeleteLevelMenuItem(File level) {
         super(LevelUtils.getFilesLevelId(level));
 
         String levelId = LevelUtils.getFilesLevelId(level);
@@ -320,7 +320,7 @@ class LeaderboardLevelMenuItem extends MenuItem {
      *
      * @param id the id of the level.
      */
-    public LeaderboardLevelMenuItem(String id) {
+    LeaderboardLevelMenuItem(String id) {
         super(id);
 
         Scene scene = new Scene(new LeaderBoardMenu(id).buildMenu());
@@ -475,7 +475,7 @@ class ResumeCustomLevelMenuItem extends MenuItem {
     /**
      * Constructs a ResumeCustomLevelMenuItem with the provided name.
      */
-    public ResumeCustomLevelMenuItem() {
+    ResumeCustomLevelMenuItem() {
         super("RESUME CUSTOM LEVEL");
 
         setOnMousePressed(event -> {

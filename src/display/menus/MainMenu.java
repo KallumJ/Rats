@@ -32,6 +32,9 @@ public class MainMenu extends GameMenu {
     private static final int DELETE_OFFSET = 20;
     private static final int LOGOUT_OFFSET = 10;
     private static final Font TITLE_FONT = TextUtils.getFont(15);
+    private static final Font MOTD_LABEL_FONT = TextUtils.getFont(18);
+    private static final Font NAME_LABEL_FONT = TextUtils.getFont(20);
+    private static final int BUTTON_WIDTH = 150;
 
 
     /**
@@ -53,7 +56,7 @@ public class MainMenu extends GameMenu {
         // Add Motd and user name labels
         // make this scrollable
         Label motdLabel = new Label(MssgOfTheDay.getMotD());
-        motdLabel.setFont(TextUtils.getFont(18));
+        motdLabel.setFont(MOTD_LABEL_FONT);
         motdLabel.setTextFill(Color.WHITE);
 
         mainMenu.setBottom(motdLabel);
@@ -67,19 +70,19 @@ public class MainMenu extends GameMenu {
 
         String playerName = player.getPlayerName();
         Label nameLabel = new Label(String.format(NAME_LABEL, playerName));
-        nameLabel.setFont(TextUtils.getFont(20));
+        nameLabel.setFont(NAME_LABEL_FONT);
         nameLabel.setTextFill(Color.WHITE);
 
         // Create buttons to delete and logout of the current player profile
         Button deleteButton = new Button(DELETE_TEXT);
         deleteButton.setFont(TITLE_FONT);
-        deleteButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
-        deleteButton.setPrefWidth(150);
+        deleteButton.setStyle(GameMenu.BUTTON_STYLE);
+        deleteButton.setPrefWidth(BUTTON_WIDTH);
 
         Button logoutButton = new Button(LOGOUT_TEXT);
         logoutButton.setFont(TITLE_FONT);
-        logoutButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
-        logoutButton.setPrefWidth(150);
+        logoutButton.setStyle(GameMenu.BUTTON_STYLE);
+        logoutButton.setPrefWidth(BUTTON_WIDTH);
 
         logoutButton.setTranslateX(LOGOUT_OFFSET);
         logoutButton.setTranslateY(1);

@@ -39,23 +39,36 @@ public class HelpMenu extends GameMenu {
     public Parent buildMenu() {
         Pane pane = new Pane();
         pane.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        pane.setBackground(new Background(new BackgroundFill(Color.BLACK, null
-                , null)));
+        pane.setBackground(new Background(new BackgroundFill(Color.BLACK, null,
+                null)));
 
         HelpText headingsText =
-                new HelpText("ABOUT RATS" + "\nKill all the " + "rats before " + "they can reproduce." + " If you have too many " + "rats in the game, YOU LOSE!!!\n", 75, 50, false);
+                new HelpText("ABOUT RATS\nKill all the rats before they can"
+                        + " reproduce. If you have too many rats in the game,"
+                        + " YOU LOSE!!!\n", 75, 50, false);
 
         Text headingsTextNode = headingsText.getNode();
         applyScrollingEffects(headingsTextNode);
 
         HelpText[] helpTexts = new HelpText[]{
                 new HelpText("\nHOW TO PLAY", 200, 150, true),
-                new HelpText("\nUSE MOUSE TO DRAG OBJECT AND PLACE IT ON THE " + "PATH TILES.", 35, 175, false),
+                new HelpText("\nUSE MOUSE TO DRAG OBJECT AND PLACE IT ON THE"
+                        + " PATH TILES.", 35, 175, false),
                 new HelpText("\nOBJECTS:", 230, 230, true),
-                new HelpText("\nBombs explode and kill all the rats and " +
-                        "destroys objects nearby" + "\nFemale Sex Changers " + "covert male rats that walk past it into females." + "\nMale Sex Changers covert female rats that walk past" + " it into males." + "\nNo Entry Signs block the " + "movement of rats." + "\nDeath Rats kills other rats " + "they come across." + "\nPoison kills the rat that " + "walk past." + "\nSterilisation sterilizes rats that " + "encounter it.", 20, 260, false),
+                new HelpText("\nBombs explode and kill all the rats and "
+                        + "destroys objects nearby\nFemale Sex Changers "
+                        + "convert male rats that walk past it into females."
+                        + "\nMale Sex Changers covert female rats that walk"
+                        + " past it into males.\nNo Entry Signs block the "
+                        + "movement of rats.\nDeath Rats kills other rats "
+                        + "they come across.\nPoison kills the rat that walk"
+                        + " past.\nSterilisation sterilizes rats that"
+                        + " encounter it.", 20, 260, false),
                 new HelpText("\nNEED HELP? ", 290, 490, true),
-                new HelpText("\nPlease email us on" + "\nCS-230Group41-UsrGrp" + "@SwanseaUniversity.onmicrosoft.com for further " + "support.", 25, 525, false)
+                new HelpText("\nPlease email us on\n"
+                        + "CS-230Group41-UsrGrp@SwanseaUniversity"
+                        + ".onmicrosoft.com for further support.",
+                        25, 525, false)
         };
 
         List<Text> textNodes = new ArrayList<>();
@@ -79,8 +92,7 @@ public class HelpMenu extends GameMenu {
     /**
      * Apply scrolling effects to the provided Text nodes.
      *
-     * @param headerTextNode    the header text node.
-     * @param subheaderTextNode the subheading text node.
+     * @param headingsTextNode    the header text node.
      */
     private void applyScrollingEffects(Text headingsTextNode) {
 
