@@ -66,8 +66,10 @@ public class NoEntrySign extends GameObject implements ObjectStoppable {
 
         setUpTimeline = new Timeline(new KeyFrame(Duration.millis(100),
                 event -> setUpNoEntrySign()));
-        if (LevelUtils.isCurrentBoardCustom()) {
+        try {
             setUpTimeline.play();
+        } catch (Exception ignore) {
+            
         }
     }
 
