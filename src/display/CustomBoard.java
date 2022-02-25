@@ -177,13 +177,15 @@ public class CustomBoard extends Board {
         createButton.setOnMousePressed(event -> {
             // checks if board has atleast minimum number of path tiles and all paths are connected
             if (minTileCheck() && allPathsConnected()) {
-                // Rats should be loaded as babies
-                levelData.makeRatsBabies();
-                inputMenu.setLevelProperties(levelData);
-                LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
-                levelOptionsStage.close();
-                GameObject.setBoard(null);
-                GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
+                try {
+                    // Rats should be loaded as babies
+                    levelData.makeRatsBabies();
+                    inputMenu.setLevelProperties(levelData);
+                    LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
+                    levelOptionsStage.close();
+                    GameObject.setBoard(null);
+                    GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
+                } catch (IllegalArgumentException ignored) {}
             } else {
                 Alert alert;
                 if (!minTileCheck()) {
