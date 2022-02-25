@@ -4,7 +4,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
-import level.LevelUtils;
 import sfx.SFXManager;
 import tile.Direction;
 import tile.Tile;

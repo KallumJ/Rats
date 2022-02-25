@@ -1,5 +1,6 @@
 package display.menus.editor;
 
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -66,11 +67,11 @@ public class ObjectSelectionGroup {
      * @param selectedObjects.
      */
     public void setSelectedObjectsValues(HashSet<GameObjectType> selectedObjects) {
-        Iterator values = this.container.getChildren().iterator();
+        Iterator<Node> values = this.container.getChildren().iterator();
         while (values.hasNext()) {
             CheckBox checkBox = (CheckBox) values.next();
             checkBox.setSelected(false); // default to false
-            Iterator objectTypes = selectedObjects.iterator();
+            Iterator<GameObjectType> objectTypes = selectedObjects.iterator();
             while (objectTypes.hasNext()) {
                 String objectTypeName = objectTypes.next().toString().replace("_", " ");
                 if (checkBox.getText().equals(objectTypeName)) {

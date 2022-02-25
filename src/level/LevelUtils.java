@@ -49,8 +49,6 @@ public class LevelUtils {
             "%s is an invalid tile " + "type";
     private static final String INVALID_DIRECTION_ERROR =
             "%s is an unknown " + "direction";
-    private static final String INVALID_DIRECTORY =
-            "The provided directory " + "is" + " empty";
     private static final String NO_LEVEL_FOUND = "No level was found matching "
             + "the provided level id";
     private static final String NO_SAVED_LEVELS =
