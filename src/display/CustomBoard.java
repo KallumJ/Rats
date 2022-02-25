@@ -179,9 +179,9 @@ public class CustomBoard extends Board {
             // checks if board has atleast minimum number of path tiles and all paths are connected
             if (minTileCheck() && allPathsConnected() && minRatsCheck()) {
                 try {
+                    inputMenu.setLevelProperties(levelData);
                     // Rats should be loaded as babies
                     levelData.makeRatsBabies();
-                    inputMenu.setLevelProperties(levelData);
                     LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
                     levelOptionsStage.close();
                     GameObject.setBoard(null);
