@@ -412,8 +412,23 @@ public class LevelEditorOptionsMenu {
         levelProperties.setAllowedItems(getSelectedObjects());
     }
 
+    //Validation Rules
+    // 1. No textfields can be empty 
+    // 2. They can only be integers
+    // 3. Sensible range can only be entered
+
     private String getLevelName() {
-        return levelNameTextField.getText();
+        String validLevelName = levelNameTextField.getText();
+
+        if (validLevelName.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validLevelName;
+        }
+        return validLevelName;
     }
 
     /**
@@ -422,7 +437,26 @@ public class LevelEditorOptionsMenu {
      * @return the number of airstrike hits for this level as a number of tiles.
      */
     private int getNumOfAirstrikeHits() {
-        return Integer.parseInt(airstrikeNumberOfHitsTextField.getText());
+        int validNumAirstrikes = Integer.parseInt(airstrikeNumberOfHitsTextField.getText());
+
+        if (airstrikeNumberOfHitsTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validNumAirstrikes;
+        }
+        
+        if (airstrikeNumberOfHitsTextField.getText().matches("[10-20]+")) {
+            return validNumAirstrikes;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validNumAirstrikes;
     }
 
     /**
@@ -431,7 +465,26 @@ public class LevelEditorOptionsMenu {
      * @return cost of calling an airstrike in points.
      */
     private int getCostOfAirstrike() {
-        return Integer.parseInt(airstrikeCostTextField.getText());
+        int validCostAirstrike =  Integer.parseInt(airstrikeCostTextField.getText());
+
+        if (airstrikeCostTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validCostAirstrike;
+        }
+        
+        if (airstrikeCostTextField.getText().matches("[10-100]+")) {
+            return validCostAirstrike;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validCostAirstrike;
     }
 
     /**
@@ -449,7 +502,26 @@ public class LevelEditorOptionsMenu {
      * @return the time period between day cycle changes in seconds.
      */
     private int getTimeInterval() {
-        return Integer.parseInt(timeIntervalTextField.getText());
+        int validTimeInterval = Integer.parseInt(timeIntervalTextField.getText());
+
+        if (timeIntervalTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validTimeInterval;
+        }
+        
+        if (timeIntervalTextField.getText().matches("[30-100]+")) {
+            return validTimeInterval;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validTimeInterval;
     }
 
     public void setTimeInterval(int timeInterval) {
@@ -462,7 +534,26 @@ public class LevelEditorOptionsMenu {
      * @return the input population to lose.
      */
     public int getPopulationToLose() {
-        return Integer.parseInt(populationToLoseTextField.getText());
+        int validPopulation = Integer.parseInt(populationToLoseTextField.getText());
+
+        if (populationToLoseTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validPopulation;
+        }
+        
+        if (populationToLoseTextField.getText().matches("[10-100]+")) {
+            return validPopulation;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validPopulation;
     }
 
     public void setPopulationToLose(int populationToLose) {
@@ -475,7 +566,26 @@ public class LevelEditorOptionsMenu {
      * @return the input expected time to finish the level.
      */
     public int getExpectedTime() {
-        return Integer.parseInt(expectedTimeTextField.getText());
+        int validTime = Integer.parseInt(expectedTimeTextField.getText());
+
+        if (expectedTimeTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validTime;
+        }
+        
+        if (expectedTimeTextField.getText().matches("[10-300]+")) {
+            return validTime;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validTime;
     }
 
     public void setExpectedTime(int expectedTime) {
@@ -488,7 +598,26 @@ public class LevelEditorOptionsMenu {
      * @return the input item drop interval.
      */
     public int getItemInterval() {
-        return Integer.parseInt(itemIntervalTextField.getText());
+        int validTimeInterval = Integer.parseInt(itemIntervalTextField.getText());
+
+        if (itemIntervalTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validTimeInterval;
+        }
+        
+        if (itemIntervalTextField.getText().matches("[1-3]+")) {
+            return validTimeInterval;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validTimeInterval;
     }
 
     public void setItemInterval(int itemInterval) {
@@ -501,7 +630,26 @@ public class LevelEditorOptionsMenu {
      * @return the input maximum number of babies a rat can have.
      */
     public int getRatMaxBabies() {
-        return Integer.parseInt(ratMaxBabiesTextField.getText());
+        int validMaxRatBabies = Integer.parseInt(ratMaxBabiesTextField.getText());
+
+        if (ratMaxBabiesTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validMaxRatBabies;
+        }
+        
+        if (ratMaxBabiesTextField.getText().matches("[10-20]+")) {
+            return validMaxRatBabies;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validMaxRatBabies;
     }
 
     public void setRatMaxBabies(int ratMaxBabies) {
@@ -514,7 +662,26 @@ public class LevelEditorOptionsMenu {
      * @return the input minimum number of babies a rat can have.
      */
     public int getRatMinBabies() {
-        return Integer.parseInt(ratMinBabiesTextField.getText());
+        int validMinRatBabies = Integer.parseInt(ratMinBabiesTextField.getText());
+
+        if (ratMinBabiesTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validMinRatBabies;
+        }
+        
+        if (ratMinBabiesTextField.getText().matches("[10-20]+")) {
+            return validMinRatBabies;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validMinRatBabies;
     }
 
     public void setRatMinBabies(int ratMinBabies) {
@@ -527,7 +694,26 @@ public class LevelEditorOptionsMenu {
      * @return the input speed of an adult rat.
      */
     public int getAdultRatSpeed() {
-        return Integer.parseInt(adultRatSpeedTextField.getText());
+        int validAdultSpeed = Integer.parseInt(adultRatSpeedTextField.getText());
+
+        if (adultRatSpeedTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validAdultSpeed;
+        }
+        
+        if (adultRatSpeedTextField.getText().matches("[100-5000]+")) {
+            return validAdultSpeed;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validAdultSpeed;
     }
 
     public void setAdultRatSpeed(int adultRatSpeed) {
@@ -540,7 +726,26 @@ public class LevelEditorOptionsMenu {
      * @return the input speed of a baby rat.
      */
     public int getBabyRatSpeed() {
-        return Integer.parseInt(babyRatSpeedTextField.getText());
+        int validBabySpeed = Integer.parseInt(babyRatSpeedTextField.getText());
+
+        if (babyRatSpeedTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validBabySpeed;
+        }
+        
+        if (babyRatSpeedTextField.getText().matches("[100-5000]+")) {
+            return validBabySpeed;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validBabySpeed;
     }
 
     public void setBabyRatSpeed(int babyRatSpeed) {
@@ -553,7 +758,26 @@ public class LevelEditorOptionsMenu {
      * @return the input speed of a death rat.
      */
     public int getDeathRatSpeed() {
-        return Integer.parseInt(deathRatSpeedTextField.getText());
+        int validDeathSpeed = Integer.parseInt(deathRatSpeedTextField.getText());
+
+        if (deathRatSpeedTextField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        } else {
+            return validDeathSpeed;
+        }
+        
+        if (deathRatSpeedTextField.getText().matches("[100-5000]+")) {
+            return validDeathSpeed;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please Enter Valid Input");
+            alert.showAndWait();
+        }
+        return validDeathSpeed;
     }
 
     public void setDeathRatSpeed(int deathRatSpeed) {
