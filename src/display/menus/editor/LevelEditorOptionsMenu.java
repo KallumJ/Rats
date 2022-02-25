@@ -29,25 +29,31 @@ import java.util.HashSet;
 public class LevelEditorOptionsMenu {
     public static final int WINDOW_OFFSET = 800;
     private static final String POP_TO_LOSE_TOOLTIP =
-            "The number of rats that cause game failure";
+            "The number of rats that cause game failure between 10 and 100";
     private static final String EXPECTED_TIME_TOOLTIP =
-            "The time the user is expected to beat the level, in seconds";
+            "The time the user is expected to beat the level, "
+                    + "in seconds between 10 and 300";
     private static final String ITEM_INTERVAL_TOOLTIP =
-            "The number of seconds between item drops";
+            "The number of seconds between item drops between 1 and 15";
     private static final String RAT_MAX_BABIES_TOOLTIP =
-            "The maximum number of rats a rat can give birth to";
+            "The maximum number of rats a rat can give birth "
+                    + "to between 1 and 10";
     private static final String RAT_MIN_BABIES_TOOLTIP =
-            "The minimum number of rats a rat can give birth to";
+            "The minimum number of rats a rat can give birth " +
+                    "to between 1 and 10";
     private static final String ADULT_RAT_SPEED_TOOLTIP =
-            "The time between adult rat movements, in milliseconds";
+            "The time between adult rat movements, "
+                    + "in milliseconds between 100 and 5000";
     private static final String BABY_RAT_SPEED_TOOLTIP =
-            "The time between baby rat movements, in milliseconds";
+            "The time between baby rat movements, "
+                    + "in milliseconds between 100 and 5000";
     private static final String DEATH_RAT_SPEED_TOOLTIP =
-            "The time between death rat movements, in milliseconds";
+            "The time between death rat movements, "
+                    + "in milliseconds between 100 and 5000";
     private static final String AIRSTRIKE_COST_TOOLTIP =
-            "Cost of calling an airstrike, in points";
+            "Cost of calling an airstrike, in points between 10 and 100";
     private static final String TIME_INTERVAL_TOOLTIP =
-            "The time between changes in time, in seconds";
+            "The time between changes in time, in seconds between 30 and 100";
     private static final String LEVEL_NAME_TOOLTIP =
             "Name for your level, must contain at least 1 non number character";
     private static final String ALLOWED_ITEMS_TOOLTIP =
@@ -58,6 +64,39 @@ public class LevelEditorOptionsMenu {
             "-fx-background-color: #000000; -fx-border-color: darkgrey; -fx-border-width: 1px; -fx-text-fill: white;";
     private static final String RADIO_BUTTON_STYLE =
             "-fx-text-fill: white; -fx-font-size: 14;";
+    private static final String POP_TO_LOSE_ERR =
+            "Enter a valid population between 10 and 100";
+    private static final String NAME_ERR =
+            "Enter a level name that contains at least 1"
+                    + " letter and is less than 15 characters";
+    private static final String NUM_OF_AIRSTRIKE_HITS_ERR =
+            "Enter the number of tiles an airstrike should hit "
+            + "between 1 and 9";
+    private static final String COST_OF_AIRSTRIKE_ERR =
+            "Enter a cost of an airstrike in points between "
+                    + "10 and 100";
+    private static final String TIME_INTERVAL_ERR =
+            "Enter a time between changes in times of day "
+                    + "between 30 and 100";
+    private static final String ITEM_INTERVAL_ERR =
+            "Enter an item interval between 1 and 15";
+    private static final String EXPECTED_TIME_ERR =
+            "Enter an expected time to lose between 10 and 300";
+    private static final String RAT_MAX_ERR =
+            "Enter the maximum number of rats a mother can give "
+                    + "birth to between 1 and 10";
+    private static final String RAT_MIN_ERR =
+            "Enter the minimum number of rats a mother can give "
+                    + "birth to between 1 and 10";
+    private static final String ADULT_SPEED_ERR =
+            "Enter the milliseconds between adult rat "
+                    + "movements 100 and 5000";
+    private static final String BABY_SPEED_ERR =
+            "Enter the milliseconds between baby rat "
+                    + "movements 100 and 5000";
+    private static final String DEATH_SPEED_ERR =
+            "Enter the milliseconds between death rat "
+                    + "movements 100 and 5000";
 
     private final TextField populationToLoseTextField;
     private final TextField expectedTimeTextField;
@@ -424,17 +463,17 @@ public class LevelEditorOptionsMenu {
     // 3. Sensible range can only be entered
 
     private String getLevelName() {
-        String validLevelName = levelNameTextField.getText();
+        String input = levelNameTextField.getText();
 
         boolean containsAlphabet = false;
-        for (char c : validLevelName.toCharArray()) {
+        for (char c : input.toCharArray()) {
             containsAlphabet = Character.isLetter(c);
         }
 
-        if (!containsAlphabet) {
-            showInvalidInputAlert();
+        if (!containsAlphabet && input.length() <= 15) {
+            showInvalidInputAlert(NAME_ERR);
         } else {
-            return validLevelName;
+            return input;
         }
         throw new IllegalArgumentException();
     }
@@ -449,7 +488,7 @@ public class LevelEditorOptionsMenu {
 
         if (!isStringInteger(input) || input.equals("")
                 || !withinRange(input, 1, 9)) {
-            showInvalidInputAlert();
+            showInvalidInputAlert(NUM_OF_AIRSTRIKE_HITS_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -466,7 +505,7 @@ public class LevelEditorOptionsMenu {
 
         if (!isStringInteger(input) || input.equals("")
                 || !withinRange(input, 10, 100)) {
-            showInvalidInputAlert();
+            showInvalidInputAlert(COST_OF_AIRSTRIKE_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -492,7 +531,7 @@ public class LevelEditorOptionsMenu {
 
         if (!isStringInteger(input) || input.equals("")
                 || !withinRange(input, 30, 100)) {
-           showInvalidInputAlert();
+           showInvalidInputAlert(TIME_INTERVAL_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -513,7 +552,7 @@ public class LevelEditorOptionsMenu {
 
         if (input.equals("") || !isStringInteger(input)
                 || !withinRange(input, 10, 100)) {
-            showInvalidInputAlert();
+            showInvalidInputAlert(POP_TO_LOSE_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -534,7 +573,7 @@ public class LevelEditorOptionsMenu {
 
         if (input.equals("") || !isStringInteger(input)
                 || !withinRange(input, 10, 300)) {
-           showInvalidInputAlert();
+           showInvalidInputAlert(EXPECTED_TIME_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -554,8 +593,8 @@ public class LevelEditorOptionsMenu {
         String input = itemIntervalTextField.getText();
 
         if (input.equals("") || !isStringInteger(input) ||
-        !withinRange(input, 1, 10)) {
-            showInvalidInputAlert();
+        !withinRange(input, 1, 15)) {
+            showInvalidInputAlert(ITEM_INTERVAL_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -575,8 +614,8 @@ public class LevelEditorOptionsMenu {
         String input = ratMaxBabiesTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-        || !withinRange(input, 1, 9)) {
-            showInvalidInputAlert();
+        || !withinRange(input, 1, 10)) {
+            showInvalidInputAlert(RAT_MAX_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -596,8 +635,8 @@ public class LevelEditorOptionsMenu {
        String input = ratMinBabiesTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-                || !withinRange(input, 1, 9)) {
-            showInvalidInputAlert();
+                || !withinRange(input, 1, 10)) {
+            showInvalidInputAlert(RAT_MIN_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -618,7 +657,7 @@ public class LevelEditorOptionsMenu {
 
         if (input.equals("") || !isStringInteger(input)
         || !withinRange(input, 100, 5000)) {
-            showInvalidInputAlert();
+            showInvalidInputAlert(ADULT_SPEED_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -639,7 +678,7 @@ public class LevelEditorOptionsMenu {
 
         if (input.equals("") || !isStringInteger(input)
                 || !withinRange(input, 100, 5000)) {
-            showInvalidInputAlert();
+            showInvalidInputAlert(BABY_SPEED_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -660,7 +699,7 @@ public class LevelEditorOptionsMenu {
 
         if (input.equals("") || !isStringInteger(input)
                 || !withinRange(input, 100, 5000)) {
-            showInvalidInputAlert();
+            showInvalidInputAlert(DEATH_SPEED_ERR);
         } else {
             return Integer.parseInt(input);
         }
@@ -771,13 +810,25 @@ public class LevelEditorOptionsMenu {
         objectSelectionGroup.setSelectedObjectsValues(allowedItems);
     }
 
-    private static void showInvalidInputAlert() {
+    /**
+     * A method to show an invalid input alert to the user
+     *
+     * @param message the message to display
+     */
+    private static void showInvalidInputAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Invalid Input");
-        alert.setHeaderText("Please Enter Valid Input");
+        alert.setHeaderText("Please enter valid input");
+        alert.setContentText(message);
         alert.showAndWait();
     }
 
+    /**
+     * A method to check whether the provided string is an integer or not
+     *
+     * @param input the string to check
+     * @return true if an integer, false otherwise
+     */
     private static boolean isStringInteger(String input) {
         try {
             Integer.parseInt(input);
@@ -787,6 +838,14 @@ public class LevelEditorOptionsMenu {
         }
     }
 
+    /**
+     * A method to check whether the given input is in the provided range
+     *
+     * @param input the input to check
+     * @param low the low bound
+     * @param high the high bound
+     * @return true if within the range, false otherwise
+     */
     private static boolean withinRange(String input, int low, int high) {
         return Integer.parseInt(input) >= low && Integer.parseInt(input) <= high;
     }
