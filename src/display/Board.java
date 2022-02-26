@@ -421,21 +421,23 @@ public class Board {
      * This method updates the rats population bar.
      */
     private void updateProgressBar() {
+        try {
+            for (int i = 0; i < getCurrentPopulation().malePopulation(); i++) {
+                progressBar.get(i).setFill(Color.valueOf("#0000FF"));
 
-        for (int i = 0; i < getCurrentPopulation().malePopulation(); i++) {
-            progressBar.get(i).setFill(Color.valueOf("#0000FF"));
+            }
+            for (int i = 0; i < getCurrentPopulation().femalePopulation(); i++) {
+                progressBar.get(getCurrentPopulation().malePopulation() + i)
+                        .setFill(Color.valueOf("#F800B8"));
 
-        }
-        for (int i = 0; i < getCurrentPopulation().femalePopulation(); i++) {
-            progressBar.get(getCurrentPopulation().malePopulation() + i)
-                    .setFill(Color.valueOf("#F800B8"));
+            }
+            for (int i = 0; i < populationToLose - getCurrentPopulation().getTotalPopulation(); i++) {
+                progressBar.get(getCurrentPopulation().femalePopulation() + getCurrentPopulation().malePopulation() + i)
+                        .setFill(Color.GREY);
 
-        }
-        for (int i = 0; i < populationToLose - getCurrentPopulation().getTotalPopulation(); i++) {
-            progressBar.get(getCurrentPopulation().femalePopulation() + getCurrentPopulation().malePopulation() + i)
-                    .setFill(Color.GREY);
-
-        }
+            }
+            // can be thrown after game ends if a mother can spawn too many babies
+        } catch (IndexOutOfBoundsException ignored) {}
     }
 
     /**
