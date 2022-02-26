@@ -504,15 +504,19 @@ public class LevelEditorOptionsMenu {
      * @return the number of airstrike hits for this level as a number of tiles.
      */
     private int getNumOfAirstrikeHits() {
-        String input = airstrikeNumberOfHitsTextField.getText();
+        if (getAirstrikeEnabled()) {
+            String input = airstrikeNumberOfHitsTextField.getText();
 
-        if (!isStringInteger(input) || input.equals("")
-                || !withinRange(input, 1, 9)) {
-            showInvalidInputAlert(NUM_OF_AIRSTRIKE_HITS_ERR);
+            if (!isStringInteger(input) || input.equals("")
+                    || !withinRange(input, 1, 9)) {
+                showInvalidInputAlert(NUM_OF_AIRSTRIKE_HITS_ERR);
+            } else {
+                return Integer.parseInt(input);
+            }
+            throw new IllegalArgumentException();
         } else {
-            return Integer.parseInt(input);
+            return 1;
         }
-        throw new IllegalArgumentException();
     }
 
     /**
@@ -521,15 +525,19 @@ public class LevelEditorOptionsMenu {
      * @return cost of calling an airstrike in points.
      */
     private int getCostOfAirstrike() {
-        String input =  airstrikeCostTextField.getText();
+        if (getAirstrikeEnabled()) {
+            String input =  airstrikeCostTextField.getText();
 
-        if (!isStringInteger(input) || input.equals("")
-                || !withinRange(input, 10, 100)) {
-            showInvalidInputAlert(COST_OF_AIRSTRIKE_ERR);
+            if (!isStringInteger(input) || input.equals("")
+                    || !withinRange(input, 10, 100)) {
+                showInvalidInputAlert(COST_OF_AIRSTRIKE_ERR);
+            } else {
+                return Integer.parseInt(input);
+            }
+            throw new IllegalArgumentException();
         } else {
-            return Integer.parseInt(input);
+            return 10;
         }
-        throw new IllegalArgumentException();
     }
 
     /**
@@ -547,15 +555,19 @@ public class LevelEditorOptionsMenu {
      * @return the time period between day cycle changes in seconds.
      */
     private int getTimeInterval() {
-        String input = timeIntervalTextField.getText();
+        if (getTimeOfDay().equals(TimeOfDay.BOTH)) {
+            String input = timeIntervalTextField.getText();
 
-        if (!isStringInteger(input) || input.equals("")
-                || !withinRange(input, 30, 100)) {
-           showInvalidInputAlert(TIME_INTERVAL_ERR);
+            if (!isStringInteger(input) || input.equals("")
+                    || !withinRange(input, 30, 100)) {
+                showInvalidInputAlert(TIME_INTERVAL_ERR);
+            } else {
+                return Integer.parseInt(input);
+            }
+            throw new IllegalArgumentException();
         } else {
-            return Integer.parseInt(input);
+            return 30;
         }
-        throw new IllegalArgumentException();
     }
 
     public void setTimeInterval(int timeInterval) {
