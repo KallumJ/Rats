@@ -290,6 +290,10 @@ public class CustomBoard extends Board {
                 break;
             }
         }
+        if (startTile == null) {
+            return false;
+        }
+
         List<Tile> visitedTiles = connectedTiles(startTile, new ArrayList<>());
         int numOfPaths = 0;
         for (Tile tile : tiles) {
