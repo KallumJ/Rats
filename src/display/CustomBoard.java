@@ -175,6 +175,11 @@ public class CustomBoard extends Board {
         }
     }
 
+    /**
+     * Create an HBox with Create and Back buttons in
+     *
+     * @return the constructed HBox
+     */
     public HBox createCommandsBox() {
         HBox commandsBox = new HBox();
         Button createButton = new Button(" C R E A T E ");
