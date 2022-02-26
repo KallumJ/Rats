@@ -134,9 +134,14 @@ public class LevelEditorOptionsMenu {
         babyRatSpeedTextField = new TextField();
         deathRatSpeedTextField = new TextField();
         tileSelectChoiceBox = new ChoiceBox<>();
-        includeAirstrike = new RadioButton("Include airstrike");
         airstrikeCostTextField = new TextField();
         airstrikeNumberOfHitsTextField = new TextField();
+        includeAirstrike = new RadioButton("Include airstrike");
+        includeAirstrike.setSelected(true);
+        includeAirstrike.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            airstrikeCostTextField.setDisable(!newValue);
+            airstrikeNumberOfHitsTextField.setDisable(!newValue);
+        });
         deleteItems = new RadioButton("Delete items on tile");
 
 
