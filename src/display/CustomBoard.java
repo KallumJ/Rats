@@ -39,10 +39,6 @@ import java.util.List;
 public class CustomBoard extends Board {
 
     private static final String OPTIONS_TITLE = "Level Options";
-    private final TileCanvas tileCanvas;
-    private final LevelData levelData;
-    private final LevelEditorOptionsMenu inputMenu;
-    private final Stage levelOptionsStage = new Stage();
     private static final int CREATE_BUTTON_X = 150;
     private static final int BACK_BUTTON_X = 250;
     private static final int BUTTON_Y = 0;
@@ -50,8 +46,12 @@ public class CustomBoard extends Board {
     private static final int BUTTON_HEIGHT = 75;
     private static final String BUTTON_STYLE =
             "-fx-background-color: black; -fx-text-fill: white;"
-            + "-fx-border-color: darkgrey; -fx-border-width: 2px;";
+                    + "-fx-border-color: darkgrey; -fx-border-width: 2px;";
 
+    private final TileCanvas tileCanvas;
+    private final LevelData levelData;
+    private final LevelEditorOptionsMenu inputMenu;
+    private final Stage levelOptionsStage = new Stage();
 
     /**
      * Constructs a custom board.
@@ -65,6 +65,34 @@ public class CustomBoard extends Board {
         this.initCustomBoard();
     }
 
+    /**
+     * Constructs a custom board.
+     *
+     * @param levelData the LevelData for the custom level.
+     * @param populationToLose   the max population for a level before failure.
+     * @param expectedTime       the expected time to complete the level in
+     *                           seconds.
+     * @param itemInterval       the time in between item drops for this level in
+     *                           seconds.
+     * @param ratMinBabies       the minimum number of babies a rat can birth
+     *                           in a level.
+     * @param ratMaxBabies       the maximum number of babies a rat can birth
+     *                           in a level.
+     * @param adultRatSpeed      the speed of an adult rat, in time between
+     *                           movement, in milliseconds.
+     * @param babyRatSpeed       the speed of a baby rat, in time between
+     *                           movement, in milliseconds.
+     * @param deathRatSpeed      the speed of a death rat, in time between
+     *                           movement, in milliseconds.
+     * @param time         the time of day allowed in this level.
+     * @param timeInterval       the time between changes in time of day,
+     *                           in seconds.
+     * @param includeAirstrike   whether airstrikes are enabled.
+     * @param costOfAirstrike    the price of calling an airstrike, in score
+     * @param airstrikeNumOfHits the number of target tiles an airstrike
+     *                           will hit.
+     * @param allowedItems       a list of allowed items in the inventory for this level
+     */
     public CustomBoard(LevelData levelData, int populationToLose, int expectedTime, int itemInterval,
                        int ratMaxBabies, int ratMinBabies, int adultRatSpeed, int babyRatSpeed,
                        int deathRatSpeed, boolean includeAirstrike, int costOfAirstrike,
@@ -99,6 +127,11 @@ public class CustomBoard extends Board {
 
     }
 
+    /**
+     * Constructs the GUI for a custom board
+     *
+     * @return the constructed GUI
+     */
     public BorderPane buildGUI() {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-image: url(file:resources/inventoryBg.png);");
