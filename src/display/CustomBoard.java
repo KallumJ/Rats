@@ -48,6 +48,9 @@ public class CustomBoard extends Board {
     private static final int BUTTON_Y = 0;
     private static final int BUTTON_WIDTH = 100;
     private static final int BUTTON_HEIGHT = 75;
+    private static final String BUTTON_STYLE =
+            "-fx-background-color: black; -fx-text-fill: white;"
+            + "-fx-border-color: darkgrey; -fx-border-width: 2px;";
 
 
     /**
@@ -176,13 +179,11 @@ public class CustomBoard extends Board {
         HBox commandsBox = new HBox();
         Button createButton = new Button(" C R E A T E ");
         createButton.setMinSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        createButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
-                + "-fx-border-color: darkgrey; -fx-border-width: 2px;");
+        createButton.setStyle(BUTTON_STYLE);
 
         Button backButton = new Button(" B A C K ");
         backButton.setMinSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        backButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
-                + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
+        backButton.setStyle(BUTTON_STYLE);
 
         createButton.setTranslateX(CREATE_BUTTON_X);
         createButton.setTranslateY(BUTTON_Y);
