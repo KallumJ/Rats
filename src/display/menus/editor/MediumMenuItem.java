@@ -21,7 +21,7 @@ public class MediumMenuItem extends MenuItem {
     private static final int RAT_MAX_BABIES = 5;
     private static final int RAT_MIN_BABIES = 2;
     private static final int ADULT_RAT_SPEED = 1250;
-    private static final int BABY_RAT_SPEED = 600;
+    private static final int BABY_RAT_SPEED = 1000;
     private static final int DEATH_RAT_SPEED = 1100;
     private static final boolean INCLUDE_AIRSTRIKE = true;
     private static final int COST_OF_AIRSTRIKE = 50;

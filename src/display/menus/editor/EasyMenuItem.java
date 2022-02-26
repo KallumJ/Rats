@@ -20,9 +20,9 @@ public class EasyMenuItem extends MenuItem {
     private static final int ITEM_INTERVAL = 3;
     private static final int RAT_MAX_BABIES = 3;
     private static final int RAT_MIN_BABIES = 1;
-    private static final int ADULT_RAT_SPEED = 1000;
-    private static final int BABY_RAT_SPEED = 700;
-    private static final int DEATH_RAT_SPEED = 1010;
+    private static final int ADULT_RAT_SPEED = 1500;
+    private static final int BABY_RAT_SPEED = 1100;
+    private static final int DEATH_RAT_SPEED = 1250;
     private static final boolean INCLUDE_AIRSTRIKE = true;
     private static final int COST_OF_AIRSTRIKE = 40;
     private static final int AIRSTRIKE_NUM_OF_HITS = 8;

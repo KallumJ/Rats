@@ -20,9 +20,9 @@ public class HardMenuItem extends MenuItem {
     private static final int ITEM_INTERVAL = 9;
     private static final int RAT_MAX_BABIES = 5;
     private static final int RAT_MIN_BABIES = 3;
-    private static final int ADULT_RAT_SPEED = 1500;
-    private static final int BABY_RAT_SPEED = 500;
-    private static final int DEATH_RAT_SPEED = 1250;
+    private static final int ADULT_RAT_SPEED = 1000;
+    private static final int BABY_RAT_SPEED = 700;
+    private static final int DEATH_RAT_SPEED = 1010;
     private static final boolean INCLUDE_AIRSTRIKE = false;
     private static final int COST_OF_AIRSTRIKE = 50;
     private static final int AIRSTRIKE_NUM_OF_HITS = 6;
