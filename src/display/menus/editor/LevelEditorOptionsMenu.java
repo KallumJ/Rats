@@ -135,9 +135,14 @@ public class LevelEditorOptionsMenu {
         babyRatSpeedTextField = new TextField();
         deathRatSpeedTextField = new TextField();
         tileSelectChoiceBox = new ChoiceBox<>();
-        includeAirstrike = new RadioButton("Include airstrike");
         airstrikeCostTextField = new TextField();
         airstrikeNumberOfHitsTextField = new TextField();
+        includeAirstrike = new RadioButton("Include airstrike");
+        includeAirstrike.setSelected(true);
+        includeAirstrike.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            airstrikeCostTextField.setDisable(!newValue);
+            airstrikeNumberOfHitsTextField.setDisable(!newValue);
+        });
         deleteItems = new RadioButton("Delete items on tile");
 
 
@@ -408,25 +413,25 @@ public class LevelEditorOptionsMenu {
         tileSelectLabel.setTranslateX(450);
         tileSelectLabel.setTranslateY(-505);
 
-        includeAirstrike.setStyle(RADIO_BUTTON_STYLE);
-        includeAirstrike.setTranslateX(450);
-        includeAirstrike.setTranslateY(-480);
-
         deleteItems.setStyle(RADIO_BUTTON_STYLE);
         deleteItems.setTranslateX(450);
-        deleteItems.setTranslateY(-460);
+        deleteItems.setTranslateY(-495);
+
+        includeAirstrike.setStyle(RADIO_BUTTON_STYLE);
+        includeAirstrike.setTranslateX(450);
+        includeAirstrike.setTranslateY(-440);
 
         onlyDayTime.setStyle(RADIO_BUTTON_STYLE);
         onlyDayTime.setTranslateX(450);
-        onlyDayTime.setTranslateY(-440);
+        onlyDayTime.setTranslateY(-420);
 
         onlyNightTime.setStyle(RADIO_BUTTON_STYLE);
         onlyNightTime.setTranslateX(450);
-        onlyNightTime.setTranslateY(-420);
+        onlyNightTime.setTranslateY(-400);
 
         dayAndNight.setStyle(RADIO_BUTTON_STYLE);
         dayAndNight.setTranslateX(450);
-        dayAndNight.setTranslateY(-400);
+        dayAndNight.setTranslateY(-380);
 
         HBox commandsBox = board.createCommandsBox();
         commandsBox.setTranslateY(-100);
@@ -501,15 +506,19 @@ public class LevelEditorOptionsMenu {
      * @return the number of airstrike hits for this level as a number of tiles.
      */
     private int getNumOfAirstrikeHits() {
-        String input = airstrikeNumberOfHitsTextField.getText();
+        if (getAirstrikeEnabled()) {
+            String input = airstrikeNumberOfHitsTextField.getText();
 
-        if (!isStringInteger(input) || input.equals("")
-                || !withinRange(input, 1, 9)) {
-            showInvalidInputAlert(NUM_OF_AIRSTRIKE_HITS_ERR);
+            if (!isStringInteger(input) || input.equals("")
+                    || !withinRange(input, 1, 9)) {
+                showInvalidInputAlert(NUM_OF_AIRSTRIKE_HITS_ERR);
+            } else {
+                return Integer.parseInt(input);
+            }
+            throw new IllegalArgumentException();
         } else {
-            return Integer.parseInt(input);
+            return 1;
         }
-        throw new IllegalArgumentException();
     }
 
     /**
@@ -518,15 +527,19 @@ public class LevelEditorOptionsMenu {
      * @return cost of calling an airstrike in points.
      */
     private int getCostOfAirstrike() {
-        String input =  airstrikeCostTextField.getText();
+        if (getAirstrikeEnabled()) {
+            String input =  airstrikeCostTextField.getText();
 
-        if (!isStringInteger(input) || input.equals("")
-                || !withinRange(input, 10, 100)) {
-            showInvalidInputAlert(COST_OF_AIRSTRIKE_ERR);
+            if (!isStringInteger(input) || input.equals("")
+                    || !withinRange(input, 10, 100)) {
+                showInvalidInputAlert(COST_OF_AIRSTRIKE_ERR);
+            } else {
+                return Integer.parseInt(input);
+            }
+            throw new IllegalArgumentException();
         } else {
-            return Integer.parseInt(input);
+            return 10;
         }
-        throw new IllegalArgumentException();
     }
 
     /**
@@ -544,15 +557,19 @@ public class LevelEditorOptionsMenu {
      * @return the time period between day cycle changes in seconds.
      */
     private int getTimeInterval() {
-        String input = timeIntervalTextField.getText();
+        if (getTimeOfDay().equals(TimeOfDay.BOTH)) {
+            String input = timeIntervalTextField.getText();
 
-        if (!isStringInteger(input) || input.equals("")
-                || !withinRange(input, 30, 100)) {
-           showInvalidInputAlert(TIME_INTERVAL_ERR);
+            if (!isStringInteger(input) || input.equals("")
+                    || !withinRange(input, 30, 100)) {
+                showInvalidInputAlert(TIME_INTERVAL_ERR);
+            } else {
+                return Integer.parseInt(input);
+            }
+            throw new IllegalArgumentException();
         } else {
-            return Integer.parseInt(input);
+            return 30;
         }
-        throw new IllegalArgumentException();
     }
 
     public void setTimeInterval(int timeInterval) {
