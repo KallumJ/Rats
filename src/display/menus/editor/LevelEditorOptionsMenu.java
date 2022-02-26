@@ -90,13 +90,13 @@ public class LevelEditorOptionsMenu {
                     + "birth to between 1 and 10";
     private static final String ADULT_SPEED_ERR =
             "Enter the milliseconds between adult rat "
-                    + "movements 100 and 5000";
+                    + "movements between 100 and 5000";
     private static final String BABY_SPEED_ERR =
             "Enter the milliseconds between baby rat "
-                    + "movements 100 and 5000";
+                    + "movements between 100 and 5000";
     private static final String DEATH_SPEED_ERR =
             "Enter the milliseconds between death rat "
-                    + "movements 100 and 5000";
+                    + "movements between 100 and 5000";
 
     private final TextField populationToLoseTextField;
     private final TextField expectedTimeTextField;
@@ -356,7 +356,7 @@ public class LevelEditorOptionsMenu {
                 deathRatSpeedTextField
         );
         row8.setTranslateX(160);
-        row8.setTranslateY(-120);
+        row8.setTranslateY(-115);
 
         //Hbox for text fields to fix the textfields covering the page issue
         HBox row9 = new HBox();
@@ -364,7 +364,7 @@ public class LevelEditorOptionsMenu {
                 airstrikeCostTextField
         );
         row9.setTranslateX(250);
-        row9.setTranslateY(-105);
+        row9.setTranslateY(-95);
 
         //Hbox for text fields to fix the textfields covering the page issue
         HBox row10 = new HBox();
@@ -372,7 +372,7 @@ public class LevelEditorOptionsMenu {
                 airstrikeNumberOfHitsTextField
         );
         row10.setTranslateX(250);
-        row10.setTranslateY(-95);
+        row10.setTranslateY(-85);
 
         //Hbox for text fields to fix the textfields covering the page issue
         HBox row11 = new HBox();
@@ -380,7 +380,7 @@ public class LevelEditorOptionsMenu {
                 timeIntervalTextField
         );
         row11.setTranslateX(250);
-        row11.setTranslateY(-85);
+        row11.setTranslateY(-75);
 
         tileSelectChoiceBox.setTranslateX(450);
         tileSelectChoiceBox.setTranslateY(-505);
