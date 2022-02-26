@@ -4,12 +4,14 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import level.LevelUtils;
 import players.PlayerProfileManager;
 import players.scores.Player;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * A class to model a level select menu for the leaderboard.
@@ -41,9 +43,11 @@ public class LeaderboardLevelSelectMenu extends GameMenu {
 
         // Create a menu item for each level
         for (String level : levelsWithScore) {
-            LeaderboardLevelMenuItem menuItem =
-                    new LeaderboardLevelMenuItem(level);
-            menuItems.add(menuItem);
+            if (LevelUtils.isIdNotForCustomLevel(level)) {
+                LeaderboardLevelMenuItem menuItem =
+                        new LeaderboardLevelMenuItem(level);
+                menuItems.add(menuItem);
+            }
         }
 
         // Add a back button event handler
