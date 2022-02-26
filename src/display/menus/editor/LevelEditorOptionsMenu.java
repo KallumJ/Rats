@@ -1,5 +1,6 @@
 package display.menus.editor;
 
+import display.CustomBoard;
 import envrionment.TimeOfDay;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -117,11 +118,13 @@ public class LevelEditorOptionsMenu {
     private final RadioButton deleteItems;
     private final TextField levelNameTextField;
     private final ObjectSelectionGroup objectSelectionGroup;
+    private final CustomBoard board;
 
     /**
      * Constructs a LevelPropertiesInputMenu object.
      */
-    public LevelEditorOptionsMenu() {
+    public LevelEditorOptionsMenu(CustomBoard board) {
+        this.board = board;
         populationToLoseTextField = new TextField();
         expectedTimeTextField = new TextField();
         itemIntervalTextField = new TextField();
@@ -382,6 +385,19 @@ public class LevelEditorOptionsMenu {
         row11.setTranslateX(250);
         row11.setTranslateY(-75);
 
+        allowedItemsLabel.setTranslateX(25);
+        allowedItemsLabel.setTranslateY(-200);
+        VBox objectSelectionGroup =
+                this.objectSelectionGroup.getObjectSelectionGroup();
+        objectSelectionGroup.setTranslateY(-190);
+        objectSelectionGroup.setTranslateX(25);
+
+        levelNameLabel.setTranslateX(25);
+        levelNameLabel.setTranslateY(-180);
+        levelNameTextField.setTranslateX(25);
+        levelNameTextField.setTranslateY(-175);
+        levelNameTextField.setMaxWidth(550);
+
         tileSelectChoiceBox.setTranslateX(450);
         tileSelectChoiceBox.setTranslateY(-505);
         tileSelectLabel.setTranslateX(450);
@@ -407,15 +423,19 @@ public class LevelEditorOptionsMenu {
         dayAndNight.setTranslateX(450);
         dayAndNight.setTranslateY(-400);
 
+        HBox commandsBox = board.createCommandsBox();
+        commandsBox.setTranslateY(-100);
+
         //Vbox containing all the labels, textfields, etc.
         VBox container = new VBox();
-        container.setPrefSize(600, 600);
+        container.setMinWidth(620);
+        container.setMaxHeight(500);
         container.getChildren().addAll(
                 populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel,
                 adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel,
                 timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
-                tileSelectLabel, tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight,
-                allowedItemsLabel, objectSelectionGroup.getObjectSelectionGroup(), levelNameLabel, levelNameTextField
+                tileSelectLabel, tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime,
+                dayAndNight, allowedItemsLabel, objectSelectionGroup, levelNameLabel, levelNameTextField, commandsBox
         );
         container.setStyle("-fx-background-color: #000000;");
 

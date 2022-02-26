@@ -43,10 +43,11 @@ public class CustomBoard extends Board {
     private final LevelData levelData;
     private final LevelEditorOptionsMenu inputMenu;
     private final Stage levelOptionsStage = new Stage();
-    private static final int BUTTON_MAX_WIDTH = 200;
     private static final int CREATE_BUTTON_X = 150;
     private static final int BACK_BUTTON_X = 250;
     private static final int BUTTON_Y = 0;
+    private static final int BUTTON_WIDTH = 100;
+    private static final int BUTTON_HEIGHT = 75;
 
 
     /**
@@ -57,7 +58,7 @@ public class CustomBoard extends Board {
     public CustomBoard(LevelData levelData) {
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
-        this.inputMenu = new LevelEditorOptionsMenu();
+        this.inputMenu = new LevelEditorOptionsMenu(this);
         this.initCustomBoard();
     }
 
@@ -69,7 +70,7 @@ public class CustomBoard extends Board {
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
 
-        this.inputMenu = new LevelEditorOptionsMenu();
+        this.inputMenu = new LevelEditorOptionsMenu(this);
         this.inputMenu.setPopulationToLose(populationToLose);
         this.inputMenu.setExpectedTime(expectedTime);
         this.inputMenu.setItemInterval(itemInterval);
@@ -99,7 +100,6 @@ public class CustomBoard extends Board {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-image: url(file:resources/inventoryBg.png);");
         root.setLeft(tileCanvas.getCanvas());
-        root.setBottom(createCommandsBox());
         levelOptionsStage.show();
         root.setRight(new CustomInventory(levelData).buildInventoryGUI());
 
@@ -175,18 +175,18 @@ public class CustomBoard extends Board {
     public HBox createCommandsBox() {
         HBox commandsBox = new HBox();
         Button createButton = new Button(" C R E A T E ");
+        createButton.setMinSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         createButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
-                + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
+                + "-fx-border-color: darkgrey; -fx-border-width: 2px;");
 
         Button backButton = new Button(" B A C K ");
+        backButton.setMinSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         backButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
                 + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
 
-        createButton.setMaxWidth(BUTTON_MAX_WIDTH);
         createButton.setTranslateX(CREATE_BUTTON_X);
         createButton.setTranslateY(BUTTON_Y);
 
-        backButton.setMaxWidth(BUTTON_MAX_WIDTH);
         backButton.setTranslateX(BACK_BUTTON_X);
         backButton.setTranslateY(BUTTON_Y);
 
