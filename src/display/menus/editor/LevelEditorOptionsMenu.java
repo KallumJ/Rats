@@ -412,25 +412,25 @@ public class LevelEditorOptionsMenu {
         tileSelectLabel.setTranslateX(450);
         tileSelectLabel.setTranslateY(-505);
 
-        includeAirstrike.setStyle(RADIO_BUTTON_STYLE);
-        includeAirstrike.setTranslateX(450);
-        includeAirstrike.setTranslateY(-480);
-
         deleteItems.setStyle(RADIO_BUTTON_STYLE);
         deleteItems.setTranslateX(450);
-        deleteItems.setTranslateY(-460);
+        deleteItems.setTranslateY(-495);
+
+        includeAirstrike.setStyle(RADIO_BUTTON_STYLE);
+        includeAirstrike.setTranslateX(450);
+        includeAirstrike.setTranslateY(-440);
 
         onlyDayTime.setStyle(RADIO_BUTTON_STYLE);
         onlyDayTime.setTranslateX(450);
-        onlyDayTime.setTranslateY(-440);
+        onlyDayTime.setTranslateY(-420);
 
         onlyNightTime.setStyle(RADIO_BUTTON_STYLE);
         onlyNightTime.setTranslateX(450);
-        onlyNightTime.setTranslateY(-420);
+        onlyNightTime.setTranslateY(-400);
 
         dayAndNight.setStyle(RADIO_BUTTON_STYLE);
         dayAndNight.setTranslateX(450);
-        dayAndNight.setTranslateY(-400);
+        dayAndNight.setTranslateY(-380);
 
         HBox commandsBox = board.createCommandsBox();
         commandsBox.setTranslateY(-100);
@@ -443,7 +443,7 @@ public class LevelEditorOptionsMenu {
                 populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel,
                 adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel,
                 timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
-                tileSelectLabel, tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime,
+                tileSelectLabel, tileSelectChoiceBox, deleteItems, includeAirstrike, onlyDayTime, onlyNightTime,
                 dayAndNight, allowedItemsLabel, objectSelectionGroup, levelNameLabel, levelNameTextField, commandsBox
         );
         container.setStyle("-fx-background-color: #000000;");
