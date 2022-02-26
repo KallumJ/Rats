@@ -1,11 +1,13 @@
 package display;
 
+import envrionment.TimeOfDay;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import level.LevelData;
 import level.LevelProperties;
+import level.LevelUtils;
 import objects.GameObject;
 import tile.Tile;
 
@@ -27,6 +29,7 @@ public class TileCanvas {
     long start = System.currentTimeMillis();
     long elapsedTime = System.currentTimeMillis() - start;
     long elapsedSeconds = elapsedTime / 1000;
+    private TimeOfDay currentTimeOfDay;
 
     /**
      * Constructs a TileCanvas object.
@@ -44,19 +47,38 @@ public class TileCanvas {
         int height = levelProperties.getLevelHeight() * Tile.TILE_SIZE;
 
         this.canvas = new Canvas(width, height);
+        String levelId = levelData.getLevelProperties().getLevelId();
+        if (!LevelUtils.isIdNotForCustomLevel(levelId)) {
+            currentTimeOfDay = TimeOfDay.DAY;
+        } else {
+            int timeInterval = levelData.getLevelProperties().getTimeInterval();
+            TimeOfDay timeOfDay = levelData.getLevelProperties().getTimeOfDay();
+            if (timeOfDay != TimeOfDay.BOTH) {
+                currentTimeOfDay = timeOfDay;
+            } else {
+                currentTimeOfDay = TimeOfDay.DAY;
+                Timer myTimer = new Timer();
+                TimerTask task = new TimerTask() {
+                    public void run() {
+                        elapsedSeconds++;
+                        // If the time interval has passed, switch time of day
+                        if (elapsedSeconds == timeInterval) {
+                            switch (currentTimeOfDay) {
+                                case DAY:
+                                    currentTimeOfDay = TimeOfDay.NIGHT;
+                                    break;
+                                case NIGHT:
+                                    currentTimeOfDay = TimeOfDay.DAY;
+                                    break;
+                            }
+                            elapsedSeconds = 0;
+                        }
+                    }
+                };
 
-        //add a timer here and it will work
-
-        Timer myTimer = new Timer();
-        TimerTask task = new TimerTask() {
-            public void run() {
-                elapsedSeconds++;
+                myTimer.scheduleAtFixedRate(task, 0, 1000);
             }
-        };
-        
-        int delay=1000;
-        int period=1000;
-        myTimer.scheduleAtFixedRate(task, delay, period);
+        }
 
         updateBoardDisplay();
     }
@@ -116,47 +138,27 @@ public class TileCanvas {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         List<Tile> tiles = levelData.getTileSet().getAllTiles();
-        
-        int minElapsedSeconds=0;
-        int dayChange=60;
-        int maxElapsedSeconds_night=120;
-        
+
         // Decide what image to display for this tile
         for (Tile tile : tiles) {
             Image tileImage;
             switch (tile.getTileType()) {
                 case GRASS:
-                    if (elapsedSeconds >= minElapsedSeconds &&
-                            elapsedSeconds <= dayChange) {
+                    if (currentTimeOfDay.equals(TimeOfDay.DAY)) {
                         tileImage = new Image("file:resources/grass.jpg");
-                    } else if (elapsedSeconds >= dayChange &&
-                            elapsedSeconds <= maxElapsedSeconds_night) {
-                        tileImage = new Image("file:resources/grassnight.png");
                     } else {
-                        tileImage = new Image("file:resources/grass.jpg");
+                        tileImage = new Image("file:resources/grassnight.png");
                     }
                     break;
                 case PATH:
-                    if (elapsedSeconds >= minElapsedSeconds &&
-                            elapsedSeconds <= dayChange) {
+                    if (currentTimeOfDay.equals(TimeOfDay.DAY)) {
                         tileImage = new Image("file:resources/path.jpg");
-                    } else if (elapsedSeconds >= dayChange &&
-                            elapsedSeconds <= maxElapsedSeconds_night) {
-                        tileImage = new Image("file:resources/nightpath.png");
                     } else {
-                        tileImage = new Image("file:resources/path.jpg");
+                        tileImage = new Image("file:resources/nightpath.png");
                     }
                     break;
                 case TUNNEL:
-                    if (elapsedSeconds >= minElapsedSeconds &&
-                            elapsedSeconds <= dayChange) {
-                        tileImage = new Image("file:resources/tunnelnew.png");
-                    } else if (elapsedSeconds >= dayChange &&
-                            elapsedSeconds <= maxElapsedSeconds_night) {
-                        tileImage = new Image("file:resources/tunnelnew.png");
-                    } else {
-                        tileImage = new Image("file:resources/tunnelnew.png");
-                    }
+                    tileImage = new Image("file:resources/tunnelnew.png");
                     break;
                 default:
                     throw new RuntimeException(String.format(IMAGE_NOT_FOUND,
