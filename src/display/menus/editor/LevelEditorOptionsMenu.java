@@ -39,19 +39,19 @@ public class LevelEditorOptionsMenu {
             "The number of seconds between item drops between 1 and 15";
     private static final String RAT_MAX_BABIES_TOOLTIP =
             "The maximum number of rats a rat can give birth "
-                    + "to between 1 and 10";
+                    + "to between 1 and 5";
     private static final String RAT_MIN_BABIES_TOOLTIP =
             "The minimum number of rats a rat can give birth "
-                    + "to between 1 and 10";
+                    + "to between 1 and 5";
     private static final String ADULT_RAT_SPEED_TOOLTIP =
             "The time between adult rat movements, "
-                    + "in milliseconds between 100 and 5000";
+                    + "in milliseconds between 700 and 5000";
     private static final String BABY_RAT_SPEED_TOOLTIP =
             "The time between baby rat movements, "
-                    + "in milliseconds between 100 and 5000";
+                    + "in milliseconds between 700 and 5000";
     private static final String DEATH_RAT_SPEED_TOOLTIP =
             "The time between death rat movements, "
-                    + "in milliseconds between 100 and 5000";
+                    + "in milliseconds between 700 and 5000";
     private static final String AIRSTRIKE_COST_TOOLTIP =
             "Cost of calling an airstrike, in points between 10 and 100";
     private static final String TIME_INTERVAL_TOOLTIP =
@@ -86,19 +86,19 @@ public class LevelEditorOptionsMenu {
             "Enter an expected time to lose between 10 and 300";
     private static final String RAT_MAX_ERR =
             "Enter the maximum number of rats a mother can give "
-                    + "birth to between 1 and 10";
+                    + "birth to between 1 and 5";
     private static final String RAT_MIN_ERR =
             "Enter the minimum number of rats a mother can give "
-                    + "birth to between 1 and 10";
+                    + "birth to between 1 and 5";
     private static final String ADULT_SPEED_ERR =
             "Enter the milliseconds between adult rat "
-                    + "movements between 100 and 5000";
+                    + "movements between 700 and 5000";
     private static final String BABY_SPEED_ERR =
             "Enter the milliseconds between baby rat "
-                    + "movements between 100 and 5000";
+                    + "movements between 700 and 5000";
     private static final String DEATH_SPEED_ERR =
             "Enter the milliseconds between death rat "
-                    + "movements between 100 and 5000";
+                    + "movements between 700 and 5000";
 
     private final TextField populationToLoseTextField;
     private final TextField expectedTimeTextField;
@@ -648,7 +648,7 @@ public class LevelEditorOptionsMenu {
         String input = ratMaxBabiesTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-        || !withinRange(input, 1, 10)) {
+        || !withinRange(input, 1, 5)) {
             showInvalidInputAlert(RAT_MAX_ERR);
         } else {
             return Integer.parseInt(input);
@@ -669,7 +669,7 @@ public class LevelEditorOptionsMenu {
        String input = ratMinBabiesTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-                || !withinRange(input, 1, 10)) {
+                || !withinRange(input, 1, 5)) {
             showInvalidInputAlert(RAT_MIN_ERR);
         } else {
             return Integer.parseInt(input);
@@ -690,7 +690,7 @@ public class LevelEditorOptionsMenu {
        String input = adultRatSpeedTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-        || !withinRange(input, 100, 5000)) {
+        || !withinRange(input, 700, 5000)) {
             showInvalidInputAlert(ADULT_SPEED_ERR);
         } else {
             return Integer.parseInt(input);
@@ -711,7 +711,7 @@ public class LevelEditorOptionsMenu {
        String input = babyRatSpeedTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-                || !withinRange(input, 100, 5000)) {
+                || !withinRange(input, 700, 5000)) {
             showInvalidInputAlert(BABY_SPEED_ERR);
         } else {
             return Integer.parseInt(input);
@@ -732,7 +732,7 @@ public class LevelEditorOptionsMenu {
         String input = deathRatSpeedTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-                || !withinRange(input, 100, 5000)) {
+                || !withinRange(input, 700, 5000)) {
             showInvalidInputAlert(DEATH_SPEED_ERR);
         } else {
             return Integer.parseInt(input);
