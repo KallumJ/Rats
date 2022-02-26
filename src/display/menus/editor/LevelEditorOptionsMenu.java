@@ -144,6 +144,10 @@ public class LevelEditorOptionsMenu {
         onlyDayTime = new RadioButton("Always day time");
         onlyNightTime = new RadioButton("Always night time");
         dayAndNight = new RadioButton("Day and night times");
+        dayAndNight.selectedProperty().addListener(
+                (observable, oldValue, newValue) ->
+                        timeIntervalTextField.setDisable(!newValue)
+        );
 
         // makes sure user can't pick more than one option at the same time
         ToggleGroup dayAndNightRadioButtonGroup = new ToggleGroup();
