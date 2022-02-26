@@ -145,7 +145,7 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * Calls all event listeners in classTest.
+     * Initalises the custom board
      */
     private void initCustomBoard() {
         levelOptionsStage.setTitle(OPTIONS_TITLE);
