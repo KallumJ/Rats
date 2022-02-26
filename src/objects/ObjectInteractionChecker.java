@@ -12,7 +12,7 @@ import objects.rats.ZombieRat;
  * @date 2022/02/15
  *
  */
-public class ObjectInteractionChecker {
+public final class ObjectInteractionChecker {
 
     /**
      * Empty private constructor method, preventing ObjectInteractionChecker

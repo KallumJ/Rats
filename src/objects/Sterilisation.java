@@ -50,8 +50,8 @@ public class Sterilisation extends GameObject implements ObjectStoppable {
         super.setIcon(sterilisationImage);
         this.active = active;
         if (this.active) {
-            delayConstructionTimeline =
-                    new Timeline(new KeyFrame(Duration.millis(DELAY_DURING_CONSTRUCTION), event -> createSterilisationEffect()));
+            delayConstructionTimeline = new Timeline(new KeyFrame(Duration.millis(
+                    DELAY_DURING_CONSTRUCTION), event -> createSterilisationEffect()));
             delayConstructionTimeline.play();
         }
     }

@@ -180,7 +180,7 @@ public class Rat extends GameObject implements ObjectStoppable, ObjectStartable 
                             moveSucceeded = true;
                         }
                         break;
-                    case 2: // Move right
+                    default: // Move right
                         if (isRightTurnPossible) {
                             super.standOn(super.getStandingOn()
                                     .getAdjacentTile(turnRight(directionOfMovement)));

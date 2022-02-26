@@ -322,31 +322,36 @@ public class PeacefulRat extends Rat {
      * Spawns a baby behind its mother.
      */
     private void spawnBaby() {
-        String newBornGender;
-        Random random = new Random();
-        int decision = random.nextInt(2);
+        try {
+            String newBornGender;
+            Random random = new Random();
+            int decision = random.nextInt(2);
 
-        if (decision == 1) {
+            if (decision == 1) {
 
-            newBornGender = "m";
-        } else {
+                newBornGender = "m";
+            } else {
 
-            newBornGender = "f";
-        }
-        Direction oppositeDirection =
-                turnAround(super.getDirectionOfMovement());
-        Tile tile = super.getStandingOn().getAdjacentTile(oppositeDirection);
-        GameObject newBorn = new PeacefulRat(tile, this.isSterile(), false,
-                false, newBornGender, this.timeToGiveBirth, this.timeToDevelop,
-                GameObject.getBoard().getLevelProperties().getBabyRatSpeed(),
-                oppositeDirection);
+                newBornGender = "f";
+            }
+            Direction oppositeDirection =
+                    turnAround(super.getDirectionOfMovement());
+            Tile tile = super.getStandingOn().getAdjacentTile(oppositeDirection);
+            GameObject newBorn = new PeacefulRat(tile, this.isSterile(), false,
+                    false, newBornGender, this.timeToGiveBirth, this.timeToDevelop,
+                    GameObject.getBoard().getLevelProperties().getBabyRatSpeed(),
+                    oppositeDirection);
 
-        GameObject.getBoard().addObject(newBorn);
+            GameObject.getBoard().addObject(newBorn);
 
-        numberOfBabies = numberOfBabies - 1;
-        if (numberOfBabies == 0) {
-            this.pregnant = false;
-            decideIcon();
+            numberOfBabies = numberOfBabies - 1;
+            if (numberOfBabies == 0) {
+                this.pregnant = false;
+                decideIcon();
+            }
+        // Rats might try and spawn after game has ended, and board is gone
+        } catch (NullPointerException ignored) {
+
         }
 
     }
@@ -362,8 +367,7 @@ public class PeacefulRat extends Rat {
             super.setSpeed(GameObject.getBoard()
                     .getLevelProperties()
                     .getAdultRatSpeed());
-        }
-        catch (NullPointerException ignored) {
+        } catch (NullPointerException ignored) {
 
         }
     }

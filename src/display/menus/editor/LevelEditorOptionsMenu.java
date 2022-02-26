@@ -11,7 +11,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import level.LevelData;
 import level.LevelProperties;
 import objects.GameObjectType;
@@ -29,6 +28,8 @@ import java.util.HashSet;
  */
 public class LevelEditorOptionsMenu {
     public static final int WINDOW_OFFSET = 800;
+    private static final int CONTAINER_MIN_WIDTH = 620;
+    private static final int CONTAINER_MIN_HEIGHT = 500;
     private static final String POP_TO_LOSE_TOOLTIP =
             "The number of rats that cause game failure between 10 and 100";
     private static final String EXPECTED_TIME_TOOLTIP =
@@ -38,19 +39,19 @@ public class LevelEditorOptionsMenu {
             "The number of seconds between item drops between 1 and 15";
     private static final String RAT_MAX_BABIES_TOOLTIP =
             "The maximum number of rats a rat can give birth "
-                    + "to between 1 and 10";
+                    + "to between 1 and 5";
     private static final String RAT_MIN_BABIES_TOOLTIP =
-            "The minimum number of rats a rat can give birth " +
-                    "to between 1 and 10";
+            "The minimum number of rats a rat can give birth "
+                    + "to between 1 and 5";
     private static final String ADULT_RAT_SPEED_TOOLTIP =
             "The time between adult rat movements, "
-                    + "in milliseconds between 100 and 5000";
+                    + "in milliseconds between 700 and 5000";
     private static final String BABY_RAT_SPEED_TOOLTIP =
             "The time between baby rat movements, "
-                    + "in milliseconds between 100 and 5000";
+                    + "in milliseconds between 700 and 5000";
     private static final String DEATH_RAT_SPEED_TOOLTIP =
             "The time between death rat movements, "
-                    + "in milliseconds between 100 and 5000";
+                    + "in milliseconds between 700 and 5000";
     private static final String AIRSTRIKE_COST_TOOLTIP =
             "Cost of calling an airstrike, in points between 10 and 100";
     private static final String TIME_INTERVAL_TOOLTIP =
@@ -85,19 +86,19 @@ public class LevelEditorOptionsMenu {
             "Enter an expected time to lose between 10 and 300";
     private static final String RAT_MAX_ERR =
             "Enter the maximum number of rats a mother can give "
-                    + "birth to between 1 and 10";
+                    + "birth to between 1 and 5";
     private static final String RAT_MIN_ERR =
             "Enter the minimum number of rats a mother can give "
-                    + "birth to between 1 and 10";
+                    + "birth to between 1 and 5";
     private static final String ADULT_SPEED_ERR =
             "Enter the milliseconds between adult rat "
-                    + "movements between 100 and 5000";
+                    + "movements between 700 and 5000";
     private static final String BABY_SPEED_ERR =
             "Enter the milliseconds between baby rat "
-                    + "movements between 100 and 5000";
+                    + "movements between 700 and 5000";
     private static final String DEATH_SPEED_ERR =
             "Enter the milliseconds between death rat "
-                    + "movements between 100 and 5000";
+                    + "movements between 700 and 5000";
 
     private final TextField populationToLoseTextField;
     private final TextField expectedTimeTextField;
@@ -437,13 +438,14 @@ public class LevelEditorOptionsMenu {
 
         //Vbox containing all the labels, textfields, etc.
         VBox container = new VBox();
-        container.setMinWidth(620);
-        container.setMaxHeight(500);
+        container.setMinWidth(CONTAINER_MIN_WIDTH);
+        container.setMaxHeight(CONTAINER_MIN_HEIGHT);
         container.getChildren().addAll(
                 populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel,
-                adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel,
-                timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
-                tileSelectLabel, tileSelectChoiceBox, deleteItems, includeAirstrike, onlyDayTime, onlyNightTime,
+                adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel,
+                airstrikeNumberOfHitsLabel, timeDayAndNightLabel,
+                row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
+                tileSelectLabel, tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime,
                 dayAndNight, allowedItemsLabel, objectSelectionGroup, levelNameLabel, levelNameTextField, commandsBox
         );
         container.setStyle("-fx-background-color: #000000;");
@@ -624,8 +626,8 @@ public class LevelEditorOptionsMenu {
     public int getItemInterval() {
         String input = itemIntervalTextField.getText();
 
-        if (input.equals("") || !isStringInteger(input) ||
-        !withinRange(input, 1, 15)) {
+        if (input.equals("") || !isStringInteger(input)
+                || !withinRange(input, 1, 15)) {
             showInvalidInputAlert(ITEM_INTERVAL_ERR);
         } else {
             return Integer.parseInt(input);
@@ -646,7 +648,7 @@ public class LevelEditorOptionsMenu {
         String input = ratMaxBabiesTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-        || !withinRange(input, 1, 10)) {
+        || !withinRange(input, 1, 5)) {
             showInvalidInputAlert(RAT_MAX_ERR);
         } else {
             return Integer.parseInt(input);
@@ -667,7 +669,7 @@ public class LevelEditorOptionsMenu {
        String input = ratMinBabiesTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-                || !withinRange(input, 1, 10)) {
+                || !withinRange(input, 1, 5)) {
             showInvalidInputAlert(RAT_MIN_ERR);
         } else {
             return Integer.parseInt(input);
@@ -688,7 +690,7 @@ public class LevelEditorOptionsMenu {
        String input = adultRatSpeedTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-        || !withinRange(input, 100, 5000)) {
+        || !withinRange(input, 700, 5000)) {
             showInvalidInputAlert(ADULT_SPEED_ERR);
         } else {
             return Integer.parseInt(input);
@@ -709,7 +711,7 @@ public class LevelEditorOptionsMenu {
        String input = babyRatSpeedTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-                || !withinRange(input, 100, 5000)) {
+                || !withinRange(input, 700, 5000)) {
             showInvalidInputAlert(BABY_SPEED_ERR);
         } else {
             return Integer.parseInt(input);
@@ -730,7 +732,7 @@ public class LevelEditorOptionsMenu {
         String input = deathRatSpeedTextField.getText();
 
         if (input.equals("") || !isStringInteger(input)
-                || !withinRange(input, 100, 5000)) {
+                || !withinRange(input, 700, 5000)) {
             showInvalidInputAlert(DEATH_SPEED_ERR);
         } else {
             return Integer.parseInt(input);
@@ -794,6 +796,8 @@ public class LevelEditorOptionsMenu {
             case BOTH:
                 dayAndNight.setSelected(true);
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + timeOfDay);
         }
     }
 

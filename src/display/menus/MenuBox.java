@@ -12,6 +12,8 @@ import javafx.scene.shape.Line;
  */
 public class MenuBox extends VBox {
 
+    private static final int LINE_SEPARATOR = 200;
+
     /**
      * Constructor for {@code MenuBox}.
      *
@@ -31,9 +33,8 @@ public class MenuBox extends VBox {
      * @return the line.
      */
     private Line createSeparator() {
-        int lineSeparator=200;
         Line sep = new Line();
-        sep.setEndX(lineSeparator);
+        sep.setEndX(LINE_SEPARATOR);
         sep.setStroke(Color.DARKGREY);
         return sep;
     }
