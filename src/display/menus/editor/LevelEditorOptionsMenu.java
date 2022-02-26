@@ -165,7 +165,6 @@ public class LevelEditorOptionsMenu {
     public VBox buildGUI() {
         //Label for Population to Lose
         Label populationToLoseLabel = new Label("Population to Lose:");
-        populationToLoseLabel.setTextFill(Color.WHITE);
         populationToLoseLabel.setStyle(LABEL_STYLE);
         Tooltip populationToLoseTooltip = new Tooltip(POP_TO_LOSE_TOOLTIP);
         Tooltip.install(populationToLoseLabel, populationToLoseTooltip);
@@ -177,7 +176,6 @@ public class LevelEditorOptionsMenu {
         Label expectedTimeLabel = new Label("Expected Time:");
         Tooltip expectedTimeTooltip = new Tooltip(EXPECTED_TIME_TOOLTIP);
         Tooltip.install(expectedTimeLabel, expectedTimeTooltip);
-        expectedTimeLabel.setTextFill(Color.WHITE);
         expectedTimeLabel.setStyle(LABEL_STYLE);
 
         expectedTimeLabel.setTranslateX(30);
@@ -187,7 +185,6 @@ public class LevelEditorOptionsMenu {
         Label itemIntervalLabel = new Label("Item Interval:");
         Tooltip itemIntervalTooltip = new Tooltip(ITEM_INTERVAL_TOOLTIP);
         Tooltip.install(itemIntervalLabel, itemIntervalTooltip);
-        itemIntervalLabel.setTextFill(Color.WHITE);
         itemIntervalLabel.setStyle(LABEL_STYLE);
 
         itemIntervalLabel.setTranslateX(30);
@@ -197,7 +194,6 @@ public class LevelEditorOptionsMenu {
         Label ratMaxBabiesLabel = new Label("Maximum babies:");
         Tooltip ratMaxBabiesTooltip = new Tooltip(RAT_MAX_BABIES_TOOLTIP);
         Tooltip.install(ratMaxBabiesLabel, ratMaxBabiesTooltip);
-        ratMaxBabiesLabel.setTextFill(Color.WHITE);
         ratMaxBabiesLabel.setStyle(LABEL_STYLE);
 
         ratMaxBabiesLabel.setTranslateX(30);
@@ -207,7 +203,6 @@ public class LevelEditorOptionsMenu {
         Label ratMinBabiesLabel = new Label("Minimum babies:");
         Tooltip ratMinBabiesTooltip = new Tooltip(RAT_MIN_BABIES_TOOLTIP);
         Tooltip.install(ratMinBabiesLabel, ratMinBabiesTooltip);
-        ratMinBabiesLabel.setTextFill(Color.WHITE);
         ratMinBabiesLabel.setStyle(LABEL_STYLE);
 
         ratMinBabiesLabel.setTranslateX(30);
@@ -217,7 +212,6 @@ public class LevelEditorOptionsMenu {
         Label adultRatSpeedLabel = new Label("Adult Rat Speed:");
         Tooltip adultRatSpeedTooltip = new Tooltip(ADULT_RAT_SPEED_TOOLTIP);
         Tooltip.install(adultRatSpeedLabel, adultRatSpeedTooltip);
-        adultRatSpeedLabel.setTextFill(Color.WHITE);
         adultRatSpeedLabel.setStyle(LABEL_STYLE);
 
         adultRatSpeedLabel.setTranslateX(30);
@@ -227,7 +221,6 @@ public class LevelEditorOptionsMenu {
         Label babyRatSpeedLabel = new Label("Baby Rat Speed:");
         Tooltip babyRatSpeedTooltip = new Tooltip(BABY_RAT_SPEED_TOOLTIP);
         Tooltip.install(babyRatSpeedLabel, babyRatSpeedTooltip);
-        babyRatSpeedLabel.setTextFill(Color.WHITE);
         babyRatSpeedLabel.setStyle(LABEL_STYLE);
 
         babyRatSpeedLabel.setTranslateX(30);
@@ -237,7 +230,6 @@ public class LevelEditorOptionsMenu {
         Label deathRatSpeedLabel = new Label("Death Rat Speed:");
         Tooltip deathRatSpeedTooltip = new Tooltip(DEATH_RAT_SPEED_TOOLTIP);
         Tooltip.install(deathRatSpeedLabel, deathRatSpeedTooltip);
-        deathRatSpeedLabel.setTextFill(Color.WHITE);
         deathRatSpeedLabel.setStyle(LABEL_STYLE);
 
         deathRatSpeedLabel.setTranslateX(30);
@@ -247,7 +239,6 @@ public class LevelEditorOptionsMenu {
         Label airstrikeCostLabel = new Label("Required points for airstrike:");
         Tooltip airstrikeCostTooltip = new Tooltip(AIRSTRIKE_COST_TOOLTIP);
         Tooltip.install(airstrikeCostLabel, airstrikeCostTooltip);
-        airstrikeCostLabel.setTextFill(Color.WHITE);
         airstrikeCostLabel.setStyle(LABEL_STYLE);
 
         airstrikeCostLabel.setTranslateX(30);
@@ -255,7 +246,6 @@ public class LevelEditorOptionsMenu {
 
         //Label for Number of Airstrike Hits 
         Label airstrikeNumberOfHitsLabel = new Label("Number of targets in an airstrike:");
-        airstrikeNumberOfHitsLabel.setTextFill(Color.WHITE);
         airstrikeNumberOfHitsLabel.setStyle(LABEL_STYLE);
 
         airstrikeNumberOfHitsLabel.setTranslateX(30);
@@ -265,7 +255,6 @@ public class LevelEditorOptionsMenu {
         Label timeDayAndNightLabel = new Label("Period between day and night:");
         Tooltip timePeriodTooltip = new Tooltip(TIME_INTERVAL_TOOLTIP);
         Tooltip.install(timeDayAndNightLabel, timePeriodTooltip);
-        timeDayAndNightLabel.setTextFill(Color.WHITE);
         timeDayAndNightLabel.setStyle(LABEL_STYLE);
 
         timeDayAndNightLabel.setTranslateX(30);
@@ -274,19 +263,19 @@ public class LevelEditorOptionsMenu {
         Label levelNameLabel = new Label("Level name");
         Tooltip levelNameTooltip = new Tooltip(LEVEL_NAME_TOOLTIP);
         Tooltip.install(levelNameLabel, levelNameTooltip);
-        levelNameLabel.setTextFill(Color.WHITE);
         levelNameLabel.setStyle(LABEL_STYLE);
 
         Label allowedItemsLabel = new Label("Allowed items");
         Tooltip allowedItemsTooltip = new Tooltip(ALLOWED_ITEMS_TOOLTIP);
         Tooltip.install(allowedItemsLabel, allowedItemsTooltip);
-        allowedItemsLabel.setTextFill(Color.WHITE);
         allowedItemsLabel.setStyle(LABEL_STYLE);
 
         /*
          * adds a choice box with choice of tiles
          * event listener added to choice box which is activated when new tile is chosen
          */
+        Label tileSelectLabel = new Label("Selected tile:");
+        tileSelectLabel.setStyle(LABEL_STYLE);
         tileSelectChoiceBox.getItems().addAll("Grass Tile", "Tunnel Tile", "Path Tile");
         tileSelectChoiceBox.setValue("Grass Tile");
 
@@ -395,6 +384,8 @@ public class LevelEditorOptionsMenu {
 
         tileSelectChoiceBox.setTranslateX(450);
         tileSelectChoiceBox.setTranslateY(-505);
+        tileSelectLabel.setTranslateX(450);
+        tileSelectLabel.setTranslateY(-505);
 
         includeAirstrike.setStyle(RADIO_BUTTON_STYLE);
         includeAirstrike.setTranslateX(450);
@@ -423,7 +414,7 @@ public class LevelEditorOptionsMenu {
                 populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel,
                 adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel,
                 timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
-                tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight,
+                tileSelectLabel, tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight,
                 allowedItemsLabel, objectSelectionGroup.getObjectSelectionGroup(), levelNameLabel, levelNameTextField
         );
         container.setStyle("-fx-background-color: #000000;");
