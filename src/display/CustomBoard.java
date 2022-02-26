@@ -136,6 +136,7 @@ public class CustomBoard extends Board {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-image: url(file:resources/inventoryBg.png);");
         root.setLeft(tileCanvas.getCanvas());
+        levelOptionsStage.setX(1100);
         levelOptionsStage.show();
         root.setRight(new CustomInventory(levelData).buildInventoryGUI());
 
