@@ -54,7 +54,7 @@ import java.util.Random;
 public class Board {
 
     private static final int POINTS_ON_A_RAT = 10;
-    private static int pointsForAirstrike = 40;
+    private static int pointsForAirstrike;
     private static final int INTERACTION_CHECK_INTERVAL = 100; // In ms
     private static final String SAVED_BUTTON_LABEL = "Save and exit";
     private static final String AIRSTRIKE_BUTTON_LABEL = "CALL AIRSTRIKE!!!!";

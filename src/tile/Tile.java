@@ -13,7 +13,7 @@ import java.util.Map;
  *
  */
 public class Tile {
-    public final static int TILE_SIZE = 50;
+    public static final int TILE_SIZE = 50;
 
     private final TileLocation tileLocation;
     private final TileType tileType;

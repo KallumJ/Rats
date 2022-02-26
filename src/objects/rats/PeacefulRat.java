@@ -367,8 +367,7 @@ public class PeacefulRat extends Rat {
             super.setSpeed(GameObject.getBoard()
                     .getLevelProperties()
                     .getAdultRatSpeed());
-        }
-        catch (NullPointerException ignored) {
+        } catch (NullPointerException ignored) {
 
         }
     }

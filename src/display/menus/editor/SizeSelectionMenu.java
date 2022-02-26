@@ -84,7 +84,8 @@ public class SizeSelectionMenu extends GameMenu {
         //this is the 'START EDITING' button
         Button startButton = new Button(START_BUTTON_TEXT);
         startButton.setFont(TITLE_FONT);
-        startButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
+        startButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
+                + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
         startButton.setPrefWidth(170);
 
         startButton.setTranslateX(30);
@@ -101,7 +102,8 @@ public class SizeSelectionMenu extends GameMenu {
         //this is the 'SELECT DIFFICULTY' button 
         Button difficultyButton = new Button(DIFFICULTY_BUTTON_TEXT);
         difficultyButton.setFont(TITLE_FONT);
-        difficultyButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
+        difficultyButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
+                + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
         difficultyButton.setPrefWidth(170);
 
         difficultyButton.setTranslateX(240);
@@ -126,14 +128,16 @@ public class SizeSelectionMenu extends GameMenu {
             }
         });
 
-        // When the 'SELECT DIFFICULTY' button is presses, they are taken to a new Border Pane which displays three more buttons
+        // When the 'SELECT DIFFICULTY' button is presses,
+        // they are taken to a new Border Pane which displays three more buttons
         difficultyButton.setOnMousePressed(event -> {
             Scene scene = new Scene(new DifficultySelectionMenu().buildMenu());
             GameMenu.getStage().setScene(scene);
         });
 
         // Add and align the controls
-        sizeControlsContainer.getChildren().addAll(heightLabel, heightSpinner, widthLabel, widthSpinner, startButton, difficultyButton, orLabel);
+        sizeControlsContainer.getChildren().addAll(
+                heightLabel, heightSpinner, widthLabel, widthSpinner, startButton, difficultyButton, orLabel);
         widthLabel.setPadding(new Insets(DEFAULT_PADDING, 0, 0, 0));
         getCenter().getChildren().add(sizeControlsContainer);
 

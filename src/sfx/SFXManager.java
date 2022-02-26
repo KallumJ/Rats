@@ -12,7 +12,7 @@ import java.io.File;
  * @date 2022/02/18
  *
  */
-public class SFXManager {
+public final class SFXManager {
 
     private static final String BOMB_SFX_FILE = "resources/sounds/bomb_sfx" 
             + ".mp3";

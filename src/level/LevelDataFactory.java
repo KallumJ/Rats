@@ -28,7 +28,7 @@ import java.util.List;
  * @date 2022.02.21
  *
  */
-public class LevelDataFactory {
+public final class LevelDataFactory {
     private static final String INVALID_TILE_TYPE = "An invalid tile type was "
             + "read from file";
 
@@ -120,7 +120,8 @@ public class LevelDataFactory {
                     String attributeValue = attribute.getNodeValue();
 
                     // Read the object from the provided attribute
-                    objects.add(TileAttributeReader.getObjectFromAttribute(attributeName, attributeValue, tile, levelProperties));
+                    objects.add(TileAttributeReader.getObjectFromAttribute(
+                            attributeName, attributeValue, tile, levelProperties));
                 }
             }
         }
@@ -234,7 +235,8 @@ public class LevelDataFactory {
      * @param propertyName      The property to read.
      * @return The read property, of type String.
      */
-    private static HashSet<GameObjectType> getPropertyAllowedItems(Element propertiesElement, XMLElementNames propertyName) {
+    private static HashSet<GameObjectType> getPropertyAllowedItems(
+            Element propertiesElement, XMLElementNames propertyName) {
         String propertyStr = propertyName.toString();
         Node propertyElement =
                 propertiesElement.getElementsByTagName(propertyStr)

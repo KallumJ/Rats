@@ -25,7 +25,7 @@ public class TileCanvas {
     private final Canvas canvas;
     private final LevelData levelData;
 
-    int elapsedSeconds = 0;
+    private int elapsedSeconds = 0;
     private TimeOfDay currentTimeOfDay;
 
     /**
@@ -66,6 +66,8 @@ public class TileCanvas {
                                     break;
                                 case NIGHT:
                                     currentTimeOfDay = TimeOfDay.DAY;
+                                    break;
+                                default:
                                     break;
                             }
                             elapsedSeconds = 0;

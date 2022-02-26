@@ -11,7 +11,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import level.LevelData;
 import level.LevelProperties;
 import objects.GameObjectType;
@@ -29,6 +28,8 @@ import java.util.HashSet;
  */
 public class LevelEditorOptionsMenu {
     public static final int WINDOW_OFFSET = 800;
+    private static final int CONTAINER_MIN_WIDTH = 620;
+    private static final int CONTAINER_MIN_HEIGHT = 500;
     private static final String POP_TO_LOSE_TOOLTIP =
             "The number of rats that cause game failure between 10 and 100";
     private static final String EXPECTED_TIME_TOOLTIP =
@@ -40,8 +41,8 @@ public class LevelEditorOptionsMenu {
             "The maximum number of rats a rat can give birth "
                     + "to between 1 and 10";
     private static final String RAT_MIN_BABIES_TOOLTIP =
-            "The minimum number of rats a rat can give birth " +
-                    "to between 1 and 10";
+            "The minimum number of rats a rat can give birth "
+                    + "to between 1 and 10";
     private static final String ADULT_RAT_SPEED_TOOLTIP =
             "The time between adult rat movements, "
                     + "in milliseconds between 100 and 5000";
@@ -437,13 +438,14 @@ public class LevelEditorOptionsMenu {
 
         //Vbox containing all the labels, textfields, etc.
         VBox container = new VBox();
-        container.setMinWidth(620);
-        container.setMaxHeight(500);
+        container.setMinWidth(CONTAINER_MIN_WIDTH);
+        container.setMaxHeight(CONTAINER_MIN_HEIGHT);
         container.getChildren().addAll(
                 populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel,
-                adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel,
-                timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
-                tileSelectLabel, tileSelectChoiceBox, deleteItems, includeAirstrike, onlyDayTime, onlyNightTime,
+                adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel,
+                airstrikeNumberOfHitsLabel, timeDayAndNightLabel,
+                row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
+                tileSelectLabel, tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime,
                 dayAndNight, allowedItemsLabel, objectSelectionGroup, levelNameLabel, levelNameTextField, commandsBox
         );
         container.setStyle("-fx-background-color: #000000;");
@@ -624,8 +626,8 @@ public class LevelEditorOptionsMenu {
     public int getItemInterval() {
         String input = itemIntervalTextField.getText();
 
-        if (input.equals("") || !isStringInteger(input) ||
-        !withinRange(input, 1, 15)) {
+        if (input.equals("") || !isStringInteger(input)
+                || !withinRange(input, 1, 15)) {
             showInvalidInputAlert(ITEM_INTERVAL_ERR);
         } else {
             return Integer.parseInt(input);
@@ -794,6 +796,8 @@ public class LevelEditorOptionsMenu {
             case BOTH:
                 dayAndNight.setSelected(true);
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + timeOfDay);
         }
     }
 

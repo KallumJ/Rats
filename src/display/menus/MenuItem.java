@@ -37,6 +37,10 @@ import java.util.Optional;
 public abstract class MenuItem extends StackPane {
 
     private final String name;
+    private static final int BG_WIDTH = 200;
+    private static final int BG_HEIGHT = 30;
+    private static final double BG_OPACITY = 0.4;
+    private static final int FONT_SIZE = 22;
 
     /**
      * Constructs a MenuItem with the provided name.
@@ -51,12 +55,12 @@ public abstract class MenuItem extends StackPane {
                 new Stop(0.1, Color.BLACK), new Stop(0.9, Color.BLACK),
                 new Stop(1, Color.DARKVIOLET));
 
-        Rectangle bg = new Rectangle(200, 30);
-        bg.setOpacity(0.4);
+        Rectangle bg = new Rectangle(BG_WIDTH, BG_HEIGHT);
+        bg.setOpacity(BG_OPACITY);
 
         Text text = new Text(name);
         text.setFill(Color.DARKGREY);
-        text.setFont(TextUtils.getFont(22));
+        text.setFont(TextUtils.getFont(FONT_SIZE));
 
         setAlignment(Pos.CENTER);
         getChildren().addAll(bg, text);
@@ -284,8 +288,8 @@ class DeleteLevelMenuItem extends MenuItem {
 
         String levelId = LevelUtils.getFilesLevelId(level);
         setOnMousePressed(event -> {
-            String contentMsg = "Are you sure you want to delete level %s? " +
-                    "\n Type %s exactly to confirm and delete";
+            String contentMsg = "Are you sure you want to delete level %s? "
+                    + "\n Type %s exactly to confirm and delete";
             TextInputDialog confirmDialog = new TextInputDialog();
             confirmDialog.setTitle("Confirm level deletion");
             confirmDialog.setContentText(String.format(contentMsg, levelId, levelId));

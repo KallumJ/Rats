@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
  * @date 2022/02/09
  *
  */
-public class TextUtils {
+public final class TextUtils {
     /**
      * Private constructor to prevent instantiating util class.
      */

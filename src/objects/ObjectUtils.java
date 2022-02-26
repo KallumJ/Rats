@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2022.02.21
  *
  */
-public class ObjectUtils {
+public final class ObjectUtils {
     private static final String NO_ASSIGNED_IMAGE = "There is no image "
             + "assigned to %s";
     private static final String NO_CONSTRUCTOR_ASSIGNED = "There is no object "
