@@ -25,7 +25,7 @@ import objects.Sterilisation;
  * @date 2022.02.21
  *
  */
-public class TileAttributeReader {
+public final class TileAttributeReader {
     private static final String INVALID_ATTRIBUTE =
             "Name: %s, Value: %s is " + "an" + " invalid attribute";
     private static final String INVALID_SEX_CHANGER =
@@ -73,9 +73,10 @@ public class TileAttributeReader {
                 return readPortal(attributeValue, tile);
             case ObjectAttributeGenerator.ZOMBIE_RAT_KEY:
                 return readZombieRat(attributeValue, tile, levelProperties);
+            default:
+                throw new RuntimeException(String.format(INVALID_ATTRIBUTE,
+                        attributeName, attributeValue));
         }
-        throw new RuntimeException(String.format(INVALID_ATTRIBUTE,
-                attributeName, attributeValue));
     }
 
     private static GameObject readZombieRat(String attributeValue, Tile tile, LevelProperties levelProperties) {
@@ -194,8 +195,9 @@ public class TileAttributeReader {
                 return new MaleSexChanger(tile);
             case "f":
                 return new FemaleSexChanger(tile);
+            default:
+                throw new RuntimeException(INVALID_SEX_CHANGER);
         }
-        throw new RuntimeException(INVALID_SEX_CHANGER);
     }
 
     /**

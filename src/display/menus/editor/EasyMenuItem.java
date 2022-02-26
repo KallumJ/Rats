@@ -9,9 +9,11 @@ import level.LevelData;
 import level.custom.CustomLevelDataFactory;
 
 /**
+ * A class to model a menu item for selecting the Easy level preset
+ *
+ * @author Samhitha Pinisetti
  * @date 2022/02/22
  */
-
 public class EasyMenuItem extends MenuItem {
     private static final int POPULATION_TO_LOSE = 50;
     private static final int EXPECTED_TIME = 200;
@@ -26,9 +28,12 @@ public class EasyMenuItem extends MenuItem {
     private static final int AIRSTRIKE_NUM_OF_HITS = 8;
     private static final TimeOfDay TIME_OF_DAY = TimeOfDay.BOTH;
     private static final int TIME_INTERVAL = 60;
-    private static final int HEIGHT = 12;
-    private static final int WIDTH = 12;
+    private static final int HEIGHT = 15;
+    private static final int WIDTH = 15;
 
+    /**
+     * Constructs an EasyMenuItem
+     */
     public EasyMenuItem() {
         super(" E A S Y ");
 

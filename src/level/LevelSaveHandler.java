@@ -28,7 +28,7 @@ import java.util.StringJoiner;
  * @date 2022.02.19
  *
  */
-public class LevelSaveHandler {
+public final class LevelSaveHandler {
 
     /**
      * Empty private constructor method, preventing LevelSaveHandler from being

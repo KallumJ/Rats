@@ -39,15 +39,19 @@ import java.util.List;
 public class CustomBoard extends Board {
 
     private static final String OPTIONS_TITLE = "Level Options";
+    private static final int CREATE_BUTTON_X = 150;
+    private static final int BACK_BUTTON_X = 250;
+    private static final int BUTTON_Y = 0;
+    private static final int BUTTON_WIDTH = 100;
+    private static final int BUTTON_HEIGHT = 75;
+    private static final String BUTTON_STYLE =
+            "-fx-background-color: black; -fx-text-fill: white;"
+                    + "-fx-border-color: darkgrey; -fx-border-width: 2px;";
+
     private final TileCanvas tileCanvas;
     private final LevelData levelData;
     private final LevelEditorOptionsMenu inputMenu;
     private final Stage levelOptionsStage = new Stage();
-    private static final int BUTTON_MAX_WIDTH = 200;
-    private static final int CREATE_BUTTON_X = 150;
-    private static final int BACK_BUTTON_X = 250;
-    private static final int BUTTON_Y = 0;
-
 
     /**
      * Constructs a custom board.
@@ -57,10 +61,38 @@ public class CustomBoard extends Board {
     public CustomBoard(LevelData levelData) {
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
-        this.inputMenu = new LevelEditorOptionsMenu();
+        this.inputMenu = new LevelEditorOptionsMenu(this);
         this.initCustomBoard();
     }
 
+    /**
+     * Constructs a custom board.
+     *
+     * @param levelData the LevelData for the custom level.
+     * @param populationToLose   the max population for a level before failure.
+     * @param expectedTime       the expected time to complete the level in
+     *                           seconds.
+     * @param itemInterval       the time in between item drops for this level in
+     *                           seconds.
+     * @param ratMinBabies       the minimum number of babies a rat can birth
+     *                           in a level.
+     * @param ratMaxBabies       the maximum number of babies a rat can birth
+     *                           in a level.
+     * @param adultRatSpeed      the speed of an adult rat, in time between
+     *                           movement, in milliseconds.
+     * @param babyRatSpeed       the speed of a baby rat, in time between
+     *                           movement, in milliseconds.
+     * @param deathRatSpeed      the speed of a death rat, in time between
+     *                           movement, in milliseconds.
+     * @param time         the time of day allowed in this level.
+     * @param timeInterval       the time between changes in time of day,
+     *                           in seconds.
+     * @param includeAirstrike   whether airstrikes are enabled.
+     * @param costOfAirstrike    the price of calling an airstrike, in score
+     * @param airstrikeNumOfHits the number of target tiles an airstrike
+     *                           will hit.
+     * @param allowedItems       a list of allowed items in the inventory for this level
+     */
     public CustomBoard(LevelData levelData, int populationToLose, int expectedTime, int itemInterval,
                        int ratMaxBabies, int ratMinBabies, int adultRatSpeed, int babyRatSpeed,
                        int deathRatSpeed, boolean includeAirstrike, int costOfAirstrike,
@@ -69,7 +101,7 @@ public class CustomBoard extends Board {
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
 
-        this.inputMenu = new LevelEditorOptionsMenu();
+        this.inputMenu = new LevelEditorOptionsMenu(this);
         this.inputMenu.setPopulationToLose(populationToLose);
         this.inputMenu.setExpectedTime(expectedTime);
         this.inputMenu.setItemInterval(itemInterval);
@@ -95,11 +127,15 @@ public class CustomBoard extends Board {
 
     }
 
+    /**
+     * Constructs the GUI for a custom board
+     *
+     * @return the constructed GUI
+     */
     public BorderPane buildGUI() {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-image: url(file:resources/inventoryBg.png);");
         root.setLeft(tileCanvas.getCanvas());
-        root.setBottom(createCommandsBox());
         levelOptionsStage.show();
         root.setRight(new CustomInventory(levelData).buildInventoryGUI());
 
@@ -115,6 +151,7 @@ public class CustomBoard extends Board {
         levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
         levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
         levelOptionsStage.setY(GameMenu.getStage().getY());
+        levelOptionsStage.setResizable(false);
 
         // Prevent dismissing of the options menu
         levelOptionsStage.setOnCloseRequest(Event::consume);
@@ -171,21 +208,24 @@ public class CustomBoard extends Board {
         }
     }
 
+    /**
+     * Create an HBox with Create and Back buttons in
+     *
+     * @return the constructed HBox
+     */
     public HBox createCommandsBox() {
         HBox commandsBox = new HBox();
         Button createButton = new Button(" C R E A T E ");
-        createButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
-                + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
+        createButton.setMinSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        createButton.setStyle(BUTTON_STYLE);
 
         Button backButton = new Button(" B A C K ");
-        backButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
-                + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
+        backButton.setMinSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        backButton.setStyle(BUTTON_STYLE);
 
-        createButton.setMaxWidth(BUTTON_MAX_WIDTH);
         createButton.setTranslateX(CREATE_BUTTON_X);
         createButton.setTranslateY(BUTTON_Y);
 
-        backButton.setMaxWidth(BUTTON_MAX_WIDTH);
         backButton.setTranslateX(BACK_BUTTON_X);
         backButton.setTranslateY(BUTTON_Y);
 
@@ -289,6 +329,10 @@ public class CustomBoard extends Board {
                 break;
             }
         }
+        if (startTile == null) {
+            return false;
+        }
+
         List<Tile> visitedTiles = connectedTiles(startTile, new ArrayList<>());
         int numOfPaths = 0;
         for (Tile tile : tiles) {

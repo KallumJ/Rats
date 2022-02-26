@@ -31,7 +31,7 @@ import java.util.stream.Stream;
  * @date 2022.02.21
  *
  */
-public class LevelUtils {
+public final class LevelUtils {
 
     private static final String LEVELS_PATH = "levels";
     public static final String SAVED_LEVELS_DIR_PATH = LEVELS_PATH 
@@ -262,7 +262,8 @@ public class LevelUtils {
 
 
         return !(objectsOnTile.stream()
-                .allMatch(object -> object instanceof NoEntrySignCounter || object instanceof GasEffect || object instanceof Gas));
+                .allMatch(object -> object instanceof NoEntrySignCounter
+                        || object instanceof GasEffect || object instanceof Gas));
     }
 
     /**

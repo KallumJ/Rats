@@ -26,8 +26,10 @@ public class LoginMenu extends GameMenu {
     private static final int NAME_CHAR_LIMIT = 20;
     private static final int INPUT_BOX_X = 110;
     private static final int INPUT_BOX_Y = 300;
+    private static final int INPUT_BOX_WIDTH = 170;
     private static final int LOGIN_BUTTON_X = -25;
     private static final int LOGIN_BUTTON_Y = 335;
+    private static final int LOGIN_BUTTON_WIDTH = 100;
     private static final String NAME_TOO_LONG =
             "Please choose a name with " + NAME_CHAR_LIMIT + " characters or " + "less";
     private static final Font TITLE_FONT = TextUtils.getFont(20);
@@ -39,8 +41,8 @@ public class LoginMenu extends GameMenu {
      */
     @Override
     public Parent buildMenu() {
-        int inputBoxWidth=170;
-        int loginButtonWidth=100;
+        int inputBoxWidth=INPUT_BOX_WIDTH;
+        int loginButtonWidth=LOGIN_BUTTON_WIDTH;
         
         // Get a blank menu
         BorderPane menu = buildBlank(new MenuTitle(MENU_TITLE), null);

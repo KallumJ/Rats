@@ -24,7 +24,7 @@ import objects.Sterilisation;
  * @date 2022.02.14
  *
  */
-public class ObjectAttributeGenerator {
+public final class ObjectAttributeGenerator {
     public static final String RAT_KEY = "rat";
     public static final String DEATH_RAT_KEY = "d_rat";
     public static final String BOMB_KEY = "bomb";
