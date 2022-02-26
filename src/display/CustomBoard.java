@@ -115,6 +115,7 @@ public class CustomBoard extends Board {
         levelOptionsStage.setScene(new Scene(inputMenu.buildGUI()));
         levelOptionsStage.setX(GameMenu.getStage().getX() - LevelEditorOptionsMenu.WINDOW_OFFSET);
         levelOptionsStage.setY(GameMenu.getStage().getY());
+        levelOptionsStage.setResizable(false);
 
         // Prevent dismissing of the options menu
         levelOptionsStage.setOnCloseRequest(Event::consume);
