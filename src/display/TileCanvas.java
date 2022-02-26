@@ -25,10 +25,7 @@ public class TileCanvas {
     private final Canvas canvas;
     private final LevelData levelData;
 
-
-    long start = System.currentTimeMillis();
-    long elapsedTime = System.currentTimeMillis() - start;
-    long elapsedSeconds = elapsedTime / 1000;
+    int elapsedSeconds = 0;
     private TimeOfDay currentTimeOfDay;
 
     /**
