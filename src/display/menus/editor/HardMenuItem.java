@@ -8,6 +8,12 @@ import javafx.scene.Scene;
 import level.LevelData;
 import level.custom.CustomLevelDataFactory;
 
+/**
+ * A class to model a menu item for selecting the Hard level preset
+ *
+ * @author Samhitha Pinisetti
+ * @date 2022/02/22
+ */
 public class HardMenuItem extends MenuItem {
     private static final int POPULATION_TO_LOSE = 20;
     private static final int EXPECTED_TIME = 90;
@@ -25,6 +31,9 @@ public class HardMenuItem extends MenuItem {
     private static final int HEIGHT = 12;
     private static final int WIDTH = 12;
 
+    /**
+     * Constructs a HardMenuItem
+     */
     public HardMenuItem() {
         super(" H A R D ");
 

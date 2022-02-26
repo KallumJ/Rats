@@ -8,6 +8,12 @@ import javafx.scene.Scene;
 import level.LevelData;
 import level.custom.CustomLevelDataFactory;
 
+/**
+ * A class to model a menu item for selecting the Medium level preset
+ *
+ * @author Samhitha Pinisetti
+ * @date 2022/02/22
+ */
 public class MediumMenuItem extends MenuItem {
     private static final int POPULATION_TO_LOSE = 30;
     private static final int EXPECTED_TIME = 120;
@@ -22,9 +28,12 @@ public class MediumMenuItem extends MenuItem {
     private static final int AIRSTRIKE_NUM_OF_HITS = 6;
     private static final TimeOfDay TIME_OF_DAY = TimeOfDay.BOTH;
     private static final int TIME_INTERVAL = 60;
-    private static final int height = 12;
-    private static final int width = 12;
+    private static final int height = 15;
+    private static final int width = 15;
 
+    /**
+     * Constructs a MediumMenuItem
+     */
     public MediumMenuItem() {
         super(" M E D I U M ");
 
