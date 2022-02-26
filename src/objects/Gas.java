@@ -24,6 +24,7 @@ public class Gas extends GameObject implements ObjectStoppable {
     public static final int DEFAULT_RANGE = 3;
     public static final boolean DEFAULT_ACTIVATION = false;
     private static final int EXPANSION_RATE = 4;
+    private static final int EVENT_DURATION = 100; // in milliseconds
     private final int duration;
     private final int range;
     private final ArrayList<GasEffect> gasEffects;
@@ -68,7 +69,7 @@ public class Gas extends GameObject implements ObjectStoppable {
             expand(super.getStandingOn());
 
             checkEmptyTimeline =
-                    new Timeline(new KeyFrame(Duration.millis(100),
+                    new Timeline(new KeyFrame(Duration.millis(EVENT_DURATION),
                             event -> checkEmpty()));
             checkEmptyTimeline.setCycleCount(Animation.INDEFINITE);
             checkEmptyTimeline.play();

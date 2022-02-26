@@ -17,6 +17,7 @@ class HelpText {
     private final int x;
     private final int y;
     private final boolean underline;
+    private static final int FONT_SIZE = 25;
 
     /**
      * Constructs a HelpText.
@@ -41,7 +42,7 @@ class HelpText {
     public Text getNode() {
         Text text = new Text(this.text);
         text.setTextAlignment(TextAlignment.CENTER);
-        text.setFont(TextUtils.getFont(25));
+        text.setFont(TextUtils.getFont(FONT_SIZE));
         text.setFill(Color.WHITE);
         text.setX(x);
         text.setY(y);

@@ -5,7 +5,11 @@ import javafx.scene.layout.VBox;
 import level.LevelData;
 import objects.GameObjectType;
 import objects.ObjectUtils;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * A class to display and control the inventory for the game.

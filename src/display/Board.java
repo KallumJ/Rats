@@ -15,7 +15,12 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -23,7 +28,11 @@ import level.LevelData;
 import level.LevelProperties;
 import level.LevelSaveHandler;
 import level.RatPopulation;
-import objects.*;
+import objects.Explosion;
+import objects.GameObject;
+import objects.ObjectInteractionChecker;
+import objects.ObjectStartable;
+import objects.ObjectStoppable;
 import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
 import players.scores.Player;
@@ -37,7 +46,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * A class to model the current game board
+ * A class to model the current game board.
  *
  * @author Fahd Alsahali (2015807)
  * @date 2022/02/18
@@ -52,11 +61,12 @@ public class Board {
     private static final int AIRSTRIKE_BUTTON_WIDTH = 50;
     private static final int CONTROLS_MARGIN = 5; // in pixels
     private static final String INFORMATION_LABEL_TEXT =
-            "Time elapsed: %d " + "seconds. Expected time: %d seconds. Score " + "%d. Population to lose " + "%d.";
+            "Time elapsed: %d seconds. Expected time: %d seconds. Score %d. Population to lose %d.";
     private static final int INFO_LABEL_PADDING = 5; // in pixels
     private static final int AIRSTRIKE_TARGETS_NUMBER = 10;
     // the time for the program to check id the player won/lost in millisecond
     private static final int CHECK_WIN_LOST_PERIOD = 250;
+    private static final int FONT_SIZE = 18;
 
     private LevelData levelData;
     private Label timerLabel;
@@ -82,7 +92,8 @@ public class Board {
         // Start an interaction checker to check for interactions between the
         // objects
         interactionCheckTimeline =
-                new Timeline(new KeyFrame(Duration.millis(INTERACTION_CHECK_INTERVAL), event -> interactionCheck()));
+                new Timeline(new KeyFrame(Duration.millis(INTERACTION_CHECK_INTERVAL),
+                        event -> interactionCheck()));
         interactionCheckTimeline.setCycleCount(Animation.INDEFINITE);
         interactionCheckTimeline.play();
 
@@ -274,7 +285,8 @@ public class Board {
         // Add save button
         HBox controlsContainer = new HBox();
         controlsContainer.setPadding(new Insets(CONTROLS_MARGIN));
-        controlsContainer.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        controlsContainer.setBackground(new Background(
+                new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
         controlsContainer.setAlignment(Pos.CENTER);
 
         Button saveButton = new Button(SAVED_BUTTON_LABEL);
@@ -315,11 +327,12 @@ public class Board {
 
         // Add time label
         HBox labelContainer = new HBox();
-        labelContainer.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        labelContainer.setBackground(new Background(
+                new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
         timerLabel.setMinWidth(GameMenu.getStage().getWidth());
         timerLabel.setAlignment(Pos.CENTER);
-        timerLabel.setFont(TextUtils.getFont(18));
+        timerLabel.setFont(TextUtils.getFont(FONT_SIZE));
         timerLabel.setPadding(new Insets(INFO_LABEL_PADDING));
 
         labelContainer.getChildren().add(timerLabel);
@@ -522,9 +535,9 @@ public class Board {
                 int x2 = rand.nextInt(widthOfMap);
                 potentialTarget = GameObject.getBoard().getLevelData().getTileSet().getTile(x2, y2);
 
-
                 airstrikeTargets.add(i, potentialTarget);
-            } while ((!potentialTarget.getTileType().equals(TileType.PATH)) && airstrikeTargets.contains(potentialTarget));
+            } while (!potentialTarget.getTileType().equals(TileType.PATH)
+                    && airstrikeTargets.contains(potentialTarget));
             explosionsEffect.add(i, new Explosion(potentialTarget));
 
         }

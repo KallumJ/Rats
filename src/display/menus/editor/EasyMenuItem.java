@@ -26,14 +26,14 @@ public class EasyMenuItem extends MenuItem {
     private static final int AIRSTRIKE_NUM_OF_HITS = 8;
     private static final TimeOfDay TIME_OF_DAY = TimeOfDay.BOTH;
     private static final int TIME_INTERVAL = 60;
-    private static final int height = 12;
-    private static final int width = 12;
+    private static final int HEIGHT = 12;
+    private static final int WIDTH = 12;
 
     public EasyMenuItem() {
         super(" E A S Y ");
 
         setOnMousePressed(event -> {
-            LevelData customLevel = CustomLevelDataFactory.getBlankLevelData(height, width);
+            LevelData customLevel = CustomLevelDataFactory.getBlankLevelData(HEIGHT, WIDTH);
 
             CustomBoard board = new CustomBoard(customLevel, POPULATION_TO_LOSE,
                     EXPECTED_TIME, ITEM_INTERVAL, RAT_MAX_BABIES, RAT_MIN_BABIES,

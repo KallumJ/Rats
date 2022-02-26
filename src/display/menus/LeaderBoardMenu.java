@@ -23,12 +23,16 @@ import java.util.List;
  *
  */
 public class LeaderBoardMenu extends GameMenu {
-    private final static String PLAYER_HEADER = "Player               ";
-    private final static String SCORE_HEADER = "Score       ";
-    private final static String SCORE_ENTRY = "%s%s";
-    private final static String LEADERBOARD_HEADER =
+    private static final String PLAYER_HEADER = "Player               ";
+    private static final String SCORE_HEADER = "Score       ";
+    private static final String SCORE_ENTRY = "%s%s";
+    private static final String LEADERBOARD_HEADER =
             PLAYER_HEADER + SCORE_HEADER;
     private final String levelId;
+    private static final int SCORE_CONTAINER_MIN_SIZE = 100;
+    private static final int SCORE_CONTAINER_X = 90;
+    private static final int SCORE_CONTAINER_Y = 80;
+    private static final int MAX_NUM_IN_LEADERBOARD = 10;
 
     /**
      * Constructs a LeaderBoardMenu for the provided level.
@@ -81,12 +85,13 @@ public class LeaderBoardMenu extends GameMenu {
 
             // Create score container
             VBox scoreContainer = new VBox();
-            scoreContainer.setMinSize(100, 100);
-            scoreContainer.setTranslateX(90);
-            scoreContainer.setTranslateY(80);
+            scoreContainer.setMinSize(SCORE_CONTAINER_MIN_SIZE, SCORE_CONTAINER_MIN_SIZE);
+            scoreContainer.setTranslateX(SCORE_CONTAINER_X);
+            scoreContainer.setTranslateY(SCORE_CONTAINER_Y);
 
             // Set font style of the leaderboard.
-            scoreContainer.setStyle("-fx-font-size: 24;" + "-fx-font-family: " + "'consolas';" + "-fx-font-weight: bold;" + "-fx-font-style" + ": oblique;");
+            scoreContainer.setStyle("-fx-font-size: 24;" + "-fx-font-family: "
+                    + "'consolas';" + "-fx-font-weight: bold;" + "-fx-font-style" + ": oblique;");
 
             // Add header to leaderboard
             Label label = new Label();
@@ -96,9 +101,9 @@ public class LeaderBoardMenu extends GameMenu {
 
             // Add top ten players and their information into VBox.
             int numInLeaderboard = 0;
-            for (PlayerInLeaderboard playerInLeaderboard :
-                    playersInLeaderboard) {
-                if (numInLeaderboard < 10 && playerInLeaderboard.getLevel().equals(levelId) && LevelUtils.isIdNotForCustomLevel(levelId) == true) {
+            for (PlayerInLeaderboard playerInLeaderboard : playersInLeaderboard) {
+                if (numInLeaderboard < MAX_NUM_IN_LEADERBOARD && playerInLeaderboard.getLevel().equals(levelId)
+                        && LevelUtils.isIdNotForCustomLevel(levelId)) {
                     numInLeaderboard++;
                     Label playerLabel = new Label();
                     playerLabel.setTextFill(Color.YELLOW);

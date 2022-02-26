@@ -36,6 +36,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
     private final Timeline bombTimer;
     private boolean timerStarted;
     private int timeRemaining;
+    private static final int EVENT_CHECK_TIMER = 1000; // in milliseconds
 
     /**
      * Create a new bomb item on the specified tile.
@@ -66,7 +67,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
         bombFourImage = new Image("file:resources/bombFourSeconds.png");
         bombFiveImage = new Image("file:resources/bombFiveSeconds.png");
 
-        bombTimer = new Timeline(new KeyFrame(Duration.millis(1000),
+        bombTimer = new Timeline(new KeyFrame(Duration.millis(EVENT_CHECK_TIMER),
                 event -> tick()));
         bombTimer.setCycleCount(this.timeRemaining);
 
@@ -220,7 +221,7 @@ public class Bomb extends GameObject implements ObjectStoppable {
         GameObject.getBoard().removeObject(this);
         GameObject.getBoard().updateBoardDisplay();
 
-        Timeline endTimeline = new Timeline(new KeyFrame(Duration.millis(1000),
+        Timeline endTimeline = new Timeline(new KeyFrame(Duration.millis(EVENT_CHECK_TIMER),
                 event -> endExplosion(explosionsEffect)));
         endTimeline.play();
 

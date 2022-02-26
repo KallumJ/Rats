@@ -42,6 +42,10 @@ public class CustomBoard extends Board {
     private final LevelData levelData;
     private final LevelEditorOptionsMenu inputMenu;
     private final Stage levelOptionsStage = new Stage();
+    private static final int BUTTON_MAX_WIDTH = 200;
+    private static final int CREATE_BUTTON_X = 150;
+    private static final int BACK_BUTTON_X = 250;
+    private static final int BUTTON_Y = 0;
 
 
     /**
@@ -56,7 +60,11 @@ public class CustomBoard extends Board {
         this.initCustomBoard();
     }
 
-    public CustomBoard(LevelData levelData, int populationToLose, int expectedTime, int itemInterval, int ratMaxBabies, int ratMinBabies, int adultRatSpeed, int babyRatSpeed, int deathRatSpeed, boolean includeAirstrike, int costOfAirstrike, int airstrikeNumOfHits, TimeOfDay time, int timeInterval, HashSet<GameObjectType> allowedItems, String name) {
+    public CustomBoard(LevelData levelData, int populationToLose, int expectedTime, int itemInterval,
+                       int ratMaxBabies, int ratMinBabies, int adultRatSpeed, int babyRatSpeed,
+                       int deathRatSpeed, boolean includeAirstrike, int costOfAirstrike,
+                       int airstrikeNumOfHits, TimeOfDay time, int timeInterval,
+                       HashSet<GameObjectType> allowedItems, String name) {
         this.levelData = levelData;
         this.tileCanvas = new TileCanvas(levelData);
 
@@ -74,8 +82,12 @@ public class CustomBoard extends Board {
         this.inputMenu.setAirstrikeNumberOfHits(airstrikeNumOfHits);
         this.inputMenu.setTimeOfDay(time);
         this.inputMenu.setTimeInterval(timeInterval);
-        if (allowedItems != null) this.inputMenu.setSelectedObjects(allowedItems);
-        if (name != null) this.inputMenu.setLevelNameTextField(name);
+        if (allowedItems != null) {
+            this.inputMenu.setSelectedObjects(allowedItems);
+        }
+        if (name != null) {
+            this.inputMenu.setLevelNameTextField(name);
+        }
 
         this.initCustomBoard();
 
@@ -161,18 +173,20 @@ public class CustomBoard extends Board {
     public HBox createCommandsBox() {
         HBox commandsBox = new HBox();
         Button createButton = new Button(" C R E A T E ");
-        createButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
+        createButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
+                + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
 
         Button backButton = new Button(" B A C K ");
-        backButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-border-color: darkgrey; -fx-border-width: 1px;");
+        backButton.setStyle("-fx-background-color: black; -fx-text-fill: white;"
+                + "-fx-border-color: darkgrey; -fx-border-width: 1px;");
 
-        createButton.setMaxWidth(200);
-        createButton.setTranslateX(150);
-        createButton.setTranslateY(0);
+        createButton.setMaxWidth(BUTTON_MAX_WIDTH);
+        createButton.setTranslateX(CREATE_BUTTON_X);
+        createButton.setTranslateY(BUTTON_Y);
 
-        backButton.setMaxWidth(200);
-        backButton.setTranslateX(250);
-        backButton.setTranslateY(0);
+        backButton.setMaxWidth(BUTTON_MAX_WIDTH);
+        backButton.setTranslateX(BACK_BUTTON_X);
+        backButton.setTranslateY(BUTTON_Y);
 
         createButton.setOnMousePressed(event -> {
             // checks if board has atleast minimum number of path tiles and all paths are connected
@@ -227,7 +241,8 @@ public class CustomBoard extends Board {
     }
 
     /**
-     * finds first available path/tunnel and calls connectedTiles using the path/tunnel as a parameter and an empty array list.
+     * finds first available path/tunnel and calls connectedTiles
+     * using the path/tunnel as a parameter and an empty array list.
      *
      * @return true if all paths/tunnels are connected.
      */
@@ -263,7 +278,8 @@ public class CustomBoard extends Board {
         for (Direction direction : directions) {
             TileType tileType = tile.getAdjacentTile(direction).getTileType();
             // if adjacent tiles tile type is grass or tunnel and adjacent tile hasn't been visited before
-            if ((tileType == TileType.PATH || tileType == TileType.TUNNEL) && !visitedTiles.contains(tile.getAdjacentTile(direction))) {
+            if ((tileType == TileType.PATH || tileType == TileType.TUNNEL)
+                    && !visitedTiles.contains(tile.getAdjacentTile(direction))) {
                 visitedTiles = connectedTiles(tile.getAdjacentTile(direction), visitedTiles);
             }
         }
