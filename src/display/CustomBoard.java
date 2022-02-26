@@ -23,6 +23,7 @@ import level.LevelSaveHandler;
 import level.LevelUtils;
 import objects.GameObject;
 import objects.GameObjectType;
+import objects.rats.PeacefulRat;
 import players.PlayerProfileManager;
 import tile.Direction;
 import tile.Tile;
@@ -190,22 +191,33 @@ public class CustomBoard extends Board {
 
         createButton.setOnMousePressed(event -> {
             // checks if board has atleast minimum number of path tiles and all paths are connected
-            if (minTileCheck() && allPathsConnected()) {
-                // Rats should be loaded as babies
-                levelData.makeRatsBabies();
-                inputMenu.setLevelProperties(levelData);
-                LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
-                levelOptionsStage.close();
-                GameObject.setBoard(null);
-                GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
+            if (minTileCheck() && allPathsConnected() && minRatsCheck()) {
+                try {
+                    inputMenu.setLevelProperties(levelData);
+                    // Rats should be loaded as babies
+                    levelData.makeRatsBabies();
+                    LevelSaveHandler.saveCustomLevel(levelData, PlayerProfileManager.getCurrentlyLoggedInPlayer());
+                    levelOptionsStage.close();
+                    GameObject.setBoard(null);
+                    GameMenu.getStage().setScene(new Scene(new MainMenu().buildMenu()));
+                } catch (IllegalArgumentException ignored) {}
             } else {
-                Alert alert;
                 if (!minTileCheck()) {
-                    alert = new Alert(AlertType.ERROR, "Minimum number of paths/tunnels not met!");
-                } else {
-                    alert = new Alert(AlertType.ERROR, "All paths/tunnels need to be connected!");
+                    Alert alert = new Alert(AlertType.ERROR,
+                            "Minimum number of paths/tunnels not met!");
+                    alert.showAndWait();
                 }
-                alert.show();
+                if (!allPathsConnected()) {
+                    Alert alert = new Alert(AlertType.ERROR,
+                            "All paths/tunnels need to be connected!");
+                    alert.showAndWait();
+                }
+                if (!minRatsCheck()) {
+                    Alert alert = new Alert(AlertType.ERROR,
+                            "The level must contain at least 2 rats,"
+                                    + " 1 male and 1 female");
+                    alert.showAndWait();
+                }
             }
         });
 
@@ -219,6 +231,28 @@ public class CustomBoard extends Board {
         commandsBox.getChildren().add(backButton);
         return commandsBox;
 
+    }
+
+    /**
+     * A method to check the level meets the minimum number of rats
+     *
+     * @return true if the map has at least 2 rats of differing genders, false otherwise
+     */
+    private boolean minRatsCheck() {
+        boolean male = false;
+        boolean female = false;
+        for (GameObject object : levelData.getObjects()) {
+            if (object instanceof PeacefulRat) {
+                PeacefulRat rat = (PeacefulRat) object;
+                if (rat.getGender().equals("m")) {
+                    male = true;
+                } else {
+                    female = true;
+                }
+            }
+        }
+
+        return male && female;
     }
 
     /**
