@@ -28,6 +28,7 @@ import java.util.HashSet;
  */
 public class LevelEditorOptionsMenu {
     public static final int WINDOW_OFFSET = 800;
+    private static final int CONTAINER_PREFERRED_SIZE = 600;
     private static final String POP_TO_LOSE_TOOLTIP =
             "The number of rats that cause game failure between 10 and 100";
     private static final String EXPECTED_TIME_TOOLTIP =
@@ -39,8 +40,8 @@ public class LevelEditorOptionsMenu {
             "The maximum number of rats a rat can give birth "
                     + "to between 1 and 10";
     private static final String RAT_MIN_BABIES_TOOLTIP =
-            "The minimum number of rats a rat can give birth " +
-                    "to between 1 and 10";
+            "The minimum number of rats a rat can give birth "
+                    + "to between 1 and 10";
     private static final String ADULT_RAT_SPEED_TOOLTIP =
             "The time between adult rat movements, "
                     + "in milliseconds between 100 and 5000";
@@ -418,11 +419,12 @@ public class LevelEditorOptionsMenu {
 
         //Vbox containing all the labels, textfields, etc.
         VBox container = new VBox();
-        container.setPrefSize(600, 600);
+        container.setPrefSize(CONTAINER_PREFERRED_SIZE, CONTAINER_PREFERRED_SIZE);
         container.getChildren().addAll(
                 populationToLoseLabel, expectedTimeLabel, itemIntervalLabel, ratMaxBabiesLabel, ratMinBabiesLabel,
-                adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel, airstrikeNumberOfHitsLabel,
-                timeDayAndNightLabel, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
+                adultRatSpeedLabel, babyRatSpeedLabel, deathRatSpeedLabel, airstrikeCostLabel,
+                airstrikeNumberOfHitsLabel, timeDayAndNightLabel,
+                row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11,
                 tileSelectChoiceBox, includeAirstrike, deleteItems, onlyDayTime, onlyNightTime, dayAndNight,
                 allowedItemsLabel, objectSelectionGroup.getObjectSelectionGroup(), levelNameLabel, levelNameTextField
         );
