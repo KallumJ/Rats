@@ -60,7 +60,7 @@ public class CustomBoard extends Board {
      */
     public CustomBoard(LevelData levelData) {
         this.levelData = levelData;
-        this.tileCanvas = new TileCanvas(levelData);
+        this.tileCanvas = new TileCanvas(levelData, this);
         this.inputMenu = new LevelEditorOptionsMenu(this);
         this.initCustomBoard();
     }
@@ -99,7 +99,7 @@ public class CustomBoard extends Board {
                        int airstrikeNumOfHits, TimeOfDay time, int timeInterval,
                        HashSet<GameObjectType> allowedItems, String name) {
         this.levelData = levelData;
-        this.tileCanvas = new TileCanvas(levelData);
+        this.tileCanvas = new TileCanvas(levelData, this);
 
         this.inputMenu = new LevelEditorOptionsMenu(this);
         this.inputMenu.setPopulationToLose(populationToLose);

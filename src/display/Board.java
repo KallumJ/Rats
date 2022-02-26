@@ -87,7 +87,7 @@ public class Board {
     public Board(LevelData levelData) {
         this.levelData = levelData;
         LevelProperties levelProperties = levelData.getLevelProperties();
-        this.tileCanvas = new TileCanvas(levelData);
+        this.tileCanvas = new TileCanvas(levelData, this);
 
         // Start an interaction checker to check for interactions between the
         // objects

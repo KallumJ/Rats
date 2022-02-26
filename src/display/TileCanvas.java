@@ -33,7 +33,7 @@ public class TileCanvas {
      *
      * @param levelData the level data to draw a canvas for.
      */
-    public TileCanvas(LevelData levelData) {
+    public TileCanvas(LevelData levelData, Board board) {
 
         this.levelData = levelData;
         LevelProperties levelProperties = levelData.getLevelProperties();
@@ -44,8 +44,7 @@ public class TileCanvas {
         int height = levelProperties.getLevelHeight() * Tile.TILE_SIZE;
 
         this.canvas = new Canvas(width, height);
-        String levelId = levelData.getLevelProperties().getLevelId();
-        if (!LevelUtils.isIdNotForCustomLevel(levelId)) {
+        if (board instanceof CustomBoard) {
             currentTimeOfDay = TimeOfDay.DAY;
         } else {
             int timeInterval = levelData.getLevelProperties().getTimeInterval();
