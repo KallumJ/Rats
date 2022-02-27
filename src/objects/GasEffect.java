@@ -52,6 +52,7 @@ public class GasEffect extends GameObject implements ObjectStoppable {
 
     /**
      * A method to check when the gas has been placed on the board.
+     * @param rat the rat that is entering the gas
      */
     public void enterGas(Rat rat) {
         if (!(sourceGas.getRatsInGas().contains(rat))) {

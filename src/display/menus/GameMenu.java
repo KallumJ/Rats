@@ -77,6 +77,7 @@ public abstract class GameMenu {
      * @param menuBox     the list of menu items to display in the menu.
      * @param backHandler the EventHandler for the back button on the page, or
      *                    null if there is no back button required.
+     * @param menuTitle the title for this menu.
      * @return the node containing the menu.
      */
     public BorderPane buildMenu(MenuTitle menuTitle, MenuBox menuBox,

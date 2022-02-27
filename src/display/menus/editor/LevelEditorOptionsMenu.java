@@ -123,6 +123,7 @@ public class LevelEditorOptionsMenu {
 
     /**
      * Constructs a LevelPropertiesInputMenu object.
+     * @param board the board this options menu is for
      */
     public LevelEditorOptionsMenu(CustomBoard board) {
         this.board = board;

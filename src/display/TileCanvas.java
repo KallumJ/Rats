@@ -32,6 +32,7 @@ public class TileCanvas {
      * Constructs a TileCanvas object.
      *
      * @param levelData the level data to draw a canvas for.
+     * @param board the board this tile canvas is on.
      */
     public TileCanvas(LevelData levelData, Board board) {
 

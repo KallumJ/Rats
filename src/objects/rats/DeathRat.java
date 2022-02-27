@@ -34,6 +34,7 @@ public class DeathRat extends Rat {
      * @param speed               the speed of the rat.
      * @param directionOfMovement the direction of movement.
      * @param killsTarget         the kills target.
+     * @param numberOfKills  the number of rats this death rat has killed.
      */
     public DeathRat(Tile standingOn, int speed, Direction directionOfMovement,
                     int numberOfKills, int killsTarget) {

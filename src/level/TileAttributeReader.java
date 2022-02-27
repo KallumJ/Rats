@@ -46,6 +46,7 @@ public final class TileAttributeReader {
      * @param attributeName  The name of the attribute read from file.
      * @param attributeValue The value of the attribute read from file.
      * @param tile           The tile this attribute was read from.
+     * @param levelProperties The level properties for this level.
      * @return The constructed GameObject.
      */
     public static GameObject getObjectFromAttribute(String attributeName,
@@ -103,6 +104,7 @@ public final class TileAttributeReader {
      *
      * @param attributeValue The data to construct a PeacefulRat with.
      * @param tile           The tile the PeacefulRat is on.
+     * @param levelProperties The level properties for this level
      * @return The constructed PeacefulRat.
      */
     public static PeacefulRat readPeacefulRat(String attributeValue, Tile tile,
@@ -224,6 +226,7 @@ public final class TileAttributeReader {
      *
      * @param attributeValue the data to construct a DeathRat with.
      * @param tile           the tile the DeathRat is on.
+     * @param levelProperties The level properties for this level.
      * @return the constructed DeathRat.
      */
     private static DeathRat readDeathRat(String attributeValue, Tile tile,

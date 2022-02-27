@@ -433,6 +433,7 @@ class LevelEditItem extends MenuItem {
 
     /**
      * Constructs a LevelEditItem with the provided name.
+     * @param id the level id of this level
      */
     LevelEditItem(String id) {
         super(id);

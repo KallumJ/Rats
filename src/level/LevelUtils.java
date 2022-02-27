@@ -92,9 +92,10 @@ public final class LevelUtils {
     }
 
     /**
-     * A method to get the LevelFile by the provided id.
+     * A method to get the Level file by the provided id.
      *
      * @param id the level id.
+     * @return the level file
      */
     public static File getLevelFileById(String id) {
 
@@ -291,6 +292,7 @@ public final class LevelUtils {
      *
      * @param player the player.
      * @return the most recently level file for the player.
+     * @throws FileNotFoundException when file is not found
      */
     public static File getMostRecentLevel(Player player) throws FileNotFoundException {
         List<File> savedLevels = LevelUtils.getSavedLevelsForPlayer(player);

@@ -104,6 +104,7 @@ public final class LevelDataFactory {
      * A method to read the objects that are stored on the tiles.
      *
      * @param tileSet An instance of TileSet with all the tiles to read from.
+     * @param levelProperties The level properties for this level
      * @return an ArrayList of Objects with the required information.
      */
     private static ArrayList<GameObject> readObjects(TileSet tileSet,

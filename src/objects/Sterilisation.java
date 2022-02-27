@@ -36,6 +36,7 @@ public class Sterilisation extends GameObject implements ObjectStoppable {
      * @param standingOn The tile the sterilisation is on.
      * @param duration   The duration of sterilisation effect when it
      *                   activated.
+     * @param active whether the sterilisation is active
      */
     public Sterilisation(Tile standingOn, int duration, boolean active) {
         super(standingOn);

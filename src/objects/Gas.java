@@ -38,6 +38,8 @@ public class Gas extends GameObject implements ObjectStoppable {
 
     /**
      * A method to construct the gas object.
+     * @param active whether the gas is active or not.
+     * @param standingOn the tile the gas is on.
      */
     public Gas(Tile standingOn, boolean active) {
         super(standingOn);
@@ -79,6 +81,7 @@ public class Gas extends GameObject implements ObjectStoppable {
 
     /**
      * A method to expand the gas object across tiles.
+     * @param tile The tile the gas is expanding on
      */
     public void expand(Tile tile) {
         if (GameObject.getBoard() == null) {
@@ -135,6 +138,7 @@ public class Gas extends GameObject implements ObjectStoppable {
 
     /**
      * A method to find out when the rat is choking from the gas.
+     * @param rat the rat to choke
      */
     public void startChoking(Rat rat) {
         ratsInGas.add(rat);
@@ -145,6 +149,7 @@ public class Gas extends GameObject implements ObjectStoppable {
 
     /**
      * A method to get check is the rat is still alive.
+     * @param rat the rat to check whether they are still in the gas
      */
     public void stillHere(Rat rat) {
 
@@ -219,6 +224,7 @@ public class Gas extends GameObject implements ObjectStoppable {
 
     /**
      * A method to delay the expanding of the gas object.
+     * @param tile the tile to delay expansion from
      */
     private void delayExpand(Tile tile) {
         expandTimeline =
@@ -229,6 +235,7 @@ public class Gas extends GameObject implements ObjectStoppable {
 
     /**
      * A method to check if the rat is still in gas effect.
+     * @param rat the rat to check whether its still in the gas
      *
      * @return boolean.
      */

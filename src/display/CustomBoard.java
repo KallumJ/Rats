@@ -92,6 +92,7 @@ public class CustomBoard extends Board {
      * @param airstrikeNumOfHits the number of target tiles an airstrike
      *                           will hit.
      * @param allowedItems       a list of allowed items in the inventory for this level
+     * @param name the name of this level.
      */
     public CustomBoard(LevelData levelData, int populationToLose, int expectedTime, int itemInterval,
                        int ratMaxBabies, int ratMinBabies, int adultRatSpeed, int babyRatSpeed,
@@ -349,7 +350,7 @@ public class CustomBoard extends Board {
      *
      * @param tile         current tile used to get new tile from its adjacent tiles.
      * @param visitedTiles all tiles that have been visited/tile parameter.
-     * @return List<Tile> of visited tiles.
+     * @return list of visited tiles.
      */
     private List<Tile> connectedTiles(Tile tile, List<Tile> visitedTiles) {
         visitedTiles.add(tile);

@@ -110,20 +110,21 @@ public class MainMenu extends GameMenu {
     }
 
     /**
-     * Apply scrolling effects to the provided motd label.
+     * Apply scrolling effects to the provided label.
+     * @param label the label to scroll
      */
-    private void applyScrollingEffects(Label motdLabel) {
+    private void applyScrollingEffects(Label label) {
         // Use Timeline, Key Value and Key Frame
         // Scrolling Text Effects for text "ABOUT RATS"
         double sceneWidth = getStage().getWidth();
-        double textWidth = motdLabel.getLayoutBounds().getWidth();
+        double textWidth = label.getLayoutBounds().getWidth();
 
         KeyValue initKeyValue =
-                new KeyValue(motdLabel.translateXProperty(),
+                new KeyValue(label.translateXProperty(),
                         sceneWidth);
         KeyFrame initFrame = new KeyFrame(Duration.ZERO, initKeyValue);
         KeyValue endKeyValue =
-                new KeyValue(motdLabel.translateXProperty(),
+                new KeyValue(label.translateXProperty(),
                         -3.5 * textWidth);
         KeyFrame endFrame = new KeyFrame(Duration.seconds(15), endKeyValue);
 
